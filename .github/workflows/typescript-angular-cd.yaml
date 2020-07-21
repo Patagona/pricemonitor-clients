@@ -1,7 +1,8 @@
 name: typescript-angular CD
 
 on:
-  [push]
+  release:
+    types: [created]
 
 defaults:
   run:
