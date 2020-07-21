@@ -1,7 +1,7 @@
 {
-  "name": "pricemonitor-client",
+  "name": "@Patagona/pricemonitor-clients/typescript-angular",
   "version": "0.0.5000",
-  "description": "OpenAPI client for pricemonitor-client",
+  "description": "OpenAPI client for @Patagona/pricemonitor-clients/typescript-angular",
   "author": "OpenAPI-Generator Contributors",
   "keywords": [
     "openapi-client",
@@ -31,5 +31,8 @@
     "tsickle": "^0.38.0",
     "typescript": ">=3.9.2 <4.0.0",
     "zone.js": "^0.10.2"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   }
 }

@@ -1,4 +1,4 @@
-## pricemonitor-client@0.0.5000
+## @Patagona/pricemonitor-clients/typescript-angular@0.0.5000
 
 ### Building
 
@@ -19,7 +19,7 @@ Navigate to the folder of your consuming project and run one of next commands.
 _published:_
 
 ```
-npm install pricemonitor-client@0.0.5000 --save
+npm install @Patagona/pricemonitor-clients/typescript-angular@0.0.5000 --save
 ```
 
 _without publishing (not recommended):_
@@ -39,7 +39,7 @@ npm link
 
 In your project:
 ```
-npm link pricemonitor-client
+npm link @Patagona/pricemonitor-clients/typescript-angular
 ```
 
 __Note for Windows users:__ The Angular CLI has troubles to use linked npm packages.
@@ -54,7 +54,7 @@ In your Angular project:
 
 ```
 // without configuring providers
-import { ApiModule } from 'pricemonitor-client';
+import { ApiModule } from '@Patagona/pricemonitor-clients/typescript-angular';
 import { HttpClientModule } from '@angular/common/http';
 
 
@@ -74,7 +74,7 @@ export class AppModule {}
 
 ```
 // configuring providers
-import { ApiModule, Configuration, ConfigurationParameters } from 'pricemonitor-client';
+import { ApiModule, Configuration, ConfigurationParameters } from '@Patagona/pricemonitor-clients/typescript-angular';
 
 export function apiConfigFactory (): Configuration => {
   const params: ConfigurationParameters = {
@@ -94,7 +94,7 @@ export class AppModule {}
 
 ```
 // configuring providers with an authentication service that manages your access tokens
-import { ApiModule, Configuration } from 'pricemonitor-client';
+import { ApiModule, Configuration } from '@Patagona/pricemonitor-clients/typescript-angular';
 
 @NgModule({
     imports: [ ApiModule ],
@@ -118,7 +118,7 @@ export class AppModule {}
 ```
 
 ```
-import { DefaultApi } from 'pricemonitor-client';
+import { DefaultApi } from '@Patagona/pricemonitor-clients/typescript-angular';
 
 export class AppComponent {
 	 constructor(private apiGateway: DefaultApi) { }
@@ -157,7 +157,7 @@ export class AppModule {
 If different than the generated base path, during app bootstrap, you can provide the base path to your service. 
 
 ```
-import { BASE_PATH } from 'pricemonitor-client';
+import { BASE_PATH } from '@Patagona/pricemonitor-clients/typescript-angular';
 
 bootstrap(AppComponent, [
     { provide: BASE_PATH, useValue: 'https://your-web-service.com' },
@@ -166,7 +166,7 @@ bootstrap(AppComponent, [
 or
 
 ```
-import { BASE_PATH } from 'pricemonitor-client';
+import { BASE_PATH } from '@Patagona/pricemonitor-clients/typescript-angular';
 
 @NgModule({
     imports: [],
@@ -190,7 +190,7 @@ export const environment = {
 
 In the src/app/app.module.ts:
 ```
-import { BASE_PATH } from 'pricemonitor-client';
+import { BASE_PATH } from '@Patagona/pricemonitor-clients/typescript-angular';
 import { environment } from '../environments/environment';
 
 @NgModule({
