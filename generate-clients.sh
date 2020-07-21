@@ -41,5 +41,8 @@ docker run --rm -v $(pwd):/local -u $(id -u ${USER}):$(id -g ${USER}) $IMAGE gen
       --additional-properties=npmRepository=https://npm.pkg.github.com
 
 # The generator inserts crappy typescript boundaries which only work for angualr 9. We need to update them.
-sed -i 's/\"typescript\": \">=3.6.0 <3.8.0\"/\"typescript\": \">=3.9.2 <4.0.0\"/g' clients/typescript-angular/package.json
-cp .npmrc clients/typescript-angular/
+
+ANGULAR_PACKAGE_JSON=clients/typescript-angular/package.json
+sed -i 's/\"typescript\": \">=3.6.0 <3.8.0\"/\"typescript\": \">=3.9.2 <4.0.0\"/g' ${ANGULAR_PACKAGE_JSON}
+jq -M '. +{"repository": {"type" : "git","url" : "ssh://git@github.com/Patagona/pricemonitor-clients.git","directory": "packages/pricemonitor-typescript-angular"}}' ${ANGULAR_PACKAGE_JSON} > ${ANGULAR_PACKAGE_JSON}.tmp
+mv ${ANGULAR_PACKAGE_JSON}.tmp ${ANGULAR_PACKAGE_JSON}

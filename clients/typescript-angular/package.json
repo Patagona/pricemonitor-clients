@@ -34,5 +34,10 @@
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@github.com/Patagona/pricemonitor-clients.git",
+    "directory": "packages/pricemonitor-typescript-angular"
   }
 }
