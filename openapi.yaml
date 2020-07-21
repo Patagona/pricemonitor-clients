@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5000
+  version: beta
 servers:
 - url: /
 security:
@@ -1219,15 +1219,27 @@ paths:
             schema:
               $ref: '#/components/schemas/ProductOffersApiQuery'
         description: |-
-          The request body specifies which offers will be searched for. The attribute names on the left side of the comparison filter must match the attribute names in an offer. The default use case is to: * Specify a AndFilter where the field `filters` is a list of * A ComparisonFilter with
+          The request body specifies which offers will be searched for.<br>
+          Warning: It's highly recommended to not use this endpoint since it is error-prone due to complex query structure!
+          Supported are queries with three different types of filters:<br>
+          1. Filtering for offers of a certain product<br> This can be done by a ComparisonFilter with
             * the `left` side being a `StringValueProvider` with the `attributeName` value "productId"
-            * the `right` side being a `StringConstantValueProvider` with the `value` being the actual product ID to filter offers for
+            * the `right` side being a `StringConstantValueProvider` with the `value` being the actual pricemonitor product ID to filter offers for
             * the `comparison` being a `StringEquality`
-          * A ComparisonFilter with
-            * the `left` side being a `BooleanValueProvider` with the `attributeName` value "ignored"
-            * the `right` side being a `BooleanConstantValueProvider` with the `value` set to `false`
-            * the `comparison` being a `BooleanEquality`
-          This default case results in finding all offers for a given product ID that are not ignored by the contract. Note: This endpoint will only return the newest offers for each product for a given time range.
+
+          2. Filtering for valid offers of a certain product<br> This can be done by an AndFilter with
+            * a) A product filter (see first supported filter)
+            * b) A NotFilter which contains a ComparisonFilter
+              * the `left` side being a `NumberValueProvider` with the `attributeName` value "ignoredBy"
+              * the `right` side being a `NumberConstantValueProvider` with the `value` being the numeric contract id to filter offers for
+              * the `comparison` being a `NumberEquality`
+
+          3. Filtering for offers of a certain vendor<br> This can be done by a ComparisonFilter with
+            * the `left` side being a `StringValueProvider` with the `attributeName` value "reseller_name"
+            * the `right` side being a `StringConstantValueProvider` with the `value` being the actual vendor name to filter offers for
+            * the `comparison` being a `StringEquality`
+
+          Note: This endpoint will only return the newest offers for each product for a given time range.
         required: true
       responses:
         "200":
@@ -1242,7 +1254,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiError'
-          description: Returned in case of unparsable request JSON.
+          description: Returned in case of unparsable request JSON or unsupported
+            filter.
       tags:
       - offers
   /api/v3/vendor/contracts/{contractId}/offers/stats/query:
