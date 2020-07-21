@@ -1,5 +1,5 @@
 {
-  "name": "@Patagona/pricemonitor-clients/typescript-angular",
+  "name": "@Patagona/typescript-angular",
   "version": "0.0.5000",
   "description": "OpenAPI client for @Patagona/pricemonitor-clients/typescript-angular",
   "author": "OpenAPI-Generator Contributors",
@@ -34,5 +34,10 @@
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
+  },
+  "repository" : {
+    "type" : "git",
+    "url": "ssh://git@github.com/Patagona/pricemonitor-clients.git",
+    "directory": "packages/typescript-angular"
   }
 }
