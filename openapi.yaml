@@ -1,0 +1,4170 @@
+openapi: 3.0.0
+info:
+  contact:
+    name: Patagona GmbH
+    url: https://patagona.de/
+  title: Pricemonitor API
+  version: 0.0.5000
+servers:
+- url: /
+security:
+- BasicAuth: []
+tags:
+- description: Manage your account
+  name: account
+- description: Company management related endpoints
+  name: companies
+- description: Manage your data-feeds
+  name: feeds
+- description: Manage your orders
+  name: orders
+- description: View price recommendations
+  name: pricerecommendations
+- description: Manage your products
+  name: products
+- description: Manage your contract
+  name: settings
+- description: See all of your tasks
+  name: tasks
+paths:
+  /api/1/{contractId}/products/analysis/pricerecommendations:
+    get:
+      operationId: getPriceRecommendations
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Where to start fetching the recommendations
+        example: 0
+        explode: true
+        in: query
+        name: start
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+        style: form
+      - description: Maximal number of results
+        example: 100
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 10000
+          format: int32
+          type: integer
+        style: form
+      - description: Timestamp of the oldest results
+        example: 2019-01-01T00:00:00.000Z
+        explode: true
+        in: query
+        name: since
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetPriceRecommendationsResponse'
+          description: No response was specified
+      summary: Get price recommendations (deprecated)
+      tags:
+      - pricerecommendations
+  /api/2/companies:
+    post:
+      operationId: createCompany
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+        description: The company's name
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateCompanyResponseSimpleApiResponse'
+          description: No response was specified
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: The company name may not be empty
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: User already belongs to a company
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: The company could not be created
+      summary: Allows users without one to create a new Company
+      tags:
+      - companies
+  /api/2/companies/{companyId}/contracts:
+    get:
+      operationId: getCompanyContracts
+      parameters:
+      - example: 1
+        explode: false
+        in: path
+        name: companyId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiContractSimpleApiResponse'
+          description: No response was specified
+      summary: Get all contracts for given company
+      tags:
+      - companies
+    post:
+      operationId: addCompanyContract
+      parameters:
+      - example: 1
+        explode: false
+        in: path
+        name: companyId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateContractRequest'
+        description: Contract to be added
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddCompanyContractResponse'
+          description: No response was specified
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: Unable to add contract for company ID
+      summary: Add contract for given company
+      tags:
+      - companies
+  /api/2/m/contracts/{contractId}/settings/callbacks:
+    get:
+      operationId: getCallbacks
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Callbacks'
+          description: '-'
+        "404":
+          description: Settings for this contract don't exist yet
+      summary: Get callbacks
+      tags:
+      - settings
+    put:
+      operationId: putCallbacks
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Callbacks'
+        description: Callbacks
+        required: true
+      responses:
+        "200":
+          description: '-'
+        "404":
+          description: Settings for this contract don't exist yet
+      summary: Set callbacks
+      tags:
+      - settings
+  /api/2/v/contracts/{contractId}/feeds:
+    get:
+      description: Feeds can contain offer-related information such as price recommendations.
+        They can be configured to match individual demands.
+      operationId: getFeeds
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Feed'
+                type: array
+                uniqueItems: true
+          description: No response was specified
+      summary: Get all feeds
+      tags:
+      - feeds
+  /api/2/v/contracts/{contractId}/feeds/{feedId}:
+    get:
+      description: A feed can contain offer-related information such as price recommendations.
+        Feeds can be configured to match individual demands.
+      operationId: getFeed
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: ID of the feed
+        explode: false
+        in: path
+        name: feedId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Feed'
+          description: No response was specified
+        "404":
+          description: Not found
+      summary: Find feed by ID
+      tags:
+      - feeds
+  /api/2/v/contracts/{contractId}/feeds/{feedId}/export/delta:
+    delete:
+      description: Dismiss already fetched feed-entries, so they will not be part
+        of future responses.
+      operationId: excludeFetchedFeedData
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: ID of the feed
+        explode: false
+        in: path
+        name: feedId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Feed'
+          description: No response was specified
+        "404":
+          description: Not found
+      summary: Dismiss already fetched feed-entries
+      tags:
+      - feeds
+  /api/2/v/contracts/{contractId}/feeds/{feedId}/export/delta/{fileName}:
+    get:
+      description: In contrast of normal feeds, feed-deltas return only results, that
+        are new since the last (DELETE-)request.
+      operationId: getFeedExportDelta
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: ID of the feed
+        explode: false
+        in: path
+        name: feedId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: fileName
+        explode: false
+        in: path
+        name: fileName
+        required: true
+        schema:
+          default: my-feed.csv
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Feed'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Feed'
+          description: No response was specified
+        "404":
+          description: Not found
+      summary: Retrieve all feed-entries after last request
+      tags:
+      - feeds
+  /api/2/v/contracts/{contractId}/feeds/{feedId}/export/{fileName}:
+    get:
+      description: Lets you download a file, containing all the data of the feed.
+      operationId: getFeedExport
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: ID of the feed
+        explode: false
+        in: path
+        name: feedId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: fileName
+        explode: false
+        in: path
+        name: fileName
+        required: true
+        schema:
+          default: my-feed.csv
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Feed'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Feed'
+          description: No response was specified
+        "404":
+          description: Not found
+      summary: Export feed-data
+      tags:
+      - feeds
+  /api/2/v/contracts/{contractId}/orders:
+    post:
+      operationId: postOrders
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PostCustomerOrdersRequestV2'
+        description: Orders to be added
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerOrderApiResponse'
+          description: Successfully added orders
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerOrderApiResponse'
+          description: Unable to add orders
+      summary: Add orders in bulk
+      tags:
+      - orders
+  /api/2/v/contracts/{contractId}/products:
+    get:
+      operationId: getProducts
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Product'
+                type: array
+                uniqueItems: true
+          description: No response was specified
+      summary: Get all products
+      tags:
+      - products
+  /api/2/v/contracts/{contractId}/products/csv:
+    put:
+      description: |-
+        Warning: Deletes all existing products.
+                <br/>Note that this will not happen immediately. Instead, you receive the ID of a task that has been created.
+                <br/>Furthermore you receive an URL which you can use to check if the task was executed successfully.
+                <br>The csv file must contain following columns:
+                <ul>
+                  <li>productId - arbitrary string, can be used for the systems product id.</li>
+                  <li>gtin - the GTIN of the product
+                  <li>description - name or short description of the product
+                  <li>referencePrice - arbitrary decimal number, usually the current price or recommended retail price (gross)
+                  <li>minPriceBoundary - decimal number defining the lower price boundary (gross)
+                  <li>maxPriceBoundary - decimal number defining the upper price boundary (gross)
+                  <li>Additional columns are added as product tags. Tags are used for repricing strategies and several other
+                  purpose.
+                </ul>
+                <br/>Column separator must be semicolon, the decimal separator must be dot. File encoding must be UTF-8.
+      operationId: putCSVProducts
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          text/csv:
+            schema:
+              type: string
+        description: CSV file containing the products
+        required: true
+      responses:
+        "200":
+          description: '-'
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskIdAndUrl'
+          description: Accepted
+      summary: Set products via CSV file
+      tags:
+      - products
+  /api/2/v/contracts/{contractId}/result/offers:
+    get:
+      operationId: getOffers
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Start product index for pagination
+        explode: true
+        in: query
+        name: start
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: Number of products for pagination
+        explode: true
+        in: query
+        name: limit
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: Timestamp of start of time range, formatted as ISO Date (i.e.
+          2018-04-06T13:46:13Z) in UTC. If this value is omitted, the range is '{endDate}
+          - 48 hours to {endDate}' if {endDate} is given or NOW - 48 hours if both
+          are omitted.
+        explode: true
+        in: query
+        name: startDate
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z)
+          in UTC. If this value is omitted, the range is '{startDate} to {startDate}
+          + 48 hours' if {startDate} is given or NOW - 48 hours if both are omitted.
+        explode: true
+        in: query
+        name: endDate
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetOffersResponse'
+          description: No response was specified
+      summary: Get all offers for all products
+      tags:
+      - products
+  /api/2/v/contracts/{contractId}/result/pricerecommendations:
+    get:
+      operationId: getPriceRecommendation
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Timestamp of start of time range, formatted as ISO Date (i.e.
+          2018-04-06T13:46:13Z) in UTC
+        explode: true
+        in: query
+        name: startTime
+        required: true
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z)
+          in UTC
+        explode: true
+        in: query
+        name: endTime
+        required: true
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Start price-recommendation index for pagination
+        explode: true
+        in: query
+        name: start
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: Number of price-recommendations for pagination
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 100
+          format: int32
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetPriceRecommendationApiResponse'
+          description: No response was specified
+      summary: Get all price recommendations
+      tags:
+      - pricerecommendations
+  /api/2/v/contracts/{contractId}/settings/domains:
+    put:
+      operationId: putDomains
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                type: string
+              type: array
+        description: Settings
+        required: true
+      responses:
+        "200":
+          description: OK
+        "404":
+          description: Settings for this contract do not exist yet
+      summary: Set contract domains
+      tags:
+      - settings
+  /api/2/v/contracts/{contractId}/tasks:
+    get:
+      description: The search can be narrowed down by providing the IDs of the tasks,
+        separated by comma
+      operationId: getTasks
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Ids of the tasks
+        explode: true
+        in: query
+        name: taskIdsFilter
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Desired task type
+        explode: true
+        in: query
+        name: taskTypeFilter
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Maximal number of results
+        example: 10
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 100
+          format: int32
+          type: integer
+        style: form
+      - description: Flag whether to include failures in the response
+        explode: true
+        in: query
+        name: includeFailures
+        required: false
+        schema:
+          default: true
+          type: boolean
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/TaskWithContractResourceApiResponse'
+                type: array
+                uniqueItems: true
+          description: No response was specified
+      summary: Find all tasks
+      tags:
+      - tasks
+  /api/2/v/contracts/{contractId}/tasks/{taskId}:
+    get:
+      description: Returns a task, associated with a certain contract and identified
+        by its ID
+      operationId: getTask
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Id of the task
+        explode: false
+        in: path
+        name: taskId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskWithContractResourceApiResponse'
+          description: No response was specified
+        "404":
+          description: Not found
+      summary: Find task by ID
+      tags:
+      - tasks
+  /api/account:
+    get:
+      description: Returns the current user with its companies and contracts
+      operationId: userInfo
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserInfo'
+          description: No response was specified
+      summary: Details of the current user
+      tags:
+      - account
+    post:
+      operationId: userSignup
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserSignupRequest'
+        description: The user signup data
+        required: true
+      responses:
+        "200":
+          description: No response was specified
+        "201":
+          description: User was created and confirmation eMail was sent
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: Unable to create the user because of bad request data
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: Unable to create the user because of an unexpected error
+      summary: Create a new user account in the Pricemonitor
+      tags:
+      - account
+  /api/account/confirm/{token}:
+    head:
+      operationId: checkUserConfirmation
+      parameters:
+      - explode: false
+        in: path
+        name: token
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: No response was specified
+        "204":
+          description: Confirmation token was found
+        "404":
+          description: No such confirmation token was found
+      summary: Check if a specific confirmation token exists
+      tags:
+      - account
+    post:
+      operationId: confirmUser
+      parameters:
+      - explode: false
+        in: path
+        name: token
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+        description: The password that should be set on the confirmed user
+        required: true
+      responses:
+        "200":
+          description: No response was specified
+        "204":
+          description: User was confirmed & logged in
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: Unable to confirm the user because of bad request data
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: Unable to confirm the user because of an unexpected error
+      summary: Confirm an unconfirmed user
+      tags:
+      - account
+  /api/v3/manufacturer/contracts/{contractId}/offers:
+    get:
+      description: Returns the newest offers for a given time range.
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Where to start fetching the products
+        explode: true
+        in: query
+        name: start
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+        style: form
+      - description: Maximum number of results
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 10000
+          format: int32
+          type: integer
+        style: form
+      - description: Timestamp of start of time range, formatted as ISO Date (i.e.
+          2018-04-06T13:46:13Z) in UTC. If this value is omitted, the range is '{endDate}
+          - 48 hours to {endDate}' if {endDate} is given or NOW - 48 hours if both
+          are omitted.
+        explode: true
+        in: query
+        name: startDate
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z)
+          in UTC. If this value is omitted, the range is '{startDate} to {startDate}
+          + 48 hours' if {startDate} is given or NOW - 48 hours if both are omitted.
+        explode: true
+        in: query
+        name: endDate
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductAndOffersApiResponse'
+          description: A list of products with their corresponding offers.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+          description: Returned in case of invalid time range or a limit greater than
+            10000.
+      tags:
+      - offers
+  /api/v3/manufacturer/contracts/{contractId}/offers/stats/query:
+    post:
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostOfferStatisticsRequest'
+        description: The request body specifies which offers will be taken into account
+          for the calculation of the offer statistics. The attribute names on the
+          left side of the comparison filter must match the attribute names in an
+          offer. The default use case is to specify a ComparisonFilter with a StringValueProvider
+          on the left side pointing to the attribute productId, a SequenceOfStringValueProvider
+          on the right side containing the productIds over which to calculate the
+          offer statistics and a StringInSequence as a comparison. Please note that
+          offer statistics can only be computed for 2500 products at a time.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductOfferStatsApiResponse'
+          description: Returns either an Error or a list of offer statistics, one
+            for every product matching the given filter.
+      tags:
+      - products
+  /api/v3/manufacturer/contracts/{contractId}/products:
+    put:
+      description: |-
+        This operation is used to import products into the pricemonitor.
+        This process is represented by a task, which is processed asynchronously.
+        In the response you will receive a url which is used to check the status of the import process. <br>
+
+        When the process is done all products in csv file from the request body will be in the pricemonitor.
+        Products that were already present before have been updated and new products have been added. <br>
+
+        Warning: All products that were in the pricemonitor before but are not present in the new import will be deleted.
+
+        Identification of the products is done based on the identifying attributes (see parameter: patagona-product-identifying-attributes)
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - example: text/csv
+        explode: false
+        in: header
+        name: content-type
+        required: true
+        schema:
+          enum:
+          - text/csv
+          type: string
+        style: simple
+      - description: Comma separated list of csv columns that identify a product uniquely
+        example: id-column
+        explode: false
+        in: header
+        name: patagona-product-identifying-attributes
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Csv column that contains the product name
+        example: name-column
+        explode: false
+        in: header
+        name: patagona-product-name
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Csv column that contains the reference price
+        example: reference-price-column
+        explode: false
+        in: header
+        name: patagona-product-reference-price
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Csv column that contains the gtin
+        example: gtin-column
+        explode: false
+        in: header
+        name: patagona-product-gtin
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: Csv column that contains an id (There is no requirement for this
+          field to be unique)
+        example: id-column
+        explode: false
+        in: header
+        name: patagona-product-customer-id
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: |-
+          Decimal separator used for parsing numbers \
+          The values for patagona-decimal-separator, patagona-csv-column-separator and patagona-csv-quotation-character must be different from one another. \
+          Available values: ",", "."
+        example: "."
+        explode: false
+        in: header
+        name: patagona-decimal-separator
+        required: true
+        schema:
+          type: char
+        style: simple
+      - description: |-
+          The csv column separator \
+          The values for patagona-decimal-separator, patagona-csv-column-separator and patagona-csv-quotation-character must be different from one another.
+        example: ','
+        explode: false
+        in: header
+        name: patagona-csv-column-separator
+        required: true
+        schema:
+          type: char
+        style: simple
+      - description: |-
+          The csv quotation character \
+          The values for patagona-decimal-separator, patagona-csv-column-separator and patagona-csv-quotation-character must be different from one another.
+        example: '"'
+        explode: false
+        in: header
+        name: patagona-csv-quotation-character
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          text/csv:
+            schema:
+              type: string
+        description: CSV file containing the products
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PutProductsApiResponse'
+          description: |-
+            The field data.url in the returned object allows to check the status of the import process. It will point to the endpoint GET /api/2/v/contracts/{contractId}/tasks/{taskId}. \
+            The field data.id is the task id corresponding to the product import.
+      summary: Set products via CSV file
+      tags:
+      - products
+  /api/v3/vendor/contracts/{contractId}/offers:
+    get:
+      description: Returns the newest offers for a given time range.
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Where to start fetching the products
+        example: 0
+        explode: true
+        in: query
+        name: start
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+        style: form
+      - description: Maximum number of results
+        example: 10000
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 10000
+          format: int32
+          type: integer
+        style: form
+      - description: Timestamp of start of time range, formatted as ISO Date (i.e.
+          2018-04-06T13:46:13Z) in UTC. If this value is omitted, the range is '{endDate}
+          - 48 hours to {endDate}' if {endDate} is given or NOW - 48 hours if both
+          are omitted.
+        explode: true
+        in: query
+        name: startDate
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z)
+          in UTC. If this value is omitted, the range is '{startDate} to {startDate}
+          + 48 hours' if {startDate} is given or NOW - 48 hours if both are omitted.
+        explode: true
+        in: query
+        name: endDate
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductAndOffersApiResponse'
+          description: A list of products with their corresponding offers.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+          description: Returned in case of invalid time range or a limit greater than
+            10000.
+      tags:
+      - offers
+  /api/v3/vendor/contracts/{contractId}/offers/query:
+    post:
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductOffersApiQuery'
+        description: |-
+          The request body specifies which offers will be searched for. The attribute names on the left side of the comparison filter must match the attribute names in an offer. The default use case is to: * Specify a AndFilter where the field `filters` is a list of * A ComparisonFilter with
+            * the `left` side being a `StringValueProvider` with the `attributeName` value "productId"
+            * the `right` side being a `StringConstantValueProvider` with the `value` being the actual product ID to filter offers for
+            * the `comparison` being a `StringEquality`
+          * A ComparisonFilter with
+            * the `left` side being a `BooleanValueProvider` with the `attributeName` value "ignored"
+            * the `right` side being a `BooleanConstantValueProvider` with the `value` set to `false`
+            * the `comparison` being a `BooleanEquality`
+          This default case results in finding all offers for a given product ID that are not ignored by the contract. Note: This endpoint will only return the newest offers for each product for a given time range.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductOffersApiResponse'
+          description: Returns either an Error or a list of ApiOffers matching the
+            given filter.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+          description: Returned in case of unparsable request JSON.
+      tags:
+      - offers
+  /api/v3/vendor/contracts/{contractId}/offers/stats/query:
+    post:
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostOfferStatisticsRequest'
+        description: The request body specifies which offers will be taken into account
+          for the calculation of the offer statistics. The attribute names on the
+          left side of the comparison filter must match the attribute names in an
+          offer. The default use case is to specify a ComparisonFilter with a StringValueProvider
+          on the left side pointing to the attribute productId, a SequenceOfStringValueProvider
+          on the right side containing the productIds over which to calculate the
+          offer statistics and a StringInSequence as a comparison. Please note that
+          offer statistics can only be computed for 2500 products at a time.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductOfferStatsApiResponse'
+          description: Returns either an Error or a list of offer statistics, one
+            for every product matching the given filter.
+      tags:
+      - products
+  /api/v3/vendor/contracts/{contractId}/orders:
+    delete:
+      operationId: deleteOrders
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteCustomerOrdersApiResponse'
+          description: Successfully deleted all orders
+      summary: Delete all orders for this contract
+      tags:
+      - orders
+  /api/v3/vendor/contracts/{contractId}/products:
+    delete:
+      description: Delete all products or delete products by a last updated timestamp.
+      operationId: deleteProducts
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Last updated timestamp of products, formatted as ISO Date (i.e.
+          2019-11-20T13:46:13Z) in UTC.<br> Products can be deleted which haven't
+          been updated since the specified timestamp.<br> If the query parameter is
+          missing all products are deleted.
+        explode: true
+        in: query
+        name: updatedMax
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteProductsApiResponse'
+          description: Returns the number of deleted products.
+      summary: Delete products
+      tags:
+      - products
+    post:
+      description: |-
+        This operation is used to import products into the pricemonitor:<br>
+        Products that are already present will be updated and new products will be added. Identification of the products is done based on the identifying attributes, which need to be provided via the request body.<br><br>
+        Attention:<br> This endpoint should only be used when dealing with large number of products at your side is an issue. Otherwise please use the PUT-counterpart of this endpoint which accepts products via a csv file.<br><br>
+        Note:<br> This endpoint should be used in conjunction with: DELETE  /api/v3/vendor/contracts/{contractId}/products.<br><br>
+        Procedure:<br> 1. Add your products in bulks with multiple requests via this endpoint.<br> 2. Send a DELETE request to /api/v3/vendor/contracts/{contractId}/products
+           and set the parameter updatedMax to a date which is older or equal to your first request from step 1.
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - example: application/json
+        explode: false
+        in: header
+        name: content-type
+        required: true
+        schema:
+          enum:
+          - application/json
+          type: string
+        style: simple
+      - description: 'The decimal separator is used for parsing numbers in tags. English
+          and German number formats are supported: dot and comma.'
+        example: "."
+        explode: false
+        in: header
+        name: patagona-tags-decimal-separator
+        required: true
+        schema:
+          enum:
+          - "."
+          - ','
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostProductsRequest'
+        description: The body contains the products which should be added
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkedPostProductsApiResponse'
+          description: The response provides sorted import results in respective to
+            the order of the provided products.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: Unable to add products because of invalid request data
+      summary: Add products in bulk
+      tags:
+      - products
+    put:
+      description: |-
+        This operation is used to import products into the pricemonitor.
+        This process is represented by a task, which is processed asynchronously.
+        In the response you will receive a url which is used to check the status of the import process. <br>
+
+        When the process is done all products in csv file from the request body will be in the pricemonitor.
+        Products that were already present before have been updated and new products have been added. <br>
+
+        Warning: All products that were in the pricemonitor before but are not present in the new import will be deleted.
+
+        Identification of the products is done based on the identifying attributes (see parameter: patagona-product-identifying-attributes)
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - example: text/csv
+        explode: false
+        in: header
+        name: content-type
+        required: true
+        schema:
+          enum:
+          - text/csv
+          type: string
+        style: simple
+      - description: Comma separated list of csv columns that identify a product uniquely
+        example: id-column
+        explode: false
+        in: header
+        name: patagona-product-identifying-attributes
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Csv column that contains the product name
+        example: name-column
+        explode: false
+        in: header
+        name: patagona-product-name
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Csv column that contains the reference price
+        example: reference-price-column
+        explode: false
+        in: header
+        name: patagona-product-reference-price
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Csv column that contains the min price
+        example: min-price-column
+        explode: false
+        in: header
+        name: patagona-product-min-price
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Csv column that contains the max price
+        example: max-price-column
+        explode: false
+        in: header
+        name: patagona-product-max-price
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Csv column that contains the gtin
+        example: max-price-column
+        explode: false
+        in: header
+        name: patagona-product-gtin
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: Csv column that contains an id (There is no requirement for this
+          field to be unique)
+        example: id-column
+        explode: false
+        in: header
+        name: patagona-product-customer-id
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: |-
+          Decimal separator used for parsing numbers \
+          The values for patagona-decimal-separator, patagona-csv-column-separator and patagona-csv-quotation-character must be different from one another. \
+          Available values: ",", "."
+        example: "."
+        explode: false
+        in: header
+        name: patagona-decimal-separator
+        required: true
+        schema:
+          type: char
+        style: simple
+      - description: |-
+          The csv column separator \
+          It can be provided either as text or as Base64 encoded string (e.g. needed for tab as separator). \
+          The values for patagona-decimal-separator, patagona-csv-column-separator and patagona-csv-quotation-character must be different from one another.
+        example: ','
+        explode: false
+        in: header
+        name: patagona-csv-column-separator
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: |-
+          The csv quotation character \
+          The values for patagona-decimal-separator, patagona-csv-column-separator and patagona-csv-quotation-character must be different from one another.
+        example: '"'
+        explode: false
+        in: header
+        name: patagona-csv-quotation-character
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          text/csv:
+            schema:
+              type: string
+        description: CSV file containing the products
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PutProductsApiResponse'
+          description: |-
+            The field data.url in the returned object allows to check the status of the import process. It will point to the endpoint GET /api/2/v/contracts/{contractId}/tasks/{taskId}. \
+            The field data.id is the task id corresponding to the product import.
+      summary: Set products via CSV file
+      tags:
+      - products
+  /api/v3/vendor/contracts/{contractId}/products/{productId}/extendedtags:
+    get:
+      operationId: getExtendedTags
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: ID of the product
+        example: 1
+        explode: false
+        in: path
+        name: productId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedTagApiResponse'
+          description: Returns a list of ExtendedTags for the given product.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: Given product does not exist.
+      summary: Return the extended tags for the given product
+      tags:
+      - products
+  /api/v3/vendor/contracts/{contractId}/plugin:
+    delete:
+      operationId: deletePluginRegistration
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PluginRegistrationEmptyApiResponse'
+          description: Plugin registration for given contract deleted successfully.
+      summary: Delete the plugin registration for given contract
+      tags:
+      - pluginregistration
+    get:
+      operationId: getPluginRegistration
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PluginRegistrationApiResponse'
+          description: Returns a plugin registration for given contract.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: Given plugin registration does not exist.
+      summary: Return the plugin registration for given contract
+      tags:
+      - pluginregistration
+    put:
+      operationId: putPluginRegistration
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PutPluginRegistrationRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PluginRegistrationEmptyApiResponse'
+          description: Plugin registration for given contract stored successfully.
+      summary: Create and/or update the plugin registration for given contract
+      tags:
+      - pluginregistration
+  /api/v3/log/messages:
+    post:
+      operationId: postLogMessages
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LogMessages'
+        required: true
+      responses:
+        "200":
+          description: The logs have been stored successfully.
+      summary: Stores the log messages. This endpoint aims to improve the API-integration
+        process. One could integrate the Pricemonitor API in his/her own system and
+        publish the integration logs so that Patagona could analyze them.
+      tags:
+      - logs
+components:
+  parameters:
+    contractIdParam:
+      description: ID of the contract
+      example: qbcxvb
+      explode: false
+      in: path
+      name: contractId
+      required: true
+      schema:
+        type: string
+      style: simple
+    startDate:
+      description: Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z)
+        in UTC. If this value is omitted, the range is '{endDate} - 48 hours to {endDate}'
+        if {endDate} is given or NOW - 48 hours if both are omitted.
+      explode: true
+      in: query
+      name: startDate
+      required: false
+      schema:
+        format: date-time
+        type: string
+      style: form
+    endDate:
+      description: Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z)
+        in UTC. If this value is omitted, the range is '{startDate} to {startDate}
+        + 48 hours' if {startDate} is given or NOW - 48 hours if both are omitted.
+      explode: true
+      in: query
+      name: endDate
+      required: false
+      schema:
+        format: date-time
+        type: string
+      style: form
+  schemas:
+    LogMessages:
+      example:
+        messages:
+        - severity: info
+          component: shopware or magento
+          contractId: qbcxvb
+          source: some.domain.name
+          message: Some useful message
+        - severity: info
+          component: shopware or magento
+          contractId: qbcxvb
+          source: some.domain.name
+          message: Some useful message
+        version: "1"
+      properties:
+        version:
+          description: The version parameter should always be 1.
+          enum:
+          - "1"
+          type: string
+        messages:
+          items:
+            $ref: '#/components/schemas/LogMessage'
+          type: array
+    LogMessage:
+      example:
+        severity: info
+        component: shopware or magento
+        contractId: qbcxvb
+        source: some.domain.name
+        message: Some useful message
+      properties:
+        message:
+          description: The information that needs to be published
+          example: Some useful message
+          type: string
+        severity:
+          description: Determines how severe is the information. The ENUM values are
+            listed in the descreasing order of their priority.<br> 1. trace - gives
+            more detailed information than any other level in the hierarchy<br> 2.
+            debug - helps developer to debug application and is generally useful for
+            providing support to the application developers<br> 3. info  - gives the
+            progress and chosen state information and is generally useful for end
+            user<br> 4. warn  - use of deprecated APIs, poor use of API, ‘almost’
+            errors, other runtime situations that are undesirable or unexpected, but
+            not necessarily “wrong”.<br> 5. error - gives information about a serious
+            error which needs to be addressed and may result in unstable state<br>
+            6. fatal - such errors result in premature termination and you don’t often
+            get this error<br>
+          enum:
+          - trace
+          - debug
+          - info
+          - warn
+          - error
+          - fatal
+          example: info
+          type: string
+        component:
+          description: The name of the integrated system.
+          example: shopware or magento
+          type: string
+        source:
+          description: Anything within the component that can be considered as an
+            entity to further categorize the log message.
+          example: some.domain.name
+          type: string
+        contractId:
+          description: The ID of the contract
+          example: qbcxvb
+          type: string
+      required:
+      - component
+      - message
+      - severity
+      - source
+    AddCompanyContractResponse:
+      example:
+        data:
+          contractType: contractType
+          companyName: companyName
+          contractId: contractId
+          active: true
+          contractName: contractName
+          expirationDate: 2000-01-23T04:56:07.000+00:00
+        errors:
+        - code: code
+          message: message
+        - code: code
+          message: message
+      properties:
+        data:
+          $ref: '#/components/schemas/ApiContract'
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiError'
+          type: array
+      type: object
+    AndFilter:
+      properties:
+        filters:
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/OrFilter'
+            - $ref: '#/components/schemas/AndFilter'
+            - $ref: '#/components/schemas/NotFilter'
+            - $ref: '#/components/schemas/ConstantFilter'
+            - $ref: '#/components/schemas/ComparisonFilter'
+          type: array
+        type:
+          enum:
+          - AndFilter
+          type: string
+      required:
+      - type
+    ApiContract:
+      example:
+        contractType: contractType
+        companyName: companyName
+        contractId: contractId
+        active: true
+        contractName: contractName
+        expirationDate: 2000-01-23T04:56:07.000+00:00
+      properties:
+        active:
+          type: boolean
+        companyName:
+          type: string
+        contractId:
+          type: string
+        contractName:
+          type: string
+        contractType:
+          type: string
+        expirationDate:
+          format: date-time
+          type: string
+      type: object
+    ApiContractSimpleApiResponse:
+      example:
+        data:
+        - contractType: contractType
+          companyName: companyName
+          contractId: contractId
+          active: true
+          contractName: contractName
+          expirationDate: 2000-01-23T04:56:07.000+00:00
+        - contractType: contractType
+          companyName: companyName
+          contractId: contractId
+          active: true
+          contractName: contractName
+          expirationDate: 2000-01-23T04:56:07.000+00:00
+        errors:
+        - code: code
+          message: message
+        - code: code
+          message: message
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/ApiContract'
+          type: array
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiError'
+          type: array
+      type: object
+    ApiError:
+      example:
+        code: code
+        message: message
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+      type: object
+    ApiErrorResponse:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiError'
+          type: array
+      type: object
+    ApiOffer:
+      example:
+        ignored: true
+        gtin: 6
+        productId: productId
+        retrievalDate: 2000-01-23T04:56:07.000+00:00
+        availability: true
+        creationDate: 2000-01-23T04:56:07.000+00:00
+        vendorName: vendorName
+        positionByTotalPrice: 2
+        productName: productName
+        url: url
+        minDeliveryTime: 5
+        vendorDomainId: vendorDomainId
+        deliveryCosts: 0.8008281904610115
+        maxDeliveryTime: 1
+        price: 7.061401241503109
+        domain: domain
+        attributes:
+        - name: name
+          value: value
+        - name: name
+          value: value
+        currency: currency
+        positionByUnitPrice: 5
+      properties:
+        attributes:
+          items:
+            $ref: '#/components/schemas/OfferAttribute'
+          type: array
+        availability:
+          type: boolean
+        creationDate:
+          format: date-time
+          type: string
+        currency:
+          type: string
+        deliveryCosts:
+          format: double
+          type: number
+        domain:
+          type: string
+        gtin:
+          format: int64
+          type: integer
+        ignored:
+          type: boolean
+        maxDeliveryTime:
+          type: integer
+        minDeliveryTime:
+          type: integer
+        positionByUnitPrice:
+          type: integer
+        positionByTotalPrice:
+          type: integer
+        price:
+          format: double
+          type: number
+        productId:
+          type: string
+        productName:
+          type: string
+        retrievalDate:
+          format: date-time
+          type: string
+        url:
+          type: string
+        vendorDomainId:
+          type: string
+        vendorName:
+          type: string
+      required:
+      - contractId
+      - creationDate
+      - currency
+      - deliveryCosts
+      - domain
+      - ignored
+      - price
+      - productId
+      - productName
+      - url
+      - vendorName
+    ApiProduct:
+      example:
+        customerProductId: customerProductId
+        gtin: 9
+        referencePrice: 4.145608029883936
+        maxPriceBoundary: 3.616076749251911
+        name: name
+        id: id
+        minPriceBoundary: 2.027123023002322
+        tags:
+        - value: value
+          key: key
+        - value: value
+          key: key
+      properties:
+        tags:
+          items:
+            $ref: '#/components/schemas/Tag'
+          type: array
+        customerProductId:
+          type: string
+        gtin:
+          format: int64
+          type: integer
+        id:
+          type: string
+        maxPriceBoundary:
+          format: double
+          type: number
+        minPriceBoundary:
+          format: double
+          type: number
+        name:
+          type: string
+        referencePrice:
+          format: double
+          type: number
+      required:
+      - id
+      - name
+      - referencePrice
+      - tags
+      type: object
+    PostProduct:
+      example:
+        customerProductId: customerProductId
+        gtin: 12345678910123
+        referencePrice: 19.99
+        maxPriceBoundary: 56.78
+        name: name
+        minPriceBoundary: 12.34
+        tags:
+        - value: value
+          key: key
+        - value: value
+          key: key
+      properties:
+        tags:
+          items:
+            $ref: '#/components/schemas/Tag'
+          type: array
+        customerProductId:
+          type: string
+        gtin:
+          example: 12345678910123
+          format: int64
+          type: integer
+        minPriceBoundary:
+          example: 12.34
+          format: double
+          type: number
+        maxPriceBoundary:
+          example: 56.78
+          format: double
+          type: number
+        name:
+          type: string
+        referencePrice:
+          example: 19.99
+          format: double
+          type: number
+      required:
+      - maxPriceBoundary
+      - minPriceBoundary
+      - name
+      - referencePrice
+      - tags
+      type: object
+    BooleanConstantValueProvider:
+      properties:
+        type:
+          enum:
+          - BooleanConstantValueProvider
+          type: string
+        value:
+          type: boolean
+      required:
+      - type
+      - value
+    BooleanEquality:
+      properties:
+        type:
+          enum:
+          - BooleanEquality
+          type: string
+      required:
+      - type
+    BooleanValueProvider:
+      properties:
+        attributeName:
+          type: string
+        type:
+          enum:
+          - BooleanValueProvider
+          type: string
+      required:
+      - attributeName
+      - type
+    Callbacks:
+      example:
+        pricemonitorCompleted:
+        - headers:
+            key: headers
+          bodyTemplate: bodyTemplate
+          method: method
+          name: name
+          url: url
+        - headers:
+            key: headers
+          bodyTemplate: bodyTemplate
+          method: method
+          name: name
+          url: url
+      properties:
+        pricemonitorCompleted:
+          items:
+            $ref: '#/components/schemas/Callbacks_pricemonitorCompleted'
+          type: array
+      type: object
+    ComparisonFilter:
+      properties:
+        comparison:
+          oneOf:
+          - $ref: '#/components/schemas/StringEquality'
+          - $ref: '#/components/schemas/StringInSequence'
+          - $ref: '#/components/schemas/NumberInSequence'
+          - $ref: '#/components/schemas/BooleanEquality'
+          - $ref: '#/components/schemas/NumberEquality'
+          - $ref: '#/components/schemas/NumberLessThan'
+          - $ref: '#/components/schemas/NumberGreaterThan'
+          - $ref: '#/components/schemas/RegularExpression'
+          - $ref: '#/components/schemas/DateTimeBefore'
+          - $ref: '#/components/schemas/DateTimeAfter'
+        left:
+          oneOf:
+          - $ref: '#/components/schemas/StringValueProvider'
+          - $ref: '#/components/schemas/SequenceOfStringValueProvider'
+          - $ref: '#/components/schemas/SequenceOfNumberValueProvider'
+          - $ref: '#/components/schemas/BooleanValueProvider'
+          - $ref: '#/components/schemas/NumberValueProvider'
+          - $ref: '#/components/schemas/DateTimeValueProvider'
+        right:
+          oneOf:
+          - $ref: '#/components/schemas/StringConstantValueProvider'
+          - $ref: '#/components/schemas/SequenceOfStringConstantValueProvider'
+          - $ref: '#/components/schemas/SequenceOfNumberConstantValueProvider'
+          - $ref: '#/components/schemas/BooleanConstantValueProvider'
+          - $ref: '#/components/schemas/NumberConstantValueProvider'
+          - $ref: '#/components/schemas/DateTimeConstantValueProvider'
+      required:
+      - comparison
+      - left
+      - right
+    ConstantFilter:
+      properties:
+        type:
+          enum:
+          - ConstantFilter
+          type: string
+        valid:
+          type: boolean
+      required:
+      - type
+      - valid
+    CreateCompanyResponseSimpleApiResponse:
+      example:
+        data:
+          name: name
+          id: 0
+        errors:
+        - code: code
+          message: message
+        - code: code
+          message: message
+      properties:
+        data:
+          $ref: '#/components/schemas/CreateCompanyResponseSimpleApiResponse_data'
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiError'
+          type: array
+      type: object
+    CreateContractRequest:
+      example:
+        contractType: contractType
+        contractName: contractName
+      properties:
+        contractName:
+          type: string
+        contractType:
+          type: string
+      type: object
+    CustomerOrderApiResponse:
+      example:
+        data:
+        - data:
+            orders:
+            - referrer: referrer
+              productMappings:
+              - source: source
+                target: target
+              - source: source
+                target: target
+              orderId: orderId
+              totalPrice: 5.637376656633329
+              origin: origin
+              currency: currency
+              creationDate: 2000-01-23T04:56:07.000+00:00
+              items:
+              - unitPrice: 6.027456183070403
+                itemId: itemId
+                quantity: 1
+                taxPercentage: 5.962133916683182
+              - unitPrice: 6.027456183070403
+                itemId: itemId
+                quantity: 1
+                taxPercentage: 5.962133916683182
+              shippingCosts: 0.8008281904610115
+            - referrer: referrer
+              productMappings:
+              - source: source
+                target: target
+              - source: source
+                target: target
+              orderId: orderId
+              totalPrice: 5.637376656633329
+              origin: origin
+              currency: currency
+              creationDate: 2000-01-23T04:56:07.000+00:00
+              items:
+              - unitPrice: 6.027456183070403
+                itemId: itemId
+                quantity: 1
+                taxPercentage: 5.962133916683182
+              - unitPrice: 6.027456183070403
+                itemId: itemId
+                quantity: 1
+                taxPercentage: 5.962133916683182
+              shippingCosts: 0.8008281904610115
+            version: version
+          errors:
+          - code: code
+            message: message
+          - code: code
+            message: message
+        - data:
+            orders:
+            - referrer: referrer
+              productMappings:
+              - source: source
+                target: target
+              - source: source
+                target: target
+              orderId: orderId
+              totalPrice: 5.637376656633329
+              origin: origin
+              currency: currency
+              creationDate: 2000-01-23T04:56:07.000+00:00
+              items:
+              - unitPrice: 6.027456183070403
+                itemId: itemId
+                quantity: 1
+                taxPercentage: 5.962133916683182
+              - unitPrice: 6.027456183070403
+                itemId: itemId
+                quantity: 1
+                taxPercentage: 5.962133916683182
+              shippingCosts: 0.8008281904610115
+            - referrer: referrer
+              productMappings:
+              - source: source
+                target: target
+              - source: source
+                target: target
+              orderId: orderId
+              totalPrice: 5.637376656633329
+              origin: origin
+              currency: currency
+              creationDate: 2000-01-23T04:56:07.000+00:00
+              items:
+              - unitPrice: 6.027456183070403
+                itemId: itemId
+                quantity: 1
+                taxPercentage: 5.962133916683182
+              - unitPrice: 6.027456183070403
+                itemId: itemId
+                quantity: 1
+                taxPercentage: 5.962133916683182
+              shippingCosts: 0.8008281904610115
+            version: version
+          errors:
+          - code: code
+            message: message
+          - code: code
+            message: message
+        errors:
+        - code: code
+          message: message
+        - code: code
+          message: message
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/CustomerOrderApiResponse_data_1'
+          type: array
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiError'
+          type: array
+      type: object
+    DateTimeAfter:
+      properties:
+        type:
+          enum:
+          - DateTimeAfter
+          type: string
+      required:
+      - type
+    DateTimeBefore:
+      properties:
+        type:
+          enum:
+          - DateTimeBefore
+          type: string
+      required:
+      - type
+    DateTimeConstantValueProvider:
+      properties:
+        type:
+          enum:
+          - DateTimeConstantValueProvider
+          type: string
+        value:
+          format: date-time
+          type: string
+      required:
+      - type
+      - value
+    DateTimeValueProvider:
+      properties:
+        attributeName:
+          type: string
+        type:
+          enum:
+          - DateTimeValueProvider
+          type: string
+      required:
+      - attributeName
+      - type
+    DeleteCustomerOrdersApiResponse:
+      example:
+        data:
+          data:
+            deleted: 0
+        errors:
+        - code: code
+          message: message
+        - code: code
+          message: message
+      properties:
+        data:
+          $ref: '#/components/schemas/DeleteCustomerOrdersApiResponse_data'
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiError'
+          type: array
+      type: object
+    ExtendedTag:
+      example:
+        stringValue: stringValue
+        booleanValue: true
+        integerValue: 6
+        doubleValue: 0.8008281904610115
+        label: label
+      properties:
+        booleanValue:
+          type: boolean
+        doubleValue:
+          format: double
+          type: number
+        integerValue:
+          format: int32
+          type: integer
+        label:
+          type: string
+        stringValue:
+          type: string
+      required:
+      - label
+      - stringValue
+    ExtendedTagApiResponse:
+      example:
+        data:
+        - stringValue: stringValue
+          booleanValue: true
+          integerValue: 6
+          doubleValue: 0.8008281904610115
+          label: label
+        - stringValue: stringValue
+          booleanValue: true
+          integerValue: 6
+          doubleValue: 0.8008281904610115
+          label: label
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/ExtendedTag'
+          type: array
+    PluginRegistration:
+      example:
+        metricsUrl: metricsUrl
+        pluginId: pluginId
+        shopSystem: shopSystem
+      properties:
+        pluginId:
+          type: string
+        shopSystem:
+          type: string
+        metricsUrl:
+          type: string
+    PluginRegistrationApiResponse:
+      example:
+        data:
+          metricsUrl: metricsUrl
+          pluginId: pluginId
+          shopSystem: shopSystem
+      properties:
+        data:
+          $ref: '#/components/schemas/PluginRegistration'
+    PluginRegistrationEmptyApiResponse:
+      example:
+        data: '{}'
+      properties:
+        data:
+          type: object
+    PutPluginRegistrationRequest:
+      allOf:
+      - $ref: '#/components/schemas/PluginRegistration'
+      - $ref: '#/components/schemas/PutPluginRegistrationRequest_allOf'
+    Feed:
+      example:
+        deltaUrl: deltaUrl
+        csvDecimalSeparator: csvDecimalSeparator
+        contractId: contractId
+        format: format
+        name: name
+        lastAccessed: 2000-01-23T04:56:07.000+00:00
+        csvSeparator: csvSeparator
+        id: id
+        lastDeletion: 2000-01-23T04:56:07.000+00:00
+        fields:
+        - default: default
+          name: name
+          label: label
+        - default: default
+          name: name
+          label: label
+        version: 0
+        url: url
+      properties:
+        contractId:
+          type: string
+        csvDecimalSeparator:
+          type: string
+        csvSeparator:
+          type: string
+        deltaUrl:
+          type: string
+        fields:
+          items:
+            $ref: '#/components/schemas/Feed_fields'
+          type: array
+        format:
+          type: string
+        id:
+          type: string
+        lastAccessed:
+          format: date-time
+          type: string
+        lastDeletion:
+          format: date-time
+          type: string
+        name:
+          type: string
+        url:
+          type: string
+        version:
+          format: int64
+          type: integer
+      type: object
+    GetOffersResponse:
+      description: A collection of products
+      example:
+        next: next
+        total: 5
+        data:
+        - offers:
+          - availability: '{}'
+            creationDate: 2000-01-23T04:56:07.000+00:00
+            productName: productName
+            url: url
+            vendorIdOnDomain: vendorIdOnDomain
+            approved: true
+            minDeliveryTime: '{}'
+            deliveryCosts: 6.027456183070403
+            maxDeliveryTime: '{}'
+            price: 1.4658129805029452
+            vendor: vendor
+            domain: domain
+            attributes:
+            - value: value
+              key: key
+            - value: value
+              key: key
+          - availability: '{}'
+            creationDate: 2000-01-23T04:56:07.000+00:00
+            productName: productName
+            url: url
+            vendorIdOnDomain: vendorIdOnDomain
+            approved: true
+            minDeliveryTime: '{}'
+            deliveryCosts: 6.027456183070403
+            maxDeliveryTime: '{}'
+            price: 1.4658129805029452
+            vendor: vendor
+            domain: domain
+            attributes:
+            - value: value
+              key: key
+            - value: value
+              key: key
+          gtin: 0
+          productId: productId
+          tags:
+          - value: value
+            key: key
+          - value: value
+            key: key
+        - offers:
+          - availability: '{}'
+            creationDate: 2000-01-23T04:56:07.000+00:00
+            productName: productName
+            url: url
+            vendorIdOnDomain: vendorIdOnDomain
+            approved: true
+            minDeliveryTime: '{}'
+            deliveryCosts: 6.027456183070403
+            maxDeliveryTime: '{}'
+            price: 1.4658129805029452
+            vendor: vendor
+            domain: domain
+            attributes:
+            - value: value
+              key: key
+            - value: value
+              key: key
+          - availability: '{}'
+            creationDate: 2000-01-23T04:56:07.000+00:00
+            productName: productName
+            url: url
+            vendorIdOnDomain: vendorIdOnDomain
+            approved: true
+            minDeliveryTime: '{}'
+            deliveryCosts: 6.027456183070403
+            maxDeliveryTime: '{}'
+            price: 1.4658129805029452
+            vendor: vendor
+            domain: domain
+            attributes:
+            - value: value
+              key: key
+            - value: value
+              key: key
+          gtin: 0
+          productId: productId
+          tags:
+          - value: value
+            key: key
+          - value: value
+            key: key
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/GetOffersResponse_data'
+          type: array
+        next:
+          type: string
+        total:
+          format: int64
+          type: integer
+      type: object
+    GetPriceRecommendationApiResponse:
+      example:
+        data:
+        - customerProductId: customerProductId
+          relativePriceChangePercentage: 5.637376656633329
+          gtin: '{}'
+          oldDeliveryCosts: 6.027456183070403
+          deliveryCosts: 0.8008281904610115
+          productId: productId
+          oldPrice: 1.4658129805029452
+          price: 5.962133916683182
+          currency: currency
+          tags:
+          - stringValue: stringValue
+            booleanValue: '{}'
+            integerValue: '{}'
+            doubleValue: '{}'
+            label: label
+          - stringValue: stringValue
+            booleanValue: '{}'
+            integerValue: '{}'
+            doubleValue: '{}'
+            label: label
+          timestamp: 2000-01-23T04:56:07.000+00:00
+        - customerProductId: customerProductId
+          relativePriceChangePercentage: 5.637376656633329
+          gtin: '{}'
+          oldDeliveryCosts: 6.027456183070403
+          deliveryCosts: 0.8008281904610115
+          productId: productId
+          oldPrice: 1.4658129805029452
+          price: 5.962133916683182
+          currency: currency
+          tags:
+          - stringValue: stringValue
+            booleanValue: '{}'
+            integerValue: '{}'
+            doubleValue: '{}'
+            label: label
+          - stringValue: stringValue
+            booleanValue: '{}'
+            integerValue: '{}'
+            doubleValue: '{}'
+            label: label
+          timestamp: 2000-01-23T04:56:07.000+00:00
+        meta:
+          totalSize: 9
+          limit: 2
+          start: 7
+          nextUrl: nextUrl
+        errors:
+        - code: code
+          message: message
+        - code: code
+          message: message
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/GetPriceRecommendationApiResponse_data'
+          type: array
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiError'
+          type: array
+        meta:
+          $ref: '#/components/schemas/GetPriceRecommendationApiResponse_meta'
+      type: object
+    GetPriceRecommendationsResponse:
+      example:
+        next: next
+        priceRecommendations:
+        - identifier: identifier
+          gtin: 6
+          recommendedPrice: 1.4658129805029452
+          currentPrice: 0.8008281904610115
+          currency: currency
+        - identifier: identifier
+          gtin: 6
+          recommendedPrice: 1.4658129805029452
+          currentPrice: 0.8008281904610115
+          currency: currency
+      properties:
+        next:
+          type: string
+        priceRecommendations:
+          items:
+            $ref: '#/components/schemas/GetPriceRecommendationsResponse_priceRecommendations'
+          type: array
+      type: object
+    NotFilter:
+      properties:
+        filter:
+          oneOf:
+          - $ref: '#/components/schemas/OrFilter'
+          - $ref: '#/components/schemas/AndFilter'
+          - $ref: '#/components/schemas/NotFilter'
+          - $ref: '#/components/schemas/ConstantFilter'
+          - $ref: '#/components/schemas/ComparisonFilter'
+          type: object
+        type:
+          enum:
+          - NotFilter
+          type: string
+      required:
+      - filter
+      - type
+    NumberConstantValueProvider:
+      properties:
+        type:
+          enum:
+          - NumberConstantValueProvider
+          type: string
+        value:
+          type: number
+      required:
+      - type
+      - value
+    NumberEquality:
+      properties:
+        type:
+          enum:
+          - NumberEquality
+          type: string
+      required:
+      - type
+    NumberGreaterThan:
+      properties:
+        type:
+          enum:
+          - NumberGreaterThan
+          type: string
+      required:
+      - type
+    NumberInSequence:
+      properties:
+        type:
+          enum:
+          - NumberInSequence
+          type: string
+      required:
+      - type
+    NumberLessThan:
+      properties:
+        type:
+          enum:
+          - NumberLessThan
+          type: string
+      required:
+      - type
+    NumberValueProvider:
+      properties:
+        attributeName:
+          type: string
+        type:
+          enum:
+          - NumberValueProvider
+          type: string
+      required:
+      - attributeName
+      - type
+    OfferAttribute:
+      example:
+        name: name
+        value: value
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+      required:
+      - name
+      - value
+    OrFilter:
+      properties:
+        filters:
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/OrFilter'
+            - $ref: '#/components/schemas/AndFilter'
+            - $ref: '#/components/schemas/NotFilter'
+            - $ref: '#/components/schemas/ConstantFilter'
+            - $ref: '#/components/schemas/ComparisonFilter'
+          type: array
+        type:
+          enum:
+          - OrFilter
+          type: string
+      required:
+      - type
+    Pagination:
+      example:
+        limit: 0
+        start: 6
+      properties:
+        limit:
+          default: 100
+          type: integer
+        start:
+          type: integer
+      required:
+      - start
+    PostOfferStatisticsRequest:
+      example:
+        filter: ""
+        ownShopNames:
+          key:
+          - ownShopNames
+          - ownShopNames
+        range:
+          start: 2000-01-23T04:56:07.000+00:00
+          end: 2000-01-23T04:56:07.000+00:00
+        includeDeliveryCosts: true
+      properties:
+        filter:
+          oneOf:
+          - $ref: '#/components/schemas/OrFilter'
+          - $ref: '#/components/schemas/AndFilter'
+          - $ref: '#/components/schemas/NotFilter'
+          - $ref: '#/components/schemas/ConstantFilter'
+          - $ref: '#/components/schemas/ComparisonFilter'
+        includeDeliveryCosts:
+          type: boolean
+        ownShopNames:
+          additionalProperties:
+            items:
+              type: string
+            type: array
+          type: object
+        range:
+          $ref: '#/components/schemas/TimeRange'
+      required:
+      - filter
+      - includeDeliveryCosts
+      - ownShopNames
+      - range
+    Product:
+      description: A product defined by its attributes
+      example:
+        gtin: 0
+        referencePrice: 5.962133916683182
+        maxPriceBoundary: 6.027456183070403
+        productId: productId
+        name: name
+        minPriceBoundary: 1.4658129805029452
+        tags:
+        - value: value
+          key: key
+        - value: value
+          key: key
+      properties:
+        tags:
+          items:
+            $ref: '#/components/schemas/Tag'
+          type: array
+        gtin:
+          format: int64
+          type: integer
+        maxPriceBoundary:
+          format: double
+          type: number
+        minPriceBoundary:
+          format: double
+          type: number
+        name:
+          type: string
+        productId:
+          type: string
+        referencePrice:
+          format: double
+          type: number
+      type: object
+    ProductAndOffers:
+      example:
+        offers:
+        - ignored: true
+          gtin: 6
+          productId: productId
+          retrievalDate: 2000-01-23T04:56:07.000+00:00
+          availability: true
+          creationDate: 2000-01-23T04:56:07.000+00:00
+          vendorName: vendorName
+          positionByTotalPrice: 2
+          productName: productName
+          url: url
+          minDeliveryTime: 5
+          vendorDomainId: vendorDomainId
+          deliveryCosts: 0.8008281904610115
+          maxDeliveryTime: 1
+          price: 7.061401241503109
+          domain: domain
+          attributes:
+          - name: name
+            value: value
+          - name: name
+            value: value
+          currency: currency
+          positionByUnitPrice: 5
+        - ignored: true
+          gtin: 6
+          productId: productId
+          retrievalDate: 2000-01-23T04:56:07.000+00:00
+          availability: true
+          creationDate: 2000-01-23T04:56:07.000+00:00
+          vendorName: vendorName
+          positionByTotalPrice: 2
+          productName: productName
+          url: url
+          minDeliveryTime: 5
+          vendorDomainId: vendorDomainId
+          deliveryCosts: 0.8008281904610115
+          maxDeliveryTime: 1
+          price: 7.061401241503109
+          domain: domain
+          attributes:
+          - name: name
+            value: value
+          - name: name
+            value: value
+          currency: currency
+          positionByUnitPrice: 5
+        product:
+          customerProductId: customerProductId
+          gtin: 9
+          referencePrice: 4.145608029883936
+          maxPriceBoundary: 3.616076749251911
+          name: name
+          id: id
+          minPriceBoundary: 2.027123023002322
+          tags:
+          - value: value
+            key: key
+          - value: value
+            key: key
+      properties:
+        offers:
+          items:
+            $ref: '#/components/schemas/ApiOffer'
+          type: array
+        product:
+          $ref: '#/components/schemas/ApiProduct'
+      type: object
+    ProductAndOffersApiResponse:
+      example:
+        data:
+        - offers:
+          - ignored: true
+            gtin: 6
+            productId: productId
+            retrievalDate: 2000-01-23T04:56:07.000+00:00
+            availability: true
+            creationDate: 2000-01-23T04:56:07.000+00:00
+            vendorName: vendorName
+            positionByTotalPrice: 2
+            productName: productName
+            url: url
+            minDeliveryTime: 5
+            vendorDomainId: vendorDomainId
+            deliveryCosts: 0.8008281904610115
+            maxDeliveryTime: 1
+            price: 7.061401241503109
+            domain: domain
+            attributes:
+            - name: name
+              value: value
+            - name: name
+              value: value
+            currency: currency
+            positionByUnitPrice: 5
+          - ignored: true
+            gtin: 6
+            productId: productId
+            retrievalDate: 2000-01-23T04:56:07.000+00:00
+            availability: true
+            creationDate: 2000-01-23T04:56:07.000+00:00
+            vendorName: vendorName
+            positionByTotalPrice: 2
+            productName: productName
+            url: url
+            minDeliveryTime: 5
+            vendorDomainId: vendorDomainId
+            deliveryCosts: 0.8008281904610115
+            maxDeliveryTime: 1
+            price: 7.061401241503109
+            domain: domain
+            attributes:
+            - name: name
+              value: value
+            - name: name
+              value: value
+            currency: currency
+            positionByUnitPrice: 5
+          product:
+            customerProductId: customerProductId
+            gtin: 9
+            referencePrice: 4.145608029883936
+            maxPriceBoundary: 3.616076749251911
+            name: name
+            id: id
+            minPriceBoundary: 2.027123023002322
+            tags:
+            - value: value
+              key: key
+            - value: value
+              key: key
+        - offers:
+          - ignored: true
+            gtin: 6
+            productId: productId
+            retrievalDate: 2000-01-23T04:56:07.000+00:00
+            availability: true
+            creationDate: 2000-01-23T04:56:07.000+00:00
+            vendorName: vendorName
+            positionByTotalPrice: 2
+            productName: productName
+            url: url
+            minDeliveryTime: 5
+            vendorDomainId: vendorDomainId
+            deliveryCosts: 0.8008281904610115
+            maxDeliveryTime: 1
+            price: 7.061401241503109
+            domain: domain
+            attributes:
+            - name: name
+              value: value
+            - name: name
+              value: value
+            currency: currency
+            positionByUnitPrice: 5
+          - ignored: true
+            gtin: 6
+            productId: productId
+            retrievalDate: 2000-01-23T04:56:07.000+00:00
+            availability: true
+            creationDate: 2000-01-23T04:56:07.000+00:00
+            vendorName: vendorName
+            positionByTotalPrice: 2
+            productName: productName
+            url: url
+            minDeliveryTime: 5
+            vendorDomainId: vendorDomainId
+            deliveryCosts: 0.8008281904610115
+            maxDeliveryTime: 1
+            price: 7.061401241503109
+            domain: domain
+            attributes:
+            - name: name
+              value: value
+            - name: name
+              value: value
+            currency: currency
+            positionByUnitPrice: 5
+          product:
+            customerProductId: customerProductId
+            gtin: 9
+            referencePrice: 4.145608029883936
+            maxPriceBoundary: 3.616076749251911
+            name: name
+            id: id
+            minPriceBoundary: 2.027123023002322
+            tags:
+            - value: value
+              key: key
+            - value: value
+              key: key
+        errors:
+        - code: code
+          message: message
+        - code: code
+          message: message
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/ProductAndOffers'
+          type: array
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiError'
+          type: array
+      type: object
+    ProductOfferStats:
+      example:
+        offerCount: 1
+        minPrice: 6.027456183070403
+        averagePrice: 0.8008281904610115
+        ownPosition:
+          price: 5.637376656633329
+          position: 5
+      properties:
+        averagePrice:
+          format: double
+          type: number
+        minPrice:
+          format: double
+          type: number
+        offerCount:
+          type: integer
+        ownPosition:
+          $ref: '#/components/schemas/ShopRank'
+      required:
+      - averagePrice
+      - minPrice
+      - offerCount
+    ProductOfferStatsApiResponse:
+      example:
+        data:
+        - offerCount: 1
+          minPrice: 6.027456183070403
+          averagePrice: 0.8008281904610115
+          ownPosition:
+            price: 5.637376656633329
+            position: 5
+        - offerCount: 1
+          minPrice: 6.027456183070403
+          averagePrice: 0.8008281904610115
+          ownPosition:
+            price: 5.637376656633329
+            position: 5
+        errors:
+        - code: code
+          message: message
+        - code: code
+          message: message
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/ProductOfferStats'
+          type: array
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiError'
+          type: array
+    ProductOffersApiQuery:
+      example:
+        filter: '{}'
+        pagination:
+          limit: 0
+          start: 6
+        range:
+          start: 2000-01-23T04:56:07.000+00:00
+          end: 2000-01-23T04:56:07.000+00:00
+      properties:
+        filter:
+          oneOf:
+          - $ref: '#/components/schemas/OrFilter'
+          - $ref: '#/components/schemas/AndFilter'
+          - $ref: '#/components/schemas/NotFilter'
+          - $ref: '#/components/schemas/ConstantFilter'
+          - $ref: '#/components/schemas/ComparisonFilter'
+          type: object
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        range:
+          $ref: '#/components/schemas/TimeRange'
+      required:
+      - pagination
+      - range
+    ProductOffersApiResponse:
+      example:
+        data:
+        - ignored: true
+          gtin: 6
+          productId: productId
+          retrievalDate: 2000-01-23T04:56:07.000+00:00
+          availability: true
+          creationDate: 2000-01-23T04:56:07.000+00:00
+          vendorName: vendorName
+          positionByTotalPrice: 2
+          productName: productName
+          url: url
+          minDeliveryTime: 5
+          vendorDomainId: vendorDomainId
+          deliveryCosts: 0.8008281904610115
+          maxDeliveryTime: 1
+          price: 7.061401241503109
+          domain: domain
+          attributes:
+          - name: name
+            value: value
+          - name: name
+            value: value
+          currency: currency
+          positionByUnitPrice: 5
+        - ignored: true
+          gtin: 6
+          productId: productId
+          retrievalDate: 2000-01-23T04:56:07.000+00:00
+          availability: true
+          creationDate: 2000-01-23T04:56:07.000+00:00
+          vendorName: vendorName
+          positionByTotalPrice: 2
+          productName: productName
+          url: url
+          minDeliveryTime: 5
+          vendorDomainId: vendorDomainId
+          deliveryCosts: 0.8008281904610115
+          maxDeliveryTime: 1
+          price: 7.061401241503109
+          domain: domain
+          attributes:
+          - name: name
+            value: value
+          - name: name
+            value: value
+          currency: currency
+          positionByUnitPrice: 5
+        errors:
+        - code: code
+          message: message
+        - code: code
+          message: message
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/ApiOffer'
+          type: array
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiError'
+          type: array
+    PutProductsApiResponse:
+      example:
+        data:
+          id: id
+          url: url
+      properties:
+        data:
+          $ref: '#/components/schemas/Task'
+      required:
+      - data
+    DeleteProductsApiResponse:
+      example:
+        data:
+          deleted: 0
+      properties:
+        data:
+          $ref: '#/components/schemas/DeleteProductsApiResponse_data'
+    PostProductsRequest:
+      description: Request body which contains products
+      example:
+        identifyingAttributes:
+        - customerProductId
+        - customerProductId
+        version: "2"
+        products:
+        - customerProductId: customerProductId
+          gtin: 12345678910123
+          referencePrice: 19.99
+          maxPriceBoundary: 56.78
+          name: name
+          minPriceBoundary: 12.34
+          tags:
+          - value: value
+            key: key
+          - value: value
+            key: key
+        - customerProductId: customerProductId
+          gtin: 12345678910123
+          referencePrice: 19.99
+          maxPriceBoundary: 56.78
+          name: name
+          minPriceBoundary: 12.34
+          tags:
+          - value: value
+            key: key
+          - value: value
+            key: key
+      properties:
+        products:
+          description: Products which should be added to the pricemonitor
+          items:
+            $ref: '#/components/schemas/PostProduct'
+          type: array
+        version:
+          description: Version of the request body. Only version 2 is supported.
+          enum:
+          - "2"
+          type: string
+        identifyingAttributes:
+          description: Non-empty list of product attributes which identify your products
+            uniquely
+          items:
+            description: Additionally you can use your product tags
+            enum:
+            - customerProductId
+            - gtin
+            - name
+            type: string
+          type: array
+      type: object
+    BulkedPostProductsApiResponse:
+      example:
+        data:
+        - ""
+        - ""
+      properties:
+        data:
+          items:
+            description: If the product could be added successfully, the corresponding
+              pricemonitor product id is returned. Otherwise a dedicated api error
+              is returned.
+            oneOf:
+            - $ref: '#/components/schemas/PostProductsApiResponse'
+            - $ref: '#/components/schemas/ApiErrorResponse'
+          type: array
+      type: object
+    PostProductsApiResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/PostProductsApiResponse_data'
+      type: object
+    RegularExpression:
+      properties:
+        type:
+          enum:
+          - RegularExpression
+          type: string
+      required:
+      - type
+    SequenceOfNumberConstantValueProvider:
+      properties:
+        type:
+          enum:
+          - SequenceOfNumberConstantValueProvider
+          type: string
+        value:
+          items:
+            type: number
+          type: array
+      required:
+      - type
+      - value
+    SequenceOfNumberValueProvider:
+      properties:
+        attributeName:
+          type: string
+        type:
+          enum:
+          - SequenceOfNumberValueProvider
+          type: string
+      required:
+      - attributeName
+      - type
+    SequenceOfStringConstantValueProvider:
+      properties:
+        type:
+          enum:
+          - SequenceOfStringConstantValueProvider
+          type: string
+        value:
+          items:
+            type: string
+          type: array
+      required:
+      - type
+      - value
+    SequenceOfStringValueProvider:
+      properties:
+        attributeName:
+          type: string
+        type:
+          enum:
+          - SequenceOfStringValueProvider
+          type: string
+      required:
+      - attributeName
+      - type
+    ShopRank:
+      example:
+        price: 5.637376656633329
+        position: 5
+      properties:
+        position:
+          type: integer
+        price:
+          format: double
+          type: number
+      required:
+      - position
+      - price
+    StringConstantValueProvider:
+      properties:
+        type:
+          enum:
+          - StringConstantValueProvider
+          type: string
+        value:
+          type: string
+      required:
+      - type
+      - value
+    StringEquality:
+      properties:
+        type:
+          enum:
+          - StringEquality
+          type: string
+      required:
+      - type
+    StringInSequence:
+      properties:
+        type:
+          enum:
+          - StringInSequence
+          type: string
+      required:
+      - type
+    StringValueProvider:
+      properties:
+        attributeName:
+          type: string
+        type:
+          enum:
+          - StringValueProvider
+          type: string
+      required:
+      - attributeName
+      - type
+    Tag:
+      example:
+        value: value
+        key: key
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+      type: object
+    Task:
+      example:
+        id: id
+        url: url
+      properties:
+        id:
+          type: string
+        url:
+          type: string
+    TaskIdAndUrl:
+      properties:
+        id:
+          type: string
+        url:
+          type: string
+      type: object
+    TaskWithContractResourceApiResponse:
+      example:
+        taskType: taskType
+        failures:
+        - messageId: messageId
+          attributes:
+            key: '{}'
+        - messageId: messageId
+          attributes:
+            key: '{}'
+        data:
+        - data
+        - data
+        contractId: contractId
+        finishDate: 2000-01-23T04:56:07.000+00:00
+        state: state
+        creationDate: 2000-01-23T04:56:07.000+00:00
+        parentId: parentId
+        startDate: 2000-01-23T04:56:07.000+00:00
+        taskId: taskId
+      properties:
+        contractId:
+          type: string
+        creationDate:
+          format: date-time
+          type: string
+        data:
+          items:
+            type: string
+          type: array
+        failures:
+          items:
+            $ref: '#/components/schemas/TaskWithContractResourceApiResponse_failures'
+          type: array
+        finishDate:
+          format: date-time
+          type: string
+        parentId:
+          type: string
+        startDate:
+          format: date-time
+          type: string
+        state:
+          type: string
+        taskId:
+          type: string
+        taskType:
+          type: string
+      type: object
+    TimeRange:
+      example:
+        start: 2000-01-23T04:56:07.000+00:00
+        end: 2000-01-23T04:56:07.000+00:00
+      properties:
+        end:
+          format: date-time
+          type: string
+        start:
+          format: date-time
+          type: string
+      required:
+      - end
+      - start
+    UserInfo:
+      example:
+        companies:
+        - name: name
+          id: 0
+          contracts:
+          - name: name
+            active: true
+            id: id
+            type: type
+          - name: name
+            active: true
+            id: id
+            type: type
+        - name: name
+          id: 0
+          contracts:
+          - name: name
+            active: true
+            id: id
+            type: type
+          - name: name
+            active: true
+            id: id
+            type: type
+        name: name
+        id: 6
+        email: email
+      properties:
+        companies:
+          items:
+            $ref: '#/components/schemas/UserInfo_companies'
+          type: array
+        email:
+          type: string
+        id:
+          format: int64
+          type: integer
+        name:
+          type: string
+      type: object
+    UserSignupRequest:
+      example:
+        name: name
+        email: email
+      properties:
+        email:
+          type: string
+        name:
+          type: string
+      type: object
+    com.patagona.pricemonitor.share.api.PostCustomerOrdersRequestV2:
+      additionalProperties: false
+      description: Request body containing bulked orders
+      properties:
+        orders:
+          description: Orders in bulk
+          items:
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.CustomerOrderV2'
+          type: array
+        version:
+          description: Version of orders
+          type: string
+      required:
+      - orders
+      - version
+      type: object
+    com.patagona.pricemonitor.share.api.CustomerOrderV2:
+      additionalProperties: false
+      description: An order placed in a shop.
+      example:
+        referrer: referrer
+        productMappings:
+        - source: source
+          target: target
+        - source: source
+          target: target
+        orderId: orderId
+        totalPrice: 5.637376656633329
+        origin: origin
+        currency: currency
+        creationDate: 2000-01-23T04:56:07.000+00:00
+        items:
+        - unitPrice: 6.027456183070403
+          itemId: itemId
+          quantity: 1
+          taxPercentage: 5.962133916683182
+        - unitPrice: 6.027456183070403
+          itemId: itemId
+          quantity: 1
+          taxPercentage: 5.962133916683182
+        shippingCosts: 0.8008281904610115
+      properties:
+        shippingCosts:
+          description: Shipping costs of the order
+          type: number
+        orderId:
+          description: Unique id of an order. It must mean unique in the shop, not
+            in the pricemonitor.
+          type: string
+        items:
+          description: List of bought items
+          items:
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.CustomerOrderItemV2'
+          type: array
+        totalPrice:
+          description: Total price of the order
+          type: number
+        productMappings:
+          description: A relation from the products in your system to the pricemonitor.
+            Currently it must contain exactly one element.
+          items:
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.CustomerOrderProductMappingV2'
+          type: array
+        origin:
+          description: Origin of an order, e.g. the online shop were the order is
+            placed
+          type: string
+        creationDate:
+          format: date-time
+          type: string
+        currency:
+          description: 'Currency used in the order. ISO 4217 Currency Codes: e.g.
+            EUR'
+          type: string
+        referrer:
+          description: Referrer of an order. Third party (e.g. marketplace) which
+            referred the customer to the online shop
+          type: string
+      required:
+      - creationDate
+      - currency
+      - items
+      - orderId
+      - origin
+      - productMappings
+      - shippingCosts
+      - totalPrice
+      type: object
+    com.patagona.pricemonitor.share.api.CustomerOrderItemV2:
+      additionalProperties: false
+      description: A ordered item
+      example:
+        unitPrice: 6.027456183070403
+        itemId: itemId
+        quantity: 1
+        taxPercentage: 5.962133916683182
+      properties:
+        itemId:
+          description: Id of the item in the customer's system. It is expected to
+            be the customerProductId. It should be guaranteed that the itemId can
+            be always assigned to only one product or variant.
+          type: string
+        unitPrice:
+          description: Unit price of an item
+          type: number
+        quantity:
+          description: How often the item was purchased
+          type: integer
+        taxPercentage:
+          description: Tax percentage applied on unit price, e.g. 20 for 20% tax
+          type: number
+      required:
+      - itemId
+      - quantity
+      - taxPercentage
+      - unitPrice
+      type: object
+    com.patagona.pricemonitor.share.api.CustomerOrderProductMappingV2:
+      additionalProperties: false
+      description: We originally planned to support complex mappings, but for sake
+        of maintainability we restrict the mappings to itemId-> (customerProductId
+        or productId)
+      example:
+        source: source
+        target: target
+      properties:
+        source:
+          description: Identifier field within item. Only valid value is 'itemId'
+          type: string
+        target:
+          description: Must be 'customerProductId' or 'productId' since plugins are
+            still publishing both values. The semantics are actually the same. In
+            both cases they address the customerProductId.
+          type: string
+      required:
+      - source
+      - target
+      type: object
+    Callbacks_pricemonitorCompleted:
+      example:
+        headers:
+          key: headers
+        bodyTemplate: bodyTemplate
+        method: method
+        name: name
+        url: url
+      properties:
+        bodyTemplate:
+          type: string
+        headers:
+          additionalProperties:
+            type: string
+          type: object
+        method:
+          type: string
+        name:
+          type: string
+        url:
+          type: string
+    CreateCompanyResponseSimpleApiResponse_data:
+      example:
+        name: name
+        id: 0
+      properties:
+        id:
+          format: int64
+          type: integer
+        name:
+          type: string
+    CustomerOrderApiResponse_data:
+      example:
+        orders:
+        - referrer: referrer
+          productMappings:
+          - source: source
+            target: target
+          - source: source
+            target: target
+          orderId: orderId
+          totalPrice: 5.637376656633329
+          origin: origin
+          currency: currency
+          creationDate: 2000-01-23T04:56:07.000+00:00
+          items:
+          - unitPrice: 6.027456183070403
+            itemId: itemId
+            quantity: 1
+            taxPercentage: 5.962133916683182
+          - unitPrice: 6.027456183070403
+            itemId: itemId
+            quantity: 1
+            taxPercentage: 5.962133916683182
+          shippingCosts: 0.8008281904610115
+        - referrer: referrer
+          productMappings:
+          - source: source
+            target: target
+          - source: source
+            target: target
+          orderId: orderId
+          totalPrice: 5.637376656633329
+          origin: origin
+          currency: currency
+          creationDate: 2000-01-23T04:56:07.000+00:00
+          items:
+          - unitPrice: 6.027456183070403
+            itemId: itemId
+            quantity: 1
+            taxPercentage: 5.962133916683182
+          - unitPrice: 6.027456183070403
+            itemId: itemId
+            quantity: 1
+            taxPercentage: 5.962133916683182
+          shippingCosts: 0.8008281904610115
+        version: version
+      properties:
+        orders:
+          items:
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.CustomerOrderV2'
+          type: array
+        version:
+          type: string
+    CustomerOrderApiResponse_data_1:
+      example:
+        data:
+          orders:
+          - referrer: referrer
+            productMappings:
+            - source: source
+              target: target
+            - source: source
+              target: target
+            orderId: orderId
+            totalPrice: 5.637376656633329
+            origin: origin
+            currency: currency
+            creationDate: 2000-01-23T04:56:07.000+00:00
+            items:
+            - unitPrice: 6.027456183070403
+              itemId: itemId
+              quantity: 1
+              taxPercentage: 5.962133916683182
+            - unitPrice: 6.027456183070403
+              itemId: itemId
+              quantity: 1
+              taxPercentage: 5.962133916683182
+            shippingCosts: 0.8008281904610115
+          - referrer: referrer
+            productMappings:
+            - source: source
+              target: target
+            - source: source
+              target: target
+            orderId: orderId
+            totalPrice: 5.637376656633329
+            origin: origin
+            currency: currency
+            creationDate: 2000-01-23T04:56:07.000+00:00
+            items:
+            - unitPrice: 6.027456183070403
+              itemId: itemId
+              quantity: 1
+              taxPercentage: 5.962133916683182
+            - unitPrice: 6.027456183070403
+              itemId: itemId
+              quantity: 1
+              taxPercentage: 5.962133916683182
+            shippingCosts: 0.8008281904610115
+          version: version
+        errors:
+        - code: code
+          message: message
+        - code: code
+          message: message
+      properties:
+        data:
+          $ref: '#/components/schemas/CustomerOrderApiResponse_data'
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiError'
+          type: array
+    DeleteCustomerOrdersApiResponse_data_data:
+      example:
+        deleted: 0
+      properties:
+        deleted:
+          description: Number of deleted orders
+          type: integer
+    DeleteCustomerOrdersApiResponse_data:
+      example:
+        data:
+          deleted: 0
+      properties:
+        data:
+          $ref: '#/components/schemas/DeleteCustomerOrdersApiResponse_data_data'
+    PutPluginRegistrationRequest_allOf:
+      properties:
+        version:
+          enum:
+          - "1"
+          type: string
+    Feed_fields:
+      example:
+        default: default
+        name: name
+        label: label
+      properties:
+        default:
+          type: string
+        label:
+          type: string
+        name:
+          type: string
+    GetOffersResponse_attributes:
+      example:
+        value: value
+        key: key
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+    GetOffersResponse_offers:
+      description: An offer by a specific vendor for a certain product
+      example:
+        availability: '{}'
+        creationDate: 2000-01-23T04:56:07.000+00:00
+        productName: productName
+        url: url
+        vendorIdOnDomain: vendorIdOnDomain
+        approved: true
+        minDeliveryTime: '{}'
+        deliveryCosts: 6.027456183070403
+        maxDeliveryTime: '{}'
+        price: 1.4658129805029452
+        vendor: vendor
+        domain: domain
+        attributes:
+        - value: value
+          key: key
+        - value: value
+          key: key
+      properties:
+        approved:
+          type: boolean
+        attributes:
+          items:
+            $ref: '#/components/schemas/GetOffersResponse_attributes'
+          type: array
+        availability:
+          type: object
+        creationDate:
+          format: date-time
+          type: string
+        deliveryCosts:
+          format: double
+          type: number
+        domain:
+          type: string
+        maxDeliveryTime:
+          type: object
+        minDeliveryTime:
+          type: object
+        price:
+          format: double
+          type: number
+        productName:
+          type: string
+        url:
+          type: string
+        vendor:
+          type: string
+        vendorIdOnDomain:
+          type: string
+    GetOffersResponse_data:
+      description: The GTIN of a product and all of its offers
+      example:
+        offers:
+        - availability: '{}'
+          creationDate: 2000-01-23T04:56:07.000+00:00
+          productName: productName
+          url: url
+          vendorIdOnDomain: vendorIdOnDomain
+          approved: true
+          minDeliveryTime: '{}'
+          deliveryCosts: 6.027456183070403
+          maxDeliveryTime: '{}'
+          price: 1.4658129805029452
+          vendor: vendor
+          domain: domain
+          attributes:
+          - value: value
+            key: key
+          - value: value
+            key: key
+        - availability: '{}'
+          creationDate: 2000-01-23T04:56:07.000+00:00
+          productName: productName
+          url: url
+          vendorIdOnDomain: vendorIdOnDomain
+          approved: true
+          minDeliveryTime: '{}'
+          deliveryCosts: 6.027456183070403
+          maxDeliveryTime: '{}'
+          price: 1.4658129805029452
+          vendor: vendor
+          domain: domain
+          attributes:
+          - value: value
+            key: key
+          - value: value
+            key: key
+        gtin: 0
+        productId: productId
+        tags:
+        - value: value
+          key: key
+        - value: value
+          key: key
+      properties:
+        tags:
+          items:
+            $ref: '#/components/schemas/Tag'
+          type: array
+        gtin:
+          format: int64
+          type: integer
+        offers:
+          items:
+            $ref: '#/components/schemas/GetOffersResponse_offers'
+          type: array
+        productId:
+          description: Unique product identifier within pricemonitor
+          type: string
+    GetPriceRecommendationApiResponse_tags:
+      example:
+        stringValue: stringValue
+        booleanValue: '{}'
+        integerValue: '{}'
+        doubleValue: '{}'
+        label: label
+      properties:
+        booleanValue:
+          type: object
+        doubleValue:
+          type: object
+        integerValue:
+          type: object
+        label:
+          type: string
+        stringValue:
+          type: string
+    GetPriceRecommendationApiResponse_data:
+      example:
+        customerProductId: customerProductId
+        relativePriceChangePercentage: 5.637376656633329
+        gtin: '{}'
+        oldDeliveryCosts: 6.027456183070403
+        deliveryCosts: 0.8008281904610115
+        productId: productId
+        oldPrice: 1.4658129805029452
+        price: 5.962133916683182
+        currency: currency
+        tags:
+        - stringValue: stringValue
+          booleanValue: '{}'
+          integerValue: '{}'
+          doubleValue: '{}'
+          label: label
+        - stringValue: stringValue
+          booleanValue: '{}'
+          integerValue: '{}'
+          doubleValue: '{}'
+          label: label
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        tags:
+          items:
+            $ref: '#/components/schemas/GetPriceRecommendationApiResponse_tags'
+          type: array
+        currency:
+          type: string
+        customerProductId:
+          type: string
+        deliveryCosts:
+          type: number
+        gtin:
+          type: object
+        oldDeliveryCosts:
+          type: number
+        oldPrice:
+          type: number
+        price:
+          type: number
+        productId:
+          type: string
+        relativePriceChangePercentage:
+          type: number
+        timestamp:
+          format: date-time
+          type: string
+    GetPriceRecommendationApiResponse_meta:
+      example:
+        totalSize: 9
+        limit: 2
+        start: 7
+        nextUrl: nextUrl
+      properties:
+        limit:
+          format: int32
+          type: integer
+        nextUrl:
+          type: string
+        start:
+          format: int32
+          type: integer
+        totalSize:
+          format: int32
+          type: integer
+    GetPriceRecommendationsResponse_priceRecommendations:
+      example:
+        identifier: identifier
+        gtin: 6
+        recommendedPrice: 1.4658129805029452
+        currentPrice: 0.8008281904610115
+        currency: currency
+      properties:
+        currency:
+          type: string
+        currentPrice:
+          format: double
+          type: number
+        gtin:
+          format: int64
+          type: integer
+        identifier:
+          type: string
+        recommendedPrice:
+          format: double
+          type: number
+    DeleteProductsApiResponse_data:
+      example:
+        deleted: 0
+      properties:
+        deleted:
+          description: Number of deleted products
+          type: integer
+    PostProductsApiResponse_data:
+      properties:
+        productId:
+          description: The pricemonitor product id of the added product
+          type: string
+    TaskWithContractResourceApiResponse_failures:
+      example:
+        messageId: messageId
+        attributes:
+          key: '{}'
+      properties:
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        messageId:
+          type: string
+    UserInfo_contracts:
+      example:
+        name: name
+        active: true
+        id: id
+        type: type
+      properties:
+        active:
+          type: boolean
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+    UserInfo_companies:
+      example:
+        name: name
+        id: 0
+        contracts:
+        - name: name
+          active: true
+          id: id
+          type: type
+        - name: name
+          active: true
+          id: id
+          type: type
+      properties:
+        contracts:
+          items:
+            $ref: '#/components/schemas/UserInfo_contracts'
+          type: array
+        id:
+          format: int64
+          type: integer
+        name:
+          type: string
+  securitySchemes:
+    BasicAuth:
+      scheme: basic
+      type: http
