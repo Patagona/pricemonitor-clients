@@ -1,0 +1,49 @@
+pipeline{
+
+  agent { node { label 'build-v3'}}
+
+  options{
+    disableConcurrentBuilds()
+    timestamps()
+  }
+
+  parameters {
+    string(name:'API_VERSION', description:'Version of the pricemonitor api to generate the clients for')
+  }
+
+  stages {
+
+    stage('Prepare') {
+      steps {
+        sh 'git checkout master'
+        withCredentials([usernamePassword(credentialsId: '18d1c245-8ddf-4f6f-92e2-f9ab70c7b08d', passwordVariable: 'GITHUB_TOKEN', usernameVariable: 'UNUSED')]) {
+          sh './get-openapi.sh'
+        }
+      }
+    }
+
+    stage('Generate') {
+      steps {
+        sh './generate-clients.sh'
+      }
+    }
+
+    stage('Commit') {
+      steps {
+        sshagent (credentials: ['e0f894b2-238d-4345-85a2-fe9da450fc93']) {
+          sh 'git add .'
+          sh 'git commit -m "Generate pricemonitor-api clients for version ${API_VERSION}"'
+          sh 'git push origin master'
+        }
+      }
+    }
+  }
+
+  post {
+    always {
+      script {
+        deleteDir()
+      }
+    }
+  }
+}
