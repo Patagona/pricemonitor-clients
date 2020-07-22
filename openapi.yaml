@@ -1255,7 +1255,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiError'
           description: Returned in case of unparsable request JSON or unsupported
-            filter.
+            filter/sorting.
       tags:
       - offers
   /api/v3/vendor/contracts/{contractId}/offers/stats/query:
@@ -2819,6 +2819,23 @@ components:
           type: integer
       required:
       - start
+    OffersQuerySortOrderV30:
+      example:
+        metric: TotalPrice
+        order: asc
+      properties:
+        metric:
+          enum:
+          - TotalPrice
+          - Price
+          type: string
+        order:
+          enum:
+          - asc
+          type: string
+      required:
+      - metric
+      - order
     PostOfferStatisticsRequest:
       example:
         filter: ""
@@ -3158,6 +3175,9 @@ components:
         range:
           start: 2000-01-23T04:56:07.000+00:00
           end: 2000-01-23T04:56:07.000+00:00
+        sort:
+          metric: TotalPrice
+          order: asc
       properties:
         filter:
           oneOf:
@@ -3171,6 +3191,8 @@ components:
           $ref: '#/components/schemas/Pagination'
         range:
           $ref: '#/components/schemas/TimeRange'
+        sort:
+          $ref: '#/components/schemas/OffersQuerySortOrderV30'
       required:
       - pagination
       - range

@@ -16,11 +16,13 @@ import { ComparisonFilter } from './comparisonFilter';
 import { NotFilter } from './notFilter';
 import { ConstantFilter } from './constantFilter';
 import { OrFilter } from './orFilter';
+import { OffersQuerySortOrderV30 } from './offersQuerySortOrderV30';
 
 
 export interface ProductOffersApiQuery { 
     filter?: OrFilter | AndFilter | NotFilter | ConstantFilter | ComparisonFilter;
     pagination: Pagination;
     range: TimeRange;
+    sort?: OffersQuerySortOrderV30;
 }
 

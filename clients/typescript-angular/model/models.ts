@@ -57,6 +57,7 @@ export * from './numberInSequence';
 export * from './numberLessThan';
 export * from './numberValueProvider';
 export * from './offerAttribute';
+export * from './offersQuerySortOrderV30';
 export * from './orFilter';
 export * from './pagination';
 export * from './pluginRegistration';
