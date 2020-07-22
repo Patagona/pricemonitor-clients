@@ -1,12 +1,12 @@
 #!/bin/bash
-# This script releases a new version of Patagona-API.
+# This script releases a new version of pricemonitor-clients.
 # It first creates a draft release, attaches artifacts and then publish the release.
 # Make sure to set the variables GITHUB_TOKEN and VERSION when using it.
 
 GITHUB_ORGANIZATION=Patagona
 GITHUB_REPO=pricemonitor-clients
 
-COMMON_PARAMETERS="--user ${GITHUB_ORGANIZATION} --tag ${VERSION} --repo ${GITHUB_REPO}"
+COMMON_PARAMETERS="--user ${GITHUB_ORGANIZATION} --tag ${API_VERSION} --repo ${GITHUB_REPO}"
 RELEASE_DIR=tmp
 ghr=$RELEASE_DIR/github-release
 
@@ -17,5 +17,5 @@ if [ ! -f "$ghr" ]; then
   chmod +x $ghr
 fi
 
-echo "Creating release for version $VERSION"
-$ghr release ${COMMON_PARAMETERS} --name ${VERSION}
+echo "Creating release for version $API_VERSION"
+$ghr release ${COMMON_PARAMETERS} --name ${API_VERSION}
