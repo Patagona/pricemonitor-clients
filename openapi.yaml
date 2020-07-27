@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5143
+  version: 0.0.5144
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -78,7 +78,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GetPriceRecommendationsResponse'
+                $ref: '#/definitions/GetPriceRecommendationsResponse'
           description: No response was specified
       summary: Get price recommendations (deprecated)
       tags:
@@ -98,7 +98,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CreateCompanyResponseSimpleApiResponse'
+                $ref: '#/components/schemas/CreateCompanyApiResponse'
           description: No response was specified
         "400":
           content:
@@ -139,7 +139,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ApiContractSimpleApiResponse'
+                $ref: '#/components/schemas/GetCompanyContractsApiResponse'
           description: No response was specified
       summary: Get all contracts for given company
       tags:
@@ -168,7 +168,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AddCompanyContractResponse'
+                $ref: '#/components/schemas/AddCompanyContractApiResponse'
           description: No response was specified
         "400":
           content:
@@ -447,13 +447,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CustomerOrderApiResponse'
+                $ref: '#/components/schemas/PostOrdersBulkApiResponse'
           description: Successfully added orders
         "400":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CustomerOrderApiResponse'
+                $ref: '#/components/schemas/PostOrdersBulkApiResponse'
           description: Unable to add orders
       summary: Add orders in bulk
       tags:
@@ -949,7 +949,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProductAndOffersApiResponse'
+                $ref: '#/components/schemas/GetOffersApiResponse'
           description: A list of products with their corresponding offers.
         "400":
           content:
@@ -991,7 +991,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProductOfferStatsApiResponse'
+                $ref: '#/components/schemas/StatisticsByQueryApiResponse'
           description: Returns either an Error or a list of offer statistics, one
             for every product matching the given filter.
       tags:
@@ -1191,7 +1191,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProductAndOffersApiResponse'
+                $ref: '#/components/schemas/GetOffersApiResponse'
           description: A list of products with their corresponding offers.
         "400":
           content:
@@ -1247,7 +1247,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProductOffersApiResponse'
+                $ref: '#/components/schemas/QueryOffersApiResponse'
           description: Returns either an Error or a list of ApiOffers matching the
             given filter.
         "400":
@@ -1290,7 +1290,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProductOfferStatsApiResponse'
+                $ref: '#/components/schemas/StatisticsByQueryApiResponse'
           description: Returns either an Error or a list of offer statistics, one
             for every product matching the given filter.
       tags:
@@ -1313,7 +1313,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DeleteCustomerOrdersApiResponse'
+                $ref: '#/components/schemas/DeleteOrdersApiResponse'
           description: Successfully deleted all orders
       summary: Delete all orders for this contract
       tags:
@@ -1596,7 +1596,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ExtendedTagApiResponse'
+                $ref: '#/components/schemas/GetExtendedTagsApiResponse'
           description: Returns a list of ExtendedTags for the given product.
         "404":
           content:
@@ -1816,28 +1816,6 @@ components:
       - message
       - severity
       - source
-    AddCompanyContractResponse:
-      example:
-        data:
-          contractType: contractType
-          companyName: companyName
-          contractId: contractId
-          active: true
-          contractName: contractName
-          expirationDate: 2000-01-23T04:56:07.000+00:00
-        errors:
-        - code: code
-          message: message
-        - code: code
-          message: message
-      properties:
-        data:
-          $ref: '#/components/schemas/ApiContract'
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiError'
-          type: array
-      type: object
     AndFilter:
       properties:
         filters:
@@ -1856,13 +1834,6 @@ components:
       required:
       - type
     ApiContract:
-      example:
-        contractType: contractType
-        companyName: companyName
-        contractId: contractId
-        active: true
-        contractName: contractName
-        expirationDate: 2000-01-23T04:56:07.000+00:00
       properties:
         active:
           type: boolean
@@ -1877,36 +1848,6 @@ components:
         expirationDate:
           format: date-time
           type: string
-      type: object
-    ApiContractSimpleApiResponse:
-      example:
-        data:
-        - contractType: contractType
-          companyName: companyName
-          contractId: contractId
-          active: true
-          contractName: contractName
-          expirationDate: 2000-01-23T04:56:07.000+00:00
-        - contractType: contractType
-          companyName: companyName
-          contractId: contractId
-          active: true
-          contractName: contractName
-          expirationDate: 2000-01-23T04:56:07.000+00:00
-        errors:
-        - code: code
-          message: message
-        - code: code
-          message: message
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/ApiContract'
-          type: array
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiError'
-          type: array
       type: object
     ApiError:
       example:
@@ -1926,30 +1867,6 @@ components:
           type: array
       type: object
     ApiOffer:
-      example:
-        ignored: true
-        gtin: 6
-        productId: productId
-        retrievalDate: 2000-01-23T04:56:07.000+00:00
-        availability: true
-        creationDate: 2000-01-23T04:56:07.000+00:00
-        vendorName: vendorName
-        positionByTotalPrice: 2
-        productName: productName
-        url: url
-        minDeliveryTime: 5
-        vendorDomainId: vendorDomainId
-        deliveryCosts: 0.8008281904610115
-        maxDeliveryTime: 1
-        price: 7.061401241503109
-        domain: domain
-        attributes:
-        - name: name
-          value: value
-        - name: name
-          value: value
-        currency: currency
-        positionByUnitPrice: 5
       properties:
         attributes:
           items:
@@ -2009,19 +1926,6 @@ components:
       - url
       - vendorName
     ApiProduct:
-      example:
-        customerProductId: customerProductId
-        gtin: 9
-        referencePrice: 4.145608029883936
-        maxPriceBoundary: 3.616076749251911
-        name: name
-        id: id
-        minPriceBoundary: 2.027123023002322
-        tags:
-        - value: value
-          key: key
-        - value: value
-          key: key
       properties:
         tags:
           items:
@@ -2192,23 +2096,13 @@ components:
       required:
       - type
       - valid
-    CreateCompanyResponseSimpleApiResponse:
-      example:
-        data:
-          name: name
-          id: 0
-        errors:
-        - code: code
-          message: message
-        - code: code
-          message: message
+    CreateCompanyResponse:
       properties:
-        data:
-          $ref: '#/components/schemas/CreateCompanyResponseSimpleApiResponse_data'
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiError'
-          type: array
+        id:
+          format: int64
+          type: integer
+        name:
+          type: string
       type: object
     CreateContractRequest:
       example:
@@ -2219,124 +2113,6 @@ components:
           type: string
         contractType:
           type: string
-      type: object
-    CustomerOrderApiResponse:
-      example:
-        data:
-        - data:
-            orders:
-            - referrer: referrer
-              productMappings:
-              - source: source
-                target: target
-              - source: source
-                target: target
-              orderId: orderId
-              totalPrice: 5.637376656633329
-              origin: origin
-              currency: currency
-              creationDate: 2000-01-23T04:56:07.000+00:00
-              items:
-              - unitPrice: 6.027456183070403
-                itemId: itemId
-                quantity: 1
-                taxPercentage: 5.962133916683182
-              - unitPrice: 6.027456183070403
-                itemId: itemId
-                quantity: 1
-                taxPercentage: 5.962133916683182
-              shippingCosts: 0.8008281904610115
-            - referrer: referrer
-              productMappings:
-              - source: source
-                target: target
-              - source: source
-                target: target
-              orderId: orderId
-              totalPrice: 5.637376656633329
-              origin: origin
-              currency: currency
-              creationDate: 2000-01-23T04:56:07.000+00:00
-              items:
-              - unitPrice: 6.027456183070403
-                itemId: itemId
-                quantity: 1
-                taxPercentage: 5.962133916683182
-              - unitPrice: 6.027456183070403
-                itemId: itemId
-                quantity: 1
-                taxPercentage: 5.962133916683182
-              shippingCosts: 0.8008281904610115
-            version: version
-          errors:
-          - code: code
-            message: message
-          - code: code
-            message: message
-        - data:
-            orders:
-            - referrer: referrer
-              productMappings:
-              - source: source
-                target: target
-              - source: source
-                target: target
-              orderId: orderId
-              totalPrice: 5.637376656633329
-              origin: origin
-              currency: currency
-              creationDate: 2000-01-23T04:56:07.000+00:00
-              items:
-              - unitPrice: 6.027456183070403
-                itemId: itemId
-                quantity: 1
-                taxPercentage: 5.962133916683182
-              - unitPrice: 6.027456183070403
-                itemId: itemId
-                quantity: 1
-                taxPercentage: 5.962133916683182
-              shippingCosts: 0.8008281904610115
-            - referrer: referrer
-              productMappings:
-              - source: source
-                target: target
-              - source: source
-                target: target
-              orderId: orderId
-              totalPrice: 5.637376656633329
-              origin: origin
-              currency: currency
-              creationDate: 2000-01-23T04:56:07.000+00:00
-              items:
-              - unitPrice: 6.027456183070403
-                itemId: itemId
-                quantity: 1
-                taxPercentage: 5.962133916683182
-              - unitPrice: 6.027456183070403
-                itemId: itemId
-                quantity: 1
-                taxPercentage: 5.962133916683182
-              shippingCosts: 0.8008281904610115
-            version: version
-          errors:
-          - code: code
-            message: message
-          - code: code
-            message: message
-        errors:
-        - code: code
-          message: message
-        - code: code
-          message: message
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/CustomerOrderApiResponse_data_1'
-          type: array
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiError'
-          type: array
       type: object
     DateTimeAfter:
       properties:
@@ -2377,31 +2153,13 @@ components:
       required:
       - attributeName
       - type
-    DeleteCustomerOrdersApiResponse:
-      example:
-        data:
-          data:
-            deleted: 0
-        errors:
-        - code: code
-          message: message
-        - code: code
-          message: message
+    DeletedItemsResponse:
       properties:
-        data:
-          $ref: '#/components/schemas/DeleteCustomerOrdersApiResponse_data'
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiError'
-          type: array
+        deleted:
+          description: Number of deleted orders
+          type: integer
       type: object
     ExtendedTag:
-      example:
-        stringValue: stringValue
-        booleanValue: true
-        integerValue: 6
-        doubleValue: 0.8008281904610115
-        label: label
       properties:
         booleanValue:
           type: boolean
@@ -2418,24 +2176,6 @@ components:
       required:
       - label
       - stringValue
-    ExtendedTagApiResponse:
-      example:
-        data:
-        - stringValue: stringValue
-          booleanValue: true
-          integerValue: 6
-          doubleValue: 0.8008281904610115
-          label: label
-        - stringValue: stringValue
-          booleanValue: true
-          integerValue: 6
-          doubleValue: 0.8008281904610115
-          label: label
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/ExtendedTag'
-          type: array
     PluginRegistration:
       example:
         metricsUrl: metricsUrl
@@ -2619,72 +2359,33 @@ components:
           format: int64
           type: integer
       type: object
-    GetPriceRecommendationApiResponse:
-      example:
-        data:
-        - customerProductId: customerProductId
-          relativePriceChangePercentage: 5.637376656633329
-          gtin: '{}'
-          oldDeliveryCosts: 6.027456183070403
-          deliveryCosts: 0.8008281904610115
-          productId: productId
-          oldPrice: 1.4658129805029452
-          price: 5.962133916683182
-          currency: currency
-          tags:
-          - stringValue: stringValue
-            booleanValue: '{}'
-            integerValue: '{}'
-            doubleValue: '{}'
-            label: label
-          - stringValue: stringValue
-            booleanValue: '{}'
-            integerValue: '{}'
-            doubleValue: '{}'
-            label: label
-          timestamp: 2000-01-23T04:56:07.000+00:00
-        - customerProductId: customerProductId
-          relativePriceChangePercentage: 5.637376656633329
-          gtin: '{}'
-          oldDeliveryCosts: 6.027456183070403
-          deliveryCosts: 0.8008281904610115
-          productId: productId
-          oldPrice: 1.4658129805029452
-          price: 5.962133916683182
-          currency: currency
-          tags:
-          - stringValue: stringValue
-            booleanValue: '{}'
-            integerValue: '{}'
-            doubleValue: '{}'
-            label: label
-          - stringValue: stringValue
-            booleanValue: '{}'
-            integerValue: '{}'
-            doubleValue: '{}'
-            label: label
-          timestamp: 2000-01-23T04:56:07.000+00:00
-        meta:
-          totalSize: 9
-          limit: 2
-          start: 7
-          nextUrl: nextUrl
-        errors:
-        - code: code
-          message: message
-        - code: code
-          message: message
+    ApiPriceRecommendation:
       properties:
-        data:
+        tags:
           items:
-            $ref: '#/components/schemas/GetPriceRecommendationApiResponse_data'
+            $ref: '#/components/schemas/ApiPriceRecommendation_tags'
           type: array
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiError'
-          type: array
-        meta:
-          $ref: '#/components/schemas/GetPriceRecommendationApiResponse_meta'
+        currency:
+          type: string
+        customerProductId:
+          type: string
+        deliveryCosts:
+          type: number
+        gtin:
+          type: object
+        oldDeliveryCosts:
+          type: number
+        oldPrice:
+          type: number
+        price:
+          type: number
+        productId:
+          type: string
+        relativePriceChangePercentage:
+          type: number
+        timestamp:
+          format: date-time
+          type: string
       type: object
     GetPriceRecommendationsResponse:
       example:
@@ -2780,9 +2481,6 @@ components:
       - attributeName
       - type
     OfferAttribute:
-      example:
-        name: name
-        value: value
       properties:
         name:
           type: string
@@ -2908,67 +2606,6 @@ components:
           type: number
       type: object
     ProductAndOffers:
-      example:
-        offers:
-        - ignored: true
-          gtin: 6
-          productId: productId
-          retrievalDate: 2000-01-23T04:56:07.000+00:00
-          availability: true
-          creationDate: 2000-01-23T04:56:07.000+00:00
-          vendorName: vendorName
-          positionByTotalPrice: 2
-          productName: productName
-          url: url
-          minDeliveryTime: 5
-          vendorDomainId: vendorDomainId
-          deliveryCosts: 0.8008281904610115
-          maxDeliveryTime: 1
-          price: 7.061401241503109
-          domain: domain
-          attributes:
-          - name: name
-            value: value
-          - name: name
-            value: value
-          currency: currency
-          positionByUnitPrice: 5
-        - ignored: true
-          gtin: 6
-          productId: productId
-          retrievalDate: 2000-01-23T04:56:07.000+00:00
-          availability: true
-          creationDate: 2000-01-23T04:56:07.000+00:00
-          vendorName: vendorName
-          positionByTotalPrice: 2
-          productName: productName
-          url: url
-          minDeliveryTime: 5
-          vendorDomainId: vendorDomainId
-          deliveryCosts: 0.8008281904610115
-          maxDeliveryTime: 1
-          price: 7.061401241503109
-          domain: domain
-          attributes:
-          - name: name
-            value: value
-          - name: name
-            value: value
-          currency: currency
-          positionByUnitPrice: 5
-        product:
-          customerProductId: customerProductId
-          gtin: 9
-          referencePrice: 4.145608029883936
-          maxPriceBoundary: 3.616076749251911
-          name: name
-          id: id
-          minPriceBoundary: 2.027123023002322
-          tags:
-          - value: value
-            key: key
-          - value: value
-            key: key
       properties:
         offers:
           items:
@@ -2977,152 +2614,7 @@ components:
         product:
           $ref: '#/components/schemas/ApiProduct'
       type: object
-    ProductAndOffersApiResponse:
-      example:
-        data:
-        - offers:
-          - ignored: true
-            gtin: 6
-            productId: productId
-            retrievalDate: 2000-01-23T04:56:07.000+00:00
-            availability: true
-            creationDate: 2000-01-23T04:56:07.000+00:00
-            vendorName: vendorName
-            positionByTotalPrice: 2
-            productName: productName
-            url: url
-            minDeliveryTime: 5
-            vendorDomainId: vendorDomainId
-            deliveryCosts: 0.8008281904610115
-            maxDeliveryTime: 1
-            price: 7.061401241503109
-            domain: domain
-            attributes:
-            - name: name
-              value: value
-            - name: name
-              value: value
-            currency: currency
-            positionByUnitPrice: 5
-          - ignored: true
-            gtin: 6
-            productId: productId
-            retrievalDate: 2000-01-23T04:56:07.000+00:00
-            availability: true
-            creationDate: 2000-01-23T04:56:07.000+00:00
-            vendorName: vendorName
-            positionByTotalPrice: 2
-            productName: productName
-            url: url
-            minDeliveryTime: 5
-            vendorDomainId: vendorDomainId
-            deliveryCosts: 0.8008281904610115
-            maxDeliveryTime: 1
-            price: 7.061401241503109
-            domain: domain
-            attributes:
-            - name: name
-              value: value
-            - name: name
-              value: value
-            currency: currency
-            positionByUnitPrice: 5
-          product:
-            customerProductId: customerProductId
-            gtin: 9
-            referencePrice: 4.145608029883936
-            maxPriceBoundary: 3.616076749251911
-            name: name
-            id: id
-            minPriceBoundary: 2.027123023002322
-            tags:
-            - value: value
-              key: key
-            - value: value
-              key: key
-        - offers:
-          - ignored: true
-            gtin: 6
-            productId: productId
-            retrievalDate: 2000-01-23T04:56:07.000+00:00
-            availability: true
-            creationDate: 2000-01-23T04:56:07.000+00:00
-            vendorName: vendorName
-            positionByTotalPrice: 2
-            productName: productName
-            url: url
-            minDeliveryTime: 5
-            vendorDomainId: vendorDomainId
-            deliveryCosts: 0.8008281904610115
-            maxDeliveryTime: 1
-            price: 7.061401241503109
-            domain: domain
-            attributes:
-            - name: name
-              value: value
-            - name: name
-              value: value
-            currency: currency
-            positionByUnitPrice: 5
-          - ignored: true
-            gtin: 6
-            productId: productId
-            retrievalDate: 2000-01-23T04:56:07.000+00:00
-            availability: true
-            creationDate: 2000-01-23T04:56:07.000+00:00
-            vendorName: vendorName
-            positionByTotalPrice: 2
-            productName: productName
-            url: url
-            minDeliveryTime: 5
-            vendorDomainId: vendorDomainId
-            deliveryCosts: 0.8008281904610115
-            maxDeliveryTime: 1
-            price: 7.061401241503109
-            domain: domain
-            attributes:
-            - name: name
-              value: value
-            - name: name
-              value: value
-            currency: currency
-            positionByUnitPrice: 5
-          product:
-            customerProductId: customerProductId
-            gtin: 9
-            referencePrice: 4.145608029883936
-            maxPriceBoundary: 3.616076749251911
-            name: name
-            id: id
-            minPriceBoundary: 2.027123023002322
-            tags:
-            - value: value
-              key: key
-            - value: value
-              key: key
-        errors:
-        - code: code
-          message: message
-        - code: code
-          message: message
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/ProductAndOffers'
-          type: array
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiError'
-          type: array
-      type: object
     ProductOfferStats:
-      example:
-        offerCount: 1
-        minPrice: 6.027456183070403
-        averagePrice: 0.8008281904610115
-        ownPosition:
-          price: 5.637376656633329
-          position: 5
       properties:
         averagePrice:
           format: double
@@ -3138,35 +2630,6 @@ components:
       - averagePrice
       - minPrice
       - offerCount
-    ProductOfferStatsApiResponse:
-      example:
-        data:
-        - offerCount: 1
-          minPrice: 6.027456183070403
-          averagePrice: 0.8008281904610115
-          ownPosition:
-            price: 5.637376656633329
-            position: 5
-        - offerCount: 1
-          minPrice: 6.027456183070403
-          averagePrice: 0.8008281904610115
-          ownPosition:
-            price: 5.637376656633329
-            position: 5
-        errors:
-        - code: code
-          message: message
-        - code: code
-          message: message
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/ProductOfferStats'
-          type: array
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiError'
-          type: array
     ProductOffersApiQuery:
       example:
         filter: '{}'
@@ -3197,79 +2660,6 @@ components:
       required:
       - pagination
       - range
-    ProductOffersApiResponse:
-      example:
-        data:
-        - ignored: true
-          gtin: 6
-          productId: productId
-          retrievalDate: 2000-01-23T04:56:07.000+00:00
-          availability: true
-          creationDate: 2000-01-23T04:56:07.000+00:00
-          vendorName: vendorName
-          positionByTotalPrice: 2
-          productName: productName
-          url: url
-          minDeliveryTime: 5
-          vendorDomainId: vendorDomainId
-          deliveryCosts: 0.8008281904610115
-          maxDeliveryTime: 1
-          price: 7.061401241503109
-          domain: domain
-          attributes:
-          - name: name
-            value: value
-          - name: name
-            value: value
-          currency: currency
-          positionByUnitPrice: 5
-        - ignored: true
-          gtin: 6
-          productId: productId
-          retrievalDate: 2000-01-23T04:56:07.000+00:00
-          availability: true
-          creationDate: 2000-01-23T04:56:07.000+00:00
-          vendorName: vendorName
-          positionByTotalPrice: 2
-          productName: productName
-          url: url
-          minDeliveryTime: 5
-          vendorDomainId: vendorDomainId
-          deliveryCosts: 0.8008281904610115
-          maxDeliveryTime: 1
-          price: 7.061401241503109
-          domain: domain
-          attributes:
-          - name: name
-            value: value
-          - name: name
-            value: value
-          currency: currency
-          positionByUnitPrice: 5
-        errors:
-        - code: code
-          message: message
-        - code: code
-          message: message
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/ApiOffer'
-          type: array
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiError'
-          type: array
-    PutProductsApiResponse:
-      example:
-        data:
-          id: id
-          url: url
-      properties:
-        data:
-          $ref: '#/components/schemas/Task'
-      required:
-      - data
     DeleteProductsApiResponse:
       example:
         data:
@@ -3408,9 +2798,6 @@ components:
       - attributeName
       - type
     ShopRank:
-      example:
-        price: 5.637376656633329
-        position: 5
       properties:
         position:
           type: integer
@@ -3469,9 +2856,6 @@ components:
           type: string
       type: object
     Task:
-      example:
-        id: id
-        url: url
       properties:
         id:
           type: string
@@ -3597,6 +2981,40 @@ components:
           type: string
         name:
           type: string
+      type: object
+    CreateCompanyApiResponse:
+      additionalProperties: false
+      example:
+        data: '{}'
+      properties:
+        data:
+          type: object
+      required:
+      - data
+      type: object
+    GetCompanyContractsApiResponse:
+      additionalProperties: false
+      example:
+        data:
+        - null
+        - null
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/api-response'
+          type: array
+      required:
+      - data
+      type: object
+    AddCompanyContractApiResponse:
+      additionalProperties: false
+      example:
+        data: '{}'
+      properties:
+        data:
+          type: object
+      required:
+      - data
       type: object
     com.patagona.pricemonitor.share.api.PostCustomerOrdersRequestV2:
       additionalProperties: false
@@ -3736,6 +3154,212 @@ components:
       - source
       - target
       type: object
+    PostOrdersBulkApiResponse:
+      example:
+        data:
+        - data:
+            orders:
+            - referrer: referrer
+              productMappings:
+              - source: source
+                target: target
+              - source: source
+                target: target
+              orderId: orderId
+              totalPrice: 5.637376656633329
+              origin: origin
+              currency: currency
+              creationDate: 2000-01-23T04:56:07.000+00:00
+              items:
+              - unitPrice: 6.027456183070403
+                itemId: itemId
+                quantity: 1
+                taxPercentage: 5.962133916683182
+              - unitPrice: 6.027456183070403
+                itemId: itemId
+                quantity: 1
+                taxPercentage: 5.962133916683182
+              shippingCosts: 0.8008281904610115
+            - referrer: referrer
+              productMappings:
+              - source: source
+                target: target
+              - source: source
+                target: target
+              orderId: orderId
+              totalPrice: 5.637376656633329
+              origin: origin
+              currency: currency
+              creationDate: 2000-01-23T04:56:07.000+00:00
+              items:
+              - unitPrice: 6.027456183070403
+                itemId: itemId
+                quantity: 1
+                taxPercentage: 5.962133916683182
+              - unitPrice: 6.027456183070403
+                itemId: itemId
+                quantity: 1
+                taxPercentage: 5.962133916683182
+              shippingCosts: 0.8008281904610115
+            version: version
+          errors:
+          - code: code
+            message: message
+          - code: code
+            message: message
+        - data:
+            orders:
+            - referrer: referrer
+              productMappings:
+              - source: source
+                target: target
+              - source: source
+                target: target
+              orderId: orderId
+              totalPrice: 5.637376656633329
+              origin: origin
+              currency: currency
+              creationDate: 2000-01-23T04:56:07.000+00:00
+              items:
+              - unitPrice: 6.027456183070403
+                itemId: itemId
+                quantity: 1
+                taxPercentage: 5.962133916683182
+              - unitPrice: 6.027456183070403
+                itemId: itemId
+                quantity: 1
+                taxPercentage: 5.962133916683182
+              shippingCosts: 0.8008281904610115
+            - referrer: referrer
+              productMappings:
+              - source: source
+                target: target
+              - source: source
+                target: target
+              orderId: orderId
+              totalPrice: 5.637376656633329
+              origin: origin
+              currency: currency
+              creationDate: 2000-01-23T04:56:07.000+00:00
+              items:
+              - unitPrice: 6.027456183070403
+                itemId: itemId
+                quantity: 1
+                taxPercentage: 5.962133916683182
+              - unitPrice: 6.027456183070403
+                itemId: itemId
+                quantity: 1
+                taxPercentage: 5.962133916683182
+              shippingCosts: 0.8008281904610115
+            version: version
+          errors:
+          - code: code
+            message: message
+          - code: code
+            message: message
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/PostOrdersBulkApiResponse_data_1'
+          type: array
+      type: object
+    GetPriceRecommendationApiResponse:
+      additionalProperties: false
+      example:
+        data:
+        - null
+        - null
+        meta:
+          limit: 0
+          start: 6
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/api-response'
+          type: array
+        meta:
+          $ref: '#/components/schemas/Pagination'
+      required:
+      - data
+      type: object
+    GetOffersApiResponse:
+      additionalProperties: false
+      example:
+        data:
+        - null
+        - null
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/api-response'
+          type: array
+      required:
+      - data
+      type: object
+    StatisticsByQueryApiResponse:
+      additionalProperties: false
+      example:
+        data:
+        - null
+        - null
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/api-response'
+          type: array
+      required:
+      - data
+      type: object
+    PutProductsApiResponse:
+      additionalProperties: false
+      example:
+        data: '{}'
+      properties:
+        data:
+          type: object
+      required:
+      - data
+      type: object
+    QueryOffersApiResponse:
+      additionalProperties: false
+      example:
+        data:
+        - null
+        - null
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/api-response'
+          type: array
+      required:
+      - data
+      type: object
+    DeleteOrdersApiResponse:
+      additionalProperties: false
+      example:
+        data: '{}'
+      properties:
+        data:
+          type: object
+      required:
+      - data
+      type: object
+    GetExtendedTagsApiResponse:
+      additionalProperties: false
+      example:
+        data:
+        - null
+        - null
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/api-response'
+          type: array
+      required:
+      - data
+      type: object
+    api-response:
+      type: object
     Callbacks_pricemonitorCompleted:
       example:
         headers:
@@ -3757,142 +3381,6 @@ components:
           type: string
         url:
           type: string
-    CreateCompanyResponseSimpleApiResponse_data:
-      example:
-        name: name
-        id: 0
-      properties:
-        id:
-          format: int64
-          type: integer
-        name:
-          type: string
-    CustomerOrderApiResponse_data:
-      example:
-        orders:
-        - referrer: referrer
-          productMappings:
-          - source: source
-            target: target
-          - source: source
-            target: target
-          orderId: orderId
-          totalPrice: 5.637376656633329
-          origin: origin
-          currency: currency
-          creationDate: 2000-01-23T04:56:07.000+00:00
-          items:
-          - unitPrice: 6.027456183070403
-            itemId: itemId
-            quantity: 1
-            taxPercentage: 5.962133916683182
-          - unitPrice: 6.027456183070403
-            itemId: itemId
-            quantity: 1
-            taxPercentage: 5.962133916683182
-          shippingCosts: 0.8008281904610115
-        - referrer: referrer
-          productMappings:
-          - source: source
-            target: target
-          - source: source
-            target: target
-          orderId: orderId
-          totalPrice: 5.637376656633329
-          origin: origin
-          currency: currency
-          creationDate: 2000-01-23T04:56:07.000+00:00
-          items:
-          - unitPrice: 6.027456183070403
-            itemId: itemId
-            quantity: 1
-            taxPercentage: 5.962133916683182
-          - unitPrice: 6.027456183070403
-            itemId: itemId
-            quantity: 1
-            taxPercentage: 5.962133916683182
-          shippingCosts: 0.8008281904610115
-        version: version
-      properties:
-        orders:
-          items:
-            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.CustomerOrderV2'
-          type: array
-        version:
-          type: string
-    CustomerOrderApiResponse_data_1:
-      example:
-        data:
-          orders:
-          - referrer: referrer
-            productMappings:
-            - source: source
-              target: target
-            - source: source
-              target: target
-            orderId: orderId
-            totalPrice: 5.637376656633329
-            origin: origin
-            currency: currency
-            creationDate: 2000-01-23T04:56:07.000+00:00
-            items:
-            - unitPrice: 6.027456183070403
-              itemId: itemId
-              quantity: 1
-              taxPercentage: 5.962133916683182
-            - unitPrice: 6.027456183070403
-              itemId: itemId
-              quantity: 1
-              taxPercentage: 5.962133916683182
-            shippingCosts: 0.8008281904610115
-          - referrer: referrer
-            productMappings:
-            - source: source
-              target: target
-            - source: source
-              target: target
-            orderId: orderId
-            totalPrice: 5.637376656633329
-            origin: origin
-            currency: currency
-            creationDate: 2000-01-23T04:56:07.000+00:00
-            items:
-            - unitPrice: 6.027456183070403
-              itemId: itemId
-              quantity: 1
-              taxPercentage: 5.962133916683182
-            - unitPrice: 6.027456183070403
-              itemId: itemId
-              quantity: 1
-              taxPercentage: 5.962133916683182
-            shippingCosts: 0.8008281904610115
-          version: version
-        errors:
-        - code: code
-          message: message
-        - code: code
-          message: message
-      properties:
-        data:
-          $ref: '#/components/schemas/CustomerOrderApiResponse_data'
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiError'
-          type: array
-    DeleteCustomerOrdersApiResponse_data_data:
-      example:
-        deleted: 0
-      properties:
-        deleted:
-          description: Number of deleted orders
-          type: integer
-    DeleteCustomerOrdersApiResponse_data:
-      example:
-        data:
-          deleted: 0
-      properties:
-        data:
-          $ref: '#/components/schemas/DeleteCustomerOrdersApiResponse_data_data'
     PutPluginRegistrationRequest_allOf:
       properties:
         version:
@@ -4032,13 +3520,7 @@ components:
         productId:
           description: Unique product identifier within pricemonitor
           type: string
-    GetPriceRecommendationApiResponse_tags:
-      example:
-        stringValue: stringValue
-        booleanValue: '{}'
-        integerValue: '{}'
-        doubleValue: '{}'
-        label: label
+    ApiPriceRecommendation_tags:
       properties:
         booleanValue:
           type: object
@@ -4050,73 +3532,6 @@ components:
           type: string
         stringValue:
           type: string
-    GetPriceRecommendationApiResponse_data:
-      example:
-        customerProductId: customerProductId
-        relativePriceChangePercentage: 5.637376656633329
-        gtin: '{}'
-        oldDeliveryCosts: 6.027456183070403
-        deliveryCosts: 0.8008281904610115
-        productId: productId
-        oldPrice: 1.4658129805029452
-        price: 5.962133916683182
-        currency: currency
-        tags:
-        - stringValue: stringValue
-          booleanValue: '{}'
-          integerValue: '{}'
-          doubleValue: '{}'
-          label: label
-        - stringValue: stringValue
-          booleanValue: '{}'
-          integerValue: '{}'
-          doubleValue: '{}'
-          label: label
-        timestamp: 2000-01-23T04:56:07.000+00:00
-      properties:
-        tags:
-          items:
-            $ref: '#/components/schemas/GetPriceRecommendationApiResponse_tags'
-          type: array
-        currency:
-          type: string
-        customerProductId:
-          type: string
-        deliveryCosts:
-          type: number
-        gtin:
-          type: object
-        oldDeliveryCosts:
-          type: number
-        oldPrice:
-          type: number
-        price:
-          type: number
-        productId:
-          type: string
-        relativePriceChangePercentage:
-          type: number
-        timestamp:
-          format: date-time
-          type: string
-    GetPriceRecommendationApiResponse_meta:
-      example:
-        totalSize: 9
-        limit: 2
-        start: 7
-        nextUrl: nextUrl
-      properties:
-        limit:
-          format: int32
-          type: integer
-        nextUrl:
-          type: string
-        start:
-          format: int32
-          type: integer
-        totalSize:
-          format: int32
-          type: integer
     GetPriceRecommendationsResponse_priceRecommendations:
       example:
         identifier: identifier
@@ -4200,6 +3615,118 @@ components:
           type: integer
         name:
           type: string
+    PostOrdersBulkApiResponse_data:
+      example:
+        orders:
+        - referrer: referrer
+          productMappings:
+          - source: source
+            target: target
+          - source: source
+            target: target
+          orderId: orderId
+          totalPrice: 5.637376656633329
+          origin: origin
+          currency: currency
+          creationDate: 2000-01-23T04:56:07.000+00:00
+          items:
+          - unitPrice: 6.027456183070403
+            itemId: itemId
+            quantity: 1
+            taxPercentage: 5.962133916683182
+          - unitPrice: 6.027456183070403
+            itemId: itemId
+            quantity: 1
+            taxPercentage: 5.962133916683182
+          shippingCosts: 0.8008281904610115
+        - referrer: referrer
+          productMappings:
+          - source: source
+            target: target
+          - source: source
+            target: target
+          orderId: orderId
+          totalPrice: 5.637376656633329
+          origin: origin
+          currency: currency
+          creationDate: 2000-01-23T04:56:07.000+00:00
+          items:
+          - unitPrice: 6.027456183070403
+            itemId: itemId
+            quantity: 1
+            taxPercentage: 5.962133916683182
+          - unitPrice: 6.027456183070403
+            itemId: itemId
+            quantity: 1
+            taxPercentage: 5.962133916683182
+          shippingCosts: 0.8008281904610115
+        version: version
+      properties:
+        orders:
+          items:
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.CustomerOrderV2'
+          type: array
+        version:
+          type: string
+    PostOrdersBulkApiResponse_data_1:
+      example:
+        data:
+          orders:
+          - referrer: referrer
+            productMappings:
+            - source: source
+              target: target
+            - source: source
+              target: target
+            orderId: orderId
+            totalPrice: 5.637376656633329
+            origin: origin
+            currency: currency
+            creationDate: 2000-01-23T04:56:07.000+00:00
+            items:
+            - unitPrice: 6.027456183070403
+              itemId: itemId
+              quantity: 1
+              taxPercentage: 5.962133916683182
+            - unitPrice: 6.027456183070403
+              itemId: itemId
+              quantity: 1
+              taxPercentage: 5.962133916683182
+            shippingCosts: 0.8008281904610115
+          - referrer: referrer
+            productMappings:
+            - source: source
+              target: target
+            - source: source
+              target: target
+            orderId: orderId
+            totalPrice: 5.637376656633329
+            origin: origin
+            currency: currency
+            creationDate: 2000-01-23T04:56:07.000+00:00
+            items:
+            - unitPrice: 6.027456183070403
+              itemId: itemId
+              quantity: 1
+              taxPercentage: 5.962133916683182
+            - unitPrice: 6.027456183070403
+              itemId: itemId
+              quantity: 1
+              taxPercentage: 5.962133916683182
+            shippingCosts: 0.8008281904610115
+          version: version
+        errors:
+        - code: code
+          message: message
+        - code: code
+          message: message
+      properties:
+        data:
+          $ref: '#/components/schemas/PostOrdersBulkApiResponse_data'
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiError'
+          type: array
   securitySchemes:
     BasicAuth:
       scheme: basic
