@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5144
+  version: 0.0.5145
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -233,8 +233,10 @@ paths:
       - settings
   /api/2/v/contracts/{contractId}/feeds:
     get:
-      description: Feeds can contain offer-related information such as price recommendations.
-        They can be configured to match individual demands.
+      description: |2-
+
+        Feeds can contain offer-related information such as price
+        recommendations. They can be configured to match individual demands.
       operationId: getFeeds
       parameters:
       - description: ID of the contract
@@ -261,8 +263,10 @@ paths:
       - feeds
   /api/2/v/contracts/{contractId}/feeds/{feedId}:
     get:
-      description: A feed can contain offer-related information such as price recommendations.
-        Feeds can be configured to match individual demands.
+      description: |2-
+
+        A feed can contain offer-related information such as price
+        recommendations. Feeds can be configured to match individual demands.
       operationId: getFeed
       parameters:
       - description: ID of the contract
@@ -296,8 +300,10 @@ paths:
       - feeds
   /api/2/v/contracts/{contractId}/feeds/{feedId}/export/delta:
     delete:
-      description: Dismiss already fetched feed-entries, so they will not be part
-        of future responses.
+      description: |2-
+
+        Dismiss already fetched feed-entries, so they will not be part of future
+        responses.
       operationId: excludeFetchedFeedData
       parameters:
       - description: ID of the contract
@@ -331,8 +337,10 @@ paths:
       - feeds
   /api/2/v/contracts/{contractId}/feeds/{feedId}/export/delta/{fileName}:
     get:
-      description: In contrast of normal feeds, feed-deltas return only results, that
-        are new since the last (DELETE-)request.
+      description: |2-
+
+        In contrast of normal feeds, feed-deltas return only results, that are
+        new since the last (DELETE-)request.
       operationId: getFeedExportDelta
       parameters:
       - description: ID of the contract
@@ -486,21 +494,36 @@ paths:
       - products
   /api/2/v/contracts/{contractId}/products/csv:
     put:
-      description: |-
+      description: |2-
+
         Warning: Deletes all existing products.
+
                 <br/>Note that this will not happen immediately. Instead, you receive the ID of a task that has been created.
+
                 <br/>Furthermore you receive an URL which you can use to check if the task was executed successfully.
+
                 <br>The csv file must contain following columns:
+
                 <ul>
+
                   <li>productId - arbitrary string, can be used for the systems product id.</li>
+
                   <li>gtin - the GTIN of the product
+
                   <li>description - name or short description of the product
+
                   <li>referencePrice - arbitrary decimal number, usually the current price or recommended retail price (gross)
+
                   <li>minPriceBoundary - decimal number defining the lower price boundary (gross)
+
                   <li>maxPriceBoundary - decimal number defining the upper price boundary (gross)
+
                   <li>Additional columns are added as product tags. Tags are used for repricing strategies and several other
+
                   purpose.
+
                 </ul>
+
                 <br/>Column separator must be semicolon, the decimal separator must be dot. File encoding must be UTF-8.
       operationId: putCSVProducts
       parameters:
@@ -563,10 +586,12 @@ paths:
           format: int32
           type: integer
         style: form
-      - description: Timestamp of start of time range, formatted as ISO Date (i.e.
-          2018-04-06T13:46:13Z) in UTC. If this value is omitted, the range is '{endDate}
-          - 48 hours to {endDate}' if {endDate} is given or NOW - 48 hours if both
-          are omitted.
+      - description: |2-
+
+          Timestamp of start of time range, formatted as ISO Date (i.e.
+          2018-04-06T13:46:13Z) in UTC. If this value is omitted, the range is
+          '{endDate} - 48 hours to {endDate}' if {endDate} is given or NOW -
+          48 hours if both are omitted.
         explode: true
         in: query
         name: startDate
@@ -575,9 +600,12 @@ paths:
           format: date-time
           type: string
         style: form
-      - description: Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z)
-          in UTC. If this value is omitted, the range is '{startDate} to {startDate}
-          + 48 hours' if {startDate} is given or NOW - 48 hours if both are omitted.
+      - description: |2-
+
+          Timestamp of end of time range, formatted as ISO Date (i.e.
+          2018-04-06T13:46:13Z) in UTC. If this value is omitted, the range is
+          '{startDate} to {startDate} + 48 hours' if {startDate} is given or
+          NOW - 48 hours if both are omitted.
         explode: true
         in: query
         name: endDate
@@ -609,7 +637,9 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Timestamp of start of time range, formatted as ISO Date (i.e.
+      - description: |2-
+
+          Timestamp of start of time range, formatted as ISO Date (i.e.
           2018-04-06T13:46:13Z) in UTC
         explode: true
         in: query
@@ -619,8 +649,10 @@ paths:
           format: date-time
           type: string
         style: form
-      - description: Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z)
-          in UTC
+      - description: |2-
+
+          Timestamp of end of time range, formatted as ISO Date (i.e.
+          2018-04-06T13:46:13Z) in UTC
         explode: true
         in: query
         name: endTime
@@ -690,7 +722,9 @@ paths:
       - settings
   /api/2/v/contracts/{contractId}/tasks:
     get:
-      description: The search can be narrowed down by providing the IDs of the tasks,
+      description: |2-
+
+        The search can be narrowed down by providing the IDs of the tasks,
         separated by comma
       operationId: getTasks
       parameters:
@@ -754,8 +788,10 @@ paths:
       - tasks
   /api/2/v/contracts/{contractId}/tasks/{taskId}:
     get:
-      description: Returns a task, associated with a certain contract and identified
-        by its ID
+      description: |2-
+
+        Returns a task, associated with a certain contract and identified by its
+        ID
       operationId: getTask
       parameters:
       - description: ID of the contract
@@ -888,6 +924,23 @@ paths:
       summary: Confirm an unconfirmed user
       tags:
       - account
+  /api/v3/log/messages:
+    post:
+      operationId: postLogMessages
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LogMessages'
+        required: true
+      responses:
+        "200":
+          description: The logs have been stored successfully.
+      summary: |-
+        Stores the log messages. This endpoint aims to improve the API-integration process.
+        One could integrate the Pricemonitor API in his/her own system and publish the integration logs so that Patagona could analyze them.
+      tags:
+      - logs
   /api/v3/manufacturer/contracts/{contractId}/offers:
     get:
       description: Returns the newest offers for a given time range.
@@ -921,10 +974,12 @@ paths:
           format: int32
           type: integer
         style: form
-      - description: Timestamp of start of time range, formatted as ISO Date (i.e.
-          2018-04-06T13:46:13Z) in UTC. If this value is omitted, the range is '{endDate}
-          - 48 hours to {endDate}' if {endDate} is given or NOW - 48 hours if both
-          are omitted.
+      - description: |2-
+
+          Timestamp of start of time range, formatted as ISO Date (i.e.
+          2018-04-06T13:46:13Z) in UTC. If this value is omitted, the range is
+          '{endDate} - 48 hours to {endDate}' if {endDate} is given or NOW -
+          48 hours if both are omitted.
         explode: true
         in: query
         name: startDate
@@ -933,9 +988,12 @@ paths:
           format: date-time
           type: string
         style: form
-      - description: Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z)
-          in UTC. If this value is omitted, the range is '{startDate} to {startDate}
-          + 48 hours' if {startDate} is given or NOW - 48 hours if both are omitted.
+      - description: |2-
+
+          Timestamp of end of time range, formatted as ISO Date (i.e.
+          2018-04-06T13:46:13Z) in UTC. If this value is omitted, the range is
+          '{startDate} to {startDate} + 48 hours' if {startDate} is given or
+          NOW - 48 hours if both are omitted.
         explode: true
         in: query
         name: endDate
@@ -950,14 +1008,17 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetOffersApiResponse'
-          description: A list of products with their corresponding offers.
+          description: |2-
+
+            A list of products with their corresponding offers.
         "400":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiError'
-          description: Returned in case of invalid time range or a limit greater than
-            10000.
+          description: |2-
+
+            Returned in case of invalid time range or a limit greater than 10000.
       tags:
       - offers
   /api/v3/manufacturer/contracts/{contractId}/offers/stats/query:
@@ -977,14 +1038,17 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/PostOfferStatisticsRequest'
-        description: The request body specifies which offers will be taken into account
-          for the calculation of the offer statistics. The attribute names on the
-          left side of the comparison filter must match the attribute names in an
-          offer. The default use case is to specify a ComparisonFilter with a StringValueProvider
-          on the left side pointing to the attribute productId, a SequenceOfStringValueProvider
-          on the right side containing the productIds over which to calculate the
-          offer statistics and a StringInSequence as a comparison. Please note that
-          offer statistics can only be computed for 2500 products at a time.
+        description: |2-
+
+          The request body specifies which offers will be taken into account for
+          the calculation of the offer statistics. The attribute names on the
+          left side of the comparison filter must match the attribute names in
+          an offer. The default use case is to specify a ComparisonFilter with a
+          StringValueProvider on the left side pointing to the attribute
+          productId, a SequenceOfStringValueProvider on the right side
+          containing the productIds over which to calculate the offer statistics
+          and a StringInSequence as a comparison. Please note that offer
+          statistics can only be computed for 2500 products at a time.
         required: true
       responses:
         "200":
@@ -992,23 +1056,47 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/StatisticsByQueryApiResponse'
-          description: Returns either an Error or a list of offer statistics, one
-            for every product matching the given filter.
+          description: |2-
+
+            Returns either an Error or a list of offer statistics, one for every
+            product matching the given filter.
       tags:
       - products
   /api/v3/manufacturer/contracts/{contractId}/products:
     put:
-      description: |-
+      description: |2-
+
         This operation is used to import products into the pricemonitor.
-        This process is represented by a task, which is processed asynchronously.
-        In the response you will receive a url which is used to check the status of the import process. <br>
 
-        When the process is done all products in csv file from the request body will be in the pricemonitor.
-        Products that were already present before have been updated and new products have been added. <br>
 
-        Warning: All products that were in the pricemonitor before but are not present in the new import will be deleted.
+        This process is represented by a task, which is processed
+        asynchronously.
 
-        Identification of the products is done based on the identifying attributes (see parameter: patagona-product-identifying-attributes)
+
+        In the response you will receive a url which is used to check the status
+        of the import process. <br>
+
+
+
+
+        When the process is done all products in csv file from the request body
+        will be in the pricemonitor.
+
+
+        Products that were already present before have been updated and new
+        products have been added. <br>
+
+
+
+
+        Warning: All products that were in the pricemonitor before but are not
+        present in the new import will be deleted.
+
+
+
+
+        Identification of the products is done based on the identifying
+        attributes (see parameter: patagona-product-identifying-attributes)
       parameters:
       - description: ID of the contract
         example: qbcxvb
@@ -1065,7 +1153,9 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Csv column that contains an id (There is no requirement for this
+      - description: |2-
+
+          Csv column that contains an id (There is no requirement for this
           field to be unique)
         example: id-column
         explode: false
@@ -1075,9 +1165,16 @@ paths:
         schema:
           type: string
         style: simple
-      - description: |-
+      - description: |2-
+
           Decimal separator used for parsing numbers \
-          The values for patagona-decimal-separator, patagona-csv-column-separator and patagona-csv-quotation-character must be different from one another. \
+
+
+          The values for patagona-decimal-separator,
+          patagona-csv-column-separator and patagona-csv-quotation-character
+          must be different from one another. \
+
+
           Available values: ",", "."
         example: "."
         explode: false
@@ -1087,9 +1184,14 @@ paths:
         schema:
           type: char
         style: simple
-      - description: |-
+      - description: |2-
+
           The csv column separator \
-          The values for patagona-decimal-separator, patagona-csv-column-separator and patagona-csv-quotation-character must be different from one another.
+
+
+          The values for patagona-decimal-separator,
+          patagona-csv-column-separator and patagona-csv-quotation-character
+          must be different from one another.
         example: ','
         explode: false
         in: header
@@ -1098,9 +1200,14 @@ paths:
         schema:
           type: char
         style: simple
-      - description: |-
+      - description: |2-
+
           The csv quotation character \
-          The values for patagona-decimal-separator, patagona-csv-column-separator and patagona-csv-quotation-character must be different from one another.
+
+
+          The values for patagona-decimal-separator,
+          patagona-csv-column-separator and patagona-csv-quotation-character
+          must be different from one another.
         example: '"'
         explode: false
         in: header
@@ -1122,9 +1229,15 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PutProductsApiResponse'
-          description: |-
-            The field data.url in the returned object allows to check the status of the import process. It will point to the endpoint GET /api/2/v/contracts/{contractId}/tasks/{taskId}. \
-            The field data.id is the task id corresponding to the product import.
+          description: |2-
+
+            The field data.url in the returned object allows to check the status
+            of the import process. It will point to the endpoint GET
+            /api/2/v/contracts/{contractId}/tasks/{taskId}. \
+
+
+            The field data.id is the task id corresponding to the product
+            import.
       summary: Set products via CSV file
       tags:
       - products
@@ -1163,10 +1276,12 @@ paths:
           format: int32
           type: integer
         style: form
-      - description: Timestamp of start of time range, formatted as ISO Date (i.e.
-          2018-04-06T13:46:13Z) in UTC. If this value is omitted, the range is '{endDate}
-          - 48 hours to {endDate}' if {endDate} is given or NOW - 48 hours if both
-          are omitted.
+      - description: |2-
+
+          Timestamp of start of time range, formatted as ISO Date (i.e.
+          2018-04-06T13:46:13Z) in UTC. If this value is omitted, the range is
+          '{endDate} - 48 hours to {endDate}' if {endDate} is given or NOW -
+          48 hours if both are omitted.
         explode: true
         in: query
         name: startDate
@@ -1175,9 +1290,12 @@ paths:
           format: date-time
           type: string
         style: form
-      - description: Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z)
-          in UTC. If this value is omitted, the range is '{startDate} to {startDate}
-          + 48 hours' if {startDate} is given or NOW - 48 hours if both are omitted.
+      - description: |2-
+
+          Timestamp of end of time range, formatted as ISO Date (i.e.
+          2018-04-06T13:46:13Z) in UTC. If this value is omitted, the range is
+          '{startDate} to {startDate} + 48 hours' if {startDate} is given or
+          NOW - 48 hours if both are omitted.
         explode: true
         in: query
         name: endDate
@@ -1192,14 +1310,17 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetOffersApiResponse'
-          description: A list of products with their corresponding offers.
+          description: |2-
+
+            A list of products with their corresponding offers.
         "400":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiError'
-          description: Returned in case of invalid time range or a limit greater than
-            10000.
+          description: |2-
+
+            Returned in case of invalid time range or a limit greater than 10000.
       tags:
       - offers
   /api/v3/vendor/contracts/{contractId}/offers/query:
@@ -1219,26 +1340,53 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/ProductOffersApiQuery'
-        description: |-
+        description: |2-
+
           The request body specifies which offers will be searched for.<br>
+
+
           Warning: It's highly recommended to not use this endpoint since it is error-prone due to complex query structure!
+
+
           Supported are queries with three different types of filters:<br>
-          1. Filtering for offers of a certain product<br> This can be done by a ComparisonFilter with
+
+
+          1. Filtering for offers of a certain product<br>
+          This can be done by a ComparisonFilter with
+
             * the `left` side being a `StringValueProvider` with the `attributeName` value "productId"
+
             * the `right` side being a `StringConstantValueProvider` with the `value` being the actual pricemonitor product ID to filter offers for
+
             * the `comparison` being a `StringEquality`
 
-          2. Filtering for valid offers of a certain product<br> This can be done by an AndFilter with
+
+
+          2. Filtering for valid offers of a certain product<br>
+          This can be done by an AndFilter with
+
             * a) A product filter (see first supported filter)
+
             * b) A NotFilter which contains a ComparisonFilter
+
               * the `left` side being a `NumberValueProvider` with the `attributeName` value "ignoredBy"
+
               * the `right` side being a `NumberConstantValueProvider` with the `value` being the numeric contract id to filter offers for
+
               * the `comparison` being a `NumberEquality`
 
-          3. Filtering for offers of a certain vendor<br> This can be done by a ComparisonFilter with
+
+
+          3. Filtering for offers of a certain vendor<br>
+          This can be done by a ComparisonFilter with
+
             * the `left` side being a `StringValueProvider` with the `attributeName` value "reseller_name"
+
             * the `right` side being a `StringConstantValueProvider` with the `value` being the actual vendor name to filter offers for
+
             * the `comparison` being a `StringEquality`
+
+
 
           Note: This endpoint will only return the newest offers for each product for a given time range.
         required: true
@@ -1248,8 +1396,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/QueryOffersApiResponse'
-          description: Returns either an Error or a list of ApiOffers matching the
-            given filter.
+          description: |2-
+
+            Returns either an Error or a list of ApiOffers matching the given
+            filter.
         "400":
           content:
             application/json:
@@ -1276,14 +1426,17 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/PostOfferStatisticsRequest'
-        description: The request body specifies which offers will be taken into account
-          for the calculation of the offer statistics. The attribute names on the
-          left side of the comparison filter must match the attribute names in an
-          offer. The default use case is to specify a ComparisonFilter with a StringValueProvider
-          on the left side pointing to the attribute productId, a SequenceOfStringValueProvider
-          on the right side containing the productIds over which to calculate the
-          offer statistics and a StringInSequence as a comparison. Please note that
-          offer statistics can only be computed for 2500 products at a time.
+        description: |2-
+
+          The request body specifies which offers will be taken into account for
+          the calculation of the offer statistics. The attribute names on the
+          left side of the comparison filter must match the attribute names in
+          an offer. The default use case is to specify a ComparisonFilter with a
+          StringValueProvider on the left side pointing to the attribute
+          productId, a SequenceOfStringValueProvider on the right side
+          containing the productIds over which to calculate the offer statistics
+          and a StringInSequence as a comparison. Please note that offer
+          statistics can only be computed for 2500 products at a time.
         required: true
       responses:
         "200":
@@ -1291,8 +1444,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/StatisticsByQueryApiResponse'
-          description: Returns either an Error or a list of offer statistics, one
-            for every product matching the given filter.
+          description: |2-
+
+            Returns either an Error or a list of offer statistics, one for every
+            product matching the given filter.
       tags:
       - products
   /api/v3/vendor/contracts/{contractId}/orders:
@@ -1318,295 +1473,6 @@ paths:
       summary: Delete all orders for this contract
       tags:
       - orders
-  /api/v3/vendor/contracts/{contractId}/products:
-    delete:
-      description: Delete all products or delete products by a last updated timestamp.
-      operationId: deleteProducts
-      parameters:
-      - description: ID of the contract
-        example: qbcxvb
-        explode: false
-        in: path
-        name: contractId
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Last updated timestamp of products, formatted as ISO Date (i.e.
-          2019-11-20T13:46:13Z) in UTC.<br> Products can be deleted which haven't
-          been updated since the specified timestamp.<br> If the query parameter is
-          missing all products are deleted.
-        explode: true
-        in: query
-        name: updatedMax
-        required: false
-        schema:
-          format: date-time
-          type: string
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DeleteProductsApiResponse'
-          description: Returns the number of deleted products.
-      summary: Delete products
-      tags:
-      - products
-    post:
-      description: |-
-        This operation is used to import products into the pricemonitor:<br>
-        Products that are already present will be updated and new products will be added. Identification of the products is done based on the identifying attributes, which need to be provided via the request body.<br><br>
-        Attention:<br> This endpoint should only be used when dealing with large number of products at your side is an issue. Otherwise please use the PUT-counterpart of this endpoint which accepts products via a csv file.<br><br>
-        Note:<br> This endpoint should be used in conjunction with: DELETE  /api/v3/vendor/contracts/{contractId}/products.<br><br>
-        Procedure:<br> 1. Add your products in bulks with multiple requests via this endpoint.<br> 2. Send a DELETE request to /api/v3/vendor/contracts/{contractId}/products
-           and set the parameter updatedMax to a date which is older or equal to your first request from step 1.
-      parameters:
-      - description: ID of the contract
-        example: qbcxvb
-        explode: false
-        in: path
-        name: contractId
-        required: true
-        schema:
-          type: string
-        style: simple
-      - example: application/json
-        explode: false
-        in: header
-        name: content-type
-        required: true
-        schema:
-          enum:
-          - application/json
-          type: string
-        style: simple
-      - description: 'The decimal separator is used for parsing numbers in tags. English
-          and German number formats are supported: dot and comma.'
-        example: "."
-        explode: false
-        in: header
-        name: patagona-tags-decimal-separator
-        required: true
-        schema:
-          enum:
-          - "."
-          - ','
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/PostProductsRequest'
-        description: The body contains the products which should be added
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BulkedPostProductsApiResponse'
-          description: The response provides sorted import results in respective to
-            the order of the provided products.
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApiErrorResponse'
-          description: Unable to add products because of invalid request data
-      summary: Add products in bulk
-      tags:
-      - products
-    put:
-      description: |-
-        This operation is used to import products into the pricemonitor.
-        This process is represented by a task, which is processed asynchronously.
-        In the response you will receive a url which is used to check the status of the import process. <br>
-
-        When the process is done all products in csv file from the request body will be in the pricemonitor.
-        Products that were already present before have been updated and new products have been added. <br>
-
-        Warning: All products that were in the pricemonitor before but are not present in the new import will be deleted.
-
-        Identification of the products is done based on the identifying attributes (see parameter: patagona-product-identifying-attributes)
-      parameters:
-      - description: ID of the contract
-        example: qbcxvb
-        explode: false
-        in: path
-        name: contractId
-        required: true
-        schema:
-          type: string
-        style: simple
-      - example: text/csv
-        explode: false
-        in: header
-        name: content-type
-        required: true
-        schema:
-          enum:
-          - text/csv
-          type: string
-        style: simple
-      - description: Comma separated list of csv columns that identify a product uniquely
-        example: id-column
-        explode: false
-        in: header
-        name: patagona-product-identifying-attributes
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Csv column that contains the product name
-        example: name-column
-        explode: false
-        in: header
-        name: patagona-product-name
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Csv column that contains the reference price
-        example: reference-price-column
-        explode: false
-        in: header
-        name: patagona-product-reference-price
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Csv column that contains the min price
-        example: min-price-column
-        explode: false
-        in: header
-        name: patagona-product-min-price
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Csv column that contains the max price
-        example: max-price-column
-        explode: false
-        in: header
-        name: patagona-product-max-price
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Csv column that contains the gtin
-        example: max-price-column
-        explode: false
-        in: header
-        name: patagona-product-gtin
-        required: false
-        schema:
-          type: string
-        style: simple
-      - description: Csv column that contains an id (There is no requirement for this
-          field to be unique)
-        example: id-column
-        explode: false
-        in: header
-        name: patagona-product-customer-id
-        required: false
-        schema:
-          type: string
-        style: simple
-      - description: |-
-          Decimal separator used for parsing numbers \
-          The values for patagona-decimal-separator, patagona-csv-column-separator and patagona-csv-quotation-character must be different from one another. \
-          Available values: ",", "."
-        example: "."
-        explode: false
-        in: header
-        name: patagona-decimal-separator
-        required: true
-        schema:
-          type: char
-        style: simple
-      - description: |-
-          The csv column separator \
-          It can be provided either as text or as Base64 encoded string (e.g. needed for tab as separator). \
-          The values for patagona-decimal-separator, patagona-csv-column-separator and patagona-csv-quotation-character must be different from one another.
-        example: ','
-        explode: false
-        in: header
-        name: patagona-csv-column-separator
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: |-
-          The csv quotation character \
-          The values for patagona-decimal-separator, patagona-csv-column-separator and patagona-csv-quotation-character must be different from one another.
-        example: '"'
-        explode: false
-        in: header
-        name: patagona-csv-quotation-character
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          text/csv:
-            schema:
-              type: string
-        description: CSV file containing the products
-        required: true
-      responses:
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PutProductsApiResponse'
-          description: |-
-            The field data.url in the returned object allows to check the status of the import process. It will point to the endpoint GET /api/2/v/contracts/{contractId}/tasks/{taskId}. \
-            The field data.id is the task id corresponding to the product import.
-      summary: Set products via CSV file
-      tags:
-      - products
-  /api/v3/vendor/contracts/{contractId}/products/{productId}/extendedtags:
-    get:
-      operationId: getExtendedTags
-      parameters:
-      - description: ID of the contract
-        example: qbcxvb
-        explode: false
-        in: path
-        name: contractId
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: ID of the product
-        example: 1
-        explode: false
-        in: path
-        name: productId
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GetExtendedTagsApiResponse'
-          description: Returns a list of ExtendedTags for the given product.
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApiErrorResponse'
-          description: Given product does not exist.
-      summary: Return the extended tags for the given product
-      tags:
-      - products
   /api/v3/vendor/contracts/{contractId}/plugin:
     delete:
       operationId: deletePluginRegistration
@@ -1686,23 +1552,367 @@ paths:
       summary: Create and/or update the plugin registration for given contract
       tags:
       - pluginregistration
-  /api/v3/log/messages:
+  /api/v3/vendor/contracts/{contractId}/products:
+    delete:
+      description: Delete all products or delete products by a last updated timestamp.
+      operationId: deleteProducts
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: |2-
+
+          Last updated timestamp of products, formatted as ISO Date (i.e. 2019-11-20T13:46:13Z) in UTC.<br>
+          Products can be deleted which haven't been updated since the specified timestamp.<br>
+          If the query parameter is missing all products are deleted.
+        explode: true
+        in: query
+        name: updatedMax
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteProductsApiResponse'
+          description: |2-
+
+            Returns the number of deleted products.
+      summary: Delete products
+      tags:
+      - products
     post:
-      operationId: postLogMessages
+      description: |2-
+
+        This operation is used to import products into the pricemonitor:<br>
+
+
+        Products that are already present will be updated and new products will be added.
+        Identification of the products is done based on the identifying attributes,
+        which need to be provided via the request body.<br><br>
+
+
+        Attention:<br>
+        This endpoint should only be used when dealing with large number of products at your side is an issue.
+        Otherwise please use the PUT-counterpart of this endpoint which accepts products via a csv file.<br><br>
+
+
+        Note:<br>
+        This endpoint should be used in conjunction with: DELETE  /api/v3/vendor/contracts/{contractId}/products.<br><br>
+
+
+        Procedure:<br>
+        1. Add your products in bulks with multiple requests via this endpoint.<br>
+        2. Send a DELETE request to /api/v3/vendor/contracts/{contractId}/products
+
+           and set the parameter updatedMax to a date which is older or equal to your first request from step 1.
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - example: application/json
+        explode: false
+        in: header
+        name: content-type
+        required: true
+        schema:
+          enum:
+          - application/json
+          type: string
+        style: simple
+      - description: |2-
+
+          The decimal separator is used for parsing numbers in tags.
+          English and German number formats are supported: dot and comma.
+        example: "."
+        explode: false
+        in: header
+        name: patagona-tags-decimal-separator
+        required: true
+        schema:
+          enum:
+          - "."
+          - ','
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/LogMessages'
+              $ref: '#/components/schemas/PostProductsRequest'
+        description: The body contains the products which should be added
         required: true
       responses:
         "200":
-          description: The logs have been stored successfully.
-      summary: Stores the log messages. This endpoint aims to improve the API-integration
-        process. One could integrate the Pricemonitor API in his/her own system and
-        publish the integration logs so that Patagona could analyze them.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkedPostProductsApiResponse'
+          description: |2-
+
+            The response provides sorted import results in respective to the order of the provided products.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: Unable to add products because of invalid request data
+      summary: Add products in bulk
       tags:
-      - logs
+      - products
+    put:
+      description: |2-
+
+        This operation is used to import products into the pricemonitor.
+
+
+        This process is represented by a task, which is processed
+        asynchronously.
+
+
+        In the response you will receive a url which is used to check the status
+        of the import process. <br>
+
+
+
+
+        When the process is done all products in csv file from the request body
+        will be in the pricemonitor.
+
+
+        Products that were already present before have been updated and new
+        products have been added. <br>
+
+
+
+
+        Warning: All products that were in the pricemonitor before but are not
+        present in the new import will be deleted.
+
+
+
+
+        Identification of the products is done based on the identifying
+        attributes (see parameter: patagona-product-identifying-attributes)
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - example: text/csv
+        explode: false
+        in: header
+        name: content-type
+        required: true
+        schema:
+          enum:
+          - text/csv
+          type: string
+        style: simple
+      - description: Comma separated list of csv columns that identify a product uniquely
+        example: id-column
+        explode: false
+        in: header
+        name: patagona-product-identifying-attributes
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Csv column that contains the product name
+        example: name-column
+        explode: false
+        in: header
+        name: patagona-product-name
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Csv column that contains the reference price
+        example: reference-price-column
+        explode: false
+        in: header
+        name: patagona-product-reference-price
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Csv column that contains the min price
+        example: min-price-column
+        explode: false
+        in: header
+        name: patagona-product-min-price
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Csv column that contains the max price
+        example: max-price-column
+        explode: false
+        in: header
+        name: patagona-product-max-price
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Csv column that contains the gtin
+        example: max-price-column
+        explode: false
+        in: header
+        name: patagona-product-gtin
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: |2-
+
+          Csv column that contains an id (There is no requirement for this
+          field to be unique)
+        example: id-column
+        explode: false
+        in: header
+        name: patagona-product-customer-id
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: |2-
+
+          Decimal separator used for parsing numbers \
+
+
+          The values for patagona-decimal-separator,
+          patagona-csv-column-separator and patagona-csv-quotation-character
+          must be different from one another. \
+
+
+          Available values: ",", "."
+        example: "."
+        explode: false
+        in: header
+        name: patagona-decimal-separator
+        required: true
+        schema:
+          type: char
+        style: simple
+      - description: |2-
+
+          The csv column separator \
+
+
+          It can be provided either as text or as Base64 encoded string (e.g. needed for tab as separator). \
+
+
+          The values for patagona-decimal-separator,
+          patagona-csv-column-separator and patagona-csv-quotation-character
+          must be different from one another.
+        example: ','
+        explode: false
+        in: header
+        name: patagona-csv-column-separator
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: |2-
+
+          The csv quotation character \
+
+
+          The values for patagona-decimal-separator,
+          patagona-csv-column-separator and patagona-csv-quotation-character
+          must be different from one another.
+        example: '"'
+        explode: false
+        in: header
+        name: patagona-csv-quotation-character
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          text/csv:
+            schema:
+              type: string
+        description: CSV file containing the products
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PutProductsApiResponse'
+          description: |2-
+
+            The field data.url in the returned object allows to check the status
+            of the import process. It will point to the endpoint GET
+            /api/2/v/contracts/{contractId}/tasks/{taskId}. \
+
+
+            The field data.id is the task id corresponding to the product
+            import.
+      summary: Set products via CSV file
+      tags:
+      - products
+  /api/v3/vendor/contracts/{contractId}/products/{productId}/extendedtags:
+    get:
+      operationId: getExtendedTags
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: ID of the product
+        example: 1
+        explode: false
+        in: path
+        name: productId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetExtendedTagsApiResponse'
+          description: Returns a list of ExtendedTags for the given product.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: Given product does not exist.
+      summary: Return the extended tags for the given product
+      tags:
+      - products
 components:
   parameters:
     contractIdParam:
@@ -1715,22 +1925,13 @@ components:
       schema:
         type: string
       style: simple
-    startDate:
-      description: Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z)
-        in UTC. If this value is omitted, the range is '{endDate} - 48 hours to {endDate}'
-        if {endDate} is given or NOW - 48 hours if both are omitted.
-      explode: true
-      in: query
-      name: startDate
-      required: false
-      schema:
-        format: date-time
-        type: string
-      style: form
     endDate:
-      description: Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z)
-        in UTC. If this value is omitted, the range is '{startDate} to {startDate}
-        + 48 hours' if {startDate} is given or NOW - 48 hours if both are omitted.
+      description: |2-
+
+        Timestamp of end of time range, formatted as ISO Date (i.e.
+        2018-04-06T13:46:13Z) in UTC. If this value is omitted, the range is
+        '{startDate} to {startDate} + 48 hours' if {startDate} is given or
+        NOW - 48 hours if both are omitted.
       explode: true
       in: query
       name: endDate
@@ -1739,83 +1940,22 @@ components:
         format: date-time
         type: string
       style: form
+    startDate:
+      description: |2-
+
+        Timestamp of start of time range, formatted as ISO Date (i.e.
+        2018-04-06T13:46:13Z) in UTC. If this value is omitted, the range is
+        '{endDate} - 48 hours to {endDate}' if {endDate} is given or NOW -
+        48 hours if both are omitted.
+      explode: true
+      in: query
+      name: startDate
+      required: false
+      schema:
+        format: date-time
+        type: string
+      style: form
   schemas:
-    LogMessages:
-      example:
-        messages:
-        - severity: info
-          component: shopware or magento
-          contractId: qbcxvb
-          source: some.domain.name
-          message: Some useful message
-        - severity: info
-          component: shopware or magento
-          contractId: qbcxvb
-          source: some.domain.name
-          message: Some useful message
-        version: "1"
-      properties:
-        version:
-          description: The version parameter should always be 1.
-          enum:
-          - "1"
-          type: string
-        messages:
-          items:
-            $ref: '#/components/schemas/LogMessage'
-          type: array
-    LogMessage:
-      example:
-        severity: info
-        component: shopware or magento
-        contractId: qbcxvb
-        source: some.domain.name
-        message: Some useful message
-      properties:
-        message:
-          description: The information that needs to be published
-          example: Some useful message
-          type: string
-        severity:
-          description: Determines how severe is the information. The ENUM values are
-            listed in the descreasing order of their priority.<br> 1. trace - gives
-            more detailed information than any other level in the hierarchy<br> 2.
-            debug - helps developer to debug application and is generally useful for
-            providing support to the application developers<br> 3. info  - gives the
-            progress and chosen state information and is generally useful for end
-            user<br> 4. warn  - use of deprecated APIs, poor use of API, ‘almost’
-            errors, other runtime situations that are undesirable or unexpected, but
-            not necessarily “wrong”.<br> 5. error - gives information about a serious
-            error which needs to be addressed and may result in unstable state<br>
-            6. fatal - such errors result in premature termination and you don’t often
-            get this error<br>
-          enum:
-          - trace
-          - debug
-          - info
-          - warn
-          - error
-          - fatal
-          example: info
-          type: string
-        component:
-          description: The name of the integrated system.
-          example: shopware or magento
-          type: string
-        source:
-          description: Anything within the component that can be considered as an
-            entity to further categorize the log message.
-          example: some.domain.name
-          type: string
-        contractId:
-          description: The ID of the contract
-          example: qbcxvb
-          type: string
-      required:
-      - component
-      - message
-      - severity
-      - source
     AndFilter:
       properties:
         filters:
@@ -1893,9 +2033,9 @@ components:
           type: integer
         minDeliveryTime:
           type: integer
-        positionByUnitPrice:
-          type: integer
         positionByTotalPrice:
+          type: integer
+        positionByUnitPrice:
           type: integer
         price:
           format: double
@@ -1925,12 +2065,36 @@ components:
       - productName
       - url
       - vendorName
-    ApiProduct:
+    ApiPriceRecommendation:
       properties:
+        currency:
+          type: string
+        customerProductId:
+          type: string
+        deliveryCosts:
+          type: number
+        gtin:
+          type: object
+        oldDeliveryCosts:
+          type: number
+        oldPrice:
+          type: number
+        price:
+          type: number
+        productId:
+          type: string
+        relativePriceChangePercentage:
+          type: number
         tags:
           items:
-            $ref: '#/components/schemas/Tag'
+            $ref: '#/components/schemas/ApiPriceRecommendation_tags'
           type: array
+        timestamp:
+          format: date-time
+          type: string
+      type: object
+    ApiProduct:
+      properties:
         customerProductId:
           type: string
         gtin:
@@ -1949,53 +2113,12 @@ components:
         referencePrice:
           format: double
           type: number
-      required:
-      - id
-      - name
-      - referencePrice
-      - tags
-      type: object
-    PostProduct:
-      example:
-        customerProductId: customerProductId
-        gtin: 12345678910123
-        referencePrice: 19.99
-        maxPriceBoundary: 56.78
-        name: name
-        minPriceBoundary: 12.34
-        tags:
-        - value: value
-          key: key
-        - value: value
-          key: key
-      properties:
         tags:
           items:
             $ref: '#/components/schemas/Tag'
           type: array
-        customerProductId:
-          type: string
-        gtin:
-          example: 12345678910123
-          format: int64
-          type: integer
-        minPriceBoundary:
-          example: 12.34
-          format: double
-          type: number
-        maxPriceBoundary:
-          example: 56.78
-          format: double
-          type: number
-        name:
-          type: string
-        referencePrice:
-          example: 19.99
-          format: double
-          type: number
       required:
-      - maxPriceBoundary
-      - minPriceBoundary
+      - id
       - name
       - referencePrice
       - tags
@@ -2030,6 +2153,23 @@ components:
       required:
       - attributeName
       - type
+    BulkedPostProductsApiResponse:
+      example:
+        data:
+        - ""
+        - ""
+      properties:
+        data:
+          items:
+            description: |2-
+
+              If the product could be added successfully, the corresponding pricemonitor product id is returned.
+              Otherwise a dedicated api error is returned.
+            oneOf:
+            - $ref: '#/components/schemas/PostProductsApiResponse'
+            - $ref: '#/components/schemas/ApiErrorResponse'
+          type: array
+      type: object
     Callbacks:
       example:
         pricemonitorCompleted:
@@ -2153,6 +2293,13 @@ components:
       required:
       - attributeName
       - type
+    DeleteProductsApiResponse:
+      example:
+        data:
+          deleted: 0
+      properties:
+        data:
+          $ref: '#/components/schemas/DeleteProductsApiResponse_data'
     DeletedItemsResponse:
       properties:
         deleted:
@@ -2176,37 +2323,6 @@ components:
       required:
       - label
       - stringValue
-    PluginRegistration:
-      example:
-        metricsUrl: metricsUrl
-        pluginId: pluginId
-        shopSystem: shopSystem
-      properties:
-        pluginId:
-          type: string
-        shopSystem:
-          type: string
-        metricsUrl:
-          type: string
-    PluginRegistrationApiResponse:
-      example:
-        data:
-          metricsUrl: metricsUrl
-          pluginId: pluginId
-          shopSystem: shopSystem
-      properties:
-        data:
-          $ref: '#/components/schemas/PluginRegistration'
-    PluginRegistrationEmptyApiResponse:
-      example:
-        data: '{}'
-      properties:
-        data:
-          type: object
-    PutPluginRegistrationRequest:
-      allOf:
-      - $ref: '#/components/schemas/PluginRegistration'
-      - $ref: '#/components/schemas/PutPluginRegistrationRequest_allOf'
     Feed:
       example:
         deltaUrl: deltaUrl
@@ -2359,34 +2475,6 @@ components:
           format: int64
           type: integer
       type: object
-    ApiPriceRecommendation:
-      properties:
-        tags:
-          items:
-            $ref: '#/components/schemas/ApiPriceRecommendation_tags'
-          type: array
-        currency:
-          type: string
-        customerProductId:
-          type: string
-        deliveryCosts:
-          type: number
-        gtin:
-          type: object
-        oldDeliveryCosts:
-          type: number
-        oldPrice:
-          type: number
-        price:
-          type: number
-        productId:
-          type: string
-        relativePriceChangePercentage:
-          type: number
-        timestamp:
-          format: date-time
-          type: string
-      type: object
     GetPriceRecommendationsResponse:
       example:
         next: next
@@ -2409,6 +2497,78 @@ components:
             $ref: '#/components/schemas/GetPriceRecommendationsResponse_priceRecommendations'
           type: array
       type: object
+    LogMessage:
+      example:
+        severity: info
+        component: shopware or magento
+        contractId: qbcxvb
+        source: some.domain.name
+        message: Some useful message
+      properties:
+        component:
+          description: The name of the integrated system.
+          example: shopware or magento
+          type: string
+        contractId:
+          description: The ID of the contract
+          example: qbcxvb
+          type: string
+        message:
+          description: The information that needs to be published
+          example: Some useful message
+          type: string
+        severity:
+          description: |-
+            Determines how severe is the information. The ENUM values are listed in the descreasing order of their priority.<br>
+            1. trace - gives more detailed information than any other level in the hierarchy<br>
+            2. debug - helps developer to debug application and is generally useful for providing support to the application developers<br>
+            3. info  - gives the progress and chosen state information and is generally useful for end user<br>
+            4. warn  - use of deprecated APIs, poor use of API, ‘almost’ errors, other runtime situations that are undesirable or unexpected, but not necessarily “wrong”.<br>
+            5. error - gives information about a serious error which needs to be addressed and may result in unstable state<br>
+            6. fatal - such errors result in premature termination and you don’t often get this error<br>
+          enum:
+          - trace
+          - debug
+          - info
+          - warn
+          - error
+          - fatal
+          example: info
+          type: string
+        source:
+          description: Anything within the component that can be considered as an
+            entity to further categorize the log message.
+          example: some.domain.name
+          type: string
+      required:
+      - component
+      - message
+      - severity
+      - source
+    LogMessages:
+      example:
+        messages:
+        - severity: info
+          component: shopware or magento
+          contractId: qbcxvb
+          source: some.domain.name
+          message: Some useful message
+        - severity: info
+          component: shopware or magento
+          contractId: qbcxvb
+          source: some.domain.name
+          message: Some useful message
+        version: "1"
+      properties:
+        messages:
+          items:
+            $ref: '#/components/schemas/LogMessage'
+          type: array
+        version:
+          description: The version parameter should always be 1.
+          enum:
+          - "1"
+          type: string
     NotFilter:
       properties:
         filter:
@@ -2489,6 +2649,23 @@ components:
       required:
       - name
       - value
+    OffersQuerySortOrderV30:
+      example:
+        metric: TotalPrice
+        order: asc
+      properties:
+        metric:
+          enum:
+          - TotalPrice
+          - Price
+          type: string
+        order:
+          enum:
+          - asc
+          type: string
+      required:
+      - metric
+      - order
     OrFilter:
       properties:
         filters:
@@ -2518,23 +2695,33 @@ components:
           type: integer
       required:
       - start
-    OffersQuerySortOrderV30:
+    PluginRegistration:
       example:
-        metric: TotalPrice
-        order: asc
+        metricsUrl: metricsUrl
+        pluginId: pluginId
+        shopSystem: shopSystem
       properties:
-        metric:
-          enum:
-          - TotalPrice
-          - Price
+        metricsUrl:
           type: string
-        order:
-          enum:
-          - asc
+        pluginId:
           type: string
-      required:
-      - metric
-      - order
+        shopSystem:
+          type: string
+    PluginRegistrationApiResponse:
+      example:
+        data:
+          metricsUrl: metricsUrl
+          pluginId: pluginId
+          shopSystem: shopSystem
+      properties:
+        data:
+          $ref: '#/components/schemas/PluginRegistration'
+    PluginRegistrationEmptyApiResponse:
+      example:
+        data: '{}'
+      properties:
+        data:
+          type: object
     PostOfferStatisticsRequest:
       example:
         filter: ""
@@ -2569,6 +2756,109 @@ components:
       - includeDeliveryCosts
       - ownShopNames
       - range
+    PostProduct:
+      example:
+        customerProductId: customerProductId
+        gtin: 12345678910123
+        referencePrice: 19.99
+        maxPriceBoundary: 56.78
+        name: name
+        minPriceBoundary: 12.34
+        tags:
+        - value: value
+          key: key
+        - value: value
+          key: key
+      properties:
+        customerProductId:
+          type: string
+        gtin:
+          example: 12345678910123
+          format: int64
+          type: integer
+        maxPriceBoundary:
+          example: 56.78
+          format: double
+          type: number
+        minPriceBoundary:
+          example: 12.34
+          format: double
+          type: number
+        name:
+          type: string
+        referencePrice:
+          example: 19.99
+          format: double
+          type: number
+        tags:
+          items:
+            $ref: '#/components/schemas/Tag'
+          type: array
+      required:
+      - maxPriceBoundary
+      - minPriceBoundary
+      - name
+      - referencePrice
+      - tags
+      type: object
+    PostProductsApiResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/PostProductsApiResponse_data'
+      type: object
+    PostProductsRequest:
+      description: Request body which contains products
+      example:
+        identifyingAttributes:
+        - customerProductId
+        - customerProductId
+        version: "2"
+        products:
+        - customerProductId: customerProductId
+          gtin: 12345678910123
+          referencePrice: 19.99
+          maxPriceBoundary: 56.78
+          name: name
+          minPriceBoundary: 12.34
+          tags:
+          - value: value
+            key: key
+          - value: value
+            key: key
+        - customerProductId: customerProductId
+          gtin: 12345678910123
+          referencePrice: 19.99
+          maxPriceBoundary: 56.78
+          name: name
+          minPriceBoundary: 12.34
+          tags:
+          - value: value
+            key: key
+          - value: value
+            key: key
+      properties:
+        identifyingAttributes:
+          description: Non-empty list of product attributes which identify your products
+            uniquely
+          items:
+            description: Additionally you can use your product tags
+            enum:
+            - customerProductId
+            - gtin
+            - name
+            type: string
+          type: array
+        products:
+          description: Products which should be added to the pricemonitor
+          items:
+            $ref: '#/components/schemas/PostProduct'
+          type: array
+        version:
+          description: Version of the request body. Only version 2 is supported.
+          enum:
+          - "2"
+          type: string
+      type: object
     Product:
       description: A product defined by its attributes
       example:
@@ -2584,10 +2874,6 @@ components:
         - value: value
           key: key
       properties:
-        tags:
-          items:
-            $ref: '#/components/schemas/Tag'
-          type: array
         gtin:
           format: int64
           type: integer
@@ -2604,6 +2890,10 @@ components:
         referencePrice:
           format: double
           type: number
+        tags:
+          items:
+            $ref: '#/components/schemas/Tag'
+          type: array
       type: object
     ProductAndOffers:
       properties:
@@ -2660,87 +2950,10 @@ components:
       required:
       - pagination
       - range
-    DeleteProductsApiResponse:
-      example:
-        data:
-          deleted: 0
-      properties:
-        data:
-          $ref: '#/components/schemas/DeleteProductsApiResponse_data'
-    PostProductsRequest:
-      description: Request body which contains products
-      example:
-        identifyingAttributes:
-        - customerProductId
-        - customerProductId
-        version: "2"
-        products:
-        - customerProductId: customerProductId
-          gtin: 12345678910123
-          referencePrice: 19.99
-          maxPriceBoundary: 56.78
-          name: name
-          minPriceBoundary: 12.34
-          tags:
-          - value: value
-            key: key
-          - value: value
-            key: key
-        - customerProductId: customerProductId
-          gtin: 12345678910123
-          referencePrice: 19.99
-          maxPriceBoundary: 56.78
-          name: name
-          minPriceBoundary: 12.34
-          tags:
-          - value: value
-            key: key
-          - value: value
-            key: key
-      properties:
-        products:
-          description: Products which should be added to the pricemonitor
-          items:
-            $ref: '#/components/schemas/PostProduct'
-          type: array
-        version:
-          description: Version of the request body. Only version 2 is supported.
-          enum:
-          - "2"
-          type: string
-        identifyingAttributes:
-          description: Non-empty list of product attributes which identify your products
-            uniquely
-          items:
-            description: Additionally you can use your product tags
-            enum:
-            - customerProductId
-            - gtin
-            - name
-            type: string
-          type: array
-      type: object
-    BulkedPostProductsApiResponse:
-      example:
-        data:
-        - ""
-        - ""
-      properties:
-        data:
-          items:
-            description: If the product could be added successfully, the corresponding
-              pricemonitor product id is returned. Otherwise a dedicated api error
-              is returned.
-            oneOf:
-            - $ref: '#/components/schemas/PostProductsApiResponse'
-            - $ref: '#/components/schemas/ApiErrorResponse'
-          type: array
-      type: object
-    PostProductsApiResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/PostProductsApiResponse_data'
-      type: object
+    PutPluginRegistrationRequest:
+      allOf:
+      - $ref: '#/components/schemas/PluginRegistration'
+      - $ref: '#/components/schemas/PutPluginRegistrationRequest_allOf'
     RegularExpression:
       properties:
         type:
@@ -3360,6 +3573,18 @@ components:
       type: object
     api-response:
       type: object
+    ApiPriceRecommendation_tags:
+      properties:
+        booleanValue:
+          type: object
+        doubleValue:
+          type: object
+        integerValue:
+          type: object
+        label:
+          type: string
+        stringValue:
+          type: string
     Callbacks_pricemonitorCompleted:
       example:
         headers:
@@ -3381,12 +3606,13 @@ components:
           type: string
         url:
           type: string
-    PutPluginRegistrationRequest_allOf:
+    DeleteProductsApiResponse_data:
+      example:
+        deleted: 0
       properties:
-        version:
-          enum:
-          - "1"
-          type: string
+        deleted:
+          description: Number of deleted products
+          type: integer
     Feed_fields:
       example:
         default: default
@@ -3506,10 +3732,6 @@ components:
         - value: value
           key: key
       properties:
-        tags:
-          items:
-            $ref: '#/components/schemas/Tag'
-          type: array
         gtin:
           format: int64
           type: integer
@@ -3520,18 +3742,10 @@ components:
         productId:
           description: Unique product identifier within pricemonitor
           type: string
-    ApiPriceRecommendation_tags:
-      properties:
-        booleanValue:
-          type: object
-        doubleValue:
-          type: object
-        integerValue:
-          type: object
-        label:
-          type: string
-        stringValue:
-          type: string
+        tags:
+          items:
+            $ref: '#/components/schemas/Tag'
+          type: array
     GetPriceRecommendationsResponse_priceRecommendations:
       example:
         identifier: identifier
@@ -3553,17 +3767,16 @@ components:
         recommendedPrice:
           format: double
           type: number
-    DeleteProductsApiResponse_data:
-      example:
-        deleted: 0
-      properties:
-        deleted:
-          description: Number of deleted products
-          type: integer
     PostProductsApiResponse_data:
       properties:
         productId:
           description: The pricemonitor product id of the added product
+          type: string
+    PutPluginRegistrationRequest_allOf:
+      properties:
+        version:
+          enum:
+          - "1"
           type: string
     TaskWithContractResourceApiResponse_failures:
       example:
