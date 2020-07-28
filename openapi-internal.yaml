@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5145
+  version: 0.0.5150VERSION-MANAGED-BY-JENKINS
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -180,6 +180,28 @@ paths:
       tags:
       - companies
   /api/2/m/contracts/{contractId}/settings/callbacks:
+    delete:
+      operationId: deleteCallbackSettingsManufacturerV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
     get:
       operationId: getCallbacks
       parameters:
@@ -259,7 +281,64 @@ paths:
       summary: Get all feeds
       tags:
       - feeds
+    post:
+      operationId: postFeedVendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
   /api/2/v/contracts/{contractId}/feeds/{feedId}:
+    delete:
+      operationId: deleteFeedVendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: feedId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
     get:
       description: A feed can contain offer-related information such as price recommendations.
         Feeds can be configured to match individual demands.
@@ -294,6 +373,41 @@ paths:
       summary: Find feed by ID
       tags:
       - feeds
+    put:
+      operationId: putFeedVendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: feedId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
   /api/2/v/contracts/{contractId}/feeds/{feedId}/export/delta:
     delete:
       description: Dismiss already fetched feed-entries, so they will not be part
@@ -329,6 +443,42 @@ paths:
       summary: Dismiss already fetched feed-entries
       tags:
       - feeds
+    get:
+      operationId: getFeedExportDeltaVendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: feedId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: fileName
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
   /api/2/v/contracts/{contractId}/feeds/{feedId}/export/delta/{fileName}:
     get:
       description: In contrast of normal feeds, feed-deltas return only results, that
@@ -484,6 +634,34 @@ paths:
       summary: Get all products
       tags:
       - products
+    put:
+      operationId: putProductsVendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
   /api/2/v/contracts/{contractId}/products/csv:
     put:
       description: |-
@@ -659,6 +837,28 @@ paths:
       tags:
       - pricerecommendations
   /api/2/v/contracts/{contractId}/settings/domains:
+    get:
+      operationId: getDomainsVendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
     put:
       operationId: putDomains
       parameters:
@@ -692,7 +892,7 @@ paths:
     get:
       description: The search can be narrowed down by providing the IDs of the tasks,
         separated by comma
-      operationId: getTasks
+      operationId: getTasksVendorV2
       parameters:
       - description: ID of the contract
         example: qbcxvb
@@ -752,11 +952,39 @@ paths:
       summary: Find all tasks
       tags:
       - tasks
+    post:
+      operationId: createTaskVendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
   /api/2/v/contracts/{contractId}/tasks/{taskId}:
     get:
       description: Returns a task, associated with a certain contract and identified
         by its ID
-      operationId: getTask
+      operationId: getTaskVendorV2
       parameters:
       - description: ID of the contract
         example: qbcxvb
@@ -787,6 +1015,41 @@ paths:
       summary: Find task by ID
       tags:
       - tasks
+    put:
+      operationId: updateTaskVendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: taskId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
   /api/account:
     get:
       description: Returns the current user with its companies and contracts
@@ -997,6 +1260,36 @@ paths:
       tags:
       - products
   /api/v3/manufacturer/contracts/{contractId}/products:
+    delete:
+      operationId: deleteProductsManufacturerV3
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: updatedMax
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
     put:
       description: |-
         This operation is used to import products into the pricemonitor.
@@ -1318,6 +1611,44 @@ paths:
       summary: Delete all orders for this contract
       tags:
       - orders
+    get:
+      operationId: getOrdersVendorV3
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: start
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
   /api/v3/vendor/contracts/{contractId}/products:
     delete:
       description: Delete all products or delete products by a last updated timestamp.
@@ -1711,6 +2042,3997 @@ paths:
       summary: Get a list of all companies
       tags:
       - internal
+  /:
+    get:
+      operationId: redirect
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/1/{contractId}/products/analysis/pricerecommendations/stats/{portal}:
+    get:
+      operationId: getStats
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: portal
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: until
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/1/{contractId}/products/analysis/timestamps:
+    get:
+      operationId: getTimeStamps
+      parameters:
+      - explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/1/{contractId}/products/articlescountbyportal:
+    get:
+      operationId: getProductMetricsByContract
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: start
+        required: true
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: end
+        required: true
+        schema:
+          format: date-time
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/1/{contractId}/products/offers:
+    get:
+      operationId: rawOffers
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: start
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: since
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: until
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/1/{contractId}/products/orderscountbyportal:
+    get:
+      operationId: getOrdersCountByPortalByContract
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/1/{contractId}/products/sales:
+    post:
+      operationId: saveSales
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/1/{contractId}/settings:
+    get:
+      operationId: get
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+    put:
+      operationId: update
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/1/{contractId}/settings/alerts:
+    get:
+      operationId: getAlertSettings
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+    post:
+      operationId: createAlertSettings
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/1/{contractId}/settings/alerts/{alertId}:
+    delete:
+      operationId: deleteAlertSettings
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: alertId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+    put:
+      operationId: updateAlertSettings
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: alertId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/1/{contractId}/settings/dynamicmonitoring:
+    delete:
+      operationId: deleteDynamicMonitoringSettings
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+    get:
+      operationId: getDynamicMonitoringSettings
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+    put:
+      operationId: putDynamicMonitoringSettings
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/1/{contractId}/settings/include_delivery_costs:
+    post:
+      operationId: saveIncludeDeliveryCosts
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/1/{contractId}/tasks:
+    get:
+      operationId: getTasks
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: tasks
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: attributes
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: taskType
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+    post:
+      operationId: createTask
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/1/{contractId}/tasks/{taskId}:
+    get:
+      operationId: getTask
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: taskId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/1/{contractId}/tasks/{taskId}/state:
+    get:
+      operationId: getTaskState
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: taskId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/1/{contractId}/vendors/{vendor}/positions:
+    post:
+      operationId: positionDistribution
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: vendor
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: day
+        required: true
+        schema:
+          format: date-time
+          type: string
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/2/m/contracts/{contractId}:
+    get:
+      operationId: getManufacturerManufacturerV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/2/m/contracts/{contractId}/products/csv:
+    put:
+      operationId: putProductsCSVManufacturerV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/2/m/contracts/{contractId}/products/tags:
+    get:
+      operationId: getTagsManufacturerV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/2/m/contracts/{contractId}/products/tags/{key}:
+    get:
+      operationId: getTagValuesManufacturerV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: key
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/2/m/contracts/{contractId}/result/contract/stats:
+    get:
+      operationId: statsManufacturerV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: session
+        required: true
+        schema:
+          format: date-time
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/2/m/contracts/{contractId}/result/offersegmentation:
+    post:
+      operationId: segmentOffersManufacturerV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/2/m/contracts/{contractId}/result/pricecutters:
+    post:
+      operationId: getPriceCuttersManufacturerV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: session
+        required: true
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: includeDeliveryCosts
+        required: true
+        schema:
+          type: bool
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/2/m/contracts/{contractId}/result/pricesbyday/productid/{productId}:
+    post:
+      operationId: pricesByDayByProductIdManufacturerV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: productId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/2/m/contracts/{contractId}/result/priceviolations:
+    get:
+      operationId: getProductPriceViolationsManufacturerV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: start
+        required: true
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: end
+        required: true
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: includeDeliveryCosts
+        required: true
+        schema:
+          type: bool
+        style: form
+      - explode: true
+        in: query
+        name: referencePriceDelta
+        required: true
+        schema:
+          format: double
+          type: number
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/2/m/contracts/{contractId}/result/timestamps:
+    get:
+      operationId: timestampsManufacturerV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: limit
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/2/m/contracts/{contractId}/result/validation:
+    post:
+      operationId: validateOffersManufacturerV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/2/m/contracts/{contractId}/result/vendors/cheapest:
+    post:
+      operationId: getCheapestVendorsManufacturerV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: session
+        required: true
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: includeDeliveryCosts
+        required: true
+        schema:
+          type: bool
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/2/m/contracts/{contractId}/result/vendors/domaindistribution:
+    post:
+      operationId: vendorsPerDomainManufacturerV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: session
+        required: true
+        schema:
+          format: date-time
+          type: string
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/2/m/contracts/{contractId}/result/vendors/list:
+    post:
+      operationId: getVendorsByDomainManufacturerV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: domain
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: start
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: includeDeliveryCosts
+        required: true
+        schema:
+          type: bool
+        style: form
+      - explode: true
+        in: query
+        name: session
+        required: true
+        schema:
+          format: date-time
+          type: string
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/2/m/contracts/{contractId}/settings/imagetag:
+    put:
+      operationId: putImageTagManufacturerV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/2/m/contracts/{contractId}/settings/monitoring:
+    get:
+      operationId: getMonitoringSettingsManufacturerV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+    put:
+      operationId: putMonitoringSettingsManufacturerV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/2/m/contracts/{contractId}/tasks:
+    get:
+      operationId: getTasksManufacturerV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: taskIdsFilter
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: taskTypeFilter
+        required: true
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - explode: true
+        in: query
+        name: taskState
+        required: true
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - explode: true
+        in: query
+        name: minCreationDate
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: maxCreationDate
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: includeFailures
+        required: true
+        schema:
+          type: bool
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+    post:
+      operationId: createTaskManufacturerV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/2/m/contracts/{contractId}/tasks/{taskId}:
+    get:
+      operationId: getTaskManufacturerV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: taskId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+    put:
+      operationId: updateTaskManufacturerV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: taskId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/2/m/contracts/{contractId}/tasks/{taskId}/data:
+    get:
+      operationId: getTaskDataManufacturerV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: taskId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/2/users/{userId}/role/{roleName}:
+    delete:
+      operationId: deleteUserRole
+      parameters:
+      - explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - explode: false
+        in: path
+        name: roleName
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+    put:
+      operationId: updateUserRole
+      parameters:
+      - explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - explode: false
+        in: path
+        name: roleName
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/2/v/contracts:
+    get:
+      operationId: getContractsVendorV2
+      parameters:
+      - explode: true
+        in: query
+        name: maxCreationDate
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: minExpirationDate
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/2/v/contracts/{contractId}:
+    delete:
+      operationId: deleteContractVendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+    get:
+      operationId: getVendorVendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/2/v/contracts/{contractId}/feeds/{feedId}/export:
+    get:
+      operationId: getFeedExportVendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: feedId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: fileName
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/2/v/contracts/{contractId}/offerfilters/{listType}/complex:
+    get:
+      operationId: getComplexOfferFiltersVendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: listType
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+    put:
+      operationId: putComplexOfferFiltersVendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: listType
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/2/v/contracts/{contractId}/offerfilters/{listType}/products:
+    get:
+      operationId: getProductFiltersByRangeVendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: listType
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: start
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/2/v/contracts/{contractId}/offerfilters/{listType}/products/{productId}:
+    get:
+      operationId: getProductFiltersVendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: listType
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: productId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+    put:
+      operationId: putProductFiltersVendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: listType
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: productId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/2/v/contracts/{contractId}/offerfilters/:listType/products/query:
+    post:
+      operationId: getProductFiltersByIDVendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/2/v/contracts/{contractId}/offerfilters/{listType}/vendors:
+    get:
+      operationId: getOfferFiltersVendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: listType
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+    put:
+      operationId: putOfferFiltersVendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: listType
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/2/v/contracts/{contractId}/offers:
+    post:
+      operationId: postOffersInABulkVendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/2/v/contracts/{contractId}/offers/{productId}:
+    post:
+      operationId: postOffersVendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: productId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/2/v/contracts/{contractId}/offers/domain/{domain}/productid/{productId}:
+    head:
+      operationId: existOffersInTimeRangeVendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: domain
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: productId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: start
+        required: true
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: end
+        required: true
+        schema:
+          format: date-time
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/2/v/contracts/{contractId}/productidentifiermapping:
+    get:
+      operationId: getMappingsVendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: inputType
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: identifiers
+        required: true
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+    post:
+      operationId: postMappingsVendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/2/v/contracts/{contractId}/products/import:
+    post:
+      operationId: shopIntegrationPostRequestVendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: path
+        required: true
+        schema:
+          type: string
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/2/v/contracts/{contractId}/products/tags:
+    get:
+      operationId: getTagsVendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/2/v/contracts/{contractId}/products/tags/{key}:
+    get:
+      operationId: getTagValuesVendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: key
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/2/v/contracts/{contractId}/result/offersegmentation:
+    post:
+      operationId: segmentOffersVendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/2/v/contracts/{contractId}/result/pricecutters:
+    post:
+      operationId: getPriceCuttersVendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: session
+        required: true
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: includeDeliveryCosts
+        required: true
+        schema:
+          type: bool
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/2/v/contracts/{contractId}/result/pricerecommendations/query:
+    post:
+      operationId: queryPriceRecommendationsVendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/2/v/contracts/{contractId}/result/pricerecommendationstats:
+    get:
+      operationId: getPriceRecommendationStatsVendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: startTime
+        required: true
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: endTime
+        required: true
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: maxPositions
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/2/v/contracts/{contractId}/result/priceviolations:
+    get:
+      operationId: getProductPriceViolationsVendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: start
+        required: true
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: end
+        required: true
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: includeDeliveryCosts
+        required: true
+        schema:
+          type: bool
+        style: form
+      - explode: true
+        in: query
+        name: referencePriceDelta
+        required: true
+        schema:
+          format: double
+          type: number
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/2/v/contracts/{contractId}/result/validation:
+    post:
+      operationId: validateOffersVendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/2/v/contracts/{contractId}/settings/callbacks:
+    delete:
+      operationId: deleteCallbackSettingsVendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+    get:
+      operationId: getCallbacksVendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+    put:
+      operationId: putCallbacksVendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/2/v/contracts/{contractId}/settings/currency:
+    get:
+      operationId: getCurrencyVendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+    put:
+      operationId: putCurrencyVendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/2/v/contracts/{contractId}/settings/ebay/authorizations:
+    get:
+      operationId: getAllEbayAuthorizationsVendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: start
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+    post:
+      operationId: postEbayAuthorizationVendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/2/v/contracts/{contractId}/settings/ebay/authorizations/{authIds}:
+    get:
+      operationId: getEbayAuthorizationsVendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: authIds
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/2/v/contracts/{contractId}/settings/ebay/token:
+    get:
+      operationId: getActiveEbayTokenVendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/2/v/contracts/{contractId}/settings/ebay/tokens:
+    get:
+      operationId: getAllEbayTokensVendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: start
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/2/v/contracts/{contractId}/settings/imagetag:
+    put:
+      operationId: putImageTagVendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/2/v/contracts/{contractId}/settings/import:
+    delete:
+      operationId: deleteImportSettingsVendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+    get:
+      operationId: getImportSettingsVendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+    put:
+      operationId: putImportSettingsVendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/2/v/contracts/{contractId}/settings/monitoring:
+    get:
+      operationId: getMonitoringSettingsVendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+    put:
+      operationId: putMonitoringSettingsVendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/2/v/contracts/{contractId}/settings/repricing:
+    get:
+      operationId: getVendorSettings_V2VendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+    put:
+      operationId: putVendorSettingsVendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/2/v/contracts/{contractId}/settings/repricingstrategy:
+    delete:
+      operationId: deleteRepricingStrategyVendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+    get:
+      operationId: getRepricingStrategyVendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+    put:
+      operationId: putRepricingStrategyVendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/2/v/contracts/{contractId}/tasks/{taskId}/data:
+    get:
+      operationId: getTaskDataVendorV2
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: taskId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/account/password/reset:
+    post:
+      operationId: requestNewPassword
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+    put:
+      operationId: resetPassword
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/login/token/{token}:
+    get:
+      operationId: loginByAuthToken
+      parameters:
+      - explode: false
+        in: path
+        name: token
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/v3/manufacturer/contracts/{contractId}:
+    get:
+      operationId: getManufacturerV3
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/v3/manufacturer/contracts/{contractId}/monitoringpipeline/v1/searchattempts:
+    post:
+      operationId: monitoringPipelineUpsertSearchAttemptsManufacturerV3
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/v3/manufacturer/contracts/{contractId}/offers/query:
+    post:
+      operationId: queryOffersManufacturerV3
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/v3/manufacturer/contracts/{contractId}/products/{productId}:
+    patch:
+      operationId: patchProductManufacturerV3
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: productId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/v3/manufacturer/contracts/{contractId}/products/{productId}/extendedtags:
+    get:
+      operationId: getExtendedTagsManufacturerV3
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: productId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/v3/manufacturer/contracts/{contractId}/products/query:
+    post:
+      operationId: queryProductsManufacturerV3
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/v3/manufacturer/contracts/{contractId}/settings/monitoring:
+    get:
+      operationId: getMonitoringSettingsManufacturerV3
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+    put:
+      operationId: putMonitoringSettingsManufacturerV3
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/v3/manufacturer/contracts/{contractId}/settings/offerretention:
+    get:
+      operationId: getOfferRetentionSettingsManufacturerV3
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: contractType
+        required: true
+        schema:
+          enum:
+          - Pricemonitor for manufacturers
+          - Pricemonitor for resellers
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+    put:
+      operationId: putOfferRetentionSettingsManufacturerV3
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: contractType
+        required: true
+        schema:
+          enum:
+          - Pricemonitor for manufacturers
+          - Pricemonitor for resellers
+          type: string
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/v3/vendor/contracts/{contractId}:
+    get:
+      operationId: getVendorV3
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/v3/vendor/contracts/{contractId}/monitoringpipeline/v1/searchattempts:
+    post:
+      operationId: monitoringPipelineUpsertSearchAttemptsVendorV3
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/v3/vendor/contracts/{contractId}/products/{productId}:
+    patch:
+      operationId: patchProductVendorV3
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: productId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/v3/vendor/contracts/{contractId}/products/query:
+    post:
+      operationId: queryProductsVendorV3
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/v3/vendor/contracts/{contractId}/settings/monitoring:
+    get:
+      operationId: getMonitoringSettingsVendorV3
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+    put:
+      operationId: putMonitoringSettingsVendorV3
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /api/v3/vendor/contracts/{contractId}/settings/offerretention:
+    get:
+      operationId: getOfferRetentionSettingsVendorV3
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: contractType
+        required: true
+        schema:
+          enum:
+          - Pricemonitor for manufacturers
+          - Pricemonitor for resellers
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+    put:
+      operationId: putOfferRetentionSettingsVendorV3
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: contractType
+        required: true
+        schema:
+          enum:
+          - Pricemonitor for manufacturers
+          - Pricemonitor for resellers
+          type: string
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /controlpanel/api/companies/{companyId}:
+    get:
+      operationId: getCompany
+      parameters:
+      - explode: false
+        in: path
+        name: companyId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /controlpanel/api/companies/{companyId}/users:
+    get:
+      operationId: getUsers
+      parameters:
+      - explode: false
+        in: path
+        name: companyId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /controlpanel/api/companies/{companyId}/users/{userId}:
+    delete:
+      operationId: removeUser
+      parameters:
+      - explode: false
+        in: path
+        name: companyId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /controlpanel/api/tasks:
+    get:
+      operationId: getAllTasks
+      parameters:
+      - explode: true
+        in: query
+        name: contractId
+        required: true
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - explode: true
+        in: query
+        name: taskId
+        required: true
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - explode: true
+        in: query
+        name: taskType
+        required: true
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - explode: true
+        in: query
+        name: taskState
+        required: true
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - explode: true
+        in: query
+        name: minCreationDate
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: maxCreationDate
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /controlpanel/api/tasks/stats:
+    get:
+      operationId: getTasksStats
+      parameters:
+      - explode: true
+        in: query
+        name: sinceSeconds
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /controlpanel/api/users/{email}:
+    get:
+      operationId: getUser
+      parameters:
+      - explode: false
+        in: path
+        name: email
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /controlpanel/companies/{id}/users/{email}:
+    put:
+      operationId: addUser
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: simple
+      - explode: false
+        in: path
+        name: email
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /controlpanel/users/{email}/authtokens:
+    post:
+      operationId: createAuthToken
+      parameters:
+      - explode: false
+        in: path
+        name: email
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /controlpanel/users/{email}/authtokens/{token}:
+    delete:
+      operationId: deleteAuthToken
+      parameters:
+      - explode: false
+        in: path
+        name: email
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: token
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+    put:
+      operationId: updateAuthToken
+      parameters:
+      - explode: false
+        in: path
+        name: email
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: token
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /controlpanel/vendorexport/{vendor}:
+    get:
+      operationId: vendorData
+      parameters:
+      - explode: false
+        in: path
+        name: vendor
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: minPrice
+        required: true
+        schema:
+          format: double
+          type: number
+        style: form
+      - explode: true
+        in: query
+        name: maxPrice
+        required: true
+        schema:
+          format: double
+          type: number
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+  /controlpanel/vendors:
+    get:
+      operationId: listVendors
+      parameters:
+      - explode: true
+        in: query
+        name: nameFilter
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
 components:
   parameters:
     contractIdParam:

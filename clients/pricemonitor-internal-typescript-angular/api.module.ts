@@ -15,6 +15,7 @@ import { PricerecommendationsService } from './api/pricerecommendations.service'
 import { ProductsService } from './api/products.service';
 import { SettingsService } from './api/settings.service';
 import { TasksService } from './api/tasks.service';
+import { UndocumentedService } from './api/undocumented.service';
 
 @NgModule({
   imports:      [],

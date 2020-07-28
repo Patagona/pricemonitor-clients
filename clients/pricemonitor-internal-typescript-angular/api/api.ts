@@ -22,4 +22,6 @@ export * from './settings.service';
 import { SettingsService } from './settings.service';
 export * from './tasks.service';
 import { TasksService } from './tasks.service';
-export const APIS = [AccountService, CompaniesService, FeedsService, InternalService, LogsService, OffersService, OrdersService, PluginregistrationService, PricerecommendationsService, ProductsService, SettingsService, TasksService];
+export * from './undocumented.service';
+import { UndocumentedService } from './undocumented.service';
+export const APIS = [AccountService, CompaniesService, FeedsService, InternalService, LogsService, OffersService, OrdersService, PluginregistrationService, PricerecommendationsService, ProductsService, SettingsService, TasksService, UndocumentedService];
