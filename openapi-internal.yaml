@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5152VERSION-MANAGED-BY-JENKINS
+  version: 0.0.5153VERSION-MANAGED-BY-JENKINS
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -2913,7 +2913,7 @@ paths:
         name: includeDeliveryCosts
         required: true
         schema:
-          type: bool
+          type: boolean
         style: form
       requestBody:
         content:
@@ -3001,7 +3001,7 @@ paths:
         name: includeDeliveryCosts
         required: true
         schema:
-          type: bool
+          type: boolean
         style: form
       - explode: true
         in: query
@@ -3107,7 +3107,7 @@ paths:
         name: includeDeliveryCosts
         required: true
         schema:
-          type: bool
+          type: boolean
         style: form
       requestBody:
         content:
@@ -3195,7 +3195,7 @@ paths:
         name: includeDeliveryCosts
         required: true
         schema:
-          type: bool
+          type: boolean
         style: form
       - explode: true
         in: query
@@ -3368,7 +3368,7 @@ paths:
         name: includeFailures
         required: true
         schema:
-          type: bool
+          type: boolean
         style: form
       responses:
         "200":
@@ -4299,7 +4299,7 @@ paths:
         name: includeDeliveryCosts
         required: true
         schema:
-          type: bool
+          type: boolean
         style: form
       requestBody:
         content:
@@ -4427,7 +4427,7 @@ paths:
         name: includeDeliveryCosts
         required: true
         schema:
-          type: bool
+          type: boolean
         style: form
       - explode: true
         in: query
