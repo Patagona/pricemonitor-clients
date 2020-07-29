@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5155VERSION-MANAGED-BY-JENKINS
+  version: 0.0.5156
 servers:
 - description: Production server
   url: https://api.patagona.de
