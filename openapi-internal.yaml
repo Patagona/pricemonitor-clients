@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5160
+  version: 0.0.5161
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -626,6 +626,23 @@ paths:
         schema:
           type: string
         style: simple
+      - description: "null"
+        explode: false
+        in: path
+        name: attributes
+        required: true
+        schema:
+          enum:
+          - gtin
+          - identifier
+          - name
+          - referencePrice
+          - minPriceBoundary
+          - maxPriceBoundary
+          - tags
+          - strategy
+          type: string
+        style: simple
       responses:
         "200":
           content:
@@ -945,6 +962,32 @@ paths:
         schema:
           default: true
           type: boolean
+        style: form
+      - description: Comma separated task state filter
+        explode: true
+        in: query
+        name: taskState
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Oldest returned creation date in UTC
+        explode: true
+        in: query
+        name: minCreationDate
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Newest returned creation date in UTC
+        explode: true
+        in: query
+        name: maxCreationDate
+        required: false
+        schema:
+          format: date-time
+          type: string
         style: form
       responses:
         "200":
@@ -2047,6 +2090,27 @@ paths:
       - logs
   /controlpanel/api/companies:
     get:
+      parameters:
+      - description: Start of the pagination
+        explode: false
+        in: path
+        name: start
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+        style: simple
+      - description: Number of elements per page
+        explode: false
+        in: path
+        name: limit
+        required: false
+        schema:
+          default: 100
+          format: int32
+          type: integer
+        style: simple
       responses:
         "200":
           description: A list of companies was loaded
@@ -2054,9 +2118,8 @@ paths:
       tags:
       - internal
       - controlpanel
-  /:
-    get:
-      operationId: redirect
+    post:
+      operationId: addCompany
       responses:
         "200":
           content:
@@ -2064,6 +2127,50 @@ paths:
               schema:
                 type: object
           description: This is a generated entry and needs to be described.
+      tags:
+      - internal
+      - undocumented
+      - controlpanel
+  /controlpanel/api/contracts:
+    get:
+      operationId: getAllContracts
+      responses:
+        "200":
+          description: A list of contracts was loaded
+      summary: Get a list of all contracts
+      tags:
+      - internal
+      - undocumented
+      - controlpanel
+  /controlpanel/api/portals:
+    get:
+      operationId: getAllPortals
+      responses:
+        "200":
+          description: A list of portals was loaded
+      summary: Get a list of all portals
+      tags:
+      - internal
+      - undocumented
+      - controlpanel
+  /controlpanel/api/users:
+    get:
+      operationId: getAllUsers
+      responses:
+        "200":
+          description: A list of users was loaded
+      summary: Get a list of all users
+      tags:
+      - internal
+      - undocumented
+      - controlpanel
+  /controlpanel/users:
+    post:
+      operationId: addUser
+      responses:
+        "200":
+          description: A new user was added
+      summary: Add a new user
       tags:
       - internal
       - undocumented
@@ -5986,7 +6093,7 @@ paths:
       - controlpanel
   /controlpanel/companies/{id}/users/{email}:
     put:
-      operationId: addUser
+      operationId: addCompanyUser
       parameters:
       - explode: false
         in: path
@@ -6171,6 +6278,436 @@ paths:
       - internal
       - undocumented
       - controlpanel
+  /login:
+    post:
+      operationId: authenticate
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Authenticate with the API and create a session
+      tags:
+      - undocumented
+      - account
+  /logout:
+    post:
+      operationId: logout
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Deauthenticate with the API and destroy the current session
+      tags:
+      - undocumented
+      - account
+  /api/account/password:
+    put:
+      operationId: changePassword
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Change the current users password
+      tags:
+      - undocumented
+      - account
+  /api/2/v/contracts/{contractId}/shop-integration/{path}:
+    get:
+      operationId: shopIntegrationGetRequest
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The shop-integration path to be called
+        explode: false
+        in: path
+        name: path
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - undocumented
+      - internal
+    post:
+      operationId: shopIntegrationPostRequest
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The shop-integration path to be called
+        explode: false
+        in: path
+        name: path
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - undocumented
+      - internal
+  /api/2/log/messages:
+    post:
+      operationId: postLogMessage
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - undocumented
+      - logs
+  /api/2/domains:
+    get:
+      operationId: allAvailablePortals
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - undocumented
+      - settings
+  /api/v3/vendor/contracts/{contractId}/monitoringpipeline/{path}:
+    post:
+      operationId: monitoringPipelinePostRequestVendorV3
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The monitoring-pipeline path to be called
+        explode: false
+        in: path
+        name: path
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - undocumented
+      - internal
+  /api/v3/manufacturer/contracts/{contractId}/monitoringpipeline/{path}:
+    post:
+      operationId: monitoringPipelinePostRequestManufacturerV3
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The monitoring-pipeline path to be called
+        explode: false
+        in: path
+        name: path
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - undocumented
+      - internal
+  /api/v3/vendor/contracts/{contractId}/scheduler/{path}:
+    delete:
+      operationId: schedulerDeleteRequestVendorV3
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The scheduler path to be called
+        explode: false
+        in: path
+        name: path
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - undocumented
+      - internal
+    get:
+      operationId: schedulerGetRequestVendorV3
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The scheduler path to be called
+        explode: false
+        in: path
+        name: path
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - undocumented
+      - internal
+    post:
+      operationId: schedulerPostRequestVendorV3
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The scheduler path to be called
+        explode: false
+        in: path
+        name: path
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - undocumented
+      - internal
+    put:
+      operationId: schedulerPutRequestVendorV3
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The scheduler path to be called
+        explode: false
+        in: path
+        name: path
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - undocumented
+      - internal
+  /api/v3/manufacturer/contracts/{contractId}/scheduler/{path}:
+    delete:
+      operationId: schedulerDeleteRequestManufacturerV3
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The scheduler path to be called
+        explode: false
+        in: path
+        name: path
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - undocumented
+      - internal
+    get:
+      operationId: schedulerGetRequestManufacturerV3
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The scheduler path to be called
+        explode: false
+        in: path
+        name: path
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - undocumented
+      - internal
+    post:
+      operationId: schedulerPostRequestManufacturerV3
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The scheduler path to be called
+        explode: false
+        in: path
+        name: path
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - undocumented
+      - internal
+    put:
+      operationId: schedulerPutRequestManufacturerV3
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The scheduler path to be called
+        explode: false
+        in: path
+        name: path
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: This is a generated entry and needs to be described.
+      tags:
+      - undocumented
+      - internal
 components:
   parameters:
     contractIdParam:
