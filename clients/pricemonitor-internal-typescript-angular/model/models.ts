@@ -13,6 +13,7 @@ export * from './booleanValueProvider';
 export * from './bulkedPostProductsApiResponse';
 export * from './callbacks';
 export * from './callbacksPricemonitorCompleted';
+export * from './comPatagonaPricemonitorShareApiContractStats';
 export * from './comPatagonaPricemonitorShareApiCustomerOrderItemV2';
 export * from './comPatagonaPricemonitorShareApiCustomerOrderProductMappingV2';
 export * from './comPatagonaPricemonitorShareApiCustomerOrderV2';

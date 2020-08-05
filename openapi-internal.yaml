@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5168
+  version: 0.0.5169
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -877,11 +877,12 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-          description: This is a generated entry and needs to be described.
+                items:
+                  type: string
+                type: array
+          description: A list of configured domains is returned.
       tags:
       - internal
-      - undocumented
       - settings
     put:
       operationId: putDomains
@@ -906,7 +907,7 @@ paths:
         required: true
       responses:
         "200":
-          description: OK
+          description: The domains setting for this contract was saved.
         "404":
           description: Settings for this contract do not exist yet
       summary: Set contract domains
@@ -2977,7 +2978,9 @@ paths:
         schema:
           type: string
         style: simple
-      - explode: true
+      - description: A ISO 8601 timestamp which marks the end of a 48h time range
+          in which the data is collected
+        explode: true
         in: query
         name: session
         required: true
@@ -2990,11 +2993,12 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-          description: This is a generated entry and needs to be described.
+                $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ContractStats'
+          description: 'Get the contract statistics: product count, vendor count,
+            found offers count (filters applied), active portals count, found offers
+            count (no filters applied)'
       tags:
       - internal
-      - undocumented
       - offers
   /api/2/m/contracts/{contractId}/result/offersegmentation:
     post:
@@ -3472,14 +3476,16 @@ paths:
         schema:
           type: string
         style: simple
-      - explode: true
+      - description: Comma separated list of task IDs to filter for
+        explode: true
         in: query
         name: taskIdsFilter
         required: false
         schema:
           type: string
         style: form
-      - explode: true
+      - description: A list of task types to filter for
+        explode: true
         in: query
         name: taskTypeFilter
         required: true
@@ -3488,16 +3494,23 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: A list of task states to filter for
+        explode: true
         in: query
         name: taskState
         required: true
         schema:
           items:
+            enum:
+            - pending
+            - executing
+            - succeeded
+            - failed
             type: string
           type: array
         style: form
-      - explode: true
+      - description: Ignore all tasks created earlier than this date (ISO 8601)
+        explode: true
         in: query
         name: minCreationDate
         required: false
@@ -3505,7 +3518,8 @@ paths:
           format: date-time
           type: string
         style: form
-      - explode: true
+      - description: Ignore all tasks created later than this date (ISO 8601)
+        explode: true
         in: query
         name: maxCreationDate
         required: false
@@ -3513,19 +3527,23 @@ paths:
           format: date-time
           type: string
         style: form
-      - explode: true
+      - description: The maximum number of tasks returned
+        explode: true
         in: query
         name: limit
         required: true
         schema:
+          default: 100
           format: int32
           type: integer
         style: form
-      - explode: true
+      - description: Include failed tasks
+        explode: true
         in: query
         name: includeFailures
         required: true
         schema:
+          default: true
           type: boolean
         style: form
       responses:
@@ -8378,6 +8396,40 @@ components:
           type: array
       required:
       - data
+      type: object
+    com.patagona.pricemonitor.share.api.ContractStats:
+      additionalProperties: false
+      description: Contract statistics
+      example:
+        offerCount: 5.962133916683182
+        vendorCount: 5.637376656633329
+        portalCount: 6
+        productCount: 0
+        allOfferCount: 1.4658129805029452
+      properties:
+        productCount:
+          description: The count of currently monitored products
+          type: integer
+        portalCount:
+          description: The number of actively monitored domains
+          type: integer
+        allOfferCount:
+          description: The number of offers found for the monitored products without
+            any filters applied
+          type: number
+        offerCount:
+          description: The number of offers found for the monitored products after
+            filtering
+          type: number
+        vendorCount:
+          description: The count of vendors found for the monitored products
+          type: number
+      required:
+      - allOfferCount
+      - offerCount
+      - portalCount
+      - productCount
+      - vendorCount
       type: object
     com.patagona.pricemonitor.share.api.PutResetPasswordRequest:
       additionalProperties: false
