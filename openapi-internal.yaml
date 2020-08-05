@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5169
+  version: 0.0.5170
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -3096,7 +3096,8 @@ paths:
         schema:
           type: string
         style: simple
-      - explode: false
+      - description: The product ID to filter for
+        explode: false
         in: path
         name: productId
         required: true
@@ -3107,18 +3108,19 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-        description: This is a generated entry and needs to be described.
+              $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PricesByDayByProductIdRequestV2'
+        description: Query all known prices for a given day & product ID. Can be filtered
+          by using the selectors.
       responses:
         "200":
           content:
             application/json:
               schema:
-                type: object
-          description: This is a generated entry and needs to be described.
+                $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PricesByDayByProductIdResponseV2'
+          description: The list of all known prices for the queried day & product
+            ID
       tags:
       - internal
-      - undocumented
       - offers
   /api/2/m/contracts/{contractId}/result/priceviolations:
     get:
@@ -8430,6 +8432,100 @@ components:
       - portalCount
       - productCount
       - vendorCount
+      type: object
+    com.patagona.pricemonitor.share.api.PricesByDayByProductIdRequestV2:
+      additionalProperties: false
+      description: A request for all known prices for a given day & product ID. Provides
+        the option to filter the results using the `offerSelectors`.
+      properties:
+        day:
+          format: date-time
+          type: string
+        offerSelectors:
+          description: A list of `OfferSelector`s that allows filtering down the results
+          items:
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.OfferSelector'
+          type: array
+      required:
+      - day
+      - offerSelectors
+      type: object
+    com.patagona.pricemonitor.share.api.OfferSelector:
+      additionalProperties: false
+      description: Whitelist entry for offers based on different attributes.
+      properties:
+        domain:
+          description: The domain
+          type: string
+        vendorName:
+          description: The vendor name
+          type: string
+        productName:
+          description: The product name
+          type: string
+      required:
+      - domain
+      - productName
+      - vendorName
+      type: object
+    com.patagona.pricemonitor.share.api.PricesByDayByProductIdResponseV2:
+      additionalProperties: false
+      description: Contains all known prices for a given day & product ID for one
+        domain & vendor combination.
+      example:
+        domain: domain
+        vendorName: vendorName
+        prices:
+        - deliveryCosts: 6.027456183070403
+          price: 0.8008281904610115
+          timestamp: 2000-01-23T04:56:07.000+00:00
+        - deliveryCosts: 6.027456183070403
+          price: 0.8008281904610115
+          timestamp: 2000-01-23T04:56:07.000+00:00
+        productName: productName
+      properties:
+        domain:
+          description: The domain these prices were found on
+          type: string
+        vendorName:
+          description: The name of the vendor these prices were found for
+          type: string
+        productName:
+          description: The name of the product the vendor is using
+          type: string
+        prices:
+          description: A list of `PricesByDayByProductIdResponsePricePointV2` elements
+            containing the prices
+          items:
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PricesByDayByProductIdResponsePricePointV2'
+          type: array
+      required:
+      - domain
+      - prices
+      - productName
+      - vendorName
+      type: object
+    com.patagona.pricemonitor.share.api.PricesByDayByProductIdResponsePricePointV2:
+      additionalProperties: false
+      description: A single price point of a product
+      example:
+        deliveryCosts: 6.027456183070403
+        price: 0.8008281904610115
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        price:
+          description: The price
+          type: number
+        deliveryCosts:
+          description: The delivery costs
+          type: number
+        timestamp:
+          format: date-time
+          type: string
+      required:
+      - deliveryCosts
+      - price
+      - timestamp
       type: object
     com.patagona.pricemonitor.share.api.PutResetPasswordRequest:
       additionalProperties: false

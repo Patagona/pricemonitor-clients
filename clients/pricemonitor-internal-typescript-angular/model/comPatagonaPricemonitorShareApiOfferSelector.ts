@@ -11,14 +11,21 @@
  */
 
 
-export interface DateTimeBefore { 
-    type: DateTimeBefore.TypeEnum;
+/**
+ * Whitelist entry for offers based on different attributes.
+ */
+export interface ComPatagonaPricemonitorShareApiOfferSelector { 
+    /**
+     * The domain
+     */
+    domain: string;
+    /**
+     * The vendor name
+     */
+    vendorName: string;
+    /**
+     * The product name
+     */
+    productName: string;
 }
-export namespace DateTimeBefore {
-    export type TypeEnum = 'DateTimeBefore';
-    export const TypeEnum = {
-        DateTimeBefore: 'DateTimeBefore' as TypeEnum
-    };
-}
-
 

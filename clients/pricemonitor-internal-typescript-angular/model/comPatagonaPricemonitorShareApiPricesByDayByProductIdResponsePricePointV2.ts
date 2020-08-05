@@ -11,14 +11,18 @@
  */
 
 
-export interface DateTimeBefore { 
-    type: DateTimeBefore.TypeEnum;
+/**
+ * A single price point of a product
+ */
+export interface ComPatagonaPricemonitorShareApiPricesByDayByProductIdResponsePricePointV2 { 
+    /**
+     * The price
+     */
+    price: number;
+    /**
+     * The delivery costs
+     */
+    deliveryCosts: number;
+    timestamp: string;
 }
-export namespace DateTimeBefore {
-    export type TypeEnum = 'DateTimeBefore';
-    export const TypeEnum = {
-        DateTimeBefore: 'DateTimeBefore' as TypeEnum
-    };
-}
-
 
