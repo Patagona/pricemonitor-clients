@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5166
+  version: 0.0.5167
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -5285,18 +5285,27 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-        description: This is a generated entry and needs to be described.
+              $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PostPasswordResetRequest'
+        description: Request a new password.
       responses:
         "200":
           content:
+            text/plain:
+              schema:
+                example: Eine E-Mail mit Anweisungen zum Zurücksetzen des Passworts
+                  wurde versandt. Bitte überprüfen Sie Ihren Spam-Ordner und ggf.
+                  die angegebene E-Mail-Adresse, falls in den nächsten Minuten keine
+                  E-Mail ankommen sollte.
+                type: string
+          description: Successful response upon password request
+        "400":
+          content:
             application/json:
               schema:
-                type: object
-          description: This is a generated entry and needs to be described.
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: Invalid request body is specified
       tags:
       - internal
-      - undocumented
       - account
     put:
       operationId: resetPassword
@@ -8361,6 +8370,16 @@ components:
           type: array
       required:
       - data
+      type: object
+    com.patagona.pricemonitor.share.api.PostPasswordResetRequest:
+      additionalProperties: false
+      description: Request body for resetting the password
+      properties:
+        email:
+          description: Valid email address of an existing pricemonitor account.
+          type: string
+      required:
+      - email
       type: object
     com.patagona.pricemonitor.share.api.GetContractResponseV3:
       additionalProperties: false

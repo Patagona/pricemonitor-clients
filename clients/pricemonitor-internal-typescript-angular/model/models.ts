@@ -18,6 +18,7 @@ export * from './comPatagonaPricemonitorShareApiCustomerOrderProductMappingV2';
 export * from './comPatagonaPricemonitorShareApiCustomerOrderV2';
 export * from './comPatagonaPricemonitorShareApiGetContractResponseV3';
 export * from './comPatagonaPricemonitorShareApiPostCustomerOrdersRequestV2';
+export * from './comPatagonaPricemonitorShareApiPostPasswordResetRequest';
 export * from './comparisonFilter';
 export * from './constantFilter';
 export * from './createCompanyApiResponse';
