@@ -11,14 +11,13 @@
  */
 
 
-export interface BooleanEquality { 
-    type: BooleanEquality.TypeEnum;
+/**
+ * Request body for requesting a new password
+ */
+export interface ComPatagonaPricemonitorShareApiPostNewPasswordRequest { 
+    /**
+     * Valid email address of an existing pricemonitor account.
+     */
+    email: string;
 }
-export namespace BooleanEquality {
-    export type TypeEnum = 'BooleanEquality';
-    export const TypeEnum = {
-        BooleanEquality: 'BooleanEquality' as TypeEnum
-    };
-}
-
 

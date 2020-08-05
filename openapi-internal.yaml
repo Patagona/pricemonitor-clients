@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5167
+  version: 0.0.5168
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -5285,7 +5285,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PostPasswordResetRequest'
+              $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PostNewPasswordRequest'
         description: Request a new password.
       responses:
         "200":
@@ -5313,18 +5313,26 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-        description: This is a generated entry and needs to be described.
+              $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PutResetPasswordRequest'
+        description: Reset a password
       responses:
         "200":
           content:
-            application/json:
+            text/plain:
               schema:
-                type: object
-          description: This is a generated entry and needs to be described.
+                example: Das Passwort wurde erfolgreich geändert.
+                type: string
+          description: Password changed successfully.
+        "400":
+          content:
+            text/plain:
+              schema:
+                example: Der benutzte Link ist abgelaufen, bitte benutzen Sie die
+                  Passwort-Vergessen Funktion erneut.
+                type: string
+          description: Password didn't change successfully.
       tags:
       - internal
-      - undocumented
       - account
   /api/login/token/{token}:
     get:
@@ -8371,9 +8379,23 @@ components:
       required:
       - data
       type: object
-    com.patagona.pricemonitor.share.api.PostPasswordResetRequest:
+    com.patagona.pricemonitor.share.api.PutResetPasswordRequest:
       additionalProperties: false
       description: Request body for resetting the password
+      properties:
+        token:
+          description: Received via email after requesting a new password.
+          type: string
+        password:
+          description: Password entered by the user.
+          type: string
+      required:
+      - password
+      - token
+      type: object
+    com.patagona.pricemonitor.share.api.PostNewPasswordRequest:
+      additionalProperties: false
+      description: Request body for requesting a new password
       properties:
         email:
           description: Valid email address of an existing pricemonitor account.
