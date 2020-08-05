@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5164
+  version: 0.0.5166
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -5357,11 +5357,10 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-          description: This is a generated entry and needs to be described.
+                $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.GetContractResponseV3'
+          description: Contract Information
       tags:
       - internal
-      - undocumented
       - companies
   /api/v3/manufacturer/contracts/{contractId}/monitoringpipeline/v1/searchattempts:
     post:
@@ -8362,6 +8361,51 @@ components:
           type: array
       required:
       - data
+      type: object
+    com.patagona.pricemonitor.share.api.GetContractResponseV3:
+      additionalProperties: false
+      description: Contract information
+      example:
+        companyId: 0.8008281904610115
+        contractType: Pricemonitor for manufacturers
+        description: description
+        active: true
+        creationDate: 2000-01-23T04:56:07.000+00:00
+        expirationDate: 2000-01-23T04:56:07.000+00:00
+        sid: sid
+      properties:
+        expirationDate:
+          format: date-time
+          type: string
+        description:
+          description: The description for the given contract provided by the end-user.
+          type: string
+        contractType:
+          description: Type of the contract.
+          enum:
+          - Pricemonitor for manufacturers
+          - Pricemonitor for resellers
+          type: string
+        creationDate:
+          format: date-time
+          type: string
+        sid:
+          description: Unique string id of the contract in pricemonitor.
+          type: string
+        companyId:
+          description: The id of the company, in pricemonitor, to which contract belongs
+            to.
+          type: number
+        active:
+          description: Indicates if the contract is active or disabled.
+          type: boolean
+      required:
+      - active
+      - companyId
+      - contractType
+      - creationDate
+      - description
+      - sid
       type: object
     api-response:
       type: object
