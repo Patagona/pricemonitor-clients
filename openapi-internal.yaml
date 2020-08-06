@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5170
+  version: 0.0.5171
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -6875,6 +6875,13 @@ components:
       required:
       - type
     ApiContract:
+      example:
+        contractType: contractType
+        companyName: companyName
+        contractId: contractId
+        active: true
+        contractName: contractName
+        expirationDate: 2000-01-23T04:56:07.000+00:00
       properties:
         active:
           type: boolean
@@ -6908,6 +6915,30 @@ components:
           type: array
       type: object
     ApiOffer:
+      example:
+        ignored: true
+        gtin: 6
+        productId: productId
+        retrievalDate: 2000-01-23T04:56:07.000+00:00
+        availability: true
+        creationDate: 2000-01-23T04:56:07.000+00:00
+        vendorName: vendorName
+        positionByTotalPrice: 2
+        productName: productName
+        url: url
+        minDeliveryTime: 5
+        vendorDomainId: vendorDomainId
+        deliveryCosts: 0.8008281904610115
+        maxDeliveryTime: 1
+        price: 7.061401241503109
+        domain: domain
+        attributes:
+        - name: name
+          value: value
+        - name: name
+          value: value
+        currency: currency
+        positionByUnitPrice: 5
       properties:
         attributes:
           items:
@@ -6967,6 +6998,19 @@ components:
       - url
       - vendorName
     ApiProduct:
+      example:
+        customerProductId: customerProductId
+        gtin: 9
+        referencePrice: 4.145608029883936
+        maxPriceBoundary: 3.616076749251911
+        name: name
+        id: id
+        minPriceBoundary: 2.027123023002322
+        tags:
+        - value: value
+          key: key
+        - value: value
+          key: key
       properties:
         tags:
           items:
@@ -7138,6 +7182,9 @@ components:
       - type
       - valid
     CreateCompanyResponse:
+      example:
+        name: name
+        id: 0
       properties:
         id:
           format: int64
@@ -7195,12 +7242,20 @@ components:
       - attributeName
       - type
     DeletedItemsResponse:
+      example:
+        deleted: 0
       properties:
         deleted:
           description: Number of deleted orders
           type: integer
       type: object
     ExtendedTag:
+      example:
+        stringValue: stringValue
+        booleanValue: true
+        integerValue: 6
+        doubleValue: 0.8008281904610115
+        label: label
       properties:
         booleanValue:
           type: boolean
@@ -7401,6 +7456,28 @@ components:
           type: integer
       type: object
     ApiPriceRecommendation:
+      example:
+        customerProductId: customerProductId
+        relativePriceChangePercentage: 5.637376656633329
+        gtin: '{}'
+        oldDeliveryCosts: 6.027456183070403
+        deliveryCosts: 0.8008281904610115
+        productId: productId
+        oldPrice: 1.4658129805029452
+        price: 5.962133916683182
+        currency: currency
+        tags:
+        - stringValue: stringValue
+          booleanValue: '{}'
+          integerValue: '{}'
+          doubleValue: '{}'
+          label: label
+        - stringValue: stringValue
+          booleanValue: '{}'
+          integerValue: '{}'
+          doubleValue: '{}'
+          label: label
+        timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         tags:
           items:
@@ -7522,6 +7599,9 @@ components:
       - attributeName
       - type
     OfferAttribute:
+      example:
+        name: name
+        value: value
       properties:
         name:
           type: string
@@ -7549,8 +7629,8 @@ components:
       - type
     Pagination:
       example:
-        limit: 0
-        start: 6
+        limit: 2
+        start: 7
       properties:
         limit:
           default: 100
@@ -7675,8 +7755,8 @@ components:
       example:
         filter: '{}'
         pagination:
-          limit: 0
-          start: 6
+          limit: 2
+          start: 7
         range:
           start: 2000-01-23T04:56:07.000+00:00
           end: 2000-01-23T04:56:07.000+00:00
@@ -7839,6 +7919,9 @@ components:
       - attributeName
       - type
     ShopRank:
+      example:
+        price: 5.637376656633329
+        position: 5
       properties:
         position:
           type: integer
@@ -7897,6 +7980,9 @@ components:
           type: string
       type: object
     Task:
+      example:
+        id: id
+        url: url
       properties:
         id:
           type: string
@@ -8026,10 +8112,12 @@ components:
     CreateCompanyApiResponse:
       additionalProperties: false
       example:
-        data: '{}'
+        data:
+          name: name
+          id: 0
       properties:
         data:
-          type: object
+          $ref: '#/components/schemas/CreateCompanyResponse'
       required:
       - data
       type: object
@@ -8037,12 +8125,22 @@ components:
       additionalProperties: false
       example:
         data:
-        - null
-        - null
+        - contractType: contractType
+          companyName: companyName
+          contractId: contractId
+          active: true
+          contractName: contractName
+          expirationDate: 2000-01-23T04:56:07.000+00:00
+        - contractType: contractType
+          companyName: companyName
+          contractId: contractId
+          active: true
+          contractName: contractName
+          expirationDate: 2000-01-23T04:56:07.000+00:00
       properties:
         data:
           items:
-            $ref: '#/components/schemas/api-response'
+            $ref: '#/components/schemas/ApiContract'
           type: array
       required:
       - data
@@ -8050,10 +8148,16 @@ components:
     AddCompanyContractApiResponse:
       additionalProperties: false
       example:
-        data: '{}'
+        data:
+          contractType: contractType
+          companyName: companyName
+          contractId: contractId
+          active: true
+          contractName: contractName
+          expirationDate: 2000-01-23T04:56:07.000+00:00
       properties:
         data:
-          type: object
+          $ref: '#/components/schemas/ApiContract'
       required:
       - data
       type: object
@@ -8308,15 +8412,55 @@ components:
       additionalProperties: false
       example:
         data:
-        - null
-        - null
+        - customerProductId: customerProductId
+          relativePriceChangePercentage: 5.637376656633329
+          gtin: '{}'
+          oldDeliveryCosts: 6.027456183070403
+          deliveryCosts: 0.8008281904610115
+          productId: productId
+          oldPrice: 1.4658129805029452
+          price: 5.962133916683182
+          currency: currency
+          tags:
+          - stringValue: stringValue
+            booleanValue: '{}'
+            integerValue: '{}'
+            doubleValue: '{}'
+            label: label
+          - stringValue: stringValue
+            booleanValue: '{}'
+            integerValue: '{}'
+            doubleValue: '{}'
+            label: label
+          timestamp: 2000-01-23T04:56:07.000+00:00
+        - customerProductId: customerProductId
+          relativePriceChangePercentage: 5.637376656633329
+          gtin: '{}'
+          oldDeliveryCosts: 6.027456183070403
+          deliveryCosts: 0.8008281904610115
+          productId: productId
+          oldPrice: 1.4658129805029452
+          price: 5.962133916683182
+          currency: currency
+          tags:
+          - stringValue: stringValue
+            booleanValue: '{}'
+            integerValue: '{}'
+            doubleValue: '{}'
+            label: label
+          - stringValue: stringValue
+            booleanValue: '{}'
+            integerValue: '{}'
+            doubleValue: '{}'
+            label: label
+          timestamp: 2000-01-23T04:56:07.000+00:00
         meta:
-          limit: 0
-          start: 6
+          limit: 2
+          start: 7
       properties:
         data:
           items:
-            $ref: '#/components/schemas/api-response'
+            $ref: '#/components/schemas/ApiPriceRecommendation'
           type: array
         meta:
           $ref: '#/components/schemas/Pagination'
@@ -8327,12 +8471,130 @@ components:
       additionalProperties: false
       example:
         data:
-        - null
-        - null
+        - offers:
+          - ignored: true
+            gtin: 6
+            productId: productId
+            retrievalDate: 2000-01-23T04:56:07.000+00:00
+            availability: true
+            creationDate: 2000-01-23T04:56:07.000+00:00
+            vendorName: vendorName
+            positionByTotalPrice: 2
+            productName: productName
+            url: url
+            minDeliveryTime: 5
+            vendorDomainId: vendorDomainId
+            deliveryCosts: 0.8008281904610115
+            maxDeliveryTime: 1
+            price: 7.061401241503109
+            domain: domain
+            attributes:
+            - name: name
+              value: value
+            - name: name
+              value: value
+            currency: currency
+            positionByUnitPrice: 5
+          - ignored: true
+            gtin: 6
+            productId: productId
+            retrievalDate: 2000-01-23T04:56:07.000+00:00
+            availability: true
+            creationDate: 2000-01-23T04:56:07.000+00:00
+            vendorName: vendorName
+            positionByTotalPrice: 2
+            productName: productName
+            url: url
+            minDeliveryTime: 5
+            vendorDomainId: vendorDomainId
+            deliveryCosts: 0.8008281904610115
+            maxDeliveryTime: 1
+            price: 7.061401241503109
+            domain: domain
+            attributes:
+            - name: name
+              value: value
+            - name: name
+              value: value
+            currency: currency
+            positionByUnitPrice: 5
+          product:
+            customerProductId: customerProductId
+            gtin: 9
+            referencePrice: 4.145608029883936
+            maxPriceBoundary: 3.616076749251911
+            name: name
+            id: id
+            minPriceBoundary: 2.027123023002322
+            tags:
+            - value: value
+              key: key
+            - value: value
+              key: key
+        - offers:
+          - ignored: true
+            gtin: 6
+            productId: productId
+            retrievalDate: 2000-01-23T04:56:07.000+00:00
+            availability: true
+            creationDate: 2000-01-23T04:56:07.000+00:00
+            vendorName: vendorName
+            positionByTotalPrice: 2
+            productName: productName
+            url: url
+            minDeliveryTime: 5
+            vendorDomainId: vendorDomainId
+            deliveryCosts: 0.8008281904610115
+            maxDeliveryTime: 1
+            price: 7.061401241503109
+            domain: domain
+            attributes:
+            - name: name
+              value: value
+            - name: name
+              value: value
+            currency: currency
+            positionByUnitPrice: 5
+          - ignored: true
+            gtin: 6
+            productId: productId
+            retrievalDate: 2000-01-23T04:56:07.000+00:00
+            availability: true
+            creationDate: 2000-01-23T04:56:07.000+00:00
+            vendorName: vendorName
+            positionByTotalPrice: 2
+            productName: productName
+            url: url
+            minDeliveryTime: 5
+            vendorDomainId: vendorDomainId
+            deliveryCosts: 0.8008281904610115
+            maxDeliveryTime: 1
+            price: 7.061401241503109
+            domain: domain
+            attributes:
+            - name: name
+              value: value
+            - name: name
+              value: value
+            currency: currency
+            positionByUnitPrice: 5
+          product:
+            customerProductId: customerProductId
+            gtin: 9
+            referencePrice: 4.145608029883936
+            maxPriceBoundary: 3.616076749251911
+            name: name
+            id: id
+            minPriceBoundary: 2.027123023002322
+            tags:
+            - value: value
+              key: key
+            - value: value
+              key: key
       properties:
         data:
           items:
-            $ref: '#/components/schemas/api-response'
+            $ref: '#/components/schemas/ProductAndOffers_2'
           type: array
       required:
       - data
@@ -8341,12 +8603,22 @@ components:
       additionalProperties: false
       example:
         data:
-        - null
-        - null
+        - offerCount: 1
+          minPrice: 6.027456183070403
+          averagePrice: 0.8008281904610115
+          ownPosition:
+            price: 5.637376656633329
+            position: 5
+        - offerCount: 1
+          minPrice: 6.027456183070403
+          averagePrice: 0.8008281904610115
+          ownPosition:
+            price: 5.637376656633329
+            position: 5
       properties:
         data:
           items:
-            $ref: '#/components/schemas/api-response'
+            $ref: '#/components/schemas/ProductOfferStats_2'
           type: array
       required:
       - data
@@ -8354,10 +8626,12 @@ components:
     PutProductsApiResponse:
       additionalProperties: false
       example:
-        data: '{}'
+        data:
+          id: id
+          url: url
       properties:
         data:
-          type: object
+          $ref: '#/components/schemas/Task'
       required:
       - data
       type: object
@@ -8365,12 +8639,56 @@ components:
       additionalProperties: false
       example:
         data:
-        - null
-        - null
+        - ignored: true
+          gtin: 6
+          productId: productId
+          retrievalDate: 2000-01-23T04:56:07.000+00:00
+          availability: true
+          creationDate: 2000-01-23T04:56:07.000+00:00
+          vendorName: vendorName
+          positionByTotalPrice: 2
+          productName: productName
+          url: url
+          minDeliveryTime: 5
+          vendorDomainId: vendorDomainId
+          deliveryCosts: 0.8008281904610115
+          maxDeliveryTime: 1
+          price: 7.061401241503109
+          domain: domain
+          attributes:
+          - name: name
+            value: value
+          - name: name
+            value: value
+          currency: currency
+          positionByUnitPrice: 5
+        - ignored: true
+          gtin: 6
+          productId: productId
+          retrievalDate: 2000-01-23T04:56:07.000+00:00
+          availability: true
+          creationDate: 2000-01-23T04:56:07.000+00:00
+          vendorName: vendorName
+          positionByTotalPrice: 2
+          productName: productName
+          url: url
+          minDeliveryTime: 5
+          vendorDomainId: vendorDomainId
+          deliveryCosts: 0.8008281904610115
+          maxDeliveryTime: 1
+          price: 7.061401241503109
+          domain: domain
+          attributes:
+          - name: name
+            value: value
+          - name: name
+            value: value
+          currency: currency
+          positionByUnitPrice: 5
       properties:
         data:
           items:
-            $ref: '#/components/schemas/api-response'
+            $ref: '#/components/schemas/ApiOffer'
           type: array
       required:
       - data
@@ -8378,10 +8696,11 @@ components:
     DeleteOrdersApiResponse:
       additionalProperties: false
       example:
-        data: '{}'
+        data:
+          deleted: 0
       properties:
         data:
-          type: object
+          $ref: '#/components/schemas/DeletedItemsResponse'
       required:
       - data
       type: object
@@ -8389,12 +8708,20 @@ components:
       additionalProperties: false
       example:
         data:
-        - null
-        - null
+        - stringValue: stringValue
+          booleanValue: true
+          integerValue: 6
+          doubleValue: 0.8008281904610115
+          label: label
+        - stringValue: stringValue
+          booleanValue: true
+          integerValue: 6
+          doubleValue: 0.8008281904610115
+          label: label
       properties:
         data:
           items:
-            $ref: '#/components/schemas/api-response'
+            $ref: '#/components/schemas/ExtendedTag'
           type: array
       required:
       - data
@@ -8596,8 +8923,99 @@ components:
       - description
       - sid
       type: object
-    api-response:
+    ProductAndOffers_2:
+      example:
+        offers:
+        - ignored: true
+          gtin: 6
+          productId: productId
+          retrievalDate: 2000-01-23T04:56:07.000+00:00
+          availability: true
+          creationDate: 2000-01-23T04:56:07.000+00:00
+          vendorName: vendorName
+          positionByTotalPrice: 2
+          productName: productName
+          url: url
+          minDeliveryTime: 5
+          vendorDomainId: vendorDomainId
+          deliveryCosts: 0.8008281904610115
+          maxDeliveryTime: 1
+          price: 7.061401241503109
+          domain: domain
+          attributes:
+          - name: name
+            value: value
+          - name: name
+            value: value
+          currency: currency
+          positionByUnitPrice: 5
+        - ignored: true
+          gtin: 6
+          productId: productId
+          retrievalDate: 2000-01-23T04:56:07.000+00:00
+          availability: true
+          creationDate: 2000-01-23T04:56:07.000+00:00
+          vendorName: vendorName
+          positionByTotalPrice: 2
+          productName: productName
+          url: url
+          minDeliveryTime: 5
+          vendorDomainId: vendorDomainId
+          deliveryCosts: 0.8008281904610115
+          maxDeliveryTime: 1
+          price: 7.061401241503109
+          domain: domain
+          attributes:
+          - name: name
+            value: value
+          - name: name
+            value: value
+          currency: currency
+          positionByUnitPrice: 5
+        product:
+          customerProductId: customerProductId
+          gtin: 9
+          referencePrice: 4.145608029883936
+          maxPriceBoundary: 3.616076749251911
+          name: name
+          id: id
+          minPriceBoundary: 2.027123023002322
+          tags:
+          - value: value
+            key: key
+          - value: value
+            key: key
+      properties:
+        offers:
+          items:
+            $ref: '#/components/schemas/ApiOffer'
+          type: array
+        product:
+          $ref: '#/components/schemas/ApiProduct'
       type: object
+    ProductOfferStats_2:
+      example:
+        offerCount: 1
+        minPrice: 6.027456183070403
+        averagePrice: 0.8008281904610115
+        ownPosition:
+          price: 5.637376656633329
+          position: 5
+      properties:
+        averagePrice:
+          format: double
+          type: number
+        minPrice:
+          format: double
+          type: number
+        offerCount:
+          type: integer
+        ownPosition:
+          $ref: '#/components/schemas/ShopRank'
+      required:
+      - averagePrice
+      - minPrice
+      - offerCount
     Callbacks_pricemonitorCompleted:
       example:
         headers:
@@ -8759,6 +9177,12 @@ components:
           description: Unique product identifier within pricemonitor
           type: string
     ApiPriceRecommendation_tags:
+      example:
+        stringValue: stringValue
+        booleanValue: '{}'
+        integerValue: '{}'
+        doubleValue: '{}'
+        label: label
       properties:
         booleanValue:
           type: object

@@ -9,21 +9,12 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { FeedFields } from './feedFields';
+import { ApiProduct } from './apiProduct';
+import { ApiOffer } from './apiOffer';
 
 
-export interface Feed { 
-    contractId?: string;
-    csvDecimalSeparator?: string;
-    csvSeparator?: string;
-    deltaUrl?: string;
-    fields?: Array<FeedFields>;
-    format?: string;
-    id?: string;
-    lastAccessed?: string;
-    lastDeletion?: string;
-    name?: string;
-    url?: string;
-    version?: number;
+export interface ProductAndOffers2 { 
+    offers?: Array<ApiOffer>;
+    product?: ApiProduct;
 }
 
