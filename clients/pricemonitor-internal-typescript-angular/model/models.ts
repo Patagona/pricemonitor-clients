@@ -43,6 +43,7 @@ export * from './feed';
 export * from './feedFields';
 export * from './getCompanyContractsApiResponse';
 export * from './getExtendedTagsApiResponse';
+export * from './getManufacturerV3ApiResponse';
 export * from './getOffersApiResponse';
 export * from './getOffersResponse';
 export * from './getOffersResponseAttributes';

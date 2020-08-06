@@ -9,15 +9,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { GetOffersResponseData } from './getOffersResponseData';
+import { ComPatagonaPricemonitorShareApiGetContractResponseV3 } from './comPatagonaPricemonitorShareApiGetContractResponseV3';
 
 
-/**
- * A collection of products
- */
-export interface GetOffersResponse { 
-    data?: Array<GetOffersResponseData>;
-    next?: string;
-    total?: number;
+export interface GetManufacturerV3ApiResponse { 
+    data: ComPatagonaPricemonitorShareApiGetContractResponseV3;
 }
 
