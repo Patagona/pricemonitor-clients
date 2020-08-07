@@ -21,10 +21,10 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         registry-url: 'https://npm.pkg.github.com/'
-    - run: npm install
-    - run: npm run build --if-present && npm pack
+    - run: npm ci
+    - run: npm run build
       env:
         CI: true
-    - run: npm run publish
+    - run: npm publish dist
       env:
         NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
