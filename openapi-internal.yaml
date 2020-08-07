@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5179
+  version: 0.0.5180
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -8768,14 +8768,14 @@ components:
         day:
           format: date-time
           type: string
-        offerSelectors:
+        offers:
           description: A list of `OfferSelector`s that allows filtering down the results
           items:
             $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.OfferSelector'
           type: array
       required:
       - day
-      - offerSelectors
+      - offers
       type: object
     com.patagona.pricemonitor.share.api.OfferSelector:
       additionalProperties: false
