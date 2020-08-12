@@ -9,16 +9,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { AndOfferFilterAnd } from './andOfferFilterAnd';
 
 
-export interface DateTimeAfter { 
-    type: DateTimeAfter.TypeEnum;
+export interface AndOfferFilter { 
+    and?: AndOfferFilterAnd;
 }
-export namespace DateTimeAfter {
-    export type TypeEnum = 'DateTimeAfter';
-    export const TypeEnum = {
-        DateTimeAfter: 'DateTimeAfter' as TypeEnum
-    };
-}
-
 

@@ -1,5 +1,7 @@
 export * from './addCompanyContractApiResponse';
 export * from './andFilter';
+export * from './andOfferFilter';
+export * from './andOfferFilterAnd';
 export * from './apiContract';
 export * from './apiError';
 export * from './apiErrorResponse';
@@ -27,6 +29,8 @@ export * from './comPatagonaPricemonitorShareApiPricesByDayByProductIdResponseV2
 export * from './comPatagonaPricemonitorShareApiPutResetPasswordRequest';
 export * from './comparisonFilter';
 export * from './constantFilter';
+export * from './constantOfferFilter';
+export * from './constantOfferFilterConstant';
 export * from './createCompanyApiResponse';
 export * from './createCompanyResponse';
 export * from './createContractRequest';
@@ -62,6 +66,7 @@ export * from './numberInSequence';
 export * from './numberLessThan';
 export * from './numberValueProvider';
 export * from './offerAttribute';
+export * from './offerFilterApiResponse';
 export * from './offersQuerySortOrderV30';
 export * from './orFilter';
 export * from './pagination';

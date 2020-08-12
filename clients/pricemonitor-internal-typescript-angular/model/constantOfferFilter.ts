@@ -9,16 +9,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { ConstantOfferFilterConstant } from './constantOfferFilterConstant';
 
 
-export interface DateTimeAfter { 
-    type: DateTimeAfter.TypeEnum;
+export interface ConstantOfferFilter { 
+    constant?: ConstantOfferFilterConstant;
 }
-export namespace DateTimeAfter {
-    export type TypeEnum = 'DateTimeAfter';
-    export const TypeEnum = {
-        DateTimeAfter: 'DateTimeAfter' as TypeEnum
-    };
-}
-
 

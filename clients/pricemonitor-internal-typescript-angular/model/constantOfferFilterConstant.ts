@@ -11,14 +11,7 @@
  */
 
 
-export interface DateTimeAfter { 
-    type: DateTimeAfter.TypeEnum;
+export interface ConstantOfferFilterConstant { 
+    value?: boolean;
 }
-export namespace DateTimeAfter {
-    export type TypeEnum = 'DateTimeAfter';
-    export const TypeEnum = {
-        DateTimeAfter: 'DateTimeAfter' as TypeEnum
-    };
-}
-
 

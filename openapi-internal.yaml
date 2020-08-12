@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5187
+  version: 0.0.5189
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -3891,11 +3891,11 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-          description: This is a generated entry and needs to be described.
+                $ref: '#/components/schemas/OfferFilterApiResponse'
+          description: List of the filters to ignore the individual offers.
+      summary: Get all complex filters for the given contract.
       tags:
       - internal
-      - undocumented
       - offers
     put:
       operationId: putComplexOfferFiltersVendorV2
@@ -3920,18 +3920,19 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-        description: This is a generated entry and needs to be described.
+              $ref: '#/components/schemas/OfferFilterRequest'
+        description: List of the filter that needs to be considered to ignore the
+          individual offers.
       responses:
         "200":
           content:
             application/json:
               schema:
-                type: object
-          description: This is a generated entry and needs to be described.
+                $ref: '#/components/schemas/OfferFilterApiResponse'
+          description: List of the filters that have been sent as the request body.
+      summary: Add the complex filters for the given contract.
       tags:
       - internal
-      - undocumented
       - offers
   /api/2/v/contracts/{contractId}/offerfilters/{listType}/products:
     get:
@@ -3975,10 +3976,10 @@ paths:
             application/json:
               schema:
                 type: object
-          description: This is a generated entry and needs to be described.
+          description: List of the filters per product to ignore the individual offers.
+      summary: Get all the filters product-wise for the given contract.
       tags:
       - internal
-      - undocumented
       - offers
   /api/2/v/contracts/{contractId}/offerfilters/{listType}/products/{productId}:
     get:
@@ -4012,11 +4013,11 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-          description: This is a generated entry and needs to be described.
+                $ref: '#/components/schemas/OfferFilterApiResponse'
+          description: List of the filters to ignore the individual offers.
+      summary: Get all the filters of a given product for the given contract.
       tags:
       - internal
-      - undocumented
       - products
     put:
       operationId: putProductFiltersVendorV2
@@ -4048,18 +4049,19 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-        description: This is a generated entry and needs to be described.
+              $ref: '#/components/schemas/OfferFilterRequest'
+        description: List of the filter that needs to be considered to ignore the
+          individual offers.
       responses:
         "200":
           content:
             application/json:
               schema:
-                type: object
-          description: This is a generated entry and needs to be described.
+                $ref: '#/components/schemas/OfferFilterApiResponse'
+          description: List of the filters that have been sent as the request body.
+      summary: Store the filters of a given product for the given contract.
       tags:
       - internal
-      - undocumented
       - products
   /api/2/v/contracts/{contractId}/offerfilters/:listType/products/query:
     post:
@@ -4117,10 +4119,12 @@ paths:
             application/json:
               schema:
                 type: object
-          description: This is a generated entry and needs to be described.
+          description: List of the filters to ignore the individual offers. Offers
+            are filtered against vendor name either for all the domain or for a specific
+            domain.
+      summary: Get all the vendor filters for the given contract.
       tags:
       - internal
-      - undocumented
       - offers
     put:
       operationId: putOfferFiltersVendorV2
@@ -4146,17 +4150,18 @@ paths:
           application/json:
             schema:
               type: object
-        description: This is a generated entry and needs to be described.
+        description: List of the filters that needs to be considered to ignore the
+          individual offers.
       responses:
         "200":
           content:
             application/json:
               schema:
                 type: object
-          description: This is a generated entry and needs to be described.
+          description: List of the filters that have been sent as the request body.
+      summary: Store the vendor filters for the given contract.
       tags:
       - internal
-      - undocumented
       - offers
   /api/2/v/contracts/{contractId}/offers:
     post:
@@ -5324,6 +5329,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Invalid request body is specified
+      summary: Request a new password
       tags:
       - internal
       - account
@@ -5351,6 +5357,7 @@ paths:
                   Passwort-Vergessen Funktion erneut.
                 type: string
           description: Password didn't change successfully.
+      summary: Reset the password
       tags:
       - internal
       - account
@@ -5396,6 +5403,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/GetManufacturerV3ApiResponse'
           description: Contract Information
+      summary: Get the contract information
       tags:
       - internal
       - companies
@@ -7272,6 +7280,48 @@ components:
       required:
       - label
       - stringValue
+    OfferFilterRequest:
+      items:
+        $ref: '#/components/schemas/AndOfferFilter'
+      type: array
+    ConstantOfferFilter:
+      example:
+        constant:
+          value: true
+      properties:
+        constant:
+          $ref: '#/components/schemas/ConstantOfferFilter_constant'
+    AndOfferFilter:
+      example:
+        and:
+          filters:
+          - constant:
+              value: true
+          - constant:
+              value: true
+      properties:
+        and:
+          $ref: '#/components/schemas/AndOfferFilter_and'
+    OfferFilterApiResponse:
+      example:
+        data:
+        - and:
+            filters:
+            - constant:
+                value: true
+            - constant:
+                value: true
+        - and:
+            filters:
+            - constant:
+                value: true
+            - constant:
+                value: true
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/AndOfferFilter'
+          type: array
     PluginRegistration:
       example:
         metricsUrl: metricsUrl
@@ -8229,6 +8279,7 @@ components:
             placed
           type: string
         creationDate:
+          description: Date when the order is created in UTC
           format: date-time
           type: string
         currency:
@@ -8766,6 +8817,7 @@ components:
         the option to filter the results using the `offerSelectors`.
       properties:
         day:
+          description: The day for which to return the prices in ISO 8601
           format: date-time
           type: string
         offers:
@@ -8848,6 +8900,7 @@ components:
           description: The delivery costs
           type: number
         timestamp:
+          description: The timestamp of when the price was found
           format: date-time
           type: string
       required:
@@ -9002,6 +9055,7 @@ components:
         sid: sid
       properties:
         expirationDate:
+          description: The date when contract will expire.
           format: date-time
           type: string
         description:
@@ -9014,6 +9068,7 @@ components:
           - Pricemonitor for resellers
           type: string
         creationDate:
+          description: The creation date of the contract.
           format: date-time
           type: string
         sid:
@@ -9055,6 +9110,24 @@ components:
           type: string
         url:
           type: string
+    ConstantOfferFilter_constant:
+      example:
+        value: true
+      properties:
+        value:
+          type: boolean
+    AndOfferFilter_and:
+      example:
+        filters:
+        - constant:
+            value: true
+        - constant:
+            value: true
+      properties:
+        filters:
+          items:
+            $ref: '#/components/schemas/ConstantOfferFilter'
+          type: array
     PutPluginRegistrationRequest_allOf:
       properties:
         version:
