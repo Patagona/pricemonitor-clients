@@ -11,14 +11,13 @@
  */
 
 
-export interface StringInSequence { 
-    type: StringInSequence.TypeEnum;
+/**
+ * A basic task type containing the URL. Additional fields can be contained depending on specific task type.
+ */
+export interface GenericTaskWithUrlAllOf { 
+    /**
+     * The URL of the task
+     */
+    url: string;
 }
-export namespace StringInSequence {
-    export type TypeEnum = 'StringInSequence';
-    export const TypeEnum = {
-        StringInSequence: 'StringInSequence' as TypeEnum
-    };
-}
-
 

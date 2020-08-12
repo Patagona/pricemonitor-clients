@@ -11,14 +11,10 @@
  */
 
 
-export interface StringInSequence { 
-    type: StringInSequence.TypeEnum;
+export interface UpdateTaskRequestV2AllOf { 
+    /**
+     * The contract SID to update the task for
+     */
+    contractId: string;
 }
-export namespace StringInSequence {
-    export type TypeEnum = 'StringInSequence';
-    export const TypeEnum = {
-        StringInSequence: 'StringInSequence' as TypeEnum
-    };
-}
-
 

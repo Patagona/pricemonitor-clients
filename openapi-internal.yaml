@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5189
+  version: 0.0.5190
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -3414,6 +3414,7 @@ paths:
       - settings
   /api/2/m/contracts/{contractId}/settings/monitoring:
     get:
+      description: Get the current monitoring settings for a given contract
       operationId: getMonitoringSettingsManufacturerV2
       parameters:
       - description: ID of the contract
@@ -3431,12 +3432,12 @@ paths:
             application/json:
               schema:
                 type: object
-          description: This is a generated entry and needs to be described.
+          description: The current monitoring settings object
       tags:
       - internal
-      - undocumented
       - settings
     put:
+      description: Update the monitoring settings for a given contract
       operationId: putMonitoringSettingsManufacturerV2
       parameters:
       - description: ID of the contract
@@ -3453,20 +3454,20 @@ paths:
           application/json:
             schema:
               type: object
-        description: This is a generated entry and needs to be described.
+        description: The monitoring settings object to be written to the database
       responses:
         "200":
           content:
             application/json:
               schema:
                 type: object
-          description: This is a generated entry and needs to be described.
+          description: Returns the successfully updated monitoring settings object
       tags:
       - internal
-      - undocumented
       - settings
   /api/2/m/contracts/{contractId}/tasks:
     get:
+      description: Returns a list of task objects for the given contract
       operationId: getTasksManufacturerV2
       parameters:
       - description: ID of the contract
@@ -3553,13 +3554,15 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-          description: This is a generated entry and needs to be described.
+                items:
+                  $ref: '#/components/schemas/GenericTask'
+                type: array
+          description: The list of tasks for the given contract
       tags:
       - internal
-      - undocumented
       - tasks
     post:
+      description: Create a new task
       operationId: createTaskManufacturerV2
       parameters:
       - description: ID of the contract
@@ -3575,21 +3578,21 @@ paths:
         content:
           application/json:
             schema:
-              type: object
+              $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.CreateTaskBodyV2'
         description: This is a generated entry and needs to be described.
       responses:
         "200":
           content:
             application/json:
               schema:
-                type: object
-          description: This is a generated entry and needs to be described.
+                $ref: '#/components/schemas/GenericTaskWithUrl'
+          description: The new task was successfully created
       tags:
       - internal
-      - undocumented
       - tasks
   /api/2/m/contracts/{contractId}/tasks/{taskId}:
     get:
+      description: Get the task designated by the taskId parameter
       operationId: getTaskManufacturerV2
       parameters:
       - description: ID of the contract
@@ -3613,13 +3616,15 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-          description: This is a generated entry and needs to be described.
+                $ref: '#/components/schemas/GenericTask'
+          description: The task was found and is returned
+        "404":
+          description: No task with given taskId was found
       tags:
       - internal
-      - undocumented
       - tasks
     put:
+      description: Update an existing task
       operationId: updateTaskManufacturerV2
       parameters:
       - description: ID of the contract
@@ -3642,19 +3647,19 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-        description: This is a generated entry and needs to be described.
+              $ref: '#/components/schemas/UpdateTaskRequestV2'
+        description: The new task object to be written to the database
       responses:
         "200":
           content:
             application/json:
               schema:
-                type: object
-          description: This is a generated entry and needs to be described.
+                $ref: '#/components/schemas/GenericTask'
+          description: The task was successfully updated and the given data is returned
       tags:
       - internal
-      - undocumented
   /api/2/m/contracts/{contractId}/tasks/{taskId}/data:
+    description: Returns the payload data given during creation of the requested task
     get:
       operationId: getTaskDataManufacturerV2
       parameters:
@@ -3680,10 +3685,11 @@ paths:
             application/json:
               schema:
                 type: object
-          description: This is a generated entry and needs to be described.
+          description: The payload data of the requested task is returned
+        "404":
+          description: The task with the given ID could not be found
       tags:
       - internal
-      - undocumented
       - tasks
   /api/2/users/{userId}/role/{roleName}:
     delete:
@@ -8159,6 +8165,84 @@ components:
         name:
           type: string
       type: object
+    GenericTask:
+      description: A basic task type. Additional fields can be contained depending
+        on specific task type.
+      example:
+        result: '{}'
+        taskType: taskType
+        failures:
+        - '{}'
+        - '{}'
+        failureCode: failureCode
+        data: '{}'
+        finishDate: 2000-01-23T04:56:07.000+00:00
+        state: pending
+        creationDate: 2000-01-23T04:56:07.000+00:00
+        startDate: 2000-01-23T04:56:07.000+00:00
+        taskId: taskId
+        parentId: parentId
+      properties:
+        creationDate:
+          description: The creation date of this task
+          format: date-time
+          type: string
+        startDate:
+          description: The timestamp of when processing of this task was started
+          format: date-time
+          type: string
+        finishDate:
+          description: The timestamp of when processing of this task finished
+          format: date-time
+          type: string
+        state:
+          description: The current processing state of this task
+          enum:
+          - pending
+          - executing
+          - succeeded
+          - failed
+          type: string
+        failures:
+          description: Schemaless. If any errors occured during processing, these
+            will be contained here.
+          items:
+            type: object
+          type: array
+        taskId:
+          description: The unique ID of this task
+          type: string
+        parentId:
+          description: The parents unique taskId, if any parent exists
+          type: string
+        taskType:
+          description: The identifier string for the type of task
+          type: string
+        data:
+          description: Schemaless. Contains the payload of the task given during task
+            creation.
+          type: object
+        result:
+          description: Schemaless. Contains the processing result for this task. Type
+            is dependent on task type.
+          type: object
+        failureCode:
+          description: If any error occured the error code for this error will be
+            contained here.
+          type: string
+      required:
+      - creationDate
+      - state
+      - taskId
+      - taskType
+    GenericTaskWithUrl:
+      allOf:
+      - $ref: '#/components/schemas/GenericTask'
+      - $ref: '#/components/schemas/GenericTaskWithUrl_allOf'
+    UpdateTaskRequestV2:
+      allOf:
+      - $ref: '#/components/schemas/GenericTask'
+      - $ref: '#/components/schemas/UpdateTaskRequestV2_allOf'
     CreateCompanyApiResponse:
       additionalProperties: false
       example:
@@ -8908,6 +8992,25 @@ components:
       - price
       - timestamp
       type: object
+    com.patagona.pricemonitor.share.api.CreateTaskBodyV2:
+      additionalProperties: false
+      description: Definition of a task to be created.
+      properties:
+        taskType:
+          description: The type of the task to be created. Can be any of [alert, backend.tasks.pricemonitor.offers.monitoring,
+            backend.tasks.pricemonitor.offers.preprocessing, backend.tasks.pricemonitor.callback]
+          type: string
+        data:
+          additionalProperties: false
+          properties: {}
+          type: object
+      required:
+      - taskType
+      type: object
+    org.json4s.JValue:
+      additionalProperties: false
+      properties: {}
+      type: object
     com.patagona.pricemonitor.share.api.PutResetPasswordRequest:
       additionalProperties: false
       description: Request body for resetting the password
@@ -9368,6 +9471,22 @@ components:
           type: integer
         name:
           type: string
+    GenericTaskWithUrl_allOf:
+      description: A basic task type containing the URL. Additional fields can be
+        contained depending on specific task type.
+      properties:
+        url:
+          description: The URL of the task
+          type: string
+      required:
+      - url
+    UpdateTaskRequestV2_allOf:
+      properties:
+        contractId:
+          description: The contract SID to update the task for
+          type: string
+      required:
+      - contractId
     PostOrdersBulkApiResponse_data:
       example:
         orders:

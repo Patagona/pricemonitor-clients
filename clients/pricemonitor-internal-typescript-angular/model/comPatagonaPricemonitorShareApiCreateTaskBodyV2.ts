@@ -9,19 +9,16 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { Tag } from './tag';
 
 
 /**
- * A product defined by its attributes
+ * Definition of a task to be created.
  */
-export interface Product { 
-    tags?: Array<Tag>;
-    gtin?: number;
-    maxPriceBoundary?: number;
-    minPriceBoundary?: number;
-    name?: string;
-    productId?: string;
-    referencePrice?: number;
+export interface ComPatagonaPricemonitorShareApiCreateTaskBodyV2 { 
+    /**
+     * The type of the task to be created. Can be any of [alert, backend.tasks.pricemonitor.offers.monitoring, backend.tasks.pricemonitor.offers.preprocessing, backend.tasks.pricemonitor.callback]
+     */
+    taskType: string;
+    data?: object;
 }
 
