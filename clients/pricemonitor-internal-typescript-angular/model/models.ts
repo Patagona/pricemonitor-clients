@@ -15,6 +15,8 @@ export * from './booleanValueProvider';
 export * from './bulkedPostProductsApiResponse';
 export * from './callbacks';
 export * from './callbacksPricemonitorCompleted';
+export * from './comPatagonaPricemonitorShareApiAdminCompanyV2';
+export * from './comPatagonaPricemonitorShareApiAdminContractV2';
 export * from './comPatagonaPricemonitorShareApiContractStats';
 export * from './comPatagonaPricemonitorShareApiCreateTaskBodyV2';
 export * from './comPatagonaPricemonitorShareApiCustomerOrderItemV2';
@@ -28,6 +30,9 @@ export * from './comPatagonaPricemonitorShareApiPricesByDayByProductIdRequestV2'
 export * from './comPatagonaPricemonitorShareApiPricesByDayByProductIdResponsePricePointV2';
 export * from './comPatagonaPricemonitorShareApiPricesByDayByProductIdResponseV2';
 export * from './comPatagonaPricemonitorShareApiPutResetPasswordRequest';
+export * from './comPatagonaPricemonitorShareApiUserCompany';
+export * from './comPatagonaPricemonitorShareApiUserContract';
+export * from './comPatagonaPricemonitorShareApiUserInfo';
 export * from './comparisonFilter';
 export * from './constantFilter';
 export * from './constantOfferFilter';

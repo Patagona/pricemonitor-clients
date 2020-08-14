@@ -12,20 +12,25 @@
 
 
 /**
- * A single price point of a product
+ * This case class is used for serializing contract-information for the account-endpoints
  */
-export interface ComPatagonaPricemonitorShareApiPricesByDayByProductIdResponsePricePointV2 { 
+export interface ComPatagonaPricemonitorShareApiUserContract { 
     /**
-     * The price
+     * The contract\'s name
      */
-    price: number;
+    name: string;
     /**
-     * The delivery costs
+     * The contract\'s id
      */
-    deliveryCosts: number;
+    id: number;
+    type: string;
     /**
-     * The timestamp of when the price was found
+     * The contract\'s string-id
      */
-    timestamp: string;
+    sid: string;
+    /**
+     * The contract status
+     */
+    active: boolean;
 }
 

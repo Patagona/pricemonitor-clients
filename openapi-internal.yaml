@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5196
+  version: 0.0.5198
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -1112,7 +1112,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserInfo'
+                $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.UserInfo'
           description: No response was specified
       summary: Details of the current user
       tags:
@@ -2114,6 +2114,10 @@ paths:
         style: simple
       responses:
         "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.AdminCompanyV2'
           description: A list of companies was loaded
       summary: Get a list of all companies
       tags:
@@ -8115,33 +8119,6 @@ components:
       - end
       - start
     UserInfo:
-      example:
-        companies:
-        - name: name
-          id: 0
-          contracts:
-          - name: name
-            active: true
-            id: id
-            type: type
-          - name: name
-            active: true
-            id: id
-            type: type
-        - name: name
-          id: 0
-          contracts:
-          - name: name
-            active: true
-            id: id
-            type: type
-          - name: name
-            active: true
-            id: id
-            type: type
-        name: name
-        id: 6
-        email: email
       properties:
         companies:
           items:
@@ -8602,6 +8579,143 @@ components:
       required:
       - data
       type: object
+    com.patagona.pricemonitor.share.api.UserInfo:
+      additionalProperties: false
+      description: This case class is used for serializing user-information for the
+        account-endpoints
+      example:
+        companies:
+        - name: name
+          id: 0.8008281904610115
+          contracts:
+          - name: name
+            active: true
+            id: 6.027456183070403
+            type: type
+            sid: sid
+          - name: name
+            active: true
+            id: 6.027456183070403
+            type: type
+            sid: sid
+        - name: name
+          id: 0.8008281904610115
+          contracts:
+          - name: name
+            active: true
+            id: 6.027456183070403
+            type: type
+            sid: sid
+          - name: name
+            active: true
+            id: 6.027456183070403
+            type: type
+            sid: sid
+        roles:
+        - roles
+        - roles
+        name: name
+        lastActiveDate: lastActiveDate
+        id: 1.4658129805029452
+        email: email
+      properties:
+        name:
+          description: The user's name
+          type: string
+        companies:
+          description: The companies of the user
+          items:
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.UserCompany'
+          type: array
+        lastActiveDate:
+          description: The last time the user was active
+          type: string
+        email:
+          description: The user's mail-address
+          type: string
+        id:
+          description: The id of the user
+          type: number
+        roles:
+          description: The user's role
+          items:
+            type: string
+          type: array
+      required:
+      - companies
+      - email
+      - id
+      - lastActiveDate
+      - name
+      - roles
+      type: object
+    com.patagona.pricemonitor.share.api.UserCompany:
+      additionalProperties: false
+      description: This case class is used for serializing company-information for
+        the account-endpoints
+      example:
+        name: name
+        id: 0.8008281904610115
+        contracts:
+        - name: name
+          active: true
+          id: 6.027456183070403
+          type: type
+          sid: sid
+        - name: name
+          active: true
+          id: 6.027456183070403
+          type: type
+          sid: sid
+      properties:
+        id:
+          description: The company's id
+          type: number
+        name:
+          description: The company's name
+          type: string
+        contracts:
+          description: The company's contracts
+          items:
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.UserContract'
+          type: array
+      required:
+      - contracts
+      - id
+      - name
+      type: object
+    com.patagona.pricemonitor.share.api.UserContract:
+      additionalProperties: false
+      description: This case class is used for serializing contract-information for
+        the account-endpoints
+      example:
+        name: name
+        active: true
+        id: 6.027456183070403
+        type: type
+        sid: sid
+      properties:
+        name:
+          description: The contract's name
+          type: string
+        id:
+          description: The contract's id
+          type: number
+        type:
+          type: string
+        sid:
+          description: The contract's string-id
+          type: string
+        active:
+          description: The contract status
+          type: boolean
+      required:
+      - active
+      - id
+      - name
+      - sid
+      - type
+      type: object
     GetOffersApiResponse:
       additionalProperties: false
       example:
@@ -8860,6 +8974,83 @@ components:
           type: array
       required:
       - data
+      type: object
+    com.patagona.pricemonitor.share.api.AdminCompanyV2:
+      additionalProperties: false
+      description: A company with its contracts used for data representation in the
+        admin-endpoint
+      example:
+        name: name
+        id: 0.8008281904610115
+        contracts:
+        - description: description
+          active: true
+          id: id
+          creationDate: 2000-01-23T04:56:07.000+00:00
+          type: Pricemonitor for manufacturers
+          expirationDate: 2000-01-23T04:56:07.000+00:00
+        - description: description
+          active: true
+          id: id
+          creationDate: 2000-01-23T04:56:07.000+00:00
+          type: Pricemonitor for manufacturers
+          expirationDate: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: The id of the company
+          type: number
+        name:
+          description: The company's name
+          type: string
+        contracts:
+          description: A list of the comapny's contracts
+          items:
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.AdminContractV2'
+          type: array
+      required:
+      - contracts
+      - id
+      - name
+      type: object
+    com.patagona.pricemonitor.share.api.AdminContractV2:
+      additionalProperties: false
+      description: A contract used for data representation in the admin-endpoint
+      example:
+        description: description
+        active: true
+        id: id
+        creationDate: 2000-01-23T04:56:07.000+00:00
+        type: Pricemonitor for manufacturers
+        expirationDate: 2000-01-23T04:56:07.000+00:00
+      properties:
+        expirationDate:
+          description: The date and time the contract expires
+          format: date-time
+          type: string
+        description:
+          description: The contract's description
+          type: string
+        id:
+          description: The id of the contract
+          type: string
+        creationDate:
+          description: The date and time the contract was created
+          format: date-time
+          type: string
+        type:
+          enum:
+          - Pricemonitor for manufacturers
+          - Pricemonitor for resellers
+          type: string
+        active:
+          description: The contract-status
+          type: boolean
+      required:
+      - active
+      - creationDate
+      - description
+      - id
+      - type
       type: object
     com.patagona.pricemonitor.share.api.ContractStats:
       additionalProperties: false
@@ -9435,11 +9626,6 @@ components:
         messageId:
           type: string
     UserInfo_contracts:
-      example:
-        name: name
-        active: true
-        id: id
-        type: type
       properties:
         active:
           type: boolean
@@ -9450,18 +9636,6 @@ components:
         type:
           type: string
     UserInfo_companies:
-      example:
-        name: name
-        id: 0
-        contracts:
-        - name: name
-          active: true
-          id: id
-          type: type
-        - name: name
-          active: true
-          id: id
-          type: type
       properties:
         contracts:
           items:
