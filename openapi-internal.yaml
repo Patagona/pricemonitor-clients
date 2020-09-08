@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5272
+  version: 0.0.5273
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -92,7 +92,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/definitions/GetPriceRecommendationsResponse'
+                $ref: '#/components/schemas/GetPriceRecommendationsResponse'
           description: No response was specified
       summary: Get price recommendations (deprecated)
       tags:
@@ -6964,6 +6964,7 @@ components:
         maxDeliveryTime: 1
         price: 7.061401241503109
         domain: domain
+        contractId: contractId
         attributes:
         - name: name
           value: value
@@ -6980,6 +6981,8 @@ components:
           type: boolean
         creationDate:
           format: date-time
+          type: string
+        contractId:
           type: string
         currency:
           type: string
@@ -8762,6 +8765,7 @@ components:
             maxDeliveryTime: 1
             price: 7.061401241503109
             domain: domain
+            contractId: contractId
             attributes:
             - name: name
               value: value
@@ -8785,6 +8789,7 @@ components:
             maxDeliveryTime: 1
             price: 7.061401241503109
             domain: domain
+            contractId: contractId
             attributes:
             - name: name
               value: value
@@ -8822,6 +8827,7 @@ components:
             maxDeliveryTime: 1
             price: 7.061401241503109
             domain: domain
+            contractId: contractId
             attributes:
             - name: name
               value: value
@@ -8845,6 +8851,7 @@ components:
             maxDeliveryTime: 1
             price: 7.061401241503109
             domain: domain
+            contractId: contractId
             attributes:
             - name: name
               value: value
@@ -8929,6 +8936,7 @@ components:
           maxDeliveryTime: 1
           price: 7.061401241503109
           domain: domain
+          contractId: contractId
           attributes:
           - name: name
             value: value
@@ -8952,6 +8960,7 @@ components:
           maxDeliveryTime: 1
           price: 7.061401241503109
           domain: domain
+          contractId: contractId
           attributes:
           - name: name
             value: value
@@ -9300,6 +9309,7 @@ components:
           maxDeliveryTime: 1
           price: 7.061401241503109
           domain: domain
+          contractId: contractId
           attributes:
           - name: name
             value: value
@@ -9323,6 +9333,7 @@ components:
           maxDeliveryTime: 1
           price: 7.061401241503109
           domain: domain
+          contractId: contractId
           attributes:
           - name: name
             value: value
