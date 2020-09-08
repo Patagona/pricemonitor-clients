@@ -9,10 +9,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ProductAndOffers2 } from './productAndOffers2';
+import { ComPatagonaPricemonitorShareApiApplicationVersion } from './comPatagonaPricemonitorShareApiApplicationVersion';
 
 
-export interface GetOffersApiResponse { 
-    data: Array<ProductAndOffers2>;
+export interface VersionApiResponse { 
+    data: ComPatagonaPricemonitorShareApiApplicationVersion;
 }
 

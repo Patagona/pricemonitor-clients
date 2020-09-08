@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5268
+  version: 0.0.5272
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -28,6 +28,20 @@ tags:
 - description: See all of your tasks
   name: tasks
 paths:
+  /version:
+    get:
+      operationId: version
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VersionApiResponse'
+          description: Current application version.
+      summary: Get the current application version
+      tags:
+      - control-panel
+      - internal
   /api/1/{contractId}/products/analysis/pricerecommendations:
     get:
       operationId: getPriceRecommendations
@@ -8220,6 +8234,17 @@ components:
       allOf:
       - $ref: '#/components/schemas/GenericTask'
       - $ref: '#/components/schemas/UpdateTaskRequestV2_allOf'
+    VersionApiResponse:
+      additionalProperties: false
+      example:
+        data:
+          version: version
+      properties:
+        data:
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ApplicationVersion'
+      required:
+      - data
+      type: object
     CreateCompanyApiResponse:
       additionalProperties: false
       example:
@@ -9243,6 +9268,18 @@ components:
           $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.GetContractResponseV3'
       required:
       - data
+      type: object
+    com.patagona.pricemonitor.share.api.ApplicationVersion:
+      additionalProperties: false
+      description: Current api version.
+      example:
+        version: version
+      properties:
+        version:
+          description: version represented as X.Y.Z
+          type: string
+      required:
+      - version
       type: object
     ProductAndOffers_2:
       example:
