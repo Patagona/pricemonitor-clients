@@ -5,7 +5,6 @@ import { HttpClient } from '@angular/common/http';
 
 import { AccountService } from './api/account.service';
 import { CompaniesService } from './api/companies.service';
-import { ControlPanelService } from './api/controlPanel.service';
 import { ControlpanelService } from './api/controlpanel.service';
 import { FeedsService } from './api/feeds.service';
 import { InternalService } from './api/internal.service';
