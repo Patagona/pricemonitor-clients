@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5323
+  version: 0.0.5325
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -1292,6 +1292,10 @@ paths:
       - offers
   /api/v3/manufacturer/contracts/{contractId}/offers/stats/query:
     post:
+      description: 'This operation is used to get offer statistics (e.g. offer count,
+        average price) grouped by product and domain. Warning: This endpoint contains
+        complex query structure and will be replaced in the future. Please note that
+        offer statistics can only be computed for at maximum 2500 products at a time.'
       parameters:
       - description: ID of the contract
         example: qbcxvb
@@ -1307,25 +1311,25 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/PostOfferStatisticsRequest'
-        description: The request body specifies which offers will be taken into account
-          for the calculation of the offer statistics. The attribute names on the
-          left side of the comparison filter must match the attribute names in an
-          offer. The default use case is to specify a ComparisonFilter with a StringValueProvider
-          on the left side pointing to the attribute productId, a SequenceOfStringValueProvider
-          on the right side containing the productIds over which to calculate the
-          offer statistics and a StringInSequence as a comparison. Please note that
-          offer statistics can only be computed for 2500 products at a time.
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StatisticsByQueryApiResponse'
-          description: Returns either an Error or a list of offer statistics, one
-            for every product matching the given filter.
+                $ref: '#/components/schemas/PostOfferStatisticsApiResponse'
+          description: Returns a list of offer statistics per product.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+          description: Returned in case of unparsable request body JSON or unsupported
+            filter.
       tags:
       - products
+      - internal
+    summary: Get offer statistics per product
   /api/v3/manufacturer/contracts/{contractId}/products:
     delete:
       operationId: deleteProductsManufacturerV3
@@ -1622,6 +1626,10 @@ paths:
       - offers
   /api/v3/vendor/contracts/{contractId}/offers/stats/query:
     post:
+      description: 'This operation is used to get offer statistics (e.g. offer count,
+        average price) grouped by product and domain. Warning: This endpoint contains
+        complex query structure and will be replaced in the future. Please note that
+        offer statistics can only be computed for at maximum 2500 products at a time.'
       parameters:
       - description: ID of the contract
         example: qbcxvb
@@ -1637,25 +1645,25 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/PostOfferStatisticsRequest'
-        description: The request body specifies which offers will be taken into account
-          for the calculation of the offer statistics. The attribute names on the
-          left side of the comparison filter must match the attribute names in an
-          offer. The default use case is to specify a ComparisonFilter with a StringValueProvider
-          on the left side pointing to the attribute productId, a SequenceOfStringValueProvider
-          on the right side containing the productIds over which to calculate the
-          offer statistics and a StringInSequence as a comparison. Please note that
-          offer statistics can only be computed for 2500 products at a time.
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StatisticsByQueryApiResponse'
-          description: Returns either an Error or a list of offer statistics, one
-            for every product matching the given filter.
+                $ref: '#/components/schemas/PostOfferStatisticsApiResponse'
+          description: Returns a list of offer statistics per product.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+          description: Returned in case of unparsable request body JSON or unsupported
+            filter.
       tags:
       - products
+      - internal
+    summary: Get offer statistics per product
   /api/v3/vendor/contracts/{contractId}/orders:
     delete:
       operationId: deleteOrders
@@ -7735,7 +7743,11 @@ components:
       - order
     PostOfferStatisticsRequest:
       example:
-        filter: ""
+        filter:
+          comparison: StringInSequence
+          left: '{}'
+          right: '{}'
+          type: ComparisonFilter
         ownShopNames:
           key:
           - ownShopNames
@@ -7746,12 +7758,7 @@ components:
         includeDeliveryCosts: true
       properties:
         filter:
-          oneOf:
-          - $ref: '#/components/schemas/OrFilter'
-          - $ref: '#/components/schemas/AndFilter'
-          - $ref: '#/components/schemas/NotFilter'
-          - $ref: '#/components/schemas/ConstantFilter'
-          - $ref: '#/components/schemas/ComparisonFilter'
+          $ref: '#/components/schemas/OfferStatisticsFilterForProducts'
         includeDeliveryCosts:
           type: boolean
         ownShopNames:
@@ -7759,6 +7766,8 @@ components:
             items:
               type: string
             type: array
+          description: Providing own shops names enables calculating shop positions.
+            The keys are domain names. The values are lists of shop names.
           type: object
         range:
           $ref: '#/components/schemas/TimeRange'
@@ -7767,6 +7776,119 @@ components:
       - includeDeliveryCosts
       - ownShopNames
       - range
+    OfferStatisticsFilterForProducts:
+      description: Specific filter for certain products
+      example:
+        comparison: StringInSequence
+        left: '{}'
+        right: '{}'
+        type: ComparisonFilter
+      properties:
+        type:
+          enum:
+          - ComparisonFilter
+          type: string
+        left:
+          properties:
+            type:
+              enum:
+              - StringValueProvider
+              type: string
+            attributeName:
+              enum:
+              - productId
+              type: string
+        right:
+          properties:
+            type:
+              enum:
+              - SequenceOfStringConstantValueProvider
+              type: string
+            value:
+              description: List of internal pricemonitor product ids
+              items:
+                type: string
+              type: array
+        comparison:
+          enum:
+          - StringInSequence
+          type: string
+      type: object
+    PostOfferStatisticsApiResponse:
+      example:
+        data:
+        - productId: productId
+          statsByDomain:
+            key:
+              offerCount: 4
+              minPrice: 9.99
+              averagePrice: 14.97
+              ownPosition:
+                price: 12.49
+                position: 2
+        - productId: productId
+          statsByDomain:
+            key:
+              offerCount: 4
+              minPrice: 9.99
+              averagePrice: 14.97
+              ownPosition:
+                price: 12.49
+                position: 2
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/ProductOfferStatistics'
+          type: array
+      type: object
+    ProductOfferStatistics:
+      example:
+        productId: productId
+        statsByDomain:
+          key:
+            offerCount: 4
+            minPrice: 9.99
+            averagePrice: 14.97
+            ownPosition:
+              price: 12.49
+              position: 2
+      properties:
+        productId:
+          description: The internal product id of the pricemonitor
+          type: string
+        statsByDomain:
+          additionalProperties:
+            $ref: '#/components/schemas/OfferStatistics'
+          description: The offer statistics are grouped by domain.
+          type: object
+      type: object
+    OfferStatistics:
+      example:
+        offerCount: 4
+        minPrice: 9.99
+        averagePrice: 14.97
+        ownPosition:
+          price: 12.49
+          position: 2
+      properties:
+        averagePrice:
+          description: The average price of the offers
+          format: double
+          type: number
+        minPrice:
+          description: The lowest price of the offers
+          format: double
+          type: number
+        offerCount:
+          description: The number of the found offers
+          type: integer
+        ownPosition:
+          $ref: '#/components/schemas/ShopRank'
+      required:
+      - averagePrice
+      - minPrice
+      - offerCount
+      type: object
     Product:
       description: A product defined by its attributes
       example:
@@ -7996,9 +8118,6 @@ components:
       - attributeName
       - type
     ShopRank:
-      example:
-        price: 5.637376656633329
-        position: 5
       properties:
         position:
           type: integer
@@ -8880,30 +8999,6 @@ components:
       required:
       - data
       type: object
-    StatisticsByQueryApiResponse:
-      additionalProperties: false
-      example:
-        data:
-        - offerCount: 1
-          minPrice: 6.027456183070403
-          averagePrice: 0.8008281904610115
-          ownPosition:
-            price: 5.637376656633329
-            position: 5
-        - offerCount: 1
-          minPrice: 6.027456183070403
-          averagePrice: 0.8008281904610115
-          ownPosition:
-            price: 5.637376656633329
-            position: 5
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/ProductOfferStats_2'
-          type: array
-      required:
-      - data
-      type: object
     PutProductsApiResponse:
       additionalProperties: false
       example:
@@ -9362,29 +9457,6 @@ components:
         product:
           $ref: '#/components/schemas/ApiProduct'
       type: object
-    ProductOfferStats_2:
-      example:
-        offerCount: 1
-        minPrice: 6.027456183070403
-        averagePrice: 0.8008281904610115
-        ownPosition:
-          price: 5.637376656633329
-          position: 5
-      properties:
-        averagePrice:
-          format: double
-          type: number
-        minPrice:
-          format: double
-          type: number
-        offerCount:
-          type: integer
-        ownPosition:
-          $ref: '#/components/schemas/ShopRank'
-      required:
-      - averagePrice
-      - minPrice
-      - offerCount
     com.patagona.pricemonitor.share.api.GetContractResponseV3:
       additionalProperties: false
       description: Contract information

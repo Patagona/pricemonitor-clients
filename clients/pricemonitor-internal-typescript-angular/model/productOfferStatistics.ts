@@ -9,21 +9,17 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { FeedFields } from './feedFields';
+import { OfferStatistics } from './offerStatistics';
 
 
-export interface Feed { 
-    contractId?: string;
-    csvDecimalSeparator?: string;
-    csvSeparator?: string;
-    deltaUrl?: string;
-    fields?: Array<FeedFields>;
-    format?: string;
-    id?: string;
-    lastAccessed?: string;
-    lastDeletion?: string;
-    name?: string;
-    url?: string;
-    version?: number;
+export interface ProductOfferStatistics { 
+    /**
+     * The internal product id of the pricemonitor
+     */
+    productId?: string;
+    /**
+     * The offer statistics are grouped by domain.
+     */
+    statsByDomain?: { [key: string]: OfferStatistics; };
 }
 

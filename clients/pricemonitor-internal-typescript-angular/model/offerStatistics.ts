@@ -9,21 +9,22 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { FeedFields } from './feedFields';
+import { ShopRank } from './shopRank';
 
 
-export interface Feed { 
-    contractId?: string;
-    csvDecimalSeparator?: string;
-    csvSeparator?: string;
-    deltaUrl?: string;
-    fields?: Array<FeedFields>;
-    format?: string;
-    id?: string;
-    lastAccessed?: string;
-    lastDeletion?: string;
-    name?: string;
-    url?: string;
-    version?: number;
+export interface OfferStatistics { 
+    /**
+     * The average price of the offers
+     */
+    averagePrice: number;
+    /**
+     * The lowest price of the offers
+     */
+    minPrice: number;
+    /**
+     * The number of the found offers
+     */
+    offerCount: number;
+    ownPosition?: ShopRank;
 }
 
