@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5343
+  version: 0.0.5345
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -8254,20 +8254,6 @@ components:
       required:
       - end
       - start
-    UserInfo:
-      properties:
-        companies:
-          items:
-            $ref: '#/components/schemas/UserInfo_companies'
-          type: array
-        email:
-          type: string
-        id:
-          format: int64
-          type: integer
-        name:
-          type: string
-      type: object
     UserSignupRequest:
       example:
         name: name
@@ -8480,7 +8466,7 @@ components:
           description: A relation from the products in your system to the pricemonitor.
             Currently it must contain exactly one element.
           items:
-            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.CustomerOrderProductMappingV2'
+            $ref: '#/components/schemas/com_patagona_pricemonitor_share_api_CustomerOrderV2_productMappings'
           type: array
         origin:
           description: Origin of an order, e.g. the online shop were the order is
@@ -8536,27 +8522,6 @@ components:
       - quantity
       - taxPercentage
       - unitPrice
-      type: object
-    com.patagona.pricemonitor.share.api.CustomerOrderProductMappingV2:
-      additionalProperties: false
-      description: We originally planned to support complex mappings, but for sake
-        of maintainability we restrict the mappings to itemId-> (customerProductId
-        or productId)
-      example:
-        source: source
-        target: target
-      properties:
-        source:
-          description: Identifier field within item. Only valid value is 'itemId'
-          type: string
-        target:
-          description: Must be 'customerProductId' or 'productId' since plugins are
-            still publishing both values. The semantics are actually the same. In
-            both cases they address the customerProductId.
-          type: string
-      required:
-      - source
-      - target
       type: object
     PostOrdersBulkApiResponse:
       example:
@@ -9282,36 +9247,13 @@ components:
           description: A list of `PricesByDayByProductIdResponsePricePointV2` elements
             containing the prices
           items:
-            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PricesByDayByProductIdResponsePricePointV2'
+            $ref: '#/components/schemas/com_patagona_pricemonitor_share_api_PricesByDayByProductIdResponseV2_prices'
           type: array
       required:
       - domain
       - prices
       - productName
       - vendorName
-      type: object
-    com.patagona.pricemonitor.share.api.PricesByDayByProductIdResponsePricePointV2:
-      additionalProperties: false
-      description: A single price point of a product
-      example:
-        deliveryCosts: 6.027456183070403
-        price: 0.8008281904610115
-        timestamp: 2000-01-23T04:56:07.000+00:00
-      properties:
-        price:
-          description: The price
-          type: number
-        deliveryCosts:
-          description: The delivery costs
-          type: number
-        timestamp:
-          description: The timestamp of when the price was found
-          format: date-time
-          type: string
-      required:
-      - deliveryCosts
-      - price
-      - timestamp
       type: object
     com.patagona.pricemonitor.share.api.CreateTaskBodyV2:
       additionalProperties: false
@@ -9745,27 +9687,6 @@ components:
           type: object
         messageId:
           type: string
-    UserInfo_contracts:
-      properties:
-        active:
-          type: boolean
-        id:
-          type: string
-        name:
-          type: string
-        type:
-          type: string
-    UserInfo_companies:
-      properties:
-        contracts:
-          items:
-            $ref: '#/components/schemas/UserInfo_contracts'
-          type: array
-        id:
-          format: int64
-          type: integer
-        name:
-          type: string
     GenericTaskWithUrl_allOf:
       description: A basic task type containing the URL. Additional fields can be
         contained depending on specific task type.
@@ -9782,6 +9703,22 @@ components:
           type: string
       required:
       - contractId
+    com_patagona_pricemonitor_share_api_CustomerOrderV2_productMappings:
+      example:
+        source: source
+        target: target
+      properties:
+        source:
+          description: Identifier field within item. Only valid value is 'itemId'
+          type: string
+        target:
+          description: Must be 'customerProductId' or 'productId' since plugins are
+            still publishing both values. The semantics are actually the same. In
+            both cases they address the customerProductId.
+          type: string
+      required:
+      - source
+      - target
     PostOrdersBulkApiResponse_data:
       example:
         orders:
@@ -9894,6 +9831,26 @@ components:
           items:
             $ref: '#/components/schemas/ApiError'
           type: array
+    com_patagona_pricemonitor_share_api_PricesByDayByProductIdResponseV2_prices:
+      example:
+        deliveryCosts: 6.027456183070403
+        price: 0.8008281904610115
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        price:
+          description: The price
+          type: number
+        deliveryCosts:
+          description: The delivery costs
+          type: number
+        timestamp:
+          description: The timestamp of when the price was found
+          format: date-time
+          type: string
+      required:
+      - deliveryCosts
+      - price
+      - timestamp
   securitySchemes:
     BasicAuth:
       scheme: basic
