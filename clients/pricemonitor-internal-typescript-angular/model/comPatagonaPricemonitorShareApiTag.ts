@@ -9,10 +9,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ApiError } from './apiError';
 
 
-export interface ApiErrorResponse { 
-    errors?: Array<ApiError>;
+export interface ComPatagonaPricemonitorShareApiTag { 
+    key: string;
+    value: string;
 }
 

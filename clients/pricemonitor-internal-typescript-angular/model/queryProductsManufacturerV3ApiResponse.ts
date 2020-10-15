@@ -9,10 +9,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ApiError } from './apiError';
+import { ComPatagonaPricemonitorShareApiApiProduct } from './comPatagonaPricemonitorShareApiApiProduct';
 
 
-export interface ApiErrorResponse { 
-    errors?: Array<ApiError>;
+export interface QueryProductsManufacturerV3ApiResponse { 
+    data: Array<ComPatagonaPricemonitorShareApiApiProduct>;
 }
 

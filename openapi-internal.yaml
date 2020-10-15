@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5345
+  version: 0.0.5346
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -5591,7 +5591,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/QueryProductsManufacturerV3ApiResponse'
           description: This is a generated entry and needs to be described.
       tags:
       - internal
@@ -5838,7 +5838,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/QueryProductsVendorV3ApiResponse'
           description: This is a generated entry and needs to be described.
       tags:
       - internal
@@ -9315,6 +9315,78 @@ components:
       required:
       - data
       type: object
+    QueryProductsManufacturerV3ApiResponse:
+      additionalProperties: false
+      example:
+        data:
+        - customerProductId: customerProductId
+          gtin: 6.027456183070403
+          referencePrice: 5.962133916683182
+          maxPriceBoundary: 1.4658129805029452
+          name: name
+          id: id
+          minPriceBoundary: 0.8008281904610115
+          tags:
+          - value: value
+            key: key
+          - value: value
+            key: key
+        - customerProductId: customerProductId
+          gtin: 6.027456183070403
+          referencePrice: 5.962133916683182
+          maxPriceBoundary: 1.4658129805029452
+          name: name
+          id: id
+          minPriceBoundary: 0.8008281904610115
+          tags:
+          - value: value
+            key: key
+          - value: value
+            key: key
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ApiProduct'
+          type: array
+      required:
+      - data
+      type: object
+    QueryProductsVendorV3ApiResponse:
+      additionalProperties: false
+      example:
+        data:
+        - customerProductId: customerProductId
+          gtin: 6.027456183070403
+          referencePrice: 5.962133916683182
+          maxPriceBoundary: 1.4658129805029452
+          name: name
+          id: id
+          minPriceBoundary: 0.8008281904610115
+          tags:
+          - value: value
+            key: key
+          - value: value
+            key: key
+        - customerProductId: customerProductId
+          gtin: 6.027456183070403
+          referencePrice: 5.962133916683182
+          maxPriceBoundary: 1.4658129805029452
+          name: name
+          id: id
+          minPriceBoundary: 0.8008281904610115
+          tags:
+          - value: value
+            key: key
+          - value: value
+            key: key
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ApiProduct'
+          type: array
+      required:
+      - data
+      type: object
     com.patagona.pricemonitor.share.api.ApplicationVersion:
       additionalProperties: false
       description: Current api version.
@@ -9445,6 +9517,73 @@ components:
       - creationDate
       - description
       - sid
+      type: object
+    com.patagona.pricemonitor.share.api.ApiProduct:
+      additionalProperties: false
+      description: A product in the pricemonitor.
+      example:
+        customerProductId: customerProductId
+        gtin: 6.027456183070403
+        referencePrice: 5.962133916683182
+        maxPriceBoundary: 1.4658129805029452
+        name: name
+        id: id
+        minPriceBoundary: 0.8008281904610115
+        tags:
+        - value: value
+          key: key
+        - value: value
+          key: key
+      properties:
+        name:
+          description: Name of the product.
+          type: string
+        tags:
+          description: Additional information on this product.
+          items:
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.Tag'
+          type: array
+        minPriceBoundary:
+          description: Maximum price which pricemonitor can recommend for the product.
+            It won't recommend any price above this boundary.
+          type: number
+        gtin:
+          description: GTIN of the product. Can be optionally.
+          type: number
+        customerProductId:
+          description: The customer's id of the product. This field allows to link
+            products in pricemonitor to products in the customer's system.
+          type: string
+        id:
+          description: Id of the product in the pricemonitor.
+          type: string
+        maxPriceBoundary:
+          description: Minimum price which pricemonitor can recommend for the product.
+            It won't recommend any price below this boundary.
+          type: number
+        referencePrice:
+          description: Some price that will be used as benchmark for certain components
+            in pricemonitor.
+          type: number
+      required:
+      - id
+      - name
+      - referencePrice
+      - tags
+      type: object
+    com.patagona.pricemonitor.share.api.Tag:
+      additionalProperties: false
+      example:
+        value: value
+        key: key
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+      required:
+      - key
+      - value
       type: object
     Callbacks_pricemonitorCompleted:
       example:
