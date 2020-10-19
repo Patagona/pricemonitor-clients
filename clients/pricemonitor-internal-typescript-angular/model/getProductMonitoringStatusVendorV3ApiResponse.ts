@@ -9,10 +9,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { ComPatagonaPricemonitorShareApiProductMonitoringStatus } from './comPatagonaPricemonitorShareApiProductMonitoringStatus';
 
 
-export interface Tag { 
-    key?: string;
-    value?: string;
+export interface GetProductMonitoringStatusVendorV3ApiResponse { 
+    data: Array<ComPatagonaPricemonitorShareApiProductMonitoringStatus>;
 }
 

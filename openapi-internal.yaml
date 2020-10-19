@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5358
+  version: 0.0.5359
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -5760,6 +5760,40 @@ paths:
       - internal
       - undocumented
       - products
+  /api/v3/vendor/contracts/{contractId}/products/monitoringstatus:
+    get:
+      operationId: getProductMonitoringStatusVendorV3
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The product ids for which the monitoring state should be returned
+        explode: true
+        in: query
+        name: productIds
+        required: true
+        schema:
+          items:
+            type: integer
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetProductMonitoringStatusVendorV3ApiResponse'
+          description: Monitoring status of the queried products
+      tags:
+      - internal
+      - undocumented
+      - products
   /api/v3/vendor/contracts/{contractId}/products/query:
     post:
       operationId: queryProductsVendorV3
@@ -9297,6 +9331,46 @@ components:
       required:
       - data
       type: object
+    GetProductMonitoringStatusVendorV3ApiResponse:
+      additionalProperties: false
+      example:
+        data:
+        - productId: 0.8008281904610115
+          statusOnDomain:
+          - completedAt: 2000-01-23T04:56:07.000+00:00
+            domain: domain
+            startedAt: 2000-01-23T04:56:07.000+00:00
+            outcome:
+              outcome: outcome
+              successful: true
+          - completedAt: 2000-01-23T04:56:07.000+00:00
+            domain: domain
+            startedAt: 2000-01-23T04:56:07.000+00:00
+            outcome:
+              outcome: outcome
+              successful: true
+        - productId: 0.8008281904610115
+          statusOnDomain:
+          - completedAt: 2000-01-23T04:56:07.000+00:00
+            domain: domain
+            startedAt: 2000-01-23T04:56:07.000+00:00
+            outcome:
+              outcome: outcome
+              successful: true
+          - completedAt: 2000-01-23T04:56:07.000+00:00
+            domain: domain
+            startedAt: 2000-01-23T04:56:07.000+00:00
+            outcome:
+              outcome: outcome
+              successful: true
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ProductMonitoringStatus'
+          type: array
+      required:
+      - data
+      type: object
     QueryProductsVendorV3ApiResponse:
       additionalProperties: false
       example:
@@ -9530,6 +9604,93 @@ components:
       required:
       - key
       - value
+      type: object
+    com.patagona.pricemonitor.share.api.ProductMonitoringStatus:
+      additionalProperties: false
+      description: Describes the monitoring status of a product for all domains of
+        the contract.
+      example:
+        productId: 0.8008281904610115
+        statusOnDomain:
+        - completedAt: 2000-01-23T04:56:07.000+00:00
+          domain: domain
+          startedAt: 2000-01-23T04:56:07.000+00:00
+          outcome:
+            outcome: outcome
+            successful: true
+        - completedAt: 2000-01-23T04:56:07.000+00:00
+          domain: domain
+          startedAt: 2000-01-23T04:56:07.000+00:00
+          outcome:
+            outcome: outcome
+            successful: true
+      properties:
+        productId:
+          description: The product that gets monitored
+          type: number
+        statusOnDomain:
+          description: The monitoring status on each domain. It will contain an entry
+            for each domain which is active for that contract.
+          items:
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ProductMonitoringStatusOnDomain'
+          type: array
+      required:
+      - productId
+      - statusOnDomain
+      type: object
+    com.patagona.pricemonitor.share.api.ProductMonitoringStatusOnDomain:
+      additionalProperties: false
+      description: Describes the monitoring status of a product on a certain domain.
+      example:
+        completedAt: 2000-01-23T04:56:07.000+00:00
+        domain: domain
+        startedAt: 2000-01-23T04:56:07.000+00:00
+        outcome:
+          outcome: outcome
+          successful: true
+      properties:
+        domain:
+          description: The domain which gets monitored.
+          type: string
+        startedAt:
+          description: The last time pricemonitor tried to monitor the product on
+            the given domain. If this doesn't exist it mean's that pricemonitor haven't
+            tried to monitor this product on the domain yet. One reason could be that
+            the product is very new or the domain has just recently been added to
+            the contract.
+          format: date-time
+          type: string
+        completedAt:
+          description: The last time pricemonitor completed monitoring the product
+            on the given domain.
+          format: date-time
+          type: string
+        outcome:
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ProductMonitoringStatusOnDomainOutcome'
+      required:
+      - domain
+      type: object
+    com.patagona.pricemonitor.share.api.ProductMonitoringStatusOnDomainOutcome:
+      additionalProperties: false
+      description: Describes the result of a monitoring attempt.
+      example:
+        outcome: outcome
+        successful: true
+      properties:
+        successful:
+          description: 'Defines if everything worked as expected. This is the case
+            if: - Offers have been found for the product - The product exists on the
+            domain but is currently not available - The product doesn''t exist on
+            the domain'
+          type: boolean
+        outcome:
+          description: 'Describes the outcome of the monitoring attempt. Can be one
+            of: ProductNotFound, ProductNotAvailable, ProductFound, CaptchaFailure,
+            LayoutFailure, RequestFailure, UnknownFailure, ProductSearchFailure, InvalidTaskFailure'
+          type: string
+      required:
+      - outcome
+      - successful
       type: object
     Callbacks_pricemonitorCompleted:
       example:
