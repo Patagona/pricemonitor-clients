@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5366
+  version: 0.0.5368
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -5794,8 +5794,6 @@ paths:
                 $ref: '#/components/schemas/GetProductMonitoringStatusVendorV3ApiResponse'
           description: Monitoring status of the queried products
       tags:
-      - internal
-      - undocumented
       - products
   /api/v3/vendor/contracts/{contractId}/products/query:
     post:
