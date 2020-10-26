@@ -9,22 +9,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ShopRank } from './shopRank';
 
 
-export interface OfferStatistics { 
-    /**
-     * The average price of the offers
-     */
-    averagePrice: number;
-    /**
-     * The lowest price of the offers
-     */
-    minPrice: number;
-    /**
-     * The number of the found offers
-     */
-    offerCount: number;
-    ownPosition?: ShopRank;
+export interface ComPatagonaPricemonitorShareApiProductMonitoringStatusStatsOutcomes { 
+    outcome: string;
+    count: number;
 }
 

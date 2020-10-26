@@ -34,6 +34,8 @@ export * from './comPatagonaPricemonitorShareApiPricesByDayByProductIdResponseV2
 export * from './comPatagonaPricemonitorShareApiProductMonitoringStatus';
 export * from './comPatagonaPricemonitorShareApiProductMonitoringStatusOnDomain';
 export * from './comPatagonaPricemonitorShareApiProductMonitoringStatusOnDomainOutcome';
+export * from './comPatagonaPricemonitorShareApiProductMonitoringStatusStats';
+export * from './comPatagonaPricemonitorShareApiProductMonitoringStatusStatsOutcomes';
 export * from './comPatagonaPricemonitorShareApiPutResetPasswordRequest';
 export * from './comPatagonaPricemonitorShareApiTag';
 export * from './comPatagonaPricemonitorShareApiUserCompany';
@@ -71,6 +73,7 @@ export * from './getOffersResponseOffers';
 export * from './getPriceRecommendationApiResponse';
 export * from './getPriceRecommendationsResponse';
 export * from './getPriceRecommendationsResponsePriceRecommendations';
+export * from './getProductMonitoringStatusStatsVendorV3ApiResponse';
 export * from './getProductMonitoringStatusVendorV3ApiResponse';
 export * from './logMessage';
 export * from './logMessages';

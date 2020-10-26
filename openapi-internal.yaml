@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5385
+  version: 0.0.5386
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -5795,6 +5795,30 @@ paths:
           description: Monitoring status of the queried products
       tags:
       - products
+  /api/v3/vendor/contracts/{contractId}/products/monitoringstatus/stats:
+    get:
+      operationId: getProductMonitoringStatusStatsVendorV3
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetProductMonitoringStatusStatsVendorV3ApiResponse'
+          description: Contains the monitoring status stats per domain
+      tags:
+      - products
+      - undocumented
+      - internal
   /api/v3/vendor/contracts/{contractId}/products/query:
     post:
       operationId: queryProductsVendorV3
@@ -9372,6 +9396,34 @@ components:
       required:
       - data
       type: object
+    GetProductMonitoringStatusStatsVendorV3ApiResponse:
+      additionalProperties: false
+      example:
+        data:
+        - outcomes:
+          - count: 1
+            outcome: outcome
+          - count: 1
+            outcome: outcome
+          domain: domain
+          started: 0
+          completed: 6
+        - outcomes:
+          - count: 1
+            outcome: outcome
+          - count: 1
+            outcome: outcome
+          domain: domain
+          started: 0
+          completed: 6
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ProductMonitoringStatusStats'
+          type: array
+      required:
+      - data
+      type: object
     QueryProductsVendorV3ApiResponse:
       additionalProperties: false
       example:
@@ -9692,6 +9744,35 @@ components:
       required:
       - outcome
       - successful
+      type: object
+    com.patagona.pricemonitor.share.api.ProductMonitoringStatusStats:
+      additionalProperties: false
+      example:
+        outcomes:
+        - count: 1
+          outcome: outcome
+        - count: 1
+          outcome: outcome
+        domain: domain
+        started: 0
+        completed: 6
+      properties:
+        domain:
+          type: string
+        started:
+          type: integer
+        completed:
+          type: integer
+        outcomes:
+          items:
+            $ref: '#/components/schemas/com_patagona_pricemonitor_share_api_ProductMonitoringStatusStats_outcomes'
+          type: array
+          uniqueItems: true
+      required:
+      - completed
+      - domain
+      - outcomes
+      - started
       type: object
     Callbacks_pricemonitorCompleted:
       example:
@@ -10098,6 +10179,18 @@ components:
       - deliveryCosts
       - price
       - timestamp
+    com_patagona_pricemonitor_share_api_ProductMonitoringStatusStats_outcomes:
+      example:
+        count: 1
+        outcome: outcome
+      properties:
+        outcome:
+          type: string
+        count:
+          type: integer
+      required:
+      - count
+      - outcome
   securitySchemes:
     BasicAuth:
       scheme: basic

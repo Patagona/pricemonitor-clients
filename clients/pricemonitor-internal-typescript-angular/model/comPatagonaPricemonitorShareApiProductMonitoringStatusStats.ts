@@ -9,23 +9,13 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { ComPatagonaPricemonitorShareApiProductMonitoringStatusStatsOutcomes } from './comPatagonaPricemonitorShareApiProductMonitoringStatusStatsOutcomes';
 
 
-/**
- * Whitelist entry for offers based on different attributes.
- */
-export interface ComPatagonaPricemonitorShareApiOfferSelector { 
-    /**
-     * The domain
-     */
+export interface ComPatagonaPricemonitorShareApiProductMonitoringStatusStats { 
     domain: string;
-    /**
-     * The vendor name
-     */
-    vendorName: string;
-    /**
-     * The product name
-     */
-    productName: string;
+    started: number;
+    completed: number;
+    outcomes: Array<ComPatagonaPricemonitorShareApiProductMonitoringStatusStatsOutcomes>;
 }
 
