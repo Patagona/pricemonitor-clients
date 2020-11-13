@@ -9,10 +9,12 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ApiContract } from './apiContract';
+import { Pagination } from './pagination';
+import { ProductsFilter } from './productsFilter';
 
 
-export interface GetCompanyContractsApiResponse { 
-    data: Array<ApiContract>;
+export interface QueryProductsRequestV3 { 
+    filter?: ProductsFilter;
+    pagination: Pagination;
 }
 
