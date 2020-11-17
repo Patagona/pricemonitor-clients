@@ -50,3 +50,9 @@ sed -i 's/\"typescript\": \">=3.6.0 <3.8.0\"/\"typescript\": \">=3.9.2 <4.0.0\"/
 # See https://docs.npmjs.com/files/package.json#repository
 jq -M '. +{"repository": {"type" : "git","url" : "ssh://git@github.com/Patagona/pricemonitor-clients.git","directory": "clients/${PACKAGE_NAME}"}}' ${ANGULAR_PACKAGE_JSON} > ${ANGULAR_PACKAGE_JSON}.tmp
 mv ${ANGULAR_PACKAGE_JSON}.tmp ${ANGULAR_PACKAGE_JSON}
+
+# Shorten the prefix of generated model type names
+# We want to replace 'ComPatagonaPricemonitorShareApi' by 'Pricemonitor'
+find ./clients/${PACKAGE_NAME}/ -type f -exec sed -i 's/ComPatagonaPricemonitorShareApi/Pricemonitor/g' {} \;
+find ./clients/${PACKAGE_NAME}/ -type f -exec sed -i 's/comPatagonaPricemonitorShareApi/pricemonitor/g' {} \;
+for f in ./clients/${PACKAGE_NAME}/model/comPatagonaPricemonitorShareApi*; do mv "$f" "${f/comPatagonaPricemonitorShareApi/pricemonitor}";done
