@@ -9,15 +9,23 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { GetOffersResponseData } from './getOffersResponseData';
 
 
 /**
- * A collection of products
+ * Whitelist entry for offers based on different attributes.
  */
-export interface GetOffersResponse { 
-    data?: Array<GetOffersResponseData>;
-    next?: string;
-    total?: number;
+export interface PricemonitorOfferSelector { 
+    /**
+     * The domain
+     */
+    domain: string;
+    /**
+     * The vendor name
+     */
+    vendorName: string;
+    /**
+     * The product name
+     */
+    productName: string;
 }
 
