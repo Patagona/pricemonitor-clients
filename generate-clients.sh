@@ -11,14 +11,17 @@ COMMON_PARAMS="--api-package api --model-package model --git-host github.com --g
 'docker run --rm -v $(pwd):/local -u $(id -u ${USER}):$(id -g ${USER}) $IMAGE generate \
       -i $API_PATH ${COMMON_PARAMS} \
       -g scala-akka \
-      -o /local/clients/akka
+      -o /local/clients/akka'
 
 docker run --rm -v $(pwd):/local -u $(id -u ${USER}):$(id -g ${USER}) $IMAGE generate \
       -i $API_PATH \
       -g scala-sttp \
-      -o /local/clients/scala-sttp
+      -o /local/clients/scala-sttp \
+      --additional-properties=jsonLibrary=circe \
+      --additional-properties=mainPackage=com.patagona.pricemonitor.client
 
-docker run --rm -v $(pwd):/local -u $(id -u ${USER}):$(id -g ${USER}) $IMAGE generate \
+
+'docker run --rm -v $(pwd):/local -u $(id -u ${USER}):$(id -g ${USER}) $IMAGE generate \
       -i $API_PATH \
       -g scala-gatling \
       -o /local/clients/scala-gatling
