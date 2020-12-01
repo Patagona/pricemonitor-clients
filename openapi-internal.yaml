@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5476
+  version: 0.0.5477
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -8017,8 +8017,8 @@ components:
       description: Request body which contains products
       example:
         identifyingAttributes:
-        - customerProductId
-        - customerProductId
+        - null
+        - null
         version: "2"
         products:
         - customerProductId: customerProductId
@@ -8058,14 +8058,20 @@ components:
           description: Non-empty list of product attributes which identify your products
             uniquely
           items:
-            description: Additionally you can use your product tags
-            enum:
-            - customerProductId
-            - gtin
-            - name
-            type: string
+            $ref: '#/components/schemas/PostProductsIdentifyingAttribute'
           type: array
+      required:
+      - identifyingAttributes
+      - products
+      - version
       type: object
+    PostProductsIdentifyingAttribute:
+      description: Additionally you can use your product tags
+      enum:
+      - customerProductId
+      - gtin
+      - name
+      type: string
     BulkedPostProductsApiResponse:
       example:
         data:

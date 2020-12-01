@@ -101,6 +101,7 @@ export * from './postOrdersBulkApiResponseData1';
 export * from './postProduct';
 export * from './postProductsApiResponse';
 export * from './postProductsApiResponseData';
+export * from './postProductsIdentifyingAttribute';
 export * from './postProductsRequest';
 export * from './product';
 export * from './productAndOffers';
