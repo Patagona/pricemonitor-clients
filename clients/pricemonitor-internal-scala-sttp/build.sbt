@@ -4,7 +4,7 @@ organization := "org.openapitools"
 
 scalaVersion := "2.13.0"
 
-crossScalaVersions := Seq(scalaVersion.value, "2.12.10",  "2.11.12")
+crossScalaVersions := Seq(scalaVersion.value, "2.12.10")
 
 libraryDependencies ++= Seq(
   "com.softwaremill.sttp.client" %% "core" % "2.0.0",
