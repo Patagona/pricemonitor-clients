@@ -20,6 +20,9 @@ docker run --rm -v $(pwd):/local -u $(id -u ${USER}):$(id -g ${USER}) $IMAGE gen
       --additional-properties=jsonLibrary=circe \
       --additional-properties=mainPackage=com.patagona.pricemonitor.client
 
+# The generator for shhtp seems to use an old method for setting up authentication. We need do replace it.
+find ./clients/pricemonitor-internal-scala-sttp/ -type f -exec sed -i 's/.auth.withCredentials/.auth.basic/g' {} \;
+
 
 'docker run --rm -v $(pwd):/local -u $(id -u ${USER}):$(id -g ${USER}) $IMAGE generate \
       -i $API_PATH \
