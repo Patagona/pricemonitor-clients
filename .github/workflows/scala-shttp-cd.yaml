@@ -1,14 +1,15 @@
 name: scala-sttp-build
+
 on:
-  pull_request:
-  push:
+  release:
+    types: [created]
 
 defaults:
   run:
     working-directory: clients/pricemonitor-internal-scala-sttp/
 
 jobs:
-  build:
+  build-and-publish:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -21,9 +22,12 @@ jobs:
       uses: coursier/cache-action@v5
     - name: Build
       run: |
-        sbt -v -Dfile.encoding=UTF-8 +compile
+        sbt -v -Dfile.encoding=UTF-8 +publish
         rm -rf "$HOME/.ivy2/local" || true
         find $HOME/Library/Caches/Coursier/v1        -name "ivydata-*.properties" -delete || true
         find $HOME/.ivy2/cache                       -name "ivydata-*.properties" -delete || true
         find $HOME/.cache/coursier/v1                -name "ivydata-*.properties" -delete || true
         find $HOME/.sbt                              -name "*.lock"               -delete || true
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
