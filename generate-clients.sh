@@ -24,11 +24,21 @@ docker run --rm -v $(pwd):/local -u $(id -u ${USER}):$(id -g ${USER}) $IMAGE gen
       -o /local/clients/pricemonitor-internal-scala-sttp \
       --additional-properties=jsonLibrary=circe \
       --additional-properties=mainPackage=com.patagona.pricemonitor.client
+STTP_PROJECT_PATH="clients/pricemonitor-internal-scala-sttp"
 
 # The generator for shhtp seems to use an old method for setting up authentication. We need do replace it.
 find ./clients/pricemonitor-internal-scala-sttp/ -type f -exec sed -i 's/.auth.withCredentials/.auth.basic/g' {} \;
-BUILD_SBT_PATH="clients/pricemonitor-internal-scala-sttp/build.sbt"
+BUILD_SBT_PATH="${STTP_PROJECT_PATH}/build.sbt"
 sed -i 's/version := "1.0.0"/version := "'${API_VERSION}'"/g' ${BUILD_SBT_PATH}
+sed -i 's/name := "openapi-client"/name := "pricemonitor-client-internal-sttp"/g' ${BUILD_SBT_PATH}
+sed -i 's/organization := "org.openapitools"/organization := "patagona"/g' ${BUILD_SBT_PATH}
+
+mkdir ${STTP_PROJECT_PATH}/project
+cp templates/sttp/plugins.sbt ${STTP_PROJECT_PATH}/project
+cat templates/sttp/publishTo-part >> ${BUILD_SBT_PATH}
+
+
+
 
 'docker run --rm -v $(pwd):/local -u $(id -u ${USER}):$(id -g ${USER}) $IMAGE generate \
       -i $API_PATH \
