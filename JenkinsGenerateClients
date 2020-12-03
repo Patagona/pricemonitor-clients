@@ -24,6 +24,7 @@ pipeline{
 
     stage('Generate') {
       steps {
+        sh 'echo "${API_VERSION}" > API_VERSION'
         sh './generate-clients.sh'
       }
     }
