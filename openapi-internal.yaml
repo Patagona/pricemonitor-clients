@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5478
+  version: 0.0.5479
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -1450,7 +1450,7 @@ paths:
         name: patagona-decimal-separator
         required: true
         schema:
-          type: char
+          type: string
         style: simple
       - description: |-
           The csv column separator \
@@ -1461,7 +1461,7 @@ paths:
         name: patagona-csv-column-separator
         required: true
         schema:
-          type: char
+          type: string
         style: simple
       - description: |-
           The csv quotation character \
@@ -1933,7 +1933,7 @@ paths:
         name: patagona-decimal-separator
         required: true
         schema:
-          type: char
+          type: string
         style: simple
       - description: |-
           The csv column separator \
@@ -6906,23 +6906,11 @@ components:
       - message
       - severity
       - source
-    AndFilter:
-      properties:
-        filters:
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/OrFilter'
-            - $ref: '#/components/schemas/AndFilter'
-            - $ref: '#/components/schemas/NotFilter'
-            - $ref: '#/components/schemas/ConstantFilter'
-            - $ref: '#/components/schemas/ComparisonFilter'
-          type: array
-        type:
-          enum:
-          - AndFilter
-          type: string
-      required:
-      - type
+    GenericFilter:
+      description: This is a placeholder for filter expressions. They are using advanced
+        features and are not covered by openapi. If you need to use filter expressions
+        please contract us.
+      type: object
     ApiContract:
       example:
         contractType: contractType
@@ -7137,36 +7125,6 @@ components:
       - referencePrice
       - tags
       type: object
-    BooleanConstantValueProvider:
-      properties:
-        type:
-          enum:
-          - BooleanConstantValueProvider
-          type: string
-        value:
-          type: boolean
-      required:
-      - type
-      - value
-    BooleanEquality:
-      properties:
-        type:
-          enum:
-          - BooleanEquality
-          type: string
-      required:
-      - type
-    BooleanValueProvider:
-      properties:
-        attributeName:
-          type: string
-        type:
-          enum:
-          - BooleanValueProvider
-          type: string
-      required:
-      - attributeName
-      - type
     Callbacks:
       example:
         pricemonitorCompleted:
@@ -7188,51 +7146,6 @@ components:
             $ref: '#/components/schemas/Callbacks_pricemonitorCompleted'
           type: array
       type: object
-    ComparisonFilter:
-      properties:
-        comparison:
-          oneOf:
-          - $ref: '#/components/schemas/StringEquality'
-          - $ref: '#/components/schemas/StringInSequence'
-          - $ref: '#/components/schemas/NumberInSequence'
-          - $ref: '#/components/schemas/BooleanEquality'
-          - $ref: '#/components/schemas/NumberEquality'
-          - $ref: '#/components/schemas/NumberLessThan'
-          - $ref: '#/components/schemas/NumberGreaterThan'
-          - $ref: '#/components/schemas/RegularExpression'
-          - $ref: '#/components/schemas/DateTimeBefore'
-          - $ref: '#/components/schemas/DateTimeAfter'
-        left:
-          oneOf:
-          - $ref: '#/components/schemas/StringValueProvider'
-          - $ref: '#/components/schemas/SequenceOfStringValueProvider'
-          - $ref: '#/components/schemas/SequenceOfNumberValueProvider'
-          - $ref: '#/components/schemas/BooleanValueProvider'
-          - $ref: '#/components/schemas/NumberValueProvider'
-          - $ref: '#/components/schemas/DateTimeValueProvider'
-        right:
-          oneOf:
-          - $ref: '#/components/schemas/StringConstantValueProvider'
-          - $ref: '#/components/schemas/SequenceOfStringConstantValueProvider'
-          - $ref: '#/components/schemas/SequenceOfNumberConstantValueProvider'
-          - $ref: '#/components/schemas/BooleanConstantValueProvider'
-          - $ref: '#/components/schemas/NumberConstantValueProvider'
-          - $ref: '#/components/schemas/DateTimeConstantValueProvider'
-      required:
-      - comparison
-      - left
-      - right
-    ConstantFilter:
-      properties:
-        type:
-          enum:
-          - ConstantFilter
-          type: string
-        valid:
-          type: boolean
-      required:
-      - type
-      - valid
     CreateCompanyResponse:
       example:
         name: name
@@ -7254,45 +7167,6 @@ components:
         contractType:
           type: string
       type: object
-    DateTimeAfter:
-      properties:
-        type:
-          enum:
-          - DateTimeAfter
-          type: string
-      required:
-      - type
-    DateTimeBefore:
-      properties:
-        type:
-          enum:
-          - DateTimeBefore
-          type: string
-      required:
-      - type
-    DateTimeConstantValueProvider:
-      properties:
-        type:
-          enum:
-          - DateTimeConstantValueProvider
-          type: string
-        value:
-          format: date-time
-          type: string
-      required:
-      - type
-      - value
-    DateTimeValueProvider:
-      properties:
-        attributeName:
-          type: string
-        type:
-          enum:
-          - DateTimeValueProvider
-          type: string
-      required:
-      - attributeName
-      - type
     DeletedItemsResponse:
       example:
         deleted: 0
@@ -7621,77 +7495,6 @@ components:
             $ref: '#/components/schemas/GetPriceRecommendationsResponse_priceRecommendations'
           type: array
       type: object
-    NotFilter:
-      properties:
-        filter:
-          oneOf:
-          - $ref: '#/components/schemas/OrFilter'
-          - $ref: '#/components/schemas/AndFilter'
-          - $ref: '#/components/schemas/NotFilter'
-          - $ref: '#/components/schemas/ConstantFilter'
-          - $ref: '#/components/schemas/ComparisonFilter'
-          type: object
-        type:
-          enum:
-          - NotFilter
-          type: string
-      required:
-      - filter
-      - type
-    NumberConstantValueProvider:
-      properties:
-        type:
-          enum:
-          - NumberConstantValueProvider
-          type: string
-        value:
-          type: number
-      required:
-      - type
-      - value
-    NumberEquality:
-      properties:
-        type:
-          enum:
-          - NumberEquality
-          type: string
-      required:
-      - type
-    NumberGreaterThan:
-      properties:
-        type:
-          enum:
-          - NumberGreaterThan
-          type: string
-      required:
-      - type
-    NumberInSequence:
-      properties:
-        type:
-          enum:
-          - NumberInSequence
-          type: string
-      required:
-      - type
-    NumberLessThan:
-      properties:
-        type:
-          enum:
-          - NumberLessThan
-          type: string
-      required:
-      - type
-    NumberValueProvider:
-      properties:
-        attributeName:
-          type: string
-        type:
-          enum:
-          - NumberValueProvider
-          type: string
-      required:
-      - attributeName
-      - type
     OfferAttribute:
       example:
         name: name
@@ -7704,23 +7507,6 @@ components:
       required:
       - name
       - value
-    OrFilter:
-      properties:
-        filters:
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/OrFilter'
-            - $ref: '#/components/schemas/AndFilter'
-            - $ref: '#/components/schemas/NotFilter'
-            - $ref: '#/components/schemas/ConstantFilter'
-            - $ref: '#/components/schemas/ComparisonFilter'
-          type: array
-        type:
-          enum:
-          - OrFilter
-          type: string
-      required:
-      - type
     Pagination:
       example:
         limit: 2
@@ -7960,22 +7746,6 @@ components:
         product:
           $ref: '#/components/schemas/ApiProduct'
       type: object
-    ProductOfferStats:
-      properties:
-        averagePrice:
-          format: double
-          type: number
-        minPrice:
-          format: double
-          type: number
-        offerCount:
-          type: integer
-        ownPosition:
-          $ref: '#/components/schemas/ShopRank'
-      required:
-      - averagePrice
-      - minPrice
-      - offerCount
     ProductOffersApiQuery:
       example:
         filter: '{}'
@@ -7990,12 +7760,9 @@ components:
           order: asc
       properties:
         filter:
-          oneOf:
-          - $ref: '#/components/schemas/OrFilter'
-          - $ref: '#/components/schemas/AndFilter'
-          - $ref: '#/components/schemas/NotFilter'
-          - $ref: '#/components/schemas/ConstantFilter'
-          - $ref: '#/components/schemas/ComparisonFilter'
+          description: This is a placeholder for filter expressions. They are using
+            advanced features and are not covered by openapi. If you need to use filter
+            expressions please contract us.
           type: object
         pagination:
           $ref: '#/components/schemas/Pagination'
@@ -8075,80 +7842,43 @@ components:
     BulkedPostProductsApiResponse:
       example:
         data:
-        - ""
-        - ""
+        - data:
+            productId: productId
+          errors:
+          - code: code
+            message: message
+          - code: code
+            message: message
+        - data:
+            productId: productId
+          errors:
+          - code: code
+            message: message
+          - code: code
+            message: message
       properties:
         data:
           items:
-            description: If the product could be added successfully, the corresponding
-              pricemonitor product id is returned. Otherwise a dedicated api error
-              is returned.
-            oneOf:
-            - $ref: '#/components/schemas/PostProductsApiResponse'
-            - $ref: '#/components/schemas/ApiErrorResponse'
+            $ref: '#/components/schemas/PostProductsApiResponse'
           type: array
       type: object
     PostProductsApiResponse:
+      example:
+        data:
+          productId: productId
+        errors:
+        - code: code
+          message: message
+        - code: code
+          message: message
       properties:
         data:
           $ref: '#/components/schemas/PostProductsApiResponse_data'
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiError'
+          type: array
       type: object
-    RegularExpression:
-      properties:
-        type:
-          enum:
-          - RegularExpression
-          type: string
-      required:
-      - type
-    SequenceOfNumberConstantValueProvider:
-      properties:
-        type:
-          enum:
-          - SequenceOfNumberConstantValueProvider
-          type: string
-        value:
-          items:
-            type: number
-          type: array
-      required:
-      - type
-      - value
-    SequenceOfNumberValueProvider:
-      properties:
-        attributeName:
-          type: string
-        type:
-          enum:
-          - SequenceOfNumberValueProvider
-          type: string
-      required:
-      - attributeName
-      - type
-    SequenceOfStringConstantValueProvider:
-      properties:
-        type:
-          enum:
-          - SequenceOfStringConstantValueProvider
-          type: string
-        value:
-          items:
-            type: string
-          type: array
-      required:
-      - type
-      - value
-    SequenceOfStringValueProvider:
-      properties:
-        attributeName:
-          type: string
-        type:
-          enum:
-          - SequenceOfStringValueProvider
-          type: string
-      required:
-      - attributeName
-      - type
     ShopRank:
       properties:
         position:
@@ -8159,44 +7889,6 @@ components:
       required:
       - position
       - price
-    StringConstantValueProvider:
-      properties:
-        type:
-          enum:
-          - StringConstantValueProvider
-          type: string
-        value:
-          type: string
-      required:
-      - type
-      - value
-    StringEquality:
-      properties:
-        type:
-          enum:
-          - StringEquality
-          type: string
-      required:
-      - type
-    StringInSequence:
-      properties:
-        type:
-          enum:
-          - StringInSequence
-          type: string
-      required:
-      - type
-    StringValueProvider:
-      properties:
-        attributeName:
-          type: string
-        type:
-          enum:
-          - StringValueProvider
-          type: string
-      required:
-      - attributeName
-      - type
     Tag:
       example:
         value: value
@@ -10026,6 +9718,8 @@ components:
           description: Number of deleted products
           type: integer
     PostProductsApiResponse_data:
+      example:
+        productId: productId
       properties:
         productId:
           description: The pricemonitor product id of the added product
