@@ -1,4 +1,4 @@
-version := "1.0.0"
+version := "0.0.5479"
 name := "openapi-client"
 organization := "org.openapitools"
 

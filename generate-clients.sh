@@ -7,6 +7,11 @@ API_PATH="/local/openapi-internal.yaml"
 IMAGE="openapitools/openapi-generator-cli:v4.3.1"
 COMMON_PARAMS="--api-package api --model-package model --git-host github.com --git-repo-id pricemonitor-clients --git-user-id Patagona"
 
+# Read api version from file.
+# Note that it would be better to read it from the openapi yaml because it would only be one single sourcce of truth, and now we need to keep openapi.ymal and API_VERSIOn in sync.
+# But reading from yaml is not an easy thing to do with grep and tools for reading yaml are not installed by default in linux.
+API_VERSION=$(cat API_VERSION)
+
 # Generating scala clients is temporarily deactivated since they don't have priority
 'docker run --rm -v $(pwd):/local -u $(id -u ${USER}):$(id -g ${USER}) $IMAGE generate \
       -i $API_PATH ${COMMON_PARAMS} \
@@ -22,7 +27,8 @@ docker run --rm -v $(pwd):/local -u $(id -u ${USER}):$(id -g ${USER}) $IMAGE gen
 
 # The generator for shhtp seems to use an old method for setting up authentication. We need do replace it.
 find ./clients/pricemonitor-internal-scala-sttp/ -type f -exec sed -i 's/.auth.withCredentials/.auth.basic/g' {} \;
-
+BUILD_SBT_PATH="clients/pricemonitor-internal-scala-sttp/build.sbt"
+sed -i 's/version := "1.0.0"/version := "'${API_VERSION}'"/g' ${BUILD_SBT_PATH}
 
 'docker run --rm -v $(pwd):/local -u $(id -u ${USER}):$(id -g ${USER}) $IMAGE generate \
       -i $API_PATH \
