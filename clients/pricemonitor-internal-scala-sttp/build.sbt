@@ -1,6 +1,6 @@
 version := "0.0.5479"
-name := "openapi-client"
-organization := "org.openapitools"
+name := "pricemonitor-client-internal-sttp"
+organization := "patagona"
 
 scalaVersion := "2.13.0"
 
@@ -22,3 +22,10 @@ scalacOptions := Seq(
 )
 
 publishArtifact in (Compile, packageDoc) := false
+
+publishTo := {
+  Some(
+    Resolver
+      .url("Patagona S3 bucket", url("s3://patagona.repository/master"))(Resolver.ivyStylePatterns)
+  )
+}
