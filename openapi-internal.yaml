@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5485
+  version: 0.0.5486
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -869,7 +869,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetPriceRecommendationApiResponse'
-          description: No response was specified
+          description: A paginated list of price recommendations is returned for the
+            specified timerange. Only the newest price recommendations are returned
+            in case of multiple price recommendations per product.
       summary: Get all price recommendations
       tags:
       - pricerecommendations
@@ -7423,56 +7425,6 @@ components:
           format: int64
           type: integer
       type: object
-    ApiPriceRecommendation:
-      example:
-        customerProductId: customerProductId
-        relativePriceChangePercentage: 5.637376656633329
-        gtin: '{}'
-        oldDeliveryCosts: 6.027456183070403
-        deliveryCosts: 0.8008281904610115
-        productId: productId
-        oldPrice: 1.4658129805029452
-        price: 5.962133916683182
-        currency: currency
-        tags:
-        - stringValue: stringValue
-          booleanValue: '{}'
-          integerValue: '{}'
-          doubleValue: '{}'
-          label: label
-        - stringValue: stringValue
-          booleanValue: '{}'
-          integerValue: '{}'
-          doubleValue: '{}'
-          label: label
-        timestamp: 2000-01-23T04:56:07.000+00:00
-      properties:
-        tags:
-          items:
-            $ref: '#/components/schemas/ApiPriceRecommendation_tags'
-          type: array
-        currency:
-          type: string
-        customerProductId:
-          type: string
-        deliveryCosts:
-          type: number
-        gtin:
-          type: object
-        oldDeliveryCosts:
-          type: number
-        oldPrice:
-          type: number
-        price:
-          type: number
-        productId:
-          type: string
-        relativePriceChangePercentage:
-          type: number
-        timestamp:
-          format: date-time
-          type: string
-      type: object
     GetPriceRecommendationsResponse:
       example:
         next: next
@@ -7509,8 +7461,8 @@ components:
       - value
     Pagination:
       example:
-        limit: 2
-        start: 7
+        limit: 1
+        start: 1
       properties:
         limit:
           default: 100
@@ -7544,8 +7496,8 @@ components:
           right: '{}'
           type: ComparisonFilter
         pagination:
-          limit: 2
-          start: 7
+          limit: 1
+          start: 1
       properties:
         filter:
           $ref: '#/components/schemas/ProductsFilter'
@@ -7750,8 +7702,8 @@ components:
       example:
         filter: '{}'
         pagination:
-          limit: 2
-          start: 7
+          limit: 1
+          start: 1
         range:
           start: 2000-01-23T04:56:07.000+00:00
           end: 2000-01-23T04:56:07.000+00:00
@@ -8360,55 +8312,87 @@ components:
       additionalProperties: false
       example:
         data:
-        - customerProductId: customerProductId
-          relativePriceChangePercentage: 5.637376656633329
-          gtin: '{}'
-          oldDeliveryCosts: 6.027456183070403
-          deliveryCosts: 0.8008281904610115
+        - relativePriceChangePercentage: 3.616076749251911
+          customerProductId: customerProductId
+          gtin: 9.301444243932576
           productId: productId
-          oldPrice: 1.4658129805029452
-          price: 5.962133916683182
-          currency: currency
+          originalTags:
+          - stringValue: stringValue
+            integerValue: 5
+            booleanValue: true
+            doubleValue: 5.962133916683182
+            label: label
+          - stringValue: stringValue
+            integerValue: 5
+            booleanValue: true
+            doubleValue: 5.962133916683182
+            label: label
+          oldPrice: 0.8008281904610115
           tags:
           - stringValue: stringValue
-            booleanValue: '{}'
-            integerValue: '{}'
-            doubleValue: '{}'
+            integerValue: 5
+            booleanValue: true
+            doubleValue: 5.962133916683182
             label: label
           - stringValue: stringValue
-            booleanValue: '{}'
-            integerValue: '{}'
-            doubleValue: '{}'
+            integerValue: 5
+            booleanValue: true
+            doubleValue: 5.962133916683182
             label: label
+          originalMaxPriceBoundary: 4.145608029883936
+          newPosition: 2
+          originalMinPriceBoundary: 7.386281948385884
+          oldDeliveryCosts: 1.4658129805029452
+          deliveryCosts: 6.027456183070403
+          price: 2.3021358869347655
+          relevantDomain: relevantDomain
+          currency: currency
+          oldPosition: 7
           timestamp: 2000-01-23T04:56:07.000+00:00
-        - customerProductId: customerProductId
-          relativePriceChangePercentage: 5.637376656633329
-          gtin: '{}'
-          oldDeliveryCosts: 6.027456183070403
-          deliveryCosts: 0.8008281904610115
+        - relativePriceChangePercentage: 3.616076749251911
+          customerProductId: customerProductId
+          gtin: 9.301444243932576
           productId: productId
-          oldPrice: 1.4658129805029452
-          price: 5.962133916683182
-          currency: currency
+          originalTags:
+          - stringValue: stringValue
+            integerValue: 5
+            booleanValue: true
+            doubleValue: 5.962133916683182
+            label: label
+          - stringValue: stringValue
+            integerValue: 5
+            booleanValue: true
+            doubleValue: 5.962133916683182
+            label: label
+          oldPrice: 0.8008281904610115
           tags:
           - stringValue: stringValue
-            booleanValue: '{}'
-            integerValue: '{}'
-            doubleValue: '{}'
+            integerValue: 5
+            booleanValue: true
+            doubleValue: 5.962133916683182
             label: label
           - stringValue: stringValue
-            booleanValue: '{}'
-            integerValue: '{}'
-            doubleValue: '{}'
+            integerValue: 5
+            booleanValue: true
+            doubleValue: 5.962133916683182
             label: label
+          originalMaxPriceBoundary: 4.145608029883936
+          newPosition: 2
+          originalMinPriceBoundary: 7.386281948385884
+          oldDeliveryCosts: 1.4658129805029452
+          deliveryCosts: 6.027456183070403
+          price: 2.3021358869347655
+          relevantDomain: relevantDomain
+          currency: currency
+          oldPosition: 7
           timestamp: 2000-01-23T04:56:07.000+00:00
         meta:
-          limit: 2
-          start: 7
+          limit: 1
+          start: 1
       properties:
         data:
           items:
-            $ref: '#/components/schemas/ApiPriceRecommendation'
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ApiPriceRecommendation'
           type: array
         meta:
           $ref: '#/components/schemas/Pagination'
@@ -9191,6 +9175,158 @@ components:
       required:
       - version
       type: object
+    com.patagona.pricemonitor.share.api.ApiPriceRecommendation:
+      additionalProperties: false
+      description: Represents a price recommendation of the pricemonitor.
+      example:
+        relativePriceChangePercentage: 3.616076749251911
+        customerProductId: customerProductId
+        gtin: 9.301444243932576
+        productId: productId
+        originalTags:
+        - stringValue: stringValue
+          integerValue: 5
+          booleanValue: true
+          doubleValue: 5.962133916683182
+          label: label
+        - stringValue: stringValue
+          integerValue: 5
+          booleanValue: true
+          doubleValue: 5.962133916683182
+          label: label
+        oldPrice: 0.8008281904610115
+        tags:
+        - stringValue: stringValue
+          integerValue: 5
+          booleanValue: true
+          doubleValue: 5.962133916683182
+          label: label
+        - stringValue: stringValue
+          integerValue: 5
+          booleanValue: true
+          doubleValue: 5.962133916683182
+          label: label
+        originalMaxPriceBoundary: 4.145608029883936
+        newPosition: 2
+        originalMinPriceBoundary: 7.386281948385884
+        oldDeliveryCosts: 1.4658129805029452
+        deliveryCosts: 6.027456183070403
+        price: 2.3021358869347655
+        relevantDomain: relevantDomain
+        currency: currency
+        oldPosition: 7
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        oldPrice:
+          description: The price of the cheapest offer of the own shop(s) on the relevant
+            domain
+          type: number
+        deliveryCosts:
+          description: The delivery costs which were considered for the recommended
+            price
+          type: number
+        timestamp:
+          description: The timestamp when the price recommendation has been calculated
+          format: date-time
+          type: string
+        oldDeliveryCosts:
+          description: The delivery costs corresponding to `oldPrice`
+          type: number
+        tags:
+          description: Additional information on this product
+          items:
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ExtendedTag'
+          type: array
+        price:
+          description: The recommended price of the relevant domain
+          type: number
+        oldPosition:
+          description: The old position on the relevant domain
+          type: integer
+        gtin:
+          description: GTIN of the product
+          type: number
+        relativePriceChangePercentage:
+          description: Absolute percentage how the recommended price changed compared
+            to the `oldPrice` e.g. 200 stands for 200% which means the recommended
+            price has doubled
+          type: number
+        newPosition:
+          description: The new position on the relevant domain
+          type: integer
+        customerProductId:
+          description: The customer's id of the product
+          type: string
+        originalMaxPriceBoundary:
+          description: Max price boundary during the time when the price was calculated
+          type: number
+        relevantDomain:
+          description: The decisive domain of the price recommendation. It's been
+            determined by the cheapest price recommendation.
+          type: string
+        originalMinPriceBoundary:
+          description: Min price boundary during the time when the price was calculated
+          type: number
+        currency:
+          description: The currency of the price recommendation.
+          type: string
+        productId:
+          description: The internal product id of the pricemonitor
+          type: string
+        originalTags:
+          description: 'List of tags which were set during the time when the price
+            has been calculated. ATTENTION: These are historic tags which are maybe
+            outdated or incomplete.'
+          items:
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ExtendedTag'
+          type: array
+      required:
+      - currency
+      - originalMaxPriceBoundary
+      - originalMinPriceBoundary
+      - originalTags
+      - price
+      - productId
+      - tags
+      - timestamp
+      type: object
+    com.patagona.pricemonitor.share.api.ExtendedTag:
+      additionalProperties: false
+      description: 'Tags represent additional information of a product. Extended tags
+        can contain evaluated values like numbers which are determined during product
+        import. The `stringValue` is used for deriving the evaluated values. Example:
+        You provide a tag with label "strategy" and `stringValue` "1" during product
+        import. This will be evaluated to these extended values: - integerValue  1
+        - doubleValue   1.0 - booleanValue  true'
+      example:
+        stringValue: stringValue
+        integerValue: 5
+        booleanValue: true
+        doubleValue: 5.962133916683182
+        label: label
+      properties:
+        doubleValue:
+          description: The double value depends on the decimal separator which has
+            been provided during product import.
+          type: number
+        integerValue:
+          description: The integer value of the tag. It's only defined when the `stringValue`
+            consists solely of digits.
+          type: integer
+        label:
+          description: The name of the tag. It can't be empty.
+          type: string
+        stringValue:
+          description: The text value of the tag.
+          type: string
+        booleanValue:
+          description: The boolean value of the tag. It's only set to true when the
+            `stringValue` is "1" or "true".
+          type: boolean
+      required:
+      - label
+      - stringValue
+      type: object
     ProductAndOffers_2:
       example:
         offers:
@@ -9670,24 +9806,6 @@ components:
           type: array
         productId:
           description: Unique product identifier within pricemonitor
-          type: string
-    ApiPriceRecommendation_tags:
-      example:
-        stringValue: stringValue
-        booleanValue: '{}'
-        integerValue: '{}'
-        doubleValue: '{}'
-        label: label
-      properties:
-        booleanValue:
-          type: object
-        doubleValue:
-          type: object
-        integerValue:
-          type: object
-        label:
-          type: string
-        stringValue:
           type: string
     GetPriceRecommendationsResponse_priceRecommendations:
       example:
