@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5488
+  version: 0.0.5490
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -2418,7 +2418,7 @@ paths:
       - products
   /api/1/{contractId}/settings:
     get:
-      operationId: get
+      operationId: getSettings
       parameters:
       - description: ID of the contract
         example: qbcxvb
@@ -2434,14 +2434,14 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.GetContractSettingsResponseV1'
           description: This is a generated entry and needs to be described.
       tags:
       - internal
       - undocumented
       - settings
     put:
-      operationId: update
+      operationId: putSettings
       parameters:
       - description: ID of the contract
         example: qbcxvb
@@ -2456,14 +2456,14 @@ paths:
         content:
           application/json:
             schema:
-              type: object
+              $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PutAdminContractSettingsBody'
         description: This is a generated entry and needs to be described.
       responses:
         "200":
           content:
             application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PutAdminContractSettingsBody'
           description: This is a generated entry and needs to be described.
       tags:
       - internal
@@ -8900,6 +8900,139 @@ components:
       - creationDate
       - description
       - id
+      - type
+      type: object
+    com.patagona.pricemonitor.share.api.GetContractSettingsResponseV1:
+      additionalProperties: false
+      example:
+        features:
+          disabled:
+          - disabled
+          - disabled
+          enabled:
+          - enabled
+          - enabled
+        portals:
+        - portals
+        - portals
+        name: name
+        active: true
+        company: company
+        currency: currency
+        includeDeliveryCosts: true
+        id: 0.8008281904610115
+        imageTag: imageTag
+        type: type
+        expirationDate: 2000-01-23T04:56:07.000+00:00
+        sid: sid
+      properties:
+        name:
+          type: string
+        expirationDate:
+          format: date-time
+          type: string
+        portals:
+          items:
+            type: string
+          type: array
+        includeDeliveryCosts:
+          type: boolean
+        features:
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ContractFeatures'
+        imageTag:
+          type: string
+        company:
+          type: string
+        id:
+          type: number
+        currency:
+          type: string
+        type:
+          type: string
+        sid:
+          type: string
+        active:
+          type: boolean
+      required:
+      - active
+      - company
+      - currency
+      - features
+      - id
+      - includeDeliveryCosts
+      - name
+      - portals
+      - sid
+      - type
+      type: object
+    com.patagona.pricemonitor.share.api.ContractFeatures:
+      additionalProperties: false
+      example:
+        disabled:
+        - disabled
+        - disabled
+        enabled:
+        - enabled
+        - enabled
+      properties:
+        disabled:
+          items:
+            type: string
+          type: array
+        enabled:
+          items:
+            type: string
+          type: array
+      required:
+      - disabled
+      - enabled
+      type: object
+    com.patagona.pricemonitor.share.api.PutAdminContractSettingsBody:
+      additionalProperties: false
+      example:
+        features:
+          disabled:
+          - disabled
+          - disabled
+          enabled:
+          - enabled
+          - enabled
+        portals:
+        - portals
+        - portals
+        name: name
+        active: true
+        id: 0.8008281904610115
+        type: type
+        expirationDate: 2000-01-23T04:56:07.000+00:00
+        sid: sid
+      properties:
+        name:
+          type: string
+        expirationDate:
+          format: date-time
+          type: string
+        portals:
+          items:
+            type: string
+          type: array
+        features:
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ContractFeatures'
+        id:
+          type: number
+        type:
+          type: string
+        sid:
+          type: string
+        active:
+          type: boolean
+      required:
+      - active
+      - features
+      - id
+      - name
+      - portals
+      - sid
       - type
       type: object
     com.patagona.pricemonitor.share.api.ContractStats:
