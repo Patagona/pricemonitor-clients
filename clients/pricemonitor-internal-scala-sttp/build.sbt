@@ -1,4 +1,4 @@
-version := "0.0.5491"
+version := "0.0.5492"
 name := "pricemonitor-client-internal-sttp"
 organization := "patagona"
 
@@ -26,6 +26,8 @@ publishArtifact in (Compile, packageDoc) := false
 publishTo := {
   Some(
     Resolver
-      .url("Patagona S3 bucket", url("s3://patagona.repository/master"))(Resolver.ivyStylePatterns)
+      .url("Patagona S3 bucket", url("s3://patagona.repository/build_artifacts/master"))(Resolver.ivyStylePatterns)
   )
 }
+
+publishMavenStyle in ThisBuild := false
