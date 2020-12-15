@@ -6,3 +6,5 @@ publishTo := {
       .url("Patagona S3 bucket", url("s3://patagona.repository/build_artifacts/master"))(Resolver.ivyStylePatterns)
   )
 }
+
+publishMavenStyle in ThisBuild := false
