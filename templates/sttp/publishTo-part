@@ -3,6 +3,6 @@
 publishTo := {
   Some(
     Resolver
-      .url("Patagona S3 bucket", url("s3://patagona.repository/master"))(Resolver.ivyStylePatterns)
+      .url("Patagona S3 bucket", url("s3://patagona.repository/build_artifacts/master"))(Resolver.ivyStylePatterns)
   )
 }
