@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5498
+  version: 0.0.5499
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -5519,7 +5519,7 @@ paths:
     description: This endpoint can be used for querying either all products or certain
       products by product ids.
     post:
-      operationId: queryProductsManufacturerV3
+      operationId: queryProductsByFilterManufacturerV3
       parameters:
       - description: ID of the contract
         example: qbcxvb
@@ -5541,15 +5541,17 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/QueryProductsManufacturerV3ApiResponse'
+                $ref: '#/components/schemas/QueryProductsByFilterManufacturerV3ApiResponse'
           description: Returns a list of found products.
       tags:
       - internal
       - products
     summary: Get products of a contract
   /api/v3.1/manufacturer/contracts/{contractId}/products/query:
+    description: This endpoint can be used for querying either all products or certain
+      products by the 'customerProductId'.
     post:
-      operationId: queryProductsManufacturerV3_1
+      operationId: queryProductsManufacturerV3
       parameters:
       - description: ID of the contract
         example: qbcxvb
@@ -5560,17 +5562,38 @@ paths:
         schema:
           type: string
         style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ApiQuery'
+        description: |
+          The body contains the products query.
+          Note that the support for the query field is currently limited. The only allowed pattern is currently:
+          The maximum allowed limit is (TODO needs investigation and enforcement before making the endpoint public)
+          {
+            "pagination": {
+              "start": ${start},
+              "limit": ${limit}
+            },
+            "filter": {
+              "oneOf": {
+                "field": "customerProductId",
+                "values": [${customerProductIds as a list of strings}]
+              }
+            }
+          }
       responses:
         "200":
           content:
             application/json:
               schema:
-                type: object
-          description: This is a generated entry and needs to be described.
+                $ref: '#/components/schemas/QueryProductsManufacturerV3ApiResponse'
+          description: Returns a list of found products.
       tags:
       - internal
-      - undocumented
       - products
+    summary: Get products of a contract
   /api/v3/manufacturer/contracts/{contractId}/settings/monitoring:
     get:
       operationId: getMonitoringSettingsManufacturerV3
@@ -5851,7 +5874,7 @@ paths:
     description: This endpoint can be used for querying either all products or certain
       products by product ids.
     post:
-      operationId: queryProductsVendorV3
+      operationId: queryProductsByFilterVendorV3
       parameters:
       - description: ID of the contract
         example: qbcxvb
@@ -5873,15 +5896,17 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/QueryProductsVendorV3ApiResponse'
+                $ref: '#/components/schemas/QueryProductsByFilterVendorV3ApiResponse'
           description: Returns a list of found products.
       tags:
       - internal
       - products
     summary: Query products of a contract
   /api/v3.1/vendor/contracts/{contractId}/products/query:
+    description: This endpoint can be used for querying either all products or certain
+      products by the 'customerProductId'.
     post:
-      operationId: queryProductsVendorV3_1
+      operationId: queryProductsVendorV3
       parameters:
       - description: ID of the contract
         example: qbcxvb
@@ -5892,17 +5917,38 @@ paths:
         schema:
           type: string
         style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryProductsRequestV3'
+        description: |
+          The body contains the products query.
+          Note that the support for the query field is currently limited. The only allowed pattern is currently:
+          The maximum allowed limit is (TODO needs investigation and enforcement before making the endpoint public)
+          {
+            "pagination": {
+              "start": ${start},
+              "limit": ${limit}
+            },
+            "filter": {
+              "oneOf": {
+                "field": "customerProductId",
+                "values": [${customerProductIds as a list of strings}]
+              }
+            }
+          }
       responses:
         "200":
           content:
             application/json:
               schema:
-                type: object
-          description: This is a generated entry and needs to be described.
+                $ref: '#/components/schemas/QueryProductsVendorV3ApiResponse'
+          description: Returns a list of found products.
       tags:
       - internal
-      - undocumented
       - products
+    summary: Query products of a contract
   /api/v3/vendor/contracts/{contractId}/settings/monitoring:
     get:
       operationId: getMonitoringSettingsVendorV3
@@ -9204,6 +9250,103 @@ components:
       required:
       - data
       type: object
+    QueryProductsByFilterManufacturerV3ApiResponse:
+      additionalProperties: false
+      example:
+        data:
+        - customerProductId: customerProductId
+          gtin: 6.027456183070403
+          referencePrice: 5.962133916683182
+          maxPriceBoundary: 1.4658129805029452
+          name: name
+          id: id
+          minPriceBoundary: 0.8008281904610115
+          tags:
+          - value: value
+            key: key
+          - value: value
+            key: key
+        - customerProductId: customerProductId
+          gtin: 6.027456183070403
+          referencePrice: 5.962133916683182
+          maxPriceBoundary: 1.4658129805029452
+          name: name
+          id: id
+          minPriceBoundary: 0.8008281904610115
+          tags:
+          - value: value
+            key: key
+          - value: value
+            key: key
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ApiProduct'
+          type: array
+      required:
+      - data
+      type: object
+    com.patagona.pricemonitor.share.api.ApiQuery:
+      additionalProperties: false
+      description: This class represents a paginated query. The filter parameter is
+        optional, if it is not set, all values will be returned, paginated by the
+        pagination parameter.
+      properties:
+        pagination:
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.Pagination'
+        filter:
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.Query'
+      required:
+      - pagination
+      type: object
+    com.patagona.pricemonitor.share.api.Pagination:
+      additionalProperties: false
+      description: This class describes a step in a paginated endpoint. It consists
+        of the start index, set to 0 for the first page. The next page starts at (previous
+        start) + limit. Reasonable values for the limit parameter depend on the specific
+        endpoint.
+      properties:
+        start:
+          type: integer
+        limit:
+          type: integer
+      required:
+      - limit
+      - start
+      type: object
+    com.patagona.pricemonitor.share.api.Query:
+      additionalProperties: false
+      description: |-
+        This class specifies a general query language, even though all fields are marked as optional, exactly one has
+        to be specified.
+        Please note that depending on the endpoint only a subset of the query language might be supported.
+        Refer to the endpoint specific documentation to view the restrictions.
+      properties:
+        regex:
+          $ref: '#/components/schemas/com_patagona_pricemonitor_share_api_Query_regex'
+        in:
+          $ref: '#/components/schemas/com_patagona_pricemonitor_share_api_Query_in'
+        or:
+          items:
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.Query'
+          type: array
+        const:
+          type: boolean
+        not:
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.Query'
+        oneOf:
+          $ref: '#/components/schemas/com_patagona_pricemonitor_share_api_Query_oneOf'
+        lt:
+          $ref: '#/components/schemas/com_patagona_pricemonitor_share_api_Query_lt'
+        gt:
+          $ref: '#/components/schemas/com_patagona_pricemonitor_share_api_Query_lt'
+        eq:
+          $ref: '#/components/schemas/com_patagona_pricemonitor_share_api_Query_lt'
+        and:
+          items:
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.Query'
+          type: array
+      type: object
     QueryProductsManufacturerV3ApiResponse:
       additionalProperties: false
       example:
@@ -9304,6 +9447,42 @@ components:
         data:
           items:
             $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ProductMonitoringStatusStats'
+          type: array
+      required:
+      - data
+      type: object
+    QueryProductsByFilterVendorV3ApiResponse:
+      additionalProperties: false
+      example:
+        data:
+        - customerProductId: customerProductId
+          gtin: 6.027456183070403
+          referencePrice: 5.962133916683182
+          maxPriceBoundary: 1.4658129805029452
+          name: name
+          id: id
+          minPriceBoundary: 0.8008281904610115
+          tags:
+          - value: value
+            key: key
+          - value: value
+            key: key
+        - customerProductId: customerProductId
+          gtin: 6.027456183070403
+          referencePrice: 5.962133916683182
+          maxPriceBoundary: 1.4658129805029452
+          name: name
+          id: id
+          minPriceBoundary: 0.8008281904610115
+          tags:
+          - value: value
+            key: key
+          - value: value
+            key: key
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ApiProduct'
           type: array
       required:
       - data
@@ -10199,6 +10378,44 @@ components:
       - deliveryCosts
       - price
       - timestamp
+    com_patagona_pricemonitor_share_api_Query_regex:
+      properties:
+        field:
+          type: string
+        pattern:
+          type: string
+      required:
+      - field
+      - pattern
+    com_patagona_pricemonitor_share_api_Query_in:
+      properties:
+        field:
+          type: string
+        query:
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.Query'
+      required:
+      - field
+      - query
+    com_patagona_pricemonitor_share_api_Query_oneOf:
+      properties:
+        field:
+          type: string
+        values:
+          items:
+            type: string
+          type: array
+      required:
+      - field
+      - values
+    com_patagona_pricemonitor_share_api_Query_lt:
+      properties:
+        field:
+          type: string
+        value:
+          type: string
+      required:
+      - field
+      - value
     com_patagona_pricemonitor_share_api_ProductMonitoringStatusStats_outcomes:
       example:
         count: 1
