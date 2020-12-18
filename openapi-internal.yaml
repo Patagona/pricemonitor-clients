@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5499
+  version: 0.0.5501
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -5570,7 +5570,7 @@ paths:
         description: |
           The body contains the products query.
           Note that the support for the query field is currently limited. The only allowed pattern is currently:
-          The maximum allowed limit is (TODO needs investigation and enforcement before making the endpoint public)
+          The maximum allowed limit is 10000.
           {
             "pagination": {
               "start": ${start},
@@ -5925,7 +5925,7 @@ paths:
         description: |
           The body contains the products query.
           Note that the support for the query field is currently limited. The only allowed pattern is currently:
-          The maximum allowed limit is (TODO needs investigation and enforcement before making the endpoint public)
+          The maximum allowed limit is 10000.
           {
             "pagination": {
               "start": ${start},
