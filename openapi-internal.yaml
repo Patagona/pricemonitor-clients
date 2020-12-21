@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5502
+  version: 0.0.5503
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -5568,21 +5568,39 @@ paths:
             schema:
               $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ApiQuery'
         description: |
-          The body contains the products query.
-          Note that the support for the query field is currently limited. The only allowed pattern is currently:
-          The maximum allowed limit is 10000.
-          {
-            "pagination": {
-              "start": ${start},
-              "limit": ${limit}
-            },
-            "filter": {
-              "oneOf": {
-                "field": "customerProductId",
-                "values": [${customerProductIds as a list of strings}]
-              }
-            }
-          }
+          The body contains the products query. <br>
+          Currently, only product queries by "customerProductId" are supported. <br>
+          The maximum allowed limit in the pagination is 10000. <br>
+          Pagination works with respective to the given products query. <br>
+          This is most relevant when querying for a set of customerProductId's. <br>
+          When the requests are chunked over a set of ids, it is easiest to provide up to 10000 customerProductId's in the query and keep the pagination at start: 0, limit: 10000. <br>
+          The only allowed pattern is currently: <br>
+          { <br>
+          &nbsp;&nbsp;"pagination": { <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;"start": ${start}, <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;"limit": ${limit} <br>
+          &nbsp;&nbsp;}, <br>
+          &nbsp;&nbsp;"filter": { <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;"oneOf": { <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"field": "customerProductId", <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"values": [${customerProductIds as a list of strings}] <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;} <br>
+          &nbsp;&nbsp;} <br>
+          } <br>
+          <br>
+          example: <br>
+          { <br>
+          &nbsp;&nbsp;"pagination": { <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;"start": 0, <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;"limit": 10 <br>
+          &nbsp;&nbsp;}, <br>
+          &nbsp;&nbsp;"filter": { <br>
+          &nbsp;&nbsp;"oneOf": { <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"field": "customerProductId", <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"values": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"] <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;} <br>
+          &nbsp;&nbsp;} <br>
+          } <br>
       responses:
         "200":
           content:
@@ -5591,7 +5609,6 @@ paths:
                 $ref: '#/components/schemas/QueryProductsManufacturerV3ApiResponse'
           description: Returns a list of found products.
       tags:
-      - internal
       - products
     summary: Get products of a contract
   /api/v3/manufacturer/contracts/{contractId}/settings/monitoring:
@@ -5921,23 +5938,41 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/QueryProductsRequestV3'
+              $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ApiQuery'
         description: |
-          The body contains the products query.
-          Note that the support for the query field is currently limited. The only allowed pattern is currently:
-          The maximum allowed limit is 10000.
-          {
-            "pagination": {
-              "start": ${start},
-              "limit": ${limit}
-            },
-            "filter": {
-              "oneOf": {
-                "field": "customerProductId",
-                "values": [${customerProductIds as a list of strings}]
-              }
-            }
-          }
+          The body contains the products query. <br>
+          Currently, only product queries by "customerProductId" are supported. <br>
+          The maximum allowed limit in the pagination is 10000. <br>
+          Pagination works with respective to the given products query. <br>
+          This is most relevant when querying for a set of customerProductId's. <br>
+          When the requests are chunked over a set of ids, it is easiest to provide up to 10000 customerProductId's in the query and keep the pagination at start: 0, limit: 10000. <br>
+          The only allowed pattern is currently: <br>
+          { <br>
+          &nbsp;&nbsp;"pagination": { <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;"start": ${start}, <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;"limit": ${limit} <br>
+          &nbsp;&nbsp;}, <br>
+          &nbsp;&nbsp;"filter": { <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;"oneOf": { <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"field": "customerProductId", <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"values": [${customerProductIds as a list of strings}] <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;} <br>
+          &nbsp;&nbsp;} <br>
+          } <br>
+          <br>
+          example: <br>
+          { <br>
+          &nbsp;&nbsp;"pagination": { <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;"start": 0, <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;"limit": 10 <br>
+          &nbsp;&nbsp;}, <br>
+          &nbsp;&nbsp;"filter": { <br>
+          &nbsp;&nbsp;"oneOf": { <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"field": "customerProductId", <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"values": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"] <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;} <br>
+          &nbsp;&nbsp;} <br>
+          } <br>
       responses:
         "200":
           content:
@@ -5946,7 +5981,6 @@ paths:
                 $ref: '#/components/schemas/QueryProductsVendorV3ApiResponse'
           description: Returns a list of found products.
       tags:
-      - internal
       - products
     summary: Query products of a contract
   /api/v3/vendor/contracts/{contractId}/settings/monitoring:
@@ -9288,7 +9322,7 @@ components:
       type: object
     com.patagona.pricemonitor.share.api.ApiQuery:
       additionalProperties: false
-      description: This class represents a paginated query. The filter parameter is
+      description: This model represents a paginated query. The filter parameter is
         optional, if it is not set, all values will be returned, paginated by the
         pagination parameter.
       properties:
@@ -9301,7 +9335,7 @@ components:
       type: object
     com.patagona.pricemonitor.share.api.Pagination:
       additionalProperties: false
-      description: This class describes a step in a paginated endpoint. It consists
+      description: This model describes a step in a paginated endpoint. It consists
         of the start index, set to 0 for the first page. The next page starts at (previous
         start) + limit. Reasonable values for the limit parameter depend on the specific
         endpoint.
