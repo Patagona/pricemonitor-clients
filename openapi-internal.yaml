@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5503
+  version: 0.0.5504
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -4509,6 +4509,9 @@ paths:
       - undocumented
       - offers
   /api/2/v/contracts/{contractId}/result/pricerecommendations/query:
+    description: |
+      This endpoint is used to query certain price recommendations. <br>
+      Warning: This endpoint contains complex query structure and will be replaced in the future.
     post:
       operationId: queryPriceRecommendationsVendorV2
       parameters:
@@ -4525,18 +4528,20 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-        description: This is a generated entry and needs to be described.
+              $ref: '#/components/schemas/PriceRecommendationApiQueryV2'
+        description: The request body specifies which price recommendations will be
+          searched for.
       responses:
         "200":
           content:
             application/json:
               schema:
-                type: object
-          description: This is a generated entry and needs to be described.
+                $ref: '#/components/schemas/QueryPriceRecommendationsV2ApiResponse'
+          description: |
+            A paginated list of price recommendations is returned for the specified timerange. <br>
+            Only the newest price recommendations are returned in case of multiple price recommendations per product.
       tags:
       - internal
-      - undocumented
       - pricerecommendations
   /api/2/v/contracts/{contractId}/result/pricerecommendationstats:
     get:
@@ -7616,6 +7621,24 @@ components:
       required:
       - metric
       - order
+    PriceRecommendationQuerySortOrderV2:
+      example:
+        metric: productId
+        order: asc
+      properties:
+        metric:
+          enum:
+          - productId
+          - RelativePriceChangePercentage
+          type: string
+        order:
+          enum:
+          - asc
+          - desc
+          type: string
+      required:
+      - metric
+      - order
     QueryProductsRequestV3:
       example:
         filter:
@@ -7850,6 +7873,33 @@ components:
           $ref: '#/components/schemas/TimeRange'
         sort:
           $ref: '#/components/schemas/OffersQuerySortOrderV30'
+      required:
+      - pagination
+      - range
+    PriceRecommendationApiQueryV2:
+      example:
+        filter: '{}'
+        pagination:
+          limit: 1
+          start: 1
+        range:
+          start: 2000-01-23T04:56:07.000+00:00
+          end: 2000-01-23T04:56:07.000+00:00
+        sort:
+          metric: productId
+          order: asc
+      properties:
+        filter:
+          description: This is a placeholder for filter expressions. They are using
+            advanced features and are not covered by openapi. If you need to use filter
+            expressions please contract us.
+          type: object
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        range:
+          $ref: '#/components/schemas/TimeRange'
+        sort:
+          $ref: '#/components/schemas/PriceRecommendationQuerySortOrderV2'
       required:
       - pagination
       - range
@@ -9242,6 +9292,97 @@ components:
     org.json4s.JValue:
       additionalProperties: false
       properties: {}
+      type: object
+    QueryPriceRecommendationsV2ApiResponse:
+      additionalProperties: false
+      example:
+        data:
+        - relativePriceChangePercentage: 3.616076749251911
+          customerProductId: customerProductId
+          gtin: 9.301444243932576
+          productId: productId
+          originalTags:
+          - stringValue: stringValue
+            integerValue: 5
+            booleanValue: true
+            doubleValue: 5.962133916683182
+            label: label
+          - stringValue: stringValue
+            integerValue: 5
+            booleanValue: true
+            doubleValue: 5.962133916683182
+            label: label
+          oldPrice: 0.8008281904610115
+          tags:
+          - stringValue: stringValue
+            integerValue: 5
+            booleanValue: true
+            doubleValue: 5.962133916683182
+            label: label
+          - stringValue: stringValue
+            integerValue: 5
+            booleanValue: true
+            doubleValue: 5.962133916683182
+            label: label
+          originalMaxPriceBoundary: 4.145608029883936
+          newPosition: 2
+          originalMinPriceBoundary: 7.386281948385884
+          oldDeliveryCosts: 1.4658129805029452
+          deliveryCosts: 6.027456183070403
+          price: 2.3021358869347655
+          relevantDomain: relevantDomain
+          currency: currency
+          oldPosition: 7
+          timestamp: 2000-01-23T04:56:07.000+00:00
+        - relativePriceChangePercentage: 3.616076749251911
+          customerProductId: customerProductId
+          gtin: 9.301444243932576
+          productId: productId
+          originalTags:
+          - stringValue: stringValue
+            integerValue: 5
+            booleanValue: true
+            doubleValue: 5.962133916683182
+            label: label
+          - stringValue: stringValue
+            integerValue: 5
+            booleanValue: true
+            doubleValue: 5.962133916683182
+            label: label
+          oldPrice: 0.8008281904610115
+          tags:
+          - stringValue: stringValue
+            integerValue: 5
+            booleanValue: true
+            doubleValue: 5.962133916683182
+            label: label
+          - stringValue: stringValue
+            integerValue: 5
+            booleanValue: true
+            doubleValue: 5.962133916683182
+            label: label
+          originalMaxPriceBoundary: 4.145608029883936
+          newPosition: 2
+          originalMinPriceBoundary: 7.386281948385884
+          oldDeliveryCosts: 1.4658129805029452
+          deliveryCosts: 6.027456183070403
+          price: 2.3021358869347655
+          relevantDomain: relevantDomain
+          currency: currency
+          oldPosition: 7
+          timestamp: 2000-01-23T04:56:07.000+00:00
+        meta:
+          limit: 1
+          start: 1
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ApiPriceRecommendation'
+          type: array
+        meta:
+          $ref: '#/components/schemas/Pagination'
+      required:
+      - data
       type: object
     com.patagona.pricemonitor.share.api.PutResetPasswordRequest:
       additionalProperties: false
