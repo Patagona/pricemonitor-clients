@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5530
+  version: 0.0.5531
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -10131,7 +10131,8 @@ components:
         outcome:
           description: 'Describes the outcome of the monitoring attempt. Can be one
             of: ProductNotFound, ProductNotAvailable, ProductFound, CaptchaFailure,
-            LayoutFailure, RequestFailure, UnknownFailure, ProductSearchFailure, InvalidTaskFailure'
+            LayoutFailure, RequestFailure, UnknownFailure, ProductSearchFailure, MissingTaskData,
+            AlreadyCompletedTask, InvalidTaskSession, MissingContractId'
           type: string
       required:
       - outcome
