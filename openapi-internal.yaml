@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5533
+  version: 0.0.5534
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -3146,7 +3146,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PricesByDayByProductIdResponseV2'
+                items:
+                  $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PricesByDayByProductIdResponseV2'
+                type: array
           description: The list of all known prices for the queried day & product
             ID
       tags:
