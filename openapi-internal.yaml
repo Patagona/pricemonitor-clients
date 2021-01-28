@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5544
+  version: 0.0.5545
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -5620,9 +5620,9 @@ paths:
       tags:
       - products
     summary: Get products of a contract
-  /api/v3/manufacturer/contracts/{contractId}/settings:
+  /api/v3/manufacturer/contracts/{contractId}/settings/customer:
     get:
-      operationId: getContractSettingsManufaturerV3
+      operationId: getCustomerContractSettingsManufaturerV3
       parameters:
       - description: ID of the contract
         example: qbcxvb
@@ -5638,14 +5638,14 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GetContractSettingsApiResponse'
+                $ref: '#/components/schemas/GetCustomerContractSettingsApiResponse'
           description: Settings for this contract.
       tags:
       - internal
       - undocumented
       - settings
     put:
-      operationId: putContractSettingsManufacturerV3
+      operationId: putCustomerContractSettingsManufacturerV3
       parameters:
       - description: ID of the contract
         example: qbcxvb
@@ -5660,14 +5660,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ContractSettings'
+              $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.CustomerContractSettings'
         description: This is a generated entry and needs to be described.
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PutContractSettingsApiResponse'
+                $ref: '#/components/schemas/PutCustomerContractSettingsApiResponse'
           description: Settings for this contract.
       tags:
       - internal
@@ -6045,9 +6045,9 @@ paths:
       tags:
       - products
     summary: Query products of a contract
-  /api/v3/vendor/contracts/{contractId}/settings:
+  /api/v3/vendor/contracts/{contractId}/settings/customer:
     get:
-      operationId: getContractSettingsVendorV3
+      operationId: getCustomerContractSettingsVendorV3
       parameters:
       - description: ID of the contract
         example: qbcxvb
@@ -6063,14 +6063,14 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GetContractSettingsApiResponse'
+                $ref: '#/components/schemas/GetCustomerContractSettingsApiResponse'
           description: Settings for this contract.
       tags:
       - internal
       - undocumented
       - settings
     put:
-      operationId: putContractSettingsVendorV3
+      operationId: putCustomerContractSettingsVendorV3
       parameters:
       - description: ID of the contract
         example: qbcxvb
@@ -6085,14 +6085,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ContractSettings'
+              $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.CustomerContractSettings'
         description: This is a generated entry and needs to be described.
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PutContractSettingsApiResponse'
+                $ref: '#/components/schemas/PutCustomerContractSettingsApiResponse'
           description: Settings for this contract.
       tags:
       - internal
@@ -9679,7 +9679,7 @@ components:
       required:
       - data
       type: object
-    GetContractSettingsApiResponse:
+    GetCustomerContractSettingsApiResponse:
       additionalProperties: false
       example:
         data:
@@ -9711,13 +9711,14 @@ components:
             adjustedInterval: 1
       properties:
         data:
-          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ContractSettings'
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.CustomerContractSettings'
       required:
       - data
       type: object
-    com.patagona.pricemonitor.share.api.ContractSettings:
+    com.patagona.pricemonitor.share.api.CustomerContractSettings:
       additionalProperties: false
-      description: ContractSettings contains all settings adjustable by the user.
+      description: CustomerContractSettings contains all settings adjustable by the
+        pricemonitor customers.
       example:
         imageUrlTag: imageUrlTag
         mapTag: mapTag
@@ -9816,7 +9817,7 @@ components:
       required:
       - pricemonitorCompleted
       type: object
-    PutContractSettingsApiResponse:
+    PutCustomerContractSettingsApiResponse:
       additionalProperties: false
       example:
         data:
@@ -9848,7 +9849,7 @@ components:
             adjustedInterval: 1
       properties:
         data:
-          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ContractSettings'
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.CustomerContractSettings'
       required:
       - data
       type: object
