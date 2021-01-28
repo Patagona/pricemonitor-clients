@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5542
+  version: 0.0.5544
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -5620,6 +5620,59 @@ paths:
       tags:
       - products
     summary: Get products of a contract
+  /api/v3/manufacturer/contracts/{contractId}/settings:
+    get:
+      operationId: getContractSettingsManufaturerV3
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetContractSettingsApiResponse'
+          description: Settings for this contract.
+      tags:
+      - internal
+      - undocumented
+      - settings
+    put:
+      operationId: putContractSettingsManufacturerV3
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ContractSettings'
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PutContractSettingsApiResponse'
+          description: Settings for this contract.
+      tags:
+      - internal
+      - undocumented
+      - settings
   /api/v3/manufacturer/contracts/{contractId}/settings/monitoring:
     get:
       operationId: getMonitoringSettingsManufacturerV3
@@ -5992,6 +6045,59 @@ paths:
       tags:
       - products
     summary: Query products of a contract
+  /api/v3/vendor/contracts/{contractId}/settings:
+    get:
+      operationId: getContractSettingsVendorV3
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetContractSettingsApiResponse'
+          description: Settings for this contract.
+      tags:
+      - internal
+      - undocumented
+      - settings
+    put:
+      operationId: putContractSettingsVendorV3
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ContractSettings'
+        description: This is a generated entry and needs to be described.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PutContractSettingsApiResponse'
+          description: Settings for this contract.
+      tags:
+      - internal
+      - undocumented
+      - settings
   /api/v3/vendor/contracts/{contractId}/settings/monitoring:
     get:
       operationId: getMonitoringSettingsVendorV3
@@ -9039,6 +9145,13 @@ components:
     com.patagona.pricemonitor.share.api.GetContractSettingsResponseV1:
       additionalProperties: false
       example:
+        portals:
+        - portals
+        - portals
+        msrpTag: msrpTag
+        active: true
+        type: type
+        sid: sid
         features:
           disabled:
           - disabled
@@ -9046,19 +9159,14 @@ components:
           enabled:
           - enabled
           - enabled
-        portals:
-        - portals
-        - portals
+        mapTag: mapTag
         name: name
-        active: true
         company: company
         currency: currency
         includeDeliveryCosts: true
         id: 0.8008281904610115
         imageTag: imageTag
-        type: type
         expirationDate: 2000-01-23T04:56:07.000+00:00
-        sid: sid
       properties:
         name:
           type: string
@@ -9074,16 +9182,25 @@ components:
         features:
           $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ContractFeatures'
         imageTag:
+          description: The name of the tag that contains the product image url
           type: string
         company:
           type: string
         id:
           type: number
         currency:
+          description: The contract's currency as three letter code
           type: string
         type:
           type: string
         sid:
+          type: string
+        msrpTag:
+          description: The name of the tag that contains the manufacturers suggested
+            retail price
+          type: string
+        mapTag:
+          description: The name of the tag that contains the minimum advertised price
           type: string
         active:
           type: boolean
@@ -9559,6 +9676,179 @@ components:
           items:
             $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ApiProduct'
           type: array
+      required:
+      - data
+      type: object
+    GetContractSettingsApiResponse:
+      additionalProperties: false
+      example:
+        data:
+          imageUrlTag: imageUrlTag
+          mapTag: mapTag
+          domains:
+          - domains
+          - domains
+          callbacks:
+            pricemonitorCompleted:
+            - headers:
+                key: headers
+              method: method
+              bodyTemplate: bodyTemplate
+              name: name
+              url: url
+            - headers:
+                key: headers
+              method: method
+              bodyTemplate: bodyTemplate
+              name: name
+              url: url
+          msrpTag: msrpTag
+          currency: EUR
+          includeDeliveryCosts: true
+          dynamicMonitoring:
+            threshold: 6.027456183070403
+            analysisRange: 0
+            adjustedInterval: 1
+      properties:
+        data:
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ContractSettings'
+      required:
+      - data
+      type: object
+    com.patagona.pricemonitor.share.api.ContractSettings:
+      additionalProperties: false
+      description: ContractSettings contains all settings adjustable by the user.
+      example:
+        imageUrlTag: imageUrlTag
+        mapTag: mapTag
+        domains:
+        - domains
+        - domains
+        callbacks:
+          pricemonitorCompleted:
+          - headers:
+              key: headers
+            method: method
+            bodyTemplate: bodyTemplate
+            name: name
+            url: url
+          - headers:
+              key: headers
+            method: method
+            bodyTemplate: bodyTemplate
+            name: name
+            url: url
+        msrpTag: msrpTag
+        currency: EUR
+        includeDeliveryCosts: true
+        dynamicMonitoring:
+          threshold: 6.027456183070403
+          analysisRange: 0
+          adjustedInterval: 1
+      properties:
+        includeDeliveryCosts:
+          type: boolean
+        domains:
+          items:
+            type: string
+          type: array
+        dynamicMonitoring:
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.DynamicMonitoringSettings'
+        currency:
+          default: EUR
+          description: The contract's currency as three letter code
+          type: string
+        imageUrlTag:
+          description: The name of the tag that contains the product image url
+          type: string
+        callbacks:
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.Callbacks'
+        msrpTag:
+          description: The name of the tag that contains the manufacturers suggested
+            retail price
+          type: string
+        mapTag:
+          description: The name of the tag that contains the minimum advertised price
+          type: string
+      required:
+      - domains
+      - includeDeliveryCosts
+      type: object
+    com.patagona.pricemonitor.share.api.DynamicMonitoringSettings:
+      additionalProperties: false
+      example:
+        threshold: 6.027456183070403
+        analysisRange: 0
+        adjustedInterval: 1
+      properties:
+        analysisRange:
+          type: integer
+        threshold:
+          type: number
+        adjustedInterval:
+          type: integer
+      required:
+      - adjustedInterval
+      - analysisRange
+      - threshold
+      type: object
+    com.patagona.pricemonitor.share.api.Callbacks:
+      additionalProperties: false
+      example:
+        pricemonitorCompleted:
+        - headers:
+            key: headers
+          method: method
+          bodyTemplate: bodyTemplate
+          name: name
+          url: url
+        - headers:
+            key: headers
+          method: method
+          bodyTemplate: bodyTemplate
+          name: name
+          url: url
+      properties:
+        pricemonitorCompleted:
+          items:
+            $ref: '#/components/schemas/com_patagona_pricemonitor_share_api_Callbacks_pricemonitorCompleted'
+          type: array
+      required:
+      - pricemonitorCompleted
+      type: object
+    PutContractSettingsApiResponse:
+      additionalProperties: false
+      example:
+        data:
+          imageUrlTag: imageUrlTag
+          mapTag: mapTag
+          domains:
+          - domains
+          - domains
+          callbacks:
+            pricemonitorCompleted:
+            - headers:
+                key: headers
+              method: method
+              bodyTemplate: bodyTemplate
+              name: name
+              url: url
+            - headers:
+                key: headers
+              method: method
+              bodyTemplate: bodyTemplate
+              name: name
+              url: url
+          msrpTag: msrpTag
+          currency: EUR
+          includeDeliveryCosts: true
+          dynamicMonitoring:
+            threshold: 6.027456183070403
+            analysisRange: 0
+            adjustedInterval: 1
+      properties:
+        data:
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ContractSettings'
       required:
       - data
       type: object
@@ -10596,6 +10886,30 @@ components:
       required:
       - field
       - value
+    com_patagona_pricemonitor_share_api_Callbacks_pricemonitorCompleted:
+      example:
+        headers:
+          key: headers
+        method: method
+        bodyTemplate: bodyTemplate
+        name: name
+        url: url
+      properties:
+        method:
+          type: string
+        name:
+          type: string
+        bodyTemplate:
+          type: string
+        url:
+          type: string
+        headers:
+          additionalProperties:
+            type: string
+          type: object
+      required:
+      - headers
+      - url
     com_patagona_pricemonitor_share_api_ProductMonitoringStatusStats_outcomes:
       example:
         count: 1
