@@ -19,6 +19,7 @@ export * from './pricemonitorCallbacks';
 export * from './pricemonitorCallbacksPricemonitorCompleted';
 export * from './pricemonitorContractFeatures';
 export * from './pricemonitorContractStats';
+export * from './pricemonitorContractType';
 export * from './pricemonitorCreateTaskBodyV2';
 export * from './pricemonitorCustomerContractSettings';
 export * from './pricemonitorCustomerOrderItemV2';

@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5545
+  version: 0.0.5547
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -9077,13 +9077,11 @@ components:
           active: true
           id: id
           creationDate: 2000-01-23T04:56:07.000+00:00
-          type: Pricemonitor for manufacturers
           expirationDate: 2000-01-23T04:56:07.000+00:00
         - description: description
           active: true
           id: id
           creationDate: 2000-01-23T04:56:07.000+00:00
-          type: Pricemonitor for manufacturers
           expirationDate: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
@@ -9110,7 +9108,6 @@ components:
         active: true
         id: id
         creationDate: 2000-01-23T04:56:07.000+00:00
-        type: Pricemonitor for manufacturers
         expirationDate: 2000-01-23T04:56:07.000+00:00
       properties:
         expirationDate:
@@ -9128,10 +9125,7 @@ components:
           format: date-time
           type: string
         type:
-          enum:
-          - Pricemonitor for manufacturers
-          - Pricemonitor for resellers
-          type: string
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ContractType'
         active:
           description: The contract-status
           type: boolean
@@ -9142,6 +9136,11 @@ components:
       - id
       - type
       type: object
+    com.patagona.pricemonitor.share.api.ContractType:
+      enum:
+      - Pricemonitor for manufacturers
+      - Pricemonitor for resellers
+      type: string
     com.patagona.pricemonitor.share.api.GetContractSettingsResponseV1:
       additionalProperties: false
       example:
@@ -9151,6 +9150,7 @@ components:
         msrpTag: msrpTag
         active: true
         type: type
+        monitoringPriority: 6
         sid: sid
         features:
           disabled:
@@ -9188,6 +9188,9 @@ components:
           type: string
         id:
           type: number
+        monitoringPriority:
+          description: Priority of the contract in the monitoring queue
+          type: integer
         currency:
           description: The contract's currency as three letter code
           type: string
@@ -9211,6 +9214,7 @@ components:
       - features
       - id
       - includeDeliveryCosts
+      - monitoringPriority
       - name
       - portals
       - sid
@@ -9255,6 +9259,7 @@ components:
         active: true
         id: 0.8008281904610115
         type: type
+        monitoringPriority: 6
         expirationDate: 2000-01-23T04:56:07.000+00:00
         sid: sid
       properties:
@@ -9271,6 +9276,8 @@ components:
           $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ContractFeatures'
         id:
           type: number
+        monitoringPriority:
+          type: integer
         type:
           type: string
         sid:
@@ -9534,7 +9541,6 @@ components:
       example:
         data:
           companyId: 0.8008281904610115
-          contractType: Pricemonitor for manufacturers
           description: description
           active: true
           creationDate: 2000-01-23T04:56:07.000+00:00
@@ -10234,7 +10240,6 @@ components:
       description: Contract information
       example:
         companyId: 0.8008281904610115
-        contractType: Pricemonitor for manufacturers
         description: description
         active: true
         creationDate: 2000-01-23T04:56:07.000+00:00
@@ -10249,11 +10254,7 @@ components:
           description: The description for the given contract provided by the end-user.
           type: string
         contractType:
-          description: Type of the contract.
-          enum:
-          - Pricemonitor for manufacturers
-          - Pricemonitor for resellers
-          type: string
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ContractType'
         creationDate:
           description: The creation date of the contract.
           format: date-time

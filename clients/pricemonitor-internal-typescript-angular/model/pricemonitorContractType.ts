@@ -9,10 +9,12 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ConstantOfferFilterConstant } from './constantOfferFilterConstant';
 
 
-export interface ConstantOfferFilter { 
-    constant?: ConstantOfferFilterConstant;
-}
+export type PricemonitorContractType = 'Pricemonitor for manufacturers' | 'Pricemonitor for resellers';
+
+export const PricemonitorContractType = {
+    Manufacturers: 'Pricemonitor for manufacturers' as PricemonitorContractType,
+    Resellers: 'Pricemonitor for resellers' as PricemonitorContractType
+};
 

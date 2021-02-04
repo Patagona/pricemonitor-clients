@@ -9,10 +9,11 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ConstantOfferFilterConstant } from './constantOfferFilterConstant';
+package com.patagona.pricemonitor.client.model
 
+import com.patagona.pricemonitor.client.core.ApiModel
 
-export interface ConstantOfferFilter { 
-    constant?: ConstantOfferFilterConstant;
-}
+case class ContractType(
+) extends ApiModel
+
 
