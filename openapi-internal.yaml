@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5547
+  version: 0.0.5548
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -3303,7 +3303,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
+              $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.TagFilteredVendorsRequest'
         description: This is a generated entry and needs to be described.
       responses:
         "200":
@@ -3341,7 +3341,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
+              $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.TagFilteredVendorsRequest'
         description: This is a generated entry and needs to be described.
       responses:
         "200":
@@ -3401,14 +3401,14 @@ paths:
         content:
           application/json:
             schema:
-              type: object
+              $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.TagFilteredVendorsRequest'
         description: This is a generated entry and needs to be described.
       responses:
         "200":
           content:
             application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PostVendorsByDomainResponse'
           description: This is a generated entry and needs to be described.
       tags:
       - internal
@@ -9401,6 +9401,82 @@ components:
       - prices
       - productName
       - vendorName
+      type: object
+    com.patagona.pricemonitor.share.api.TagFilteredVendorsRequest:
+      additionalProperties: false
+      properties:
+        tags:
+          additionalProperties:
+            type: string
+          description: A list of key value pairs of product tags
+          type: object
+      type: object
+    com.patagona.pricemonitor.share.api.PostVendorsByDomainResponse:
+      additionalProperties: false
+      example:
+        next: next
+        data:
+        - minPriceCount: 5.637376656633329
+          productsUnderReferencePrice: 1.4658129805029452
+          portalName: portalName
+          resellerName: resellerName
+          averagePosition: 6.027456183070403
+          averageDiscount: 0.8008281904610115
+          productsCount: 5.962133916683182
+        - minPriceCount: 5.637376656633329
+          productsUnderReferencePrice: 1.4658129805029452
+          portalName: portalName
+          resellerName: resellerName
+          averagePosition: 6.027456183070403
+          averageDiscount: 0.8008281904610115
+          productsCount: 5.962133916683182
+        totalCount: 2
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ResellerSummaryByDomain'
+          type: array
+        next:
+          type: string
+        totalCount:
+          type: integer
+      required:
+      - data
+      - totalCount
+      type: object
+    com.patagona.pricemonitor.share.api.ResellerSummaryByDomain:
+      additionalProperties: false
+      example:
+        minPriceCount: 5.637376656633329
+        productsUnderReferencePrice: 1.4658129805029452
+        portalName: portalName
+        resellerName: resellerName
+        averagePosition: 6.027456183070403
+        averageDiscount: 0.8008281904610115
+        productsCount: 5.962133916683182
+      properties:
+        averageDiscount:
+          type: number
+        averagePosition:
+          type: number
+        productsUnderReferencePrice:
+          type: number
+        portalName:
+          type: string
+        productsCount:
+          type: number
+        resellerName:
+          type: string
+        minPriceCount:
+          type: number
+      required:
+      - averageDiscount
+      - averagePosition
+      - minPriceCount
+      - portalName
+      - productsCount
+      - productsUnderReferencePrice
+      - resellerName
       type: object
     com.patagona.pricemonitor.share.api.CreateTaskBodyV2:
       additionalProperties: false
