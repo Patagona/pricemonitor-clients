@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5549
+  version: 0.0.5550
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -1294,6 +1294,36 @@ paths:
             10000.
       tags:
       - offers
+  /api/v3/manufacturer/contracts/{contractId}/offers/shop/query:
+    post:
+      description: Get all offers of a shop. Please note that it might return offers
+        for inactive products.
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.QueryOffersOfShopRequestV3'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryOffersOfShopV3ApiResponse'
+          description: Returns offers of the shop
+      tags:
+      - products
+      - internal
   /api/v3/manufacturer/contracts/{contractId}/offers/stats/query:
     post:
       description: 'This operation is used to get offer statistics (e.g. offer count,
@@ -1628,6 +1658,36 @@ paths:
             filter/sorting.
       tags:
       - offers
+  /api/v3/vendor/contracts/{contractId}/offers/shop/query:
+    post:
+      description: Get all offers of a shop. Please note that it might return offers
+        for inactive products.
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.QueryOffersOfShopRequestV3'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryOffersOfShopV3ApiResponse'
+          description: Returns offers of the shop
+      tags:
+      - products
+      - internal
   /api/v3/vendor/contracts/{contractId}/offers/stats/query:
     post:
       description: 'This operation is used to get offer statistics (e.g. offer count,
@@ -8960,6 +9020,86 @@ components:
       required:
       - data
       type: object
+    com.patagona.pricemonitor.share.api.QueryOffersOfShopRequestV3:
+      additionalProperties: false
+      properties:
+        shop:
+          type: string
+        endDate:
+          format: date-time
+          type: string
+        start:
+          type: integer
+        limit:
+          type: integer
+        startDate:
+          format: date-time
+          type: string
+      required:
+      - endDate
+      - limit
+      - shop
+      - start
+      - startDate
+      type: object
+    QueryOffersOfShopV3ApiResponse:
+      additionalProperties: false
+      example:
+        data:
+        - ignored: true
+          gtin: 2.3021358869347655
+          productId: productId
+          retrievalDate: 2000-01-23T04:56:07.000+00:00
+          availability: true
+          vendorName: vendorName
+          creationDate: 2000-01-23T04:56:07.000+00:00
+          positionByTotalPrice: 0
+          url: url
+          productName: productName
+          minDeliveryTime: 5
+          vendorDomainId: vendorDomainId
+          deliveryCosts: 6.027456183070403
+          maxDeliveryTime: 1
+          price: 5.962133916683182
+          domain: domain
+          attributes:
+          - name: name
+            value: value
+          - name: name
+            value: value
+          currency: currency
+          positionByUnitPrice: 7
+        - ignored: true
+          gtin: 2.3021358869347655
+          productId: productId
+          retrievalDate: 2000-01-23T04:56:07.000+00:00
+          availability: true
+          vendorName: vendorName
+          creationDate: 2000-01-23T04:56:07.000+00:00
+          positionByTotalPrice: 0
+          url: url
+          productName: productName
+          minDeliveryTime: 5
+          vendorDomainId: vendorDomainId
+          deliveryCosts: 6.027456183070403
+          maxDeliveryTime: 1
+          price: 5.962133916683182
+          domain: domain
+          attributes:
+          - name: name
+            value: value
+          - name: name
+            value: value
+          currency: currency
+          positionByUnitPrice: 7
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ApiOffer'
+          type: array
+      required:
+      - data
+      type: object
     PutProductsApiResponse:
       additionalProperties: false
       example:
@@ -10310,6 +10450,105 @@ components:
           type: array
         product:
           $ref: '#/components/schemas/ApiProduct'
+      type: object
+    com.patagona.pricemonitor.share.api.ApiOffer:
+      additionalProperties: false
+      example:
+        ignored: true
+        gtin: 2.3021358869347655
+        productId: productId
+        retrievalDate: 2000-01-23T04:56:07.000+00:00
+        availability: true
+        vendorName: vendorName
+        creationDate: 2000-01-23T04:56:07.000+00:00
+        positionByTotalPrice: 0
+        url: url
+        productName: productName
+        minDeliveryTime: 5
+        vendorDomainId: vendorDomainId
+        deliveryCosts: 6.027456183070403
+        maxDeliveryTime: 1
+        price: 5.962133916683182
+        domain: domain
+        attributes:
+        - name: name
+          value: value
+        - name: name
+          value: value
+        currency: currency
+        positionByUnitPrice: 7
+      properties:
+        positionByTotalPrice:
+          type: integer
+        deliveryCosts:
+          type: number
+        maxDeliveryTime:
+          type: integer
+        url:
+          type: string
+        vendorDomainId:
+          type: string
+        domain:
+          type: string
+        price:
+          type: number
+        minDeliveryTime:
+          type: integer
+        gtin:
+          type: number
+        positionByUnitPrice:
+          type: integer
+        availability:
+          type: boolean
+        attributes:
+          items:
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.OfferAttribute'
+          type: array
+        vendorName:
+          type: string
+        retrievalDate:
+          format: date-time
+          type: string
+        creationDate:
+          format: date-time
+          type: string
+        productName:
+          type: string
+        currency:
+          type: string
+        productId:
+          type: string
+        ignored:
+          type: boolean
+      required:
+      - attributes
+      - creationDate
+      - currency
+      - deliveryCosts
+      - domain
+      - ignored
+      - positionByTotalPrice
+      - positionByUnitPrice
+      - price
+      - productId
+      - productName
+      - url
+      - vendorName
+      type: object
+    com.patagona.pricemonitor.share.api.OfferAttribute:
+      additionalProperties: false
+      description: Created by Andreas Frankenberger on 28.01.16.
+      example:
+        name: name
+        value: value
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+      required:
+      - name
+      - value
       type: object
     com.patagona.pricemonitor.share.api.GetContractResponseV3:
       additionalProperties: false
