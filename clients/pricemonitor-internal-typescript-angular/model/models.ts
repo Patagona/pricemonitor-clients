@@ -33,6 +33,7 @@ export * from './pricemonitorGetContractSettingsResponseV1';
 export * from './pricemonitorOfferAttribute';
 export * from './pricemonitorOfferSelector';
 export * from './pricemonitorPagination';
+export * from './pricemonitorPaginationResponse';
 export * from './pricemonitorPostCustomerOrdersRequestV2';
 export * from './pricemonitorPostNewPasswordRequest';
 export * from './pricemonitorPostVendorsByDomainResponse';

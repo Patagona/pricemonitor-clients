@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5574
+  version: 0.0.5575
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -7764,8 +7764,8 @@ components:
       - value
     Pagination:
       example:
-        limit: 1
-        start: 1
+        limit: 0
+        start: 6
       properties:
         limit:
           default: 100
@@ -7817,8 +7817,8 @@ components:
           right: '{}'
           type: ComparisonFilter
         pagination:
-          limit: 1
-          start: 1
+          limit: 0
+          start: 6
       properties:
         filter:
           $ref: '#/components/schemas/ProductsFilter'
@@ -8023,8 +8023,8 @@ components:
       example:
         filter: '{}'
         pagination:
-          limit: 1
-          start: 1
+          limit: 0
+          start: 6
         range:
           start: 2000-01-23T04:56:07.000+00:00
           end: 2000-01-23T04:56:07.000+00:00
@@ -8050,8 +8050,8 @@ components:
       example:
         filter: '{}'
         pagination:
-          limit: 1
-          start: 1
+          limit: 0
+          start: 6
         range:
           start: 2000-01-23T04:56:07.000+00:00
           end: 2000-01-23T04:56:07.000+00:00
@@ -8735,15 +8735,17 @@ components:
           oldPosition: 7
           timestamp: 2000-01-23T04:56:07.000+00:00
         meta:
-          limit: 1
+          totalSize: 1
           start: 1
+          limit: 1
+          nextUrl: nextUrl
       properties:
         data:
           items:
             $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ApiPriceRecommendation'
           type: array
         meta:
-          $ref: '#/components/schemas/Pagination'
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PaginationResponse'
       required:
       - data
       type: object
@@ -9716,15 +9718,17 @@ components:
           oldPosition: 7
           timestamp: 2000-01-23T04:56:07.000+00:00
         meta:
-          limit: 1
+          totalSize: 1
           start: 1
+          limit: 1
+          nextUrl: nextUrl
       properties:
         data:
           items:
             $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ApiPriceRecommendation'
           type: array
         meta:
-          $ref: '#/components/schemas/Pagination'
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PaginationResponse'
       required:
       - data
       type: object
@@ -10378,6 +10382,34 @@ components:
       required:
       - label
       - stringValue
+      type: object
+    com.patagona.pricemonitor.share.api.PaginationResponse:
+      additionalProperties: false
+      description: This model describes the information passed to the user for a paginated
+        request.
+      example:
+        totalSize: 1
+        start: 1
+        limit: 1
+        nextUrl: nextUrl
+      properties:
+        nextUrl:
+          description: the url that can be called to retrieve the next page, None
+            if th last page has been requested
+          type: string
+        totalSize:
+          description: the total number of elements that is paginated over
+          type: integer
+        start:
+          description: the start index of the currently requested page
+          type: integer
+        limit:
+          description: the number of elements in a full page
+          type: integer
+      required:
+      - limit
+      - start
+      - totalSize
       type: object
     ProductAndOffers_2:
       example:

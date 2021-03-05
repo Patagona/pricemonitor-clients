@@ -13,8 +13,18 @@ package com.patagona.pricemonitor.client.model
 
 import com.patagona.pricemonitor.client.core.ApiModel
 
-case class QueryOffersOfShopV3ApiResponse(
-  data: Seq[ApiOffer]
+  /**
+   * This model describes the information passed to the user for a paginated request.
+   */
+case class PaginationResponse(
+  /* the url that can be called to retrieve the next page, None if th last page has been requested */
+  nextUrl: Option[String] = None,
+  /* the total number of elements that is paginated over */
+  totalSize: Int,
+  /* the start index of the currently requested page */
+  start: Int,
+  /* the number of elements in a full page */
+  limit: Int
 ) extends ApiModel
 
 
