@@ -9,6 +9,7 @@ import { ControlpanelService } from './api/controlpanel.service';
 import { FeedsService } from './api/feeds.service';
 import { InternalService } from './api/internal.service';
 import { LogsService } from './api/logs.service';
+import { MonitoringSchedulesService } from './api/monitoringSchedules.service';
 import { OffersService } from './api/offers.service';
 import { OrdersService } from './api/orders.service';
 import { PluginregistrationService } from './api/pluginregistration.service';

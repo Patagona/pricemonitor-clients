@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5577
+  version: 0.0.5582
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -7098,8 +7098,341 @@ paths:
       tags:
       - undocumented
       - internal
+  /api/v3/vendor/contracts/{contractId}/settings/monitoringschedules:
+    get:
+      operationId: getMonitoringSchedulesVendorV3
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetMonitoringSchedulesApiResponse'
+          description: List of monitoring schedules.
+      summary: Get all the monitoring schedules for a specified contract.
+      tags:
+      - monitoring-schedules
+      - internal
+    post:
+      operationId: postMonitoringScheduleVendorV3
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PostMonitoringScheduleRequestV3'
+        description: Request body for creating monitoring schedule.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Monitoring schedule has been created successfully.
+      summary: Add a monitoring schedule for a given contract.
+      tags:
+      - internal
+      - monitoring-schedules
+  /api/v3/vendor/contracts/{contractId}/settings/monitoringschedules/{scheduleId}:
+    delete:
+      operationId: deleteMonitoringScheduleVendorV3
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: ID of a monitoring schedule
+        explode: false
+        in: path
+        name: scheduleId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Monitoring schedule has been deleted successfully.
+      summary: Delete a monitoring schedule for a given contract.
+      tags:
+      - internal
+      - monitoring-schedules
+    put:
+      operationId: putMonitoringScheduleVendorV3
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: ID of a monitoring schedule
+        explode: false
+        in: path
+        name: scheduleId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PostMonitoringScheduleRequestV3'
+        description: Request body for updating monitoring schedule.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Monitoring schedule has been updated successfully.
+      summary: Update a monitoring schedule for a given contract.
+      tags:
+      - internal
+      - monitoring-schedules
+  /api/v3/vendor/contracts/{contractId}/settings/monitoringschedules/{scheduleId}/execute:
+    post:
+      operationId: executeMonitoringScheduleVendorV3
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: ID of a monitoring schedule
+        explode: false
+        in: path
+        name: scheduleId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Monitoring task was successfully created and is executing
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: Couldn't find any monitoring schedules for given schedule id.
+            No monitoring task was created
+      summary: Trigger a monitoring pipeline task for vendor for configured monitoring
+        schedule
+      tags:
+      - internal
+      - monitoring-schedules
+  /api/v3/manufacturer/contracts/{contractId}/settings/monitoringschedules:
+    get:
+      operationId: getMonitoringSchedulesManufacturerV3
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetMonitoringSchedulesApiResponse'
+          description: List of monitoring schedules.
+      summary: Get all the monitoring schedules for a specified contract.
+      tags:
+      - monitoring-schedules
+      - internal
+    post:
+      operationId: postMonitoringScheduleManufacturerV3
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PostMonitoringScheduleRequestV3'
+        description: Request body for creating monitoring schedule.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Monitoring schedule has been created successfully.
+      summary: Add a monitoring schedule for a given contract.
+      tags:
+      - internal
+      - monitoring-schedules
+  /api/v3/manufacturer/contracts/{contractId}/settings/monitoringschedules/{scheduleId}:
+    delete:
+      operationId: deleteMonitoringScheduleManufacturerV3
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: ID of a monitoring schedule
+        explode: false
+        in: path
+        name: scheduleId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Monitoring schedule has been deleted successfully.
+      summary: Delete a monitoring schedule for a given contract.
+      tags:
+      - internal
+      - monitoring-schedules
+    put:
+      operationId: putMonitoringScheduleManufacturerV3
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: ID of a monitoring schedule
+        explode: false
+        in: path
+        name: scheduleId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PostMonitoringScheduleRequestV3'
+        description: Request body for updating monitoring schedule.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Monitoring schedule has been updated successfully.
+      summary: Update a monitoring schedule for a given contract.
+      tags:
+      - internal
+      - monitoring-schedules
+  /api/v3/manufacturer/contracts/{contractId}/settings/monitoringschedules/{scheduleId}/execute:
+    post:
+      operationId: executeMonitoringScheduleManufacturerV3
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: ID of a monitoring schedule
+        explode: false
+        in: path
+        name: scheduleId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Monitoring task was successfully created and is executing
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: Couldn't find any monitoring schedules for given schedule id.
+            No monitoring task was created
+      summary: Trigger a monitoring pipeline task for manufacturer for configured
+        monitoring schedule
+      tags:
+      - internal
+      - monitoring-schedules
 components:
   parameters:
+    scheduleIdParam:
+      description: ID of a monitoring schedule
+      explode: false
+      in: path
+      name: scheduleId
+      required: true
+      schema:
+        type: integer
+      style: simple
     contractIdParam:
       description: ID of the contract
       example: qbcxvb
@@ -9843,6 +10176,33 @@ components:
         to be specified.
         Please note that depending on the endpoint only a subset of the query language might be supported.
         Refer to the endpoint specific documentation to view the restrictions.
+      example:
+        regex:
+          field: field
+          pattern: pattern
+        oneOf:
+          field: field
+          values:
+          - values
+          - values
+        or:
+        - null
+        - null
+        const: true
+        in:
+          field: field
+        and:
+        - null
+        - null
+        lt:
+          field: field
+          value: value
+        eq:
+          field: field
+          value: value
+        gt:
+          field: field
+          value: value
       properties:
         regex:
           $ref: '#/components/schemas/com_patagona_pricemonitor_share_api_Query_regex'
@@ -10218,6 +10578,103 @@ components:
           type: array
       required:
       - data
+      type: object
+    GetMonitoringSchedulesApiResponse:
+      additionalProperties: false
+      example:
+        data:
+        - schedule: schedule
+          quota: 0.8008281904610115
+          unfulfilledOnly: true
+          id: 6.027456183070403
+          productQuery:
+            regex:
+              field: field
+              pattern: pattern
+            oneOf:
+              field: field
+              values:
+              - values
+              - values
+            or:
+            - null
+            - null
+            const: true
+            in:
+              field: field
+            and:
+            - null
+            - null
+            lt:
+              field: field
+              value: value
+            eq:
+              field: field
+              value: value
+            gt:
+              field: field
+              value: value
+        - schedule: schedule
+          quota: 0.8008281904610115
+          unfulfilledOnly: true
+          id: 6.027456183070403
+          productQuery:
+            regex:
+              field: field
+              pattern: pattern
+            oneOf:
+              field: field
+              values:
+              - values
+              - values
+            or:
+            - null
+            - null
+            const: true
+            in:
+              field: field
+            and:
+            - null
+            - null
+            lt:
+              field: field
+              value: value
+            eq:
+              field: field
+              value: value
+            gt:
+              field: field
+              value: value
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.MonitoringScheduleV3'
+          type: array
+      required:
+      - data
+      type: object
+    com.patagona.pricemonitor.share.api.PostMonitoringScheduleRequestV3:
+      additionalProperties: false
+      description: A request body containing monitoring schedule.
+      properties:
+        quota:
+          description: 'Defines how many products should get monitored. Default to
+            1.0 which means that all products are monitored. Allowed values: 0.0 <
+            quota <= 1.0'
+          type: number
+        unfulfilledOnly:
+          description: When it's set to true, then the monitoring considers only products
+            on domains where no offers are found within 24h. Default false.
+          type: boolean
+        productQuery:
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.Query'
+        schedule:
+          description: Only valid CRON expressions are allowed. See Cron spec [[https://www.alonsodomin.me/cron4s/userguide/index.html]]
+          type: string
+      required:
+      - quota
+      - schedule
+      - unfulfilledOnly
       type: object
     com.patagona.pricemonitor.share.api.ApplicationVersion:
       additionalProperties: false
@@ -10808,6 +11265,66 @@ components:
       - outcomes
       - started
       type: object
+    com.patagona.pricemonitor.share.api.MonitoringScheduleV3:
+      additionalProperties: false
+      description: MonitoringScheduleV3 represents monitoring schedule that can be
+        adjustable by the price-monitor customers.
+      example:
+        schedule: schedule
+        quota: 0.8008281904610115
+        unfulfilledOnly: true
+        id: 6.027456183070403
+        productQuery:
+          regex:
+            field: field
+            pattern: pattern
+          oneOf:
+            field: field
+            values:
+            - values
+            - values
+          or:
+          - null
+          - null
+          const: true
+          in:
+            field: field
+          and:
+          - null
+          - null
+          lt:
+            field: field
+            value: value
+          eq:
+            field: field
+            value: value
+          gt:
+            field: field
+            value: value
+      properties:
+        productQuery:
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.Query'
+        quota:
+          description: 'Defines how many products should get monitored. Default to
+            1.0 which means that all products are monitored. Allowed values: 0.0 <
+            quota <= 1.0'
+          type: number
+        unfulfilledOnly:
+          description: When it's set to true, then the monitoring considers only products
+            on domains where no offers are found within 24h. Default false.
+          type: boolean
+        id:
+          description: Id that uniquely identifies a monitoring schedule.
+          type: number
+        schedule:
+          description: Only valid CRON expressions are allowed. See Cron spec [[https://www.alonsodomin.me/cron4s/userguide/index.html]]
+          type: string
+      required:
+      - id
+      - quota
+      - schedule
+      - unfulfilledOnly
+      type: object
     Callbacks_pricemonitorCompleted:
       example:
         headers:
@@ -11198,6 +11715,9 @@ components:
       - price
       - timestamp
     com_patagona_pricemonitor_share_api_Query_regex:
+      example:
+        field: field
+        pattern: pattern
       properties:
         field:
           type: string
@@ -11207,6 +11727,8 @@ components:
       - field
       - pattern
     com_patagona_pricemonitor_share_api_Query_in:
+      example:
+        field: field
       properties:
         field:
           type: string
@@ -11216,6 +11738,11 @@ components:
       - field
       - query
     com_patagona_pricemonitor_share_api_Query_oneOf:
+      example:
+        field: field
+        values:
+        - values
+        - values
       properties:
         field:
           type: string
@@ -11227,6 +11754,9 @@ components:
       - field
       - values
     com_patagona_pricemonitor_share_api_Query_lt:
+      example:
+        field: field
+        value: value
       properties:
         field:
           type: string
