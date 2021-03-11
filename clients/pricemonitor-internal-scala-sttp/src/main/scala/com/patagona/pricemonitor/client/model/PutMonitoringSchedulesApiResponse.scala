@@ -13,14 +13,8 @@ package com.patagona.pricemonitor.client.model
 
 import com.patagona.pricemonitor.client.core.ApiModel
 
-case class OfferStatistics(
-  /* The average price of the offers */
-  averagePrice: Double,
-  /* The lowest price of the offers */
-  minPrice: Double,
-  /* The number of the found offers */
-  offerCount: Int,
-  ownPosition: Option[ShopRank] = None
+case class PutMonitoringSchedulesApiResponse(
+  data: MonitoringScheduleV3
 ) extends ApiModel
 
 

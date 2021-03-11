@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5585
+  version: 0.0.5586
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -7145,7 +7145,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/PutMonitoringSchedulesApiResponse'
           description: Monitoring schedule has been created successfully.
       summary: Add a monitoring schedule for a given contract.
       tags:
@@ -7214,7 +7214,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/PutMonitoringSchedulesApiResponse'
           description: Monitoring schedule has been updated successfully.
       summary: Update a monitoring schedule for a given contract.
       tags:
@@ -7307,7 +7307,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/PutMonitoringSchedulesApiResponse'
           description: Monitoring schedule has been created successfully.
       summary: Add a monitoring schedule for a given contract.
       tags:
@@ -7376,7 +7376,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/PutMonitoringSchedulesApiResponse'
           description: Monitoring schedule has been updated successfully.
       summary: Update a monitoring schedule for a given contract.
       tags:
@@ -10583,7 +10583,8 @@ components:
       additionalProperties: false
       example:
         data:
-        - schedule: schedule
+        - schedulerJobId: schedulerJobId
+          schedule: schedule
           quota: 0.8008281904610115
           unfulfilledOnly: true
           id: 6.027456183070403
@@ -10614,7 +10615,8 @@ components:
             gt:
               field: field
               value: value
-        - schedule: schedule
+        - schedulerJobId: schedulerJobId
+          schedule: schedule
           quota: 0.8008281904610115
           unfulfilledOnly: true
           id: 6.027456183070403
@@ -10675,6 +10677,48 @@ components:
       - quota
       - schedule
       - unfulfilledOnly
+      type: object
+    PutMonitoringSchedulesApiResponse:
+      additionalProperties: false
+      example:
+        data:
+          schedulerJobId: schedulerJobId
+          schedule: schedule
+          quota: 0.8008281904610115
+          unfulfilledOnly: true
+          id: 6.027456183070403
+          productQuery:
+            regex:
+              field: field
+              pattern: pattern
+            oneOf:
+              field: field
+              values:
+              - values
+              - values
+            or:
+            - null
+            - null
+            const: true
+            in:
+              field: field
+            and:
+            - null
+            - null
+            lt:
+              field: field
+              value: value
+            eq:
+              field: field
+              value: value
+            gt:
+              field: field
+              value: value
+      properties:
+        data:
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.MonitoringScheduleV3'
+      required:
+      - data
       type: object
     com.patagona.pricemonitor.share.api.ApplicationVersion:
       additionalProperties: false
@@ -11270,6 +11314,7 @@ components:
       description: MonitoringScheduleV3 represents monitoring schedule that can be
         adjustable by the price-monitor customers.
       example:
+        schedulerJobId: schedulerJobId
         schedule: schedule
         quota: 0.8008281904610115
         unfulfilledOnly: true
@@ -11317,12 +11362,16 @@ components:
           description: Id that uniquely identifies a monitoring schedule.
           type: number
         schedule:
-          description: Only valid CRON expressions are allowed. See Cron spec [[https://www.alonsodomin.me/cron4s/userguide/index.html]]
+          description: Only valid CRON expressions are allowed. See Cron spec [[https://www.alonsodomin.me/cron4s/userguide/index.html]].
+          type: string
+        schedulerJobId:
+          description: Internal job id used by the scheduler.
           type: string
       required:
       - id
       - quota
       - schedule
+      - schedulerJobId
       - unfulfilledOnly
       type: object
     Callbacks_pricemonitorCompleted:

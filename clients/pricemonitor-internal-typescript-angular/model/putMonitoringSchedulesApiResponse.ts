@@ -9,13 +9,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-package com.patagona.pricemonitor.client.model
+import { PricemonitorMonitoringScheduleV3 } from './pricemonitorMonitoringScheduleV3';
 
-import com.patagona.pricemonitor.client.core.ApiModel
 
-case class ContractFeatures(
-  disabled: Seq[String],
-  enabled: Seq[String]
-) extends ApiModel
-
+export interface PutMonitoringSchedulesApiResponse { 
+    data: PricemonitorMonitoringScheduleV3;
+}
 

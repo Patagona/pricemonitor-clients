@@ -120,6 +120,7 @@ export * from './productOfferStatistics';
 export * from './productOffersApiQuery';
 export * from './productsFilter';
 export * from './putCustomerContractSettingsApiResponse';
+export * from './putMonitoringSchedulesApiResponse';
 export * from './putPluginRegistrationRequest';
 export * from './putPluginRegistrationRequestAllOf';
 export * from './putProductsApiResponse';
