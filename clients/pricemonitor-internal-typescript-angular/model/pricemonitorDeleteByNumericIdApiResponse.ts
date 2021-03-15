@@ -9,21 +9,15 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { LogMessage } from './logMessage';
 
 
-export interface LogMessages { 
+/**
+ * Successful delete response.
+ */
+export interface PricemonitorDeleteByNumericIdApiResponse { 
     /**
-     * The version parameter should always be 1.
+     * numeric id that has been deleted
      */
-    version?: LogMessages.VersionEnum;
-    messages?: Array<LogMessage>;
+    data: number;
 }
-export namespace LogMessages {
-    export type VersionEnum = '1';
-    export const VersionEnum = {
-        _1: '1' as VersionEnum
-    };
-}
-
 

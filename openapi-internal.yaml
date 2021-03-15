@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5588
+  version: 0.0.5590
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -7177,8 +7177,14 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.DeleteByNumericIdApiResponse'
           description: Monitoring schedule has been deleted successfully.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: Specified monitoring schedule does not exist.
       summary: Delete a monitoring schedule for a given contract.
       tags:
       - internal
@@ -7216,6 +7222,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/PutMonitoringSchedulesApiResponse'
           description: Monitoring schedule has been updated successfully.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: Specified monitoring schedule does not exist.
       summary: Update a monitoring schedule for a given contract.
       tags:
       - internal
@@ -7339,8 +7351,14 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.DeleteByNumericIdApiResponse'
           description: Monitoring schedule has been deleted successfully.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: Specified monitoring schedule does not exist.
       summary: Delete a monitoring schedule for a given contract.
       tags:
       - internal
@@ -7378,6 +7396,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/PutMonitoringSchedulesApiResponse'
           description: Monitoring schedule has been updated successfully.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: Specified monitoring schedule does not exist.
       summary: Update a monitoring schedule for a given contract.
       tags:
       - internal
@@ -10717,6 +10741,18 @@ components:
       properties:
         data:
           $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.MonitoringScheduleV3'
+      required:
+      - data
+      type: object
+    com.patagona.pricemonitor.share.api.DeleteByNumericIdApiResponse:
+      additionalProperties: false
+      description: Successful delete response.
+      example:
+        data: 0.8008281904610115
+      properties:
+        data:
+          description: numeric id that has been deleted
+          type: number
       required:
       - data
       type: object

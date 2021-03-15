@@ -9,21 +9,16 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { LogMessage } from './logMessage';
+package com.patagona.pricemonitor.client.model
 
+import com.patagona.pricemonitor.client.core.ApiModel
 
-export interface LogMessages { 
-    /**
-     * The version parameter should always be 1.
-     */
-    version?: LogMessages.VersionEnum;
-    messages?: Array<LogMessage>;
-}
-export namespace LogMessages {
-    export type VersionEnum = '1';
-    export const VersionEnum = {
-        _1: '1' as VersionEnum
-    };
-}
+  /**
+   * Successful delete response.
+   */
+case class DeleteByNumericIdApiResponse(
+  /* numeric id that has been deleted */
+  data: Double
+) extends ApiModel
 
 

@@ -26,6 +26,7 @@ export * from './pricemonitorCustomerContractSettings';
 export * from './pricemonitorCustomerOrderItemV2';
 export * from './pricemonitorCustomerOrderV2';
 export * from './pricemonitorCustomerOrderV2ProductMappings';
+export * from './pricemonitorDeleteByNumericIdApiResponse';
 export * from './pricemonitorDynamicMonitoringSettings';
 export * from './pricemonitorExtendedTag';
 export * from './pricemonitorGetContractResponseV3';
