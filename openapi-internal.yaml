@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5594
+  version: 0.0.5595
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -7258,7 +7258,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/EmptyApiResponse'
           description: Monitoring task was successfully created and is executing
         "404":
           content:
@@ -7432,7 +7432,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/EmptyApiResponse'
           description: Monitoring task was successfully created and is executing
         "404":
           content:
@@ -7613,6 +7613,12 @@ components:
             $ref: '#/components/schemas/ApiError'
           type: array
       type: object
+    EmptyApiResponse:
+      example:
+        data: '{}'
+      properties:
+        data:
+          type: object
     ApiOffer:
       example:
         ignored: true

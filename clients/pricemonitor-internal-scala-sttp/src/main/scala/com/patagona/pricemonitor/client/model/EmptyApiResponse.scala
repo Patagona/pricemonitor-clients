@@ -9,13 +9,12 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+package com.patagona.pricemonitor.client.model
 
+import com.patagona.pricemonitor.client.core.ApiModel
 
-/**
- * This model describes a step in a paginated endpoint. It consists of the start index, set to 0 for the first page. The next page starts at (previous start) + limit. Reasonable values for the limit parameter depend on the specific endpoint.
- */
-export interface PricemonitorPagination { 
-    start: number;
-    limit: number;
-}
+case class EmptyApiResponse(
+  data: Option[Any] = None
+) extends ApiModel
+
 
