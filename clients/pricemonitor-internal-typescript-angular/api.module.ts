@@ -18,6 +18,7 @@ import { ProductsService } from './api/products.service';
 import { SettingsService } from './api/settings.service';
 import { TasksService } from './api/tasks.service';
 import { UndocumentedService } from './api/undocumented.service';
+import { VendorShopMappingService } from './api/vendorShopMapping.service';
 
 @NgModule({
   imports:      [],

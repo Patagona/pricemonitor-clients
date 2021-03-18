@@ -28,4 +28,6 @@ export * from './tasks.service';
 import { TasksService } from './tasks.service';
 export * from './undocumented.service';
 import { UndocumentedService } from './undocumented.service';
-export const APIS = [AccountService, CompaniesService, ControlpanelService, FeedsService, InternalService, LogsService, MonitoringSchedulesService, OffersService, OrdersService, PluginregistrationService, PricerecommendationsService, ProductsService, SettingsService, TasksService, UndocumentedService];
+export * from './vendorShopMapping.service';
+import { VendorShopMappingService } from './vendorShopMapping.service';
+export const APIS = [AccountService, CompaniesService, ControlpanelService, FeedsService, InternalService, LogsService, MonitoringSchedulesService, OffersService, OrdersService, PluginregistrationService, PricerecommendationsService, ProductsService, SettingsService, TasksService, UndocumentedService, VendorShopMappingService];

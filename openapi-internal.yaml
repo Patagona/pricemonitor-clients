@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5603
+  version: 0.0.5604
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -7446,6 +7446,31 @@ paths:
       tags:
       - internal
       - monitoring-schedules
+  /api/v3/manufacturer/contracts/{contractId}/vendors:
+    get:
+      operationId: getVendorShopMappingsManufacturerV3
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetVendorShopMappingsApiResponse'
+          description: List of vendors along with their associated shops.
+      summary: Get all the vendors along with their associated shops for a specified
+        contract.
+      tags:
+      - vendor-shop-mapping
+      - internal
 components:
   parameters:
     scheduleIdParam:
@@ -10762,6 +10787,32 @@ components:
       required:
       - data
       type: object
+    GetVendorShopMappingsApiResponse:
+      additionalProperties: false
+      example:
+        data:
+        - shops:
+          - domain: domain
+            name: name
+          - domain: domain
+            name: name
+          id: 0.8008281904610115
+          vendorName: vendorName
+        - shops:
+          - domain: domain
+            name: name
+          - domain: domain
+            name: name
+          id: 0.8008281904610115
+          vendorName: vendorName
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.VendorShopMappingV3'
+          type: array
+      required:
+      - data
+      type: object
     com.patagona.pricemonitor.share.api.ApplicationVersion:
       additionalProperties: false
       description: Current api version.
@@ -11415,6 +11466,54 @@ components:
       - schedule
       - schedulerJobId
       - unfulfilledOnly
+      type: object
+    com.patagona.pricemonitor.share.api.VendorShopMappingV3:
+      additionalProperties: false
+      description: Online shops can have different names per domain despite they belong
+        to the same entity. This entity is further called "vendor". A vendor shop
+        mapping represents shops which are associated to a vendor.
+      example:
+        shops:
+        - domain: domain
+          name: name
+        - domain: domain
+          name: name
+        id: 0.8008281904610115
+        vendorName: vendorName
+      properties:
+        id:
+          description: Unique identifier of a vendor
+          type: number
+        vendorName:
+          description: Vendor name
+          type: string
+        shops:
+          description: List of shops associated with the specified vendor
+          items:
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ShopV3'
+          type: array
+      required:
+      - id
+      - shops
+      - vendorName
+      type: object
+    com.patagona.pricemonitor.share.api.ShopV3:
+      additionalProperties: false
+      description: A shop, in terms of online shop, sells his products on a certain
+        domain.
+      example:
+        domain: domain
+        name: name
+      properties:
+        domain:
+          description: Domain name
+          type: string
+        name:
+          description: Shop name on given domain.
+          type: string
+      required:
+      - domain
+      - name
       type: object
     Callbacks_pricemonitorCompleted:
       example:
