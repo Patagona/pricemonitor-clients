@@ -9,10 +9,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { PricemonitorApiProduct } from './pricemonitorApiProduct';
+import { PricemonitorVendorShopMappingV3 } from './pricemonitorVendorShopMappingV3';
 
 
-export interface QueryProductsByFilterVendorV3ApiResponse { 
-    data: Array<PricemonitorApiProduct>;
+export interface GetVendorShopMappingApiResponse { 
+    data: PricemonitorVendorShopMappingV3;
 }
 

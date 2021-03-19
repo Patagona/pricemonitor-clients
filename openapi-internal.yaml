@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5608
+  version: 0.0.5611
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -7216,7 +7216,7 @@ paths:
               $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PostMonitoringScheduleRequestV3'
         description: Request body for updating monitoring schedule.
       responses:
-        "200":
+        "201":
           content:
             application/json:
               schema:
@@ -7390,7 +7390,7 @@ paths:
               $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PostMonitoringScheduleRequestV3'
         description: Request body for updating monitoring schedule.
       responses:
-        "200":
+        "201":
           content:
             application/json:
               schema:
@@ -7471,6 +7471,48 @@ paths:
       tags:
       - vendor-shop-mapping
       - internal
+  /api/v3/manufacturer/contracts/{contractId}/vendors/{vendorId}:
+    get:
+      operationId: getVendorShopMappingManufacturerV3
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: ID of vendor shop mapping
+        example: 1
+        explode: false
+        in: path
+        name: vendorId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetVendorShopMappingApiResponse'
+          description: Get vendor along with their associated shop for given vendor
+            id and contract.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: Vendor doesn't exist for given vendor id.
+      summary: Get vendor along with their associated shop for given vendor id and
+        contract.
+      tags:
+      - vendor-shop-mapping
+      - internal
 components:
   parameters:
     scheduleIdParam:
@@ -7516,6 +7558,17 @@ components:
         format: date-time
         type: string
       style: form
+    vendorIdParam:
+      description: ID of vendor shop mapping
+      example: 1
+      explode: false
+      in: path
+      name: vendorId
+      required: true
+      schema:
+        format: int64
+        type: integer
+      style: simple
   schemas:
     LogMessages:
       example:
@@ -10810,6 +10863,23 @@ components:
           items:
             $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.VendorShopMappingV3'
           type: array
+      required:
+      - data
+      type: object
+    GetVendorShopMappingApiResponse:
+      additionalProperties: false
+      example:
+        data:
+          shops:
+          - domain: domain
+            name: name
+          - domain: domain
+            name: name
+          id: 0.8008281904610115
+          vendorName: vendorName
+      properties:
+        data:
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.VendorShopMappingV3'
       required:
       - data
       type: object

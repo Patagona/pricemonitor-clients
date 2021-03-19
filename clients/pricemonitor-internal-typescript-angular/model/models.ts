@@ -95,6 +95,7 @@ export * from './getPriceRecommendationsResponse';
 export * from './getPriceRecommendationsResponsePriceRecommendations';
 export * from './getProductMonitoringStatusStatsVendorV3ApiResponse';
 export * from './getProductMonitoringStatusVendorV3ApiResponse';
+export * from './getVendorShopMappingApiResponse';
 export * from './getVendorShopMappingsApiResponse';
 export * from './logMessage';
 export * from './logMessages';

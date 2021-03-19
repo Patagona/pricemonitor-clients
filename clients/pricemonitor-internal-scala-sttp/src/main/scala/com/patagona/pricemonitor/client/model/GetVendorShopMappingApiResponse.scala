@@ -9,10 +9,12 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { PricemonitorApiProduct } from './pricemonitorApiProduct';
+package com.patagona.pricemonitor.client.model
 
+import com.patagona.pricemonitor.client.core.ApiModel
 
-export interface QueryProductsByFilterVendorV3ApiResponse { 
-    data: Array<PricemonitorApiProduct>;
-}
+case class GetVendorShopMappingApiResponse(
+  data: VendorShopMappingV3
+) extends ApiModel
+
 
