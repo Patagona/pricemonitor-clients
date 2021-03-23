@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5611
+  version: 0.0.5613
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -7471,6 +7471,56 @@ paths:
       tags:
       - vendor-shop-mapping
       - internal
+    post:
+      operationId: postVendorShopMappingManufacturerV3
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PostVendorShopMappingRequestV3'
+        description: Request body for creating a new vendor and associate shops with
+          it. Please note that atleast one shop is required for a successful creation.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VendorShopMappingV3ApiResponse'
+          description: Vendor shop mapping has been successfully created.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: The specified vendor name is empty. Or the specified shops
+            are empty.
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: The specified vendor name already exists in our system.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: The specified shops do not exist in our system.
+      summary: Add a new vendor for a given contract and associate shops with the
+        given vendor.
+      tags:
+      - internal
+      - vendor-shop-mapping
   /api/v3/manufacturer/contracts/{contractId}/vendors/{vendorId}:
     get:
       operationId: getVendorShopMappingManufacturerV3
@@ -7499,7 +7549,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GetVendorShopMappingApiResponse'
+                $ref: '#/components/schemas/VendorShopMappingV3ApiResponse'
           description: Get vendor along with their associated shop for given vendor
             id and contract.
         "404":
@@ -10866,7 +10916,42 @@ components:
       required:
       - data
       type: object
-    GetVendorShopMappingApiResponse:
+    com.patagona.pricemonitor.share.api.PostVendorShopMappingRequestV3:
+      additionalProperties: false
+      description: Request body for creating a vendor and their associated shops.
+      properties:
+        vendorName:
+          description: Vendor name
+          type: string
+        shops:
+          description: List of associated shops
+          items:
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ShopV3'
+          type: array
+          uniqueItems: true
+      required:
+      - shops
+      - vendorName
+      type: object
+    com.patagona.pricemonitor.share.api.ShopV3:
+      additionalProperties: false
+      description: A shop, in terms of online shop, sells his products on a certain
+        domain.
+      example:
+        domain: domain
+        name: name
+      properties:
+        domain:
+          description: Domain name
+          type: string
+        name:
+          description: Shop name on given domain.
+          type: string
+      required:
+      - domain
+      - name
+      type: object
+    VendorShopMappingV3ApiResponse:
       additionalProperties: false
       example:
         data:
@@ -11562,28 +11647,11 @@ components:
           items:
             $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ShopV3'
           type: array
+          uniqueItems: true
       required:
       - id
       - shops
       - vendorName
-      type: object
-    com.patagona.pricemonitor.share.api.ShopV3:
-      additionalProperties: false
-      description: A shop, in terms of online shop, sells his products on a certain
-        domain.
-      example:
-        domain: domain
-        name: name
-      properties:
-        domain:
-          description: Domain name
-          type: string
-        name:
-          description: Shop name on given domain.
-          type: string
-      required:
-      - domain
-      - name
       type: object
     Callbacks_pricemonitorCompleted:
       example:

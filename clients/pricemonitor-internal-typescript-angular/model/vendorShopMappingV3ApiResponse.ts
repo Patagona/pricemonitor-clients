@@ -9,13 +9,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { PricemonitorVendorShopMappingV3 } from './pricemonitorVendorShopMappingV3';
 
 
-/**
- * Created by Andreas Frankenberger on 28.01.16.
- */
-export interface PricemonitorOfferAttribute { 
-    name: string;
-    value: string;
+export interface VendorShopMappingV3ApiResponse { 
+    data: PricemonitorVendorShopMappingV3;
 }
 
