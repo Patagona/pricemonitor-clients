@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5613
+  version: 0.0.5614
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -7522,6 +7522,45 @@ paths:
       - internal
       - vendor-shop-mapping
   /api/v3/manufacturer/contracts/{contractId}/vendors/{vendorId}:
+    delete:
+      operationId: deleteVendorShopMappingManufacturerV3
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: ID of vendor shop mapping
+        example: 1
+        explode: false
+        in: path
+        name: vendorId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.DeleteByNumericIdApiResponse'
+          description: A vendor and associated shops have been deleted successfully.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: Specified vendor does not exist.
+      summary: Delete a vendor and associated shops for a given contract.
+      tags:
+      - vendor-shop-mapping
+      - internal
     get:
       operationId: getVendorShopMappingManufacturerV3
       parameters:
