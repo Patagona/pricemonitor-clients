@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5616
+  version: 0.0.5619
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -7602,6 +7602,67 @@ paths:
       tags:
       - vendor-shop-mapping
       - internal
+    put:
+      operationId: putVendorShopMappingManufacturerV3
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: ID of vendor shop mapping
+        example: 1
+        explode: false
+        in: path
+        name: vendorId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PostVendorShopMappingRequestV3'
+        description: Request body for updating an existing vendor and associate shops
+          with it. Please note that atleast one shop is required for a successful
+          creation.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VendorShopMappingV3ApiResponse'
+          description: Vendor shop mapping has been successfully updated.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: The specified vendor name is empty. Or the specified shops
+            are empty.
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: The specified vendor name already exists in our system.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: The specified shops do not exist in our system.
+      summary: Update an existing vendor for a given contract and associate shops
+        with the given vendor.
+      tags:
+      - internal
+      - vendor-shop-mapping
 components:
   parameters:
     scheduleIdParam:
