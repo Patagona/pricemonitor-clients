@@ -16,11 +16,11 @@ import com.patagona.pricemonitor.client.core.ApiModel
   /**
    * A product in the pricemonitor.
    */
-case class ApiProduct(
+case class ApiProductV3(
   /* Name of the product. */
   name: String,
   /* Additional information on this product. */
-  tags: Seq[Tag],
+  tags: Seq[ExtendedTag],
   /* Maximum price which pricemonitor can recommend for the product. It won't recommend any price above this boundary. */
   minPriceBoundary: Option[Double] = None,
   /* GTIN of the product. Can be optionally. */

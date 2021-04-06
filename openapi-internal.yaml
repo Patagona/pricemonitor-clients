@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5620
+  version: 0.0.5621
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -10499,10 +10499,16 @@ components:
           id: id
           minPriceBoundary: 0.8008281904610115
           tags:
-          - value: value
-            key: key
-          - value: value
-            key: key
+          - stringValue: stringValue
+            integerValue: 5
+            booleanValue: true
+            doubleValue: 5.962133916683182
+            label: label
+          - stringValue: stringValue
+            integerValue: 5
+            booleanValue: true
+            doubleValue: 5.962133916683182
+            label: label
         - customerProductId: customerProductId
           gtin: 6.027456183070403
           referencePrice: 5.962133916683182
@@ -10511,14 +10517,20 @@ components:
           id: id
           minPriceBoundary: 0.8008281904610115
           tags:
-          - value: value
-            key: key
-          - value: value
-            key: key
+          - stringValue: stringValue
+            integerValue: 5
+            booleanValue: true
+            doubleValue: 5.962133916683182
+            label: label
+          - stringValue: stringValue
+            integerValue: 5
+            booleanValue: true
+            doubleValue: 5.962133916683182
+            label: label
       properties:
         data:
           items:
-            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ApiProduct'
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ApiProductV3'
           type: array
       required:
       - data
@@ -10813,10 +10825,16 @@ components:
           id: id
           minPriceBoundary: 0.8008281904610115
           tags:
-          - value: value
-            key: key
-          - value: value
-            key: key
+          - stringValue: stringValue
+            integerValue: 5
+            booleanValue: true
+            doubleValue: 5.962133916683182
+            label: label
+          - stringValue: stringValue
+            integerValue: 5
+            booleanValue: true
+            doubleValue: 5.962133916683182
+            label: label
         - customerProductId: customerProductId
           gtin: 6.027456183070403
           referencePrice: 5.962133916683182
@@ -10825,14 +10843,20 @@ components:
           id: id
           minPriceBoundary: 0.8008281904610115
           tags:
-          - value: value
-            key: key
-          - value: value
-            key: key
+          - stringValue: stringValue
+            integerValue: 5
+            booleanValue: true
+            doubleValue: 5.962133916683182
+            label: label
+          - stringValue: stringValue
+            integerValue: 5
+            booleanValue: true
+            doubleValue: 5.962133916683182
+            label: label
       properties:
         data:
           items:
-            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ApiProduct'
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ApiProductV3'
           type: array
       required:
       - data
@@ -11539,6 +11563,65 @@ components:
       required:
       - key
       - value
+      type: object
+    com.patagona.pricemonitor.share.api.ApiProductV3:
+      additionalProperties: false
+      description: A product in the pricemonitor.
+      example:
+        customerProductId: customerProductId
+        gtin: 6.027456183070403
+        referencePrice: 5.962133916683182
+        maxPriceBoundary: 1.4658129805029452
+        name: name
+        id: id
+        minPriceBoundary: 0.8008281904610115
+        tags:
+        - stringValue: stringValue
+          integerValue: 5
+          booleanValue: true
+          doubleValue: 5.962133916683182
+          label: label
+        - stringValue: stringValue
+          integerValue: 5
+          booleanValue: true
+          doubleValue: 5.962133916683182
+          label: label
+      properties:
+        name:
+          description: Name of the product.
+          type: string
+        tags:
+          description: Additional information on this product.
+          items:
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ExtendedTag'
+          type: array
+        minPriceBoundary:
+          description: Maximum price which pricemonitor can recommend for the product.
+            It won't recommend any price above this boundary.
+          type: number
+        gtin:
+          description: GTIN of the product. Can be optionally.
+          type: number
+        customerProductId:
+          description: The customer's id of the product. This field allows to link
+            products in pricemonitor to products in the customer's system.
+          type: string
+        id:
+          description: Id of the product in the pricemonitor.
+          type: string
+        maxPriceBoundary:
+          description: Minimum price which pricemonitor can recommend for the product.
+            It won't recommend any price below this boundary.
+          type: number
+        referencePrice:
+          description: Some price that will be used as benchmark for certain components
+            in pricemonitor.
+          type: number
+      required:
+      - id
+      - name
+      - referencePrice
+      - tags
       type: object
     com.patagona.pricemonitor.share.api.ProductMonitoringStatus:
       additionalProperties: false

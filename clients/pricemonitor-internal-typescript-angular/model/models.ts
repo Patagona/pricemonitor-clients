@@ -14,6 +14,7 @@ export * from './pricemonitorAdminContractV2';
 export * from './pricemonitorApiOffer';
 export * from './pricemonitorApiPriceRecommendation';
 export * from './pricemonitorApiProduct';
+export * from './pricemonitorApiProductV3';
 export * from './pricemonitorApiQuery';
 export * from './pricemonitorApplicationVersion';
 export * from './pricemonitorCallbacks';

@@ -9,13 +9,13 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { PricemonitorTag } from './pricemonitorTag';
+import { PricemonitorExtendedTag } from './pricemonitorExtendedTag';
 
 
 /**
  * A product in the pricemonitor.
  */
-export interface PricemonitorApiProduct { 
+export interface PricemonitorApiProductV3 { 
     /**
      * Name of the product.
      */
@@ -23,7 +23,7 @@ export interface PricemonitorApiProduct {
     /**
      * Additional information on this product.
      */
-    tags: Array<PricemonitorTag>;
+    tags: Array<PricemonitorExtendedTag>;
     /**
      * Maximum price which pricemonitor can recommend for the product. It won\'t recommend any price above this boundary.
      */
