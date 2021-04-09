@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5623
+  version: 0.0.5625
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -5618,7 +5618,7 @@ paths:
     summary: Get products of a contract
   /api/v3.1/manufacturer/contracts/{contractId}/products/query:
     description: This endpoint can be used for querying either all products or certain
-      products by the 'customerProductId'.
+      products by the 'customerProductId' or 'productId'.
     post:
       operationId: queryProductsManufacturerV3
       parameters:
@@ -5638,7 +5638,11 @@ paths:
               $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ApiQuery'
         description: |
           The body contains the products query. <br>
-          Currently, only product queries by "customerProductId" are supported. <br>
+          Currently, it supports only product queries for two attributes:<br>
+          <ul>
+            <li> by "customerProductId"</li>
+            <li> by "productId" (Patagona's internal product id). Allowed values for 'productId' are numerical integer values</li>
+          </ul>
           The maximum allowed limit in the pagination is 10000. <br>
           Pagination works with respective to the given products query. <br>
           This is most relevant when querying for a set of customerProductId's. <br>
@@ -6043,7 +6047,7 @@ paths:
     summary: Query products of a contract
   /api/v3.1/vendor/contracts/{contractId}/products/query:
     description: This endpoint can be used for querying either all products or certain
-      products by the 'customerProductId'.
+      products by the 'customerProductId' or 'productId'.
     post:
       operationId: queryProductsVendorV3
       parameters:
@@ -6063,7 +6067,11 @@ paths:
               $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ApiQuery'
         description: |
           The body contains the products query. <br>
-          Currently, only product queries by "customerProductId" are supported. <br>
+          Currently, it supports only product queries for two attributes:<br>
+          <ul>
+            <li> by "customerProductId"</li>
+            <li> by "productId" (Patagona's internal product id). Allowed values for 'productId' are numerical integer values</li>
+          </ul>
           The maximum allowed limit in the pagination is 10000. <br>
           Pagination works with respective to the given products query. <br>
           This is most relevant when querying for a set of customerProductId's. <br>
