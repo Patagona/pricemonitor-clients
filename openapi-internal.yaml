@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5625
+  version: 0.0.5626
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -1688,6 +1688,33 @@ paths:
       tags:
       - products
       - internal
+  /api/v3/vendor/contracts/{contractId}/offers/pricedumpingstats:
+    post:
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PriceDumpingStatsRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryPriceDumpingStatsApiResponse'
+          description: Returns the price dumping statistics in the given time range.
+      tags:
+      - products
   /api/v3/vendor/contracts/{contractId}/offers/stats/query:
     post:
       description: 'This operation is used to get offer statistics (e.g. offer count,
@@ -5516,6 +5543,33 @@ paths:
       - internal
       - undocumented
       - offers
+  /api/v3/manufacturer/contracts/{contractId}/offers/pricedumpingstats:
+    post:
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PriceDumpingStatsRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryPriceDumpingStatsApiResponse'
+          description: Returns the price dumping statistics in the given time range.
+      tags:
+      - products
   /api/v3/manufacturer/contracts/{contractId}/products/{productId}:
     patch:
       operationId: patchProductManufacturerV3
@@ -9773,6 +9827,77 @@ components:
       required:
       - data
       type: object
+    com.patagona.pricemonitor.share.api.PriceDumpingStatsRequest:
+      additionalProperties: false
+      description: A request for price dumping statistics for the given shops.
+      properties:
+        startDate:
+          description: Start of the timerange in which we search for price dumping
+            events
+          format: date-time
+          type: string
+        endDate:
+          description: End of the timerange in which we search for price dumping events
+          format: date-time
+          type: string
+        includeDeliveryCosts:
+          description: Indicates if we consider price + delivery cost to detect price
+            changes or only price
+          type: boolean
+        shops:
+          description: Specifies for which shops we detect price dumping events
+          items:
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ShopV3'
+          type: array
+          uniqueItems: true
+      required:
+      - endDate
+      - includeDeliveryCosts
+      - shops
+      - startDate
+      type: object
+    com.patagona.pricemonitor.share.api.ShopV3:
+      additionalProperties: false
+      description: A shop, in terms of online shop, sells his products on a certain
+        domain.
+      example:
+        domain: domain
+        name: name
+      properties:
+        domain:
+          description: Domain name
+          type: string
+        name:
+          description: Shop name on given domain.
+          type: string
+      required:
+      - domain
+      - name
+      type: object
+    QueryPriceDumpingStatsApiResponse:
+      additionalProperties: false
+      example:
+        data:
+        - domain: domain
+          productPriceDumpingStats:
+            potentiallyInitiatedPriceDumpings: 6
+            uniqueProductInitiatedPriceDumpings: 1
+            uniqueProductPotentiallyInitiatedPriceDumpings: 5
+            initiatedPriceDumpings: 0
+        - domain: domain
+          productPriceDumpingStats:
+            potentiallyInitiatedPriceDumpings: 6
+            uniqueProductInitiatedPriceDumpings: 1
+            uniqueProductPotentiallyInitiatedPriceDumpings: 5
+            initiatedPriceDumpings: 0
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.DomainPriceDumpingStats'
+          type: array
+      required:
+      - data
+      type: object
     DeleteOrdersApiResponse:
       additionalProperties: false
       example:
@@ -11065,24 +11190,6 @@ components:
       - shops
       - vendorName
       type: object
-    com.patagona.pricemonitor.share.api.ShopV3:
-      additionalProperties: false
-      description: A shop, in terms of online shop, sells his products on a certain
-        domain.
-      example:
-        domain: domain
-        name: name
-      properties:
-        domain:
-          description: Domain name
-          type: string
-        name:
-          description: Shop name on given domain.
-          type: string
-      required:
-      - domain
-      - name
-      type: object
     VendorShopMappingV3ApiResponse:
       additionalProperties: false
       example:
@@ -11462,6 +11569,56 @@ components:
       required:
       - name
       - value
+      type: object
+    com.patagona.pricemonitor.share.api.DomainPriceDumpingStats:
+      additionalProperties: false
+      description: This class contains the price dumping statistic for a single domain.
+        A price dumping event exists if a vendor reduces the price below the minimum
+        price at the previous timestamp while also selling the product at the new
+        minimum price.
+      example:
+        domain: domain
+        productPriceDumpingStats:
+          potentiallyInitiatedPriceDumpings: 6
+          uniqueProductInitiatedPriceDumpings: 1
+          uniqueProductPotentiallyInitiatedPriceDumpings: 5
+          initiatedPriceDumpings: 0
+      properties:
+        domain:
+          type: string
+        productPriceDumpingStats:
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ProductPriceDumpingStats'
+      required:
+      - domain
+      - productPriceDumpingStats
+      type: object
+    com.patagona.pricemonitor.share.api.ProductPriceDumpingStats:
+      additionalProperties: false
+      description: This class contains the number of price dumping events. The counts
+        prefixed with "uniqueProduct" only count the events once per product, the
+        non prefixed counts count every event. If we are unable to detect which vendor
+        reduced the price first, because we only sampled the price when multiple vendors
+        are at the same price, those events are counted in the fields infixed with
+        "potetially".
+      example:
+        potentiallyInitiatedPriceDumpings: 6
+        uniqueProductInitiatedPriceDumpings: 1
+        uniqueProductPotentiallyInitiatedPriceDumpings: 5
+        initiatedPriceDumpings: 0
+      properties:
+        initiatedPriceDumpings:
+          type: integer
+        potentiallyInitiatedPriceDumpings:
+          type: integer
+        uniqueProductInitiatedPriceDumpings:
+          type: integer
+        uniqueProductPotentiallyInitiatedPriceDumpings:
+          type: integer
+      required:
+      - initiatedPriceDumpings
+      - potentiallyInitiatedPriceDumpings
+      - uniqueProductInitiatedPriceDumpings
+      - uniqueProductPotentiallyInitiatedPriceDumpings
       type: object
     com.patagona.pricemonitor.share.api.GetContractResponseV3:
       additionalProperties: false
