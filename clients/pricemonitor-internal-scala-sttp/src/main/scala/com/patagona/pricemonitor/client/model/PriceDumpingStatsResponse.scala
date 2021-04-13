@@ -13,9 +13,9 @@ package com.patagona.pricemonitor.client.model
 
 import com.patagona.pricemonitor.client.core.ApiModel
 
-case class ProductAndOffers2(
-  offers: Option[Seq[ApiOffer]] = None,
-  product: Option[ApiProduct] = None
+case class PriceDumpingStatsResponse(
+  statsPerDomain: Seq[DomainPriceDumpingStats],
+  statsOverAllomains: ProductPriceDumpingStats
 ) extends ApiModel
 
 

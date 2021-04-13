@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5628
+  version: 0.0.5629
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -9878,23 +9878,27 @@ components:
       additionalProperties: false
       example:
         data:
-        - domain: domain
-          productPriceDumpingStats:
+          statsOverAllomains:
             potentiallyInitiatedPriceDumpings: 6
             uniqueProductInitiatedPriceDumpings: 1
             uniqueProductPotentiallyInitiatedPriceDumpings: 5
             initiatedPriceDumpings: 0
-        - domain: domain
-          productPriceDumpingStats:
-            potentiallyInitiatedPriceDumpings: 6
-            uniqueProductInitiatedPriceDumpings: 1
-            uniqueProductPotentiallyInitiatedPriceDumpings: 5
-            initiatedPriceDumpings: 0
+          statsPerDomain:
+          - domain: domain
+            productPriceDumpingStats:
+              potentiallyInitiatedPriceDumpings: 6
+              uniqueProductInitiatedPriceDumpings: 1
+              uniqueProductPotentiallyInitiatedPriceDumpings: 5
+              initiatedPriceDumpings: 0
+          - domain: domain
+            productPriceDumpingStats:
+              potentiallyInitiatedPriceDumpings: 6
+              uniqueProductInitiatedPriceDumpings: 1
+              uniqueProductPotentiallyInitiatedPriceDumpings: 5
+              initiatedPriceDumpings: 0
       properties:
         data:
-          items:
-            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.DomainPriceDumpingStats'
-          type: array
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PriceDumpingStatsResponse'
       required:
       - data
       type: object
@@ -11569,6 +11573,38 @@ components:
       required:
       - name
       - value
+      type: object
+    com.patagona.pricemonitor.share.api.PriceDumpingStatsResponse:
+      additionalProperties: false
+      example:
+        statsOverAllomains:
+          potentiallyInitiatedPriceDumpings: 6
+          uniqueProductInitiatedPriceDumpings: 1
+          uniqueProductPotentiallyInitiatedPriceDumpings: 5
+          initiatedPriceDumpings: 0
+        statsPerDomain:
+        - domain: domain
+          productPriceDumpingStats:
+            potentiallyInitiatedPriceDumpings: 6
+            uniqueProductInitiatedPriceDumpings: 1
+            uniqueProductPotentiallyInitiatedPriceDumpings: 5
+            initiatedPriceDumpings: 0
+        - domain: domain
+          productPriceDumpingStats:
+            potentiallyInitiatedPriceDumpings: 6
+            uniqueProductInitiatedPriceDumpings: 1
+            uniqueProductPotentiallyInitiatedPriceDumpings: 5
+            initiatedPriceDumpings: 0
+      properties:
+        statsPerDomain:
+          items:
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.DomainPriceDumpingStats'
+          type: array
+        statsOverAllomains:
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ProductPriceDumpingStats'
+      required:
+      - statsOverAllomains
+      - statsPerDomain
       type: object
     com.patagona.pricemonitor.share.api.DomainPriceDumpingStats:
       additionalProperties: false
