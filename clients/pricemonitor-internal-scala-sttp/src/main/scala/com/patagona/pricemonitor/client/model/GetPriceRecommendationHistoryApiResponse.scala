@@ -9,13 +9,12 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+package com.patagona.pricemonitor.client.model
 
+import com.patagona.pricemonitor.client.core.ApiModel
 
-export interface PricemonitorQueryOffersOfShopRequestV3 { 
-    shop: string;
-    endDate: string;
-    start: number;
-    limit: number;
-    startDate: string;
-}
+case class GetPriceRecommendationHistoryApiResponse(
+  data: Seq[ApiPriceRecommendation]
+) extends ApiModel
+
 

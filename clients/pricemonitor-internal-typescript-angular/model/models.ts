@@ -97,6 +97,7 @@ export * from './getOffersResponseAttributes';
 export * from './getOffersResponseData';
 export * from './getOffersResponseOffers';
 export * from './getPriceRecommendationApiResponse';
+export * from './getPriceRecommendationHistoryApiResponse';
 export * from './getPriceRecommendationsResponse';
 export * from './getPriceRecommendationsResponsePriceRecommendations';
 export * from './getProductMonitoringStatusStatsVendorV3ApiResponse';

@@ -9,13 +9,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { PricemonitorApiPriceRecommendation } from './pricemonitorApiPriceRecommendation';
 
 
-export interface PricemonitorQueryOffersOfShopRequestV3 { 
-    shop: string;
-    endDate: string;
-    start: number;
-    limit: number;
-    startDate: string;
+export interface GetPriceRecommendationHistoryApiResponse { 
+    data: Array<PricemonitorApiPriceRecommendation>;
 }
 

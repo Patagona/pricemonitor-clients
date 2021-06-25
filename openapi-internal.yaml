@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5667
+  version: 0.0.5668
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -6099,6 +6099,69 @@ paths:
       - internal
       - products
     summary: Query products of a contract
+  /api/v3/vendor/contracts/{contractId}/products/{productId}/pricerecommendationhistory:
+    description: This endpoint returns all price recommendations for one product within
+      a given time range
+    get:
+      operationId: getProductPriceRecommendationHistory
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: ID of the product in pricemonitor
+        example: 862342
+        explode: false
+        in: path
+        name: productId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Timestamp of start of time range, formatted as ISO Date (i.e.
+          2018-04-06T13:46:13Z) in UTC. If this value is omitted, the range is '{endDate}
+          - 48 hours to {endDate}' if {endDate} is given or NOW - 48 hours if both
+          are omitted.
+        explode: true
+        in: query
+        name: startDate
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z)
+          in UTC. If this value is omitted, the range is '{startDate} to {startDate}
+          + 48 hours' if {startDate} is given or NOW - 48 hours if both are omitted.
+        explode: true
+        in: query
+        name: endDate
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetPriceRecommendationHistoryApiResponse'
+          description: A list of price recommendations
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: E.g. when the time range spans more than 48h.
+      tags:
+      - products
+    summary: Get price recommendations of one product in time range
   /api/v3.1/vendor/contracts/{contractId}/products/query:
     description: This endpoint can be used for querying either all products or certain
       products by the 'customerProductId' or 'productId'.
@@ -7735,6 +7798,16 @@ components:
       required: true
       schema:
         type: integer
+      style: simple
+    productIdParam:
+      description: ID of the product in pricemonitor
+      example: 862342
+      explode: false
+      in: path
+      name: productId
+      required: true
+      schema:
+        type: string
       style: simple
     contractIdParam:
       description: ID of the contract
@@ -10946,6 +11019,92 @@ components:
         data:
           items:
             $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ApiProduct'
+          type: array
+      required:
+      - data
+      type: object
+    GetPriceRecommendationHistoryApiResponse:
+      additionalProperties: false
+      example:
+        data:
+        - relativePriceChangePercentage: 3.616076749251911
+          customerProductId: customerProductId
+          gtin: 9.301444243932576
+          productId: productId
+          originalTags:
+          - stringValue: stringValue
+            integerValue: 5
+            booleanValue: true
+            doubleValue: 5.962133916683182
+            label: label
+          - stringValue: stringValue
+            integerValue: 5
+            booleanValue: true
+            doubleValue: 5.962133916683182
+            label: label
+          oldPrice: 0.8008281904610115
+          tags:
+          - stringValue: stringValue
+            integerValue: 5
+            booleanValue: true
+            doubleValue: 5.962133916683182
+            label: label
+          - stringValue: stringValue
+            integerValue: 5
+            booleanValue: true
+            doubleValue: 5.962133916683182
+            label: label
+          originalMaxPriceBoundary: 4.145608029883936
+          newPosition: 2
+          originalMinPriceBoundary: 7.386281948385884
+          oldDeliveryCosts: 1.4658129805029452
+          deliveryCosts: 6.027456183070403
+          price: 2.3021358869347655
+          relevantDomain: relevantDomain
+          currency: currency
+          oldPosition: 7
+          timestamp: 2000-01-23T04:56:07.000+00:00
+        - relativePriceChangePercentage: 3.616076749251911
+          customerProductId: customerProductId
+          gtin: 9.301444243932576
+          productId: productId
+          originalTags:
+          - stringValue: stringValue
+            integerValue: 5
+            booleanValue: true
+            doubleValue: 5.962133916683182
+            label: label
+          - stringValue: stringValue
+            integerValue: 5
+            booleanValue: true
+            doubleValue: 5.962133916683182
+            label: label
+          oldPrice: 0.8008281904610115
+          tags:
+          - stringValue: stringValue
+            integerValue: 5
+            booleanValue: true
+            doubleValue: 5.962133916683182
+            label: label
+          - stringValue: stringValue
+            integerValue: 5
+            booleanValue: true
+            doubleValue: 5.962133916683182
+            label: label
+          originalMaxPriceBoundary: 4.145608029883936
+          newPosition: 2
+          originalMinPriceBoundary: 7.386281948385884
+          oldDeliveryCosts: 1.4658129805029452
+          deliveryCosts: 6.027456183070403
+          price: 2.3021358869347655
+          relevantDomain: relevantDomain
+          currency: currency
+          oldPosition: 7
+          timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ApiPriceRecommendation'
           type: array
       required:
       - data
