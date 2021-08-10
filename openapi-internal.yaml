@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5734
+  version: 0.0.5735
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -7788,6 +7788,39 @@ paths:
       tags:
       - internal
       - vendor-shop-mapping
+  /api/v3/account:
+    post:
+      operationId: postAccountV3
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PostAccountRequestV3'
+        description: Request body for creating a new user account. It must contain
+          name, email and password.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostAccountResponseV3ApiResponse'
+          description: The account information of the newly created account.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: |
+            Returned if:
+            - The Request body is not a valid JSON string
+            - The user account name is empty
+            - The email doesn't match a valid email format
+            - The password length is less than 6 characters long
+            - The enpoint was requested too often
+            - The given email address already exists
+      summary: Create a new user account
+      tags:
+      - account
 components:
   parameters:
     scheduleIdParam:
@@ -11370,6 +11403,38 @@ components:
       required:
       - data
       type: object
+    com.patagona.pricemonitor.share.api.PostAccountRequestV3:
+      additionalProperties: false
+      description: A request body that contains information for creation of a new
+        account.
+      properties:
+        name:
+          description: Defines the name of the new user account.
+          type: string
+        email:
+          description: Defines the email of the new user account.
+          type: string
+        password:
+          description: Defines the password for the new user account.
+          type: string
+      required:
+      - email
+      - name
+      - password
+      type: object
+    PostAccountResponseV3ApiResponse:
+      additionalProperties: false
+      example:
+        data:
+          name: name
+          id: 0.8008281904610115
+          email: email
+      properties:
+        data:
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PostAccountResponseV3'
+      required:
+      - data
+      type: object
     com.patagona.pricemonitor.share.api.ApplicationVersion:
       additionalProperties: false
       description: Current api version.
@@ -12195,6 +12260,28 @@ components:
       - id
       - shops
       - vendorName
+      type: object
+    com.patagona.pricemonitor.share.api.PostAccountResponseV3:
+      additionalProperties: false
+      description: A response body that contains information for a newly created account.
+      example:
+        name: name
+        id: 0.8008281904610115
+        email: email
+      properties:
+        id:
+          description: Defines the Pricemonitor user id of newly create user account.
+          type: number
+        name:
+          description: Defines name of newly create user account.
+          type: string
+        email:
+          description: Defines the email of newly created user account.
+          type: string
+      required:
+      - email
+      - id
+      - name
       type: object
     Callbacks_pricemonitorCompleted:
       example:
