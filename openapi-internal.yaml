@@ -4,12 +4,13 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5756
+  version: 0.0.5757
 servers:
 - description: Production server
   url: https://api.patagona.de
 security:
 - BasicAuth: []
+- BearerAuth: []
 tags:
 - description: Manage your account
   name: account
@@ -7821,6 +7822,38 @@ paths:
       summary: Create a new user account
       tags:
       - account
+  /api/v3/account/token/access:
+    post:
+      operationId: requestAccessToken
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PostAccessTokenRequestV3'
+        description: Request body contains credentials i.e email address and password.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostAccessTokenResponseV3ApiResponse'
+          description: Access token response
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: |
+            Returned if:
+            - The request body is not a valid JSON string.
+            - The email address is invalid.
+            - The given email address does not exist in our system.
+            - Invalid credentials are specified.
+      security: []
+      summary: Issues a token which can be used to access protected resources of the
+        Pricemonitor API.
+      tags:
+      - account
 components:
   parameters:
     scheduleIdParam:
@@ -11435,6 +11468,34 @@ components:
       required:
       - data
       type: object
+    com.patagona.pricemonitor.share.api.PostAccessTokenRequestV3:
+      additionalProperties: false
+      description: A request body holding credentials.
+      properties:
+        email:
+          description: Email address
+          type: string
+        password:
+          description: Password
+          type: string
+      required:
+      - email
+      - password
+      type: object
+    PostAccessTokenResponseV3ApiResponse:
+      additionalProperties: false
+      example:
+        data:
+          accessToken: accessToken
+          tokenType: tokenType
+          expiresInSeconds: 0
+          refreshToken: refreshToken
+      properties:
+        data:
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PostAccessTokenResponseV3'
+      required:
+      - data
+      type: object
     com.patagona.pricemonitor.share.api.ApplicationVersion:
       additionalProperties: false
       description: Current api version.
@@ -12283,6 +12344,38 @@ components:
       - id
       - name
       type: object
+    com.patagona.pricemonitor.share.api.PostAccessTokenResponseV3:
+      additionalProperties: false
+      description: Access token response.
+      example:
+        accessToken: accessToken
+        tokenType: tokenType
+        expiresInSeconds: 0
+        refreshToken: refreshToken
+      properties:
+        accessToken:
+          description: Access token in JSON Web Token (JWT) format. It ensures that
+            a customer application is authorized to access the protected resources.
+          type: string
+        tokenType:
+          description: 'Currently only one token type is supported: "bearer".'
+          type: string
+        expiresInSeconds:
+          description: 'This specifies the time in seconds how long a token is valid.
+            (Default: 900s)'
+          type: integer
+        refreshToken:
+          description: If the access token will expire, then a refresh token is used
+            to obtain another access token. Please note that refresh token has an
+            expiration period of 1w. This means that after this period, one could
+            not obtain new access token with expired refresh token.
+          type: string
+      required:
+      - accessToken
+      - expiresInSeconds
+      - refreshToken
+      - tokenType
+      type: object
     Callbacks_pricemonitorCompleted:
       example:
         headers:
@@ -12762,4 +12855,8 @@ components:
   securitySchemes:
     BasicAuth:
       scheme: basic
+      type: http
+    BearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
       type: http
