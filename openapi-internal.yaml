@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5757
+  version: 0.0.5758
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -39,6 +39,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/VersionApiResponse'
           description: Current application version.
+      security: []
       summary: Get the current application version
       tags:
       - controlpanel
@@ -5456,6 +5457,7 @@ paths:
               schema:
                 type: object
           description: This is a generated entry and needs to be described.
+      security: []
       tags:
       - internal
       - undocumented
@@ -6804,6 +6806,7 @@ paths:
               schema:
                 type: object
           description: Authenticate with the API and create a session
+      security: []
       tags:
       - undocumented
       - account
@@ -6817,6 +6820,7 @@ paths:
               schema:
                 type: object
           description: Deauthenticate with the API and destroy the current session
+      security: []
       tags:
       - undocumented
       - account
@@ -7819,6 +7823,7 @@ paths:
             - The password length is less than 6 characters long
             - The enpoint was requested too often
             - The given email address already exists
+      security: []
       summary: Create a new user account
       tags:
       - account
@@ -7852,6 +7857,40 @@ paths:
       security: []
       summary: Issues a token which can be used to access protected resources of the
         Pricemonitor API.
+      tags:
+      - account
+  /api/v3/account/token/refresh:
+    post:
+      description: |
+        An access token, a refresh token and a refresh token id are issued upon valid credentials.
+        See [/api/v3/account/token/access](#/account/requestAccessToken) for more details.
+        When an access token expired, it can be re-issued (or refreshed) using the refresh token and refresh token id, the one obtained upon
+        valid credentials.
+      operationId: refreshAccessToken
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PostRefreshAccessTokenRequestV3'
+        description: Request body contains the refresh token
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostAccessTokenResponseV3ApiResponse'
+          description: Access token response
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: |
+            Returned if:
+            - The request body is not a valid JSON string.
+            - The refresh token is invalid and/or expired.
+      security: []
+      summary: Refresh an access token using the refresh token.
       tags:
       - account
 components:
@@ -11486,15 +11525,31 @@ components:
       additionalProperties: false
       example:
         data:
-          accessToken: accessToken
+          refreshTokenId: 0.8008281904610115
           tokenType: tokenType
-          expiresInSeconds: 0
+          accessToken: accessToken
+          expiresInSeconds: 6
           refreshToken: refreshToken
       properties:
         data:
           $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PostAccessTokenResponseV3'
       required:
       - data
+      type: object
+    com.patagona.pricemonitor.share.api.PostRefreshAccessTokenRequestV3:
+      additionalProperties: false
+      description: A request body holding the refresh token.
+      properties:
+        refreshToken:
+          description: The refresh token issued at the time of issuing an access token.
+          type: string
+        refreshTokenId:
+          description: The refresh token id issued at the time of issuing an access
+            token.
+          type: number
+      required:
+      - refreshToken
+      - refreshTokenId
       type: object
     com.patagona.pricemonitor.share.api.ApplicationVersion:
       additionalProperties: false
@@ -12348,15 +12403,16 @@ components:
       additionalProperties: false
       description: Access token response.
       example:
-        accessToken: accessToken
+        refreshTokenId: 0.8008281904610115
         tokenType: tokenType
-        expiresInSeconds: 0
+        accessToken: accessToken
+        expiresInSeconds: 6
         refreshToken: refreshToken
       properties:
-        accessToken:
-          description: Access token in JSON Web Token (JWT) format. It ensures that
-            a customer application is authorized to access the protected resources.
-          type: string
+        refreshTokenId:
+          description: Refresh token id. This id would be required, in addition to
+            {{refreshToken}}, to obtain new access token.
+          type: number
         tokenType:
           description: 'Currently only one token type is supported: "bearer".'
           type: string
@@ -12366,14 +12422,19 @@ components:
           type: integer
         refreshToken:
           description: If the access token will expire, then a refresh token is used
-            to obtain another access token. Please note that refresh token has an
-            expiration period of 1w. This means that after this period, one could
-            not obtain new access token with expired refresh token.
+            to obtain new access token. Please note that refresh token has an expiration
+            period of 1w. This means that after this period, one could not obtain
+            new access token with expired refresh token.
+          type: string
+        accessToken:
+          description: Access token in JSON Web Token (JWT) format. It ensures that
+            a customer application is authorized to access the protected resources.
           type: string
       required:
       - accessToken
       - expiresInSeconds
       - refreshToken
+      - refreshTokenId
       - tokenType
       type: object
     Callbacks_pricemonitorCompleted:

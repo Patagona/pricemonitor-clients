@@ -45,6 +45,7 @@ export * from './pricemonitorPostAccountResponseV3';
 export * from './pricemonitorPostCustomerOrdersRequestV2';
 export * from './pricemonitorPostMonitoringScheduleRequestV3';
 export * from './pricemonitorPostNewPasswordRequest';
+export * from './pricemonitorPostRefreshAccessTokenRequestV3';
 export * from './pricemonitorPostVendorShopMappingRequestV3';
 export * from './pricemonitorPostVendorsByDomainResponse';
 export * from './pricemonitorPriceDumpingStatsRequest';

@@ -9,12 +9,19 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-package com.patagona.pricemonitor.client.model
 
-import com.patagona.pricemonitor.client.core.ApiModel
 
-case class DeleteOrdersApiResponse(
-  data: DeletedItemsResponse
-) extends ApiModel
-
+/**
+ * A request body holding the refresh token.
+ */
+export interface PricemonitorPostRefreshAccessTokenRequestV3 { 
+    /**
+     * The refresh token issued at the time of issuing an access token.
+     */
+    refreshToken: string;
+    /**
+     * The refresh token id issued at the time of issuing an access token.
+     */
+    refreshTokenId: number;
+}
 

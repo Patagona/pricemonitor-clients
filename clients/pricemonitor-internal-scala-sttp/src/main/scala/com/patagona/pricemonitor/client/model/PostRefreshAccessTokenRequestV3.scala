@@ -14,17 +14,13 @@ package com.patagona.pricemonitor.client.model
 import com.patagona.pricemonitor.client.core.ApiModel
 
   /**
-   * This model describes the information passed to the user for a paginated request.
+   * A request body holding the refresh token.
    */
-case class PaginationResponse(
-  /* the url that can be called to retrieve the next page, None if th last page has been requested */
-  nextUrl: Option[String] = None,
-  /* the total number of elements that is paginated over */
-  totalSize: Int,
-  /* the start index of the currently requested page */
-  start: Int,
-  /* the number of elements in a full page */
-  limit: Int
+case class PostRefreshAccessTokenRequestV3(
+  /* The refresh token issued at the time of issuing an access token. */
+  refreshToken: String,
+  /* The refresh token id issued at the time of issuing an access token. */
+  refreshTokenId: Double
 ) extends ApiModel
 
 
