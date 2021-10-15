@@ -2,6 +2,10 @@
 
 set -eux
 
+# https://openapi-generator.tech/docs/generators
+# https://openapi-generator.tech/docs/globals
+
+
 rm -rf clients
 mkdir clients
 
@@ -26,17 +30,29 @@ log() {
 
 
 main() {
-      log Building scala-sttp
+      log python
+      (build_python)
+
+      log scala-sttp
       (build_scala_sttp)
 
-      log Building typescript-angular
+      log typescript-angular
       (build_typescript_angular)
+
 
       #(build_others)
 
       # TODO: Generating scala clients is temporarily deactivated since they don't have priority
-      # log Building scala-akka
+      # log scala-akka
       # (build_scala_akka)
+}
+
+build_python() {
+      # https://openapi-generator.tech/docs/generators/python
+      $DOCKER_CMD \
+            -g python \
+            -o /local/clients/python \
+            --additional-properties=packageName=pricemonitor_api_client
 }
 
 
@@ -100,7 +116,7 @@ build_scala_sttp() {
 
 build_others() {
       for client in scala-gatling scalaz java; do
-            log Building $client
+            log $client
             $DOCKER_CMD \
                   -g $client \
                   -o /local/clients/$client
