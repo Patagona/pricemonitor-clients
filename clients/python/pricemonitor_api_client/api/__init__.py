@@ -1,0 +1,21 @@
+from __future__ import absolute_import
+
+# flake8: noqa
+
+# import apis into api package
+from pricemonitor_api_client.api.account_api import AccountApi
+from pricemonitor_api_client.api.companies_api import CompaniesApi
+from pricemonitor_api_client.api.controlpanel_api import ControlpanelApi
+from pricemonitor_api_client.api.feeds_api import FeedsApi
+from pricemonitor_api_client.api.internal_api import InternalApi
+from pricemonitor_api_client.api.logs_api import LogsApi
+from pricemonitor_api_client.api.monitoring_schedules_api import MonitoringSchedulesApi
+from pricemonitor_api_client.api.offers_api import OffersApi
+from pricemonitor_api_client.api.orders_api import OrdersApi
+from pricemonitor_api_client.api.pluginregistration_api import PluginregistrationApi
+from pricemonitor_api_client.api.pricerecommendations_api import PricerecommendationsApi
+from pricemonitor_api_client.api.products_api import ProductsApi
+from pricemonitor_api_client.api.settings_api import SettingsApi
+from pricemonitor_api_client.api.tasks_api import TasksApi
+from pricemonitor_api_client.api.undocumented_api import UndocumentedApi
+from pricemonitor_api_client.api.vendor_shop_mapping_api import VendorShopMappingApi
