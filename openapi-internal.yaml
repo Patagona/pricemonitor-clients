@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5796
+  version: 0.0.5797
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -1366,6 +1366,67 @@ paths:
       - products
       - internal
     summary: Get offer statistics per product
+  /api/v3/manufacturer/contracts/{contractId}/offers/stats:
+    get:
+      operationId: getOfferStatisticsManufacturerV3
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Timestamp of start of time range, formatted as ISO Date (i.e.
+          2018-04-06T13:46:13Z) in UTC. If this value is omitted, the range is '{endDate}
+          - 48 hours to {endDate}' if {endDate} is given or NOW - 48 hours if both
+          are omitted.
+        explode: true
+        in: query
+        name: startDate
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z)
+          in UTC. If this value is omitted, the range is '{startDate} to {startDate}
+          + 48 hours' if {startDate} is given or NOW - 48 hours if both are omitted.
+        explode: true
+        in: query
+        name: endDate
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: includeDeliveryCosts
+        required: true
+        schema:
+          type: boolean
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetOfferStatisticsV3ApiResponse'
+          description: Returns a list of offer statistics per product.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+          description: Specified time range is invalid (> 48h).
+      summary: Get offer statistics per product of a contract. Only the latest offers
+        per product and domain the are taken into account.
+      tags:
+      - offers
+      - internal
   /api/v3/manufacturer/contracts/{contractId}/products:
     delete:
       operationId: deleteProductsManufacturerV3
@@ -9933,6 +9994,38 @@ components:
       required:
       - data
       type: object
+    GetOfferStatisticsV3ApiResponse:
+      additionalProperties: false
+      example:
+        data:
+        - productId: productId
+          statsByDomain:
+          - offerCount: 0
+            domain: domain
+            minPrice: 6.027456183070403
+            averagePrice: 1.4658129805029452
+          - offerCount: 0
+            domain: domain
+            minPrice: 6.027456183070403
+            averagePrice: 1.4658129805029452
+        - productId: productId
+          statsByDomain:
+          - offerCount: 0
+            domain: domain
+            minPrice: 6.027456183070403
+            averagePrice: 1.4658129805029452
+          - offerCount: 0
+            domain: domain
+            minPrice: 6.027456183070403
+            averagePrice: 1.4658129805029452
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.GetOfferStatisticsV3'
+          type: array
+      required:
+      - data
+      type: object
     PutProductsApiResponse:
       additionalProperties: false
       example:
@@ -11913,6 +12006,60 @@ components:
       required:
       - name
       - value
+      type: object
+    com.patagona.pricemonitor.share.api.GetOfferStatisticsV3:
+      additionalProperties: false
+      description: Offer statistics of a product.
+      example:
+        productId: productId
+        statsByDomain:
+        - offerCount: 0
+          domain: domain
+          minPrice: 6.027456183070403
+          averagePrice: 1.4658129805029452
+        - offerCount: 0
+          domain: domain
+          minPrice: 6.027456183070403
+          averagePrice: 1.4658129805029452
+      properties:
+        productId:
+          description: Internal product identifier.
+          type: string
+        statsByDomain:
+          description: List of offer statistics per domain
+          items:
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.OfferStatsPerDomain'
+          type: array
+      required:
+      - productId
+      - statsByDomain
+      type: object
+    com.patagona.pricemonitor.share.api.OfferStatsPerDomain:
+      additionalProperties: false
+      description: Offer statistics per domain.
+      example:
+        offerCount: 0
+        domain: domain
+        minPrice: 6.027456183070403
+        averagePrice: 1.4658129805029452
+      properties:
+        domain:
+          description: Domain name
+          type: string
+        offerCount:
+          description: Number of offers
+          type: integer
+        minPrice:
+          description: Minimum price, rounded to two decimal places, in a set of offers.
+          type: number
+        averagePrice:
+          description: Average price, rounded to two decimal places, in a set of offers.
+          type: number
+      required:
+      - averagePrice
+      - domain
+      - minPrice
+      - offerCount
       type: object
     com.patagona.pricemonitor.share.api.PriceDumpingStatsResponse:
       additionalProperties: false
