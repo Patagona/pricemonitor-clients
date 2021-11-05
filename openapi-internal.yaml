@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5821
+  version: 0.0.5822
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -7954,6 +7954,56 @@ paths:
       summary: Refresh an access token using the refresh token.
       tags:
       - account
+  /api/v3/vendor/contracts/{contractId}/products/amazon/buybox/stats:
+    post:
+      description: |
+        Provides latest Amazon Buybox statistics
+        - product is in Amazon Buybox for Prime users
+        - product is in Amazon Buybox for Non-Prime users
+        per product on Amazon domain for a given time range.
+      operationId: postAmazonBuyboxProductStatsV3
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PostAmazonBuyboxProductsStatsRequestV3'
+        description: |
+          Request body contains list of product identifiers, start date time and end date time. Endpoint searches for
+          latest Amazon Buybox product statistics with product identifiers in the given time range defined by
+          [start date, end date].
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AmazonBuyboxProductStatsV3ApiResponse'
+          description: List of Amazon Buybox statistics per product
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: |
+            Returned if:
+            - The request body is not a valid JSON string.
+            - More than 10,000 product statistics are requested.
+            - The start date is after the end date.
+            - The time range [startDate,endDate] is larger than 48h.
+            - The contract has more than one amazon domain configured.
+      summary: Retrieve latest Amazon Buybox statistics per product and amazon domain
+        for a given time range.
+      tags:
+      - products
 components:
   parameters:
     scheduleIdParam:
@@ -11644,6 +11694,50 @@ components:
       - refreshToken
       - refreshTokenId
       type: object
+    com.patagona.pricemonitor.share.api.PostAmazonBuyboxProductsStatsRequestV3:
+      additionalProperties: false
+      description: Defines request parameters to retrieve Amazon Buybox product stats
+      properties:
+        startDate:
+          description: Defines start date for time range when to search if products
+            are Amazon Buybox.
+          format: date-time
+          type: string
+        endDate:
+          description: Defines start date for time range when to search if products
+            are Amazon Buybox.
+          format: date-time
+          type: string
+        productIds:
+          description: 'Defines a list of product ids that should checked if in Amazon
+            Buybox. Max allowed ids is 10000 Requirements: - Max allowed product ids
+            per request == 10000'
+          items:
+            type: number
+          type: array
+      required:
+      - endDate
+      - productIds
+      - startDate
+      type: object
+    AmazonBuyboxProductStatsV3ApiResponse:
+      additionalProperties: false
+      example:
+        data:
+        - productId: productId
+          isInPrimeBuybox: true
+          isInNonPrimeBuybox: true
+        - productId: productId
+          isInPrimeBuybox: true
+          isInNonPrimeBuybox: true
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.AmazonBuyboxProductStatsV3'
+          type: array
+      required:
+      - data
+      type: object
     com.patagona.pricemonitor.share.api.ApplicationVersion:
       additionalProperties: false
       description: Current api version.
@@ -12583,6 +12677,29 @@ components:
       - refreshToken
       - refreshTokenId
       - tokenType
+      type: object
+    com.patagona.pricemonitor.share.api.AmazonBuyboxProductStatsV3:
+      additionalProperties: false
+      description: Shows if product belongs to Amazon Buybox
+      example:
+        productId: productId
+        isInPrimeBuybox: true
+        isInNonPrimeBuybox: true
+      properties:
+        productId:
+          description: Internal product identifier
+          type: string
+        isInPrimeBuybox:
+          description: Indicates if product is Amazon Prime product and is in Amazon
+            Buybox
+          type: boolean
+        isInNonPrimeBuybox:
+          description: Indicates if product is in Amazon Buybox
+          type: boolean
+      required:
+      - isInNonPrimeBuybox
+      - isInPrimeBuybox
+      - productId
       type: object
     Callbacks_pricemonitorCompleted:
       example:
