@@ -15,6 +15,7 @@ Method | HTTP request | Description
 [**api_v3_vendor_contracts_contract_id_products_put**](ProductsApi.md#api_v3_vendor_contracts_contract_id_products_put) | **PUT** /api/v3/vendor/contracts/{contractId}/products | Set products via CSV file
 [**delete_products**](ProductsApi.md#delete_products) | **DELETE** /api/v3/vendor/contracts/{contractId}/products | Delete products
 [**delete_products_manufacturer_v3**](ProductsApi.md#delete_products_manufacturer_v3) | **DELETE** /api/v3/manufacturer/contracts/{contractId}/products | 
+[**get_amazon_buybox_product_stats_v3**](ProductsApi.md#get_amazon_buybox_product_stats_v3) | **GET** /api/v3/vendor/contracts/{contractId}/products/amazon/buybox/stats | Retrieve latest Amazon Buybox statistics per product and amazon domain for a given time range.
 [**get_extended_tags**](ProductsApi.md#get_extended_tags) | **GET** /api/v3/vendor/contracts/{contractId}/products/{productId}/extendedtags | Return the extended tags for the given product
 [**get_extended_tags_manufacturer_v3**](ProductsApi.md#get_extended_tags_manufacturer_v3) | **GET** /api/v3/manufacturer/contracts/{contractId}/products/{productId}/extendedtags | 
 [**get_mappings_vendor_v2**](ProductsApi.md#get_mappings_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/productidentifiermapping | 
@@ -32,7 +33,6 @@ Method | HTTP request | Description
 [**monitoring_pipeline_upsert_search_attempts_vendor_v3**](ProductsApi.md#monitoring_pipeline_upsert_search_attempts_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/monitoringpipeline/v1/searchattempts | 
 [**patch_product_manufacturer_v3**](ProductsApi.md#patch_product_manufacturer_v3) | **PATCH** /api/v3/manufacturer/contracts/{contractId}/products/{productId} | 
 [**patch_product_vendor_v3**](ProductsApi.md#patch_product_vendor_v3) | **PATCH** /api/v3/vendor/contracts/{contractId}/products/{productId} | 
-[**post_amazon_buybox_product_stats_v3**](ProductsApi.md#post_amazon_buybox_product_stats_v3) | **POST** /api/v3/vendor/contracts/{contractId}/products/amazon/buybox/stats | Retrieve latest Amazon Buybox statistics per product and amazon domain for a given time range.
 [**post_mappings_vendor_v2**](ProductsApi.md#post_mappings_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/productidentifiermapping | 
 [**put_csv_products**](ProductsApi.md#put_csv_products) | **PUT** /api/2/v/contracts/{contractId}/products/csv | Set products via CSV file
 [**put_product_filters_vendor_v2**](ProductsApi.md#put_product_filters_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/offerfilters/{listType}/products/{productId} | Store the filters of a given product for the given contract.
@@ -1456,6 +1456,140 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | This is a generated entry and needs to be described. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_amazon_buybox_product_stats_v3**
+> AmazonBuyboxProductStatsV3ApiResponse get_amazon_buybox_product_stats_v3(contract_id, start_date=start_date, end_date=end_date, start=start, limit=limit)
+
+Retrieve latest Amazon Buybox statistics per product and amazon domain for a given time range.
+
+Provides latest Amazon Buybox statistics - product is in Amazon Buybox for Prime users - product is in Amazon Buybox for Non-Prime users per product on Amazon domain for a given time range. 
+
+### Example
+
+* Basic Authentication (BasicAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.ProductsApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted, the range is '{endDate} - 48 hours to {endDate}' if {endDate} is given or NOW - 48 hours if both are omitted. (optional)
+end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted, the range is '{startDate} to {startDate} + 48 hours' if {startDate} is given or NOW - 48 hours if both are omitted. (optional)
+start = 0 # int | Where to start fetching the amazon buybox statistics. Must be positive. Default value is 0. (optional)
+limit = 50000 # int | Maximum number of results. Must be positive and not bigger than 50,000. Default value is 50,000. (optional)
+
+    try:
+        # Retrieve latest Amazon Buybox statistics per product and amazon domain for a given time range.
+        api_response = api_instance.get_amazon_buybox_product_stats_v3(contract_id, start_date=start_date, end_date=end_date, start=start, limit=limit)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling ProductsApi->get_amazon_buybox_product_stats_v3: %s\n" % e)
+```
+
+* Bearer (JWT) Authentication (BearerAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.ProductsApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted, the range is '{endDate} - 48 hours to {endDate}' if {endDate} is given or NOW - 48 hours if both are omitted. (optional)
+end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted, the range is '{startDate} to {startDate} + 48 hours' if {startDate} is given or NOW - 48 hours if both are omitted. (optional)
+start = 0 # int | Where to start fetching the amazon buybox statistics. Must be positive. Default value is 0. (optional)
+limit = 50000 # int | Maximum number of results. Must be positive and not bigger than 50,000. Default value is 50,000. (optional)
+
+    try:
+        # Retrieve latest Amazon Buybox statistics per product and amazon domain for a given time range.
+        api_response = api_instance.get_amazon_buybox_product_stats_v3(contract_id, start_date=start_date, end_date=end_date, start=start, limit=limit)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling ProductsApi->get_amazon_buybox_product_stats_v3: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **contract_id** | **str**| ID of the contract | 
+ **start_date** | **datetime**| Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted, the range is &#39;{endDate} - 48 hours to {endDate}&#39; if {endDate} is given or NOW - 48 hours if both are omitted. | [optional] 
+ **end_date** | **datetime**| Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted, the range is &#39;{startDate} to {startDate} + 48 hours&#39; if {startDate} is given or NOW - 48 hours if both are omitted. | [optional] 
+ **start** | **int**| Where to start fetching the amazon buybox statistics. Must be positive. Default value is 0. | [optional] 
+ **limit** | **int**| Maximum number of results. Must be positive and not bigger than 50,000. Default value is 50,000. | [optional] 
+
+### Return type
+
+[**AmazonBuyboxProductStatsV3ApiResponse**](AmazonBuyboxProductStatsV3ApiResponse.md)
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | List of Amazon Buybox statistics per product |  -  |
+**400** | Returned if: - The request body is not a valid JSON string. - The start date is after the end date. - The time range [startDate,endDate] is larger than 48h. - The start parameter is negative - The limit parameter is negative and larger than 50,000 - The contract has more than one amazon domain configured.  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -3524,131 +3658,6 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | This is a generated entry and needs to be described. |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **post_amazon_buybox_product_stats_v3**
-> AmazonBuyboxProductStatsV3ApiResponse post_amazon_buybox_product_stats_v3(contract_id, com_patagona_pricemonitor_share_api_post_amazon_buybox_products_stats_request_v3=com_patagona_pricemonitor_share_api_post_amazon_buybox_products_stats_request_v3)
-
-Retrieve latest Amazon Buybox statistics per product and amazon domain for a given time range.
-
-Provides latest Amazon Buybox statistics - product is in Amazon Buybox for Prime users - product is in Amazon Buybox for Non-Prime users per product on Amazon domain for a given time range. 
-
-### Example
-
-* Basic Authentication (BasicAuth):
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: BasicAuth
-configuration = pricemonitor_api_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = pricemonitor_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-com_patagona_pricemonitor_share_api_post_amazon_buybox_products_stats_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostAmazonBuyboxProductsStatsRequestV3() # ComPatagonaPricemonitorShareApiPostAmazonBuyboxProductsStatsRequestV3 | Request body contains list of product identifiers, start date time and end date time. Endpoint searches for latest Amazon Buybox product statistics with product identifiers in the given time range defined by [start date, end date].  (optional)
-
-    try:
-        # Retrieve latest Amazon Buybox statistics per product and amazon domain for a given time range.
-        api_response = api_instance.post_amazon_buybox_product_stats_v3(contract_id, com_patagona_pricemonitor_share_api_post_amazon_buybox_products_stats_request_v3=com_patagona_pricemonitor_share_api_post_amazon_buybox_products_stats_request_v3)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling ProductsApi->post_amazon_buybox_product_stats_v3: %s\n" % e)
-```
-
-* Bearer (JWT) Authentication (BearerAuth):
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: BasicAuth
-configuration = pricemonitor_api_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = pricemonitor_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-com_patagona_pricemonitor_share_api_post_amazon_buybox_products_stats_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostAmazonBuyboxProductsStatsRequestV3() # ComPatagonaPricemonitorShareApiPostAmazonBuyboxProductsStatsRequestV3 | Request body contains list of product identifiers, start date time and end date time. Endpoint searches for latest Amazon Buybox product statistics with product identifiers in the given time range defined by [start date, end date].  (optional)
-
-    try:
-        # Retrieve latest Amazon Buybox statistics per product and amazon domain for a given time range.
-        api_response = api_instance.post_amazon_buybox_product_stats_v3(contract_id, com_patagona_pricemonitor_share_api_post_amazon_buybox_products_stats_request_v3=com_patagona_pricemonitor_share_api_post_amazon_buybox_products_stats_request_v3)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling ProductsApi->post_amazon_buybox_product_stats_v3: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
- **com_patagona_pricemonitor_share_api_post_amazon_buybox_products_stats_request_v3** | [**ComPatagonaPricemonitorShareApiPostAmazonBuyboxProductsStatsRequestV3**](ComPatagonaPricemonitorShareApiPostAmazonBuyboxProductsStatsRequestV3.md)| Request body contains list of product identifiers, start date time and end date time. Endpoint searches for latest Amazon Buybox product statistics with product identifiers in the given time range defined by [start date, end date].  | [optional] 
-
-### Return type
-
-[**AmazonBuyboxProductStatsV3ApiResponse**](AmazonBuyboxProductStatsV3ApiResponse.md)
-
-### Authorization
-
-[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | List of Amazon Buybox statistics per product |  -  |
-**400** | Returned if: - The request body is not a valid JSON string. - More than 10,000 product statistics are requested. - The start date is after the end date. - The time range [startDate,endDate] is larger than 48h. - The contract has more than one amazon domain configured.  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

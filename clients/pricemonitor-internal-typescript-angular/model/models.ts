@@ -46,7 +46,6 @@ export * from './pricemonitorPostAccessTokenRequestV3';
 export * from './pricemonitorPostAccessTokenResponseV3';
 export * from './pricemonitorPostAccountRequestV3';
 export * from './pricemonitorPostAccountResponseV3';
-export * from './pricemonitorPostAmazonBuyboxProductsStatsRequestV3';
 export * from './pricemonitorPostCustomerOrdersRequestV2';
 export * from './pricemonitorPostMonitoringScheduleRequestV3';
 export * from './pricemonitorPostNewPasswordRequest';
