@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5828
+  version: 0.0.5829
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -10237,23 +10237,26 @@ components:
       example:
         data:
           statsOverAllomains:
-            potentiallyInitiatedPriceDumpings: 6
-            uniqueProductInitiatedPriceDumpings: 1
-            uniqueProductPotentiallyInitiatedPriceDumpings: 5
-            initiatedPriceDumpings: 0
+            potentiallyInitiatedPriceDumpings: 5
+            uniqueProductInitiatedPriceDumpings: 6
+            productsAtMinPrice: 0
+            uniqueProductPotentiallyInitiatedPriceDumpings: 1
+            initiatedPriceDumpings: 5
           statsPerDomain:
           - domain: domain
             productPriceDumpingStats:
-              potentiallyInitiatedPriceDumpings: 6
-              uniqueProductInitiatedPriceDumpings: 1
-              uniqueProductPotentiallyInitiatedPriceDumpings: 5
-              initiatedPriceDumpings: 0
+              potentiallyInitiatedPriceDumpings: 5
+              uniqueProductInitiatedPriceDumpings: 6
+              productsAtMinPrice: 0
+              uniqueProductPotentiallyInitiatedPriceDumpings: 1
+              initiatedPriceDumpings: 5
           - domain: domain
             productPriceDumpingStats:
-              potentiallyInitiatedPriceDumpings: 6
-              uniqueProductInitiatedPriceDumpings: 1
-              uniqueProductPotentiallyInitiatedPriceDumpings: 5
-              initiatedPriceDumpings: 0
+              potentiallyInitiatedPriceDumpings: 5
+              uniqueProductInitiatedPriceDumpings: 6
+              productsAtMinPrice: 0
+              uniqueProductPotentiallyInitiatedPriceDumpings: 1
+              initiatedPriceDumpings: 5
       properties:
         data:
           $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PriceDumpingStatsResponse'
@@ -12170,23 +12173,26 @@ components:
       additionalProperties: false
       example:
         statsOverAllomains:
-          potentiallyInitiatedPriceDumpings: 6
-          uniqueProductInitiatedPriceDumpings: 1
-          uniqueProductPotentiallyInitiatedPriceDumpings: 5
-          initiatedPriceDumpings: 0
+          potentiallyInitiatedPriceDumpings: 5
+          uniqueProductInitiatedPriceDumpings: 6
+          productsAtMinPrice: 0
+          uniqueProductPotentiallyInitiatedPriceDumpings: 1
+          initiatedPriceDumpings: 5
         statsPerDomain:
         - domain: domain
           productPriceDumpingStats:
-            potentiallyInitiatedPriceDumpings: 6
-            uniqueProductInitiatedPriceDumpings: 1
-            uniqueProductPotentiallyInitiatedPriceDumpings: 5
-            initiatedPriceDumpings: 0
+            potentiallyInitiatedPriceDumpings: 5
+            uniqueProductInitiatedPriceDumpings: 6
+            productsAtMinPrice: 0
+            uniqueProductPotentiallyInitiatedPriceDumpings: 1
+            initiatedPriceDumpings: 5
         - domain: domain
           productPriceDumpingStats:
-            potentiallyInitiatedPriceDumpings: 6
-            uniqueProductInitiatedPriceDumpings: 1
-            uniqueProductPotentiallyInitiatedPriceDumpings: 5
-            initiatedPriceDumpings: 0
+            potentiallyInitiatedPriceDumpings: 5
+            uniqueProductInitiatedPriceDumpings: 6
+            productsAtMinPrice: 0
+            uniqueProductPotentiallyInitiatedPriceDumpings: 1
+            initiatedPriceDumpings: 5
       properties:
         statsPerDomain:
           items:
@@ -12207,10 +12213,11 @@ components:
       example:
         domain: domain
         productPriceDumpingStats:
-          potentiallyInitiatedPriceDumpings: 6
-          uniqueProductInitiatedPriceDumpings: 1
-          uniqueProductPotentiallyInitiatedPriceDumpings: 5
-          initiatedPriceDumpings: 0
+          potentiallyInitiatedPriceDumpings: 5
+          uniqueProductInitiatedPriceDumpings: 6
+          productsAtMinPrice: 0
+          uniqueProductPotentiallyInitiatedPriceDumpings: 1
+          initiatedPriceDumpings: 5
       properties:
         domain:
           type: string
@@ -12227,24 +12234,30 @@ components:
         non prefixed counts count every event. If we are unable to detect which vendor
         reduced the price first, because we only sampled the price when multiple vendors
         are at the same price, those events are counted in the fields infixed with
-        "potetially".
+        "potetially". The field productsAtMinPrice denotes the number of products
+        at the min price from the queried vendors, at the respective newest timestamp
+        per domain and product.
       example:
-        potentiallyInitiatedPriceDumpings: 6
-        uniqueProductInitiatedPriceDumpings: 1
-        uniqueProductPotentiallyInitiatedPriceDumpings: 5
-        initiatedPriceDumpings: 0
+        potentiallyInitiatedPriceDumpings: 5
+        uniqueProductInitiatedPriceDumpings: 6
+        productsAtMinPrice: 0
+        uniqueProductPotentiallyInitiatedPriceDumpings: 1
+        initiatedPriceDumpings: 5
       properties:
-        initiatedPriceDumpings:
-          type: integer
-        potentiallyInitiatedPriceDumpings:
+        productsAtMinPrice:
           type: integer
         uniqueProductInitiatedPriceDumpings:
           type: integer
         uniqueProductPotentiallyInitiatedPriceDumpings:
           type: integer
+        initiatedPriceDumpings:
+          type: integer
+        potentiallyInitiatedPriceDumpings:
+          type: integer
       required:
       - initiatedPriceDumpings
       - potentiallyInitiatedPriceDumpings
+      - productsAtMinPrice
       - uniqueProductInitiatedPriceDumpings
       - uniqueProductPotentiallyInitiatedPriceDumpings
       type: object
