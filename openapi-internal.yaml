@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5833
+  version: 0.0.5834
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -176,7 +176,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateContractRequest'
+              $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.CreateContractRequest'
         description: Contract to be added
         required: true
       responses:
@@ -8441,16 +8441,6 @@ components:
         name:
           type: string
       type: object
-    CreateContractRequest:
-      example:
-        contractType: contractType
-        contractName: contractName
-      properties:
-        contractName:
-          type: string
-        contractType:
-          type: string
-      type: object
     DeletedItemsResponse:
       example:
         deleted: 0
@@ -9391,6 +9381,25 @@ components:
           type: array
       required:
       - data
+      type: object
+    com.patagona.pricemonitor.share.api.CreateContractRequest:
+      additionalProperties: false
+      description: Represents a new contract.
+      properties:
+        contractType:
+          description: 'Type of the contract. Currently, only 2 types are supported:
+            - Pricemonitor for manufacturers - Pricemonitor for resellers'
+          type: string
+        contractName:
+          description: Name of the new contract
+          type: string
+        expirationDate:
+          description: Expiration date
+          format: date-time
+          type: string
+      required:
+      - contractName
+      - contractType
       type: object
     AddCompanyContractApiResponse:
       additionalProperties: false

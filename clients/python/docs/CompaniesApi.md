@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 
 # **add_company_contract**
-> AddCompanyContractApiResponse add_company_contract(company_id, create_contract_request)
+> AddCompanyContractApiResponse add_company_contract(company_id, com_patagona_pricemonitor_share_api_create_contract_request)
 
 Add contract for given company
 
@@ -59,11 +59,11 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.CompaniesApi(api_client)
     company_id = 1 # int | 
-create_contract_request = pricemonitor_api_client.CreateContractRequest() # CreateContractRequest | Contract to be added
+com_patagona_pricemonitor_share_api_create_contract_request = pricemonitor_api_client.ComPatagonaPricemonitorShareApiCreateContractRequest() # ComPatagonaPricemonitorShareApiCreateContractRequest | Contract to be added
 
     try:
         # Add contract for given company
-        api_response = api_instance.add_company_contract(company_id, create_contract_request)
+        api_response = api_instance.add_company_contract(company_id, com_patagona_pricemonitor_share_api_create_contract_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CompaniesApi->add_company_contract: %s\n" % e)
@@ -103,11 +103,11 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.CompaniesApi(api_client)
     company_id = 1 # int | 
-create_contract_request = pricemonitor_api_client.CreateContractRequest() # CreateContractRequest | Contract to be added
+com_patagona_pricemonitor_share_api_create_contract_request = pricemonitor_api_client.ComPatagonaPricemonitorShareApiCreateContractRequest() # ComPatagonaPricemonitorShareApiCreateContractRequest | Contract to be added
 
     try:
         # Add contract for given company
-        api_response = api_instance.add_company_contract(company_id, create_contract_request)
+        api_response = api_instance.add_company_contract(company_id, com_patagona_pricemonitor_share_api_create_contract_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CompaniesApi->add_company_contract: %s\n" % e)
@@ -118,7 +118,7 @@ create_contract_request = pricemonitor_api_client.CreateContractRequest() # Crea
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **company_id** | **int**|  | 
- **create_contract_request** | [**CreateContractRequest**](CreateContractRequest.md)| Contract to be added | 
+ **com_patagona_pricemonitor_share_api_create_contract_request** | [**ComPatagonaPricemonitorShareApiCreateContractRequest**](ComPatagonaPricemonitorShareApiCreateContractRequest.md)| Contract to be added | 
 
 ### Return type
 
