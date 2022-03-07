@@ -13,6 +13,7 @@ from pricemonitor_api_client.api.monitoring_schedules_api import MonitoringSched
 from pricemonitor_api_client.api.offers_api import OffersApi
 from pricemonitor_api_client.api.orders_api import OrdersApi
 from pricemonitor_api_client.api.pluginregistration_api import PluginregistrationApi
+from pricemonitor_api_client.api.preprocessing_api import PreprocessingApi
 from pricemonitor_api_client.api.pricerecommendations_api import PricerecommendationsApi
 from pricemonitor_api_client.api.products_api import ProductsApi
 from pricemonitor_api_client.api.settings_api import SettingsApi

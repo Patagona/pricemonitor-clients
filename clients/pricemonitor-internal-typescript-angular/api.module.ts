@@ -13,6 +13,7 @@ import { MonitoringSchedulesService } from './api/monitoringSchedules.service';
 import { OffersService } from './api/offers.service';
 import { OrdersService } from './api/orders.service';
 import { PluginregistrationService } from './api/pluginregistration.service';
+import { PreprocessingService } from './api/preprocessing.service';
 import { PricerecommendationsService } from './api/pricerecommendations.service';
 import { ProductsService } from './api/products.service';
 import { SettingsService } from './api/settings.service';
