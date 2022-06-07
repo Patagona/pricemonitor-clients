@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.5988
+  version: 0.0.5989
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -7931,72 +7931,6 @@ paths:
       summary: Create a new user account
       tags:
       - account
-  /api/v3/account/token/access:
-    post:
-      operationId: requestAccessToken
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PostAccessTokenRequestV3'
-        description: Request body contains credentials i.e email address and password.
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PostAccessTokenResponseV3ApiResponse'
-          description: Access token response
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApiErrorResponse'
-          description: |
-            Returned if:
-            - The request body is not a valid JSON string.
-            - The email address is invalid.
-            - The given email address does not exist in our system.
-            - Invalid credentials are specified.
-      security: []
-      summary: Issues a token which can be used to access protected resources of the
-        Pricemonitor API.
-      tags:
-      - account
-  /api/v3/account/token/refresh:
-    post:
-      description: |
-        An access token, a refresh token and a refresh token id are issued upon valid credentials.
-        See [/api/v3/account/token/access](#/account/requestAccessToken) for more details.
-        When an access token expired, it can be re-issued (or refreshed) using the refresh token and refresh token id, the one obtained upon
-        valid credentials.
-      operationId: refreshAccessToken
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PostRefreshAccessTokenRequestV3'
-        description: Request body contains the refresh token
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PostAccessTokenResponseV3ApiResponse'
-          description: Access token response
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApiErrorResponse'
-          description: |
-            Returned if:
-            - The request body is not a valid JSON string.
-            - The refresh token is invalid and/or expired.
-      security: []
-      summary: Refresh an access token using the refresh token.
-      tags:
-      - account
   /api/v3/vendor/contracts/{contractId}/products/amazon/buybox/stats:
     get:
       description: |
@@ -11742,50 +11676,6 @@ components:
       required:
       - data
       type: object
-    com.patagona.pricemonitor.share.api.PostAccessTokenRequestV3:
-      additionalProperties: false
-      description: A request body holding credentials.
-      properties:
-        email:
-          description: Email address
-          type: string
-        password:
-          description: Password
-          type: string
-      required:
-      - email
-      - password
-      type: object
-    PostAccessTokenResponseV3ApiResponse:
-      additionalProperties: false
-      example:
-        data:
-          refreshTokenId: 0.8008281904610115
-          tokenType: tokenType
-          accessToken: accessToken
-          expiresInSeconds: 6
-          refreshToken: refreshToken
-      properties:
-        data:
-          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PostAccessTokenResponseV3'
-      required:
-      - data
-      type: object
-    com.patagona.pricemonitor.share.api.PostRefreshAccessTokenRequestV3:
-      additionalProperties: false
-      description: A request body holding the refresh token.
-      properties:
-        refreshToken:
-          description: The refresh token issued at the time of issuing an access token.
-          type: string
-        refreshTokenId:
-          description: The refresh token id issued at the time of issuing an access
-            token.
-          type: number
-      required:
-      - refreshToken
-      - refreshTokenId
-      type: object
     AmazonBuyboxProductStatsV3ApiResponse:
       additionalProperties: false
       example:
@@ -12716,44 +12606,6 @@ components:
       - email
       - id
       - name
-      type: object
-    com.patagona.pricemonitor.share.api.PostAccessTokenResponseV3:
-      additionalProperties: false
-      description: Access token response.
-      example:
-        refreshTokenId: 0.8008281904610115
-        tokenType: tokenType
-        accessToken: accessToken
-        expiresInSeconds: 6
-        refreshToken: refreshToken
-      properties:
-        refreshTokenId:
-          description: Refresh token id. This id would be required, in addition to
-            {{refreshToken}}, to obtain new access token.
-          type: number
-        tokenType:
-          description: 'Currently only one token type is supported: "bearer".'
-          type: string
-        expiresInSeconds:
-          description: 'This specifies the time in seconds how long a token is valid.
-            (Default: 900s)'
-          type: integer
-        refreshToken:
-          description: If the access token will expire, then a refresh token is used
-            to obtain new access token. Please note that refresh token has an expiration
-            period of 1w. This means that after this period, one could not obtain
-            new access token with expired refresh token.
-          type: string
-        accessToken:
-          description: Access token in JSON Web Token (JWT) format. It ensures that
-            a customer application is authorized to access the protected resources.
-          type: string
-      required:
-      - accessToken
-      - expiresInSeconds
-      - refreshToken
-      - refreshTokenId
-      - tokenType
       type: object
     com.patagona.pricemonitor.share.api.AmazonBuyboxProductStatsV3:
       additionalProperties: false

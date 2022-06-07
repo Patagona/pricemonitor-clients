@@ -12,8 +12,6 @@ Method | HTTP request | Description
 [**login_by_auth_token**](AccountApi.md#login_by_auth_token) | **GET** /api/login/token/{token} | 
 [**logout**](AccountApi.md#logout) | **POST** /logout | 
 [**post_account_v3**](AccountApi.md#post_account_v3) | **POST** /api/v3/account | Create a new user account
-[**refresh_access_token**](AccountApi.md#refresh_access_token) | **POST** /api/v3/account/token/refresh | Refresh an access token using the refresh token.
-[**request_access_token**](AccountApi.md#request_access_token) | **POST** /api/v3/account/token/access | Issues a token which can be used to access protected resources of the Pricemonitor API.
 [**request_new_password**](AccountApi.md#request_new_password) | **POST** /api/account/password/reset | Request a new password
 [**reset_password**](AccountApi.md#reset_password) | **PUT** /api/account/password/reset | Reset the password
 [**update_user_role**](AccountApi.md#update_user_role) | **PUT** /api/2/users/{userId}/role/{roleName} | 
@@ -722,130 +720,6 @@ No authorization required
 |-------------|-------------|------------------|
 **200** | The account information of the newly created account. |  -  |
 **400** | Returned if: - The Request body is not a valid JSON string - The user account name is empty - The email doesn&#39;t match a valid email format - The password length is less than 6 characters long - The enpoint was requested too often - The given email address already exists  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **refresh_access_token**
-> PostAccessTokenResponseV3ApiResponse refresh_access_token(com_patagona_pricemonitor_share_api_post_refresh_access_token_request_v3=com_patagona_pricemonitor_share_api_post_refresh_access_token_request_v3)
-
-Refresh an access token using the refresh token.
-
-An access token, a refresh token and a refresh token id are issued upon valid credentials. See [/api/v3/account/token/access](#/account/requestAccessToken) for more details. When an access token expired, it can be re-issued (or refreshed) using the refresh token and refresh token id, the one obtained upon valid credentials. 
-
-### Example
-
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient() as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.AccountApi(api_client)
-    com_patagona_pricemonitor_share_api_post_refresh_access_token_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostRefreshAccessTokenRequestV3() # ComPatagonaPricemonitorShareApiPostRefreshAccessTokenRequestV3 | Request body contains the refresh token (optional)
-
-    try:
-        # Refresh an access token using the refresh token.
-        api_response = api_instance.refresh_access_token(com_patagona_pricemonitor_share_api_post_refresh_access_token_request_v3=com_patagona_pricemonitor_share_api_post_refresh_access_token_request_v3)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling AccountApi->refresh_access_token: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **com_patagona_pricemonitor_share_api_post_refresh_access_token_request_v3** | [**ComPatagonaPricemonitorShareApiPostRefreshAccessTokenRequestV3**](ComPatagonaPricemonitorShareApiPostRefreshAccessTokenRequestV3.md)| Request body contains the refresh token | [optional] 
-
-### Return type
-
-[**PostAccessTokenResponseV3ApiResponse**](PostAccessTokenResponseV3ApiResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Access token response |  -  |
-**400** | Returned if: - The request body is not a valid JSON string. - The refresh token is invalid and/or expired.  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **request_access_token**
-> PostAccessTokenResponseV3ApiResponse request_access_token(com_patagona_pricemonitor_share_api_post_access_token_request_v3=com_patagona_pricemonitor_share_api_post_access_token_request_v3)
-
-Issues a token which can be used to access protected resources of the Pricemonitor API.
-
-### Example
-
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient() as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.AccountApi(api_client)
-    com_patagona_pricemonitor_share_api_post_access_token_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostAccessTokenRequestV3() # ComPatagonaPricemonitorShareApiPostAccessTokenRequestV3 | Request body contains credentials i.e email address and password. (optional)
-
-    try:
-        # Issues a token which can be used to access protected resources of the Pricemonitor API.
-        api_response = api_instance.request_access_token(com_patagona_pricemonitor_share_api_post_access_token_request_v3=com_patagona_pricemonitor_share_api_post_access_token_request_v3)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling AccountApi->request_access_token: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **com_patagona_pricemonitor_share_api_post_access_token_request_v3** | [**ComPatagonaPricemonitorShareApiPostAccessTokenRequestV3**](ComPatagonaPricemonitorShareApiPostAccessTokenRequestV3.md)| Request body contains credentials i.e email address and password. | [optional] 
-
-### Return type
-
-[**PostAccessTokenResponseV3ApiResponse**](PostAccessTokenResponseV3ApiResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Access token response |  -  |
-**400** | Returned if: - The request body is not a valid JSON string. - The email address is invalid. - The given email address does not exist in our system. - Invalid credentials are specified.  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
