@@ -1,4 +1,4 @@
-## @Patagona/pricemonitor-internal-typescript-angular@0.0.6010
+## @Patagona/pricemonitor-internal-typescript-angular@0.0.6011
 
 ### Building
 
@@ -19,7 +19,7 @@ Navigate to the folder of your consuming project and run one of next commands.
 _published:_
 
 ```
-npm install @Patagona/pricemonitor-internal-typescript-angular@0.0.6010 --save
+npm install @Patagona/pricemonitor-internal-typescript-angular@0.0.6011 --save
 ```
 
 _without publishing (not recommended):_
