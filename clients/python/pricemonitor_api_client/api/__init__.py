@@ -9,6 +9,7 @@ from pricemonitor_api_client.api.controlpanel_api import ControlpanelApi
 from pricemonitor_api_client.api.feeds_api import FeedsApi
 from pricemonitor_api_client.api.internal_api import InternalApi
 from pricemonitor_api_client.api.logs_api import LogsApi
+from pricemonitor_api_client.api.looker_api import LookerApi
 from pricemonitor_api_client.api.monitoring_schedules_api import MonitoringSchedulesApi
 from pricemonitor_api_client.api.offers_api import OffersApi
 from pricemonitor_api_client.api.orders_api import OrdersApi

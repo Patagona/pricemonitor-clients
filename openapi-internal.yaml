@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.6056
+  version: 0.0.6057
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -7289,6 +7289,66 @@ paths:
       tags:
       - undocumented
       - internal
+  /api/v3/vendor/contracts/{contractId}/looker/sso/embed/url:
+    post:
+      operationId: postEmbedSSOUrlVendor
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PostEmbedSSOUrlRequestV3'
+        description: Payload for retrieving a signed embed SSO url using Looker API.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmbedSSOUrlResponseV3ApiResponse'
+          description: Signed embed SSO url for Looker.
+      summary: Retrieve an embed SSO url for Looker.
+      tags:
+      - internal
+      - looker
+  /api/v3/manufacturer/contracts/{contractId}/looker/sso/embed/url:
+    post:
+      operationId: postEmbedSSOUrlManufacturer
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PostEmbedSSOUrlRequestV3'
+        description: Payload for retrieving a signed embed SSO url using Looker API.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmbedSSOUrlResponseV3ApiResponse'
+          description: Signed embed SSO url for Looker.
+      summary: Retrieve an embed SSO url for Looker.
+      tags:
+      - internal
+      - looker
   /api/v3/vendor/contracts/{contractId}/settings/monitoringschedules:
     get:
       operationId: getMonitoringSchedulesVendorV3
@@ -11431,6 +11491,28 @@ components:
       required:
       - data
       type: object
+    com.patagona.pricemonitor.share.api.PostEmbedSSOUrlRequestV3:
+      additionalProperties: false
+      description: Request body to retrieve signed embed sso url using looker api.
+      properties:
+        url:
+          description: The complete URL of the Looker UI page to display in the embed
+            context.
+          type: string
+      required:
+      - url
+      type: object
+    EmbedSSOUrlResponseV3ApiResponse:
+      additionalProperties: false
+      example:
+        data:
+          url: url
+      properties:
+        data:
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.EmbedSSOUrlResponseV3'
+      required:
+      - data
+      type: object
     GetMonitoringSchedulesApiResponse:
       additionalProperties: false
       example:
@@ -12488,6 +12570,18 @@ components:
       - domain
       - outcomes
       - started
+      type: object
+    com.patagona.pricemonitor.share.api.EmbedSSOUrlResponseV3:
+      additionalProperties: false
+      description: Response body containing signed embed sso url from looker.
+      example:
+        url: url
+      properties:
+        url:
+          description: The embed sso url.
+          type: string
+      required:
+      - url
       type: object
     com.patagona.pricemonitor.share.api.MonitoringScheduleV3:
       additionalProperties: false
