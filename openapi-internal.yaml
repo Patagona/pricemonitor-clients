@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.6098
+  version: 0.0.6100
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -1248,12 +1248,13 @@ paths:
           type: integer
         style: form
       - description: Maximum number of results
+        example: 1000
         explode: true
         in: query
         name: limit
         required: false
         schema:
-          default: 10000
+          default: 1000
           format: int32
           type: integer
         style: form
@@ -1615,13 +1616,13 @@ paths:
           type: integer
         style: form
       - description: Maximum number of results
-        example: 10000
+        example: 1000
         explode: true
         in: query
         name: limit
         required: false
         schema:
-          default: 10000
+          default: 1000
           format: int32
           type: integer
         style: form

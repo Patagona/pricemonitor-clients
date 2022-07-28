@@ -80,7 +80,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     api_instance = pricemonitor_api_client.OffersApi(api_client)
     contract_id = 'qbcxvb' # str | ID of the contract
 start = 0 # int | Where to start fetching the products (optional) (default to 0)
-limit = 10000 # int | Maximum number of results (optional) (default to 10000)
+limit = 1000 # int | Maximum number of results (optional) (default to 1000)
 start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted, the range is '{endDate} - 48 hours to {endDate}' if {endDate} is given or NOW - 48 hours if both are omitted. (optional)
 end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted, the range is '{startDate} to {startDate} + 48 hours' if {startDate} is given or NOW - 48 hours if both are omitted. (optional)
 
@@ -126,7 +126,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     api_instance = pricemonitor_api_client.OffersApi(api_client)
     contract_id = 'qbcxvb' # str | ID of the contract
 start = 0 # int | Where to start fetching the products (optional) (default to 0)
-limit = 10000 # int | Maximum number of results (optional) (default to 10000)
+limit = 1000 # int | Maximum number of results (optional) (default to 1000)
 start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted, the range is '{endDate} - 48 hours to {endDate}' if {endDate} is given or NOW - 48 hours if both are omitted. (optional)
 end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted, the range is '{startDate} to {startDate} + 48 hours' if {startDate} is given or NOW - 48 hours if both are omitted. (optional)
 
@@ -143,7 +143,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **contract_id** | **str**| ID of the contract | 
  **start** | **int**| Where to start fetching the products | [optional] [default to 0]
- **limit** | **int**| Maximum number of results | [optional] [default to 10000]
+ **limit** | **int**| Maximum number of results | [optional] [default to 1000]
  **start_date** | **datetime**| Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted, the range is &#39;{endDate} - 48 hours to {endDate}&#39; if {endDate} is given or NOW - 48 hours if both are omitted. | [optional] 
  **end_date** | **datetime**| Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted, the range is &#39;{startDate} to {startDate} + 48 hours&#39; if {startDate} is given or NOW - 48 hours if both are omitted. | [optional] 
 
@@ -212,7 +212,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     api_instance = pricemonitor_api_client.OffersApi(api_client)
     contract_id = 'qbcxvb' # str | ID of the contract
 start = 0 # int | Where to start fetching the products (optional) (default to 0)
-limit = 10000 # int | Maximum number of results (optional) (default to 10000)
+limit = 1000 # int | Maximum number of results (optional) (default to 1000)
 start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted, the range is '{endDate} - 48 hours to {endDate}' if {endDate} is given or NOW - 48 hours if both are omitted. (optional)
 end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted, the range is '{startDate} to {startDate} + 48 hours' if {startDate} is given or NOW - 48 hours if both are omitted. (optional)
 
@@ -258,7 +258,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     api_instance = pricemonitor_api_client.OffersApi(api_client)
     contract_id = 'qbcxvb' # str | ID of the contract
 start = 0 # int | Where to start fetching the products (optional) (default to 0)
-limit = 10000 # int | Maximum number of results (optional) (default to 10000)
+limit = 1000 # int | Maximum number of results (optional) (default to 1000)
 start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted, the range is '{endDate} - 48 hours to {endDate}' if {endDate} is given or NOW - 48 hours if both are omitted. (optional)
 end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted, the range is '{startDate} to {startDate} + 48 hours' if {startDate} is given or NOW - 48 hours if both are omitted. (optional)
 
@@ -275,7 +275,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **contract_id** | **str**| ID of the contract | 
  **start** | **int**| Where to start fetching the products | [optional] [default to 0]
- **limit** | **int**| Maximum number of results | [optional] [default to 10000]
+ **limit** | **int**| Maximum number of results | [optional] [default to 1000]
  **start_date** | **datetime**| Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted, the range is &#39;{endDate} - 48 hours to {endDate}&#39; if {endDate} is given or NOW - 48 hours if both are omitted. | [optional] 
  **end_date** | **datetime**| Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted, the range is &#39;{startDate} to {startDate} + 48 hours&#39; if {startDate} is given or NOW - 48 hours if both are omitted. | [optional] 
 
