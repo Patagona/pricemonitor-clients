@@ -78,3 +78,9 @@ mv ${ANGULAR_PACKAGE_JSON}.tmp ${ANGULAR_PACKAGE_JSON}
 find ./clients/${PACKAGE_NAME}/ -type f -exec sed -i 's/ComPatagonaPricemonitorShareApi/Pricemonitor/g' {} \;
 find ./clients/${PACKAGE_NAME}/ -type f -exec sed -i 's/comPatagonaPricemonitorShareApi/pricemonitor/g' {} \;
 for f in ./clients/${PACKAGE_NAME}/model/comPatagonaPricemonitorShareApi*; do mv "$f" "${f/comPatagonaPricemonitorShareApi/pricemonitor}";done
+
+
+docker run --rm -v $(pwd):/local -u $(id -u ${USER}):$(id -g ${USER}) $IMAGE generate \
+      -i $API_PATH \
+      -g python \
+      -o /local/clients/pricemonitor-internal-python
