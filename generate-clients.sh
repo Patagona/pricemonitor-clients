@@ -39,6 +39,9 @@ main() {
       log typescript-angular
       (build_typescript_angular)
 
+      log typescript-angular-13
+      (build_typescript_angular_13)
+
 
       #(build_others)
 
@@ -69,6 +72,34 @@ build_typescript_angular() {
       # The generator inserts crappy typescript boundaries which only work for angualr 9. We need to update them.
       ANGULAR_PACKAGE_JSON=clients/${PACKAGE_NAME}/package.json
       sed -i 's/\"typescript\": \">=3.6.0 <3.8.0\"/\"typescript\": \">=3.9.2 <4.0.0\"/g' ${ANGULAR_PACKAGE_JSON}
+      # We want to publish the client as "typescript-angular". Therefore we have to add this repository entry.
+      # See https://docs.npmjs.com/files/package.json#repository
+      jq -M '. +{"repository": {"type" : "git","url" : "ssh://git@github.com/Patagona/pricemonitor-clients.git","directory": "clients/${PACKAGE_NAME}"}}' ${ANGULAR_PACKAGE_JSON} > ${ANGULAR_PACKAGE_JSON}.tmp
+      mv ${ANGULAR_PACKAGE_JSON}.tmp ${ANGULAR_PACKAGE_JSON}
+
+      # Shorten the prefix of generated model type names
+      # We want to replace 'ComPatagonaPricemonitorShareApi' by 'Pricemonitor'
+      find ./clients/${PACKAGE_NAME}/ -type f -exec sed -i 's/ComPatagonaPricemonitorShareApi/Pricemonitor/g' {} \;
+      find ./clients/${PACKAGE_NAME}/ -type f -exec sed -i 's/comPatagonaPricemonitorShareApi/pricemonitor/g' {} \;
+
+      for f in ./clients/${PACKAGE_NAME}/model/comPatagonaPricemonitorShareApi*; do
+            mv "$f" "${f/comPatagonaPricemonitorShareApi/pricemonitor}"
+      done
+}
+
+build_typescript_angular_13() {
+      PACKAGE_NAME=pricemonitor-internal-typescript-angular-13
+
+      $DOCKER_CMD \
+            -g typescript-angular \
+            -o /local/clients/${PACKAGE_NAME} ${COMMON_PARAMS} \
+            --additional-properties=npmName=@Patagona/${PACKAGE_NAME} \
+            --additional-properties=ngVersion=13.0.0 \
+            --additional-properties=npmRepository=https://npm.pkg.github.com
+
+      # The generator inserts crappy typescript boundaries which only work for angualr 9. We need to update them.
+      ANGULAR_PACKAGE_JSON=clients/${PACKAGE_NAME}/package.json
+      sed -i 's/\"typescript\": \">=3.6.0 <3.8.0\"/\"typescript\": \">=4.0.0 <5.0.0\"/g' ${ANGULAR_PACKAGE_JSON}
       # We want to publish the client as "typescript-angular". Therefore we have to add this repository entry.
       # See https://docs.npmjs.com/files/package.json#repository
       jq -M '. +{"repository": {"type" : "git","url" : "ssh://git@github.com/Patagona/pricemonitor-clients.git","directory": "clients/${PACKAGE_NAME}"}}' ${ANGULAR_PACKAGE_JSON} > ${ANGULAR_PACKAGE_JSON}.tmp
