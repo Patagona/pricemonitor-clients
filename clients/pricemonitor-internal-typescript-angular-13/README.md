@@ -57,7 +57,6 @@ In your Angular project:
 import { ApiModule } from '@Patagona/pricemonitor-internal-typescript-angular-13';
 import { HttpClientModule } from '@angular/common/http';
 
-
 @NgModule({
     imports: [
         ApiModule,
@@ -76,7 +75,7 @@ export class AppModule {}
 // configuring providers
 import { ApiModule, Configuration, ConfigurationParameters } from '@Patagona/pricemonitor-internal-typescript-angular-13';
 
-export function apiConfigFactory (): Configuration => {
+export function apiConfigFactory (): Configuration {
   const params: ConfigurationParameters = {
     // set configuration parameters here.
   }
@@ -121,7 +120,7 @@ export class AppModule {}
 import { DefaultApi } from '@Patagona/pricemonitor-internal-typescript-angular-13';
 
 export class AppComponent {
-	 constructor(private apiGateway: DefaultApi) { }
+    constructor(private apiGateway: DefaultApi) { }
 }
 ```
 
@@ -136,7 +135,6 @@ in order to avoid naming conflicts:
 import { ApiModule } from 'my-api-path';
 import { ApiModule as OtherApiModule } from 'my-other-api-path';
 import { HttpClientModule } from '@angular/common/http';
-
 
 @NgModule({
   imports: [
@@ -154,7 +152,7 @@ export class AppModule {
 
 
 ### Set service base path
-If different than the generated base path, during app bootstrap, you can provide the base path to your service. 
+If different than the generated base path, during app bootstrap, you can provide the base path to your service.
 
 ```
 import { BASE_PATH } from '@Patagona/pricemonitor-internal-typescript-angular-13';
@@ -202,4 +200,4 @@ import { environment } from '../environments/environment';
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
-```  
+```

@@ -3,6 +3,11 @@
   "version": "0.0.6128",
   "description": "OpenAPI client for @Patagona/pricemonitor-internal-typescript-angular-13",
   "author": "OpenAPI-Generator Contributors",
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@github.com/Patagona/pricemonitor-clients.git",
+    "directory": "clients/${PACKAGE_NAME}"
+  },
   "keywords": [
     "openapi-client",
     "openapi-generator"
@@ -13,11 +18,7 @@
   },
   "peerDependencies": {
     "@angular/core": "^13.0.0",
-    "@angular/common": "^13.0.0",
-    "@angular/compiler": "^13.0.0",
-    "core-js": "^2.4.0",
-    "reflect-metadata": "^0.1.3",
-    "rxjs": "^6.5.3"
+    "rxjs": "^7.4.0"
   },
   "devDependencies": {
     "@angular/common": "^13.0.0",
@@ -25,19 +26,14 @@
     "@angular/compiler-cli": "^13.0.0",
     "@angular/core": "^13.0.0",
     "@angular/platform-browser": "^13.0.0",
-    "ng-packagr": "^9.0.1",
+    "ng-packagr": "^13.0.3",
     "reflect-metadata": "^0.1.3",
-    "rxjs": "^6.5.3",
-    "tsickle": "^0.38.0",
-    "typescript": ">=4.0.0 <5.0.0",
-    "zone.js": "^0.10.2"
+    "rxjs": "^7.4.0",
+    "tsickle": "^0.43.0",
+    "typescript": ">=4.4.2 <4.5.0",
+    "zone.js": "^0.11.4"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
-  },
-  "repository": {
-    "type": "git",
-    "url": "ssh://git@github.com/Patagona/pricemonitor-clients.git",
-    "directory": "clients/${PACKAGE_NAME}"
   }
 }

@@ -31,6 +31,6 @@ export interface PricemonitorPriceDumpingStatsRequest {
     /**
      * Specifies for which shops we detect price dumping events
      */
-    shops: Array<PricemonitorShopV3>;
+    shops: Set<PricemonitorShopV3>;
 }
 

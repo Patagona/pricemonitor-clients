@@ -9,20 +9,9 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { PricemonitorShopV3 } from './pricemonitorShopV3';
 
 
-/**
- * Request body for creating a vendor and their associated shops.
- */
-export interface PricemonitorPostVendorShopMappingRequestV3 { 
-    /**
-     * Vendor name
-     */
-    vendorName: string;
-    /**
-     * List of associated shops
-     */
-    shops: Set<PricemonitorShopV3>;
+export interface GetDomainsVendorV2200Response { 
+    data?: Array<string>;
 }
 
