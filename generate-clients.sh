@@ -12,7 +12,8 @@ mkdir clients
 mkdir -p clients/akka
 
 API_PATH="/local/openapi-internal.yaml"
-IMAGE="openapitools/openapi-generator-cli:v4.3.1"
+IMAGE_341="openapitools/openapi-generator-cli:v4.3.1"
+IMAGE_601="openapitools/openapi-generator-cli:v6.0.1"
 COMMON_PARAMS="--api-package api --model-package model --git-host github.com --git-repo-id pricemonitor-clients --git-user-id Patagona"
 
 # Read api version from file.
@@ -20,7 +21,7 @@ COMMON_PARAMS="--api-package api --model-package model --git-host github.com --g
 # But reading from yaml is not an easy thing to do with grep and tools for reading yaml are not installed by default in linux.
 API_VERSION=$(cat API_VERSION)
 
-DOCKER_CMD="docker run --rm -v $(pwd):/local -u $(id -u ${USER}):$(id -g ${USER}) $IMAGE generate -i $API_PATH"
+DOCKER_CMD="docker run --rm -v $(pwd):/local -u $(id -u ${USER}):$(id -g ${USER}) $IMAGE_341 generate -i $API_PATH"
 
 log() {
       GREEN='\033[0;32m'
@@ -90,12 +91,15 @@ build_typescript_angular() {
 build_typescript_angular_13() {
       PACKAGE_NAME=pricemonitor-internal-typescript-angular-13
 
-      $DOCKER_CMD \
+      DOCKER_CMD_601="docker run --rm -v $(pwd):/local -u $(id -u ${USER}):$(id -g ${USER}) $IMAGE_601 generate -i $API_PATH"
+
+      $DOCKER_CMD_601 \
             -g typescript-angular \
             -o /local/clients/${PACKAGE_NAME} ${COMMON_PARAMS} \
             --additional-properties=npmName=@Patagona/${PACKAGE_NAME} \
             --additional-properties=ngVersion=13.0.0 \
-            --additional-properties=npmRepository=https://npm.pkg.github.com
+            --additional-properties=npmRepository=https://npm.pkg.github.com \
+            --additional-properties=supportsES6=true
 
       # The generator inserts crappy typescript boundaries which only work for angualr 9. We need to update them.
       ANGULAR_PACKAGE_JSON=clients/${PACKAGE_NAME}/package.json
