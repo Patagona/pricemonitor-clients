@@ -9,6 +9,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { ProductsFilterRight } from './productsFilterRight';
+import { ProductsFilterLeft } from './productsFilterLeft';
 
 
 /**
@@ -16,8 +18,8 @@
  */
 export interface ProductsFilter { 
     type?: ProductsFilter.TypeEnum;
-    left?: object;
-    right?: object;
+    left?: ProductsFilterLeft;
+    right?: ProductsFilterRight;
     comparison?: ProductsFilter.ComparisonEnum;
 }
 export namespace ProductsFilter {

@@ -27,6 +27,6 @@ export interface PricemonitorVendorShopMappingV3 {
     /**
      * List of shops associated with the specified vendor
      */
-    shops: Array<PricemonitorShopV3>;
+    shops: Set<PricemonitorShopV3>;
 }
 

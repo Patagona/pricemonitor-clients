@@ -16,6 +16,6 @@ export interface PricemonitorProductMonitoringStatusStats {
     domain: string;
     started: number;
     completed: number;
-    outcomes: Array<PricemonitorProductMonitoringStatusStatsOutcomes>;
+    outcomes: Set<PricemonitorProductMonitoringStatusStatsOutcomes>;
 }
 

@@ -2,7 +2,6 @@ import { NgModule, ModuleWithProviders, SkipSelf, Optional } from '@angular/core
 import { Configuration } from './configuration';
 import { HttpClient } from '@angular/common/http';
 
-
 import { AccountService } from './api/account.service';
 import { CompaniesService } from './api/companies.service';
 import { ControlpanelService } from './api/controlpanel.service';
