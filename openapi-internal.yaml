@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.6161
+  version: 0.0.6162
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -10692,7 +10692,6 @@ components:
     com.patagona.pricemonitor.share.api.PostVendorsByDomainResponse:
       additionalProperties: false
       example:
-        next: next
         data:
         - minPriceCount: 5.637376656633329
           productsUnderReferencePrice: 1.4658129805029452
@@ -10714,8 +10713,6 @@ components:
           items:
             $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ResellerSummaryByDomain'
           type: array
-        next:
-          type: string
         totalCount:
           type: integer
       required:
