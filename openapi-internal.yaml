@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.6179
+  version: 0.0.6180
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -3449,44 +3449,6 @@ paths:
         required: true
         schema:
           type: boolean
-        style: form
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.TagFilteredVendorsRequest'
-        description: This is a generated entry and needs to be described.
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                type: object
-          description: This is a generated entry and needs to be described.
-      tags:
-      - internal
-      - undocumented
-      - offers
-  /api/2/m/contracts/{contractId}/result/vendors/domaindistribution:
-    post:
-      operationId: vendorsPerDomainManufacturerV2
-      parameters:
-      - description: ID of the contract
-        example: qbcxvb
-        explode: false
-        in: path
-        name: contractId
-        required: true
-        schema:
-          type: string
-        style: simple
-      - explode: true
-        in: query
-        name: session
-        required: true
-        schema:
-          format: date-time
-          type: string
         style: form
       requestBody:
         content:
