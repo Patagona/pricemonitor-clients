@@ -73,6 +73,8 @@ model/pricemonitorPagination.ts
 model/pricemonitorPaginationResponse.ts
 model/pricemonitorPostAccountRequestV3.ts
 model/pricemonitorPostAccountResponseV3.ts
+model/pricemonitorPostAdminAddDomainBodyV3.ts
+model/pricemonitorPostAdminAddDomainV3.ts
 model/pricemonitorPostCustomerOrdersRequestV2.ts
 model/pricemonitorPostEmbedSSOUrlRequestV3.ts
 model/pricemonitorPostMonitoringScheduleRequestV3.ts
@@ -153,6 +155,7 @@ model/pluginRegistration.ts
 model/pluginRegistrationApiResponse.ts
 model/pluginRegistrationEmptyApiResponse.ts
 model/postAccountResponseV3ApiResponse.ts
+model/postAdminAddDomainV3ApiResponse.ts
 model/postOfferStatisticsApiResponse.ts
 model/postOfferStatisticsRequest.ts
 model/postOrdersBulkApiResponse.ts

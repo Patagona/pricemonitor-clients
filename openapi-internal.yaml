@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.6189
+  version: 0.0.6191
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -29,6 +29,34 @@ tags:
 - description: See all of your tasks
   name: tasks
 paths:
+  /controlpanel/api/v3/domains:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PostAdminAddDomainBodyV3'
+        description: The domain to be added and its offer sources
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostAdminAddDomainV3ApiResponse'
+          description: A new domain was added
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: |
+            - Offer sources must be valid
+            - Domain must be a valid internet domain
+            - Please refer to the request schema for what constitutes valid offer sources and a valid domain
+      summary: Add a new domain
+      tags:
+      - controlpanel
+      - internal
   /version:
     get:
       operationId: version
@@ -9335,6 +9363,38 @@ components:
       allOf:
       - $ref: '#/components/schemas/GenericTask'
       - $ref: '#/components/schemas/UpdateTaskRequestV2_allOf'
+    com.patagona.pricemonitor.share.api.PostAdminAddDomainBodyV3:
+      additionalProperties: false
+      description: Request body that contains information about adding a new domain
+      properties:
+        domain:
+          description: 'the domain being added. Allowed domain pattern: "<domain-name>.<top-level-domain>".
+            Example:"google.com", "amazon.co.uk" (valid), "_google_com" (invalid).
+            For omnia custom monitoring, the domain name must be prefixed with "omnia.custom.spidering."'
+          type: string
+        offerSources:
+          description: 'sources of offers on this domain. Allowed sources: "DEFAULT_MONITORING",
+            "CUSTOM_MONITORING", "OMNIA_CUSTOM_SPIDERING", "PUSH_API", "OTHER" @example
+            domain = "google.de", offerSources = Set("DEFAULT_MONITORING")'
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      required:
+      - domain
+      - offerSources
+      type: object
+    PostAdminAddDomainV3ApiResponse:
+      additionalProperties: false
+      example:
+        data:
+          domainId: 0.8008281904610115
+      properties:
+        data:
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PostAdminAddDomainV3'
+      required:
+      - data
+      type: object
     VersionApiResponse:
       additionalProperties: false
       example:
@@ -11735,6 +11795,18 @@ components:
           type: array
       required:
       - data
+      type: object
+    com.patagona.pricemonitor.share.api.PostAdminAddDomainV3:
+      additionalProperties: false
+      description: Response body containing id for the added domain
+      example:
+        domainId: 0.8008281904610115
+      properties:
+        domainId:
+          description: domain id
+          type: number
+      required:
+      - domainId
       type: object
     com.patagona.pricemonitor.share.api.ApplicationVersion:
       additionalProperties: false
