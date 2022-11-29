@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.6212
+  version: 0.0.6213
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -7664,15 +7664,15 @@ paths:
       parameters:
       - description: The timespan, in minutes, for considering offers in preprocessing.
           Allowed value is between 1 and 10800
-        explode: false
-        in: path
+        explode: true
+        in: query
         name: retrospectiveInMinutes
         required: true
         schema:
           maximum: 10800
           minimum: 1
           type: integer
-        style: simple
+        style: form
       - description: ID of the contract
         example: qbcxvb
         explode: false
