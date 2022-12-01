@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.6217
+  version: 0.0.6218
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -50,8 +50,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: |
-            - Offer sources must be valid
-            - Domain must be a valid internet domain
+            - Offer sources must be valid and non-empty
+            - Domain must be a valid internet domain and non-empty
+            - Domain name must be unique and non-empty
             - Please refer to the request schema for what constitutes valid offer sources and a valid domain
       summary: Add a new domain
       tags:
@@ -9338,20 +9339,26 @@ components:
       description: Request body that contains information about adding a new domain
       properties:
         domain:
-          description: 'the domain being added. Allowed domain pattern: "<domain-name>.<top-level-domain>".
-            Example:"google.com", "amazon.co.uk" (valid), "_google_com" (invalid).
-            For omnia custom monitoring, the domain name must be prefixed with "omnia.custom.spidering."'
+          description: 'the domain being added. (Must be unique and non-empty) Allowed
+            domain pattern: "<domain-name>.<top-level-domain>". Example:"google.com",
+            "amazon.co.uk" (valid), "_google_com" (invalid). For omnia custom monitoring,
+            the domain name must be prefixed with "omnia.custom.spidering."'
+          type: string
+        name:
+          description: display name for the domain in the UI. (Must be unique and
+            non-empty)
           type: string
         offerSources:
-          description: 'sources of offers on this domain. Allowed sources: "DEFAULT_MONITORING",
-            "CUSTOM_MONITORING", "OMNIA_CUSTOM_SPIDERING", "PUSH_API", "OTHER" @example
-            domain = "google.de", offerSources = Set("DEFAULT_MONITORING")'
+          description: 'sources of offers on this domain. (Must be non-empty) Allowed
+            sources: "DEFAULT_MONITORING", "CUSTOM_MONITORING", "OMNIA_CUSTOM_SPIDERING",
+            "PUSH_API", "OTHER" @example domain = "google.de", offerSources = Set("DEFAULT_MONITORING")'
           items:
             type: string
           type: array
           uniqueItems: true
       required:
       - domain
+      - name
       - offerSources
       type: object
     PostAdminAddDomainV3ApiResponse:
