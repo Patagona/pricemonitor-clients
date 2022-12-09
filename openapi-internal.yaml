@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.6235
+  version: 0.0.6237
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -29,6 +29,23 @@ tags:
 - description: See all of your tasks
   name: tasks
 paths:
+  /api/v3/domains:
+    get:
+      description: |
+        This endpoint provides all domains which are supported by our system.
+        Along with other attributes we are providing the corresponding possible offer sources.
+        Only domains which include the offer source DEFAULT_MONITORING are supported out-of-the-box by our monitoring pipeline.
+      operationId: getAllDomainsV3
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAllDomainsV3ApiResponse'
+          description: A list of domains
+      summary: Get a list of all available domains
+      tags:
+      - domains
   /controlpanel/api/v3/domains:
     post:
       requestBody:
@@ -9334,6 +9351,29 @@ components:
       allOf:
       - $ref: '#/components/schemas/GenericTask'
       - $ref: '#/components/schemas/UpdateTaskRequestV2_allOf'
+    GetAllDomainsV3ApiResponse:
+      additionalProperties: false
+      example:
+        data:
+          domains:
+          - domain: domain
+            name: name
+            domainId: 0.8008281904610115
+            offerSources:
+            - offerSources
+            - offerSources
+          - domain: domain
+            name: name
+            domainId: 0.8008281904610115
+            offerSources:
+            - offerSources
+            - offerSources
+      properties:
+        data:
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.GetAllDomainsV3'
+      required:
+      - data
+      type: object
     com.patagona.pricemonitor.share.api.PostAdminAddDomainBodyV3:
       additionalProperties: false
       description: Request body that contains information about adding a new domain
@@ -11773,6 +11813,32 @@ components:
       required:
       - data
       type: object
+    com.patagona.pricemonitor.share.api.GetAllDomainsV3:
+      additionalProperties: false
+      description: Response body containing domain data
+      example:
+        domains:
+        - domain: domain
+          name: name
+          domainId: 0.8008281904610115
+          offerSources:
+          - offerSources
+          - offerSources
+        - domain: domain
+          name: name
+          domainId: 0.8008281904610115
+          offerSources:
+          - offerSources
+          - offerSources
+      properties:
+        domains:
+          description: Sequence of domain data
+          items:
+            $ref: '#/components/schemas/com_patagona_pricemonitor_share_api_GetAllDomainsV3_domains'
+          type: array
+      required:
+      - domains
+      type: object
     com.patagona.pricemonitor.share.api.PostAdminAddDomainV3:
       additionalProperties: false
       description: Response body containing id for the added domain
@@ -13197,6 +13263,46 @@ components:
       required:
       - headers
       - url
+    com_patagona_pricemonitor_share_api_GetAllDomainsV3_domains:
+      example:
+        domain: domain
+        name: name
+        domainId: 0.8008281904610115
+        offerSources:
+        - offerSources
+        - offerSources
+      properties:
+        domain:
+          description: domain url
+          type: string
+        domainId:
+          description: internal domain id
+          type: number
+        offerSources:
+          description: 'list of offerSources for the domain OfferSource:  Describes
+            the origin of the offers. Domain may have more than one offer sources.
+            Here are the possible offer sources: DEFAULT_MONITORING Offers - which
+            are gathered via the monitoring-pipeline by a standard product search.
+            This is typically done via GTIN. CUSTOM_MONITORING Offers - which are
+            gathered via the monitoring-pipeline by a customized search. For instance
+            via tags. OMNIA_CUSTOM_SPIDERING Offers - which originate from omnia custom
+            spidering sources. The domain needs to be prefixed with "omnia.custom.spidering.".
+            PUSH_API Offers - which originate from services where we have a direct
+            API connection and get informed about offer changes. Example: Offers from
+            Amazon-Repricer OTHER Offers - which originate from other sources e.g.
+            Scripts which publish offers'
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+        name:
+          description: display name for the domain
+          type: string
+      required:
+      - domain
+      - domainId
+      - name
+      - offerSources
     com_patagona_pricemonitor_share_api_ProductMonitoringStatusStats_outcomes:
       example:
         count: 1

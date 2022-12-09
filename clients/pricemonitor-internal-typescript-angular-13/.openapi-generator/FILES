@@ -6,6 +6,7 @@ api/account.service.ts
 api/api.ts
 api/companies.service.ts
 api/controlpanel.service.ts
+api/domains.service.ts
 api/feeds.service.ts
 api/internal.service.ts
 api/logs.service.ts
@@ -62,6 +63,8 @@ model/pricemonitorDomainPriceDumpingStats.ts
 model/pricemonitorDynamicMonitoringSettings.ts
 model/pricemonitorEmbedSSOUrlResponseV3.ts
 model/pricemonitorExtendedTag.ts
+model/pricemonitorGetAllDomainsV3.ts
+model/pricemonitorGetAllDomainsV3Domains.ts
 model/pricemonitorGetContractResponseV3.ts
 model/pricemonitorGetContractSettingsResponseV1.ts
 model/pricemonitorGetOfferStatisticsV3.ts
@@ -124,6 +127,7 @@ model/feedFields.ts
 model/genericTask.ts
 model/genericTaskWithUrl.ts
 model/genericTaskWithUrlAllOf.ts
+model/getAllDomainsV3ApiResponse.ts
 model/getCompanyContractsApiResponse.ts
 model/getCustomerContractSettingsApiResponse.ts
 model/getDomainsVendorV2200Response.ts
