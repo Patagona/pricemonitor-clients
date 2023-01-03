@@ -41,13 +41,15 @@ class PricerecommendationsApi(baseUrl: String)(implicit serializer: SttpSerializ
    * 
    * @param contractId ID of the contract
    */
-  def deleteRepricingStrategyVendorV2(contractId: String)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def deleteRepricingStrategyVendorV2(contractId: String)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.DELETE, uri"$baseUrl/api/2/v/contracts/${contractId}/settings/repricingstrategy")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
@@ -63,13 +65,15 @@ class PricerecommendationsApi(baseUrl: String)(implicit serializer: SttpSerializ
    * @param start Start price-recommendation index for pagination
    * @param limit Number of price-recommendations for pagination
    */
-  def getPriceRecommendation(contractId: String, startTime: OffsetDateTime, endTime: OffsetDateTime, start: Int, limit: Option[Int] = None)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[GetPriceRecommendationApiResponse] =
-    basicRequest
+  def getPriceRecommendation(contractId: String, startTime: OffsetDateTime, endTime: OffsetDateTime, start: Int, limit: Option[Int] = None)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[GetPriceRecommendationApiResponse] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/api/2/v/contracts/${contractId}/result/pricerecommendations?startTime=$startTime&endTime=$endTime&start=$start&limit=$limit")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[GetPriceRecommendationApiResponse])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[GetPriceRecommendationApiResponse])
+}
 
   /**
    * Expected answers:
@@ -84,13 +88,15 @@ class PricerecommendationsApi(baseUrl: String)(implicit serializer: SttpSerializ
    * @param endTime 
    * @param maxPositions 
    */
-  def getPriceRecommendationStatsVendorV2(contractId: String, startTime: OffsetDateTime, endTime: OffsetDateTime, maxPositions: Int)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def getPriceRecommendationStatsVendorV2(contractId: String, startTime: OffsetDateTime, endTime: OffsetDateTime, maxPositions: Int)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/api/2/v/contracts/${contractId}/result/pricerecommendationstats?startTime=$startTime&endTime=$endTime&maxPositions=$maxPositions")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
@@ -105,13 +111,15 @@ class PricerecommendationsApi(baseUrl: String)(implicit serializer: SttpSerializ
    * @param limit Maximal number of results
    * @param since Timestamp of the oldest results
    */
-  def getPriceRecommendations(contractId: String, start: Option[Int] = None, limit: Option[Int] = None, since: Option[OffsetDateTime] = None)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[GetPriceRecommendationsResponse] =
-    basicRequest
+  def getPriceRecommendations(contractId: String, start: Option[Int] = None, limit: Option[Int] = None, since: Option[OffsetDateTime] = None)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[GetPriceRecommendationsResponse] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/api/1/${contractId}/products/analysis/pricerecommendations?start=$start&limit=$limit&since=$since")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[GetPriceRecommendationsResponse])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[GetPriceRecommendationsResponse])
+}
 
   /**
    * Expected answers:
@@ -123,13 +131,15 @@ class PricerecommendationsApi(baseUrl: String)(implicit serializer: SttpSerializ
    * 
    * @param contractId ID of the contract
    */
-  def getRepricingStrategyVendorV2(contractId: String)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def getRepricingStrategyVendorV2(contractId: String)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/api/2/v/contracts/${contractId}/settings/repricingstrategy")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
@@ -143,13 +153,15 @@ class PricerecommendationsApi(baseUrl: String)(implicit serializer: SttpSerializ
    * @param portal 
    * @param until 
    */
-  def getStats(contractId: String, portal: String, until: Option[OffsetDateTime] = None)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def getStats(contractId: String, portal: String, until: Option[OffsetDateTime] = None)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/api/1/${contractId}/products/analysis/pricerecommendations/stats/${portal}?until=$until")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
@@ -161,13 +173,15 @@ class PricerecommendationsApi(baseUrl: String)(implicit serializer: SttpSerializ
    * 
    * @param contractId 
    */
-  def getTimeStamps(contractId: Long)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def getTimeStamps(contractId: Long)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/api/1/${contractId}/products/analysis/timestamps")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
@@ -180,14 +194,16 @@ class PricerecommendationsApi(baseUrl: String)(implicit serializer: SttpSerializ
    * @param contractId ID of the contract
    * @param body This is a generated entry and needs to be described.
    */
-  def putRepricingStrategyVendorV2(contractId: String, body: Option[Any] = None)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def putRepricingStrategyVendorV2(contractId: String, body: Option[Any] = None)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.PUT, uri"$baseUrl/api/2/v/contracts/${contractId}/settings/repricingstrategy")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .body(body)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r=r.body(body)
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
@@ -200,14 +216,16 @@ class PricerecommendationsApi(baseUrl: String)(implicit serializer: SttpSerializ
    * @param contractId ID of the contract
    * @param priceRecommendationApiQueryV2 The request body specifies which price recommendations will be searched for.
    */
-  def queryPriceRecommendationsVendorV2(contractId: String, priceRecommendationApiQueryV2: Option[PriceRecommendationApiQueryV2] = None)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[QueryPriceRecommendationsV2ApiResponse] =
-    basicRequest
+  def queryPriceRecommendationsVendorV2(contractId: String, priceRecommendationApiQueryV2: Option[PriceRecommendationApiQueryV2] = None)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[QueryPriceRecommendationsV2ApiResponse] =
+{
+    var r = basicRequest
       .method(Method.POST, uri"$baseUrl/api/2/v/contracts/${contractId}/result/pricerecommendations/query")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .body(priceRecommendationApiQueryV2)
-      .response(asJson[QueryPriceRecommendationsV2ApiResponse])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r=r.body(priceRecommendationApiQueryV2)
+      r.response(asJson[QueryPriceRecommendationsV2ApiResponse])
+}
 
 }
 

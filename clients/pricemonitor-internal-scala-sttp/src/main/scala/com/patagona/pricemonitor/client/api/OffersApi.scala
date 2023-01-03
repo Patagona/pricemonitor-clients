@@ -56,13 +56,15 @@ class OffersApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param startDate Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted, the range is '{endDate} - 48 hours to {endDate}' if {endDate} is given or NOW - 48 hours if both are omitted.
    * @param endDate Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted, the range is '{startDate} to {startDate} + 48 hours' if {startDate} is given or NOW - 48 hours if both are omitted.
    */
-  def apiV3ManufacturerContractsContractIdOffersGet(contractId: String, start: Option[Int] = None, limit: Option[Int] = None, startDate: Option[OffsetDateTime] = None, endDate: Option[OffsetDateTime] = None)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[GetOffersApiResponse] =
-    basicRequest
+  def apiV3ManufacturerContractsContractIdOffersGet(contractId: String, start: Option[Int] = None, limit: Option[Int] = None, startDate: Option[OffsetDateTime] = None, endDate: Option[OffsetDateTime] = None)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[GetOffersApiResponse] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/api/v3/manufacturer/contracts/${contractId}/offers?start=$start&limit=$limit&startDate=$startDate&endDate=$endDate")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[GetOffersApiResponse])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[GetOffersApiResponse])
+}
 
   /**
    * Returns the newest offers for a given time range.
@@ -81,13 +83,15 @@ class OffersApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param startDate Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted, the range is '{endDate} - 48 hours to {endDate}' if {endDate} is given or NOW - 48 hours if both are omitted.
    * @param endDate Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted, the range is '{startDate} to {startDate} + 48 hours' if {startDate} is given or NOW - 48 hours if both are omitted.
    */
-  def apiV3VendorContractsContractIdOffersGet(contractId: String, start: Option[Int] = None, limit: Option[Int] = None, startDate: Option[OffsetDateTime] = None, endDate: Option[OffsetDateTime] = None)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[GetOffersApiResponse] =
-    basicRequest
+  def apiV3VendorContractsContractIdOffersGet(contractId: String, start: Option[Int] = None, limit: Option[Int] = None, startDate: Option[OffsetDateTime] = None, endDate: Option[OffsetDateTime] = None)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[GetOffersApiResponse] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/api/v3/vendor/contracts/${contractId}/offers?start=$start&limit=$limit&startDate=$startDate&endDate=$endDate")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[GetOffersApiResponse])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[GetOffersApiResponse])
+}
 
   /**
    * Expected answers:
@@ -101,14 +105,16 @@ class OffersApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param contractId ID of the contract
    * @param productOffersApiQuery The request body specifies which offers will be searched for.<br> Warning: It's highly recommended to not use this endpoint since it is error-prone due to complex query structure! Supported are queries with three different types of filters:<br> 1. Filtering for offers of a certain product<br> This can be done by a ComparisonFilter with   * the `left` side being a `StringValueProvider` with the `attributeName` value \"productId\"   * the `right` side being a `StringConstantValueProvider` with the `value` being the actual pricemonitor product ID to filter offers for   * the `comparison` being a `StringEquality`  2. Filtering for valid offers of a certain product<br> This can be done by an AndFilter with   * a) A product filter (see first supported filter)   * b) A NotFilter which contains a ComparisonFilter     * the `left` side being a `NumberValueProvider` with the `attributeName` value \"ignoredBy\"     * the `right` side being a `NumberConstantValueProvider` with the `value` being the numeric contract id to filter offers for     * the `comparison` being a `NumberEquality`  3. Filtering for offers of a certain vendor<br> This can be done by a ComparisonFilter with   * the `left` side being a `StringValueProvider` with the `attributeName` value \"reseller_name\"   * the `right` side being a `StringConstantValueProvider` with the `value` being the actual vendor name to filter offers for   * the `comparison` being a `StringEquality`  Note: This endpoint will only return the newest offers for each product for a given time range.
    */
-  def apiV3VendorContractsContractIdOffersQueryPost(contractId: String, productOffersApiQuery: ProductOffersApiQuery)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[QueryOffersApiResponse] =
-    basicRequest
+  def apiV3VendorContractsContractIdOffersQueryPost(contractId: String, productOffersApiQuery: ProductOffersApiQuery)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[QueryOffersApiResponse] =
+{
+    var r = basicRequest
       .method(Method.POST, uri"$baseUrl/api/v3/vendor/contracts/${contractId}/offers/query")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .body(productOffersApiQuery)
-      .response(asJson[QueryOffersApiResponse])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r=r.body(productOffersApiQuery)
+      r.response(asJson[QueryOffersApiResponse])
+}
 
   /**
    * Expected answers:
@@ -123,14 +129,16 @@ class OffersApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param includeDeliveryCosts 
    * @param tagFilteredVendorsRequest This is a generated entry and needs to be described.
    */
-  def getCheapestVendorsManufacturerV2(contractId: String, session: OffsetDateTime, includeDeliveryCosts: Boolean, tagFilteredVendorsRequest: Option[TagFilteredVendorsRequest] = None)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def getCheapestVendorsManufacturerV2(contractId: String, session: OffsetDateTime, includeDeliveryCosts: Boolean, tagFilteredVendorsRequest: Option[TagFilteredVendorsRequest] = None)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.POST, uri"$baseUrl/api/2/m/contracts/${contractId}/result/vendors/cheapest?session=$session&includeDeliveryCosts=$includeDeliveryCosts")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .body(tagFilteredVendorsRequest)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r=r.body(tagFilteredVendorsRequest)
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
@@ -143,13 +151,15 @@ class OffersApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param contractId ID of the contract
    * @param listType 
    */
-  def getComplexOfferFiltersVendorV2(contractId: String, listType: String)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[OfferFilterApiResponse] =
-    basicRequest
+  def getComplexOfferFiltersVendorV2(contractId: String, listType: String)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[OfferFilterApiResponse] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/api/2/v/contracts/${contractId}/offerfilters/${listType}/complex")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[OfferFilterApiResponse])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[OfferFilterApiResponse])
+}
 
   /**
    * Expected answers:
@@ -162,13 +172,15 @@ class OffersApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param contractId ID of the contract
    * @param listType 
    */
-  def getOfferFiltersVendorV2(contractId: String, listType: String)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def getOfferFiltersVendorV2(contractId: String, listType: String)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/api/2/v/contracts/${contractId}/offerfilters/${listType}/vendors")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
@@ -184,13 +196,15 @@ class OffersApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param startDate Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted, the range is '{endDate} - 48 hours to {endDate}' if {endDate} is given or NOW - 48 hours if both are omitted.
    * @param endDate Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted, the range is '{startDate} to {startDate} + 48 hours' if {startDate} is given or NOW - 48 hours if both are omitted.
    */
-  def getOfferStatisticsManufacturerV3(contractId: String, includeDeliveryCosts: Boolean, startDate: Option[OffsetDateTime] = None, endDate: Option[OffsetDateTime] = None)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[GetOfferStatisticsV3ApiResponse] =
-    basicRequest
+  def getOfferStatisticsManufacturerV3(contractId: String, includeDeliveryCosts: Boolean, startDate: Option[OffsetDateTime] = None, endDate: Option[OffsetDateTime] = None)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[GetOfferStatisticsV3ApiResponse] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/api/v3/manufacturer/contracts/${contractId}/offers/stats?startDate=$startDate&endDate=$endDate&includeDeliveryCosts=$includeDeliveryCosts")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[GetOfferStatisticsV3ApiResponse])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[GetOfferStatisticsV3ApiResponse])
+}
 
   /**
    * Expected answers:
@@ -206,14 +220,16 @@ class OffersApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param includeDeliveryCosts 
    * @param body This is a generated entry and needs to be described.
    */
-  def getPriceCuttersManufacturerV2(contractId: String, session: OffsetDateTime, limit: Int, includeDeliveryCosts: Boolean, body: Option[Any] = None)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def getPriceCuttersManufacturerV2(contractId: String, session: OffsetDateTime, limit: Int, includeDeliveryCosts: Boolean, body: Option[Any] = None)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.POST, uri"$baseUrl/api/2/m/contracts/${contractId}/result/pricecutters?session=$session&limit=$limit&includeDeliveryCosts=$includeDeliveryCosts")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .body(body)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r=r.body(body)
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
@@ -229,14 +245,16 @@ class OffersApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param includeDeliveryCosts 
    * @param body This is a generated entry and needs to be described.
    */
-  def getPriceCuttersVendorV2(contractId: String, session: OffsetDateTime, limit: Int, includeDeliveryCosts: Boolean, body: Option[Any] = None)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def getPriceCuttersVendorV2(contractId: String, session: OffsetDateTime, limit: Int, includeDeliveryCosts: Boolean, body: Option[Any] = None)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.POST, uri"$baseUrl/api/2/v/contracts/${contractId}/result/pricecutters?session=$session&limit=$limit&includeDeliveryCosts=$includeDeliveryCosts")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .body(body)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r=r.body(body)
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
@@ -249,14 +267,16 @@ class OffersApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param contractId ID of the contract
    * @param body This is a generated entry and needs to be described.
    */
-  def getProductFiltersByIDVendorV2(contractId: String, body: Option[Any] = None)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def getProductFiltersByIDVendorV2(contractId: String, body: Option[Any] = None)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.POST, uri"$baseUrl/api/2/v/contracts/${contractId}/offerfilters/:listType/products/query")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .body(body)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r=r.body(body)
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
@@ -271,13 +291,15 @@ class OffersApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param start 
    * @param limit 
    */
-  def getProductFiltersByRangeVendorV2(contractId: String, listType: String, start: Int, limit: Int)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def getProductFiltersByRangeVendorV2(contractId: String, listType: String, start: Int, limit: Int)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/api/2/v/contracts/${contractId}/offerfilters/${listType}/products?start=$start&limit=$limit")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
@@ -291,13 +313,15 @@ class OffersApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param start 
    * @param end 
    */
-  def getProductMetricsByContract(contractId: String, start: OffsetDateTime, end: OffsetDateTime)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def getProductMetricsByContract(contractId: String, start: OffsetDateTime, end: OffsetDateTime)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/api/1/${contractId}/products/articlescountbyportal?start=$start&end=$end")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
@@ -313,13 +337,15 @@ class OffersApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param includeDeliveryCosts 
    * @param referencePriceDelta 
    */
-  def getProductPriceViolationsManufacturerV2(contractId: String, start: OffsetDateTime, end: OffsetDateTime, includeDeliveryCosts: Boolean, referencePriceDelta: Double)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def getProductPriceViolationsManufacturerV2(contractId: String, start: OffsetDateTime, end: OffsetDateTime, includeDeliveryCosts: Boolean, referencePriceDelta: Double)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/api/2/m/contracts/${contractId}/result/priceviolations?start=$start&end=$end&includeDeliveryCosts=$includeDeliveryCosts&referencePriceDelta=$referencePriceDelta")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
@@ -335,13 +361,15 @@ class OffersApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param includeDeliveryCosts 
    * @param referencePriceDelta 
    */
-  def getProductPriceViolationsVendorV2(contractId: String, start: OffsetDateTime, end: OffsetDateTime, includeDeliveryCosts: Boolean, referencePriceDelta: Double)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def getProductPriceViolationsVendorV2(contractId: String, start: OffsetDateTime, end: OffsetDateTime, includeDeliveryCosts: Boolean, referencePriceDelta: Double)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/api/2/v/contracts/${contractId}/result/priceviolations?start=$start&end=$end&includeDeliveryCosts=$includeDeliveryCosts&referencePriceDelta=$referencePriceDelta")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
@@ -358,14 +386,16 @@ class OffersApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param session 
    * @param tagFilteredVendorsRequest This is a generated entry and needs to be described.
    */
-  def getVendorsByDomainManufacturerV2(contractId: String, domain: String, start: Int, includeDeliveryCosts: Boolean, session: OffsetDateTime, tagFilteredVendorsRequest: Option[TagFilteredVendorsRequest] = None)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[PostVendorsByDomainResponse] =
-    basicRequest
+  def getVendorsByDomainManufacturerV2(contractId: String, domain: String, start: Int, includeDeliveryCosts: Boolean, session: OffsetDateTime, tagFilteredVendorsRequest: Option[TagFilteredVendorsRequest] = None)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[PostVendorsByDomainResponse] =
+{
+    var r = basicRequest
       .method(Method.POST, uri"$baseUrl/api/2/m/contracts/${contractId}/result/vendors/list?domain=$domain&start=$start&includeDeliveryCosts=$includeDeliveryCosts&session=$session")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .body(tagFilteredVendorsRequest)
-      .response(asJson[PostVendorsByDomainResponse])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r=r.body(tagFilteredVendorsRequest)
+      r.response(asJson[PostVendorsByDomainResponse])
+}
 
   /**
    * Expected answers:
@@ -380,14 +410,16 @@ class OffersApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param day 
    * @param body This is a generated entry and needs to be described.
    */
-  def positionDistribution(contractId: String, vendor: String, day: OffsetDateTime, body: Option[Any] = None)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def positionDistribution(contractId: String, vendor: String, day: OffsetDateTime, body: Option[Any] = None)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.POST, uri"$baseUrl/api/1/${contractId}/vendors/${vendor}/positions?day=$day")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .body(body)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r=r.body(body)
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
@@ -400,14 +432,16 @@ class OffersApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param contractId ID of the contract
    * @param body This is a generated entry and needs to be described.
    */
-  def postOffersInABulkVendorV2(contractId: String, body: Option[Any] = None)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def postOffersInABulkVendorV2(contractId: String, body: Option[Any] = None)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.POST, uri"$baseUrl/api/2/v/contracts/${contractId}/offers")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .body(body)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r=r.body(body)
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
@@ -421,14 +455,16 @@ class OffersApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param productId 
    * @param body This is a generated entry and needs to be described.
    */
-  def postOffersVendorV2(contractId: String, productId: String, body: Option[Any] = None)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def postOffersVendorV2(contractId: String, productId: String, body: Option[Any] = None)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.POST, uri"$baseUrl/api/2/v/contracts/${contractId}/offers/${productId}")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .body(body)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r=r.body(body)
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
@@ -442,14 +478,16 @@ class OffersApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param productId The product ID to filter for
    * @param pricesByDayByProductIdRequestV2 Query all known prices for a given day & product ID. Can be filtered by using the selectors.
    */
-  def pricesByDayByProductIdManufacturerV2(contractId: String, productId: String, pricesByDayByProductIdRequestV2: Option[PricesByDayByProductIdRequestV2] = None)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Seq[PricesByDayByProductIdResponseV2]] =
-    basicRequest
+  def pricesByDayByProductIdManufacturerV2(contractId: String, productId: String, pricesByDayByProductIdRequestV2: Option[PricesByDayByProductIdRequestV2] = None)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Seq[PricesByDayByProductIdResponseV2]] =
+{
+    var r = basicRequest
       .method(Method.POST, uri"$baseUrl/api/2/m/contracts/${contractId}/result/pricesbyday/productid/${productId}")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .body(pricesByDayByProductIdRequestV2)
-      .response(asJson[Seq[PricesByDayByProductIdResponseV2]])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r=r.body(pricesByDayByProductIdRequestV2)
+      r.response(asJson[Seq[PricesByDayByProductIdResponseV2]])
+}
 
   /**
    * Expected answers:
@@ -463,14 +501,16 @@ class OffersApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param listType 
    * @param andOfferFilter List of the filter that needs to be considered to ignore the individual offers.
    */
-  def putComplexOfferFiltersVendorV2(contractId: String, listType: String, andOfferFilter: Seq[AndOfferFilter])(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[OfferFilterApiResponse] =
-    basicRequest
+  def putComplexOfferFiltersVendorV2(contractId: String, listType: String, andOfferFilter: Seq[AndOfferFilter])(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[OfferFilterApiResponse] =
+{
+    var r = basicRequest
       .method(Method.PUT, uri"$baseUrl/api/2/v/contracts/${contractId}/offerfilters/${listType}/complex")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .body(andOfferFilter)
-      .response(asJson[OfferFilterApiResponse])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r=r.body(andOfferFilter)
+      r.response(asJson[OfferFilterApiResponse])
+}
 
   /**
    * Expected answers:
@@ -484,14 +524,16 @@ class OffersApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param listType 
    * @param body List of the filters that needs to be considered to ignore the individual offers.
    */
-  def putOfferFiltersVendorV2(contractId: String, listType: String, body: Option[Any] = None)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def putOfferFiltersVendorV2(contractId: String, listType: String, body: Option[Any] = None)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.PUT, uri"$baseUrl/api/2/v/contracts/${contractId}/offerfilters/${listType}/vendors")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .body(body)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r=r.body(body)
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
@@ -504,14 +546,16 @@ class OffersApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param contractId ID of the contract
    * @param body This is a generated entry and needs to be described.
    */
-  def queryOffersManufacturerV3(contractId: String, body: Option[Any] = None)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def queryOffersManufacturerV3(contractId: String, body: Option[Any] = None)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.POST, uri"$baseUrl/api/v3/manufacturer/contracts/${contractId}/offers/query")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .body(body)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r=r.body(body)
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
@@ -527,13 +571,15 @@ class OffersApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param since 
    * @param until 
    */
-  def rawOffers(contractId: String, start: Int, limit: Int, since: Option[OffsetDateTime] = None, until: Option[OffsetDateTime] = None)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def rawOffers(contractId: String, start: Int, limit: Int, since: Option[OffsetDateTime] = None, until: Option[OffsetDateTime] = None)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/api/1/${contractId}/products/offers?start=$start&limit=$limit&since=$since&until=$until")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
@@ -546,14 +592,16 @@ class OffersApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param contractId ID of the contract
    * @param body This is a generated entry and needs to be described.
    */
-  def segmentOffersManufacturerV2(contractId: String, body: Option[Any] = None)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def segmentOffersManufacturerV2(contractId: String, body: Option[Any] = None)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.POST, uri"$baseUrl/api/2/m/contracts/${contractId}/result/offersegmentation")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .body(body)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r=r.body(body)
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
@@ -566,14 +614,16 @@ class OffersApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param contractId ID of the contract
    * @param body This is a generated entry and needs to be described.
    */
-  def segmentOffersVendorV2(contractId: String, body: Option[Any] = None)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def segmentOffersVendorV2(contractId: String, body: Option[Any] = None)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.POST, uri"$baseUrl/api/2/v/contracts/${contractId}/result/offersegmentation")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .body(body)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r=r.body(body)
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
@@ -586,13 +636,15 @@ class OffersApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param contractId ID of the contract
    * @param session A ISO 8601 timestamp which marks the end of a 48h time range in which the data is collected
    */
-  def statsManufacturerV2(contractId: String, session: OffsetDateTime)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[ContractStats] =
-    basicRequest
+  def statsManufacturerV2(contractId: String, session: OffsetDateTime)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[ContractStats] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/api/2/m/contracts/${contractId}/result/contract/stats?session=$session")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[ContractStats])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[ContractStats])
+}
 
   /**
    * Expected answers:
@@ -605,13 +657,15 @@ class OffersApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param contractId ID of the contract
    * @param limit 
    */
-  def timestampsManufacturerV2(contractId: String, limit: Int)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def timestampsManufacturerV2(contractId: String, limit: Int)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/api/2/m/contracts/${contractId}/result/timestamps?limit=$limit")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
@@ -624,14 +678,16 @@ class OffersApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param contractId ID of the contract
    * @param body This is a generated entry and needs to be described.
    */
-  def validateOffersManufacturerV2(contractId: String, body: Option[Any] = None)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def validateOffersManufacturerV2(contractId: String, body: Option[Any] = None)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.POST, uri"$baseUrl/api/2/m/contracts/${contractId}/result/validation")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .body(body)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r=r.body(body)
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
@@ -644,14 +700,16 @@ class OffersApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param contractId ID of the contract
    * @param body This is a generated entry and needs to be described.
    */
-  def validateOffersVendorV2(contractId: String, body: Option[Any] = None)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def validateOffersVendorV2(contractId: String, body: Option[Any] = None)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.POST, uri"$baseUrl/api/2/v/contracts/${contractId}/result/validation")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .body(body)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r=r.body(body)
+      r.response(asJson[Any])
+}
 
 }
 

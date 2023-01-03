@@ -39,13 +39,15 @@ class OrdersApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * 
    * @param contractId ID of the contract
    */
-  def deleteOrders(contractId: String)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[DeleteOrdersApiResponse] =
-    basicRequest
+  def deleteOrders(contractId: String)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[DeleteOrdersApiResponse] =
+{
+    var r = basicRequest
       .method(Method.DELETE, uri"$baseUrl/api/v3/vendor/contracts/${contractId}/orders")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[DeleteOrdersApiResponse])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[DeleteOrdersApiResponse])
+}
 
   /**
    * Expected answers:
@@ -57,13 +59,15 @@ class OrdersApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * 
    * @param contractId ID of the contract
    */
-  def getOrdersCountByPortalByContract(contractId: String)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def getOrdersCountByPortalByContract(contractId: String)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/api/1/${contractId}/products/orderscountbyportal")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
@@ -77,13 +81,15 @@ class OrdersApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param start 
    * @param limit 
    */
-  def getOrdersVendorV3(contractId: String, start: Int, limit: Int)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def getOrdersVendorV3(contractId: String, start: Int, limit: Int)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/api/v3/vendor/contracts/${contractId}/orders?start=$start&limit=$limit")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
@@ -97,14 +103,16 @@ class OrdersApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param contractId ID of the contract
    * @param postCustomerOrdersRequestV2 Orders to be added
    */
-  def postOrders(contractId: String, postCustomerOrdersRequestV2: PostCustomerOrdersRequestV2)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[PostOrdersBulkApiResponse] =
-    basicRequest
+  def postOrders(contractId: String, postCustomerOrdersRequestV2: PostCustomerOrdersRequestV2)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[PostOrdersBulkApiResponse] =
+{
+    var r = basicRequest
       .method(Method.POST, uri"$baseUrl/api/2/v/contracts/${contractId}/orders")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .body(postCustomerOrdersRequestV2)
-      .response(asJson[PostOrdersBulkApiResponse])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r=r.body(postCustomerOrdersRequestV2)
+      r.response(asJson[PostOrdersBulkApiResponse])
+}
 
 }
 

@@ -40,13 +40,15 @@ class PluginregistrationApi(baseUrl: String)(implicit serializer: SttpSerializer
    * 
    * @param contractId ID of the contract
    */
-  def deletePluginRegistration(contractId: String)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[PluginRegistrationEmptyApiResponse] =
-    basicRequest
+  def deletePluginRegistration(contractId: String)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[PluginRegistrationEmptyApiResponse] =
+{
+    var r = basicRequest
       .method(Method.DELETE, uri"$baseUrl/api/v3/vendor/contracts/${contractId}/plugin")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[PluginRegistrationEmptyApiResponse])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[PluginRegistrationEmptyApiResponse])
+}
 
   /**
    * Expected answers:
@@ -59,13 +61,15 @@ class PluginregistrationApi(baseUrl: String)(implicit serializer: SttpSerializer
    * 
    * @param contractId ID of the contract
    */
-  def getPluginRegistration(contractId: String)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[PluginRegistrationApiResponse] =
-    basicRequest
+  def getPluginRegistration(contractId: String)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[PluginRegistrationApiResponse] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/api/v3/vendor/contracts/${contractId}/plugin")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[PluginRegistrationApiResponse])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[PluginRegistrationApiResponse])
+}
 
   /**
    * Expected answers:
@@ -78,14 +82,16 @@ class PluginregistrationApi(baseUrl: String)(implicit serializer: SttpSerializer
    * @param contractId ID of the contract
    * @param putPluginRegistrationRequest 
    */
-  def putPluginRegistration(contractId: String, putPluginRegistrationRequest: PutPluginRegistrationRequest)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[PluginRegistrationEmptyApiResponse] =
-    basicRequest
+  def putPluginRegistration(contractId: String, putPluginRegistrationRequest: PutPluginRegistrationRequest)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[PluginRegistrationEmptyApiResponse] =
+{
+    var r = basicRequest
       .method(Method.PUT, uri"$baseUrl/api/v3/vendor/contracts/${contractId}/plugin")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .body(putPluginRegistrationRequest)
-      .response(asJson[PluginRegistrationEmptyApiResponse])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r=r.body(putPluginRegistrationRequest)
+      r.response(asJson[PluginRegistrationEmptyApiResponse])
+}
 
 }
 

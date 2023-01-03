@@ -40,13 +40,15 @@ class ControlpanelApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    *   BasicAuth (http)
    *   BearerAuth (http)
    */
-  def addCompany()(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def addCompany()(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.POST, uri"$baseUrl/controlpanel/api/companies")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
@@ -60,14 +62,16 @@ class ControlpanelApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param email 
    * @param body This is a generated entry and needs to be described.
    */
-  def addCompanyUser(id: Int, email: String, body: Option[Any] = None)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def addCompanyUser(id: Int, email: String, body: Option[Any] = None)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.PUT, uri"$baseUrl/controlpanel/companies/${id}/users/${email}")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .body(body)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r=r.body(body)
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
@@ -77,13 +81,15 @@ class ControlpanelApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    *   BasicAuth (http)
    *   BearerAuth (http)
    */
-  def addUser()(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Unit] =
-    basicRequest
+  def addUser()(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Unit] =
+{
+    var r = basicRequest
       .method(Method.POST, uri"$baseUrl/controlpanel/users")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[Unit])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[Unit])
+}
 
   /**
    * Expected answers:
@@ -96,13 +102,15 @@ class ControlpanelApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param start Start of the pagination
    * @param limit Number of elements per page
    */
-  def controlpanelApiCompaniesGet(start: Int, limit: Int)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[AdminCompanyV2] =
-    basicRequest
+  def controlpanelApiCompaniesGet(start: Int, limit: Int)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[AdminCompanyV2] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/controlpanel/api/companies")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[AdminCompanyV2])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[AdminCompanyV2])
+}
 
   /**
    * Expected answers:
@@ -115,14 +123,16 @@ class ControlpanelApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * 
    * @param postAdminAddDomainBodyV3 The domain to be added and its offer sources
    */
-  def controlpanelApiV3DomainsPost(postAdminAddDomainBodyV3: Option[PostAdminAddDomainBodyV3] = None)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[PostAdminAddDomainV3ApiResponse] =
-    basicRequest
+  def controlpanelApiV3DomainsPost(postAdminAddDomainBodyV3: Option[PostAdminAddDomainBodyV3] = None)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[PostAdminAddDomainV3ApiResponse] =
+{
+    var r = basicRequest
       .method(Method.POST, uri"$baseUrl/controlpanel/api/v3/domains")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .body(postAdminAddDomainBodyV3)
-      .response(asJson[PostAdminAddDomainV3ApiResponse])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r=r.body(postAdminAddDomainBodyV3)
+      r.response(asJson[PostAdminAddDomainV3ApiResponse])
+}
 
   /**
    * Expected answers:
@@ -135,14 +145,16 @@ class ControlpanelApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param email 
    * @param body This is a generated entry and needs to be described.
    */
-  def createAuthToken(email: String, body: Option[Any] = None)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def createAuthToken(email: String, body: Option[Any] = None)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.POST, uri"$baseUrl/controlpanel/users/${email}/authtokens")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .body(body)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r=r.body(body)
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
@@ -155,13 +167,15 @@ class ControlpanelApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param email 
    * @param token 
    */
-  def deleteAuthToken(email: String, token: String)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def deleteAuthToken(email: String, token: String)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.DELETE, uri"$baseUrl/controlpanel/users/${email}/authtokens/${token}")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
@@ -171,13 +185,15 @@ class ControlpanelApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    *   BasicAuth (http)
    *   BearerAuth (http)
    */
-  def getAllContracts()(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Unit] =
-    basicRequest
+  def getAllContracts()(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Unit] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/controlpanel/api/contracts")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[Unit])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[Unit])
+}
 
   /**
    * Expected answers:
@@ -187,13 +203,15 @@ class ControlpanelApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    *   BasicAuth (http)
    *   BearerAuth (http)
    */
-  def getAllPortals()(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Unit] =
-    basicRequest
+  def getAllPortals()(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Unit] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/controlpanel/api/portals")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[Unit])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[Unit])
+}
 
   /**
    * Expected answers:
@@ -211,13 +229,15 @@ class ControlpanelApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param minCreationDate 
    * @param maxCreationDate 
    */
-  def getAllTasks(contractId: Seq[String], taskId: Seq[String], taskType: Seq[String], taskState: Seq[String], limit: Int, minCreationDate: Option[OffsetDateTime] = None, maxCreationDate: Option[OffsetDateTime] = None)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def getAllTasks(contractId: Seq[String], taskId: Seq[String], taskType: Seq[String], taskState: Seq[String], limit: Int, minCreationDate: Option[OffsetDateTime] = None, maxCreationDate: Option[OffsetDateTime] = None)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/controlpanel/api/tasks?contractId=$contractId&taskId=$taskId&taskType=$taskType&taskState=$taskState&minCreationDate=$minCreationDate&maxCreationDate=$maxCreationDate&limit=$limit")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
@@ -227,13 +247,15 @@ class ControlpanelApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    *   BasicAuth (http)
    *   BearerAuth (http)
    */
-  def getAllUsers()(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Unit] =
-    basicRequest
+  def getAllUsers()(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Unit] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/controlpanel/api/users")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[Unit])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[Unit])
+}
 
   /**
    * Expected answers:
@@ -245,13 +267,15 @@ class ControlpanelApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * 
    * @param sinceSeconds 
    */
-  def getTasksStats(sinceSeconds: Int)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def getTasksStats(sinceSeconds: Int)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/controlpanel/api/tasks/stats?sinceSeconds=$sinceSeconds")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
@@ -263,13 +287,15 @@ class ControlpanelApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * 
    * @param email 
    */
-  def getUser(email: String)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def getUser(email: String)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/controlpanel/api/users/${email}")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
@@ -281,13 +307,15 @@ class ControlpanelApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * 
    * @param nameFilter 
    */
-  def listVendors(nameFilter: String)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def listVendors(nameFilter: String)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/controlpanel/vendors?nameFilter=$nameFilter")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
@@ -301,14 +329,16 @@ class ControlpanelApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param token 
    * @param body This is a generated entry and needs to be described.
    */
-  def updateAuthToken(email: String, token: String, body: Option[Any] = None)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def updateAuthToken(email: String, token: String, body: Option[Any] = None)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.PUT, uri"$baseUrl/controlpanel/users/${email}/authtokens/${token}")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .body(body)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r=r.body(body)
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
@@ -322,23 +352,27 @@ class ControlpanelApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param minPrice 
    * @param maxPrice 
    */
-  def vendorData(vendor: String, minPrice: Double, maxPrice: Double)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def vendorData(vendor: String, minPrice: Double, maxPrice: Double)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/controlpanel/vendorexport/${vendor}?minPrice=$minPrice&maxPrice=$maxPrice")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
    *   code 200 : VersionApiResponse (Current application version.)
    */
   def version(): ApiRequestT[VersionApiResponse] =
-    basicRequest
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/version")
       .contentType("application/json")
-      .response(asJson[VersionApiResponse])
+      r.response(asJson[VersionApiResponse])
+}
 
 }
 

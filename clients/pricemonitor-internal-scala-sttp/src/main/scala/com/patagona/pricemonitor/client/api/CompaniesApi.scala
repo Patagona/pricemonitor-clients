@@ -45,14 +45,16 @@ class CompaniesApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param companyId 
    * @param createContractRequest Contract to be added
    */
-  def addCompanyContract(companyId: Long, createContractRequest: CreateContractRequest)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[AddCompanyContractApiResponse] =
-    basicRequest
+  def addCompanyContract(companyId: Long, createContractRequest: CreateContractRequest)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[AddCompanyContractApiResponse] =
+{
+    var r = basicRequest
       .method(Method.POST, uri"$baseUrl/api/2/companies/${companyId}/contracts")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .body(createContractRequest)
-      .response(asJson[AddCompanyContractApiResponse])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r=r.body(createContractRequest)
+      r.response(asJson[AddCompanyContractApiResponse])
+}
 
   /**
    * Expected answers:
@@ -67,14 +69,16 @@ class CompaniesApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * 
    * @param body The company's name
    */
-  def createCompany(body: String)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[CreateCompanyApiResponse] =
-    basicRequest
+  def createCompany(body: String)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[CreateCompanyApiResponse] =
+{
+    var r = basicRequest
       .method(Method.POST, uri"$baseUrl/api/2/companies")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .body(body)
-      .response(asJson[CreateCompanyApiResponse])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r=r.body(body)
+      r.response(asJson[CreateCompanyApiResponse])
+}
 
   /**
    * Expected answers:
@@ -86,13 +90,15 @@ class CompaniesApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * 
    * @param contractId ID of the contract
    */
-  def deleteContractVendorV2(contractId: String)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def deleteContractVendorV2(contractId: String)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.DELETE, uri"$baseUrl/api/2/v/contracts/${contractId}")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
@@ -104,13 +110,15 @@ class CompaniesApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * 
    * @param companyId 
    */
-  def getCompany(companyId: Long)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def getCompany(companyId: Long)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/controlpanel/api/companies/${companyId}")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
@@ -122,13 +130,15 @@ class CompaniesApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * 
    * @param companyId 
    */
-  def getCompanyContracts(companyId: Long)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[GetCompanyContractsApiResponse] =
-    basicRequest
+  def getCompanyContracts(companyId: Long)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[GetCompanyContractsApiResponse] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/api/2/companies/${companyId}/contracts")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[GetCompanyContractsApiResponse])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[GetCompanyContractsApiResponse])
+}
 
   /**
    * Expected answers:
@@ -141,13 +151,15 @@ class CompaniesApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param maxCreationDate 
    * @param minExpirationDate 
    */
-  def getContractsVendorV2(maxCreationDate: Option[OffsetDateTime] = None, minExpirationDate: Option[OffsetDateTime] = None)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def getContractsVendorV2(maxCreationDate: Option[OffsetDateTime] = None, minExpirationDate: Option[OffsetDateTime] = None)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/api/2/v/contracts?maxCreationDate=$maxCreationDate&minExpirationDate=$minExpirationDate")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
@@ -159,13 +171,15 @@ class CompaniesApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * 
    * @param contractId ID of the contract
    */
-  def getManufacturerManufacturerV2(contractId: String)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def getManufacturerManufacturerV2(contractId: String)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/api/2/m/contracts/${contractId}")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
@@ -177,13 +191,15 @@ class CompaniesApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * 
    * @param contractId ID of the contract
    */
-  def getManufacturerV3(contractId: String)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[GetManufacturerV3ApiResponse] =
-    basicRequest
+  def getManufacturerV3(contractId: String)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[GetManufacturerV3ApiResponse] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/api/v3/manufacturer/contracts/${contractId}")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[GetManufacturerV3ApiResponse])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[GetManufacturerV3ApiResponse])
+}
 
   /**
    * Expected answers:
@@ -195,13 +211,15 @@ class CompaniesApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * 
    * @param companyId 
    */
-  def getUsers(companyId: Long)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def getUsers(companyId: Long)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/controlpanel/api/companies/${companyId}/users")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
@@ -213,13 +231,15 @@ class CompaniesApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * 
    * @param contractId ID of the contract
    */
-  def getVendorV3(contractId: String)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def getVendorV3(contractId: String)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/api/v3/vendor/contracts/${contractId}")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
@@ -231,13 +251,15 @@ class CompaniesApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * 
    * @param contractId ID of the contract
    */
-  def getVendorVendorV2(contractId: String)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def getVendorVendorV2(contractId: String)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/api/2/v/contracts/${contractId}")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
@@ -250,13 +272,15 @@ class CompaniesApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param companyId 
    * @param userId 
    */
-  def removeUser(companyId: Long, userId: Long)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def removeUser(companyId: Long, userId: Long)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.DELETE, uri"$baseUrl/controlpanel/api/companies/${companyId}/users/${userId}")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[Any])
+}
 
 }
 

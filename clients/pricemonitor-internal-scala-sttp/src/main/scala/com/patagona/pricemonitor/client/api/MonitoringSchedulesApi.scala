@@ -44,13 +44,15 @@ class MonitoringSchedulesApi(baseUrl: String)(implicit serializer: SttpSerialize
    * @param contractId ID of the contract
    * @param scheduleId ID of a monitoring schedule
    */
-  def deleteMonitoringScheduleManufacturerV3(contractId: String, scheduleId: Int)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[DeleteByNumericIdApiResponse] =
-    basicRequest
+  def deleteMonitoringScheduleManufacturerV3(contractId: String, scheduleId: Int)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[DeleteByNumericIdApiResponse] =
+{
+    var r = basicRequest
       .method(Method.DELETE, uri"$baseUrl/api/v3/manufacturer/contracts/${contractId}/settings/monitoringschedules/${scheduleId}")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[DeleteByNumericIdApiResponse])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[DeleteByNumericIdApiResponse])
+}
 
   /**
    * Expected answers:
@@ -64,13 +66,15 @@ class MonitoringSchedulesApi(baseUrl: String)(implicit serializer: SttpSerialize
    * @param contractId ID of the contract
    * @param scheduleId ID of a monitoring schedule
    */
-  def deleteMonitoringScheduleVendorV3(contractId: String, scheduleId: Int)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[DeleteByNumericIdApiResponse] =
-    basicRequest
+  def deleteMonitoringScheduleVendorV3(contractId: String, scheduleId: Int)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[DeleteByNumericIdApiResponse] =
+{
+    var r = basicRequest
       .method(Method.DELETE, uri"$baseUrl/api/v3/vendor/contracts/${contractId}/settings/monitoringschedules/${scheduleId}")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[DeleteByNumericIdApiResponse])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[DeleteByNumericIdApiResponse])
+}
 
   /**
    * Expected answers:
@@ -84,13 +88,15 @@ class MonitoringSchedulesApi(baseUrl: String)(implicit serializer: SttpSerialize
    * @param contractId ID of the contract
    * @param scheduleId ID of a monitoring schedule
    */
-  def executeMonitoringScheduleManufacturerV3(contractId: String, scheduleId: Int)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[EmptyApiResponse] =
-    basicRequest
+  def executeMonitoringScheduleManufacturerV3(contractId: String, scheduleId: Int)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[EmptyApiResponse] =
+{
+    var r = basicRequest
       .method(Method.POST, uri"$baseUrl/api/v3/manufacturer/contracts/${contractId}/settings/monitoringschedules/${scheduleId}/execute")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[EmptyApiResponse])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[EmptyApiResponse])
+}
 
   /**
    * Expected answers:
@@ -104,13 +110,15 @@ class MonitoringSchedulesApi(baseUrl: String)(implicit serializer: SttpSerialize
    * @param contractId ID of the contract
    * @param scheduleId ID of a monitoring schedule
    */
-  def executeMonitoringScheduleVendorV3(contractId: String, scheduleId: Int)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[EmptyApiResponse] =
-    basicRequest
+  def executeMonitoringScheduleVendorV3(contractId: String, scheduleId: Int)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[EmptyApiResponse] =
+{
+    var r = basicRequest
       .method(Method.POST, uri"$baseUrl/api/v3/vendor/contracts/${contractId}/settings/monitoringschedules/${scheduleId}/execute")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[EmptyApiResponse])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[EmptyApiResponse])
+}
 
   /**
    * Expected answers:
@@ -122,13 +130,15 @@ class MonitoringSchedulesApi(baseUrl: String)(implicit serializer: SttpSerialize
    * 
    * @param contractId ID of the contract
    */
-  def getMonitoringSchedulesManufacturerV3(contractId: String)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[GetMonitoringSchedulesApiResponse] =
-    basicRequest
+  def getMonitoringSchedulesManufacturerV3(contractId: String)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[GetMonitoringSchedulesApiResponse] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/api/v3/manufacturer/contracts/${contractId}/settings/monitoringschedules")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[GetMonitoringSchedulesApiResponse])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[GetMonitoringSchedulesApiResponse])
+}
 
   /**
    * Expected answers:
@@ -140,13 +150,15 @@ class MonitoringSchedulesApi(baseUrl: String)(implicit serializer: SttpSerialize
    * 
    * @param contractId ID of the contract
    */
-  def getMonitoringSchedulesVendorV3(contractId: String)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[GetMonitoringSchedulesApiResponse] =
-    basicRequest
+  def getMonitoringSchedulesVendorV3(contractId: String)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[GetMonitoringSchedulesApiResponse] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/api/v3/vendor/contracts/${contractId}/settings/monitoringschedules")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[GetMonitoringSchedulesApiResponse])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[GetMonitoringSchedulesApiResponse])
+}
 
   /**
    * Expected answers:
@@ -159,14 +171,16 @@ class MonitoringSchedulesApi(baseUrl: String)(implicit serializer: SttpSerialize
    * @param contractId ID of the contract
    * @param postMonitoringScheduleRequestV3 Request body for creating monitoring schedule.
    */
-  def postMonitoringScheduleManufacturerV3(contractId: String, postMonitoringScheduleRequestV3: Option[PostMonitoringScheduleRequestV3] = None)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[PutMonitoringSchedulesApiResponse] =
-    basicRequest
+  def postMonitoringScheduleManufacturerV3(contractId: String, postMonitoringScheduleRequestV3: Option[PostMonitoringScheduleRequestV3] = None)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[PutMonitoringSchedulesApiResponse] =
+{
+    var r = basicRequest
       .method(Method.POST, uri"$baseUrl/api/v3/manufacturer/contracts/${contractId}/settings/monitoringschedules")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .body(postMonitoringScheduleRequestV3)
-      .response(asJson[PutMonitoringSchedulesApiResponse])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r=r.body(postMonitoringScheduleRequestV3)
+      r.response(asJson[PutMonitoringSchedulesApiResponse])
+}
 
   /**
    * Expected answers:
@@ -179,14 +193,16 @@ class MonitoringSchedulesApi(baseUrl: String)(implicit serializer: SttpSerialize
    * @param contractId ID of the contract
    * @param postMonitoringScheduleRequestV3 Request body for creating monitoring schedule.
    */
-  def postMonitoringScheduleVendorV3(contractId: String, postMonitoringScheduleRequestV3: Option[PostMonitoringScheduleRequestV3] = None)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[PutMonitoringSchedulesApiResponse] =
-    basicRequest
+  def postMonitoringScheduleVendorV3(contractId: String, postMonitoringScheduleRequestV3: Option[PostMonitoringScheduleRequestV3] = None)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[PutMonitoringSchedulesApiResponse] =
+{
+    var r = basicRequest
       .method(Method.POST, uri"$baseUrl/api/v3/vendor/contracts/${contractId}/settings/monitoringschedules")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .body(postMonitoringScheduleRequestV3)
-      .response(asJson[PutMonitoringSchedulesApiResponse])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r=r.body(postMonitoringScheduleRequestV3)
+      r.response(asJson[PutMonitoringSchedulesApiResponse])
+}
 
   /**
    * Expected answers:
@@ -201,14 +217,16 @@ class MonitoringSchedulesApi(baseUrl: String)(implicit serializer: SttpSerialize
    * @param scheduleId ID of a monitoring schedule
    * @param postMonitoringScheduleRequestV3 Request body for updating monitoring schedule.
    */
-  def putMonitoringScheduleManufacturerV3(contractId: String, scheduleId: Int, postMonitoringScheduleRequestV3: Option[PostMonitoringScheduleRequestV3] = None)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[PutMonitoringSchedulesApiResponse] =
-    basicRequest
+  def putMonitoringScheduleManufacturerV3(contractId: String, scheduleId: Int, postMonitoringScheduleRequestV3: Option[PostMonitoringScheduleRequestV3] = None)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[PutMonitoringSchedulesApiResponse] =
+{
+    var r = basicRequest
       .method(Method.PUT, uri"$baseUrl/api/v3/manufacturer/contracts/${contractId}/settings/monitoringschedules/${scheduleId}")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .body(postMonitoringScheduleRequestV3)
-      .response(asJson[PutMonitoringSchedulesApiResponse])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r=r.body(postMonitoringScheduleRequestV3)
+      r.response(asJson[PutMonitoringSchedulesApiResponse])
+}
 
   /**
    * Expected answers:
@@ -223,14 +241,16 @@ class MonitoringSchedulesApi(baseUrl: String)(implicit serializer: SttpSerialize
    * @param scheduleId ID of a monitoring schedule
    * @param postMonitoringScheduleRequestV3 Request body for updating monitoring schedule.
    */
-  def putMonitoringScheduleVendorV3(contractId: String, scheduleId: Int, postMonitoringScheduleRequestV3: Option[PostMonitoringScheduleRequestV3] = None)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[PutMonitoringSchedulesApiResponse] =
-    basicRequest
+  def putMonitoringScheduleVendorV3(contractId: String, scheduleId: Int, postMonitoringScheduleRequestV3: Option[PostMonitoringScheduleRequestV3] = None)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[PutMonitoringSchedulesApiResponse] =
+{
+    var r = basicRequest
       .method(Method.PUT, uri"$baseUrl/api/v3/vendor/contracts/${contractId}/settings/monitoringschedules/${scheduleId}")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .body(postMonitoringScheduleRequestV3)
-      .response(asJson[PutMonitoringSchedulesApiResponse])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r=r.body(postMonitoringScheduleRequestV3)
+      r.response(asJson[PutMonitoringSchedulesApiResponse])
+}
 
 }
 

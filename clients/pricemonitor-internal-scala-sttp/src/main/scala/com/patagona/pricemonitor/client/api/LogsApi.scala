@@ -35,13 +35,15 @@ class LogsApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    *   BasicAuth (http)
    *   BearerAuth (http)
    */
-  def postLogMessage()(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def postLogMessage()(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.POST, uri"$baseUrl/api/2/log/messages")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
@@ -53,14 +55,16 @@ class LogsApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * 
    * @param logMessages 
    */
-  def postLogMessages(logMessages: LogMessages)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Unit] =
-    basicRequest
+  def postLogMessages(logMessages: LogMessages)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Unit] =
+{
+    var r = basicRequest
       .method(Method.POST, uri"$baseUrl/api/v3/log/messages")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .body(logMessages)
-      .response(asJson[Unit])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r=r.body(logMessages)
+      r.response(asJson[Unit])
+}
 
 }
 
