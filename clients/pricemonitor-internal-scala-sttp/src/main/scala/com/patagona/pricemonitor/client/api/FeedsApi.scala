@@ -38,13 +38,15 @@ class FeedsApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param contractId ID of the contract
    * @param feedId 
    */
-  def deleteFeedVendorV2(contractId: String, feedId: String)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def deleteFeedVendorV2(contractId: String, feedId: String)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.DELETE, uri"$baseUrl/api/2/v/contracts/${contractId}/feeds/${feedId}")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[Any])
+}
 
   /**
    * Dismiss already fetched feed-entries, so they will not be part of future responses.
@@ -60,13 +62,15 @@ class FeedsApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param contractId ID of the contract
    * @param feedId ID of the feed
    */
-  def excludeFetchedFeedData(contractId: String, feedId: String)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Feed] =
-    basicRequest
+  def excludeFetchedFeedData(contractId: String, feedId: String)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Feed] =
+{
+    var r = basicRequest
       .method(Method.DELETE, uri"$baseUrl/api/2/v/contracts/${contractId}/feeds/${feedId}/export/delta")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[Feed])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[Feed])
+}
 
   /**
    * A feed can contain offer-related information such as price recommendations. Feeds can be configured to match individual demands.
@@ -82,13 +86,15 @@ class FeedsApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param contractId ID of the contract
    * @param feedId ID of the feed
    */
-  def getFeed(contractId: String, feedId: String)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Feed] =
-    basicRequest
+  def getFeed(contractId: String, feedId: String)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Feed] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/api/2/v/contracts/${contractId}/feeds/${feedId}")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[Feed])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[Feed])
+}
 
   /**
    * Lets you download a file, containing all the data of the feed.
@@ -105,13 +111,15 @@ class FeedsApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param feedId ID of the feed
    * @param fileName fileName
    */
-  def getFeedExport(contractId: String, feedId: String, fileName: String)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Feed] =
-    basicRequest
+  def getFeedExport(contractId: String, feedId: String, fileName: String)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Feed] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/api/2/v/contracts/${contractId}/feeds/${feedId}/export/${fileName}")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[Feed])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[Feed])
+}
 
   /**
    * In contrast of normal feeds, feed-deltas return only results, that are new since the last (DELETE-)request.
@@ -128,13 +136,15 @@ class FeedsApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param feedId ID of the feed
    * @param fileName fileName
    */
-  def getFeedExportDelta(contractId: String, feedId: String, fileName: String)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Feed] =
-    basicRequest
+  def getFeedExportDelta(contractId: String, feedId: String, fileName: String)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Feed] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/api/2/v/contracts/${contractId}/feeds/${feedId}/export/delta/${fileName}")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[Feed])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[Feed])
+}
 
   /**
    * Expected answers:
@@ -148,13 +158,15 @@ class FeedsApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param feedId 
    * @param fileName 
    */
-  def getFeedExportDeltaVendorV2(contractId: String, feedId: String, fileName: Option[String] = None)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def getFeedExportDeltaVendorV2(contractId: String, feedId: String, fileName: Option[String] = None)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/api/2/v/contracts/${contractId}/feeds/${feedId}/export/delta?fileName=$fileName")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
@@ -168,13 +180,15 @@ class FeedsApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param feedId 
    * @param fileName 
    */
-  def getFeedExportVendorV2(contractId: String, feedId: String, fileName: Option[String] = None)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def getFeedExportVendorV2(contractId: String, feedId: String, fileName: Option[String] = None)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/api/2/v/contracts/${contractId}/feeds/${feedId}/export?fileName=$fileName")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[Any])
+}
 
   /**
    * Feeds can contain offer-related information such as price recommendations. They can be configured to match individual demands.
@@ -188,13 +202,15 @@ class FeedsApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * 
    * @param contractId ID of the contract
    */
-  def getFeeds(contractId: String)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Set[Feed]] =
-    basicRequest
+  def getFeeds(contractId: String)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Set[Feed]] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/api/2/v/contracts/${contractId}/feeds")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[Set[Feed]])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[Set[Feed]])
+}
 
   /**
    * Expected answers:
@@ -207,14 +223,16 @@ class FeedsApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param contractId ID of the contract
    * @param body This is a generated entry and needs to be described.
    */
-  def postFeedVendorV2(contractId: String, body: Option[Any] = None)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def postFeedVendorV2(contractId: String, body: Option[Any] = None)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.POST, uri"$baseUrl/api/2/v/contracts/${contractId}/feeds")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .body(body)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r=r.body(body)
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
@@ -228,14 +246,16 @@ class FeedsApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param feedId 
    * @param body This is a generated entry and needs to be described.
    */
-  def putFeedVendorV2(contractId: String, feedId: String, body: Option[Any] = None)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def putFeedVendorV2(contractId: String, feedId: String, body: Option[Any] = None)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.PUT, uri"$baseUrl/api/2/v/contracts/${contractId}/feeds/${feedId}")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .body(body)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r=r.body(body)
+      r.response(asJson[Any])
+}
 
 }
 

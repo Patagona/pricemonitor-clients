@@ -43,13 +43,15 @@ class VendorShopMappingApi(baseUrl: String)(implicit serializer: SttpSerializer)
    * @param contractId ID of the contract
    * @param vendorId ID of vendor shop mapping
    */
-  def deleteVendorShopMappingManufacturerV3(contractId: String, vendorId: Long)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[DeleteByNumericIdApiResponse] =
-    basicRequest
+  def deleteVendorShopMappingManufacturerV3(contractId: String, vendorId: Long)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[DeleteByNumericIdApiResponse] =
+{
+    var r = basicRequest
       .method(Method.DELETE, uri"$baseUrl/api/v3/manufacturer/contracts/${contractId}/vendors/${vendorId}")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[DeleteByNumericIdApiResponse])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[DeleteByNumericIdApiResponse])
+}
 
   /**
    * Expected answers:
@@ -63,13 +65,15 @@ class VendorShopMappingApi(baseUrl: String)(implicit serializer: SttpSerializer)
    * @param contractId ID of the contract
    * @param vendorId ID of vendor shop mapping
    */
-  def getVendorShopMappingManufacturerV3(contractId: String, vendorId: Long)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[VendorShopMappingV3ApiResponse] =
-    basicRequest
+  def getVendorShopMappingManufacturerV3(contractId: String, vendorId: Long)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[VendorShopMappingV3ApiResponse] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/api/v3/manufacturer/contracts/${contractId}/vendors/${vendorId}")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[VendorShopMappingV3ApiResponse])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[VendorShopMappingV3ApiResponse])
+}
 
   /**
    * Expected answers:
@@ -81,13 +85,15 @@ class VendorShopMappingApi(baseUrl: String)(implicit serializer: SttpSerializer)
    * 
    * @param contractId ID of the contract
    */
-  def getVendorShopMappingsManufacturerV3(contractId: String)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[GetVendorShopMappingsApiResponse] =
-    basicRequest
+  def getVendorShopMappingsManufacturerV3(contractId: String)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[GetVendorShopMappingsApiResponse] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/api/v3/manufacturer/contracts/${contractId}/vendors")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[GetVendorShopMappingsApiResponse])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[GetVendorShopMappingsApiResponse])
+}
 
   /**
    * Expected answers:
@@ -103,14 +109,16 @@ class VendorShopMappingApi(baseUrl: String)(implicit serializer: SttpSerializer)
    * @param contractId ID of the contract
    * @param postVendorShopMappingRequestV3 Request body for creating a new vendor and associate shops with it. Please note that atleast one shop is required for a successful creation.
    */
-  def postVendorShopMappingManufacturerV3(contractId: String, postVendorShopMappingRequestV3: Option[PostVendorShopMappingRequestV3] = None)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[VendorShopMappingV3ApiResponse] =
-    basicRequest
+  def postVendorShopMappingManufacturerV3(contractId: String, postVendorShopMappingRequestV3: Option[PostVendorShopMappingRequestV3] = None)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[VendorShopMappingV3ApiResponse] =
+{
+    var r = basicRequest
       .method(Method.POST, uri"$baseUrl/api/v3/manufacturer/contracts/${contractId}/vendors")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .body(postVendorShopMappingRequestV3)
-      .response(asJson[VendorShopMappingV3ApiResponse])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r=r.body(postVendorShopMappingRequestV3)
+      r.response(asJson[VendorShopMappingV3ApiResponse])
+}
 
   /**
    * Expected answers:
@@ -127,14 +135,16 @@ class VendorShopMappingApi(baseUrl: String)(implicit serializer: SttpSerializer)
    * @param vendorId ID of vendor shop mapping
    * @param postVendorShopMappingRequestV3 Request body for updating an existing vendor and associate shops with it. Please note that atleast one shop is required for a successful creation.
    */
-  def putVendorShopMappingManufacturerV3(contractId: String, vendorId: Long, postVendorShopMappingRequestV3: Option[PostVendorShopMappingRequestV3] = None)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[VendorShopMappingV3ApiResponse] =
-    basicRequest
+  def putVendorShopMappingManufacturerV3(contractId: String, vendorId: Long, postVendorShopMappingRequestV3: Option[PostVendorShopMappingRequestV3] = None)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[VendorShopMappingV3ApiResponse] =
+{
+    var r = basicRequest
       .method(Method.PUT, uri"$baseUrl/api/v3/manufacturer/contracts/${contractId}/vendors/${vendorId}")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .body(postVendorShopMappingRequestV3)
-      .response(asJson[VendorShopMappingV3ApiResponse])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r=r.body(postVendorShopMappingRequestV3)
+      r.response(asJson[VendorShopMappingV3ApiResponse])
+}
 
 }
 

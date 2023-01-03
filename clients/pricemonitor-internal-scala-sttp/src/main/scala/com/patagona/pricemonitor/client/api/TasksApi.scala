@@ -42,14 +42,16 @@ class TasksApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param contractId ID of the contract
    * @param body This is a generated entry and needs to be described.
    */
-  def createTask(contractId: String, body: Option[Any] = None)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def createTask(contractId: String, body: Option[Any] = None)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.POST, uri"$baseUrl/api/1/${contractId}/tasks")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .body(body)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r=r.body(body)
+      r.response(asJson[Any])
+}
 
   /**
    * Create a new task
@@ -64,14 +66,16 @@ class TasksApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param contractId ID of the contract
    * @param createTaskBodyV2 This is a generated entry and needs to be described.
    */
-  def createTaskManufacturerV2(contractId: String, createTaskBodyV2: Option[CreateTaskBodyV2] = None)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[GenericTaskWithUrl] =
-    basicRequest
+  def createTaskManufacturerV2(contractId: String, createTaskBodyV2: Option[CreateTaskBodyV2] = None)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[GenericTaskWithUrl] =
+{
+    var r = basicRequest
       .method(Method.POST, uri"$baseUrl/api/2/m/contracts/${contractId}/tasks")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .body(createTaskBodyV2)
-      .response(asJson[GenericTaskWithUrl])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r=r.body(createTaskBodyV2)
+      r.response(asJson[GenericTaskWithUrl])
+}
 
   /**
    * Expected answers:
@@ -84,14 +88,16 @@ class TasksApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param contractId ID of the contract
    * @param body This is a generated entry and needs to be described.
    */
-  def createTaskVendorV2(contractId: String, body: Option[Any] = None)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def createTaskVendorV2(contractId: String, body: Option[Any] = None)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.POST, uri"$baseUrl/api/2/v/contracts/${contractId}/tasks")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .body(body)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r=r.body(body)
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
@@ -104,13 +110,15 @@ class TasksApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param contractId ID of the contract
    * @param taskId 
    */
-  def getTask(contractId: String, taskId: String)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def getTask(contractId: String, taskId: String)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/api/1/${contractId}/tasks/${taskId}")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
@@ -124,13 +132,15 @@ class TasksApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param contractId ID of the contract
    * @param taskId 
    */
-  def getTaskDataManufacturerV2(contractId: String, taskId: String)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def getTaskDataManufacturerV2(contractId: String, taskId: String)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/api/2/m/contracts/${contractId}/tasks/${taskId}/data")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
@@ -143,13 +153,15 @@ class TasksApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param contractId ID of the contract
    * @param taskId 
    */
-  def getTaskDataVendorV2(contractId: String, taskId: String)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def getTaskDataVendorV2(contractId: String, taskId: String)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/api/2/v/contracts/${contractId}/tasks/${taskId}/data")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[Any])
+}
 
   /**
    * Get the task designated by the taskId parameter
@@ -165,13 +177,15 @@ class TasksApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param contractId ID of the contract
    * @param taskId 
    */
-  def getTaskManufacturerV2(contractId: String, taskId: String)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[GenericTask] =
-    basicRequest
+  def getTaskManufacturerV2(contractId: String, taskId: String)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[GenericTask] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/api/2/m/contracts/${contractId}/tasks/${taskId}")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[GenericTask])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[GenericTask])
+}
 
   /**
    * Expected answers:
@@ -184,13 +198,15 @@ class TasksApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param contractId ID of the contract
    * @param taskId 
    */
-  def getTaskState(contractId: String, taskId: String)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def getTaskState(contractId: String, taskId: String)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/api/1/${contractId}/tasks/${taskId}/state")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[Any])
+}
 
   /**
    * Returns a task, associated with a certain contract and identified by its ID
@@ -206,13 +222,15 @@ class TasksApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param contractId ID of the contract
    * @param taskId Id of the task
    */
-  def getTaskVendorV2(contractId: String, taskId: String)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[TaskWithContractResourceApiResponse] =
-    basicRequest
+  def getTaskVendorV2(contractId: String, taskId: String)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[TaskWithContractResourceApiResponse] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/api/2/v/contracts/${contractId}/tasks/${taskId}")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[TaskWithContractResourceApiResponse])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[TaskWithContractResourceApiResponse])
+}
 
   /**
    * Expected answers:
@@ -228,13 +246,15 @@ class TasksApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param limit 
    * @param taskType 
    */
-  def getTasks(contractId: String, tasks: String, attributes: String, limit: Int, taskType: Option[String] = None)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def getTasks(contractId: String, tasks: String, attributes: String, limit: Int, taskType: Option[String] = None)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/api/1/${contractId}/tasks?tasks=$tasks&attributes=$attributes&limit=$limit&taskType=$taskType")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[Any])
+}
 
   /**
    * Returns a list of task objects for the given contract
@@ -255,13 +275,15 @@ class TasksApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param minCreationDate Ignore all tasks created earlier than this date (ISO 8601)
    * @param maxCreationDate Ignore all tasks created later than this date (ISO 8601)
    */
-  def getTasksManufacturerV2(contractId: String, taskTypeFilter: Seq[String], taskState: Seq[String], limit: Int, includeFailures: Boolean, taskIdsFilter: Option[String] = None, minCreationDate: Option[OffsetDateTime] = None, maxCreationDate: Option[OffsetDateTime] = None)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Seq[GenericTask]] =
-    basicRequest
+  def getTasksManufacturerV2(contractId: String, taskTypeFilter: Seq[String], taskState: Seq[String], limit: Int, includeFailures: Boolean, taskIdsFilter: Option[String] = None, minCreationDate: Option[OffsetDateTime] = None, maxCreationDate: Option[OffsetDateTime] = None)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Seq[GenericTask]] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/api/2/m/contracts/${contractId}/tasks?taskIdsFilter=$taskIdsFilter&taskTypeFilter=$taskTypeFilter&taskState=$taskState&minCreationDate=$minCreationDate&maxCreationDate=$maxCreationDate&limit=$limit&includeFailures=$includeFailures")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[Seq[GenericTask]])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[Seq[GenericTask]])
+}
 
   /**
    * The search can be narrowed down by providing the IDs of the tasks, separated by comma
@@ -282,13 +304,15 @@ class TasksApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param minCreationDate Oldest returned creation date in UTC
    * @param maxCreationDate Newest returned creation date in UTC
    */
-  def getTasksVendorV2(contractId: String, taskIdsFilter: Option[String] = None, taskTypeFilter: Option[String] = None, limit: Option[Int] = None, includeFailures: Option[Boolean] = None, taskState: Option[String] = None, minCreationDate: Option[OffsetDateTime] = None, maxCreationDate: Option[OffsetDateTime] = None)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Set[TaskWithContractResourceApiResponse]] =
-    basicRequest
+  def getTasksVendorV2(contractId: String, taskIdsFilter: Option[String] = None, taskTypeFilter: Option[String] = None, limit: Option[Int] = None, includeFailures: Option[Boolean] = None, taskState: Option[String] = None, minCreationDate: Option[OffsetDateTime] = None, maxCreationDate: Option[OffsetDateTime] = None)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Set[TaskWithContractResourceApiResponse]] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/api/2/v/contracts/${contractId}/tasks?taskIdsFilter=$taskIdsFilter&taskTypeFilter=$taskTypeFilter&limit=$limit&includeFailures=$includeFailures&taskState=$taskState&minCreationDate=$minCreationDate&maxCreationDate=$maxCreationDate")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[Set[TaskWithContractResourceApiResponse]])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[Set[TaskWithContractResourceApiResponse]])
+}
 
   /**
    * Expected answers:
@@ -302,14 +326,16 @@ class TasksApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param taskId 
    * @param body This is a generated entry and needs to be described.
    */
-  def updateTaskVendorV2(contractId: String, taskId: String, body: Option[Any] = None)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def updateTaskVendorV2(contractId: String, taskId: String, body: Option[Any] = None)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.PUT, uri"$baseUrl/api/2/v/contracts/${contractId}/tasks/${taskId}")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .body(body)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r=r.body(body)
+      r.response(asJson[Any])
+}
 
 }
 

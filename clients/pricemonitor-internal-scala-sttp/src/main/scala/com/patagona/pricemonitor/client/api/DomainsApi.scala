@@ -37,13 +37,15 @@ class DomainsApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    *   BasicAuth (http)
    *   BearerAuth (http)
    */
-  def getAllDomainsV3()(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[GetAllDomainsV3ApiResponse] =
-    basicRequest
+  def getAllDomainsV3()(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[GetAllDomainsV3ApiResponse] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/api/v3/domains")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[GetAllDomainsV3ApiResponse])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[GetAllDomainsV3ApiResponse])
+}
 
 }
 

@@ -40,13 +40,15 @@ class PreprocessingApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param retrospectiveInMinutes The timespan, in minutes, for considering offers in preprocessing. Allowed value is between 1 and 10800
    * @param contractId ID of the contract
    */
-  def publishPreprocessingTaskVendorV3(retrospectiveInMinutes: Int, contractId: String)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[EmptyApiResponse] =
-    basicRequest
+  def publishPreprocessingTaskVendorV3(retrospectiveInMinutes: Int, contractId: String)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[EmptyApiResponse] =
+{
+    var r = basicRequest
       .method(Method.POST, uri"$baseUrl/api/v3/vendor/contracts/${contractId}/tasks/preprocessing?retrospectiveInMinutes=$retrospectiveInMinutes")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[EmptyApiResponse])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[EmptyApiResponse])
+}
 
 }
 

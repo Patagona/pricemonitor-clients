@@ -136,8 +136,55 @@ build_scala_sttp() {
 
       STTP_PROJECT_PATH="clients/pricemonitor-internal-scala-sttp"
 
-      # The generator for shhtp seems to use an old method for setting up authentication. We need do replace it.
+      # The generator for sttp seems to use an old method for setting up authentication. We need do replace it.
       find ./clients/pricemonitor-internal-scala-sttp/ -type f -exec sed -i 's/.auth.withCredentials/.auth.basic/g' {} \;
+
+      # The next replacements convert the api methods to allow specifying a single authentication method instead of both.
+     
+      # new:
+      # 69 ~ │   def apiV3ManufacturerContractsContractIdOffersPricedumpingstatsPost(contractId: String, priceDumpingStatsRequest: PriceDumpingStatsRequest)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[QueryPriceDumpingStatsApiResponse] =
+      # 70 ~ │ {
+      # 71 ~ │     var r = basicRequest
+      # 72   │       .method(Method.POST, uri"$baseUrl/api/v3/manufacturer/contracts/${contractId}/offers/pricedumpingstats")
+      # 73   │       .contentType("application/json")
+      # 74 ~ │       basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      # 75 ~ │       bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      # 76 ~ │       r=r.body(priceDumpingStatsRequest)
+      # 77 ~ │       r.response(asJson[QueryPriceDumpingStatsApiResponse])
+      # 78 ~ │ }
+
+      # old:
+      # 69   │   def apiV3ManufacturerContractsContractIdOffersPricedumpingstatsPost(contractId: String, priceDumpingStatsRequest: PriceDumpingStatsRequest)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[QueryPriceDumpingStatsApiResponse] =
+      # 70   │     basicRequest
+      # 71   │       .method(Method.POST, uri"$baseUrl/api/v3/manufacturer/contracts/${contractId}/offers/pricedumpingstats")
+      # 72   │       .contentType("application/json")
+      # 73   │       .auth.basic(basicAuth.user, basicAuth.password)
+      # 74   │       .auth.bearer(bearerToken.token)
+      # 75   │       .body(priceDumpingStatsRequest)
+      # 76   │       .response(asJson[QueryPriceDumpingStatsApiResponse]) 
+
+      
+      # Wrap the method content for the endpoints in a curly brace block.
+      # This allows us to set authentication conditionally on which of the fields (basicAuth or bearerToken) is used.
+      find ./clients/pricemonitor-internal-scala-sttp/ -type f -exec sed -i '/basicRequest/i \\{' {} \;
+      find ./clients/pricemonitor-internal-scala-sttp/ -type f -exec sed -i '/response(asJson/a \\}' {} \;
+
+      # Make the two authentication parameters optional.
+      find ./clients/pricemonitor-internal-scala-sttp/ -type f -exec sed -i 's/implicit basicAuth: BasicCredentials, bearerToken: BearerToken/implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]/g' {} \;
+
+      # Assign the request builder to 'r'.
+      # The value of r will be overwritten based on the specified authentication method.
+      find ./clients/pricemonitor-internal-scala-sttp/ -type f -exec sed -i 's/basicRequest/var r = basicRequest/g' {} \;
+
+      # Conditionally adds basicAuth to the requestBuilder 'r'
+      find ./clients/pricemonitor-internal-scala-sttp/ -type f -exec sed -i 's/.auth.basic(basicAuth.user, basicAuth.password)/basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))/g' {} \;
+      # Conditionally adds bearerToken to the requestBuilder 'r'
+      find ./clients/pricemonitor-internal-scala-sttp/ -type f -exec sed -i 's/.auth.bearer(bearerToken.token)/bearerToken.foreach(b => r = r.auth.bearer(b.token))/g' {} \;
+      # Adds the body to the requestBuilder 'r'
+      find ./clients/pricemonitor-internal-scala-sttp/ -type f -exec sed -i 's/.body(/r=r.body(/g' {} \;
+      # Use the requestBuilder 'r' to build the request.
+      find ./clients/pricemonitor-internal-scala-sttp/ -type f -exec sed -i 's/.response(/r.response(/g' {} \;
+
       BUILD_SBT_PATH="${STTP_PROJECT_PATH}/build.sbt"
       sed -i 's/version := "1.0.0"/version := "'${API_VERSION}'"/g' ${BUILD_SBT_PATH}
       sed -i 's/name := "openapi-client"/name := "pricemonitor-client-internal-sttp"/g' ${BUILD_SBT_PATH}

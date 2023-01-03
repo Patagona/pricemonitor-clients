@@ -38,10 +38,12 @@ class AccountApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    *   code 200 : Any (Authenticate with the API and create a session)
    */
   def authenticate(): ApiRequestT[Any] =
-    basicRequest
+{
+    var r = basicRequest
       .method(Method.POST, uri"$baseUrl/login")
       .contentType("application/json")
-      .response(asJson[Any])
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
@@ -51,13 +53,15 @@ class AccountApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    *   BasicAuth (http)
    *   BearerAuth (http)
    */
-  def changePassword()(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def changePassword()(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.PUT, uri"$baseUrl/api/account/password")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
@@ -71,13 +75,15 @@ class AccountApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * 
    * @param token 
    */
-  def checkUserConfirmation(token: String)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Unit] =
-    basicRequest
+  def checkUserConfirmation(token: String)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Unit] =
+{
+    var r = basicRequest
       .method(Method.HEAD, uri"$baseUrl/api/account/confirm/${token}")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[Unit])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[Unit])
+}
 
   /**
    * Expected answers:
@@ -93,14 +99,16 @@ class AccountApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param token 
    * @param body The password that should be set on the confirmed user
    */
-  def confirmUser(token: String, body: String)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Unit] =
-    basicRequest
+  def confirmUser(token: String, body: String)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Unit] =
+{
+    var r = basicRequest
       .method(Method.POST, uri"$baseUrl/api/account/confirm/${token}")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .body(body)
-      .response(asJson[Unit])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r=r.body(body)
+      r.response(asJson[Unit])
+}
 
   /**
    * Expected answers:
@@ -113,13 +121,15 @@ class AccountApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param userId 
    * @param roleName 
    */
-  def deleteUserRole(userId: Long, roleName: String)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def deleteUserRole(userId: Long, roleName: String)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.DELETE, uri"$baseUrl/api/2/users/${userId}/role/${roleName}")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
@@ -128,20 +138,24 @@ class AccountApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param token 
    */
   def loginByAuthToken(token: String): ApiRequestT[Any] =
-    basicRequest
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/api/login/token/${token}")
       .contentType("application/json")
-      .response(asJson[Any])
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
    *   code 200 : Any (Deauthenticate with the API and destroy the current session)
    */
   def logout(): ApiRequestT[Any] =
-    basicRequest
+{
+    var r = basicRequest
       .method(Method.POST, uri"$baseUrl/logout")
       .contentType("application/json")
-      .response(asJson[Any])
+      r.response(asJson[Any])
+}
 
   /**
    * Expected answers:
@@ -151,11 +165,13 @@ class AccountApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param postAccountRequestV3 Request body for creating a new user account. It must contain name, email and password.
    */
   def postAccountV3(postAccountRequestV3: Option[PostAccountRequestV3] = None): ApiRequestT[PostAccountResponseV3ApiResponse] =
-    basicRequest
+{
+    var r = basicRequest
       .method(Method.POST, uri"$baseUrl/api/v3/account")
       .contentType("application/json")
-      .body(postAccountRequestV3)
-      .response(asJson[PostAccountResponseV3ApiResponse])
+      r=r.body(postAccountRequestV3)
+      r.response(asJson[PostAccountResponseV3ApiResponse])
+}
 
   /**
    * Expected answers:
@@ -168,14 +184,16 @@ class AccountApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * 
    * @param postNewPasswordRequest Request a new password.
    */
-  def requestNewPassword(postNewPasswordRequest: Option[PostNewPasswordRequest] = None)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[String] =
-    basicRequest
+  def requestNewPassword(postNewPasswordRequest: Option[PostNewPasswordRequest] = None)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[String] =
+{
+    var r = basicRequest
       .method(Method.POST, uri"$baseUrl/api/account/password/reset")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .body(postNewPasswordRequest)
-      .response(asJson[String])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r=r.body(postNewPasswordRequest)
+      r.response(asJson[String])
+}
 
   /**
    * Expected answers:
@@ -188,14 +206,16 @@ class AccountApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * 
    * @param putResetPasswordRequest Reset a password
    */
-  def resetPassword(putResetPasswordRequest: Option[PutResetPasswordRequest] = None)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[String] =
-    basicRequest
+  def resetPassword(putResetPasswordRequest: Option[PutResetPasswordRequest] = None)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[String] =
+{
+    var r = basicRequest
       .method(Method.PUT, uri"$baseUrl/api/account/password/reset")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .body(putResetPasswordRequest)
-      .response(asJson[String])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r=r.body(putResetPasswordRequest)
+      r.response(asJson[String])
+}
 
   /**
    * Expected answers:
@@ -209,14 +229,16 @@ class AccountApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param roleName 
    * @param body This is a generated entry and needs to be described.
    */
-  def updateUserRole(userId: Long, roleName: String, body: Option[Any] = None)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Any] =
-    basicRequest
+  def updateUserRole(userId: Long, roleName: String, body: Option[Any] = None)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Any] =
+{
+    var r = basicRequest
       .method(Method.PUT, uri"$baseUrl/api/2/users/${userId}/role/${roleName}")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .body(body)
-      .response(asJson[Any])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r=r.body(body)
+      r.response(asJson[Any])
+}
 
   /**
    * Returns the current user with its companies and contracts
@@ -228,13 +250,15 @@ class AccountApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    *   BasicAuth (http)
    *   BearerAuth (http)
    */
-  def userInfo()(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[UserInfo] =
-    basicRequest
+  def userInfo()(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[UserInfo] =
+{
+    var r = basicRequest
       .method(Method.GET, uri"$baseUrl/api/account")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .response(asJson[UserInfo])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r.response(asJson[UserInfo])
+}
 
   /**
    * Expected answers:
@@ -249,14 +273,16 @@ class AccountApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * 
    * @param userSignupRequest The user signup data
    */
-  def userSignup(userSignupRequest: UserSignupRequest)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[Unit] =
-    basicRequest
+  def userSignup(userSignupRequest: UserSignupRequest)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[Unit] =
+{
+    var r = basicRequest
       .method(Method.POST, uri"$baseUrl/api/account")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .body(userSignupRequest)
-      .response(asJson[Unit])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r=r.body(userSignupRequest)
+      r.response(asJson[Unit])
+}
 
 }
 

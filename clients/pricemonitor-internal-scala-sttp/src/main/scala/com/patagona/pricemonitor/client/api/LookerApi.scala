@@ -39,14 +39,16 @@ class LookerApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param contractId ID of the contract
    * @param postEmbedSSOUrlRequestV3 Payload for retrieving a signed embed SSO url using Looker API.
    */
-  def postEmbedSSOUrlManufacturer(contractId: String, postEmbedSSOUrlRequestV3: Option[PostEmbedSSOUrlRequestV3] = None)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[EmbedSSOUrlResponseV3ApiResponse] =
-    basicRequest
+  def postEmbedSSOUrlManufacturer(contractId: String, postEmbedSSOUrlRequestV3: Option[PostEmbedSSOUrlRequestV3] = None)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[EmbedSSOUrlResponseV3ApiResponse] =
+{
+    var r = basicRequest
       .method(Method.POST, uri"$baseUrl/api/v3/manufacturer/contracts/${contractId}/looker/sso/embed/url")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .body(postEmbedSSOUrlRequestV3)
-      .response(asJson[EmbedSSOUrlResponseV3ApiResponse])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r=r.body(postEmbedSSOUrlRequestV3)
+      r.response(asJson[EmbedSSOUrlResponseV3ApiResponse])
+}
 
   /**
    * Expected answers:
@@ -59,14 +61,16 @@ class LookerApi(baseUrl: String)(implicit serializer: SttpSerializer) {
    * @param contractId ID of the contract
    * @param postEmbedSSOUrlRequestV3 Payload for retrieving a signed embed SSO url using Looker API.
    */
-  def postEmbedSSOUrlVendor(contractId: String, postEmbedSSOUrlRequestV3: Option[PostEmbedSSOUrlRequestV3] = None)(implicit basicAuth: BasicCredentials, bearerToken: BearerToken): ApiRequestT[EmbedSSOUrlResponseV3ApiResponse] =
-    basicRequest
+  def postEmbedSSOUrlVendor(contractId: String, postEmbedSSOUrlRequestV3: Option[PostEmbedSSOUrlRequestV3] = None)(implicit basicAuth: Option[BasicCredentials], bearerToken: Option[BearerToken]): ApiRequestT[EmbedSSOUrlResponseV3ApiResponse] =
+{
+    var r = basicRequest
       .method(Method.POST, uri"$baseUrl/api/v3/vendor/contracts/${contractId}/looker/sso/embed/url")
       .contentType("application/json")
-      .auth.basic(basicAuth.user, basicAuth.password)
-      .auth.bearer(bearerToken.token)
-      .body(postEmbedSSOUrlRequestV3)
-      .response(asJson[EmbedSSOUrlResponseV3ApiResponse])
+      basicAuth.foreach(b => r = r.auth.basic(b.user, b.password))
+      bearerToken.foreach(b => r = r.auth.bearer(b.token))
+      r=r.body(postEmbedSSOUrlRequestV3)
+      r.response(asJson[EmbedSSOUrlResponseV3ApiResponse])
+}
 
 }
 
