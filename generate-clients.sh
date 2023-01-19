@@ -135,6 +135,7 @@ build_scala_sttp() {
             --additional-properties=mainPackage=com.patagona.pricemonitor.client
 
       STTP_PROJECT_PATH="clients/pricemonitor-internal-scala-sttp"
+      API_INVOKER_PATH="${STTP_PROJECT_PATH}/src/main/scala/com/patagona/pricemonitor/client/core/ApiInvoker.scala"
 
       # The generator for sttp seems to use an old method for setting up authentication. We need do replace it.
       find ./clients/pricemonitor-internal-scala-sttp/ -type f -exec sed -i 's/.auth.withCredentials/.auth.basic/g' {} \;
@@ -191,8 +192,10 @@ build_scala_sttp() {
       sed -i 's/organization := "org.openapitools"/organization := "patagona"/g' ${BUILD_SBT_PATH}
       sed -i 's/"com.softwaremill.sttp.client" %% "core" % "2.0.0"/"com.softwaremill.sttp.client" %% "core" % "2.2.9"/g' ${BUILD_SBT_PATH}
       sed -i 's/"com.softwaremill.sttp.client" %% "json4s" % "2.0.0"/"com.softwaremill.sttp.client" %% "json4s" % "2.2.9"/g' ${BUILD_SBT_PATH}
-
-
+      # Export project for test subproject as client
+      sed -i -e '$a lazy val client = (project in file("."))' ${BUILD_SBT_PATH}
+      # Retouches ApiInvoker.result code to handle the case when response is an error, since calling body on ResponseError in sttp > 2.2.0 causes NoSuchMethodError
+      sed -i 's/case Left(ex).*/case Left(ex) => ex match \n \t\t\t\t\t\t\t\t\t { \n \t\t\t\t\t\t\t\t\t\t case e:HttpError => ME.error[T](new HttpException(response.code, response.statusText, e.body)) \n \t\t\t\t\t\t\t\t\t\t case e:DeserializationError[_] => ME.error[T](new HttpException(response.code, response.statusText, e.body)) \n \t\t\t\t\t\t\t\t\t  }/g' ${API_INVOKER_PATH}
       mkdir ${STTP_PROJECT_PATH}/project
       cp templates/sttp/plugins.sbt ${STTP_PROJECT_PATH}/project
       cat templates/sttp/publishTo-part >> ${BUILD_SBT_PATH}
