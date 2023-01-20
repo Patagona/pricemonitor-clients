@@ -50,7 +50,11 @@ object ApiInvoker {
       ME.flatMap(responseT) {
         response =>
           response.body match {
-            case Left(ex) => ME.error[T](new HttpException(response.code, response.statusText, ex.body))
+            case Left(ex) => ex match 
+ 									 { 
+ 										 case e:HttpError => ME.error[T](new HttpException(response.code, response.statusText, e.body)) 
+ 										 case e:DeserializationError[_] => ME.error[T](new HttpException(response.code, response.statusText, e.body)) 
+ 									  }
             case Right(value) => ME.unit(value)
           }
       }
