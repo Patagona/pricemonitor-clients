@@ -2,3 +2,5 @@ tmp/
 #Ignore sbt output folders
 target/
 .bsp/
+.idea/
+
