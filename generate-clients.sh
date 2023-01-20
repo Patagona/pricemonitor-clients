@@ -189,9 +189,6 @@ build_scala_sttp() {
       sed -i 's/version := "1.0.0"/version := "'${API_VERSION}'"/g' ${BUILD_SBT_PATH}
       sed -i 's/name := "openapi-client"/name := "pricemonitor-client-internal-sttp"/g' ${BUILD_SBT_PATH}
       sed -i 's/organization := "org.openapitools"/organization := "patagona"/g' ${BUILD_SBT_PATH}
-      sed -i 's/"com.softwaremill.sttp.client" %% "core" % "2.0.0"/"com.softwaremill.sttp.client" %% "core" % "2.2.9"/g' ${BUILD_SBT_PATH}
-      sed -i 's/"com.softwaremill.sttp.client" %% "json4s" % "2.0.0"/"com.softwaremill.sttp.client" %% "json4s" % "2.2.9"/g' ${BUILD_SBT_PATH}
-
 
       mkdir ${STTP_PROJECT_PATH}/project
       cp templates/sttp/plugins.sbt ${STTP_PROJECT_PATH}/project
