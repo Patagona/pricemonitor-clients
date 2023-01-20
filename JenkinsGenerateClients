@@ -11,6 +11,11 @@ pipeline{
     string(name:'API_VERSION', description:'Version of the pricemonitor api to generate the clients for')
   }
 
+  environment{
+    JVM_FLAGS="-J-XX:+CMSClassUnloadingEnabled -J-XX:MaxPermSize=256m -J-Xmx1g -J-Xss16M"
+    SBT_FLAGS="-Dsbt.jse.engineType=Node -Dsbt.log.noformat=true"
+  }
+
   stages {
 
     stage('Prepare') {
@@ -29,20 +34,27 @@ pipeline{
       }
     }
 
-    stage('Publish') {
-      steps {
-        sshagent (credentials: ['e0f894b2-238d-4345-85a2-fe9da450fc93']) {
-          sh 'git add .'
-          sh 'git commit -m "Generate pricemonitor-api clients for version ${API_VERSION}"'
-          sh "git tag ${API_VERSION} -m 'pricemonitor-api ${API_VERSION}'"
-          sh 'git push origin master'
-          sh 'git push origin ${API_VERSION}'
+    stage('Test'){
+        steps {
+          dir("./clients-test/pricemonitor-internal-scala-sttp-test") {
+              sh 'sbt ${JVM_FLAGS} ${SBT_FLAGS} test'
+            }
         }
-        withCredentials([usernamePassword(credentialsId: '18d1c245-8ddf-4f6f-92e2-f9ab70c7b08d', passwordVariable: 'GITHUB_TOKEN', usernameVariable: 'UNUSED')]) {
-          sh './release.sh'
-        }
-      }
     }
+    stage('Publish') {
+          steps {
+            sshagent (credentials: ['e0f894b2-238d-4345-85a2-fe9da450fc93']) {
+              sh 'git add .'
+              sh 'git commit -m "Generate pricemonitor-api clients for version ${API_VERSION}"'
+              sh "git tag ${API_VERSION} -m 'pricemonitor-api ${API_VERSION}'"
+              sh 'git push origin master'
+              sh 'git push origin ${API_VERSION}'
+            }
+            withCredentials([usernamePassword(credentialsId: '18d1c245-8ddf-4f6f-92e2-f9ab70c7b08d', passwordVariable: 'GITHUB_TOKEN', usernameVariable: 'UNUSED')]) {
+              sh './release.sh'
+            }
+          }
+        }
   }
 
   post {
