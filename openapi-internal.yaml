@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.6319
+  version: 0.0.6320
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -689,8 +689,8 @@ paths:
           type: string
         style: simple
       - description: "null"
-        explode: false
-        in: path
+        explode: true
+        in: query
         name: attributes
         required: true
         schema:
@@ -704,7 +704,7 @@ paths:
           - tags
           - strategy
           type: string
-        style: simple
+        style: form
       responses:
         "200":
           content:
@@ -2316,25 +2316,25 @@ paths:
     get:
       parameters:
       - description: Start of the pagination
-        explode: false
-        in: path
+        explode: true
+        in: query
         name: start
         required: false
         schema:
           default: 0
           format: int32
           type: integer
-        style: simple
+        style: form
       - description: Number of elements per page
-        explode: false
-        in: path
+        explode: true
+        in: query
         name: limit
         required: false
         schema:
           default: 100
           format: int32
           type: integer
-        style: simple
+        style: form
       responses:
         "200":
           content:

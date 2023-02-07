@@ -371,7 +371,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **controlpanel_api_companies_get**
-> ComPatagonaPricemonitorShareApiAdminCompanyV2 controlpanel_api_companies_get(start, limit)
+> ComPatagonaPricemonitorShareApiAdminCompanyV2 controlpanel_api_companies_get(start=start, limit=limit)
 
 Get a list of all companies
 
@@ -410,12 +410,12 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ControlpanelApi(api_client)
-    start = 0 # int | Start of the pagination (default to 0)
-limit = 100 # int | Number of elements per page (default to 100)
+    start = 0 # int | Start of the pagination (optional) (default to 0)
+limit = 100 # int | Number of elements per page (optional) (default to 100)
 
     try:
         # Get a list of all companies
-        api_response = api_instance.controlpanel_api_companies_get(start, limit)
+        api_response = api_instance.controlpanel_api_companies_get(start=start, limit=limit)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling ControlpanelApi->controlpanel_api_companies_get: %s\n" % e)
@@ -454,12 +454,12 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ControlpanelApi(api_client)
-    start = 0 # int | Start of the pagination (default to 0)
-limit = 100 # int | Number of elements per page (default to 100)
+    start = 0 # int | Start of the pagination (optional) (default to 0)
+limit = 100 # int | Number of elements per page (optional) (default to 100)
 
     try:
         # Get a list of all companies
-        api_response = api_instance.controlpanel_api_companies_get(start, limit)
+        api_response = api_instance.controlpanel_api_companies_get(start=start, limit=limit)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling ControlpanelApi->controlpanel_api_companies_get: %s\n" % e)
@@ -469,8 +469,8 @@ limit = 100 # int | Number of elements per page (default to 100)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **start** | **int**| Start of the pagination | [default to 0]
- **limit** | **int**| Number of elements per page | [default to 100]
+ **start** | **int**| Start of the pagination | [optional] [default to 0]
+ **limit** | **int**| Number of elements per page | [optional] [default to 100]
 
 ### Return type
 
