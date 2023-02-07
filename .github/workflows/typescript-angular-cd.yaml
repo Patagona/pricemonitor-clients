@@ -13,7 +13,7 @@ jobs:
             pricemonitor-internal-typescript-angular,
             pricemonitor-internal-typescript-angular-13,
           ]
-        node-version: [12.x]
+        node-version: [16.x]
     defaults:
       run:
         working-directory: clients/${{ matrix.angular_client_dir }}/
