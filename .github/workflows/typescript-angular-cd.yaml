@@ -2,7 +2,7 @@ name: typescript-angular CD
 
 on:
   release:
-    types: [created]
+    types: [ created ]
 
 jobs:
   build:
@@ -25,7 +25,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           registry-url: "https://npm.pkg.github.com/"
-      - run: npm install
+      - run: npm install --legacy-peer-deps
       - run: npm run build
         env:
           CI: true
