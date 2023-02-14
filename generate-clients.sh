@@ -73,6 +73,8 @@ build_typescript_angular() {
       # The generator inserts crappy typescript boundaries which only work for angualr 9. We need to update them.
       ANGULAR_PACKAGE_JSON=clients/${PACKAGE_NAME}/package.json
       sed -i 's/\"typescript\": \">=3.6.0 <3.8.0\"/\"typescript\": \">=3.9.2 <4.0.0\"/g' ${ANGULAR_PACKAGE_JSON}
+      # Fix @types/node version to work around breaking change: https://github.com/DefinitelyTyped/DefinitelyTyped/discussions/64262
+      sed -i '/"devDependencies".*/a "@types/node": "^17.0.41",' ${ANGULAR_PACKAGE_JSON}
       # We want to publish the client as "typescript-angular". Therefore we have to add this repository entry.
       # See https://docs.npmjs.com/files/package.json#repository
       jq -M '. +{"repository": {"type" : "git","url" : "ssh://git@github.com/Patagona/pricemonitor-clients.git","directory": "clients/${PACKAGE_NAME}"}}' ${ANGULAR_PACKAGE_JSON} > ${ANGULAR_PACKAGE_JSON}.tmp
@@ -104,6 +106,8 @@ build_typescript_angular_13() {
       # The generator inserts crappy typescript boundaries which only work for angualr 9. We need to update them.
       ANGULAR_PACKAGE_JSON=clients/${PACKAGE_NAME}/package.json
       sed -i 's/\"typescript\": \">=3.6.0 <3.8.0\"/\"typescript\": \">=4.0.0 <5.0.0\"/g' ${ANGULAR_PACKAGE_JSON}
+      # Fix @types/node version to work around breaking change: https://github.com/DefinitelyTyped/DefinitelyTyped/discussions/64262
+      sed -i '/"devDependencies".*/a "@types/node": "^17.0.41",' ${ANGULAR_PACKAGE_JSON}
       # We want to publish the client as "typescript-angular". Therefore we have to add this repository entry.
       # See https://docs.npmjs.com/files/package.json#repository
       jq -M '. +{"repository": {"type" : "git","url" : "ssh://git@github.com/Patagona/pricemonitor-clients.git","directory": "clients/${PACKAGE_NAME}"}}' ${ANGULAR_PACKAGE_JSON} > ${ANGULAR_PACKAGE_JSON}.tmp

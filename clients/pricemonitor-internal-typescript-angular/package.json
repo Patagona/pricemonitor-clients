@@ -20,6 +20,7 @@
     "rxjs": "^6.5.3"
   },
   "devDependencies": {
+    "@types/node": "^17.0.41",
     "@angular/common": "^10.0.0",
     "@angular/compiler": "^10.0.0",
     "@angular/compiler-cli": "^10.0.0",
