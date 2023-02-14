@@ -29,6 +29,7 @@ jobs:
       - run: npm run build
         env:
           CI: true
+      - run: npm config set registry "https://npm.pkg.github.com/"
       - run: npm publish dist
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
