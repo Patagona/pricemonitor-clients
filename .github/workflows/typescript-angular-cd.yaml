@@ -30,6 +30,8 @@ jobs:
           CI: true
       - name: ls
         run: ls -lha
-      - run: npm publish dist --registry=https://npm.pkg.github.com/
+      - run: |
+          cd dist
+          npm publish --registry=https://npm.pkg.github.com/
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
