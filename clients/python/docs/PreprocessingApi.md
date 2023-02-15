@@ -47,7 +47,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.PreprocessingApi(api_client)
-    retrospective_in_minutes = 56 # int | The timespan, in minutes, for considering offers in preprocessing. Allowed value is between 1 and 10800
+    retrospective_in_minutes = 56 # int | The timespan, in minutes, for considering offers in preprocessing. Allowed value is between 1 and 10080
 contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
@@ -91,7 +91,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.PreprocessingApi(api_client)
-    retrospective_in_minutes = 56 # int | The timespan, in minutes, for considering offers in preprocessing. Allowed value is between 1 and 10800
+    retrospective_in_minutes = 56 # int | The timespan, in minutes, for considering offers in preprocessing. Allowed value is between 1 and 10080
 contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
@@ -106,7 +106,7 @@ contract_id = 'qbcxvb' # str | ID of the contract
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **retrospective_in_minutes** | **int**| The timespan, in minutes, for considering offers in preprocessing. Allowed value is between 1 and 10800 | 
+ **retrospective_in_minutes** | **int**| The timespan, in minutes, for considering offers in preprocessing. Allowed value is between 1 and 10080 | 
  **contract_id** | **str**| ID of the contract | 
 
 ### Return type
