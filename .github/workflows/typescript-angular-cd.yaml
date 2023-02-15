@@ -28,10 +28,8 @@ jobs:
       - run: npm run build
         env:
           CI: true
-      #- name: Authenticate with the GitHub Package Registry
-      #  run: echo @Patagona:registry=https://npm.pkg.github.com/ >> ./.npmrc
       - name: ls
         run: ls -lha
-      - run: npm publish --registry=https://npm.pkg.github.com/
+      - run: npm publish dist --registry=https://npm.pkg.github.com/
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
