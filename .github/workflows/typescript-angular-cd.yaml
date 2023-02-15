@@ -1,6 +1,6 @@
 name: typescript-angular CD
 
-on: workflow_dispatch
+on: push
 
 jobs:
   build:
@@ -16,19 +16,25 @@ jobs:
       run:
         working-directory: clients/${{ matrix.angular_client_dir }}/
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
-          registry-url: "https://npm.pkg.github.com/"
+          node-version: '16.x' #${{ matrix.node-version }}
+          registry-url: 'https://npm.pkg.github.com/'
+          scope: '@Patagona'
       - run: npm install --legacy-peer-deps
       - run: npm run build
         env:
           CI: true
-      - name: force set registry url
-        run: npm config set registry https://npm.pkg.github.com/
-      - run: npm publish dist
+      #- name: Authenticate with the GitHub Package Registry
+      #  run: echo @Patagona:registry=https://npm.pkg.github.com/ >> ./.npmrc
+      - name: ls
+        run: ls -lha
+      - run: npm publish --registry=https://npm.pkg.github.com/
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
