@@ -1,6 +1,8 @@
 name: typescript-angular CD
 
-on: workflow_dispatch
+on:
+  release:
+    types: [created]
 
 jobs:
   build:
