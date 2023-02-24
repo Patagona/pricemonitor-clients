@@ -68,6 +68,7 @@ model/pricemonitorGetAllDomainsV3Domains.ts
 model/pricemonitorGetContractResponseV3.ts
 model/pricemonitorGetContractSettingsResponseV1.ts
 model/pricemonitorGetOfferStatisticsV3.ts
+model/pricemonitorGetShopsByDomainResponseV3.ts
 model/pricemonitorMonitoringScheduleV3.ts
 model/pricemonitorOfferAttribute.ts
 model/pricemonitorOfferSelector.ts
@@ -146,6 +147,7 @@ model/getPriceRecommendationsResponse.ts
 model/getPriceRecommendationsResponsePriceRecommendations.ts
 model/getProductMonitoringStatusStatsVendorV3ApiResponse.ts
 model/getProductMonitoringStatusVendorV3ApiResponse.ts
+model/getShopsByDomainResponseV3ApiResponse.ts
 model/getVendorShopMappingsApiResponse.ts
 model/logMessage.ts
 model/logMessages.ts

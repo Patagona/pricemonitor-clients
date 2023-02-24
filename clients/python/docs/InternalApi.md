@@ -8,8 +8,10 @@ Method | HTTP request | Description
 [**add_company_user**](InternalApi.md#add_company_user) | **PUT** /controlpanel/companies/{id}/users/{email} | 
 [**add_user**](InternalApi.md#add_user) | **POST** /controlpanel/users | Add a new user
 [**api_v3_manufacturer_contracts_contract_id_offers_shop_query_post**](InternalApi.md#api_v3_manufacturer_contracts_contract_id_offers_shop_query_post) | **POST** /api/v3/manufacturer/contracts/{contractId}/offers/shop/query | 
+[**api_v3_manufacturer_contracts_contract_id_offers_shops_get**](InternalApi.md#api_v3_manufacturer_contracts_contract_id_offers_shops_get) | **GET** /api/v3/manufacturer/contracts/{contractId}/offers/shops | Returns all shops which have at least one offer for a given time range per domain.
 [**api_v3_manufacturer_contracts_contract_id_offers_stats_query_post**](InternalApi.md#api_v3_manufacturer_contracts_contract_id_offers_stats_query_post) | **POST** /api/v3/manufacturer/contracts/{contractId}/offers/stats/query | 
 [**api_v3_vendor_contracts_contract_id_offers_shop_query_post**](InternalApi.md#api_v3_vendor_contracts_contract_id_offers_shop_query_post) | **POST** /api/v3/vendor/contracts/{contractId}/offers/shop/query | 
+[**api_v3_vendor_contracts_contract_id_offers_shops_get**](InternalApi.md#api_v3_vendor_contracts_contract_id_offers_shops_get) | **GET** /api/v3/vendor/contracts/{contractId}/offers/shops | Returns all shops which have at least one offer for a given time range per domain.
 [**api_v3_vendor_contracts_contract_id_offers_stats_query_post**](InternalApi.md#api_v3_vendor_contracts_contract_id_offers_stats_query_post) | **POST** /api/v3/vendor/contracts/{contractId}/offers/stats/query | 
 [**controlpanel_api_companies_get**](InternalApi.md#controlpanel_api_companies_get) | **GET** /controlpanel/api/companies | Get a list of all companies
 [**controlpanel_api_v3_domains_post**](InternalApi.md#controlpanel_api_v3_domains_post) | **POST** /controlpanel/api/v3/domains | Add a new domain
@@ -657,6 +659,132 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **api_v3_manufacturer_contracts_contract_id_offers_shops_get**
+> GetShopsByDomainResponseV3ApiResponse api_v3_manufacturer_contracts_contract_id_offers_shops_get(contract_id, start_date=start_date, end_date=end_date)
+
+Returns all shops which have at least one offer for a given time range per domain.
+
+### Example
+
+* Basic Authentication (BasicAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.InternalApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDateOneWeekMax} is given, {startDateOneWeekMax} is set to {endDateOneWeekMax} - 48 hours. If both values are omitted the range is 'NOW - 48 hours to NOW'. The time range may not exceed 1 week. (optional)
+end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDateOneWeekMax} is given, {endDateOneWeekMax} is set to {startDateOneWeekMax} + 48 hours. If both values are omitted the range is 'NOW - 48 hours to NOW'. The time range may not exceed 1 week. (optional)
+
+    try:
+        # Returns all shops which have at least one offer for a given time range per domain.
+        api_response = api_instance.api_v3_manufacturer_contracts_contract_id_offers_shops_get(contract_id, start_date=start_date, end_date=end_date)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling InternalApi->api_v3_manufacturer_contracts_contract_id_offers_shops_get: %s\n" % e)
+```
+
+* Bearer (JWT) Authentication (BearerAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.InternalApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDateOneWeekMax} is given, {startDateOneWeekMax} is set to {endDateOneWeekMax} - 48 hours. If both values are omitted the range is 'NOW - 48 hours to NOW'. The time range may not exceed 1 week. (optional)
+end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDateOneWeekMax} is given, {endDateOneWeekMax} is set to {startDateOneWeekMax} + 48 hours. If both values are omitted the range is 'NOW - 48 hours to NOW'. The time range may not exceed 1 week. (optional)
+
+    try:
+        # Returns all shops which have at least one offer for a given time range per domain.
+        api_response = api_instance.api_v3_manufacturer_contracts_contract_id_offers_shops_get(contract_id, start_date=start_date, end_date=end_date)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling InternalApi->api_v3_manufacturer_contracts_contract_id_offers_shops_get: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **contract_id** | **str**| ID of the contract | 
+ **start_date** | **datetime**| Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDateOneWeekMax} is given, {startDateOneWeekMax} is set to {endDateOneWeekMax} - 48 hours. If both values are omitted the range is &#39;NOW - 48 hours to NOW&#39;. The time range may not exceed 1 week. | [optional] 
+ **end_date** | **datetime**| Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDateOneWeekMax} is given, {endDateOneWeekMax} is set to {startDateOneWeekMax} + 48 hours. If both values are omitted the range is &#39;NOW - 48 hours to NOW&#39;. The time range may not exceed 1 week. | [optional] 
+
+### Return type
+
+[**GetShopsByDomainResponseV3ApiResponse**](GetShopsByDomainResponseV3ApiResponse.md)
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Shops which have at least one offer for a given time range per domain. |  -  |
+**400** | Specified time range is invalid (&gt; 7 days). |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **api_v3_manufacturer_contracts_contract_id_offers_stats_query_post**
 > PostOfferStatisticsApiResponse api_v3_manufacturer_contracts_contract_id_offers_stats_query_post(contract_id, post_offer_statistics_request)
 
@@ -899,6 +1027,132 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Returns offers of the shop |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **api_v3_vendor_contracts_contract_id_offers_shops_get**
+> GetShopsByDomainResponseV3ApiResponse api_v3_vendor_contracts_contract_id_offers_shops_get(contract_id, start_date=start_date, end_date=end_date)
+
+Returns all shops which have at least one offer for a given time range per domain.
+
+### Example
+
+* Basic Authentication (BasicAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.InternalApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDateOneWeekMax} is given, {startDateOneWeekMax} is set to {endDateOneWeekMax} - 48 hours. If both values are omitted the range is 'NOW - 48 hours to NOW'. The time range may not exceed 1 week. (optional)
+end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDateOneWeekMax} is given, {endDateOneWeekMax} is set to {startDateOneWeekMax} + 48 hours. If both values are omitted the range is 'NOW - 48 hours to NOW'. The time range may not exceed 1 week. (optional)
+
+    try:
+        # Returns all shops which have at least one offer for a given time range per domain.
+        api_response = api_instance.api_v3_vendor_contracts_contract_id_offers_shops_get(contract_id, start_date=start_date, end_date=end_date)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling InternalApi->api_v3_vendor_contracts_contract_id_offers_shops_get: %s\n" % e)
+```
+
+* Bearer (JWT) Authentication (BearerAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.InternalApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDateOneWeekMax} is given, {startDateOneWeekMax} is set to {endDateOneWeekMax} - 48 hours. If both values are omitted the range is 'NOW - 48 hours to NOW'. The time range may not exceed 1 week. (optional)
+end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDateOneWeekMax} is given, {endDateOneWeekMax} is set to {startDateOneWeekMax} + 48 hours. If both values are omitted the range is 'NOW - 48 hours to NOW'. The time range may not exceed 1 week. (optional)
+
+    try:
+        # Returns all shops which have at least one offer for a given time range per domain.
+        api_response = api_instance.api_v3_vendor_contracts_contract_id_offers_shops_get(contract_id, start_date=start_date, end_date=end_date)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling InternalApi->api_v3_vendor_contracts_contract_id_offers_shops_get: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **contract_id** | **str**| ID of the contract | 
+ **start_date** | **datetime**| Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDateOneWeekMax} is given, {startDateOneWeekMax} is set to {endDateOneWeekMax} - 48 hours. If both values are omitted the range is &#39;NOW - 48 hours to NOW&#39;. The time range may not exceed 1 week. | [optional] 
+ **end_date** | **datetime**| Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDateOneWeekMax} is given, {endDateOneWeekMax} is set to {startDateOneWeekMax} + 48 hours. If both values are omitted the range is &#39;NOW - 48 hours to NOW&#39;. The time range may not exceed 1 week. | [optional] 
+
+### Return type
+
+[**GetShopsByDomainResponseV3ApiResponse**](GetShopsByDomainResponseV3ApiResponse.md)
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Shops which have at least one offer for a given time range per domain. |  -  |
+**400** | Specified time range is invalid (&gt; 7 days). |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -7998,8 +8252,8 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     api_instance = pricemonitor_api_client.InternalApi(api_client)
     contract_id = 'qbcxvb' # str | ID of the contract
 include_delivery_costs = True # bool | 
-start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted, the range is '{endDate} - 48 hours to {endDate}' if {endDate} is given or NOW - 48 hours if both are omitted. (optional)
-end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted, the range is '{startDate} to {startDate} + 48 hours' if {startDate} is given or NOW - 48 hours if both are omitted. (optional)
+start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
+end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
 
     try:
         # Get offer statistics per product of a contract. Only the latest offers per product and domain the are taken into account.
@@ -8044,8 +8298,8 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     api_instance = pricemonitor_api_client.InternalApi(api_client)
     contract_id = 'qbcxvb' # str | ID of the contract
 include_delivery_costs = True # bool | 
-start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted, the range is '{endDate} - 48 hours to {endDate}' if {endDate} is given or NOW - 48 hours if both are omitted. (optional)
-end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted, the range is '{startDate} to {startDate} + 48 hours' if {startDate} is given or NOW - 48 hours if both are omitted. (optional)
+start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
+end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
 
     try:
         # Get offer statistics per product of a contract. Only the latest offers per product and domain the are taken into account.
@@ -8061,8 +8315,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **contract_id** | **str**| ID of the contract | 
  **include_delivery_costs** | **bool**|  | 
- **start_date** | **datetime**| Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted, the range is &#39;{endDate} - 48 hours to {endDate}&#39; if {endDate} is given or NOW - 48 hours if both are omitted. | [optional] 
- **end_date** | **datetime**| Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted, the range is &#39;{startDate} to {startDate} + 48 hours&#39; if {startDate} is given or NOW - 48 hours if both are omitted. | [optional] 
+ **start_date** | **datetime**| Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is &#39;NOW - 48 hours to NOW&#39;. | [optional] 
+ **end_date** | **datetime**| Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is &#39;NOW - 48 hours to NOW&#39;. | [optional] 
 
 ### Return type
 

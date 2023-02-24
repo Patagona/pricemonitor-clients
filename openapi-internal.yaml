@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.6343
+  version: 0.0.6344
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -827,9 +827,9 @@ paths:
           type: integer
         style: form
       - description: Timestamp of start of time range, formatted as ISO Date (i.e.
-          2018-04-06T13:46:13Z) in UTC. If this value is omitted, the range is '{endDate}
-          - 48 hours to {endDate}' if {endDate} is given or NOW - 48 hours if both
-          are omitted.
+          2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is
+          given, {startDate} is set to {endDate} - 48 hours. If both values are omitted,
+          the range is 'NOW - 48 hours to NOW'.
         explode: true
         in: query
         name: startDate
@@ -839,8 +839,9 @@ paths:
           type: string
         style: form
       - description: Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z)
-          in UTC. If this value is omitted, the range is '{startDate} to {startDate}
-          + 48 hours' if {startDate} is given or NOW - 48 hours if both are omitted.
+          in UTC. If this value is omitted and {startDate} is given, {endDate} is
+          set to {startDate} + 48 hours. If both values are omitted, the range is
+          'NOW - 48 hours to NOW'.
         explode: true
         in: query
         name: endDate
@@ -1305,9 +1306,9 @@ paths:
           type: integer
         style: form
       - description: Timestamp of start of time range, formatted as ISO Date (i.e.
-          2018-04-06T13:46:13Z) in UTC. If this value is omitted, the range is '{endDate}
-          - 48 hours to {endDate}' if {endDate} is given or NOW - 48 hours if both
-          are omitted.
+          2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is
+          given, {startDate} is set to {endDate} - 48 hours. If both values are omitted,
+          the range is 'NOW - 48 hours to NOW'.
         explode: true
         in: query
         name: startDate
@@ -1317,8 +1318,9 @@ paths:
           type: string
         style: form
       - description: Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z)
-          in UTC. If this value is omitted, the range is '{startDate} to {startDate}
-          + 48 hours' if {startDate} is given or NOW - 48 hours if both are omitted.
+          in UTC. If this value is omitted and {startDate} is given, {endDate} is
+          set to {startDate} + 48 hours. If both values are omitted, the range is
+          'NOW - 48 hours to NOW'.
         explode: true
         in: query
         name: endDate
@@ -1343,6 +1345,62 @@ paths:
             10000.
       tags:
       - offers
+  /api/v3/manufacturer/contracts/{contractId}/offers/shops:
+    get:
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Timestamp of start of time range, formatted as ISO Date (i.e.
+          2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDateOneWeekMax}
+          is given, {startDateOneWeekMax} is set to {endDateOneWeekMax} - 48 hours.
+          If both values are omitted the range is 'NOW - 48 hours to NOW'. The time
+          range may not exceed 1 week.
+        explode: true
+        in: query
+        name: startDate
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z)
+          in UTC. If this value is omitted and {startDateOneWeekMax} is given, {endDateOneWeekMax}
+          is set to {startDateOneWeekMax} + 48 hours. If both values are omitted the
+          range is 'NOW - 48 hours to NOW'. The time range may not exceed 1 week.
+        explode: true
+        in: query
+        name: endDate
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetShopsByDomainResponseV3ApiResponse'
+          description: Shops which have at least one offer for a given time range
+            per domain.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+          description: Specified time range is invalid (> 7 days).
+      summary: Returns all shops which have at least one offer for a given time range
+        per domain.
+      tags:
+      - offers
+      - internal
   /api/v3/manufacturer/contracts/{contractId}/offers/shop/query:
     post:
       description: Get all offers of a shop. Please note that it might return offers
@@ -1427,9 +1485,9 @@ paths:
           type: string
         style: simple
       - description: Timestamp of start of time range, formatted as ISO Date (i.e.
-          2018-04-06T13:46:13Z) in UTC. If this value is omitted, the range is '{endDate}
-          - 48 hours to {endDate}' if {endDate} is given or NOW - 48 hours if both
-          are omitted.
+          2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is
+          given, {startDate} is set to {endDate} - 48 hours. If both values are omitted,
+          the range is 'NOW - 48 hours to NOW'.
         explode: true
         in: query
         name: startDate
@@ -1439,8 +1497,9 @@ paths:
           type: string
         style: form
       - description: Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z)
-          in UTC. If this value is omitted, the range is '{startDate} to {startDate}
-          + 48 hours' if {startDate} is given or NOW - 48 hours if both are omitted.
+          in UTC. If this value is omitted and {startDate} is given, {endDate} is
+          set to {startDate} + 48 hours. If both values are omitted, the range is
+          'NOW - 48 hours to NOW'.
         explode: true
         in: query
         name: endDate
@@ -1673,9 +1732,9 @@ paths:
           type: integer
         style: form
       - description: Timestamp of start of time range, formatted as ISO Date (i.e.
-          2018-04-06T13:46:13Z) in UTC. If this value is omitted, the range is '{endDate}
-          - 48 hours to {endDate}' if {endDate} is given or NOW - 48 hours if both
-          are omitted.
+          2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is
+          given, {startDate} is set to {endDate} - 48 hours. If both values are omitted,
+          the range is 'NOW - 48 hours to NOW'.
         explode: true
         in: query
         name: startDate
@@ -1685,8 +1744,9 @@ paths:
           type: string
         style: form
       - description: Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z)
-          in UTC. If this value is omitted, the range is '{startDate} to {startDate}
-          + 48 hours' if {startDate} is given or NOW - 48 hours if both are omitted.
+          in UTC. If this value is omitted and {startDate} is given, {endDate} is
+          set to {startDate} + 48 hours. If both values are omitted, the range is
+          'NOW - 48 hours to NOW'.
         explode: true
         in: query
         name: endDate
@@ -1711,6 +1771,62 @@ paths:
             10000.
       tags:
       - offers
+  /api/v3/vendor/contracts/{contractId}/offers/shops:
+    get:
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Timestamp of start of time range, formatted as ISO Date (i.e.
+          2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDateOneWeekMax}
+          is given, {startDateOneWeekMax} is set to {endDateOneWeekMax} - 48 hours.
+          If both values are omitted the range is 'NOW - 48 hours to NOW'. The time
+          range may not exceed 1 week.
+        explode: true
+        in: query
+        name: startDate
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z)
+          in UTC. If this value is omitted and {startDateOneWeekMax} is given, {endDateOneWeekMax}
+          is set to {startDateOneWeekMax} + 48 hours. If both values are omitted the
+          range is 'NOW - 48 hours to NOW'. The time range may not exceed 1 week.
+        explode: true
+        in: query
+        name: endDate
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetShopsByDomainResponseV3ApiResponse'
+          description: Shops which have at least one offer for a given time range
+            per domain.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+          description: Specified time range is invalid (> 7 days).
+      summary: Returns all shops which have at least one offer for a given time range
+        per domain.
+      tags:
+      - offers
+      - internal
   /api/v3/vendor/contracts/{contractId}/offers/query:
     post:
       parameters:
@@ -6167,9 +6283,9 @@ paths:
           type: string
         style: simple
       - description: Timestamp of start of time range, formatted as ISO Date (i.e.
-          2018-04-06T13:46:13Z) in UTC. If this value is omitted, the range is '{endDate}
-          - 48 hours to {endDate}' if {endDate} is given or NOW - 48 hours if both
-          are omitted.
+          2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is
+          given, {startDate} is set to {endDate} - 48 hours. If both values are omitted,
+          the range is 'NOW - 48 hours to NOW'.
         explode: true
         in: query
         name: startDate
@@ -6179,8 +6295,9 @@ paths:
           type: string
         style: form
       - description: Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z)
-          in UTC. If this value is omitted, the range is '{startDate} to {startDate}
-          + 48 hours' if {startDate} is given or NOW - 48 hours if both are omitted.
+          in UTC. If this value is omitted and {startDate} is given, {endDate} is
+          set to {startDate} + 48 hours. If both values are omitted, the range is
+          'NOW - 48 hours to NOW'.
         explode: true
         in: query
         name: endDate
@@ -7989,9 +8106,9 @@ paths:
           type: string
         style: simple
       - description: Timestamp of start of time range, formatted as ISO Date (i.e.
-          2018-04-06T13:46:13Z) in UTC. If this value is omitted, the range is '{endDate}
-          - 48 hours to {endDate}' if {endDate} is given or NOW - 48 hours if both
-          are omitted.
+          2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is
+          given, {startDate} is set to {endDate} - 48 hours. If both values are omitted,
+          the range is 'NOW - 48 hours to NOW'.
         explode: true
         in: query
         name: startDate
@@ -8001,8 +8118,9 @@ paths:
           type: string
         style: form
       - description: Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z)
-          in UTC. If this value is omitted, the range is '{startDate} to {startDate}
-          + 48 hours' if {startDate} is given or NOW - 48 hours if both are omitted.
+          in UTC. If this value is omitted and {startDate} is given, {endDate} is
+          set to {startDate} + 48 hours. If both values are omitted, the range is
+          'NOW - 48 hours to NOW'.
         explode: true
         in: query
         name: endDate
@@ -8090,8 +8208,9 @@ components:
       style: simple
     startDate:
       description: Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z)
-        in UTC. If this value is omitted, the range is '{endDate} - 48 hours to {endDate}'
-        if {endDate} is given or NOW - 48 hours if both are omitted.
+        in UTC. If this value is omitted and {endDate} is given, {startDate} is set
+        to {endDate} - 48 hours. If both values are omitted, the range is 'NOW - 48
+        hours to NOW'.
       explode: true
       in: query
       name: startDate
@@ -8102,8 +8221,35 @@ components:
       style: form
     endDate:
       description: Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z)
-        in UTC. If this value is omitted, the range is '{startDate} to {startDate}
-        + 48 hours' if {startDate} is given or NOW - 48 hours if both are omitted.
+        in UTC. If this value is omitted and {startDate} is given, {endDate} is set
+        to {startDate} + 48 hours. If both values are omitted, the range is 'NOW -
+        48 hours to NOW'.
+      explode: true
+      in: query
+      name: endDate
+      required: false
+      schema:
+        format: date-time
+        type: string
+      style: form
+    startDateOneWeekMax:
+      description: Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z)
+        in UTC. If this value is omitted and {endDateOneWeekMax} is given, {startDateOneWeekMax}
+        is set to {endDateOneWeekMax} - 48 hours. If both values are omitted the range
+        is 'NOW - 48 hours to NOW'. The time range may not exceed 1 week.
+      explode: true
+      in: query
+      name: startDate
+      required: false
+      schema:
+        format: date-time
+        type: string
+      style: form
+    endDateOneWeekMax:
+      description: Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z)
+        in UTC. If this value is omitted and {startDateOneWeekMax} is given, {endDateOneWeekMax}
+        is set to {startDateOneWeekMax} + 48 hours. If both values are omitted the
+        range is 'NOW - 48 hours to NOW'. The time range may not exceed 1 week.
       explode: true
       in: query
       name: endDate
@@ -10083,6 +10229,26 @@ components:
         data:
           items:
             $ref: '#/components/schemas/ProductAndOffers_2'
+          type: array
+      required:
+      - data
+      type: object
+    GetShopsByDomainResponseV3ApiResponse:
+      additionalProperties: false
+      example:
+        data:
+        - domain: domain
+          shops:
+          - shops
+          - shops
+        - domain: domain
+          shops:
+          - shops
+          - shops
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.GetShopsByDomainResponseV3'
           type: array
       required:
       - data
@@ -12114,6 +12280,29 @@ components:
           type: array
         product:
           $ref: '#/components/schemas/ApiProduct'
+      type: object
+    com.patagona.pricemonitor.share.api.GetShopsByDomainResponseV3:
+      additionalProperties: false
+      description: Describes a domain and its corresponding shops
+      example:
+        domain: domain
+        shops:
+        - shops
+        - shops
+      properties:
+        domain:
+          description: domain name
+          type: string
+        shops:
+          description: shop names which have offers in the domain for a given time
+            range
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      required:
+      - domain
+      - shops
       type: object
     com.patagona.pricemonitor.share.api.ApiOffer:
       additionalProperties: false
