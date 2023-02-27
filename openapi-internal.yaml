@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.6344
+  version: 0.0.6346
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -1358,10 +1358,9 @@ paths:
           type: string
         style: simple
       - description: Timestamp of start of time range, formatted as ISO Date (i.e.
-          2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDateOneWeekMax}
-          is given, {startDateOneWeekMax} is set to {endDateOneWeekMax} - 48 hours.
-          If both values are omitted the range is 'NOW - 48 hours to NOW'. The time
-          range may not exceed 1 week.
+          2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is
+          given, {startDate} is set to {endDate} - 48 hours. If both values are omitted,
+          the range is 'NOW - 48 hours to NOW'. The time range may not exceed 1 week.
         explode: true
         in: query
         name: startDate
@@ -1371,9 +1370,9 @@ paths:
           type: string
         style: form
       - description: Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z)
-          in UTC. If this value is omitted and {startDateOneWeekMax} is given, {endDateOneWeekMax}
-          is set to {startDateOneWeekMax} + 48 hours. If both values are omitted the
-          range is 'NOW - 48 hours to NOW'. The time range may not exceed 1 week.
+          in UTC. If this value is omitted and {startDate} is given, {endDate} is
+          set to {startDate} + 48 hours. If both values are omitted, the range is
+          'NOW - 48 hours to NOW'. The time range may not exceed 1 week.
         explode: true
         in: query
         name: endDate
@@ -1784,10 +1783,9 @@ paths:
           type: string
         style: simple
       - description: Timestamp of start of time range, formatted as ISO Date (i.e.
-          2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDateOneWeekMax}
-          is given, {startDateOneWeekMax} is set to {endDateOneWeekMax} - 48 hours.
-          If both values are omitted the range is 'NOW - 48 hours to NOW'. The time
-          range may not exceed 1 week.
+          2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is
+          given, {startDate} is set to {endDate} - 48 hours. If both values are omitted,
+          the range is 'NOW - 48 hours to NOW'. The time range may not exceed 1 week.
         explode: true
         in: query
         name: startDate
@@ -1797,9 +1795,9 @@ paths:
           type: string
         style: form
       - description: Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z)
-          in UTC. If this value is omitted and {startDateOneWeekMax} is given, {endDateOneWeekMax}
-          is set to {startDateOneWeekMax} + 48 hours. If both values are omitted the
-          range is 'NOW - 48 hours to NOW'. The time range may not exceed 1 week.
+          in UTC. If this value is omitted and {startDate} is given, {endDate} is
+          set to {startDate} + 48 hours. If both values are omitted, the range is
+          'NOW - 48 hours to NOW'. The time range may not exceed 1 week.
         explode: true
         in: query
         name: endDate
@@ -8234,9 +8232,9 @@ components:
       style: form
     startDateOneWeekMax:
       description: Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z)
-        in UTC. If this value is omitted and {endDateOneWeekMax} is given, {startDateOneWeekMax}
-        is set to {endDateOneWeekMax} - 48 hours. If both values are omitted the range
-        is 'NOW - 48 hours to NOW'. The time range may not exceed 1 week.
+        in UTC. If this value is omitted and {endDate} is given, {startDate} is set
+        to {endDate} - 48 hours. If both values are omitted, the range is 'NOW - 48
+        hours to NOW'. The time range may not exceed 1 week.
       explode: true
       in: query
       name: startDate
@@ -8247,9 +8245,9 @@ components:
       style: form
     endDateOneWeekMax:
       description: Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z)
-        in UTC. If this value is omitted and {startDateOneWeekMax} is given, {endDateOneWeekMax}
-        is set to {startDateOneWeekMax} + 48 hours. If both values are omitted the
-        range is 'NOW - 48 hours to NOW'. The time range may not exceed 1 week.
+        in UTC. If this value is omitted and {startDate} is given, {endDate} is set
+        to {startDate} + 48 hours. If both values are omitted, the range is 'NOW -
+        48 hours to NOW'. The time range may not exceed 1 week.
       explode: true
       in: query
       name: endDate
