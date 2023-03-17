@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.6374
+  version: 0.0.6375
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -2517,45 +2517,6 @@ paths:
       - internal
       - undocumented
       - controlpanel
-  /api/1/{contractId}/products/analysis/pricerecommendations/stats/{portal}:
-    get:
-      operationId: getStats
-      parameters:
-      - description: ID of the contract
-        example: qbcxvb
-        explode: false
-        in: path
-        name: contractId
-        required: true
-        schema:
-          type: string
-        style: simple
-      - explode: false
-        in: path
-        name: portal
-        required: true
-        schema:
-          type: string
-        style: simple
-      - explode: true
-        in: query
-        name: until
-        required: false
-        schema:
-          format: date-time
-          type: string
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                type: object
-          description: This is a generated entry and needs to be described.
-      tags:
-      - internal
-      - undocumented
-      - pricerecommendations
   /api/1/{contractId}/products/analysis/timestamps:
     get:
       operationId: getTimeStamps
