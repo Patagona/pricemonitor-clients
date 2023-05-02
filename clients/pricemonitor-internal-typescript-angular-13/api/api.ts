@@ -1,5 +1,7 @@
 export * from './account.service';
 import { AccountService } from './account.service';
+export * from './amazonIntegration.service';
+import { AmazonIntegrationService } from './amazonIntegration.service';
 export * from './companies.service';
 import { CompaniesService } from './companies.service';
 export * from './controlpanel.service';
@@ -36,4 +38,4 @@ export * from './undocumented.service';
 import { UndocumentedService } from './undocumented.service';
 export * from './vendorShopMapping.service';
 import { VendorShopMappingService } from './vendorShopMapping.service';
-export const APIS = [AccountService, CompaniesService, ControlpanelService, DomainsService, FeedsService, InternalService, LogsService, LookerService, MonitoringSchedulesService, OffersService, OrdersService, PluginregistrationService, PreprocessingService, PricerecommendationsService, ProductsService, SettingsService, TasksService, UndocumentedService, VendorShopMappingService];
+export const APIS = [AccountService, AmazonIntegrationService, CompaniesService, ControlpanelService, DomainsService, FeedsService, InternalService, LogsService, LookerService, MonitoringSchedulesService, OffersService, OrdersService, PluginregistrationService, PreprocessingService, PricerecommendationsService, ProductsService, SettingsService, TasksService, UndocumentedService, VendorShopMappingService];

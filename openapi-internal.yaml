@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.6425
+  version: 0.0.6426
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -187,7 +187,8 @@ paths:
     get:
       operationId: getCompanyContracts
       parameters:
-      - example: 1
+      - description: ID of a company
+        example: 1
         explode: false
         in: path
         name: companyId
@@ -209,7 +210,8 @@ paths:
     post:
       operationId: addCompanyContract
       parameters:
-      - example: 1
+      - description: ID of a company
+        example: 1
         explode: false
         in: path
         name: companyId
@@ -6532,7 +6534,9 @@ paths:
     get:
       operationId: getCompany
       parameters:
-      - explode: false
+      - description: ID of a company
+        example: 1
+        explode: false
         in: path
         name: companyId
         required: true
@@ -6555,7 +6559,9 @@ paths:
     get:
       operationId: getUsers
       parameters:
-      - explode: false
+      - description: ID of a company
+        example: 1
+        explode: false
         in: path
         name: companyId
         required: true
@@ -6578,7 +6584,9 @@ paths:
     delete:
       operationId: removeUser
       parameters:
-      - explode: false
+      - description: ID of a company
+        example: 1
+        explode: false
         in: path
         name: companyId
         required: true
@@ -7404,6 +7412,31 @@ paths:
       tags:
       - internal
       - looker
+  /api/v3/companies/{companyId}/amazon/authorization/status:
+    get:
+      operationId: getAuthorizationStatusVendorV3
+      parameters:
+      - description: ID of a company
+        example: 1
+        explode: false
+        in: path
+        name: companyId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAuthorizationStatusResponseV3ApiResponse'
+          description: Authorization status of a seller on Amazon.
+      summary: Get authorization status of a seller on Amazon.
+      tags:
+      - amazon-integration
+      - internal
   /api/v3/vendor/contracts/{contractId}/settings/monitoringschedules:
     get:
       operationId: getMonitoringSchedulesVendorV3
@@ -8136,6 +8169,17 @@ paths:
       - products
 components:
   parameters:
+    companyIdParam:
+      description: ID of a company
+      example: 1
+      explode: false
+      in: path
+      name: companyId
+      required: true
+      schema:
+        format: int64
+        type: integer
+      style: simple
     scheduleIdParam:
       description: ID of a monitoring schedule
       explode: false
@@ -11704,6 +11748,17 @@ components:
       required:
       - data
       type: object
+    GetAuthorizationStatusResponseV3ApiResponse:
+      additionalProperties: false
+      example:
+        data:
+          authorized: true
+      properties:
+        data:
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.GetAuthorizationStatusResponseV3'
+      required:
+      - data
+      type: object
     GetMonitoringSchedulesApiResponse:
       additionalProperties: false
       example:
@@ -12834,6 +12889,18 @@ components:
           type: string
       required:
       - url
+      type: object
+    com.patagona.pricemonitor.share.api.GetAuthorizationStatusResponseV3:
+      additionalProperties: false
+      description: Authorization status of a seller on Amazon.
+      example:
+        authorized: true
+      properties:
+        authorized:
+          description: Whether a seller is authorized or not.
+          type: boolean
+      required:
+      - authorized
       type: object
     com.patagona.pricemonitor.share.api.MonitoringScheduleV3:
       additionalProperties: false

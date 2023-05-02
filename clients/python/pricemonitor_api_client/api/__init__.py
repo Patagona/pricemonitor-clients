@@ -4,6 +4,7 @@ from __future__ import absolute_import
 
 # import apis into api package
 from pricemonitor_api_client.api.account_api import AccountApi
+from pricemonitor_api_client.api.amazon_integration_api import AmazonIntegrationApi
 from pricemonitor_api_client.api.companies_api import CompaniesApi
 from pricemonitor_api_client.api.controlpanel_api import ControlpanelApi
 from pricemonitor_api_client.api.domains_api import DomainsApi

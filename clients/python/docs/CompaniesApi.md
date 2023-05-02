@@ -58,7 +58,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.CompaniesApi(api_client)
-    company_id = 1 # int | 
+    company_id = 1 # int | ID of a company
 com_patagona_pricemonitor_share_api_create_contract_request = pricemonitor_api_client.ComPatagonaPricemonitorShareApiCreateContractRequest() # ComPatagonaPricemonitorShareApiCreateContractRequest | Contract to be added
 
     try:
@@ -102,7 +102,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.CompaniesApi(api_client)
-    company_id = 1 # int | 
+    company_id = 1 # int | ID of a company
 com_patagona_pricemonitor_share_api_create_contract_request = pricemonitor_api_client.ComPatagonaPricemonitorShareApiCreateContractRequest() # ComPatagonaPricemonitorShareApiCreateContractRequest | Contract to be added
 
     try:
@@ -117,7 +117,7 @@ com_patagona_pricemonitor_share_api_create_contract_request = pricemonitor_api_c
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**|  | 
+ **company_id** | **int**| ID of a company | 
  **com_patagona_pricemonitor_share_api_create_contract_request** | [**ComPatagonaPricemonitorShareApiCreateContractRequest**](ComPatagonaPricemonitorShareApiCreateContractRequest.md)| Contract to be added | 
 
 ### Return type
@@ -420,7 +420,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.CompaniesApi(api_client)
-    company_id = 56 # int | 
+    company_id = 1 # int | ID of a company
 
     try:
         api_response = api_instance.get_company(company_id)
@@ -462,7 +462,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.CompaniesApi(api_client)
-    company_id = 56 # int | 
+    company_id = 1 # int | ID of a company
 
     try:
         api_response = api_instance.get_company(company_id)
@@ -475,7 +475,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**|  | 
+ **company_id** | **int**| ID of a company | 
 
 ### Return type
 
@@ -537,7 +537,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.CompaniesApi(api_client)
-    company_id = 1 # int | 
+    company_id = 1 # int | ID of a company
 
     try:
         # Get all contracts for given company
@@ -580,7 +580,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.CompaniesApi(api_client)
-    company_id = 1 # int | 
+    company_id = 1 # int | ID of a company
 
     try:
         # Get all contracts for given company
@@ -594,7 +594,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**|  | 
+ **company_id** | **int**| ID of a company | 
 
 ### Return type
 
@@ -1012,7 +1012,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.CompaniesApi(api_client)
-    company_id = 56 # int | 
+    company_id = 1 # int | ID of a company
 
     try:
         api_response = api_instance.get_users(company_id)
@@ -1054,7 +1054,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.CompaniesApi(api_client)
-    company_id = 56 # int | 
+    company_id = 1 # int | ID of a company
 
     try:
         api_response = api_instance.get_users(company_id)
@@ -1067,7 +1067,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**|  | 
+ **company_id** | **int**| ID of a company | 
 
 ### Return type
 
@@ -1363,7 +1363,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.CompaniesApi(api_client)
-    company_id = 56 # int | 
+    company_id = 1 # int | ID of a company
 user_id = 56 # int | 
 
     try:
@@ -1406,7 +1406,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.CompaniesApi(api_client)
-    company_id = 56 # int | 
+    company_id = 1 # int | ID of a company
 user_id = 56 # int | 
 
     try:
@@ -1420,7 +1420,7 @@ user_id = 56 # int |
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**|  | 
+ **company_id** | **int**| ID of a company | 
  **user_id** | **int**|  | 
 
 ### Return type

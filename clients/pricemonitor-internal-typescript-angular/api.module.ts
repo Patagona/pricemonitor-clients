@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 
 
 import { AccountService } from './api/account.service';
+import { AmazonIntegrationService } from './api/amazonIntegration.service';
 import { CompaniesService } from './api/companies.service';
 import { ControlpanelService } from './api/controlpanel.service';
 import { DomainsService } from './api/domains.service';
