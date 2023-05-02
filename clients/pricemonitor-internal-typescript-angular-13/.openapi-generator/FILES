@@ -198,6 +198,7 @@ model/queryProductsRequestV3.ts
 model/queryProductsVendorV3ApiResponse.ts
 model/shopRank.ts
 model/tag.ts
+model/tagInput.ts
 model/task.ts
 model/taskIdAndUrl.ts
 model/taskWithContractResourceApiResponse.ts

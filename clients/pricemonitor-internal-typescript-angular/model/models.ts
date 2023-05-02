@@ -166,6 +166,7 @@ export * from './queryProductsRequestV3';
 export * from './queryProductsVendorV3ApiResponse';
 export * from './shopRank';
 export * from './tag';
+export * from './tagInput';
 export * from './task';
 export * from './taskIdAndUrl';
 export * from './taskWithContractResourceApiResponse';

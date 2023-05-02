@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.6421
+  version: 0.0.6422
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -8501,25 +8501,35 @@ components:
       properties:
         tags:
           items:
-            $ref: '#/components/schemas/Tag'
+            $ref: '#/components/schemas/TagInput'
           type: array
         customerProductId:
           type: string
         gtin:
+          description: Must not be negative
           example: 12345678910123
           format: int64
           type: integer
         minPriceBoundary:
+          description: Must not be less than 0.01. Must not be larger than maxPriceBoundary.
+            Will be rounded to the second decimal digit (half up)
           example: 12.34
           format: double
           type: number
         maxPriceBoundary:
+          description: Must not be less than minPriceBoundary. Must not be larger
+            than 9,999,999,999,999.99. Will be rounded to the second decimal digit
+            (half up)
           example: 56.78
           format: double
           type: number
         name:
+          description: Must not have more than 999 characters. Will be rounded to
+            the second decimal digit (half up)
           type: string
         referencePrice:
+          description: Must not be less than 0.01. Must not be larger than 9,999,999,999,999.99.
+            Will be rounded to the second decimal digit (half up)
           example: 19.99
           format: double
           type: number
@@ -9223,7 +9233,11 @@ components:
       - version
       type: object
     PostProductsIdentifyingAttribute:
-      description: Additionally you can use your product tags
+      description: In addition to the enumerated values you can also use a product
+        tag. The identifying attribute needs to be filled for all products. The identifying
+        attribute needs to uniquely identify a product. If the identifying attribute
+        isn't unique, then only the last of the duplicates will be saved. For the
+        others duplicates an error will be provided
       enum:
       - customerProductId
       - gtin
@@ -9279,6 +9293,22 @@ components:
       required:
       - position
       - price
+    TagInput:
+      example:
+        value: value
+        key: key
+      properties:
+        key:
+          description: Must not be an empty string. Must not have more than 100 characters.
+            All tags of one product need to have a unique key
+          type: string
+        value:
+          description: Must not have more than 10000 characters
+          type: string
+      required:
+      - key
+      - value
+      type: object
     Tag:
       example:
         value: value
