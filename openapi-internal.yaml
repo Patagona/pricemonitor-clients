@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.6423
+  version: 0.0.6424
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -8524,8 +8524,7 @@ components:
           format: double
           type: number
         name:
-          description: Must not have more than 999 characters. Will be rounded to
-            the second decimal digit (half up)
+          description: Must not have more than 999 characters
           type: string
         referencePrice:
           description: Must not be less than 0.01. Must not be larger than 9,999,999,999,999.99.
