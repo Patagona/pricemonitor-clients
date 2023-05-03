@@ -83,6 +83,8 @@ model/pricemonitorPostActivateMarketplaceRequestV3.ts
 model/pricemonitorPostActivateMarketplaceResponseV3.ts
 model/pricemonitorPostAdminAddDomainBodyV3.ts
 model/pricemonitorPostAdminAddDomainV3.ts
+model/pricemonitorPostAuthorizeSellerRequestV3.ts
+model/pricemonitorPostAuthorizeSellerResponseV3.ts
 model/pricemonitorPostCustomerOrdersRequestV2.ts
 model/pricemonitorPostEmbedSSOUrlRequestV3.ts
 model/pricemonitorPostMonitoringScheduleRequestV3.ts
@@ -168,6 +170,7 @@ model/pluginRegistrationEmptyApiResponse.ts
 model/postAccountResponseV3ApiResponse.ts
 model/postActivateMarketplaceResponseV3ApiResponse.ts
 model/postAdminAddDomainV3ApiResponse.ts
+model/postAuthorizeSellerResponseV3ApiResponse.ts
 model/postOfferStatisticsApiResponse.ts
 model/postOfferStatisticsRequest.ts
 model/postOrdersBulkApiResponse.ts

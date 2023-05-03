@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.6428
+  version: 0.0.6429
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -7475,7 +7475,45 @@ paths:
               schema:
                 $ref: '#/components/schemas/GetAuthorizationStatusResponseV3ApiResponse'
           description: Authorization status of a customer on Amazon.
-      summary: Get authorization status of a customer on Amazon.
+      summary: |
+        Get OAuth authorization status for customer's Amazon seller central account.
+        For setting up OAuth authorization, have a look at the endpoint
+        POST /api/v3/companies/{companyId}/amazon/authorization.
+      tags:
+      - amazon-integration
+      - internal
+  /api/v3/companies/{companyId}/amazon/authorization:
+    post:
+      operationId: postAuthorizeSellerVendorV3
+      parameters:
+      - description: ID of a company
+        example: 1
+        explode: false
+        in: path
+        name: companyId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PostAuthorizeSellerRequestV3'
+        description: Customer's Amazon seller central account to be authorized.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostAuthorizeSellerResponseV3ApiResponse'
+          description: Successfully authorized customer's Amazon seller central account.
+      summary: |
+        Set up an OAuth authorization for a customer's Amazon Seller Central account.
+        It establishes a connection between our system and the customer's Amazon shop using the Amazon SP-API.
+        Once connected, our system can write prices back to the customer's Amazon shop, allowing them to benefit
+        from our price recommendations.
       tags:
       - amazon-integration
       - internal
@@ -11828,6 +11866,32 @@ components:
       required:
       - data
       type: object
+    com.patagona.pricemonitor.share.api.PostAuthorizeSellerRequestV3:
+      additionalProperties: false
+      description: Seller to be authorized.
+      properties:
+        sellingPartnerId:
+          description: The identifier for the selling partner seller on Amazon.
+          type: string
+        spapiOauthCode:
+          description: The Login with Amazon (LWA) authorization code that you exchange
+            for an LWA refresh token.
+          type: string
+      required:
+      - sellingPartnerId
+      - spapiOauthCode
+      type: object
+    PostAuthorizeSellerResponseV3ApiResponse:
+      additionalProperties: false
+      example:
+        data:
+          sellerId: 0
+      properties:
+        data:
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PostAuthorizeSellerResponseV3'
+      required:
+      - data
+      type: object
     GetMonitoringSchedulesApiResponse:
       additionalProperties: false
       example:
@@ -12982,6 +13046,18 @@ components:
           type: boolean
       required:
       - authorized
+      type: object
+    com.patagona.pricemonitor.share.api.PostAuthorizeSellerResponseV3:
+      additionalProperties: false
+      description: Successfully authorized seller
+      example:
+        sellerId: 0
+      properties:
+        sellerId:
+          description: The identifier for the authorized seller.
+          type: integer
+      required:
+      - sellerId
       type: object
     com.patagona.pricemonitor.share.api.MonitoringScheduleV3:
       additionalProperties: false
