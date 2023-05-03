@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.6427
+  version: 0.0.6428
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -7412,6 +7412,48 @@ paths:
       tags:
       - internal
       - looker
+  /api/v3/companies/{companyId}/amazon/marketplace:
+    post:
+      operationId: postActivateMarketplaceVendorV3
+      parameters:
+      - description: ID of a company
+        example: 1
+        explode: false
+        in: path
+        name: companyId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PostActivateMarketplaceRequestV3'
+        description: Marketplace of a customer to be activated.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostActivateMarketplaceResponseV3ApiResponse'
+          description: Successfully activated marketplace of a customer in our system.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: |
+            - Specified marketplace already activated.
+            - Invalid marketplace country code is specified.
+            - Given company is not registered with our system. One must register his seller central account with our system.
+      summary: |
+        Activate marketplace of a customer in our system. By activation, it means that our system can
+        write prices back into the customer's Amazon shop.
+      tags:
+      - amazon-integration
+      - internal
   /api/v3/companies/{companyId}/amazon/authorization/status:
     get:
       operationId: getAuthorizationStatusVendorV3
@@ -7432,8 +7474,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetAuthorizationStatusResponseV3ApiResponse'
-          description: Authorization status of a seller on Amazon.
-      summary: Get authorization status of a seller on Amazon.
+          description: Authorization status of a customer on Amazon.
+      summary: Get authorization status of a customer on Amazon.
       tags:
       - amazon-integration
       - internal
@@ -11748,6 +11790,33 @@ components:
       required:
       - data
       type: object
+    com.patagona.pricemonitor.share.api.PostActivateMarketplaceRequestV3:
+      additionalProperties: false
+      description: Payload for activating marketplace of a seller in our system.
+      properties:
+        marketplaceCountryCode:
+          description: Marketplace country code. You can view complete list here.
+            https://developer-docs.amazon.com/sp-api/docs/marketplace-ids. Currently,
+            only Europe as a region is supported.
+          type: string
+        contractId:
+          description: Pricemonitor contract id
+          type: string
+      required:
+      - contractId
+      - marketplaceCountryCode
+      type: object
+    PostActivateMarketplaceResponseV3ApiResponse:
+      additionalProperties: false
+      example:
+        data:
+          activated: true
+      properties:
+        data:
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PostActivateMarketplaceResponseV3'
+      required:
+      - data
+      type: object
     GetAuthorizationStatusResponseV3ApiResponse:
       additionalProperties: false
       example:
@@ -12889,6 +12958,18 @@ components:
           type: string
       required:
       - url
+      type: object
+    com.patagona.pricemonitor.share.api.PostActivateMarketplaceResponseV3:
+      additionalProperties: false
+      description: Activation status of a marketplace of a seller in our system.
+      example:
+        activated: true
+      properties:
+        activated:
+          description: Whether marketplace is activated or not.
+          type: boolean
+      required:
+      - activated
       type: object
     com.patagona.pricemonitor.share.api.GetAuthorizationStatusResponseV3:
       additionalProperties: false
