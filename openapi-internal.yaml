@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.6442
+  version: 0.0.6443
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -5818,6 +5818,7 @@ paths:
             <li> by "productId" (Patagona's internal product id). Allowed values for 'productId' are numerical integer values</li>
           </ul>
           The maximum allowed limit in the pagination is 10000. <br>
+          For better performance, when paginating over all products of a contract, we recommend to use a limit of 10000 products per page.
           Pagination works with respective to the given products query. <br>
           This is most relevant when querying for a set of customerProductId's. <br>
           When the requests are chunked over a set of ids, it is easiest to provide up to 10000 customerProductId's in the query and keep the pagination at start: 0, limit: 10000. <br>
@@ -6311,6 +6312,7 @@ paths:
             <li> by "productId" (Patagona's internal product id). Allowed values for 'productId' are numerical integer values</li>
           </ul>
           The maximum allowed limit in the pagination is 10000. <br>
+          For better performance, when paginating over all products of a contract, we recommend to use a limit of 10000 products per page.
           Pagination works with respective to the given products query. <br>
           This is most relevant when querying for a set of customerProductId's. <br>
           When the requests are chunked over a set of ids, it is easiest to provide up to 10000 customerProductId's in the query and keep the pagination at start: 0, limit: 10000. <br>
