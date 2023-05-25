@@ -63,6 +63,7 @@ Method | HTTP request | Description
 [**get_manufacturer_manufacturer_v2**](InternalApi.md#get_manufacturer_manufacturer_v2) | **GET** /api/2/m/contracts/{contractId} | 
 [**get_manufacturer_v3**](InternalApi.md#get_manufacturer_v3) | **GET** /api/v3/manufacturer/contracts/{contractId} | Get the contract information
 [**get_mappings_vendor_v2**](InternalApi.md#get_mappings_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/productidentifiermapping | 
+[**get_marketplace_activation_status**](InternalApi.md#get_marketplace_activation_status) | **GET** /api/v3/companies/{companyId}/amazon/marketplace/{marketplaceCountryCode}/contracts/{contractId} | Get marketplace activation status of a customer in our system. 
 [**get_monitoring_schedules_manufacturer_v3**](InternalApi.md#get_monitoring_schedules_manufacturer_v3) | **GET** /api/v3/manufacturer/contracts/{contractId}/settings/monitoringschedules | Get all the monitoring schedules for a specified contract.
 [**get_monitoring_schedules_vendor_v3**](InternalApi.md#get_monitoring_schedules_vendor_v3) | **GET** /api/v3/vendor/contracts/{contractId}/settings/monitoringschedules | Get all the monitoring schedules for a specified contract.
 [**get_monitoring_settings_manufacturer_v2**](InternalApi.md#get_monitoring_settings_manufacturer_v2) | **GET** /api/2/m/contracts/{contractId}/settings/monitoring | 
@@ -7261,6 +7262,132 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_marketplace_activation_status**
+> ActivateMarketplaceResponseV3ApiResponse get_marketplace_activation_status(marketplace_country_code, company_id, contract_id)
+
+Get marketplace activation status of a customer in our system. 
+
+### Example
+
+* Basic Authentication (BasicAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.InternalApi(api_client)
+    marketplace_country_code = 'DE' # str | Marketplace country code. You can view complete list here. https://developer-docs.amazon.com/sp-api/docs/marketplace-ids. Currently, only Europe as a region is supported.
+company_id = 1 # int | ID of a company
+contract_id = 'qbcxvb' # str | ID of the contract
+
+    try:
+        # Get marketplace activation status of a customer in our system. 
+        api_response = api_instance.get_marketplace_activation_status(marketplace_country_code, company_id, contract_id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling InternalApi->get_marketplace_activation_status: %s\n" % e)
+```
+
+* Bearer (JWT) Authentication (BearerAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.InternalApi(api_client)
+    marketplace_country_code = 'DE' # str | Marketplace country code. You can view complete list here. https://developer-docs.amazon.com/sp-api/docs/marketplace-ids. Currently, only Europe as a region is supported.
+company_id = 1 # int | ID of a company
+contract_id = 'qbcxvb' # str | ID of the contract
+
+    try:
+        # Get marketplace activation status of a customer in our system. 
+        api_response = api_instance.get_marketplace_activation_status(marketplace_country_code, company_id, contract_id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling InternalApi->get_marketplace_activation_status: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **marketplace_country_code** | **str**| Marketplace country code. You can view complete list here. https://developer-docs.amazon.com/sp-api/docs/marketplace-ids. Currently, only Europe as a region is supported. | 
+ **company_id** | **int**| ID of a company | 
+ **contract_id** | **str**| ID of the contract | 
+
+### Return type
+
+[**ActivateMarketplaceResponseV3ApiResponse**](ActivateMarketplaceResponseV3ApiResponse.md)
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Marketplace activation status. |  -  |
+**400** | - Specified marketplace already activated. - Invalid marketplace country code is specified. - Given company is not registered with our system. One must register his seller central account with our system.  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_monitoring_schedules_manufacturer_v3**
 > GetMonitoringSchedulesApiResponse get_monitoring_schedules_manufacturer_v3(contract_id)
 
@@ -13758,7 +13885,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_activate_marketplace_vendor_v3**
-> PostActivateMarketplaceResponseV3ApiResponse post_activate_marketplace_vendor_v3(company_id, com_patagona_pricemonitor_share_api_post_activate_marketplace_request_v3=com_patagona_pricemonitor_share_api_post_activate_marketplace_request_v3)
+> ActivateMarketplaceResponseV3ApiResponse post_activate_marketplace_vendor_v3(company_id, com_patagona_pricemonitor_share_api_post_activate_marketplace_request_v3=com_patagona_pricemonitor_share_api_post_activate_marketplace_request_v3)
 
 Activate marketplace of a customer in our system. By activation, it means that our system can write prices back into the customer's Amazon shop. 
 
@@ -13861,7 +13988,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PostActivateMarketplaceResponseV3ApiResponse**](PostActivateMarketplaceResponseV3ApiResponse.md)
+[**ActivateMarketplaceResponseV3ApiResponse**](ActivateMarketplaceResponseV3ApiResponse.md)
 
 ### Authorization
 

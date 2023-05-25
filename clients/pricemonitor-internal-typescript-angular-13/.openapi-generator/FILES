@@ -27,6 +27,7 @@ configuration.ts
 encoder.ts
 git_push.sh
 index.ts
+model/activateMarketplaceResponseV3ApiResponse.ts
 model/addCompanyContractApiResponse.ts
 model/amazonBuyboxProductStatsV3ApiResponse.ts
 model/andOfferFilter.ts
@@ -39,6 +40,7 @@ model/apiProduct.ts
 model/bulkedPostProductsApiResponse.ts
 model/callbacks.ts
 model/callbacksPricemonitorCompleted.ts
+model/pricemonitorActivateMarketplaceResponseV3.ts
 model/pricemonitorAdminCompanyV2.ts
 model/pricemonitorAdminContractV2.ts
 model/pricemonitorAmazonBuyboxProductStatsV3.ts
@@ -80,7 +82,6 @@ model/pricemonitorPaginationResponse.ts
 model/pricemonitorPostAccountRequestV3.ts
 model/pricemonitorPostAccountResponseV3.ts
 model/pricemonitorPostActivateMarketplaceRequestV3.ts
-model/pricemonitorPostActivateMarketplaceResponseV3.ts
 model/pricemonitorPostAdminAddDomainBodyV3.ts
 model/pricemonitorPostAdminAddDomainV3.ts
 model/pricemonitorPostAuthorizeSellerRequestV3.ts
@@ -168,7 +169,6 @@ model/pluginRegistration.ts
 model/pluginRegistrationApiResponse.ts
 model/pluginRegistrationEmptyApiResponse.ts
 model/postAccountResponseV3ApiResponse.ts
-model/postActivateMarketplaceResponseV3ApiResponse.ts
 model/postAdminAddDomainV3ApiResponse.ts
 model/postAuthorizeSellerResponseV3ApiResponse.ts
 model/postOfferStatisticsApiResponse.ts

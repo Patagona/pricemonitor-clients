@@ -1,9 +1,10 @@
-# PostActivateMarketplaceResponseV3ApiResponse
+# ComPatagonaPricemonitorShareApiActivateMarketplaceResponseV3
 
+Activation status of a marketplace of a seller in our system.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**ComPatagonaPricemonitorShareApiPostActivateMarketplaceResponseV3**](ComPatagonaPricemonitorShareApiPostActivateMarketplaceResponseV3.md) |  | 
+**activated** | **bool** | Whether marketplace is activated or not. | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

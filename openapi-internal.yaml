@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.6446
+  version: 0.0.6447
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -7439,7 +7439,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PostActivateMarketplaceResponseV3ApiResponse'
+                $ref: '#/components/schemas/ActivateMarketplaceResponseV3ApiResponse'
           description: Successfully activated marketplace of a customer in our system.
         "400":
           content:
@@ -7453,6 +7453,60 @@ paths:
       summary: |
         Activate marketplace of a customer in our system. By activation, it means that our system can
         write prices back into the customer's Amazon shop.
+      tags:
+      - amazon-integration
+      - internal
+  /api/v3/companies/{companyId}/amazon/marketplace/{marketplaceCountryCode}/contracts/{contractId}:
+    get:
+      operationId: getMarketplaceActivationStatus
+      parameters:
+      - description: Marketplace country code. You can view complete list here. https://developer-docs.amazon.com/sp-api/docs/marketplace-ids.
+          Currently, only Europe as a region is supported.
+        example: DE
+        explode: false
+        in: path
+        name: marketplaceCountryCode
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: ID of a company
+        example: 1
+        explode: false
+        in: path
+        name: companyId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActivateMarketplaceResponseV3ApiResponse'
+          description: Marketplace activation status.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: |
+            - Specified marketplace already activated.
+            - Invalid marketplace country code is specified.
+            - Given company is not registered with our system. One must register his seller central account with our system.
+      summary: |
+        Get marketplace activation status of a customer in our system.
       tags:
       - amazon-integration
       - internal
@@ -11846,14 +11900,14 @@ components:
       - contractId
       - marketplaceCountryCode
       type: object
-    PostActivateMarketplaceResponseV3ApiResponse:
+    ActivateMarketplaceResponseV3ApiResponse:
       additionalProperties: false
       example:
         data:
           activated: true
       properties:
         data:
-          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PostActivateMarketplaceResponseV3'
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ActivateMarketplaceResponseV3'
       required:
       - data
       type: object
@@ -13025,7 +13079,7 @@ components:
       required:
       - url
       type: object
-    com.patagona.pricemonitor.share.api.PostActivateMarketplaceResponseV3:
+    com.patagona.pricemonitor.share.api.ActivateMarketplaceResponseV3:
       additionalProperties: false
       description: Activation status of a marketplace of a seller in our system.
       example:
