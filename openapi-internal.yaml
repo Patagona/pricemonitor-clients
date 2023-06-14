@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.6467
+  version: 0.0.6468
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -29,6 +29,29 @@ tags:
 - description: See all of your tasks
   name: tasks
 paths:
+  /api/v3/vendor/contracts/{contractId}/settings/repricingstrategy/history:
+    get:
+      operationId: getStrategyHistory
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetRepricingStrategyHistoryV3ApiResponse'
+          description: List of all strategy versions
+      summary: Get a list of all strategy versions for a contract
+      tags:
+      - strategy
   /api/v3/domains:
     get:
       description: |
@@ -9665,6 +9688,27 @@ components:
       allOf:
       - $ref: '#/components/schemas/GenericTask'
       - $ref: '#/components/schemas/UpdateTaskRequestV2_allOf'
+    GetRepricingStrategyHistoryV3ApiResponse:
+      additionalProperties: false
+      example:
+        data:
+          history:
+          - documentVersionMessage: documentVersionMessage
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            updatedBy: updatedBy
+            version: version
+            documentVersion: 0
+          - documentVersionMessage: documentVersionMessage
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            updatedBy: updatedBy
+            version: version
+            documentVersion: 0
+      properties:
+        data:
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.GetRepricingStrategyHistoryV3Response'
+      required:
+      - data
+      type: object
     GetAllDomainsV3ApiResponse:
       additionalProperties: false
       example:
@@ -12210,6 +12254,62 @@ components:
           type: array
       required:
       - data
+      type: object
+    com.patagona.pricemonitor.share.api.GetRepricingStrategyHistoryV3Response:
+      additionalProperties: false
+      description: Version history of all strategies
+      example:
+        history:
+        - documentVersionMessage: documentVersionMessage
+          updateDate: 2000-01-23T04:56:07.000+00:00
+          updatedBy: updatedBy
+          version: version
+          documentVersion: 0
+        - documentVersionMessage: documentVersionMessage
+          updateDate: 2000-01-23T04:56:07.000+00:00
+          updatedBy: updatedBy
+          version: version
+          documentVersion: 0
+      properties:
+        history:
+          description: contains metadata of all strategies
+          items:
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.StrategyMetadataResponseV3'
+          type: array
+      required:
+      - history
+      type: object
+    com.patagona.pricemonitor.share.api.StrategyMetadataResponseV3:
+      additionalProperties: false
+      description: Metadata used for strategy versioning.
+      example:
+        documentVersionMessage: documentVersionMessage
+        updateDate: 2000-01-23T04:56:07.000+00:00
+        updatedBy: updatedBy
+        version: version
+        documentVersion: 0
+      properties:
+        documentVersion:
+          description: strategy version per contract
+          type: integer
+        documentVersionMessage:
+          description: message provided by user when saving new strategy
+          type: string
+        version:
+          description: schema version of the strategy
+          type: string
+        updateDate:
+          description: timestamp of last strategy update. It needs to be an option
+            to ensure old strategies can be read.
+          format: date-time
+          type: string
+        updatedBy:
+          description: user email of the account that updated the strategy. It needs
+            to be an option to ensure old strategies can be read.
+          type: string
+      required:
+      - documentVersion
+      - version
       type: object
     com.patagona.pricemonitor.share.api.GetAllDomainsV3:
       additionalProperties: false

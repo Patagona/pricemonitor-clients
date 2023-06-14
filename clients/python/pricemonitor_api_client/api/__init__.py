@@ -20,6 +20,7 @@ from pricemonitor_api_client.api.preprocessing_api import PreprocessingApi
 from pricemonitor_api_client.api.pricerecommendations_api import PricerecommendationsApi
 from pricemonitor_api_client.api.products_api import ProductsApi
 from pricemonitor_api_client.api.settings_api import SettingsApi
+from pricemonitor_api_client.api.strategy_api import StrategyApi
 from pricemonitor_api_client.api.tasks_api import TasksApi
 from pricemonitor_api_client.api.undocumented_api import UndocumentedApi
 from pricemonitor_api_client.api.vendor_shop_mapping_api import VendorShopMappingApi

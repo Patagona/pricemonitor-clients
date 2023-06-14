@@ -20,6 +20,7 @@ import { PreprocessingService } from './api/preprocessing.service';
 import { PricerecommendationsService } from './api/pricerecommendations.service';
 import { ProductsService } from './api/products.service';
 import { SettingsService } from './api/settings.service';
+import { StrategyService } from './api/strategy.service';
 import { TasksService } from './api/tasks.service';
 import { UndocumentedService } from './api/undocumented.service';
 import { VendorShopMappingService } from './api/vendorShopMapping.service';

@@ -20,6 +20,7 @@ api/preprocessing.service.ts
 api/pricerecommendations.service.ts
 api/products.service.ts
 api/settings.service.ts
+api/strategy.service.ts
 api/tasks.service.ts
 api/undocumented.service.ts
 api/vendorShopMapping.service.ts
@@ -72,6 +73,7 @@ model/pricemonitorGetAuthorizationStatusResponseV3.ts
 model/pricemonitorGetContractResponseV3.ts
 model/pricemonitorGetContractSettingsResponseV1.ts
 model/pricemonitorGetOfferStatisticsV3.ts
+model/pricemonitorGetRepricingStrategyHistoryV3Response.ts
 model/pricemonitorGetShopsByDomainResponseV3.ts
 model/pricemonitorMonitoringScheduleV3.ts
 model/pricemonitorOfferAttribute.ts
@@ -113,6 +115,7 @@ model/pricemonitorQueryOneOf.ts
 model/pricemonitorQueryRegex.ts
 model/pricemonitorResellerSummaryByDomain.ts
 model/pricemonitorShopV3.ts
+model/pricemonitorStrategyMetadataResponseV3.ts
 model/pricemonitorTag.ts
 model/pricemonitorTagFilteredVendorsRequest.ts
 model/pricemonitorUserCompany.ts
@@ -155,6 +158,7 @@ model/getPriceRecommendationsResponse.ts
 model/getPriceRecommendationsResponsePriceRecommendations.ts
 model/getProductMonitoringStatusStatsVendorV3ApiResponse.ts
 model/getProductMonitoringStatusVendorV3ApiResponse.ts
+model/getRepricingStrategyHistoryV3ApiResponse.ts
 model/getShopsByDomainResponseV3ApiResponse.ts
 model/getVendorShopMappingsApiResponse.ts
 model/logMessage.ts
