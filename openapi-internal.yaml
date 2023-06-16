@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.6470
+  version: 0.0.6471
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -5433,7 +5433,7 @@ paths:
             application/json:
               schema:
                 type: object
-          description: This is a generated entry and needs to be described.
+          description: Delete all strategy versions per provided contract
       tags:
       - internal
       - undocumented
@@ -5450,13 +5450,24 @@ paths:
         schema:
           type: string
         style: simple
+      - example: 5
+        explode: true
+        in: query
+        name: documentVersion
+        required: false
+        schema:
+          format: int32
+          minimum: 1
+          type: integer
+        style: form
       responses:
         "200":
           content:
             application/json:
               schema:
                 type: object
-          description: This is a generated entry and needs to be described.
+          description: In case a document version is provided, get that strategy version.
+            Otherwise get latest strategy for this contract.
       tags:
       - internal
       - undocumented
@@ -5485,7 +5496,7 @@ paths:
             application/json:
               schema:
                 type: object
-          description: This is a generated entry and needs to be described.
+          description: Save a new strategy version
       tags:
       - internal
       - undocumented

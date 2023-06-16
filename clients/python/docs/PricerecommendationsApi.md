@@ -127,7 +127,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | This is a generated entry and needs to be described. |  -  |
+**200** | Delete all strategy versions per provided contract |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -517,7 +517,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_repricing_strategy_vendor_v2**
-> object get_repricing_strategy_vendor_v2(contract_id)
+> object get_repricing_strategy_vendor_v2(contract_id, document_version=document_version)
 
 
 
@@ -557,9 +557,10 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.PricerecommendationsApi(api_client)
     contract_id = 'qbcxvb' # str | ID of the contract
+document_version = 5 # int |  (optional)
 
     try:
-        api_response = api_instance.get_repricing_strategy_vendor_v2(contract_id)
+        api_response = api_instance.get_repricing_strategy_vendor_v2(contract_id, document_version=document_version)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling PricerecommendationsApi->get_repricing_strategy_vendor_v2: %s\n" % e)
@@ -599,9 +600,10 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.PricerecommendationsApi(api_client)
     contract_id = 'qbcxvb' # str | ID of the contract
+document_version = 5 # int |  (optional)
 
     try:
-        api_response = api_instance.get_repricing_strategy_vendor_v2(contract_id)
+        api_response = api_instance.get_repricing_strategy_vendor_v2(contract_id, document_version=document_version)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling PricerecommendationsApi->get_repricing_strategy_vendor_v2: %s\n" % e)
@@ -612,6 +614,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **contract_id** | **str**| ID of the contract | 
+ **document_version** | **int**|  | [optional] 
 
 ### Return type
 
@@ -629,7 +632,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | This is a generated entry and needs to be described. |  -  |
+**200** | In case a document version is provided, get that strategy version. Otherwise get latest strategy for this contract. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -866,7 +869,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | This is a generated entry and needs to be described. |  -  |
+**200** | Save a new strategy version |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
