@@ -17,7 +17,7 @@ jobs:
     defaults:
       run:
         working-directory: clients/${{ matrix.angular_client_dir }}/
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
