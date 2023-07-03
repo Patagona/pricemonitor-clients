@@ -28,8 +28,9 @@ jobs:
     # https://www.automat-it.com/post/using-github-actions-with-aws-iam-roles
     # https://github.com/aws-actions/configure-aws-credentials/blob/master/action.yml
     - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v1.6.1
+      uses: aws-actions/configure-aws-credentials@v2.2.0
       with:
+        # Role used here: pat-pricemonitorclients-p-iam-githubactions-1a3v
         role-to-assume: ${{secrets.AWS_ROLE_TO_ASSUME}}
         role-session-name: pricemonitor-client-github-action
         role-duration-seconds: 900 # the ttl of the session, in seconds.
