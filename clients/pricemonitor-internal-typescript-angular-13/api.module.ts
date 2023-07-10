@@ -18,6 +18,7 @@ import { PluginregistrationService } from './api/pluginregistration.service';
 import { PreprocessingService } from './api/preprocessing.service';
 import { PricerecommendationsService } from './api/pricerecommendations.service';
 import { ProductsService } from './api/products.service';
+import { ScenariostrategyService } from './api/scenariostrategy.service';
 import { SettingsService } from './api/settings.service';
 import { StrategyService } from './api/strategy.service';
 import { TasksService } from './api/tasks.service';

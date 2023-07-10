@@ -19,6 +19,7 @@ api/pluginregistration.service.ts
 api/preprocessing.service.ts
 api/pricerecommendations.service.ts
 api/products.service.ts
+api/scenariostrategy.service.ts
 api/settings.service.ts
 api/strategy.service.ts
 api/tasks.service.ts
@@ -114,6 +115,7 @@ model/pricemonitorQueryOffersOfShopRequestV3.ts
 model/pricemonitorQueryOneOf.ts
 model/pricemonitorQueryRegex.ts
 model/pricemonitorResellerSummaryByDomain.ts
+model/pricemonitorScenarioStrategyMetadataResponse.ts
 model/pricemonitorShopV3.ts
 model/pricemonitorStrategyMetadataResponseV3.ts
 model/pricemonitorTag.ts
@@ -209,6 +211,9 @@ model/queryProductsByFilterVendorV3ApiResponse.ts
 model/queryProductsManufacturerV3ApiResponse.ts
 model/queryProductsRequestV3.ts
 model/queryProductsVendorV3ApiResponse.ts
+model/scenarioStrategyMetadataResponseApiResponse.ts
+model/scenarioStrategyResponse.ts
+model/scenarioStrategyResponseData.ts
 model/shopRank.ts
 model/tag.ts
 model/tagInput.ts

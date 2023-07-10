@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.6492
+  version: 0.0.6493
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -52,6 +52,70 @@ paths:
       summary: Get a list of all strategy versions for a contract
       tags:
       - strategy
+  /api/v3/vendor/contracts/{contractId}/settings/pricingstrategies/scenarios:
+    get:
+      operationId: getAllScenariosMetadata
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ScenarioStrategyMetadataResponseApiResponse'
+                type: array
+          description: List of all strategy scenarios metadata
+      summary: Get a list of all strategy scenarios metadata for a contract
+      tags:
+      - scenariostrategy
+      - internal
+  /api/v3/vendor/contracts/{contractId}/settings/pricingstrategies/scenarios/{scenarioId}:
+    get:
+      operationId: getScenarioById
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: ID of the required strategy scenario
+        explode: false
+        in: path
+        name: scenarioId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScenarioStrategyResponse'
+          description: A strategy scenario
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: Strategy scenario with the provided Id was not found.
+      summary: Get a strategy scenario with the provided scenario Id
+      tags:
+      - scenariostrategy
+      - internal
   /api/v3/domains:
     get:
       description: |
@@ -8524,6 +8588,21 @@ components:
         features and are not covered by openapi. If you need to use filter expressions
         please contract us.
       type: object
+    PricingStrategy:
+      description: This is a placeholder for a pricing strategy. These are using advanced
+        features and are not covered by openapi. If you need to work with pricing
+        strategies please contract us.
+      type: object
+    ScenarioTitle:
+      description: Title of the scenario strategy. Should not be empty and a maximum
+        of 50 chars is allowed
+      type: string
+    ScenarioDescription:
+      description: Description of the scenario strategy. Maximum of 1000 chars allowed
+      type: string
+    ScenarioStrategySchemaVersion:
+      description: Version of the schema the scenario strategy is encoded in
+      type: integer
     ApiContract:
       example:
         contractType: contractType
@@ -9386,6 +9465,24 @@ components:
       required:
       - pagination
       - range
+    ScenarioStrategyResponse:
+      description: Response body which contains the strategy scenario and relevant
+        metadata
+      example:
+        data:
+          updateDate: 2000-01-23T04:56:07.000+00:00
+          schemaVersion: 6
+          updatedBy: updatedBy
+          createdBy: createdBy
+          description: description
+          id: 0
+          title: title
+          strategy: '{}'
+          creationDate: 2000-01-23T04:56:07.000+00:00
+      properties:
+        data:
+          $ref: '#/components/schemas/ScenarioStrategyResponse_data'
+      type: object
     DeleteProductsApiResponse:
       example:
         data:
@@ -9717,6 +9814,34 @@ components:
       properties:
         data:
           $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.GetRepricingStrategyHistoryV3Response'
+      required:
+      - data
+      type: object
+    ScenarioStrategyMetadataResponseApiResponse:
+      additionalProperties: false
+      example:
+        data:
+        - updateDate: 2000-01-23T04:56:07.000+00:00
+          schemaVersion: 6
+          updatedBy: updatedBy
+          createdBy: createdBy
+          description: description
+          id: 0.8008281904610115
+          creationDate: 2000-01-23T04:56:07.000+00:00
+          title: title
+        - updateDate: 2000-01-23T04:56:07.000+00:00
+          schemaVersion: 6
+          updatedBy: updatedBy
+          createdBy: createdBy
+          description: description
+          id: 0.8008281904610115
+          creationDate: 2000-01-23T04:56:07.000+00:00
+          title: title
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ScenarioStrategyMetadataResponse'
+          type: array
       required:
       - data
       type: object
@@ -12322,6 +12447,56 @@ components:
       - documentVersion
       - version
       type: object
+    com.patagona.pricemonitor.share.api.ScenarioStrategyMetadataResponse:
+      additionalProperties: false
+      description: Metadata of a scenario strategy in an API response. Here the createdBy/updatedBy
+        fields are e-mails, in [[com.patagona.pricemonitor.share.strategies.ScenarioStrategyMetadata]]
+        these refer to ids
+      example:
+        updateDate: 2000-01-23T04:56:07.000+00:00
+        schemaVersion: 6
+        updatedBy: updatedBy
+        createdBy: createdBy
+        description: description
+        id: 0.8008281904610115
+        creationDate: 2000-01-23T04:56:07.000+00:00
+        title: title
+      properties:
+        description:
+          description: optional description of the scenario
+          type: string
+        id:
+          description: unique identifier of the strategy scenario
+          type: number
+        updateDate:
+          description: timestamp of last strategy update
+          format: date-time
+          type: string
+        createdBy:
+          description: e-mail of the user creating the strategy
+          type: string
+        creationDate:
+          description: timestamp of when the strategy was created
+          format: date-time
+          type: string
+        title:
+          description: up to 50 characters, has to be unique for one contract
+          type: string
+        schemaVersion:
+          description: schema version of the strategy
+          type: integer
+        updatedBy:
+          description: e-mail of the user that last updated the strategy
+          type: string
+      required:
+      - createdBy
+      - creationDate
+      - id
+      - schemaVersion
+      - title
+      - updateDate
+      - updatedBy
+      type: object
     com.patagona.pricemonitor.share.api.GetAllDomainsV3:
       additionalProperties: false
       description: Response body containing domain data
@@ -13566,6 +13741,51 @@ components:
         recommendedPrice:
           format: double
           type: number
+    ScenarioStrategyResponse_data:
+      example:
+        updateDate: 2000-01-23T04:56:07.000+00:00
+        schemaVersion: 6
+        updatedBy: updatedBy
+        createdBy: createdBy
+        description: description
+        id: 0
+        title: title
+        strategy: '{}'
+        creationDate: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: Id of the scenario strategy.
+          type: integer
+        title:
+          description: Title of the scenario strategy. Should not be empty and a maximum
+            of 50 chars is allowed
+          type: string
+        description:
+          description: Description of the scenario strategy. Maximum of 1000 chars
+            allowed
+          type: string
+        schemaVersion:
+          description: Version of the schema the scenario strategy is encoded in
+          type: integer
+        strategy:
+          description: This is a placeholder for a pricing strategy. These are using
+            advanced features and are not covered by openapi. If you need to work
+            with pricing strategies please contract us.
+          type: object
+        creationDate:
+          description: Timestamp of creating the strategy scenario
+          format: date-time
+          type: string
+        createdBy:
+          description: Email address of the user who created the strategy scenario
+          type: string
+        updateDate:
+          description: Timestamp of the last update operation
+          format: date-time
+          type: string
+        updatedBy:
+          description: Email address of the user who last updated the strategy scenario
+          type: string
     DeleteProductsApiResponse_data:
       example:
         deleted: 0
