@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.6494
+  version: 0.0.6495
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -75,6 +75,40 @@ paths:
                 type: array
           description: List of all strategy scenarios metadata
       summary: Get a list of all strategy scenarios metadata for a contract
+      tags:
+      - scenariostrategy
+      - internal
+    post:
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostScenarioStrategyRequest'
+        description: The scenario strategy to be stored. Including the necessary metadata.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostScenarioStrategyResponseApiResponse'
+          description: A new scenario strategy was added
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: Strategy must be valid and consistent with the schema version.
+            Required fields need to be filled.
       tags:
       - scenariostrategy
       - internal
@@ -9482,6 +9516,34 @@ components:
       properties:
         data:
           $ref: '#/components/schemas/ScenarioStrategyResponse_data'
+    PostScenarioStrategyRequest:
+      description: Request body which contains the strategy and relevant metadata
+      example:
+        schemaVersion: 0
+        description: description
+        title: title
+        strategy: '{}'
+      properties:
+        title:
+          description: Title of the scenario strategy. Should not be empty and a maximum
+            of 50 chars is allowed
+          type: string
+        description:
+          description: Description of the scenario strategy. Maximum of 1000 chars
+            allowed
+          type: string
+        schemaVersion:
+          description: Version of the schema the scenario strategy is encoded in
+          type: integer
+        strategy:
+          description: This is a placeholder for a pricing strategy. These are using
+            advanced features and are not covered by openapi. If you need to work
+            with pricing strategies please contract us.
+          type: object
+      required:
+      - schemaVersion
+      - strategy
+      - title
       type: object
     DeleteProductsApiResponse:
       example:
@@ -9842,6 +9904,17 @@ components:
           items:
             $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ScenarioStrategyMetadataResponse'
           type: array
+      required:
+      - data
+      type: object
+    PostScenarioStrategyResponseApiResponse:
+      additionalProperties: false
+      example:
+        data:
+          id: 0.8008281904610115
+      properties:
+        data:
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PostScenarioStrategyResponse'
       required:
       - data
       type: object
@@ -12496,6 +12569,18 @@ components:
       - title
       - updateDate
       - updatedBy
+      type: object
+    com.patagona.pricemonitor.share.api.PostScenarioStrategyResponse:
+      additionalProperties: false
+      description: Response of a successful post request
+      example:
+        id: 0.8008281904610115
+      properties:
+        id:
+          description: unique identifier of the strategy scenario
+          type: number
+      required:
+      - id
       type: object
     com.patagona.pricemonitor.share.api.GetAllDomainsV3:
       additionalProperties: false

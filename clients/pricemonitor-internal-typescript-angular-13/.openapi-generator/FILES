@@ -93,6 +93,7 @@ model/pricemonitorPostCustomerOrdersRequestV2.ts
 model/pricemonitorPostEmbedSSOUrlRequestV3.ts
 model/pricemonitorPostMonitoringScheduleRequestV3.ts
 model/pricemonitorPostNewPasswordRequest.ts
+model/pricemonitorPostScenarioStrategyResponse.ts
 model/pricemonitorPostVendorShopMappingRequestV3.ts
 model/pricemonitorPostVendorsByDomainResponse.ts
 model/pricemonitorPriceDumpingStatsRequest.ts
@@ -187,6 +188,8 @@ model/postProductsApiResponse.ts
 model/postProductsApiResponseData.ts
 model/postProductsIdentifyingAttribute.ts
 model/postProductsRequest.ts
+model/postScenarioStrategyRequest.ts
+model/postScenarioStrategyResponseApiResponse.ts
 model/priceRecommendationApiQueryV2.ts
 model/priceRecommendationQuerySortOrderV2.ts
 model/product.ts
