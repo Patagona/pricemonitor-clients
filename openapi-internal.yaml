@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.6505
+  version: 0.0.6506
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -31,6 +31,7 @@ tags:
 paths:
   /api/v3/vendor/contracts/{contractId}/settings/repricingstrategy/history:
     get:
+      deprecated: true
       operationId: getStrategyHistory
       parameters:
       - description: ID of the contract
@@ -47,9 +48,31 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GetRepricingStrategyHistoryV3ApiResponse'
-          description: List of all strategy versions
-      summary: Get a list of all strategy versions for a contract
+                $ref: '#/components/schemas/GetPricingStrategyHistoryApiResponse'
+          description: List of metadata of all strategy versions
+      summary: Get a list of metadata of all strategy versions for a contract
+      tags:
+      - strategy
+  /api/v3/vendor/contracts/{contractId}/settings/pricingstrategies/history:
+    get:
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetPricingStrategyHistoryApiResponse'
+          description: List of metadata of all strategy versions
+      summary: Get a list of metadata of all strategy versions for a contract
       tags:
       - strategy
   /api/v3/vendor/contracts/{contractId}/settings/pricingstrategies/scenarios:
@@ -9858,7 +9881,7 @@ components:
       allOf:
       - $ref: '#/components/schemas/GenericTask'
       - $ref: '#/components/schemas/UpdateTaskRequestV2_allOf'
-    GetRepricingStrategyHistoryV3ApiResponse:
+    GetPricingStrategyHistoryApiResponse:
       additionalProperties: false
       example:
         data:
@@ -9875,7 +9898,7 @@ components:
             documentVersion: 0
       properties:
         data:
-          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.GetRepricingStrategyHistoryV3Response'
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.GetPricingStrategyHistoryResponse'
       required:
       - data
       type: object
@@ -12464,7 +12487,7 @@ components:
       required:
       - data
       type: object
-    com.patagona.pricemonitor.share.api.GetRepricingStrategyHistoryV3Response:
+    com.patagona.pricemonitor.share.api.GetPricingStrategyHistoryResponse:
       additionalProperties: false
       description: Version history of all strategies
       example:

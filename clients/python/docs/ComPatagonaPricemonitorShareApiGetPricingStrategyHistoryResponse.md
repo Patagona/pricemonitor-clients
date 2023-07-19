@@ -1,4 +1,4 @@
-# ComPatagonaPricemonitorShareApiGetRepricingStrategyHistoryV3Response
+# ComPatagonaPricemonitorShareApiGetPricingStrategyHistoryResponse
 
 Version history of all strategies
 ## Properties

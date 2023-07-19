@@ -74,7 +74,7 @@ model/pricemonitorGetAuthorizationStatusResponseV3.ts
 model/pricemonitorGetContractResponseV3.ts
 model/pricemonitorGetContractSettingsResponseV1.ts
 model/pricemonitorGetOfferStatisticsV3.ts
-model/pricemonitorGetRepricingStrategyHistoryV3Response.ts
+model/pricemonitorGetPricingStrategyHistoryResponse.ts
 model/pricemonitorGetShopsByDomainResponseV3.ts
 model/pricemonitorMonitoringScheduleV3.ts
 model/pricemonitorOfferAttribute.ts
@@ -159,9 +159,9 @@ model/getPriceRecommendationApiResponse.ts
 model/getPriceRecommendationHistoryApiResponse.ts
 model/getPriceRecommendationsResponse.ts
 model/getPriceRecommendationsResponsePriceRecommendations.ts
+model/getPricingStrategyHistoryApiResponse.ts
 model/getProductMonitoringStatusStatsVendorV3ApiResponse.ts
 model/getProductMonitoringStatusVendorV3ApiResponse.ts
-model/getRepricingStrategyHistoryV3ApiResponse.ts
 model/getShopsByDomainResponseV3ApiResponse.ts
 model/getVendorShopMappingsApiResponse.ts
 model/logMessage.ts
