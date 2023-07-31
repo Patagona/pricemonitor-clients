@@ -12,7 +12,6 @@ Method | HTTP request | Description
 [**api_v3_manufacturer_contracts_contract_id_offers_stats_query_post**](InternalApi.md#api_v3_manufacturer_contracts_contract_id_offers_stats_query_post) | **POST** /api/v3/manufacturer/contracts/{contractId}/offers/stats/query | 
 [**api_v3_vendor_contracts_contract_id_offers_shop_query_post**](InternalApi.md#api_v3_vendor_contracts_contract_id_offers_shop_query_post) | **POST** /api/v3/vendor/contracts/{contractId}/offers/shop/query | 
 [**api_v3_vendor_contracts_contract_id_offers_shops_get**](InternalApi.md#api_v3_vendor_contracts_contract_id_offers_shops_get) | **GET** /api/v3/vendor/contracts/{contractId}/offers/shops | Returns all shops which have at least one offer for a given time range per domain.
-[**api_v3_vendor_contracts_contract_id_offers_stats_query_post**](InternalApi.md#api_v3_vendor_contracts_contract_id_offers_stats_query_post) | **POST** /api/v3/vendor/contracts/{contractId}/offers/stats/query | 
 [**api_v3_vendor_contracts_contract_id_settings_pricingstrategies_scenarios_post**](InternalApi.md#api_v3_vendor_contracts_contract_id_settings_pricingstrategies_scenarios_post) | **POST** /api/v3/vendor/contracts/{contractId}/settings/pricingstrategies/scenarios | 
 [**controlpanel_api_companies_get**](InternalApi.md#controlpanel_api_companies_get) | **GET** /controlpanel/api/companies | Get a list of all companies
 [**controlpanel_api_v3_domains_post**](InternalApi.md#controlpanel_api_v3_domains_post) | **POST** /controlpanel/api/v3/domains | Add a new domain
@@ -130,7 +129,7 @@ Method | HTTP request | Description
 [**post_mappings_vendor_v2**](InternalApi.md#post_mappings_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/productidentifiermapping | 
 [**post_monitoring_schedule_manufacturer_v3**](InternalApi.md#post_monitoring_schedule_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/settings/monitoringschedules | Add a monitoring schedule for a given contract.
 [**post_monitoring_schedule_vendor_v3**](InternalApi.md#post_monitoring_schedule_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/settings/monitoringschedules | Add a monitoring schedule for a given contract.
-[**post_offers_in_a_bulk_vendor_v2**](InternalApi.md#post_offers_in_a_bulk_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/offers | 
+[**post_offer_statistics_vendor_query**](InternalApi.md#post_offer_statistics_vendor_query) | **POST** /api/v3/vendor/contracts/{contractId}/offers/stats/query | 
 [**post_offers_vendor_v2**](InternalApi.md#post_offers_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/offers/{productId} | 
 [**post_vendor_shop_mapping_manufacturer_v3**](InternalApi.md#post_vendor_shop_mapping_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/vendors | Add a new vendor for a given contract and associate shops with the given vendor.
 [**prices_by_day_by_product_id_manufacturer_v2**](InternalApi.md#prices_by_day_by_product_id_manufacturer_v2) | **POST** /api/2/m/contracts/{contractId}/result/pricesbyday/productid/{productId} | 
@@ -1159,129 +1158,6 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Shops which have at least one offer for a given time range per domain. |  -  |
 **400** | Specified time range is invalid (&gt; 7 days). |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_v3_vendor_contracts_contract_id_offers_stats_query_post**
-> PostOfferStatisticsApiResponse api_v3_vendor_contracts_contract_id_offers_stats_query_post(contract_id, post_offer_statistics_request)
-
-
-
-This operation is used to get offer statistics (e.g. offer count, average price) grouped by product and domain. Warning: This endpoint contains complex query structure and will be replaced in the future. Please note that offer statistics can only be computed for at maximum 2500 products at a time.
-
-### Example
-
-* Basic Authentication (BasicAuth):
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: BasicAuth
-configuration = pricemonitor_api_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = pricemonitor_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.InternalApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-post_offer_statistics_request = pricemonitor_api_client.PostOfferStatisticsRequest() # PostOfferStatisticsRequest | 
-
-    try:
-        api_response = api_instance.api_v3_vendor_contracts_contract_id_offers_stats_query_post(contract_id, post_offer_statistics_request)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling InternalApi->api_v3_vendor_contracts_contract_id_offers_stats_query_post: %s\n" % e)
-```
-
-* Bearer (JWT) Authentication (BearerAuth):
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: BasicAuth
-configuration = pricemonitor_api_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = pricemonitor_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.InternalApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-post_offer_statistics_request = pricemonitor_api_client.PostOfferStatisticsRequest() # PostOfferStatisticsRequest | 
-
-    try:
-        api_response = api_instance.api_v3_vendor_contracts_contract_id_offers_stats_query_post(contract_id, post_offer_statistics_request)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling InternalApi->api_v3_vendor_contracts_contract_id_offers_stats_query_post: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
- **post_offer_statistics_request** | [**PostOfferStatisticsRequest**](PostOfferStatisticsRequest.md)|  | 
-
-### Return type
-
-[**PostOfferStatisticsApiResponse**](PostOfferStatisticsApiResponse.md)
-
-### Authorization
-
-[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Returns a list of offer statistics per product. |  -  |
-**400** | Returned in case of unparsable request body JSON or unsupported filter. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -15346,10 +15222,12 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **post_offers_in_a_bulk_vendor_v2**
-> object post_offers_in_a_bulk_vendor_v2(contract_id, body=body)
+# **post_offer_statistics_vendor_query**
+> PostOfferStatisticsApiResponse post_offer_statistics_vendor_query(contract_id, post_offer_statistics_request)
 
 
+
+This operation is used to get offer statistics (e.g. offer count, average price) grouped by product and domain.  Warning: This endpoint contains complex filter structure and will be replaced in the future. Currently, we only allow filtering by a list of internal pricemonitor product ids. Please note that offer statistics can only be computed for at **maximum 2500** products at a time.  To use the example request body from below, you have to adjust the `ownShopNames`, the `range` and `filter.right.value`. Where `filter.right.value` has to be a list of internal pricemonitor product ids corresponding to the `contractId` provided as part of the URL.  All prices will be with or without delivery costs depending on the `includeDeliveryCosts` parameter in the body. 
 
 ### Example
 
@@ -15387,13 +15265,13 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.InternalApi(api_client)
     contract_id = 'qbcxvb' # str | ID of the contract
-body = None # object | This is a generated entry and needs to be described. (optional)
+post_offer_statistics_request = pricemonitor_api_client.PostOfferStatisticsRequest() # PostOfferStatisticsRequest | 
 
     try:
-        api_response = api_instance.post_offers_in_a_bulk_vendor_v2(contract_id, body=body)
+        api_response = api_instance.post_offer_statistics_vendor_query(contract_id, post_offer_statistics_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling InternalApi->post_offers_in_a_bulk_vendor_v2: %s\n" % e)
+        print("Exception when calling InternalApi->post_offer_statistics_vendor_query: %s\n" % e)
 ```
 
 * Bearer (JWT) Authentication (BearerAuth):
@@ -15430,13 +15308,13 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.InternalApi(api_client)
     contract_id = 'qbcxvb' # str | ID of the contract
-body = None # object | This is a generated entry and needs to be described. (optional)
+post_offer_statistics_request = pricemonitor_api_client.PostOfferStatisticsRequest() # PostOfferStatisticsRequest | 
 
     try:
-        api_response = api_instance.post_offers_in_a_bulk_vendor_v2(contract_id, body=body)
+        api_response = api_instance.post_offer_statistics_vendor_query(contract_id, post_offer_statistics_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling InternalApi->post_offers_in_a_bulk_vendor_v2: %s\n" % e)
+        print("Exception when calling InternalApi->post_offer_statistics_vendor_query: %s\n" % e)
 ```
 
 ### Parameters
@@ -15444,11 +15322,11 @@ body = None # object | This is a generated entry and needs to be described. (opt
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **contract_id** | **str**| ID of the contract | 
- **body** | **object**| This is a generated entry and needs to be described. | [optional] 
+ **post_offer_statistics_request** | [**PostOfferStatisticsRequest**](PostOfferStatisticsRequest.md)|  | 
 
 ### Return type
 
-**object**
+[**PostOfferStatisticsApiResponse**](PostOfferStatisticsApiResponse.md)
 
 ### Authorization
 
@@ -15462,7 +15340,8 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | This is a generated entry and needs to be described. |  -  |
+**200** | Returns a list of offer statistics per product. ## How to use this endpoint&#39;s result to get Total Market statistics ### Minimum Price To calculate the minimum price in the total market, you have to take the minimum of the &#x60;minPrice&#x60; of each domain. In the example below, both products have the same min prices: &#x60;min(16.00,7.99) &#x3D; 7.99&#x60;. ### Average Price To calculate the average price in the total market, you have to calculate a **weighted average**, weighing the average price of each domain by its offer count. In the example below we get different results for the average price in the total market for product id &#x60;1001&#x60; and &#x60;1002&#x60; even though they have the same average price in each domain. This is due to the different offer counts:    - product id &#x60;1001&#x60;: &#x60;(20.00 * 4 + 10.00 * 12) / (4 + 12) &#x3D; 12.50&#x60;   - product id &#x60;1002&#x60;: &#x60;(20.00 * 12 + 10.00 * 4) / (12 + 4) &#x3D; 17.50&#x60;  ### Offer Count The offer count of one product in the total market is the sum of the offer counts for all its domains. In the example below, both products would have an offer count of &#x60;12 + 4 &#x3D; 16&#x60;. ### Market Position The market position of a product generally **can not be deduced** from the data provided in this endpoint.  |  -  |
+**400** | Returned in case of unparsable request body JSON or unsupported filter. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

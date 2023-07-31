@@ -47,6 +47,8 @@ model/pricemonitorAdminCompanyV2.ts
 model/pricemonitorAdminContractV2.ts
 model/pricemonitorAmazonBuyboxProductStatsV3.ts
 model/pricemonitorApiOffer.ts
+model/pricemonitorApiOfferV2.ts
+model/pricemonitorApiOfferV2Attributes.ts
 model/pricemonitorApiPriceRecommendation.ts
 model/pricemonitorApiProduct.ts
 model/pricemonitorApiProductV3.ts
@@ -93,6 +95,7 @@ model/pricemonitorPostCustomerOrdersRequestV2.ts
 model/pricemonitorPostEmbedSSOUrlRequestV3.ts
 model/pricemonitorPostMonitoringScheduleRequestV3.ts
 model/pricemonitorPostNewPasswordRequest.ts
+model/pricemonitorPostProductOfferRequest.ts
 model/pricemonitorPostScenarioStrategyResponse.ts
 model/pricemonitorPostVendorShopMappingRequestV3.ts
 model/pricemonitorPostVendorsByDomainResponse.ts
@@ -180,6 +183,8 @@ model/postAdminAddDomainV3ApiResponse.ts
 model/postAuthorizeSellerResponseV3ApiResponse.ts
 model/postOfferStatisticsApiResponse.ts
 model/postOfferStatisticsRequest.ts
+model/postOffersResponse.ts
+model/postOffersResponseData.ts
 model/postOrdersBulkApiResponse.ts
 model/postOrdersBulkApiResponseData.ts
 model/postOrdersBulkApiResponseData1.ts

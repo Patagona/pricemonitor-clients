@@ -3,8 +3,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**average_price** | **float** | The average price of the offers | 
-**min_price** | **float** | The lowest price of the offers | 
+**average_price** | **float** | The average price of the offers, always be provided with two decimal places | 
+**min_price** | **float** | The lowest price of the offers, always be provided with two decimal places | 
 **offer_count** | **int** | The number of the found offers | 
 **own_position** | [**ShopRank**](ShopRank.md) |  | [optional] 
 

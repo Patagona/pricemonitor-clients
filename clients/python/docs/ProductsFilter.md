@@ -1,6 +1,6 @@
 # ProductsFilter
 
-Specific filter for certain products
+Filter product statistics by a list of allowed internal pricemonitor product ids
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

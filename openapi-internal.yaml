@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.6510
+  version: 0.0.6519
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -2087,10 +2087,15 @@ paths:
       - products
   /api/v3/vendor/contracts/{contractId}/offers/stats/query:
     post:
-      description: 'This operation is used to get offer statistics (e.g. offer count,
-        average price) grouped by product and domain. Warning: This endpoint contains
-        complex query structure and will be replaced in the future. Please note that
-        offer statistics can only be computed for at maximum 2500 products at a time.'
+      description: |
+        This operation is used to get offer statistics (e.g. offer count, average price) grouped by product and domain.
+
+        Warning: This endpoint contains complex filter structure and will be replaced in the future. Currently, we only allow filtering by a list of internal pricemonitor product ids. Please note that offer statistics can only be computed for at **maximum 2500** products at a time.
+
+        To use the example request body from below, you have to adjust the `ownShopNames`, the `range` and `filter.right.value`. Where `filter.right.value` has to be a list of internal pricemonitor product ids corresponding to the `contractId` provided as part of the URL.
+
+        All prices will be with or without delivery costs depending on the `includeDeliveryCosts` parameter in the body.
+      operationId: postOfferStatisticsVendorQuery
       parameters:
       - description: ID of the contract
         example: qbcxvb
@@ -2113,7 +2118,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PostOfferStatisticsApiResponse'
-          description: Returns a list of offer statistics per product.
+          description: |
+            Returns a list of offer statistics per product.
+            ## How to use this endpoint's result to get Total Market statistics
+            ### Minimum Price
+            To calculate the minimum price in the total market, you have to take the minimum of the `minPrice` of each domain. In the example below, both products have the same min prices: `min(16.00,7.99) = 7.99`.
+            ### Average Price
+            To calculate the average price in the total market, you have to calculate a **weighted average**, weighing the average price of each domain by its offer count. In the example below we get different results for the average price in the total market for product id `1001` and `1002` even though they have the same average price in each domain. This is due to the different offer counts:
+
+              - product id `1001`: `(20.00 * 4 + 10.00 * 12) / (4 + 12) = 12.50`
+              - product id `1002`: `(20.00 * 12 + 10.00 * 4) / (12 + 4) = 17.50`
+
+            ### Offer Count
+            The offer count of one product in the total market is the sum of the offer counts for all its domains. In the example below, both products would have an offer count of `12 + 4 = 16`.
+            ### Market Position
+            The market position of a product generally **can not be deduced** from the data provided in this endpoint.
         "400":
           content:
             application/json:
@@ -4553,6 +4572,16 @@ paths:
       - offers
   /api/2/v/contracts/{contractId}/offers:
     post:
+      description: |
+        This endpoint can be used to provide external offers to Pricemonitor. It's a bulk endpoint which accepts an array of individual POST offers requests each based on a "snapshot" - a unique combination of product, domain, and timestamp for a list of offers.
+        Please note the following consistency checks performed before offers are stored:
+        1. Offers can only be stored if the corresponding products exist in the contract.
+        2. Offers can only be stored if the provided domain is set for the contract.
+        3. Offers can only be stored if they are more recent than existing offers. This means that only newer snapshots are eligible for storage.
+        4. Offers can only be stored if the currency is consistent. In other words, a single domain must use only one currency.
+        5. Duplicated individual POST offers requests are stored only once.
+        6. If different offers are provided for the same snapshots, then all conflicting snapshots will be rejected.
+        7. An individual POST offers request may be rejected if the offer ID is not unique.
       operationId: postOffersInABulkVendorV2
       parameters:
       - description: ID of the contract
@@ -4568,18 +4597,29 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-        description: This is a generated entry and needs to be described.
+              items:
+                $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PostProductOfferRequest'
+              type: array
+        description: List of individual POST offers requests which should be added
+          in bulk.
+        required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                type: object
-          description: This is a generated entry and needs to be described.
+                $ref: '#/components/schemas/PostOffersResponse'
+          description: |
+            The server understood and processed the request. Offers were processed, but not necessarily stored successfully. The 'data' field in the response body contains a detailed report of the operation outcome for each individual POST offers requests. Each item in the 'data' array is **either** a 'data' object with value true (indicating successful storage), or an ApiErrorResponse (indicating a storage failure).
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: |
+            The server could not understand the request due to invalid syntax. For example, a required field might be missing in the request body.
+      summary: Add offers in bulk
       tags:
-      - internal
-      - undocumented
       - offers
   /api/2/v/contracts/{contractId}/offers/{productId}:
     post:
@@ -9261,10 +9301,17 @@ components:
     QueryProductsRequestV3:
       example:
         filter:
-          comparison: StringInSequence
-          left: '{}'
-          right: '{}'
           type: ComparisonFilter
+          left:
+            type: StringValueProvider
+            attributeName: productId
+          right:
+            type: SequenceOfStringConstantValueProvider
+            value:
+            - 1001
+            - 1002
+          comparison:
+            type: StringInSequence
         pagination:
           limit: 0
           start: 6
@@ -9278,30 +9325,51 @@ components:
     PostOfferStatisticsRequest:
       example:
         filter:
-          comparison: StringInSequence
-          left: '{}'
-          right: '{}'
           type: ComparisonFilter
+          left:
+            type: StringValueProvider
+            attributeName: productId
+          right:
+            type: SequenceOfStringConstantValueProvider
+            value:
+            - 1001
+            - 1002
+          comparison:
+            type: StringInSequence
         ownShopNames:
-          key:
-          - ownShopNames
-          - ownShopNames
+          ebay.de:
+          - myAwesomeShop.de
+          - myAwesomeShop24.de
+          google.de:
+          - myAwesomeShop.de
+          - myAwesomeShop24.de
         range:
-          start: 2000-01-23T04:56:07.000+00:00
-          end: 2000-01-23T04:56:07.000+00:00
-        includeDeliveryCosts: true
+          start: 2018-04-04T13:46:13Z
+          end: 2018-04-06T13:46:13Z
+        includeDeliveryCosts: false
       properties:
         filter:
           $ref: '#/components/schemas/ProductsFilter'
         includeDeliveryCosts:
+          example: false
           type: boolean
         ownShopNames:
           additionalProperties:
+            example:
+            - myAwesomeShop.de
+            - myAwesomeShop24.de
             items:
               type: string
             type: array
           description: Providing own shops names enables calculating shop positions.
             The keys are domain names. The values are lists of shop names.
+          example:
+            ebay.de:
+            - myAwesomeShop.de
+            - myAwesomeShop24.de
+            google.de:
+            - myAwesomeShop.de
+            - myAwesomeShop24.de
           type: object
         range:
           $ref: '#/components/schemas/TimeRange'
@@ -9311,12 +9379,20 @@ components:
       - ownShopNames
       - range
     ProductsFilter:
-      description: Specific filter for certain products
+      description: Filter product statistics by a list of allowed internal pricemonitor
+        product ids
       example:
-        comparison: StringInSequence
-        left: '{}'
-        right: '{}'
         type: ComparisonFilter
+        left:
+          type: StringValueProvider
+          attributeName: productId
+        right:
+          type: SequenceOfStringConstantValueProvider
+          value:
+          - 1001
+          - 1002
+        comparison:
+          type: StringInSequence
       properties:
         type:
           enum:
@@ -9351,44 +9427,70 @@ components:
     PostOfferStatisticsApiResponse:
       example:
         data:
-        - productId: productId
+        - productId: 1001
           statsByDomain:
-            key:
+            ebay.de:
               offerCount: 4
-              minPrice: 9.99
-              averagePrice: 14.97
+              minPrice: 16.0
+              averagePrice: 20.0
               ownPosition:
-                price: 12.49
+                price: 17.0
                 position: 2
-        - productId: productId
+            google.de:
+              offerCount: 12
+              minPrice: 7.99
+              averagePrice: 10.0
+        - productId: 1002
           statsByDomain:
-            key:
-              offerCount: 4
-              minPrice: 9.99
-              averagePrice: 14.97
+            ebay.de:
+              offerCount: 12
+              minPrice: 16.0
+              averagePrice: 20.0
               ownPosition:
-                price: 12.49
+                price: 17.0
                 position: 2
+            google.de:
+              offerCount: 4
+              minPrice: 7.99
+              averagePrice: 10.0
       properties:
         data:
+          example:
+          - productId: 1001
+            statsByDomain:
+              ebay.de:
+                offerCount: 4
+                minPrice: 16.0
+                averagePrice: 20.0
+                ownPosition:
+                  price: 17.0
+                  position: 2
+              google.de:
+                offerCount: 12
+                minPrice: 7.99
+                averagePrice: 10.0
+          - productId: 1002
+            statsByDomain:
+              ebay.de:
+                offerCount: 12
+                minPrice: 16.0
+                averagePrice: 20.0
+                ownPosition:
+                  price: 17.0
+                  position: 2
+              google.de:
+                offerCount: 4
+                minPrice: 7.99
+                averagePrice: 10.0
           items:
             $ref: '#/components/schemas/ProductOfferStatistics'
           type: array
       type: object
     ProductOfferStatistics:
-      example:
-        productId: productId
-        statsByDomain:
-          key:
-            offerCount: 4
-            minPrice: 9.99
-            averagePrice: 14.97
-            ownPosition:
-              price: 12.49
-              position: 2
       properties:
         productId:
           description: The internal product id of the pricemonitor
+          example: "1001"
           type: string
         statsByDomain:
           additionalProperties:
@@ -9397,24 +9499,22 @@ components:
           type: object
       type: object
     OfferStatistics:
-      example:
-        offerCount: 4
-        minPrice: 9.99
-        averagePrice: 14.97
-        ownPosition:
-          price: 12.49
-          position: 2
       properties:
         averagePrice:
-          description: The average price of the offers
+          description: The average price of the offers, always be provided with two
+            decimal places
+          example: 10.0
           format: double
           type: number
         minPrice:
-          description: The lowest price of the offers
+          description: The lowest price of the offers, always be provided with two
+            decimal places
+          example: 16.0
           format: double
           type: number
         offerCount:
           description: The number of the found offers
+          example: 4
           type: integer
         ownPosition:
           $ref: '#/components/schemas/ShopRank'
@@ -9475,8 +9575,8 @@ components:
           limit: 0
           start: 6
         range:
-          start: 2000-01-23T04:56:07.000+00:00
-          end: 2000-01-23T04:56:07.000+00:00
+          start: 2018-04-04T13:46:13Z
+          end: 2018-04-06T13:46:13Z
         sort:
           metric: TotalPrice
           order: asc
@@ -9502,8 +9602,8 @@ components:
           limit: 0
           start: 6
         range:
-          start: 2000-01-23T04:56:07.000+00:00
-          end: 2000-01-23T04:56:07.000+00:00
+          start: 2018-04-04T13:46:13Z
+          end: 2018-04-06T13:46:13Z
         sort:
           metric: productId
           order: asc
@@ -9567,6 +9667,26 @@ components:
       - schemaVersion
       - strategy
       - title
+      type: object
+    PostOffersResponse:
+      description: |
+        Response body which contains Array of results in the same order as provided in the request body. Each item is an object that **either** includes **data** with value true, or **errors** with list of ApiError.
+      example:
+        data:
+        - data: true
+        - errors:
+          - code: string
+            message: string
+      properties:
+        data:
+          example:
+          - data: true
+          - errors:
+            - code: string
+              message: string
+          items:
+            $ref: '#/components/schemas/PostOffersResponse_data'
+          type: array
       type: object
     DeleteProductsApiResponse:
       example:
@@ -9681,8 +9801,12 @@ components:
     ShopRank:
       properties:
         position:
+          description: The position of own offer among competing offers
+          example: 2
           type: integer
         price:
+          description: The price of own offer
+          example: 17.0
           format: double
           type: number
       required:
@@ -9781,13 +9905,18 @@ components:
       type: object
     TimeRange:
       example:
-        start: 2000-01-23T04:56:07.000+00:00
-        end: 2000-01-23T04:56:07.000+00:00
+        start: 2018-04-04T13:46:13Z
+        end: 2018-04-06T13:46:13Z
       properties:
         end:
+          description: Timestamp of end of time range, formatted as ISO Date in UTC
+          example: 2018-04-06T13:46:13Z
           format: date-time
           type: string
         start:
+          description: Timestamp of start of time range, formatted as ISO Date in
+            UTC
+          example: 2018-04-04T13:46:13Z
           format: date-time
           type: string
       required:
@@ -11420,6 +11549,157 @@ components:
     org.json4s.JValue:
       additionalProperties: false
       properties: {}
+      type: object
+    com.patagona.pricemonitor.share.api.PostProductOfferRequest:
+      additionalProperties: false
+      description: Represents a single request to post offers for a snapshot. A snapshot
+        is a unique combination of productId, creationDate, and domain.
+      example:
+        offers:
+        - retrievalDate: 2000-01-23T04:56:07.000+00:00
+          availability: true
+          vendorName: vendorName
+          url: url
+          productName: productName
+          vendorDomainId: vendorDomainId
+          deliveryCosts: 0.8008281904610115
+          price: 6.027456183070403
+          maxDeliveryHours: 5
+          attributes:
+          - value: value
+            key: key
+          - value: value
+            key: key
+          currency: currency
+          id: id
+          minDeliveryHours: 1
+        - retrievalDate: 2000-01-23T04:56:07.000+00:00
+          availability: true
+          vendorName: vendorName
+          url: url
+          productName: productName
+          vendorDomainId: vendorDomainId
+          deliveryCosts: 0.8008281904610115
+          price: 6.027456183070403
+          maxDeliveryHours: 5
+          attributes:
+          - value: value
+            key: key
+          - value: value
+            key: key
+          currency: currency
+          id: id
+          minDeliveryHours: 1
+        productId: productId
+        domain: domain
+        creationDate: 2000-01-23T04:56:07.000+00:00
+      properties:
+        productId:
+          description: Patagona's internal product id.
+          type: string
+        creationDate:
+          description: ISO 8601 timestamp when the offers have been gathered. This
+            timestamp needs to be more recent compared to already existing offers.
+            Otherwise, the offers will be rejected.
+          format: date-time
+          type: string
+        domain:
+          description: Origin of the offers. The domain needs to be set for the contract,
+            otherwise, the offers will be rejected.
+          type: string
+        offers:
+          description: Non-empty list of offers.
+          items:
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ApiOfferV2'
+          type: array
+      required:
+      - creationDate
+      - domain
+      - offers
+      - productId
+      type: object
+    com.patagona.pricemonitor.share.api.ApiOfferV2:
+      additionalProperties: false
+      description: Represents an offer for a product on a certain domain.
+      example:
+        retrievalDate: 2000-01-23T04:56:07.000+00:00
+        availability: true
+        vendorName: vendorName
+        url: url
+        productName: productName
+        vendorDomainId: vendorDomainId
+        deliveryCosts: 0.8008281904610115
+        price: 6.027456183070403
+        maxDeliveryHours: 5
+        attributes:
+        - value: value
+          key: key
+        - value: value
+          key: key
+        currency: currency
+        id: id
+        minDeliveryHours: 1
+      properties:
+        deliveryCosts:
+          description: The additional charges for delivering the product to the customer's
+            location.
+          type: number
+        url:
+          description: The direct link to the product page on the domain where this
+            offer can be found.
+          type: string
+        vendorDomainId:
+          description: Optional identifier representing the vendor on a certain domain.
+          type: string
+        price:
+          description: The current listed unit price of the product.
+          type: number
+        availability:
+          description: An optional flag indicating whether the product is currently
+            in stock and available for purchase.
+          type: boolean
+        attributes:
+          description: A list of additional offer details.
+          items:
+            $ref: '#/components/schemas/com_patagona_pricemonitor_share_api_ApiOfferV2_attributes'
+          type: array
+        vendorName:
+          description: The display name of the shop which sells the product.
+          type: string
+        retrievalDate:
+          description: Optional timestamp based on ISO 8601 when this offer information
+            was last fetched from the domain.
+          format: date-time
+          type: string
+        id:
+          description: A unique identifier for the offer. It's crucial that it's unique
+            across all offers independent of the timestamp. If you don't have a unique
+            identifier then please use a UUID.
+          type: string
+        productName:
+          description: The name of the product as listed on the domain.
+          type: string
+        currency:
+          description: The currency in which the price and delivery costs are expressed.
+            Allowed values are ISO 4217 currency codes like "EUR".
+          type: string
+        minDeliveryHours:
+          description: Optional minimum time, in hours, it takes for the product to
+            be delivered to the customer.
+          type: integer
+        maxDeliveryHours:
+          description: Optional maximum time, in hours, it takes for the product to
+            be delivered to the customer.
+          type: integer
+      required:
+      - attributes
+      - currency
+      - deliveryCosts
+      - id
+      - price
+      - productName
+      - url
+      - vendorName
       type: object
     QueryPriceRecommendationsV2ApiResponse:
       additionalProperties: false
@@ -13894,6 +14174,15 @@ components:
         updatedBy:
           description: Email address of the user who last updated the strategy scenario
           type: string
+    PostOffersResponse_data:
+      properties:
+        data:
+          example: true
+          type: boolean
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiError'
+          type: array
     DeleteProductsApiResponse_data:
       example:
         deleted: 0
@@ -14084,6 +14373,20 @@ components:
       - deliveryCosts
       - price
       - timestamp
+    com_patagona_pricemonitor_share_api_ApiOfferV2_attributes:
+      example:
+        value: value
+        key: key
+      properties:
+        key:
+          description: The attribute name. It's not allowed to be empty.
+          type: string
+        value:
+          description: The corresponding attribute value.
+          type: string
+      required:
+      - key
+      - value
     com_patagona_pricemonitor_share_api_Query_regex:
       example:
         field: field
