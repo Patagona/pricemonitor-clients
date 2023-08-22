@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.6540
+  version: 0.0.6541
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -4576,12 +4576,11 @@ paths:
         This endpoint can be used to provide external offers to Pricemonitor. It's a bulk endpoint which accepts an array of individual POST offers requests each based on a "snapshot" - a unique combination of product, domain, and timestamp for a list of offers.
         Please note the following consistency checks performed before offers are stored:
         1. Offers can only be stored if the corresponding products exist in the contract.
-        2. Offers can only be stored if the provided domain is set for the contract.
-        3. Offers can only be stored if they are more recent than existing offers. This means that only newer snapshots are eligible for storage.
-        4. Offers can only be stored if the currency is consistent. In other words, a single domain must use only one currency.
-        5. Duplicated individual POST offers requests are stored only once.
-        6. If different offers are provided for the same snapshots, then all conflicting snapshots will be rejected.
-        7. An individual POST offers request may be rejected if the offer ID is not unique.
+        2. Offers can only be stored if they are more recent than existing offers. This means that only newer snapshots are eligible for storage.
+        3. Offers can only be stored if the currency is consistent. In other words, a single domain must use only one currency.
+        4. Duplicated individual POST offers requests are stored only once.
+        5. If different offers are provided for the same snapshots, then all conflicting snapshots will be rejected.
+        6. An individual POST offers request may be rejected if the offer ID is not unique.
       operationId: postOffersInABulkVendorV2
       parameters:
       - description: ID of the contract
@@ -4620,43 +4619,6 @@ paths:
             The server could not understand the request due to invalid syntax. For example, a required field might be missing in the request body.
       summary: Add offers in bulk
       tags:
-      - offers
-  /api/2/v/contracts/{contractId}/offers/{productId}:
-    post:
-      operationId: postOffersVendorV2
-      parameters:
-      - description: ID of the contract
-        example: qbcxvb
-        explode: false
-        in: path
-        name: contractId
-        required: true
-        schema:
-          type: string
-        style: simple
-      - explode: false
-        in: path
-        name: productId
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-        description: This is a generated entry and needs to be described.
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                type: object
-          description: This is a generated entry and needs to be described.
-      tags:
-      - internal
-      - undocumented
       - offers
   /api/2/v/contracts/{contractId}/productidentifiermapping:
     get:
@@ -11604,8 +11566,7 @@ components:
           format: date-time
           type: string
         domain:
-          description: Origin of the offers. The domain needs to be set for the contract,
-            otherwise, the offers will be rejected.
+          description: Origin of the offers.
           type: string
         offers:
           description: Non-empty list of offers.

@@ -130,7 +130,6 @@ Method | HTTP request | Description
 [**post_monitoring_schedule_manufacturer_v3**](InternalApi.md#post_monitoring_schedule_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/settings/monitoringschedules | Add a monitoring schedule for a given contract.
 [**post_monitoring_schedule_vendor_v3**](InternalApi.md#post_monitoring_schedule_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/settings/monitoringschedules | Add a monitoring schedule for a given contract.
 [**post_offer_statistics_vendor_query**](InternalApi.md#post_offer_statistics_vendor_query) | **POST** /api/v3/vendor/contracts/{contractId}/offers/stats/query | 
-[**post_offers_vendor_v2**](InternalApi.md#post_offers_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/offers/{productId} | 
 [**post_vendor_shop_mapping_manufacturer_v3**](InternalApi.md#post_vendor_shop_mapping_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/vendors | Add a new vendor for a given contract and associate shops with the given vendor.
 [**prices_by_day_by_product_id_manufacturer_v2**](InternalApi.md#prices_by_day_by_product_id_manufacturer_v2) | **POST** /api/2/m/contracts/{contractId}/result/pricesbyday/productid/{productId} | 
 [**publish_preprocessing_task_vendor_v3**](InternalApi.md#publish_preprocessing_task_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/tasks/preprocessing | Publish a preprocessing task for vendor.
@@ -15342,129 +15341,6 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Returns a list of offer statistics per product. ## How to use this endpoint&#39;s result to get Total Market statistics ### Minimum Price To calculate the minimum price in the total market, you have to take the minimum of the &#x60;minPrice&#x60; of each domain. In the example below, both products have the same min prices: &#x60;min(16.00,7.99) &#x3D; 7.99&#x60;. ### Average Price To calculate the average price in the total market, you have to calculate a **weighted average**, weighing the average price of each domain by its offer count. In the example below we get different results for the average price in the total market for product id &#x60;1001&#x60; and &#x60;1002&#x60; even though they have the same average price in each domain. This is due to the different offer counts:    - product id &#x60;1001&#x60;: &#x60;(20.00 * 4 + 10.00 * 12) / (4 + 12) &#x3D; 12.50&#x60;   - product id &#x60;1002&#x60;: &#x60;(20.00 * 12 + 10.00 * 4) / (12 + 4) &#x3D; 17.50&#x60;  ### Offer Count The offer count of one product in the total market is the sum of the offer counts for all its domains. In the example below, both products would have an offer count of &#x60;12 + 4 &#x3D; 16&#x60;. ### Market Position The market position of a product generally **can not be deduced** from the data provided in this endpoint.  |  -  |
 **400** | Returned in case of unparsable request body JSON or unsupported filter. |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **post_offers_vendor_v2**
-> object post_offers_vendor_v2(contract_id, product_id, body=body)
-
-
-
-### Example
-
-* Basic Authentication (BasicAuth):
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: BasicAuth
-configuration = pricemonitor_api_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = pricemonitor_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.InternalApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-product_id = 'product_id_example' # str | 
-body = None # object | This is a generated entry and needs to be described. (optional)
-
-    try:
-        api_response = api_instance.post_offers_vendor_v2(contract_id, product_id, body=body)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling InternalApi->post_offers_vendor_v2: %s\n" % e)
-```
-
-* Bearer (JWT) Authentication (BearerAuth):
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: BasicAuth
-configuration = pricemonitor_api_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = pricemonitor_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.InternalApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-product_id = 'product_id_example' # str | 
-body = None # object | This is a generated entry and needs to be described. (optional)
-
-    try:
-        api_response = api_instance.post_offers_vendor_v2(contract_id, product_id, body=body)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling InternalApi->post_offers_vendor_v2: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
- **product_id** | **str**|  | 
- **body** | **object**| This is a generated entry and needs to be described. | [optional] 
-
-### Return type
-
-**object**
-
-### Authorization
-
-[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | This is a generated entry and needs to be described. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

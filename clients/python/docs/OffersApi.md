@@ -23,7 +23,6 @@ Method | HTTP request | Description
 [**get_vendors_by_domain_manufacturer_v2**](OffersApi.md#get_vendors_by_domain_manufacturer_v2) | **POST** /api/2/m/contracts/{contractId}/result/vendors/list | 
 [**position_distribution**](OffersApi.md#position_distribution) | **POST** /api/1/{contractId}/vendors/{vendor}/positions | 
 [**post_offers_in_a_bulk_vendor_v2**](OffersApi.md#post_offers_in_a_bulk_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/offers | Add offers in bulk
-[**post_offers_vendor_v2**](OffersApi.md#post_offers_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/offers/{productId} | 
 [**prices_by_day_by_product_id_manufacturer_v2**](OffersApi.md#prices_by_day_by_product_id_manufacturer_v2) | **POST** /api/2/m/contracts/{contractId}/result/pricesbyday/productid/{productId} | 
 [**put_complex_offer_filters_vendor_v2**](OffersApi.md#put_complex_offer_filters_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/offerfilters/{listType}/complex | Add the complex filters for the given contract.
 [**put_offer_filters_vendor_v2**](OffersApi.md#put_offer_filters_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/offerfilters/{listType}/vendors | Store the vendor filters for the given contract.
@@ -2323,7 +2322,7 @@ Name | Type | Description  | Notes
 
 Add offers in bulk
 
-This endpoint can be used to provide external offers to Pricemonitor. It's a bulk endpoint which accepts an array of individual POST offers requests each based on a \"snapshot\" - a unique combination of product, domain, and timestamp for a list of offers. Please note the following consistency checks performed before offers are stored: 1. Offers can only be stored if the corresponding products exist in the contract. 2. Offers can only be stored if the provided domain is set for the contract. 3. Offers can only be stored if they are more recent than existing offers. This means that only newer snapshots are eligible for storage. 4. Offers can only be stored if the currency is consistent. In other words, a single domain must use only one currency. 5. Duplicated individual POST offers requests are stored only once. 6. If different offers are provided for the same snapshots, then all conflicting snapshots will be rejected. 7. An individual POST offers request may be rejected if the offer ID is not unique. 
+This endpoint can be used to provide external offers to Pricemonitor. It's a bulk endpoint which accepts an array of individual POST offers requests each based on a \"snapshot\" - a unique combination of product, domain, and timestamp for a list of offers. Please note the following consistency checks performed before offers are stored: 1. Offers can only be stored if the corresponding products exist in the contract. 2. Offers can only be stored if they are more recent than existing offers. This means that only newer snapshots are eligible for storage. 3. Offers can only be stored if the currency is consistent. In other words, a single domain must use only one currency. 4. Duplicated individual POST offers requests are stored only once. 5. If different offers are provided for the same snapshots, then all conflicting snapshots will be rejected. 6. An individual POST offers request may be rejected if the offer ID is not unique. 
 
 ### Example
 
@@ -2440,129 +2439,6 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | The server understood and processed the request. Offers were processed, but not necessarily stored successfully. The &#39;data&#39; field in the response body contains a detailed report of the operation outcome for each individual POST offers requests. Each item in the &#39;data&#39; array is **either** a &#39;data&#39; object with value true (indicating successful storage), or an ApiErrorResponse (indicating a storage failure).  |  -  |
 **400** | The server could not understand the request due to invalid syntax. For example, a required field might be missing in the request body.  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **post_offers_vendor_v2**
-> object post_offers_vendor_v2(contract_id, product_id, body=body)
-
-
-
-### Example
-
-* Basic Authentication (BasicAuth):
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: BasicAuth
-configuration = pricemonitor_api_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = pricemonitor_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.OffersApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-product_id = 'product_id_example' # str | 
-body = None # object | This is a generated entry and needs to be described. (optional)
-
-    try:
-        api_response = api_instance.post_offers_vendor_v2(contract_id, product_id, body=body)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling OffersApi->post_offers_vendor_v2: %s\n" % e)
-```
-
-* Bearer (JWT) Authentication (BearerAuth):
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: BasicAuth
-configuration = pricemonitor_api_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = pricemonitor_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.OffersApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-product_id = 'product_id_example' # str | 
-body = None # object | This is a generated entry and needs to be described. (optional)
-
-    try:
-        api_response = api_instance.post_offers_vendor_v2(contract_id, product_id, body=body)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling OffersApi->post_offers_vendor_v2: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
- **product_id** | **str**|  | 
- **body** | **object**| This is a generated entry and needs to be described. | [optional] 
-
-### Return type
-
-**object**
-
-### Authorization
-
-[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | This is a generated entry and needs to be described. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
