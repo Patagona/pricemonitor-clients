@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **publish_preprocessing_task_vendor_v3**
-> EmptyApiResponse publish_preprocessing_task_vendor_v3(retrospective_in_minutes, contract_id)
+> EmptyApiResponse publish_preprocessing_task_vendor_v3(retrospective_in_minutes, contract_id, trigger_follow_up_task=trigger_follow_up_task)
 
 Publish a preprocessing task for vendor.
 
@@ -49,10 +49,11 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     api_instance = pricemonitor_api_client.PreprocessingApi(api_client)
     retrospective_in_minutes = 56 # int | The timespan, in minutes, for considering offers in preprocessing. Allowed value is between 1 and 10080
 contract_id = 'qbcxvb' # str | ID of the contract
+trigger_follow_up_task = True # bool |  (optional)
 
     try:
         # Publish a preprocessing task for vendor.
-        api_response = api_instance.publish_preprocessing_task_vendor_v3(retrospective_in_minutes, contract_id)
+        api_response = api_instance.publish_preprocessing_task_vendor_v3(retrospective_in_minutes, contract_id, trigger_follow_up_task=trigger_follow_up_task)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling PreprocessingApi->publish_preprocessing_task_vendor_v3: %s\n" % e)
@@ -93,10 +94,11 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     api_instance = pricemonitor_api_client.PreprocessingApi(api_client)
     retrospective_in_minutes = 56 # int | The timespan, in minutes, for considering offers in preprocessing. Allowed value is between 1 and 10080
 contract_id = 'qbcxvb' # str | ID of the contract
+trigger_follow_up_task = True # bool |  (optional)
 
     try:
         # Publish a preprocessing task for vendor.
-        api_response = api_instance.publish_preprocessing_task_vendor_v3(retrospective_in_minutes, contract_id)
+        api_response = api_instance.publish_preprocessing_task_vendor_v3(retrospective_in_minutes, contract_id, trigger_follow_up_task=trigger_follow_up_task)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling PreprocessingApi->publish_preprocessing_task_vendor_v3: %s\n" % e)
@@ -108,6 +110,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **retrospective_in_minutes** | **int**| The timespan, in minutes, for considering offers in preprocessing. Allowed value is between 1 and 10080 | 
  **contract_id** | **str**| ID of the contract | 
+ **trigger_follow_up_task** | **bool**|  | [optional] 
 
 ### Return type
 

@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.6544
+  version: 0.0.6549
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -1232,15 +1232,15 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-        description: This is a generated entry and needs to be described.
+              $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.CreateTaskBodyV2'
+        description: Create a new task
       responses:
         "200":
           content:
             application/json:
               schema:
                 type: object
-          description: This is a generated entry and needs to be described.
+          description: Task has been created successfully
       tags:
       - internal
       - undocumented
@@ -3173,8 +3173,8 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-        description: This is a generated entry and needs to be described.
+              $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.CreateTaskBodyV2'
+        description: Create a new task
       responses:
         "200":
           content:
@@ -7885,6 +7885,15 @@ paths:
         schema:
           type: integer
         style: simple
+      - explode: true
+        in: query
+        name: triggerFollowUpTask
+        required: false
+        schema:
+          description: A flag to trigger follow up tasks once current is completed.
+            By default it is set to true.
+          type: boolean
+        style: form
       responses:
         "200":
           content:
@@ -8059,6 +8068,15 @@ paths:
         schema:
           type: integer
         style: simple
+      - explode: true
+        in: query
+        name: triggerFollowUpTask
+        required: false
+        schema:
+          description: A flag to trigger follow up tasks once current is completed.
+            By default it is set to true.
+          type: boolean
+        style: form
       responses:
         "200":
           content:
@@ -8102,6 +8120,15 @@ paths:
         schema:
           type: string
         style: simple
+      - explode: true
+        in: query
+        name: triggerFollowUpTask
+        required: false
+        schema:
+          description: A flag to trigger follow up tasks once current is completed.
+            By default it is set to true.
+          type: boolean
+        style: form
       responses:
         "200":
           content:
@@ -8565,6 +8592,16 @@ components:
         format: int64
         type: integer
       style: simple
+    triggerFollowUpTask:
+      explode: true
+      in: query
+      name: triggerFollowUpTask
+      required: false
+      schema:
+        description: A flag to trigger follow up tasks once current is completed.
+          By default it is set to true.
+        type: boolean
+      style: form
   schemas:
     LogMessages:
       example:
@@ -10495,6 +10532,29 @@ components:
       required:
       - data
       type: object
+    com.patagona.pricemonitor.share.api.CreateTaskBodyV2:
+      additionalProperties: false
+      description: Definition of a task to be created.
+      properties:
+        taskType:
+          description: The type of the task to be created. Can be any of [alert, backend.tasks.pricemonitor.offers.monitoring,
+            backend.tasks.pricemonitor.offers.preprocessing, backend.tasks.pricemonitor.callback]
+          type: string
+        data:
+          additionalProperties: false
+          properties: {}
+          type: object
+        triggerFollowUpTask:
+          description: optional flag to specify whether or not to trigger the next
+            task. Currently only integrated to trigger callbacks after preprocessing
+          type: boolean
+      required:
+      - taskType
+      type: object
+    org.json4s.JValue:
+      additionalProperties: false
+      properties: {}
+      type: object
     com.patagona.pricemonitor.share.api.UserInfo:
       additionalProperties: false
       description: This case class is used for serializing user-information for the
@@ -11492,25 +11552,6 @@ components:
       - productsCount
       - productsUnderReferencePrice
       - resellerName
-      type: object
-    com.patagona.pricemonitor.share.api.CreateTaskBodyV2:
-      additionalProperties: false
-      description: Definition of a task to be created.
-      properties:
-        taskType:
-          description: The type of the task to be created. Can be any of [alert, backend.tasks.pricemonitor.offers.monitoring,
-            backend.tasks.pricemonitor.offers.preprocessing, backend.tasks.pricemonitor.callback]
-          type: string
-        data:
-          additionalProperties: false
-          properties: {}
-          type: object
-      required:
-      - taskType
-      type: object
-    org.json4s.JValue:
-      additionalProperties: false
-      properties: {}
       type: object
     com.patagona.pricemonitor.share.api.PostProductOfferRequest:
       additionalProperties: false

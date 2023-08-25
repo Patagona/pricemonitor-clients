@@ -263,7 +263,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **execute_monitoring_schedule_manufacturer_v3**
-> EmptyApiResponse execute_monitoring_schedule_manufacturer_v3(contract_id, schedule_id)
+> EmptyApiResponse execute_monitoring_schedule_manufacturer_v3(contract_id, schedule_id, trigger_follow_up_task=trigger_follow_up_task)
 
 Trigger a monitoring pipeline task for manufacturer for configured monitoring schedule
 
@@ -304,10 +304,11 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     api_instance = pricemonitor_api_client.MonitoringSchedulesApi(api_client)
     contract_id = 'qbcxvb' # str | ID of the contract
 schedule_id = 56 # int | ID of a monitoring schedule
+trigger_follow_up_task = True # bool |  (optional)
 
     try:
         # Trigger a monitoring pipeline task for manufacturer for configured monitoring schedule
-        api_response = api_instance.execute_monitoring_schedule_manufacturer_v3(contract_id, schedule_id)
+        api_response = api_instance.execute_monitoring_schedule_manufacturer_v3(contract_id, schedule_id, trigger_follow_up_task=trigger_follow_up_task)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling MonitoringSchedulesApi->execute_monitoring_schedule_manufacturer_v3: %s\n" % e)
@@ -348,10 +349,11 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     api_instance = pricemonitor_api_client.MonitoringSchedulesApi(api_client)
     contract_id = 'qbcxvb' # str | ID of the contract
 schedule_id = 56 # int | ID of a monitoring schedule
+trigger_follow_up_task = True # bool |  (optional)
 
     try:
         # Trigger a monitoring pipeline task for manufacturer for configured monitoring schedule
-        api_response = api_instance.execute_monitoring_schedule_manufacturer_v3(contract_id, schedule_id)
+        api_response = api_instance.execute_monitoring_schedule_manufacturer_v3(contract_id, schedule_id, trigger_follow_up_task=trigger_follow_up_task)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling MonitoringSchedulesApi->execute_monitoring_schedule_manufacturer_v3: %s\n" % e)
@@ -363,6 +365,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **contract_id** | **str**| ID of the contract | 
  **schedule_id** | **int**| ID of a monitoring schedule | 
+ **trigger_follow_up_task** | **bool**|  | [optional] 
 
 ### Return type
 
@@ -386,7 +389,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **execute_monitoring_schedule_vendor_v3**
-> EmptyApiResponse execute_monitoring_schedule_vendor_v3(contract_id, schedule_id)
+> EmptyApiResponse execute_monitoring_schedule_vendor_v3(contract_id, schedule_id, trigger_follow_up_task=trigger_follow_up_task)
 
 Trigger a monitoring pipeline task for vendor for configured monitoring schedule
 
@@ -427,10 +430,11 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     api_instance = pricemonitor_api_client.MonitoringSchedulesApi(api_client)
     contract_id = 'qbcxvb' # str | ID of the contract
 schedule_id = 56 # int | ID of a monitoring schedule
+trigger_follow_up_task = True # bool |  (optional)
 
     try:
         # Trigger a monitoring pipeline task for vendor for configured monitoring schedule
-        api_response = api_instance.execute_monitoring_schedule_vendor_v3(contract_id, schedule_id)
+        api_response = api_instance.execute_monitoring_schedule_vendor_v3(contract_id, schedule_id, trigger_follow_up_task=trigger_follow_up_task)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling MonitoringSchedulesApi->execute_monitoring_schedule_vendor_v3: %s\n" % e)
@@ -471,10 +475,11 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     api_instance = pricemonitor_api_client.MonitoringSchedulesApi(api_client)
     contract_id = 'qbcxvb' # str | ID of the contract
 schedule_id = 56 # int | ID of a monitoring schedule
+trigger_follow_up_task = True # bool |  (optional)
 
     try:
         # Trigger a monitoring pipeline task for vendor for configured monitoring schedule
-        api_response = api_instance.execute_monitoring_schedule_vendor_v3(contract_id, schedule_id)
+        api_response = api_instance.execute_monitoring_schedule_vendor_v3(contract_id, schedule_id, trigger_follow_up_task=trigger_follow_up_task)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling MonitoringSchedulesApi->execute_monitoring_schedule_vendor_v3: %s\n" % e)
@@ -486,6 +491,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **contract_id** | **str**| ID of the contract | 
  **schedule_id** | **int**| ID of a monitoring schedule | 
+ **trigger_follow_up_task** | **bool**|  | [optional] 
 
 ### Return type
 

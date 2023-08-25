@@ -1008,7 +1008,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_task**
-> object create_task(contract_id, body=body)
+> object create_task(contract_id, com_patagona_pricemonitor_share_api_create_task_body_v2=com_patagona_pricemonitor_share_api_create_task_body_v2)
 
 
 
@@ -1048,10 +1048,10 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.UndocumentedApi(api_client)
     contract_id = 'qbcxvb' # str | ID of the contract
-body = None # object | This is a generated entry and needs to be described. (optional)
+com_patagona_pricemonitor_share_api_create_task_body_v2 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiCreateTaskBodyV2() # ComPatagonaPricemonitorShareApiCreateTaskBodyV2 | Create a new task (optional)
 
     try:
-        api_response = api_instance.create_task(contract_id, body=body)
+        api_response = api_instance.create_task(contract_id, com_patagona_pricemonitor_share_api_create_task_body_v2=com_patagona_pricemonitor_share_api_create_task_body_v2)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling UndocumentedApi->create_task: %s\n" % e)
@@ -1091,10 +1091,10 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.UndocumentedApi(api_client)
     contract_id = 'qbcxvb' # str | ID of the contract
-body = None # object | This is a generated entry and needs to be described. (optional)
+com_patagona_pricemonitor_share_api_create_task_body_v2 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiCreateTaskBodyV2() # ComPatagonaPricemonitorShareApiCreateTaskBodyV2 | Create a new task (optional)
 
     try:
-        api_response = api_instance.create_task(contract_id, body=body)
+        api_response = api_instance.create_task(contract_id, com_patagona_pricemonitor_share_api_create_task_body_v2=com_patagona_pricemonitor_share_api_create_task_body_v2)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling UndocumentedApi->create_task: %s\n" % e)
@@ -1105,7 +1105,7 @@ body = None # object | This is a generated entry and needs to be described. (opt
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **contract_id** | **str**| ID of the contract | 
- **body** | **object**| This is a generated entry and needs to be described. | [optional] 
+ **com_patagona_pricemonitor_share_api_create_task_body_v2** | [**ComPatagonaPricemonitorShareApiCreateTaskBodyV2**](ComPatagonaPricemonitorShareApiCreateTaskBodyV2.md)| Create a new task | [optional] 
 
 ### Return type
 
@@ -1128,7 +1128,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_task_vendor_v2**
-> object create_task_vendor_v2(contract_id, body=body)
+> object create_task_vendor_v2(contract_id, com_patagona_pricemonitor_share_api_create_task_body_v2=com_patagona_pricemonitor_share_api_create_task_body_v2)
 
 
 
@@ -1168,10 +1168,10 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.UndocumentedApi(api_client)
     contract_id = 'qbcxvb' # str | ID of the contract
-body = None # object | This is a generated entry and needs to be described. (optional)
+com_patagona_pricemonitor_share_api_create_task_body_v2 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiCreateTaskBodyV2() # ComPatagonaPricemonitorShareApiCreateTaskBodyV2 | Create a new task (optional)
 
     try:
-        api_response = api_instance.create_task_vendor_v2(contract_id, body=body)
+        api_response = api_instance.create_task_vendor_v2(contract_id, com_patagona_pricemonitor_share_api_create_task_body_v2=com_patagona_pricemonitor_share_api_create_task_body_v2)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling UndocumentedApi->create_task_vendor_v2: %s\n" % e)
@@ -1211,10 +1211,10 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.UndocumentedApi(api_client)
     contract_id = 'qbcxvb' # str | ID of the contract
-body = None # object | This is a generated entry and needs to be described. (optional)
+com_patagona_pricemonitor_share_api_create_task_body_v2 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiCreateTaskBodyV2() # ComPatagonaPricemonitorShareApiCreateTaskBodyV2 | Create a new task (optional)
 
     try:
-        api_response = api_instance.create_task_vendor_v2(contract_id, body=body)
+        api_response = api_instance.create_task_vendor_v2(contract_id, com_patagona_pricemonitor_share_api_create_task_body_v2=com_patagona_pricemonitor_share_api_create_task_body_v2)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling UndocumentedApi->create_task_vendor_v2: %s\n" % e)
@@ -1225,7 +1225,7 @@ body = None # object | This is a generated entry and needs to be described. (opt
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **contract_id** | **str**| ID of the contract | 
- **body** | **object**| This is a generated entry and needs to be described. | [optional] 
+ **com_patagona_pricemonitor_share_api_create_task_body_v2** | [**ComPatagonaPricemonitorShareApiCreateTaskBodyV2**](ComPatagonaPricemonitorShareApiCreateTaskBodyV2.md)| Create a new task | [optional] 
 
 ### Return type
 
@@ -1243,7 +1243,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | This is a generated entry and needs to be described. |  -  |
+**200** | Task has been created successfully |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
