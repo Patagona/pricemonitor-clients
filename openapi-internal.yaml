@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.6573
+  version: 0.0.6575
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -7093,6 +7093,7 @@ paths:
       tags:
       - undocumented
       - account
+      - internal
   /logout:
     post:
       operationId: logout
@@ -7107,6 +7108,7 @@ paths:
       tags:
       - undocumented
       - account
+      - internal
   /api/account/password:
     put:
       operationId: changePassword

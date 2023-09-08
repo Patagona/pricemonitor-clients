@@ -13,6 +13,7 @@ Method | HTTP request | Description
 [**api_v3_vendor_contracts_contract_id_offers_shop_query_post**](InternalApi.md#api_v3_vendor_contracts_contract_id_offers_shop_query_post) | **POST** /api/v3/vendor/contracts/{contractId}/offers/shop/query | 
 [**api_v3_vendor_contracts_contract_id_offers_shops_get**](InternalApi.md#api_v3_vendor_contracts_contract_id_offers_shops_get) | **GET** /api/v3/vendor/contracts/{contractId}/offers/shops | Returns all shops which have at least one offer for a given time range per domain.
 [**api_v3_vendor_contracts_contract_id_settings_pricingstrategies_scenarios_post**](InternalApi.md#api_v3_vendor_contracts_contract_id_settings_pricingstrategies_scenarios_post) | **POST** /api/v3/vendor/contracts/{contractId}/settings/pricingstrategies/scenarios | 
+[**authenticate**](InternalApi.md#authenticate) | **POST** /login | 
 [**controlpanel_api_companies_get**](InternalApi.md#controlpanel_api_companies_get) | **GET** /controlpanel/api/companies | Get a list of all companies
 [**controlpanel_api_v3_domains_post**](InternalApi.md#controlpanel_api_v3_domains_post) | **POST** /controlpanel/api/v3/domains | Add a new domain
 [**create_alert_settings**](InternalApi.md#create_alert_settings) | **POST** /api/1/{contractId}/settings/alerts | 
@@ -113,6 +114,7 @@ Method | HTTP request | Description
 [**get_vendors_by_domain_manufacturer_v2**](InternalApi.md#get_vendors_by_domain_manufacturer_v2) | **POST** /api/2/m/contracts/{contractId}/result/vendors/list | 
 [**list_vendors**](InternalApi.md#list_vendors) | **GET** /controlpanel/vendors | 
 [**login_by_auth_token**](InternalApi.md#login_by_auth_token) | **GET** /api/login/token/{token} | 
+[**logout**](InternalApi.md#logout) | **POST** /logout | 
 [**monitoring_pipeline_post_request_manufacturer_v3**](InternalApi.md#monitoring_pipeline_post_request_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/monitoringpipeline/{path} | 
 [**monitoring_pipeline_post_request_vendor_v3**](InternalApi.md#monitoring_pipeline_post_request_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/monitoringpipeline/{path} | 
 [**monitoring_pipeline_upsert_search_attempts_manufacturer_v3**](InternalApi.md#monitoring_pipeline_upsert_search_attempts_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/monitoringpipeline/v1/searchattempts | 
@@ -1278,6 +1280,61 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | A new scenario strategy was added |  -  |
 **400** | Strategy must be valid and consistent with the schema version. Required fields need to be filled. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **authenticate**
+> object authenticate()
+
+
+
+### Example
+
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.InternalApi(api_client)
+    
+    try:
+        api_response = api_instance.authenticate()
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling InternalApi->authenticate: %s\n" % e)
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**object**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Authenticate with the API and create a session |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -13279,6 +13336,61 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | This is a generated entry and needs to be described. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **logout**
+> object logout()
+
+
+
+### Example
+
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.InternalApi(api_client)
+    
+    try:
+        api_response = api_instance.logout()
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling InternalApi->logout: %s\n" % e)
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**object**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Deauthenticate with the API and destroy the current session |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
