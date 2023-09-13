@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.6586
+  version: 0.0.6587
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -2674,13 +2674,20 @@ paths:
   /controlpanel/users:
     post:
       operationId: addUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewUser'
+        description: The new user to be added
       responses:
         "200":
           description: A new user was added
+        "400":
+          description: A new user was not added
       summary: Add a new user
       tags:
       - internal
-      - undocumented
       - controlpanel
   /api/1/{contractId}/products/analysis/timestamps:
     get:
@@ -10011,6 +10018,25 @@ components:
       allOf:
       - $ref: '#/components/schemas/GenericTask'
       - $ref: '#/components/schemas/UpdateTaskRequestV2_allOf'
+    NewUser:
+      description: New user
+      example:
+        password: password
+        companyId: 0
+        name: name
+        email: email
+      properties:
+        email:
+          type: string
+        name:
+          type: string
+        password:
+          type: string
+        companyId:
+          type: integer
+      required:
+      - email
+      - name
     GetPricingStrategyHistoryApiResponse:
       additionalProperties: false
       example:

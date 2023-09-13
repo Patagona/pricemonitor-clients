@@ -432,7 +432,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **add_user**
-> add_user()
+> add_user(new_user=new_user)
 
 Add a new user
 
@@ -471,10 +471,11 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.InternalApi(api_client)
-    
+    new_user = pricemonitor_api_client.NewUser() # NewUser | The new user to be added (optional)
+
     try:
         # Add a new user
-        api_instance.add_user()
+        api_instance.add_user(new_user=new_user)
     except ApiException as e:
         print("Exception when calling InternalApi->add_user: %s\n" % e)
 ```
@@ -512,16 +513,20 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.InternalApi(api_client)
-    
+    new_user = pricemonitor_api_client.NewUser() # NewUser | The new user to be added (optional)
+
     try:
         # Add a new user
-        api_instance.add_user()
+        api_instance.add_user(new_user=new_user)
     except ApiException as e:
         print("Exception when calling InternalApi->add_user: %s\n" % e)
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **new_user** | [**NewUser**](NewUser.md)| The new user to be added | [optional] 
 
 ### Return type
 
@@ -533,13 +538,14 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A new user was added |  -  |
+**400** | A new user was not added |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -138,6 +138,7 @@ export * from './getShopsByDomainResponseV3ApiResponse';
 export * from './getVendorShopMappingsApiResponse';
 export * from './logMessage';
 export * from './logMessages';
+export * from './newUser';
 export * from './offerAttribute';
 export * from './offerFilterApiResponse';
 export * from './offerStatistics';

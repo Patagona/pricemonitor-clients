@@ -170,6 +170,7 @@ model/getVendorShopMappingsApiResponse.ts
 model/logMessage.ts
 model/logMessages.ts
 model/models.ts
+model/newUser.ts
 model/offerAttribute.ts
 model/offerFilterApiResponse.ts
 model/offerStatistics.ts
