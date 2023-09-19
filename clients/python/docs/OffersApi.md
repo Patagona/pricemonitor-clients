@@ -37,7 +37,7 @@ Method | HTTP request | Description
 
 
 # **api_v3_manufacturer_contracts_contract_id_offers_get**
-> GetOffersApiResponse api_v3_manufacturer_contracts_contract_id_offers_get(contract_id, start=start, limit=limit, start_date=start_date, end_date=end_date)
+> GetOffersApiResponse api_v3_manufacturer_contracts_contract_id_offers_get(contract_id, start=start, limit=limit, include_tags=include_tags, start_date=start_date, end_date=end_date)
 
 
 
@@ -81,11 +81,12 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 start = 0 # int | Where to start fetching the products (optional) (default to 0)
 limit = 1000 # int | Maximum number of results (optional) (default to 1000)
+include_tags = True # bool | Whether to return tags of products or not. (optional) (default to True)
 start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
 end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
 
     try:
-        api_response = api_instance.api_v3_manufacturer_contracts_contract_id_offers_get(contract_id, start=start, limit=limit, start_date=start_date, end_date=end_date)
+        api_response = api_instance.api_v3_manufacturer_contracts_contract_id_offers_get(contract_id, start=start, limit=limit, include_tags=include_tags, start_date=start_date, end_date=end_date)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling OffersApi->api_v3_manufacturer_contracts_contract_id_offers_get: %s\n" % e)
@@ -127,11 +128,12 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 start = 0 # int | Where to start fetching the products (optional) (default to 0)
 limit = 1000 # int | Maximum number of results (optional) (default to 1000)
+include_tags = True # bool | Whether to return tags of products or not. (optional) (default to True)
 start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
 end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
 
     try:
-        api_response = api_instance.api_v3_manufacturer_contracts_contract_id_offers_get(contract_id, start=start, limit=limit, start_date=start_date, end_date=end_date)
+        api_response = api_instance.api_v3_manufacturer_contracts_contract_id_offers_get(contract_id, start=start, limit=limit, include_tags=include_tags, start_date=start_date, end_date=end_date)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling OffersApi->api_v3_manufacturer_contracts_contract_id_offers_get: %s\n" % e)
@@ -144,6 +146,7 @@ Name | Type | Description  | Notes
  **contract_id** | **str**| ID of the contract | 
  **start** | **int**| Where to start fetching the products | [optional] [default to 0]
  **limit** | **int**| Maximum number of results | [optional] [default to 1000]
+ **include_tags** | **bool**| Whether to return tags of products or not. | [optional] [default to True]
  **start_date** | **datetime**| Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is &#39;NOW - 48 hours to NOW&#39;. | [optional] 
  **end_date** | **datetime**| Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is &#39;NOW - 48 hours to NOW&#39;. | [optional] 
 
@@ -295,7 +298,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **api_v3_vendor_contracts_contract_id_offers_get**
-> GetOffersApiResponse api_v3_vendor_contracts_contract_id_offers_get(contract_id, start=start, limit=limit, start_date=start_date, end_date=end_date)
+> GetOffersApiResponse api_v3_vendor_contracts_contract_id_offers_get(contract_id, start=start, limit=limit, include_tags=include_tags, start_date=start_date, end_date=end_date)
 
 
 
@@ -339,11 +342,12 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 start = 0 # int | Where to start fetching the products (optional) (default to 0)
 limit = 1000 # int | Maximum number of results (optional) (default to 1000)
+include_tags = True # bool | Whether to return tags of products or not. (optional) (default to True)
 start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
 end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
 
     try:
-        api_response = api_instance.api_v3_vendor_contracts_contract_id_offers_get(contract_id, start=start, limit=limit, start_date=start_date, end_date=end_date)
+        api_response = api_instance.api_v3_vendor_contracts_contract_id_offers_get(contract_id, start=start, limit=limit, include_tags=include_tags, start_date=start_date, end_date=end_date)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling OffersApi->api_v3_vendor_contracts_contract_id_offers_get: %s\n" % e)
@@ -385,11 +389,12 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 start = 0 # int | Where to start fetching the products (optional) (default to 0)
 limit = 1000 # int | Maximum number of results (optional) (default to 1000)
+include_tags = True # bool | Whether to return tags of products or not. (optional) (default to True)
 start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
 end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
 
     try:
-        api_response = api_instance.api_v3_vendor_contracts_contract_id_offers_get(contract_id, start=start, limit=limit, start_date=start_date, end_date=end_date)
+        api_response = api_instance.api_v3_vendor_contracts_contract_id_offers_get(contract_id, start=start, limit=limit, include_tags=include_tags, start_date=start_date, end_date=end_date)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling OffersApi->api_v3_vendor_contracts_contract_id_offers_get: %s\n" % e)
@@ -402,6 +407,7 @@ Name | Type | Description  | Notes
  **contract_id** | **str**| ID of the contract | 
  **start** | **int**| Where to start fetching the products | [optional] [default to 0]
  **limit** | **int**| Maximum number of results | [optional] [default to 1000]
+ **include_tags** | **bool**| Whether to return tags of products or not. | [optional] [default to True]
  **start_date** | **datetime**| Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is &#39;NOW - 48 hours to NOW&#39;. | [optional] 
  **end_date** | **datetime**| Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is &#39;NOW - 48 hours to NOW&#39;. | [optional] 
 

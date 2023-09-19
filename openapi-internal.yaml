@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.6609
+  version: 0.0.6610
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -1451,6 +1451,15 @@ paths:
           format: int32
           type: integer
         style: form
+      - description: Whether to return tags of products or not.
+        explode: true
+        in: query
+        name: includeTags
+        required: false
+        schema:
+          default: true
+          type: boolean
+        style: form
       - description: Timestamp of start of time range, formatted as ISO Date (i.e.
           2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is
           given, {startDate} is set to {endDate} - 48 hours. If both values are omitted,
@@ -1875,6 +1884,15 @@ paths:
           default: 1000
           format: int32
           type: integer
+        style: form
+      - description: Whether to return tags of products or not.
+        explode: true
+        in: query
+        name: includeTags
+        required: false
+        schema:
+          default: true
+          type: boolean
         style: form
       - description: Timestamp of start of time range, formatted as ISO Date (i.e.
           2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is
