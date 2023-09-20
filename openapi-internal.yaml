@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.6612
+  version: 0.0.6613
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -12558,6 +12558,33 @@ components:
         data:
         - schedulerJobId: schedulerJobId
           schedule: schedule
+          domainQuery:
+            regex:
+              field: field
+              pattern: pattern
+            oneOf:
+              field: field
+              values:
+              - values
+              - values
+            or:
+            - null
+            - null
+            const: true
+            in:
+              field: field
+            and:
+            - null
+            - null
+            lt:
+              field: field
+              value: value
+            eq:
+              field: field
+              value: value
+            gt:
+              field: field
+              value: value
           quota: 0.8008281904610115
           unfulfilledOnly: true
           id: 6.027456183070403
@@ -12590,6 +12617,33 @@ components:
               value: value
         - schedulerJobId: schedulerJobId
           schedule: schedule
+          domainQuery:
+            regex:
+              field: field
+              pattern: pattern
+            oneOf:
+              field: field
+              values:
+              - values
+              - values
+            or:
+            - null
+            - null
+            const: true
+            in:
+              field: field
+            and:
+            - null
+            - null
+            lt:
+              field: field
+              value: value
+            eq:
+              field: field
+              value: value
+            gt:
+              field: field
+              value: value
           quota: 0.8008281904610115
           unfulfilledOnly: true
           id: 6.027456183070403
@@ -12632,17 +12686,19 @@ components:
       additionalProperties: false
       description: A request body containing monitoring schedule.
       properties:
+        productQuery:
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.Query'
         quota:
           description: 'Defines how many products should get monitored. Default to
             1.0 which means that all products are monitored. Allowed values: 0.0 <
             quota <= 1.0'
           type: number
+        domainQuery:
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.Query'
         unfulfilledOnly:
           description: When it's set to true, then the monitoring considers only products
             on domains where no offers are found within 24h. Default false.
           type: boolean
-        productQuery:
-          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.Query'
         schedule:
           description: Only valid CRON expressions are allowed. See Cron spec [[https://www.alonsodomin.me/cron4s/userguide/index.html]]
           type: string
@@ -12657,6 +12713,33 @@ components:
         data:
           schedulerJobId: schedulerJobId
           schedule: schedule
+          domainQuery:
+            regex:
+              field: field
+              pattern: pattern
+            oneOf:
+              field: field
+              values:
+              - values
+              - values
+            or:
+            - null
+            - null
+            const: true
+            in:
+              field: field
+            and:
+            - null
+            - null
+            lt:
+              field: field
+              value: value
+            eq:
+              field: field
+              value: value
+            gt:
+              field: field
+              value: value
           quota: 0.8008281904610115
           unfulfilledOnly: true
           id: 6.027456183070403
@@ -13844,6 +13927,33 @@ components:
       example:
         schedulerJobId: schedulerJobId
         schedule: schedule
+        domainQuery:
+          regex:
+            field: field
+            pattern: pattern
+          oneOf:
+            field: field
+            values:
+            - values
+            - values
+          or:
+          - null
+          - null
+          const: true
+          in:
+            field: field
+          and:
+          - null
+          - null
+          lt:
+            field: field
+            value: value
+          eq:
+            field: field
+            value: value
+          gt:
+            field: field
+            value: value
         quota: 0.8008281904610115
         unfulfilledOnly: true
         id: 6.027456183070403
@@ -13882,6 +13992,8 @@ components:
             1.0 which means that all products are monitored. Allowed values: 0.0 <
             quota <= 1.0'
           type: number
+        domainQuery:
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.Query'
         unfulfilledOnly:
           description: When it's set to true, then the monitoring considers only products
             on domains where no offers are found within 24h. Default false.
