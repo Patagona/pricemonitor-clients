@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.6638
+  version: 0.0.6639
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -7806,6 +7806,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/PutMonitoringSchedulesApiResponse'
           description: Monitoring schedule has been created successfully.
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: Monitoring schedule could not be created due to an inbound
+            server error.
       summary: Add a monitoring schedule for a given contract.
       tags:
       - internal
