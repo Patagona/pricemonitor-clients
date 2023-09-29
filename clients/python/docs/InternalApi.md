@@ -3376,7 +3376,6 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Monitoring schedule has been deleted successfully. |  -  |
 **404** | Specified monitoring schedule does not exist. |  -  |
-**502** | Monitoring schedule could not be deleted due to an inbound server error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -15343,7 +15342,6 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Monitoring schedule has been created successfully. |  -  |
-**502** | Monitoring schedule could not be created due to an inbound server error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
