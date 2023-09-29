@@ -460,7 +460,7 @@ patagona_product_reference_price = 'reference-price-column' # str | Csv column t
 patagona_decimal_separator = '.' # str | Decimal separator used for parsing numbers \\ The values for patagona-decimal-separator, patagona-csv-column-separator and patagona-csv-quotation-character must be different from one another. \\ Available values: \",\", \".\"
 patagona_csv_column_separator = ',' # str | The csv column separator \\ The values for patagona-decimal-separator, patagona-csv-column-separator and patagona-csv-quotation-character must be different from one another.
 patagona_csv_quotation_character = '\"' # str | The csv quotation character \\ The values for patagona-decimal-separator, patagona-csv-column-separator and patagona-csv-quotation-character must be different from one another.
-body = 'body_example' # str | CSV file containing the products
+body = 'body_example' # str | CSV file containing the products. Note: The CSV file should be encoded in UTF-8.
 patagona_product_gtin = 'gtin-column' # str | Csv column that contains the gtin (optional)
 patagona_product_customer_id = 'id-column' # str | Csv column that contains an id (There is no requirement for this field to be unique) (optional)
 
@@ -513,7 +513,7 @@ patagona_product_reference_price = 'reference-price-column' # str | Csv column t
 patagona_decimal_separator = '.' # str | Decimal separator used for parsing numbers \\ The values for patagona-decimal-separator, patagona-csv-column-separator and patagona-csv-quotation-character must be different from one another. \\ Available values: \",\", \".\"
 patagona_csv_column_separator = ',' # str | The csv column separator \\ The values for patagona-decimal-separator, patagona-csv-column-separator and patagona-csv-quotation-character must be different from one another.
 patagona_csv_quotation_character = '\"' # str | The csv quotation character \\ The values for patagona-decimal-separator, patagona-csv-column-separator and patagona-csv-quotation-character must be different from one another.
-body = 'body_example' # str | CSV file containing the products
+body = 'body_example' # str | CSV file containing the products. Note: The CSV file should be encoded in UTF-8.
 patagona_product_gtin = 'gtin-column' # str | Csv column that contains the gtin (optional)
 patagona_product_customer_id = 'id-column' # str | Csv column that contains an id (There is no requirement for this field to be unique) (optional)
 
@@ -537,7 +537,7 @@ Name | Type | Description  | Notes
  **patagona_decimal_separator** | **str**| Decimal separator used for parsing numbers \\ The values for patagona-decimal-separator, patagona-csv-column-separator and patagona-csv-quotation-character must be different from one another. \\ Available values: \&quot;,\&quot;, \&quot;.\&quot; | 
  **patagona_csv_column_separator** | **str**| The csv column separator \\ The values for patagona-decimal-separator, patagona-csv-column-separator and patagona-csv-quotation-character must be different from one another. | 
  **patagona_csv_quotation_character** | **str**| The csv quotation character \\ The values for patagona-decimal-separator, patagona-csv-column-separator and patagona-csv-quotation-character must be different from one another. | 
- **body** | **str**| CSV file containing the products | 
+ **body** | **str**| CSV file containing the products. Note: The CSV file should be encoded in UTF-8. | 
  **patagona_product_gtin** | **str**| Csv column that contains the gtin | [optional] 
  **patagona_product_customer_id** | **str**| Csv column that contains an id (There is no requirement for this field to be unique) | [optional] 
 
@@ -986,7 +986,7 @@ patagona_product_max_price = 'max-price-column' # str | Csv column that contains
 patagona_decimal_separator = '.' # str | Decimal separator used for parsing numbers \\ The values for patagona-decimal-separator, patagona-csv-column-separator and patagona-csv-quotation-character must be different from one another. \\ Available values: \",\", \".\"
 patagona_csv_column_separator = ',' # str | The csv column separator \\ It can be provided either as text or as Base64 encoded string (e.g. needed for tab as separator). \\ The values for patagona-decimal-separator, patagona-csv-column-separator and patagona-csv-quotation-character must be different from one another.
 patagona_csv_quotation_character = '\"' # str | The csv quotation character \\ The values for patagona-decimal-separator, patagona-csv-column-separator and patagona-csv-quotation-character must be different from one another.
-body = 'body_example' # str | CSV file containing the products
+body = 'body_example' # str | CSV file containing the products. Note: The CSV file should be encoded in UTF-8.
 patagona_product_gtin = 'max-price-column' # str | Csv column that contains the gtin (optional)
 patagona_product_customer_id = 'id-column' # str | Csv column that contains an id (There is no requirement for this field to be unique) (optional)
 
@@ -1041,7 +1041,7 @@ patagona_product_max_price = 'max-price-column' # str | Csv column that contains
 patagona_decimal_separator = '.' # str | Decimal separator used for parsing numbers \\ The values for patagona-decimal-separator, patagona-csv-column-separator and patagona-csv-quotation-character must be different from one another. \\ Available values: \",\", \".\"
 patagona_csv_column_separator = ',' # str | The csv column separator \\ It can be provided either as text or as Base64 encoded string (e.g. needed for tab as separator). \\ The values for patagona-decimal-separator, patagona-csv-column-separator and patagona-csv-quotation-character must be different from one another.
 patagona_csv_quotation_character = '\"' # str | The csv quotation character \\ The values for patagona-decimal-separator, patagona-csv-column-separator and patagona-csv-quotation-character must be different from one another.
-body = 'body_example' # str | CSV file containing the products
+body = 'body_example' # str | CSV file containing the products. Note: The CSV file should be encoded in UTF-8.
 patagona_product_gtin = 'max-price-column' # str | Csv column that contains the gtin (optional)
 patagona_product_customer_id = 'id-column' # str | Csv column that contains an id (There is no requirement for this field to be unique) (optional)
 
@@ -1067,7 +1067,7 @@ Name | Type | Description  | Notes
  **patagona_decimal_separator** | **str**| Decimal separator used for parsing numbers \\ The values for patagona-decimal-separator, patagona-csv-column-separator and patagona-csv-quotation-character must be different from one another. \\ Available values: \&quot;,\&quot;, \&quot;.\&quot; | 
  **patagona_csv_column_separator** | **str**| The csv column separator \\ It can be provided either as text or as Base64 encoded string (e.g. needed for tab as separator). \\ The values for patagona-decimal-separator, patagona-csv-column-separator and patagona-csv-quotation-character must be different from one another. | 
  **patagona_csv_quotation_character** | **str**| The csv quotation character \\ The values for patagona-decimal-separator, patagona-csv-column-separator and patagona-csv-quotation-character must be different from one another. | 
- **body** | **str**| CSV file containing the products | 
+ **body** | **str**| CSV file containing the products. Note: The CSV file should be encoded in UTF-8. | 
  **patagona_product_gtin** | **str**| Csv column that contains the gtin | [optional] 
  **patagona_product_customer_id** | **str**| Csv column that contains an id (There is no requirement for this field to be unique) | [optional] 
 
