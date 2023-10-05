@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.6647
+  version: 0.0.6648
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -7814,6 +7814,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/PutMonitoringSchedulesApiResponse'
           description: Monitoring schedule has been created successfully.
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: Monitoring schedule could not be created due to an internal
+            server error.
       summary: Add a monitoring schedule for a given contract.
       tags:
       - internal
@@ -7852,6 +7859,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Specified monitoring schedule does not exist.
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: Monitoring schedule could not be deleted due to an internal
+            server error.
       summary: Delete a monitoring schedule for a given contract.
       tags:
       - internal
@@ -7895,6 +7909,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Specified monitoring schedule does not exist.
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: Monitoring schedule could not be updated due to an internal
+            server error.
       summary: Update a monitoring schedule for a given contract.
       tags:
       - internal
