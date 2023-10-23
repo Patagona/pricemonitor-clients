@@ -95,12 +95,17 @@ model/pricemonitorPostCustomerOrdersRequestV2.ts
 model/pricemonitorPostEmbedSSOUrlRequestV3.ts
 model/pricemonitorPostMonitoringScheduleRequestV3.ts
 model/pricemonitorPostNewPasswordRequest.ts
+model/pricemonitorPostOfferStatisticsOneOfV31.ts
+model/pricemonitorPostOfferStatisticsRequestV31.ts
+model/pricemonitorPostOfferStatisticsRequestV31Filter.ts
+model/pricemonitorPostOfferStatisticsResponseV31.ts
 model/pricemonitorPostProductOfferRequest.ts
 model/pricemonitorPostScenarioStrategyResponse.ts
 model/pricemonitorPostVendorShopMappingRequestV3.ts
 model/pricemonitorPostVendorsByDomainResponse.ts
 model/pricemonitorPriceDumpingStatsRequest.ts
 model/pricemonitorPriceDumpingStatsResponse.ts
+model/pricemonitorPriceStatisticsV31.ts
 model/pricemonitorPricesByDayByProductIdRequestV2.ts
 model/pricemonitorPricesByDayByProductIdResponseV2.ts
 model/pricemonitorPricesByDayByProductIdResponseV2Prices.ts
@@ -109,6 +114,7 @@ model/pricemonitorProductMonitoringStatusOnDomain.ts
 model/pricemonitorProductMonitoringStatusOnDomainOutcome.ts
 model/pricemonitorProductMonitoringStatusStats.ts
 model/pricemonitorProductMonitoringStatusStatsOutcomes.ts
+model/pricemonitorProductOfferStatisticsV31.ts
 model/pricemonitorProductPriceDumpingStats.ts
 model/pricemonitorPutAdminContractSettingsBody.ts
 model/pricemonitorPutResetPasswordRequest.ts
@@ -128,6 +134,7 @@ model/pricemonitorUserCompany.ts
 model/pricemonitorUserContract.ts
 model/pricemonitorUserInfo.ts
 model/pricemonitorVendorShopMappingV3.ts
+model/pricemonitorZonedTimeRange.ts
 model/constantOfferFilter.ts
 model/constantOfferFilterConstant.ts
 model/createCompanyApiResponse.ts
@@ -211,6 +218,7 @@ model/putMonitoringSchedulesApiResponse.ts
 model/putPluginRegistrationRequest.ts
 model/putPluginRegistrationRequestAllOf.ts
 model/putProductsApiResponse.ts
+model/queryOfferStatisticsV31ApiResponse.ts
 model/queryOffersApiResponse.ts
 model/queryOffersOfShopV3ApiResponse.ts
 model/queryPriceDumpingStatsApiResponse.ts

@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.6667
+  version: 0.0.6669
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -1625,6 +1625,46 @@ paths:
       - products
       - internal
     summary: Get offer statistics per product
+  /api/v3.1/manufacturer/contracts/{contractId}/offers/stats/query:
+    post:
+      description: This endpoint can be used to query offer statistics (e.g. offer
+        count, average price) grouped by product. Only the most recent market data
+        is considered per product and domain.
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        $ref: '#/components/requestBodies/PostOfferStatisticsRequestV31Enriched'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryOfferStatisticsV31ApiResponse'
+          description: |
+            Returns a list of offer statistics per product.
+            When a product has no market data then no offer statistics are returned for that product.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: |
+            A `400` error is returned under the following conditions:
+            - The request body JSON is unparsable.
+            - An unsupported filter is provided.
+            - The specified time range exceeds 48 hours.
+            - The pagination limit exceeds 10,000.
+      summary: Query offer statistics per product.
+      tags:
+      - offers
   /api/v3/manufacturer/contracts/{contractId}/offers/stats:
     get:
       operationId: getOfferStatisticsManufacturerV3
@@ -2166,6 +2206,46 @@ paths:
       - products
       - internal
     summary: Get offer statistics per product
+  /api/v3.1/vendor/contracts/{contractId}/offers/stats/query:
+    post:
+      description: This endpoint can be used to query offer statistics (e.g. offer
+        count, average price) grouped by product. Only the most recent market data
+        is considered per product and domain.
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        $ref: '#/components/requestBodies/PostOfferStatisticsRequestV31Enriched'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryOfferStatisticsV31ApiResponse'
+          description: |
+            Returns a list of offer statistics per product.
+            When a product has no market data then no offer statistics are returned for that product.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: |
+            A `400` error is returned under the following conditions:
+            - The request body JSON is unparsable.
+            - An unsupported filter is provided.
+            - The specified time range exceeds 48 hours.
+            - The pagination limit exceeds 10,000.
+      summary: Query offer statistics per product.
+      tags:
+      - offers
   /api/v3/vendor/contracts/{contractId}/orders:
     delete:
       operationId: deleteOrders
@@ -8658,6 +8738,65 @@ components:
           By default it is set to true.
         type: boolean
       style: form
+  requestBodies:
+    PostOfferStatisticsRequestV31Enriched:
+      content:
+        application/json:
+          example:
+            pagination:
+              start: 0
+              limit: 10
+            range:
+              start: 2023-10-17T08:00:00Z
+              end: 2023-10-19T08:00:00Z
+            filter:
+              oneOf:
+                field: customerProductId
+                values:
+                - "1"
+                - "2"
+                - "3"
+                - "4"
+                - "5"
+                - "6"
+                - "7"
+                - "8"
+                - "9"
+                - "10"
+          schema:
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PostOfferStatisticsRequestV31'
+      description: |
+        The request body may include an optional products query. If omitted, all products are queried. Currently, product queries can be performed on two attributes:
+          - "customerProductId"
+          - "productId" (Patagona's internal product id; must be a numerical integer)
+
+        Pagination is supported with a maximum limit of 10,000. For optimized performance:
+          - Use a limit of 10,000 products per page when querying all products of a contract.
+          - Prefer using "productId" for queries when a product query is utilized.
+
+        Pagination operates based on the provided products query.
+        This is particularly useful when querying a set of customerProductId's.
+        For chunked requests over a set of ids, it's straightforward to specify up to 10,000 customerProductId's in the query with pagination set at start: 0, limit: 10,000.
+
+        The allowed query pattern is structured as follows:
+
+        { <br>
+        &nbsp;&nbsp;"pagination": { <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;"start": ${start}, <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;"limit": ${limit} <br>
+        &nbsp;&nbsp;}, <br>
+        &nbsp;&nbsp;"range": { <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;"start": ${start}, <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;"end": ${end} <br>
+        &nbsp;&nbsp;}, <br>
+        &nbsp;&nbsp;"filter": { <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;"oneOf": { <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"field": "customerProductId", <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"values": [${customerProductIds as a list of strings}] <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;} <br>
+        &nbsp;&nbsp;} <br>
+        } <br>
+        <br>
   schemas:
     LogMessages:
       example:
@@ -11003,6 +11142,40 @@ components:
       required:
       - data
       type: object
+    QueryOfferStatisticsV31ApiResponse:
+      additionalProperties: false
+      example:
+        data:
+        - productId: productId
+          offerCount: 0
+          stats:
+            unitPriceStats:
+              min: 6.027456183070403
+              avg: 1.4658129805029452
+              max: 5.962133916683182
+            totalPriceStats:
+              min: 6.027456183070403
+              avg: 1.4658129805029452
+              max: 5.962133916683182
+        - productId: productId
+          offerCount: 0
+          stats:
+            unitPriceStats:
+              min: 6.027456183070403
+              avg: 1.4658129805029452
+              max: 5.962133916683182
+            totalPriceStats:
+              min: 6.027456183070403
+              avg: 1.4658129805029452
+              max: 5.962133916683182
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PostOfferStatisticsResponseV31'
+          type: array
+      required:
+      - data
+      type: object
     GetOfferStatisticsV3ApiResponse:
       additionalProperties: false
       example:
@@ -12927,6 +13100,64 @@ components:
       required:
       - data
       type: object
+    com.patagona.pricemonitor.share.api.PostOfferStatisticsRequestV31:
+      additionalProperties: false
+      description: 'Represents a paginated query with an optional product filter and
+        a specified time range. <br> If no filter is provided, the response will contain
+        all available data, paginated according to the `pagination` parameter. <br>
+        <br> Notes: <br> - At maximum it''s allowed to query 10,000 records (pagination
+        limit). <br> - The maximum time span between the start and end should not
+        exceed 48 hours (timerange limit).'
+      properties:
+        pagination:
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.Pagination'
+        range:
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ZonedTimeRange'
+        filter:
+          $ref: '#/components/schemas/com_patagona_pricemonitor_share_api_PostOfferStatisticsRequestV31_filter'
+      required:
+      - pagination
+      - range
+      type: object
+    com.patagona.pricemonitor.share.api.ZonedTimeRange:
+      additionalProperties: false
+      description: Represents a time range. It's required that the end timestamp is
+        after or equals the start timestamp.
+      properties:
+        start:
+          description: The starting point of the time range, represented as a timestamp
+            in ISO 8601 format (e.g., "2023-10-19T13:45:30Z") in UTC.
+          format: date-time
+          type: string
+        end:
+          description: The ending point of the time range, represented as a timestamp
+            in ISO 8601 format (e.g., "2023-10-19T14:45:30Z") in UTC.
+          format: date-time
+          type: string
+      required:
+      - end
+      - start
+      type: object
+    com.patagona.pricemonitor.share.api.PostOfferStatisticsOneOfV31:
+      additionalProperties: false
+      description: This product query evaluates to 'true' if the value of the 'field'
+        is one on the specified 'values'.
+      properties:
+        field:
+          description: 'Specifies the attribute to filter by. It accepts two values:
+            <br> - "customerProductId": Your unique identifier for the product. <br>
+            - "productId": Patagona''s internal product id (must be a numerical integer).'
+          type: string
+        values:
+          description: An array of strings containing the ids of the products to be
+            queried.
+          items:
+            type: string
+          type: array
+      required:
+      - field
+      - values
+      type: object
     com.patagona.pricemonitor.share.api.GetPricingStrategyHistoryResponse:
       additionalProperties: false
       description: Version history of all strategies
@@ -13468,6 +13699,80 @@ components:
       required:
       - name
       - value
+      type: object
+    com.patagona.pricemonitor.share.api.PostOfferStatisticsResponseV31:
+      additionalProperties: false
+      description: Represents aggregated offer statistics for a single product.
+      example:
+        productId: productId
+        offerCount: 0
+        stats:
+          unitPriceStats:
+            min: 6.027456183070403
+            avg: 1.4658129805029452
+            max: 5.962133916683182
+          totalPriceStats:
+            min: 6.027456183070403
+            avg: 1.4658129805029452
+            max: 5.962133916683182
+      properties:
+        productId:
+          description: Pricemonitor's internal unique product identifier.
+          type: string
+        offerCount:
+          description: The number of offers found on all domains for the product.
+          type: integer
+        stats:
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ProductOfferStatisticsV31'
+      required:
+      - offerCount
+      - productId
+      - stats
+      type: object
+    com.patagona.pricemonitor.share.api.ProductOfferStatisticsV31:
+      additionalProperties: false
+      description: Contains details on both unit price and total price statistics
+        of product offers.
+      example:
+        unitPriceStats:
+          min: 6.027456183070403
+          avg: 1.4658129805029452
+          max: 5.962133916683182
+        totalPriceStats:
+          min: 6.027456183070403
+          avg: 1.4658129805029452
+          max: 5.962133916683182
+      properties:
+        unitPriceStats:
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PriceStatisticsV31'
+        totalPriceStats:
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PriceStatisticsV31'
+      required:
+      - totalPriceStats
+      - unitPriceStats
+      type: object
+    com.patagona.pricemonitor.share.api.PriceStatisticsV31:
+      additionalProperties: false
+      description: 'Represents basic price statistics: (min, avg, max). All prices
+        are rounded half-up to two decimal places.'
+      example:
+        min: 6.027456183070403
+        avg: 1.4658129805029452
+        max: 5.962133916683182
+      properties:
+        min:
+          description: The minimum offer price.
+          type: number
+        avg:
+          description: The average offer price.
+          type: number
+        max:
+          description: The maximum offer price.
+          type: number
+      required:
+      - avg
+      - max
+      - min
       type: object
     com.patagona.pricemonitor.share.api.GetOfferStatisticsV3:
       additionalProperties: false
@@ -14651,6 +14956,14 @@ components:
       required:
       - headers
       - url
+    com_patagona_pricemonitor_share_api_PostOfferStatisticsRequestV31_filter:
+      description: An optional parameter to further filter the data based on product
+        criteria.
+      properties:
+        oneOf:
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PostOfferStatisticsOneOfV31'
+      required:
+      - oneOf
     com_patagona_pricemonitor_share_api_GetAllDomainsV3_domains:
       example:
         domain: domain
