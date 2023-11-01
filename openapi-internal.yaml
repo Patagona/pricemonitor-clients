@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.6685
+  version: 0.0.6686
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -10761,6 +10761,11 @@ components:
         triggerFollowUpTask:
           description: optional flag to specify whether or not to trigger the next
             task. Currently only integrated to trigger callbacks after preprocessing
+          type: boolean
+        includeForBilling:
+          description: optional flag to specify whether or not to include the task
+            in billing. This is especially useful when manual monitoring is triggered
+            by our admins
           type: boolean
       required:
       - taskType
