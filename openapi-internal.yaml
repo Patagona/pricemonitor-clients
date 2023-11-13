@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.6690
+  version: 0.0.6691
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -2296,6 +2296,32 @@ paths:
         schema:
           format: int32
           type: integer
+        style: form
+      - description: |
+          Timestamp of start of time range for fetching orders.
+          Formatted as ISO 8601 format with timezone with reference to UTC (e.g. for [Europe/Berlin] in winter time:
+          2023-11-01T14:50:45.495+01:00. In summer time: 2023-11-01T14:50:45.495+02:00).
+          If this value is omitted then no lower time limit is considered.
+        explode: true
+        in: query
+        name: startDate
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: |
+          Timestamp of end of time range for fetching orders.
+          Formatted as ISO 8601 format with timezone with reference to UTC (e.g. for [Europe/Berlin] in winter time:
+          2023-11-01T14:50:45.495+01:00. In summer time: 2023-11-01T14:50:45.495+02:00).
+          If this value is omitted then no upper time limit is considered.
+        explode: true
+        in: query
+        name: endDate
+        required: false
+        schema:
+          format: date-time
+          type: string
         style: form
       responses:
         "200":
@@ -8683,6 +8709,34 @@ components:
         in UTC. If this value is omitted and {startDate} is given, {endDate} is set
         to {startDate} + 48 hours. If both values are omitted, the range is 'NOW -
         48 hours to NOW'.
+      explode: true
+      in: query
+      name: endDate
+      required: false
+      schema:
+        format: date-time
+        type: string
+      style: form
+    getOrdersStartDate:
+      description: |
+        Timestamp of start of time range for fetching orders.
+        Formatted as ISO 8601 format with timezone with reference to UTC (e.g. for [Europe/Berlin] in winter time:
+        2023-11-01T14:50:45.495+01:00. In summer time: 2023-11-01T14:50:45.495+02:00).
+        If this value is omitted then no lower time limit is considered.
+      explode: true
+      in: query
+      name: startDate
+      required: false
+      schema:
+        format: date-time
+        type: string
+      style: form
+    getOrdersEndDate:
+      description: |
+        Timestamp of end of time range for fetching orders.
+        Formatted as ISO 8601 format with timezone with reference to UTC (e.g. for [Europe/Berlin] in winter time:
+        2023-11-01T14:50:45.495+01:00. In summer time: 2023-11-01T14:50:45.495+02:00).
+        If this value is omitted then no upper time limit is considered.
       explode: true
       in: query
       name: endDate

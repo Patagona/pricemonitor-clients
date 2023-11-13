@@ -5887,7 +5887,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_orders_vendor_v3**
-> object get_orders_vendor_v3(contract_id, start, limit)
+> object get_orders_vendor_v3(contract_id, start, limit, start_date=start_date, end_date=end_date)
 
 
 
@@ -5929,9 +5929,11 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 start = 56 # int | 
 limit = 56 # int | 
+start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range for fetching orders. Formatted as ISO 8601 format with timezone with reference to UTC (e.g. for [Europe/Berlin] in winter time: 2023-11-01T14:50:45.495+01:00. In summer time: 2023-11-01T14:50:45.495+02:00). If this value is omitted then no lower time limit is considered.  (optional)
+end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range for fetching orders. Formatted as ISO 8601 format with timezone with reference to UTC (e.g. for [Europe/Berlin] in winter time: 2023-11-01T14:50:45.495+01:00. In summer time: 2023-11-01T14:50:45.495+02:00). If this value is omitted then no upper time limit is considered.  (optional)
 
     try:
-        api_response = api_instance.get_orders_vendor_v3(contract_id, start, limit)
+        api_response = api_instance.get_orders_vendor_v3(contract_id, start, limit, start_date=start_date, end_date=end_date)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling UndocumentedApi->get_orders_vendor_v3: %s\n" % e)
@@ -5973,9 +5975,11 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 start = 56 # int | 
 limit = 56 # int | 
+start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range for fetching orders. Formatted as ISO 8601 format with timezone with reference to UTC (e.g. for [Europe/Berlin] in winter time: 2023-11-01T14:50:45.495+01:00. In summer time: 2023-11-01T14:50:45.495+02:00). If this value is omitted then no lower time limit is considered.  (optional)
+end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range for fetching orders. Formatted as ISO 8601 format with timezone with reference to UTC (e.g. for [Europe/Berlin] in winter time: 2023-11-01T14:50:45.495+01:00. In summer time: 2023-11-01T14:50:45.495+02:00). If this value is omitted then no upper time limit is considered.  (optional)
 
     try:
-        api_response = api_instance.get_orders_vendor_v3(contract_id, start, limit)
+        api_response = api_instance.get_orders_vendor_v3(contract_id, start, limit, start_date=start_date, end_date=end_date)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling UndocumentedApi->get_orders_vendor_v3: %s\n" % e)
@@ -5988,6 +5992,8 @@ Name | Type | Description  | Notes
  **contract_id** | **str**| ID of the contract | 
  **start** | **int**|  | 
  **limit** | **int**|  | 
+ **start_date** | **datetime**| Timestamp of start of time range for fetching orders. Formatted as ISO 8601 format with timezone with reference to UTC (e.g. for [Europe/Berlin] in winter time: 2023-11-01T14:50:45.495+01:00. In summer time: 2023-11-01T14:50:45.495+02:00). If this value is omitted then no lower time limit is considered.  | [optional] 
+ **end_date** | **datetime**| Timestamp of end of time range for fetching orders. Formatted as ISO 8601 format with timezone with reference to UTC (e.g. for [Europe/Berlin] in winter time: 2023-11-01T14:50:45.495+01:00. In summer time: 2023-11-01T14:50:45.495+02:00). If this value is omitted then no upper time limit is considered.  | [optional] 
 
 ### Return type
 
