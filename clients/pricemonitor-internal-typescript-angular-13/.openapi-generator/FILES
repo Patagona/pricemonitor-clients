@@ -82,6 +82,7 @@ model/pricemonitorMonitoringScheduleV3.ts
 model/pricemonitorOfferAttribute.ts
 model/pricemonitorOfferSelector.ts
 model/pricemonitorOfferStatsPerDomain.ts
+model/pricemonitorOneOfProductsQuery.ts
 model/pricemonitorPagination.ts
 model/pricemonitorPaginationResponse.ts
 model/pricemonitorPostAccountRequestV3.ts
@@ -95,10 +96,10 @@ model/pricemonitorPostCustomerOrdersRequestV2.ts
 model/pricemonitorPostEmbedSSOUrlRequestV3.ts
 model/pricemonitorPostMonitoringScheduleRequestV3.ts
 model/pricemonitorPostNewPasswordRequest.ts
-model/pricemonitorPostOfferStatisticsOneOfV31.ts
 model/pricemonitorPostOfferStatisticsRequestV31.ts
-model/pricemonitorPostOfferStatisticsRequestV31Filter.ts
 model/pricemonitorPostOfferStatisticsResponseV31.ts
+model/pricemonitorPostOrderStatisticsRequestV3.ts
+model/pricemonitorPostOrderStatisticsResponseV3.ts
 model/pricemonitorPostProductOfferRequest.ts
 model/pricemonitorPostScenarioStrategyResponse.ts
 model/pricemonitorPostVendorShopMappingRequestV3.ts
@@ -109,6 +110,7 @@ model/pricemonitorPriceStatisticsV31.ts
 model/pricemonitorPricesByDayByProductIdRequestV2.ts
 model/pricemonitorPricesByDayByProductIdResponseV2.ts
 model/pricemonitorPricesByDayByProductIdResponseV2Prices.ts
+model/pricemonitorProductIdQuery.ts
 model/pricemonitorProductMonitoringStatus.ts
 model/pricemonitorProductMonitoringStatusOnDomain.ts
 model/pricemonitorProductMonitoringStatusOnDomainOutcome.ts
@@ -221,6 +223,7 @@ model/putProductsApiResponse.ts
 model/queryOfferStatisticsV31ApiResponse.ts
 model/queryOffersApiResponse.ts
 model/queryOffersOfShopV3ApiResponse.ts
+model/queryOrderStatisticsV3ApiResponse.ts
 model/queryPriceDumpingStatsApiResponse.ts
 model/queryPriceRecommendationsV2ApiResponse.ts
 model/queryProductsByFilterManufacturerV3ApiResponse.ts

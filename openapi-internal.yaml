@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.6696
+  version: 0.0.6697
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -2334,6 +2334,102 @@ paths:
       - internal
       - undocumented
       - orders
+  /api/v3/vendor/contracts/{contractId}/orders/stats/query:
+    post:
+      description: This endpoint can be used to query order statistics grouped by
+        product.
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              pagination:
+                start: 0
+                limit: 10
+              range:
+                start: 2023-11-01T08:00:00Z
+                end: 2023-11-15T08:00:00Z
+              filter:
+                oneOf:
+                  field: customerProductId
+                  values:
+                  - "1"
+                  - "2"
+                  - "3"
+                  - "4"
+                  - "5"
+                  - "6"
+                  - "7"
+                  - "8"
+                  - "9"
+                  - "10"
+            schema:
+              $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PostOrderStatisticsRequestV3'
+        description: |
+          The request body may include an optional products query. If omitted, all products are queried. Currently, product queries can be performed on two attributes:
+            - "customerProductId"
+            - "productId" (Patagona's internal product id; must be a numerical integer)
+
+          Pagination is supported with a maximum limit of 10,000. For optimized performance:
+            - Use a limit of 10,000 products per page when querying all products of a contract.
+            - Prefer using "customerProductId" for queries when a product query is utilized.
+
+          Pagination operates based on the provided products query.
+          For chunked requests over a set of ids, it's straightforward to specify up to 10,000 customerProductId's in the query with pagination set at start: 0, limit: 10,000.
+
+          The allowed query pattern is structured as follows:
+
+          { <br>
+          &nbsp;&nbsp;"pagination": { <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;"start": ${start}, <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;"limit": ${limit} <br>
+          &nbsp;&nbsp;}, <br>
+          &nbsp;&nbsp;"range": { <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;"start": ${start}, <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;"end": ${end} <br>
+          &nbsp;&nbsp;}, <br>
+          &nbsp;&nbsp;"filter": { <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;"oneOf": { <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"field": "customerProductId", <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"values": [${customerProductIds as a list of strings}] <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;} <br>
+          &nbsp;&nbsp;} <br>
+          } <br>
+          <br>
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryOrderStatisticsV3ApiResponse'
+          description: |
+            Returns a list of order statistics per product.
+            When a product has no sold items then no order statistics are returned for that product.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: |
+            A `400` error is returned under the following conditions:
+            - The request body JSON is unparsable.
+            - An unsupported filter is provided.
+            - The specified time range exceeds 30 days.
+            - The pagination limit exceeds 10,000.
+      summary: Query order statistics per product
+      tags:
+      - orders
+      - internal
   /api/v3/vendor/contracts/{contractId}/products:
     delete:
       description: Delete all products or delete products by a last updated timestamp.
@@ -11428,6 +11524,107 @@ components:
       required:
       - data
       type: object
+    com.patagona.pricemonitor.share.api.PostOrderStatisticsRequestV3:
+      additionalProperties: false
+      description: 'Represents a paginated query with an optional product filter and
+        a specified time range. <br> If no filter is provided, the response will contain
+        all available data, paginated according to the `pagination` parameter. <br>
+        <br> Notes: <br> - At maximum it''s allowed to query 10,000 records (pagination
+        limit). <br> - The maximum time span between the start and end should not
+        exceed 30 days (timerange limit).'
+      properties:
+        pagination:
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.Pagination'
+        range:
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ZonedTimeRange'
+        filter:
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.OneOfProductsQuery'
+      required:
+      - pagination
+      - range
+      type: object
+    com.patagona.pricemonitor.share.api.Pagination:
+      additionalProperties: false
+      description: This model describes a step in a paginated endpoint. It consists
+        of the start index, set to 0 for the first page. The next page starts at (previous
+        start) + limit. Reasonable values for the limit parameter depend on the specific
+        endpoint.
+      properties:
+        start:
+          type: integer
+        limit:
+          type: integer
+      required:
+      - limit
+      - start
+      type: object
+    com.patagona.pricemonitor.share.api.ZonedTimeRange:
+      additionalProperties: false
+      description: Represents a time range. It's required that the end timestamp is
+        after or equals the start timestamp.
+      properties:
+        start:
+          description: The starting point of the time range, represented as a timestamp
+            in ISO 8601 format (e.g., "2023-10-19T13:45:30Z") in UTC.
+          format: date-time
+          type: string
+        end:
+          description: The ending point of the time range, represented as a timestamp
+            in ISO 8601 format (e.g., "2023-10-19T14:45:30Z") in UTC.
+          format: date-time
+          type: string
+      required:
+      - end
+      - start
+      type: object
+    com.patagona.pricemonitor.share.api.OneOfProductsQuery:
+      additionalProperties: false
+      description: An optional parameter to further filter the data based on product
+        criteria.
+      properties:
+        oneOf:
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ProductIdQuery'
+      required:
+      - oneOf
+      type: object
+    com.patagona.pricemonitor.share.api.ProductIdQuery:
+      additionalProperties: false
+      description: This product query evaluates to 'true' if the value of the 'field'
+        is one on the specified 'values'.
+      properties:
+        field:
+          description: 'Specifies the attribute to filter by. It accepts two values:
+            <br> - "customerProductId": Your unique identifier for the product. <br>
+            - "productId": Patagona''s internal product id (must be a numerical integer).'
+          type: string
+        values:
+          description: An array of strings containing the ids of the products to be
+            queried.
+          items:
+            type: string
+          type: array
+      required:
+      - field
+      - values
+      type: object
+    QueryOrderStatisticsV3ApiResponse:
+      additionalProperties: false
+      example:
+        data:
+        - itemId: itemId
+          productId: productId
+          numberOfSoldItems: 0
+        - itemId: itemId
+          productId: productId
+          numberOfSoldItems: 0
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PostOrderStatisticsResponseV3'
+          type: array
+      required:
+      - data
+      type: object
     GetExtendedTagsApiResponse:
       additionalProperties: false
       example:
@@ -12191,21 +12388,6 @@ components:
           $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.Query'
       required:
       - pagination
-      type: object
-    com.patagona.pricemonitor.share.api.Pagination:
-      additionalProperties: false
-      description: This model describes a step in a paginated endpoint. It consists
-        of the start index, set to 0 for the first page. The next page starts at (previous
-        start) + limit. Reasonable values for the limit parameter depend on the specific
-        endpoint.
-      properties:
-        start:
-          type: integer
-        limit:
-          type: integer
-      required:
-      - limit
-      - start
       type: object
     com.patagona.pricemonitor.share.api.Query:
       additionalProperties: false
@@ -13173,49 +13355,10 @@ components:
         range:
           $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ZonedTimeRange'
         filter:
-          $ref: '#/components/schemas/com_patagona_pricemonitor_share_api_PostOfferStatisticsRequestV31_filter'
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.OneOfProductsQuery'
       required:
       - pagination
       - range
-      type: object
-    com.patagona.pricemonitor.share.api.ZonedTimeRange:
-      additionalProperties: false
-      description: Represents a time range. It's required that the end timestamp is
-        after or equals the start timestamp.
-      properties:
-        start:
-          description: The starting point of the time range, represented as a timestamp
-            in ISO 8601 format (e.g., "2023-10-19T13:45:30Z") in UTC.
-          format: date-time
-          type: string
-        end:
-          description: The ending point of the time range, represented as a timestamp
-            in ISO 8601 format (e.g., "2023-10-19T14:45:30Z") in UTC.
-          format: date-time
-          type: string
-      required:
-      - end
-      - start
-      type: object
-    com.patagona.pricemonitor.share.api.PostOfferStatisticsOneOfV31:
-      additionalProperties: false
-      description: This product query evaluates to 'true' if the value of the 'field'
-        is one on the specified 'values'.
-      properties:
-        field:
-          description: 'Specifies the attribute to filter by. It accepts two values:
-            <br> - "customerProductId": Your unique identifier for the product. <br>
-            - "productId": Patagona''s internal product id (must be a numerical integer).'
-          type: string
-        values:
-          description: An array of strings containing the ids of the products to be
-            queried.
-          items:
-            type: string
-          type: array
-      required:
-      - field
-      - values
       type: object
     com.patagona.pricemonitor.share.api.GetPricingStrategyHistoryResponse:
       additionalProperties: false
@@ -13979,6 +14122,29 @@ components:
       - productsAtMinPrice
       - uniqueProductInitiatedPriceDumpings
       - uniqueProductPotentiallyInitiatedPriceDumpings
+      type: object
+    com.patagona.pricemonitor.share.api.PostOrderStatisticsResponseV3:
+      additionalProperties: false
+      description: Represents aggregated order statistics for a single product.
+      example:
+        itemId: itemId
+        productId: productId
+        numberOfSoldItems: 0
+      properties:
+        productId:
+          description: Pricemonitor's internal unique product identifier.
+          type: string
+        itemId:
+          description: The unique identifier of the sold item, expected to align with
+            the customerProductId.
+          type: string
+        numberOfSoldItems:
+          description: The total count of how often the product has been sold.
+          type: integer
+      required:
+      - itemId
+      - numberOfSoldItems
+      - productId
       type: object
     com.patagona.pricemonitor.share.api.GetContractResponseV3:
       additionalProperties: false
@@ -15015,14 +15181,6 @@ components:
       required:
       - headers
       - url
-    com_patagona_pricemonitor_share_api_PostOfferStatisticsRequestV31_filter:
-      description: An optional parameter to further filter the data based on product
-        criteria.
-      properties:
-        oneOf:
-          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PostOfferStatisticsOneOfV31'
-      required:
-      - oneOf
     com_patagona_pricemonitor_share_api_GetAllDomainsV3_domains:
       example:
         domain: domain

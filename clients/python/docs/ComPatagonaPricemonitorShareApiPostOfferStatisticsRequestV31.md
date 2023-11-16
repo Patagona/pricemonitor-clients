@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **pagination** | [**ComPatagonaPricemonitorShareApiPagination**](ComPatagonaPricemonitorShareApiPagination.md) |  | 
 **range** | [**ComPatagonaPricemonitorShareApiZonedTimeRange**](ComPatagonaPricemonitorShareApiZonedTimeRange.md) |  | 
-**filter** | [**ComPatagonaPricemonitorShareApiPostOfferStatisticsRequestV31Filter**](ComPatagonaPricemonitorShareApiPostOfferStatisticsRequestV31Filter.md) |  | [optional] 
+**filter** | [**ComPatagonaPricemonitorShareApiOneOfProductsQuery**](ComPatagonaPricemonitorShareApiOneOfProductsQuery.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

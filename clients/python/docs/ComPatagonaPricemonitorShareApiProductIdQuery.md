@@ -1,4 +1,4 @@
-# ComPatagonaPricemonitorShareApiPostOfferStatisticsOneOfV31
+# ComPatagonaPricemonitorShareApiProductIdQuery
 
 This product query evaluates to 'true' if the value of the 'field' is one on the specified 'values'.
 ## Properties
