@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.6700
+  version: 0.0.6701
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -2430,6 +2430,64 @@ paths:
       tags:
       - orders
       - internal
+  /api/v3/vendor/contracts/{contractId}/orders/delete/query:
+    post:
+      description: This endpoint can be used to delete customer orders by an order
+        query
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              orders:
+              - orderId: "123"
+                creationDate: 2023-11-01T08:00:00Z
+            schema:
+              $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.DeleteOrdersByQueryRequestV3'
+        description: |
+          The request body should contain a list of order queries. Each query should contain an order id and creation date.
+
+          The allowed query pattern is structured as follows:
+
+          { <br>
+          &nbsp;&nbsp;"orders": [ <br>
+          &nbsp;&nbsp;&nbsp;{ <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;"orderId": ${orderId}, <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;"creationDate": ${creationDate} <br>
+          &nbsp;&nbsp;} <br>
+          &nbsp;&nbsp;&nbsp;] <br>
+          } <br>
+          <br>
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteOrdersApiResponse'
+          description: |
+            Returns the number of orders that have been deleted successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: |
+            A `400` error is returned under the following conditions:
+            - The request body JSON is unparsable.
+            - The provided order queries exceeds 10,000.
+      summary: Delete orders by query
+      tags:
+      - orders
   /api/v3/vendor/contracts/{contractId}/products:
     delete:
       description: Delete all products or delete products by a last updated timestamp.
@@ -11625,6 +11683,21 @@ components:
       required:
       - data
       type: object
+    com.patagona.pricemonitor.share.api.DeleteOrdersByQueryRequestV3:
+      additionalProperties: false
+      description: 'Request to delete a list of customer orders by providing an order
+        query Notes: <br> - At maximum it''s allowed to provide 10,000 order queries
+        per request. <br>'
+      properties:
+        orders:
+          description: List of order queries, each query should include an order id
+            and its corresponding creation date
+          items:
+            $ref: '#/components/schemas/com_patagona_pricemonitor_share_api_DeleteOrdersByQueryRequestV3_orders'
+          type: array
+      required:
+      - orders
+      type: object
     GetExtendedTagsApiResponse:
       additionalProperties: false
       example:
@@ -15072,6 +15145,19 @@ components:
           items:
             $ref: '#/components/schemas/ApiError'
           type: array
+    com_patagona_pricemonitor_share_api_DeleteOrdersByQueryRequestV3_orders:
+      properties:
+        orderId:
+          description: Unique identifier of the order
+          type: string
+        creationDate:
+          description: Creation date of the corresponding order. It is a Timestamp
+            in UTC time zone
+          format: date-time
+          type: string
+      required:
+      - creationDate
+      - orderId
     com_patagona_pricemonitor_share_api_PricesByDayByProductIdResponseV2_prices:
       example:
         deliveryCosts: 6.027456183070403

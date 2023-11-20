@@ -35,6 +35,8 @@ export * from './pricemonitorCustomerOrderItemV2';
 export * from './pricemonitorCustomerOrderV2';
 export * from './pricemonitorCustomerOrderV2ProductMappings';
 export * from './pricemonitorDeleteByNumericIdApiResponse';
+export * from './pricemonitorDeleteOrdersByQueryRequestV3';
+export * from './pricemonitorDeleteOrdersByQueryRequestV3Orders';
 export * from './pricemonitorDomainPriceDumpingStats';
 export * from './pricemonitorDynamicMonitoringSettings';
 export * from './pricemonitorEmbedSSOUrlResponseV3';

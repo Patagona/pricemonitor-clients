@@ -66,6 +66,8 @@ model/pricemonitorCustomerOrderItemV2.ts
 model/pricemonitorCustomerOrderV2.ts
 model/pricemonitorCustomerOrderV2ProductMappings.ts
 model/pricemonitorDeleteByNumericIdApiResponse.ts
+model/pricemonitorDeleteOrdersByQueryRequestV3.ts
+model/pricemonitorDeleteOrdersByQueryRequestV3Orders.ts
 model/pricemonitorDomainPriceDumpingStats.ts
 model/pricemonitorDynamicMonitoringSettings.ts
 model/pricemonitorEmbedSSOUrlResponseV3.ts
