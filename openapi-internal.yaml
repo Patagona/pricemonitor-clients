@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.6701
+  version: 0.0.6702
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -2429,7 +2429,6 @@ paths:
       summary: Query order statistics per product
       tags:
       - orders
-      - internal
   /api/v3/vendor/contracts/{contractId}/orders/delete/query:
     post:
       description: This endpoint can be used to delete customer orders by an order
