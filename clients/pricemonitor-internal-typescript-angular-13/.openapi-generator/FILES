@@ -65,6 +65,7 @@ model/pricemonitorCustomerContractSettings.ts
 model/pricemonitorCustomerOrderItemV2.ts
 model/pricemonitorCustomerOrderV2.ts
 model/pricemonitorCustomerOrderV2ProductMappings.ts
+model/pricemonitorCustomerOrderV3.ts
 model/pricemonitorDeleteByNumericIdApiResponse.ts
 model/pricemonitorDeleteOrdersByQueryRequestV3.ts
 model/pricemonitorDeleteOrdersByQueryRequestV3Orders.ts
@@ -121,6 +122,8 @@ model/pricemonitorProductMonitoringStatusStatsOutcomes.ts
 model/pricemonitorProductOfferStatisticsV31.ts
 model/pricemonitorProductPriceDumpingStats.ts
 model/pricemonitorPutAdminContractSettingsBody.ts
+model/pricemonitorPutCustomerOrdersRequestV3.ts
+model/pricemonitorPutItemsResponseV3.ts
 model/pricemonitorPutResetPasswordRequest.ts
 model/pricemonitorQuery.ts
 model/pricemonitorQueryIn.ts
@@ -218,6 +221,7 @@ model/productsFilter.ts
 model/productsFilterLeft.ts
 model/productsFilterRight.ts
 model/putCustomerContractSettingsApiResponse.ts
+model/putItemsV3ApiResponse.ts
 model/putMonitoringSchedulesApiResponse.ts
 model/putPluginRegistrationRequest.ts
 model/putPluginRegistrationRequestAllOf.ts

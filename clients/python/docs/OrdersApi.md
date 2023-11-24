@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**get_orders_count_by_portal_by_contract**](OrdersApi.md#get_orders_count_by_portal_by_contract) | **GET** /api/1/{contractId}/products/orderscountbyportal | 
 [**get_orders_vendor_v3**](OrdersApi.md#get_orders_vendor_v3) | **GET** /api/v3/vendor/contracts/{contractId}/orders | 
 [**post_orders**](OrdersApi.md#post_orders) | **POST** /api/2/v/contracts/{contractId}/orders | Add orders in bulk
+[**put_orders_v3**](OrdersApi.md#put_orders_v3) | **PUT** /api/v3/vendor/contracts/{contractId}/orders | PUT orders in bulk
 
 
 # **api_v3_vendor_contracts_contract_id_orders_delete_query_post**
@@ -747,6 +748,131 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Successfully added orders |  -  |
 **400** | Unable to add orders |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_orders_v3**
+> PutItemsV3ApiResponse put_orders_v3(contract_id, com_patagona_pricemonitor_share_api_put_customer_orders_request_v3=com_patagona_pricemonitor_share_api_put_customer_orders_request_v3)
+
+PUT orders in bulk
+
+Saves orders in bulk. If an orderId was already used by this contract this order and all it's order-items will be overwritten.  - the `version` of the request body must be \"3\" - requests must not contain duplicated `orderId` - the number of orders in one request must not exceed 10,000 - the `orders.items.itemId` fields should correspond to a `customerProductId` of a product definition inside   the contract 
+
+### Example
+
+* Basic Authentication (BasicAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.OrdersApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+com_patagona_pricemonitor_share_api_put_customer_orders_request_v3 = {"orders":{"shippingCosts":5.9,"orderId":"2023-11_customer-a_001","items":[{"unitPrice":6.02,"itemId":"itemId","quantity":1,"taxPercentage":19}],"totalPrice":11.92,"origin":"Amazon.de","creationDate":"2023-11-23T11:20:21.034+01:00","currency":"EUR"},"version":3} # ComPatagonaPricemonitorShareApiPutCustomerOrdersRequestV3 |  (optional)
+
+    try:
+        # PUT orders in bulk
+        api_response = api_instance.put_orders_v3(contract_id, com_patagona_pricemonitor_share_api_put_customer_orders_request_v3=com_patagona_pricemonitor_share_api_put_customer_orders_request_v3)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling OrdersApi->put_orders_v3: %s\n" % e)
+```
+
+* Bearer (JWT) Authentication (BearerAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.OrdersApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+com_patagona_pricemonitor_share_api_put_customer_orders_request_v3 = {"orders":{"shippingCosts":5.9,"orderId":"2023-11_customer-a_001","items":[{"unitPrice":6.02,"itemId":"itemId","quantity":1,"taxPercentage":19}],"totalPrice":11.92,"origin":"Amazon.de","creationDate":"2023-11-23T11:20:21.034+01:00","currency":"EUR"},"version":3} # ComPatagonaPricemonitorShareApiPutCustomerOrdersRequestV3 |  (optional)
+
+    try:
+        # PUT orders in bulk
+        api_response = api_instance.put_orders_v3(contract_id, com_patagona_pricemonitor_share_api_put_customer_orders_request_v3=com_patagona_pricemonitor_share_api_put_customer_orders_request_v3)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling OrdersApi->put_orders_v3: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **contract_id** | **str**| ID of the contract | 
+ **com_patagona_pricemonitor_share_api_put_customer_orders_request_v3** | [**ComPatagonaPricemonitorShareApiPutCustomerOrdersRequestV3**](ComPatagonaPricemonitorShareApiPutCustomerOrdersRequestV3.md)|  | [optional] 
+
+### Return type
+
+[**PutItemsV3ApiResponse**](PutItemsV3ApiResponse.md)
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | The response provides the ids of the successfully imported orders |  -  |
+**400** | Unable to add orders because of invalid request data |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

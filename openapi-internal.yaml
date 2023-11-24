@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.6708
+  version: 0.0.6709
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -2333,6 +2333,68 @@ paths:
       tags:
       - internal
       - undocumented
+      - orders
+    put:
+      description: |
+        Saves orders in bulk. If an orderId was already used by this contract this order and all it's order-items will
+        be overwritten.
+
+        - the `version` of the request body must be "3"
+        - requests must not contain duplicated `orderId`
+        - the number of orders in one request must not exceed 10,000
+        - the `orders.items.itemId` fields should correspond to a `customerProductId` of a product definition inside
+          the contract
+      operationId: putOrdersV3
+      parameters:
+      - description: ID of the contract
+        example: qbcxvb
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              orders:
+                shippingCosts: 5.9
+                orderId: 2023-11_customer-a_001
+                items:
+                - unitPrice: 6.02
+                  itemId: itemId
+                  quantity: 1
+                  taxPercentage: 19
+                totalPrice: 11.92
+                origin: Amazon.de
+                creationDate: 2023-11-23T11:20:21.034+01:00
+                currency: EUR
+              version: 3
+            schema:
+              $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PutCustomerOrdersRequestV3'
+      responses:
+        "201":
+          content:
+            application/json:
+              example:
+                data:
+                  ids:
+                  - OrderId-1
+                  - OrderId-2
+              schema:
+                $ref: '#/components/schemas/PutItemsV3ApiResponse'
+          description: The response provides the ids of the successfully imported
+            orders
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: Unable to add orders because of invalid request data
+      summary: PUT orders in bulk
+      tags:
       - orders
   /api/v3/vendor/contracts/{contractId}/orders/stats/query:
     post:
@@ -11570,6 +11632,79 @@ components:
       required:
       - data
       type: object
+    com.patagona.pricemonitor.share.api.PutCustomerOrdersRequestV3:
+      additionalProperties: false
+      description: Request body containing bulked orders
+      properties:
+        orders:
+          description: List of orders
+          items:
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.CustomerOrderV3'
+          type: array
+        version:
+          description: Version of orders. Currently only "3" is allowed
+          type: string
+      required:
+      - orders
+      - version
+      type: object
+    com.patagona.pricemonitor.share.api.CustomerOrderV3:
+      additionalProperties: false
+      description: An order placed in a shop.
+      properties:
+        shippingCosts:
+          description: Shipping costs of the order
+          type: number
+        orderId:
+          description: Unique id of an order. It must mean unique in the contract,
+            not in the pricemonitor.
+          type: string
+        items:
+          description: List of bought items
+          items:
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.CustomerOrderItemV2'
+          type: array
+        totalPrice:
+          description: Total price of the order
+          type: number
+        origin:
+          description: Origin of an order, e.g. the online shop where the order is
+            placed
+          type: string
+        creationDate:
+          description: Date when the order is created
+          format: date-time
+          type: string
+        currency:
+          description: 'Currency used in the order. ISO 4217 Currency Codes: e.g.
+            EUR'
+          type: string
+        referrer:
+          description: Referrer of an order. Third party (e.g. marketplace) which
+            referred the customer to the online shop
+          type: string
+      required:
+      - creationDate
+      - currency
+      - items
+      - orderId
+      - origin
+      - shippingCosts
+      - totalPrice
+      type: object
+    PutItemsV3ApiResponse:
+      additionalProperties: false
+      example:
+        data:
+          ids:
+          - ids
+          - ids
+      properties:
+        data:
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PutItemsResponseV3'
+      required:
+      - data
+      type: object
     DeleteOrdersApiResponse:
       additionalProperties: false
       example:
@@ -14194,6 +14329,22 @@ components:
       - productsAtMinPrice
       - uniqueProductInitiatedPriceDumpings
       - uniqueProductPotentiallyInitiatedPriceDumpings
+      type: object
+    com.patagona.pricemonitor.share.api.PutItemsResponseV3:
+      additionalProperties: false
+      description: Represents list of unique identifiers
+      example:
+        ids:
+        - ids
+        - ids
+      properties:
+        ids:
+          description: list of ids of the items that have been saved or updated
+          items:
+            type: string
+          type: array
+      required:
+      - ids
       type: object
     com.patagona.pricemonitor.share.api.PostOrderStatisticsResponseV3:
       additionalProperties: false
