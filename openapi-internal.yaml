@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.6709
+  version: 0.0.6710
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -2331,8 +2331,6 @@ paths:
                 type: object
           description: This is a generated entry and needs to be described.
       tags:
-      - internal
-      - undocumented
       - orders
     put:
       description: |
