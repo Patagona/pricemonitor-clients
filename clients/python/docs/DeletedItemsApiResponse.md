@@ -1,4 +1,4 @@
-# DeleteOrdersApiResponse
+# DeletedItemsApiResponse
 
 ## Properties
 Name | Type | Description | Notes

@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.6710
+  version: 0.0.6711
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -2264,7 +2264,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DeleteOrdersApiResponse'
+                $ref: '#/components/schemas/DeletedItemsApiResponse'
           description: Successfully deleted all orders
       summary: Delete all orders for this contract
       tags:
@@ -2532,7 +2532,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DeleteOrdersApiResponse'
+                $ref: '#/components/schemas/DeletedItemsApiResponse'
           description: |
             Returns the number of orders that have been deleted successfully
         "400":
@@ -11703,7 +11703,7 @@ components:
       required:
       - data
       type: object
-    DeleteOrdersApiResponse:
+    DeletedItemsApiResponse:
       additionalProperties: false
       example:
         data:

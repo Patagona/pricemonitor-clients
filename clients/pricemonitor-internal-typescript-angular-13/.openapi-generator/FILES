@@ -146,9 +146,9 @@ model/constantOfferFilter.ts
 model/constantOfferFilterConstant.ts
 model/createCompanyApiResponse.ts
 model/createCompanyResponse.ts
-model/deleteOrdersApiResponse.ts
 model/deleteProductsApiResponse.ts
 model/deleteProductsApiResponseData.ts
+model/deletedItemsApiResponse.ts
 model/deletedItemsResponse.ts
 model/embedSSOUrlResponseV3ApiResponse.ts
 model/emptyApiResponse.ts

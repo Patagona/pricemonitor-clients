@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 
 # **api_v3_vendor_contracts_contract_id_orders_delete_query_post**
-> DeleteOrdersApiResponse api_v3_vendor_contracts_contract_id_orders_delete_query_post(contract_id, com_patagona_pricemonitor_share_api_delete_orders_by_query_request_v3)
+> DeletedItemsApiResponse api_v3_vendor_contracts_contract_id_orders_delete_query_post(contract_id, com_patagona_pricemonitor_share_api_delete_orders_by_query_request_v3)
 
 Delete orders by query
 
@@ -119,7 +119,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeleteOrdersApiResponse**](DeleteOrdersApiResponse.md)
+[**DeletedItemsApiResponse**](DeletedItemsApiResponse.md)
 
 ### Authorization
 
@@ -264,7 +264,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_orders**
-> DeleteOrdersApiResponse delete_orders(contract_id)
+> DeletedItemsApiResponse delete_orders(contract_id)
 
 Delete all orders for this contract
 
@@ -364,7 +364,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeleteOrdersApiResponse**](DeleteOrdersApiResponse.md)
+[**DeletedItemsApiResponse**](DeletedItemsApiResponse.md)
 
 ### Authorization
 
