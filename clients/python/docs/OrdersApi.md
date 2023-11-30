@@ -756,7 +756,7 @@ Name | Type | Description  | Notes
 
 PUT orders in bulk
 
-Saves orders in bulk. If an orderId was already used by this contract this order and all it's order-items will be overwritten.  - the `version` of the request body must be \"3\" - requests must not contain duplicated `orderId` - the number of orders in one request must not exceed 10,000 - the `orders.items.itemId` fields should correspond to a `customerProductId` of a product definition inside   the contract 
+Saves orders in bulk. If an orderId was already used by this contract this order and all it's order-items will be overwritten.  - the `version` of the request body must be \"3\" - requests must not contain duplicated `orderId` - the number of orders in one request must not exceed 10,000 - each order must have at least one item - the `orders.items.itemId` fields should correspond to a `customerProductId` of a product definition inside   the contract 
 
 ### Example
 
