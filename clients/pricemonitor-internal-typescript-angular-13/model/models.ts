@@ -38,6 +38,7 @@ export * from './pricemonitorCustomerOrderV3';
 export * from './pricemonitorDeleteByNumericIdApiResponse';
 export * from './pricemonitorDeleteOrdersByQueryRequestV3';
 export * from './pricemonitorDeleteOrdersByQueryRequestV3Orders';
+export * from './pricemonitorDomainOfferStatisticsV31';
 export * from './pricemonitorDomainPriceDumpingStats';
 export * from './pricemonitorDynamicMonitoringSettings';
 export * from './pricemonitorEmbedSSOUrlResponseV3';

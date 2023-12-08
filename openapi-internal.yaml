@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.6716
+  version: 0.0.6717
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -11426,6 +11426,11 @@ components:
               min: 6.027456183070403
               avg: 1.4658129805029452
               max: 5.962133916683182
+            domainStats:
+            - competitorOfferCount: 5
+              domain: domain
+            - competitorOfferCount: 5
+              domain: domain
             totalPriceStats:
               min: 6.027456183070403
               avg: 1.4658129805029452
@@ -11437,6 +11442,11 @@ components:
               min: 6.027456183070403
               avg: 1.4658129805029452
               max: 5.962133916683182
+            domainStats:
+            - competitorOfferCount: 5
+              domain: domain
+            - competitorOfferCount: 5
+              domain: domain
             totalPriceStats:
               min: 6.027456183070403
               avg: 1.4658129805029452
@@ -14119,6 +14129,11 @@ components:
             min: 6.027456183070403
             avg: 1.4658129805029452
             max: 5.962133916683182
+          domainStats:
+          - competitorOfferCount: 5
+            domain: domain
+          - competitorOfferCount: 5
+            domain: domain
           totalPriceStats:
             min: 6.027456183070403
             avg: 1.4658129805029452
@@ -14146,6 +14161,11 @@ components:
           min: 6.027456183070403
           avg: 1.4658129805029452
           max: 5.962133916683182
+        domainStats:
+        - competitorOfferCount: 5
+          domain: domain
+        - competitorOfferCount: 5
+          domain: domain
         totalPriceStats:
           min: 6.027456183070403
           avg: 1.4658129805029452
@@ -14155,7 +14175,14 @@ components:
           $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PriceStatisticsV31'
         totalPriceStats:
           $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PriceStatisticsV31'
+        domainStats:
+          description: A list of offer statistics per domain. Domains without competitor
+            offers are not included in the list.
+          items:
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.DomainOfferStatisticsV31'
+          type: array
       required:
+      - domainStats
       - totalPriceStats
       - unitPriceStats
       type: object
@@ -14181,6 +14208,28 @@ components:
       - avg
       - max
       - min
+      type: object
+    com.patagona.pricemonitor.share.api.DomainOfferStatisticsV31:
+      additionalProperties: false
+      description: Represents statistics about offers from competitors for a specific
+        domain. The competitor offers are determined under-the-hood by excluding offers
+        of the registered own shops.
+      example:
+        competitorOfferCount: 5
+        domain: domain
+      properties:
+        domain:
+          description: This field specifies the domain where the competitor offers
+            are sourced from. It's a string representing the domain name, such as
+            "google.de".
+          type: string
+        competitorOfferCount:
+          description: The number of competitor offers available in the specified
+            domain.
+          type: integer
+      required:
+      - competitorOfferCount
+      - domain
       type: object
     com.patagona.pricemonitor.share.api.GetOfferStatisticsV3:
       additionalProperties: false
