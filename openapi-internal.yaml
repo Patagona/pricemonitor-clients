@@ -4,7 +4,7 @@ info:
     name: Patagona GmbH
     url: https://patagona.de/
   title: Pricemonitor API
-  version: 0.0.6768
+  version: 0.0.6769
 servers:
 - description: Production server
   url: https://api.patagona.de
@@ -2574,7 +2574,32 @@ paths:
           format: date-time
           type: string
         style: form
+      - description: Tag key to consider for deleting products. This parameter works
+          in combination with tagValue.
+        explode: true
+        in: query
+        name: tagKey
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Tag value to consider for deleting products. This parameter works
+          in combination with tagKey.
+        explode: true
+        in: query
+        name: tagValue
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: |
+            Tags specified for deleting products are specified partially (either tagKey or tagValue is provided).
         "200":
           content:
             application/json:

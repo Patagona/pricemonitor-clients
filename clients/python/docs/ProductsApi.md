@@ -1092,7 +1092,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_products**
-> DeleteProductsApiResponse delete_products(contract_id, updated_max=updated_max)
+> DeleteProductsApiResponse delete_products(contract_id, updated_max=updated_max, tag_key=tag_key, tag_value=tag_value)
 
 Delete products
 
@@ -1135,10 +1135,12 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
     contract_id = 'qbcxvb' # str | ID of the contract
 updated_max = '2013-10-20T19:20:30+01:00' # datetime | Last updated timestamp of products, formatted as ISO Date (i.e. 2019-11-20T13:46:13Z) in UTC.<br> Products can be deleted which haven't been updated since the specified timestamp.<br> If the query parameter is missing all products are deleted. (optional)
+tag_key = 'tag_key_example' # str | Tag key to consider for deleting products. This parameter works in combination with tagValue. (optional)
+tag_value = 'tag_value_example' # str | Tag value to consider for deleting products. This parameter works in combination with tagKey. (optional)
 
     try:
         # Delete products
-        api_response = api_instance.delete_products(contract_id, updated_max=updated_max)
+        api_response = api_instance.delete_products(contract_id, updated_max=updated_max, tag_key=tag_key, tag_value=tag_value)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling ProductsApi->delete_products: %s\n" % e)
@@ -1179,10 +1181,12 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
     contract_id = 'qbcxvb' # str | ID of the contract
 updated_max = '2013-10-20T19:20:30+01:00' # datetime | Last updated timestamp of products, formatted as ISO Date (i.e. 2019-11-20T13:46:13Z) in UTC.<br> Products can be deleted which haven't been updated since the specified timestamp.<br> If the query parameter is missing all products are deleted. (optional)
+tag_key = 'tag_key_example' # str | Tag key to consider for deleting products. This parameter works in combination with tagValue. (optional)
+tag_value = 'tag_value_example' # str | Tag value to consider for deleting products. This parameter works in combination with tagKey. (optional)
 
     try:
         # Delete products
-        api_response = api_instance.delete_products(contract_id, updated_max=updated_max)
+        api_response = api_instance.delete_products(contract_id, updated_max=updated_max, tag_key=tag_key, tag_value=tag_value)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling ProductsApi->delete_products: %s\n" % e)
@@ -1194,6 +1198,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **contract_id** | **str**| ID of the contract | 
  **updated_max** | **datetime**| Last updated timestamp of products, formatted as ISO Date (i.e. 2019-11-20T13:46:13Z) in UTC.&lt;br&gt; Products can be deleted which haven&#39;t been updated since the specified timestamp.&lt;br&gt; If the query parameter is missing all products are deleted. | [optional] 
+ **tag_key** | **str**| Tag key to consider for deleting products. This parameter works in combination with tagValue. | [optional] 
+ **tag_value** | **str**| Tag value to consider for deleting products. This parameter works in combination with tagKey. | [optional] 
 
 ### Return type
 
@@ -1211,6 +1217,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+**400** | Tags specified for deleting products are specified partially (either tagKey or tagValue is provided).  |  -  |
 **200** | Returns the number of deleted products. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
