@@ -11,8 +11,10 @@ mkdir clients
 
 mkdir -p clients/akka
 
-API_PATH="/local/openapi-internal.yaml"
-IMAGE_341="openapitools/openapi-generator-cli:v4.3.1"
+API_SOURCE_FILE="openapi-internal.yaml"
+API_FIXEDUP_FILE="openapi-internal-fixedup.yaml"
+API_PATH="/local/$API_FIXEDUP_FILE"
+IMAGE_431="openapitools/openapi-generator-cli:v4.3.1"
 IMAGE_601="openapitools/openapi-generator-cli:v6.0.1"
 COMMON_PARAMS="--api-package api --model-package model --git-host github.com --git-repo-id pricemonitor-clients --git-user-id Patagona"
 
@@ -21,7 +23,7 @@ COMMON_PARAMS="--api-package api --model-package model --git-host github.com --g
 # But reading from yaml is not an easy thing to do with grep and tools for reading yaml are not installed by default in linux.
 API_VERSION=$(cat API_VERSION)
 
-DOCKER_CMD="docker run --rm -v $(pwd):/local -u $(id -u ${USER}):$(id -g ${USER}) $IMAGE_341 generate -i $API_PATH"
+DOCKER_CMD="docker run --rm -v $(pwd):/local -u $(id -u ${USER}):$(id -g ${USER}) $IMAGE_431 generate -i $API_PATH --skip-validate-spec"
 
 log() {
       GREEN='\033[0;32m'
@@ -29,13 +31,15 @@ log() {
       echo -e "${GREEN}//////////////////////// $@ ${NC}"
 }
 
-
 main() {
-      log python
-      (build_python)
+      log fixup-api-file
+      (fixup_api_file)
 
       log scala-sttp
       (build_scala_sttp)
+
+      log python
+      (build_python)
 
       log typescript-angular
       (build_typescript_angular)
@@ -49,6 +53,22 @@ main() {
       # TODO: Generating scala clients is temporarily deactivated since they don't have priority
       # log scala-akka
       # (build_scala_akka)
+}
+
+fixup_api_file() {
+      cp $API_SOURCE_FILE $API_FIXEDUP_FILE
+      # Change the OAS version from 3.1.0 to 3.0.0 as the old generator version being used doesn't support 3.1
+      sed -i '1s/3.1.0/3.0.0/' $API_FIXEDUP_FILE
+
+      # Remove the first summary: block occurence as
+      # it is not supported in OAS 3.0
+      awk '
+            /servers:/ && summaryDeleted {print; summaryDeleted=0; serversSeen=1; next}
+            /servers:/ {serversSeen=1}
+            !serversSeen && /summary:/ {summaryDeleted=1; next}
+            summaryDeleted && (/^[[:space:]]*[a-zA-Z]+:/) {summaryDeleted=0; next}
+            summaryDeleted {next}
+            !summaryDeleted' $API_FIXEDUP_FILE > tmp.yaml && mv tmp.yaml $API_FIXEDUP_FILE
 }
 
 build_python() {
@@ -93,7 +113,7 @@ build_typescript_angular() {
 build_typescript_angular_13() {
       PACKAGE_NAME=pricemonitor-internal-typescript-angular-13
 
-      DOCKER_CMD_601="docker run --rm -v $(pwd):/local -u $(id -u ${USER}):$(id -g ${USER}) $IMAGE_601 generate -i $API_PATH"
+      DOCKER_CMD_601="docker run --rm -v $(pwd):/local -u $(id -u ${USER}):$(id -g ${USER}) $IMAGE_601 generate -i $API_PATH --skip-validate-spec"
 
       $DOCKER_CMD_601 \
             -g typescript-angular \
