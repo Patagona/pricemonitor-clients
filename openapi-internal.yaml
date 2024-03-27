@@ -7,7 +7,7 @@ info:
   summary: This is the API powering Omnia 2.0 and Pricemonitor, containing operations which can also be used directly by customers from their own systems.
   description: |
     The Omnia 2.0 API is RESTful and provides access to the backend of Omnia 2.0 and Pricemonitor. It is used to manage products, offers, contracts and more.
-  version: 0.0.6775
+  version: 0.0.6776
   x-logo:
     url: https://www.omniaretail.com/hubfs/Omnia%20Logo%20SVG/Omnia_Retail_Full_Colour_Logo_On_White_RGB.svg
     altText: Omnia Retail
@@ -234,6 +234,8 @@ paths:
         - internal
   /api/v3/domains:
     get:
+      operationId: getAllDomainsV3
+      summary: Get a list of all available domains (V3)
       responses:
         '200':
           content:
@@ -241,17 +243,16 @@ paths:
               schema:
                 $ref: '#/components/schemas/GetAllDomainsV3ApiResponse'
           description: A list of domains
-      summary: Get a list of all available domains (V3)
       description: |
         This endpoint provides all domains which are supported by our system.
         Along with other attributes we are providing the corresponding possible offer sources.
         Only domains which include the offer source DEFAULT_MONITORING are supported out-of-the-box by our monitoring pipeline.
-      operationId: getAllDomainsV3
       tags:
         - domains
   /controlpanel/api/v3/domains:
     x-audience: Internal
     post:
+      operationId: getAllDomainsControlPanelV3
       responses:
         '200':
           content:
@@ -1183,6 +1184,7 @@ paths:
     get:
       summary: Get offers for timerange
       description: Returns the newest offers for a given time range.
+      operationId: getOffersManufacturerV3
       parameters:
         - $ref: '#/components/parameters/contractIdParam'
         - description: Where to start fetching the products
@@ -1231,6 +1233,7 @@ paths:
   /api/v3/manufacturer/contracts/{contractId}/offers/shops:
     x-audience: Internal
     get:
+      operationId: getOffersShopsManufacturerV3
       parameters:
         - $ref: '#/components/parameters/contractIdParam'
         - $ref: '#/components/parameters/startDateOneWeekMax'
@@ -1256,6 +1259,7 @@ paths:
   /api/v3/manufacturer/contracts/{contractId}/offers/shop/query:
     x-audience: Internal
     post:
+      operationId: queryOffersShopManufacturerV3
       parameters:
         - $ref: '#/components/parameters/contractIdParam'
       responses:
@@ -1278,6 +1282,7 @@ paths:
   /api/v3/manufacturer/contracts/{contractId}/offers/stats/query:
     x-audience: Internal
     post:
+      operationId: queryOffersStatsManufacturerV3
       parameters:
         - $ref: '#/components/parameters/contractIdParam'
       responses:
@@ -1306,6 +1311,7 @@ paths:
     summary: Get offer statistics per product
   /api/v3.1/manufacturer/contracts/{contractId}/offers/stats/query:
     post:
+      operationId: queryOffersStatsManufacturerV31
       parameters:
         - $ref: '#/components/parameters/contractIdParam'
       responses:
@@ -1367,6 +1373,7 @@ paths:
       description: Get offer statistics per product of a contract. Only the latest offers per product and domain the are taken into account.
   /api/v3/manufacturer/contracts/{contractId}/products:
     put:
+      operationId: putCSVProductsManufacturerV3
       parameters:
         - $ref: '#/components/parameters/contractIdParam'
         - in: header
@@ -1496,6 +1503,7 @@ paths:
       - $ref: '#/components/parameters/contractIdParam'
   /api/v3/vendor/contracts/{contractId}/offers:
     get:
+      operationId: getOffersVendorV3
       summary: Get offers for timerange
       description: Returns the newest offers for a given time range.
       parameters:
@@ -1547,6 +1555,7 @@ paths:
   /api/v3/vendor/contracts/{contractId}/offers/shops:
     x-audience: Internal
     get:
+      operationId: getOffersShopsVendorV3
       parameters:
         - $ref: '#/components/parameters/contractIdParam'
         - $ref: '#/components/parameters/startDateOneWeekMax'
@@ -1571,6 +1580,7 @@ paths:
       description: Returns all shops which have at least one offer for a given time range per domain.
   /api/v3/vendor/contracts/{contractId}/offers/query:
     post:
+      operationId: queryOffersVendorV3
       parameters:
         - $ref: '#/components/parameters/contractIdParam'
       responses:
@@ -1623,6 +1633,7 @@ paths:
   /api/v3/vendor/contracts/{contractId}/offers/shop/query:
     x-audience: Internal
     post:
+      operationId: queryOffersShopVendorV3
       parameters:
         - $ref: '#/components/parameters/contractIdParam'
       responses:
@@ -1644,6 +1655,7 @@ paths:
       description: Get all offers of a shop. Please note that it might return offers for inactive products.
   /api/v3/vendor/contracts/{contractId}/offers/pricedumpingstats:
     post:
+      operationId: queryOffersPriceDumpingStatsVendorV3
       parameters:
         - $ref: '#/components/parameters/contractIdParam'
       responses:
@@ -1714,6 +1726,7 @@ paths:
     summary: Get offer statistics per product
   /api/v3.1/vendor/contracts/{contractId}/offers/stats/query:
     post:
+      operationId: queryOffersStatsVendorV31
       parameters:
         - $ref: '#/components/parameters/contractIdParam'
       responses:
@@ -1744,6 +1757,7 @@ paths:
       summary: Query offer statistics per product
   /api/v3/vendor/contracts/{contractId}/orders:
     delete:
+      operationId: deleteOrders
       parameters:
         - $ref: '#/components/parameters/contractIdParam'
       responses:
@@ -1755,9 +1769,10 @@ paths:
           description: Successfully deleted all orders
       tags:
         - orders
-      operationId: deleteOrders
       summary: Delete all orders for this contract
     put:
+      operationId: putOrdersV3
+      summary: PUT orders in bulk
       description: |
         Saves orders in bulk. If an orderId was already used by this contract this order and all it's order-items will
         be overwritten.
@@ -1775,18 +1790,18 @@ paths:
               $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PutCustomerOrdersRequestV3'
             example:
               orders:
-                shippingCosts: 5.9
-                orderId: 2023-11_customer-a_001
-                items:
-                  - unitPrice: 6.02
-                    itemId: itemId
-                    quantity: 1
-                    taxPercentage: 19
-                totalPrice: 11.92
-                origin: Amazon.de
-                creationDate: '2023-11-23T11:20:21.034+01:00'
-                currency: EUR
-              version: 3
+                - shippingCosts: 5.9
+                  orderId: 2023-11_customer-a_001
+                  items:
+                    - unitPrice: 6.02
+                      itemId: itemId
+                      quantity: 1
+                      taxPercentage: 19
+                  totalPrice: 11.92
+                  origin: Amazon.de
+                  creationDate: '2023-11-23T11:20:21.034+01:00'
+                  currency: EUR
+              version: '3'
       responses:
         '201':
           description: The response provides the ids of the successfully imported orders
@@ -1807,8 +1822,6 @@ paths:
           description: Unable to add orders because of invalid request data
       tags:
         - orders
-      operationId: putOrdersV3
-      summary: PUT orders in bulk
     get:
       responses:
         '200':
@@ -1841,6 +1854,7 @@ paths:
       - $ref: '#/components/parameters/contractIdParam'
   /api/v3/vendor/contracts/{contractId}/orders/stats/query:
     post:
+      operationId: queryOrdersStatsVendorV3
       parameters:
         - $ref: '#/components/parameters/contractIdParam'
       responses:
@@ -1927,6 +1941,7 @@ paths:
       summary: Query order statistics per product
   /api/v3/vendor/contracts/{contractId}/orders/delete/query:
     post:
+      operationId: deleteOrdersByQueryVendorV3
       parameters:
         - $ref: '#/components/parameters/contractIdParam'
       responses:
@@ -1978,6 +1993,7 @@ paths:
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
     put:
+      operationId: putProductsImportVendorV3
       parameters:
         - in: header
           name: content-type
@@ -2097,6 +2113,7 @@ paths:
         required: true
       summary: Set products via CSV file
     post:
+      operationId: postProductsImportVendorV3
       parameters:
         - in: header
           name: content-type
@@ -2291,6 +2308,7 @@ paths:
   /controlpanel/api/companies:
     x-audience: Internal
     get:
+      operationId: getAllCompanies
       responses:
         '200':
           content:
@@ -6938,7 +6956,6 @@ components:
       properties:
         data:
           $ref: '#/components/schemas/PluginRegistration'
-          type: object
     PluginRegistrationEmptyApiResponse:
       properties:
         data:

@@ -4,17 +4,14 @@ All URIs are relative to *https://api.patagona.de*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**api_v31_manufacturer_contracts_contract_id_offers_stats_query_post**](OffersApi.md#api_v31_manufacturer_contracts_contract_id_offers_stats_query_post) | **POST** /api/v3.1/manufacturer/contracts/{contractId}/offers/stats/query | Query offer statistics per product
-[**api_v31_vendor_contracts_contract_id_offers_stats_query_post**](OffersApi.md#api_v31_vendor_contracts_contract_id_offers_stats_query_post) | **POST** /api/v3.1/vendor/contracts/{contractId}/offers/stats/query | Query offer statistics per product
-[**api_v3_manufacturer_contracts_contract_id_offers_get**](OffersApi.md#api_v3_manufacturer_contracts_contract_id_offers_get) | **GET** /api/v3/manufacturer/contracts/{contractId}/offers | Get offers for timerange
-[**api_v3_manufacturer_contracts_contract_id_offers_shops_get**](OffersApi.md#api_v3_manufacturer_contracts_contract_id_offers_shops_get) | **GET** /api/v3/manufacturer/contracts/{contractId}/offers/shops | Get shops with offers for time range
-[**api_v3_vendor_contracts_contract_id_offers_get**](OffersApi.md#api_v3_vendor_contracts_contract_id_offers_get) | **GET** /api/v3/vendor/contracts/{contractId}/offers | Get offers for timerange
-[**api_v3_vendor_contracts_contract_id_offers_query_post**](OffersApi.md#api_v3_vendor_contracts_contract_id_offers_query_post) | **POST** /api/v3/vendor/contracts/{contractId}/offers/query | Query offers
-[**api_v3_vendor_contracts_contract_id_offers_shops_get**](OffersApi.md#api_v3_vendor_contracts_contract_id_offers_shops_get) | **GET** /api/v3/vendor/contracts/{contractId}/offers/shops | Get shops with offers for time range per domain
 [**get_cheapest_vendors_manufacturer_v2**](OffersApi.md#get_cheapest_vendors_manufacturer_v2) | **POST** /api/2/m/contracts/{contractId}/result/vendors/cheapest | 
 [**get_complex_offer_filters_vendor_v2**](OffersApi.md#get_complex_offer_filters_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/offerfilters/{listType}/complex | Get all complex filters for the given contract.
 [**get_offer_filters_vendor_v2**](OffersApi.md#get_offer_filters_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/offerfilters/{listType}/vendors | Get all the vendor filters for the given contract.
 [**get_offer_statistics_manufacturer_v3**](OffersApi.md#get_offer_statistics_manufacturer_v3) | **GET** /api/v3/manufacturer/contracts/{contractId}/offers/stats | Get offer statistics per product of a contract
+[**get_offers_manufacturer_v3**](OffersApi.md#get_offers_manufacturer_v3) | **GET** /api/v3/manufacturer/contracts/{contractId}/offers | Get offers for timerange
+[**get_offers_shops_manufacturer_v3**](OffersApi.md#get_offers_shops_manufacturer_v3) | **GET** /api/v3/manufacturer/contracts/{contractId}/offers/shops | Get shops with offers for time range
+[**get_offers_shops_vendor_v3**](OffersApi.md#get_offers_shops_vendor_v3) | **GET** /api/v3/vendor/contracts/{contractId}/offers/shops | Get shops with offers for time range per domain
+[**get_offers_vendor_v3**](OffersApi.md#get_offers_vendor_v3) | **GET** /api/v3/vendor/contracts/{contractId}/offers | Get offers for timerange
 [**get_price_cutters_manufacturer_v2**](OffersApi.md#get_price_cutters_manufacturer_v2) | **POST** /api/2/m/contracts/{contractId}/result/pricecutters | 
 [**get_price_cutters_vendor_v2**](OffersApi.md#get_price_cutters_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/result/pricecutters | 
 [**get_product_filters_by_id_vendor_v2**](OffersApi.md#get_product_filters_by_id_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/offerfilters/:listType/products/query | 
@@ -29,6 +26,9 @@ Method | HTTP request | Description
 [**put_complex_offer_filters_vendor_v2**](OffersApi.md#put_complex_offer_filters_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/offerfilters/{listType}/complex | Add the complex filters for the given contract.
 [**put_offer_filters_vendor_v2**](OffersApi.md#put_offer_filters_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/offerfilters/{listType}/vendors | Store the vendor filters for the given contract.
 [**query_offers_manufacturer_v3**](OffersApi.md#query_offers_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/offers/query | 
+[**query_offers_stats_manufacturer_v31**](OffersApi.md#query_offers_stats_manufacturer_v31) | **POST** /api/v3.1/manufacturer/contracts/{contractId}/offers/stats/query | Query offer statistics per product
+[**query_offers_stats_vendor_v31**](OffersApi.md#query_offers_stats_vendor_v31) | **POST** /api/v3.1/vendor/contracts/{contractId}/offers/stats/query | Query offer statistics per product
+[**query_offers_vendor_v3**](OffersApi.md#query_offers_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/offers/query | Query offers
 [**raw_offers**](OffersApi.md#raw_offers) | **GET** /api/1/{contractId}/products/offers | 
 [**segment_offers_manufacturer_v2**](OffersApi.md#segment_offers_manufacturer_v2) | **POST** /api/2/m/contracts/{contractId}/result/offersegmentation | 
 [**segment_offers_vendor_v2**](OffersApi.md#segment_offers_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/result/offersegmentation | 
@@ -37,911 +37,6 @@ Method | HTTP request | Description
 [**validate_offers_manufacturer_v2**](OffersApi.md#validate_offers_manufacturer_v2) | **POST** /api/2/m/contracts/{contractId}/result/validation | 
 [**validate_offers_vendor_v2**](OffersApi.md#validate_offers_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/result/validation | 
 
-
-# **api_v31_manufacturer_contracts_contract_id_offers_stats_query_post**
-> QueryOfferStatisticsV31ApiResponse api_v31_manufacturer_contracts_contract_id_offers_stats_query_post(contract_id, com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31=com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31)
-
-Query offer statistics per product
-
-This endpoint can be used to query offer statistics (e.g. offer count, average price) grouped by product. Only the most recent market data is considered per product and domain.
-
-### Example
-
-* Basic Authentication (BasicAuth):
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: BasicAuth
-configuration = pricemonitor_api_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = pricemonitor_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.OffersApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31 = {"pagination":{"start":0,"limit":10},"range":{"start":"2023-10-17T08:00:00Z","end":"2023-10-19T08:00:00Z"},"filter":{"oneOf":{"field":"customerProductId","values":["1","2","3","4","5","6","7","8","9","10"]}}} # ComPatagonaPricemonitorShareApiPostOfferStatisticsRequestV31 | The request body may include an optional products query. If omitted, all products are queried. Currently, product queries can be performed on two attributes:   - \"customerProductId\"   - \"productId\" (Patagona's internal product id; must be a numerical integer)  Pagination is supported with a maximum limit of 10,000. For optimized performance:   - Use a limit of 10,000 products per page when querying all products of a contract.   - Prefer using \"productId\" for queries when a product query is utilized.  Pagination operates based on the provided products query. This is particularly useful when querying a set of customerProductId's. For chunked requests over a set of ids, it's straightforward to specify up to 10,000 customerProductId's in the query with pagination set at start: 0, limit: 10,000.  The allowed query pattern is structured as follows:  { <br> &nbsp;&nbsp;\"pagination\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": ${start}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"limit\": ${limit} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"range\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": ${start}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"end\": ${end} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"filter\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"oneOf\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"field\": \"customerProductId\", <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"values\": [${customerProductIds as a list of strings}] <br> &nbsp;&nbsp;&nbsp;&nbsp;} <br> &nbsp;&nbsp;} <br> } <br> <br>  (optional)
-
-    try:
-        # Query offer statistics per product
-        api_response = api_instance.api_v31_manufacturer_contracts_contract_id_offers_stats_query_post(contract_id, com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31=com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling OffersApi->api_v31_manufacturer_contracts_contract_id_offers_stats_query_post: %s\n" % e)
-```
-
-* Bearer (JWT) Authentication (BearerAuth):
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: BasicAuth
-configuration = pricemonitor_api_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = pricemonitor_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.OffersApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31 = {"pagination":{"start":0,"limit":10},"range":{"start":"2023-10-17T08:00:00Z","end":"2023-10-19T08:00:00Z"},"filter":{"oneOf":{"field":"customerProductId","values":["1","2","3","4","5","6","7","8","9","10"]}}} # ComPatagonaPricemonitorShareApiPostOfferStatisticsRequestV31 | The request body may include an optional products query. If omitted, all products are queried. Currently, product queries can be performed on two attributes:   - \"customerProductId\"   - \"productId\" (Patagona's internal product id; must be a numerical integer)  Pagination is supported with a maximum limit of 10,000. For optimized performance:   - Use a limit of 10,000 products per page when querying all products of a contract.   - Prefer using \"productId\" for queries when a product query is utilized.  Pagination operates based on the provided products query. This is particularly useful when querying a set of customerProductId's. For chunked requests over a set of ids, it's straightforward to specify up to 10,000 customerProductId's in the query with pagination set at start: 0, limit: 10,000.  The allowed query pattern is structured as follows:  { <br> &nbsp;&nbsp;\"pagination\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": ${start}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"limit\": ${limit} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"range\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": ${start}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"end\": ${end} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"filter\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"oneOf\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"field\": \"customerProductId\", <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"values\": [${customerProductIds as a list of strings}] <br> &nbsp;&nbsp;&nbsp;&nbsp;} <br> &nbsp;&nbsp;} <br> } <br> <br>  (optional)
-
-    try:
-        # Query offer statistics per product
-        api_response = api_instance.api_v31_manufacturer_contracts_contract_id_offers_stats_query_post(contract_id, com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31=com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling OffersApi->api_v31_manufacturer_contracts_contract_id_offers_stats_query_post: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
- **com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31** | [**ComPatagonaPricemonitorShareApiPostOfferStatisticsRequestV31**](ComPatagonaPricemonitorShareApiPostOfferStatisticsRequestV31.md)| The request body may include an optional products query. If omitted, all products are queried. Currently, product queries can be performed on two attributes:   - \&quot;customerProductId\&quot;   - \&quot;productId\&quot; (Patagona&#39;s internal product id; must be a numerical integer)  Pagination is supported with a maximum limit of 10,000. For optimized performance:   - Use a limit of 10,000 products per page when querying all products of a contract.   - Prefer using \&quot;productId\&quot; for queries when a product query is utilized.  Pagination operates based on the provided products query. This is particularly useful when querying a set of customerProductId&#39;s. For chunked requests over a set of ids, it&#39;s straightforward to specify up to 10,000 customerProductId&#39;s in the query with pagination set at start: 0, limit: 10,000.  The allowed query pattern is structured as follows:  { &lt;br&gt; &amp;nbsp;&amp;nbsp;\&quot;pagination\&quot;: { &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;start\&quot;: ${start}, &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;limit\&quot;: ${limit} &lt;br&gt; &amp;nbsp;&amp;nbsp;}, &lt;br&gt; &amp;nbsp;&amp;nbsp;\&quot;range\&quot;: { &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;start\&quot;: ${start}, &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;end\&quot;: ${end} &lt;br&gt; &amp;nbsp;&amp;nbsp;}, &lt;br&gt; &amp;nbsp;&amp;nbsp;\&quot;filter\&quot;: { &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;oneOf\&quot;: { &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;field\&quot;: \&quot;customerProductId\&quot;, &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;values\&quot;: [${customerProductIds as a list of strings}] &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;} &lt;br&gt; &amp;nbsp;&amp;nbsp;} &lt;br&gt; } &lt;br&gt; &lt;br&gt;  | [optional] 
-
-### Return type
-
-[**QueryOfferStatisticsV31ApiResponse**](QueryOfferStatisticsV31ApiResponse.md)
-
-### Authorization
-
-[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Returns a list of offer statistics per product. When a product has no market data then no offer statistics are returned for that product.  |  -  |
-**400** | A &#x60;400&#x60; error is returned under the following conditions: - The request body JSON is unparsable. - An unsupported filter is provided. - The specified time range exceeds 48 hours. - The pagination limit exceeds 10,000.  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_v31_vendor_contracts_contract_id_offers_stats_query_post**
-> QueryOfferStatisticsV31ApiResponse api_v31_vendor_contracts_contract_id_offers_stats_query_post(contract_id, com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31=com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31)
-
-Query offer statistics per product
-
-This endpoint can be used to query offer statistics (e.g. offer count, average price) grouped by product. Only the most recent market data is considered per product and domain.
-
-### Example
-
-* Basic Authentication (BasicAuth):
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: BasicAuth
-configuration = pricemonitor_api_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = pricemonitor_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.OffersApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31 = {"pagination":{"start":0,"limit":10},"range":{"start":"2023-10-17T08:00:00Z","end":"2023-10-19T08:00:00Z"},"filter":{"oneOf":{"field":"customerProductId","values":["1","2","3","4","5","6","7","8","9","10"]}}} # ComPatagonaPricemonitorShareApiPostOfferStatisticsRequestV31 | The request body may include an optional products query. If omitted, all products are queried. Currently, product queries can be performed on two attributes:   - \"customerProductId\"   - \"productId\" (Patagona's internal product id; must be a numerical integer)  Pagination is supported with a maximum limit of 10,000. For optimized performance:   - Use a limit of 10,000 products per page when querying all products of a contract.   - Prefer using \"productId\" for queries when a product query is utilized.  Pagination operates based on the provided products query. This is particularly useful when querying a set of customerProductId's. For chunked requests over a set of ids, it's straightforward to specify up to 10,000 customerProductId's in the query with pagination set at start: 0, limit: 10,000.  The allowed query pattern is structured as follows:  { <br> &nbsp;&nbsp;\"pagination\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": ${start}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"limit\": ${limit} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"range\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": ${start}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"end\": ${end} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"filter\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"oneOf\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"field\": \"customerProductId\", <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"values\": [${customerProductIds as a list of strings}] <br> &nbsp;&nbsp;&nbsp;&nbsp;} <br> &nbsp;&nbsp;} <br> } <br> <br>  (optional)
-
-    try:
-        # Query offer statistics per product
-        api_response = api_instance.api_v31_vendor_contracts_contract_id_offers_stats_query_post(contract_id, com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31=com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling OffersApi->api_v31_vendor_contracts_contract_id_offers_stats_query_post: %s\n" % e)
-```
-
-* Bearer (JWT) Authentication (BearerAuth):
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: BasicAuth
-configuration = pricemonitor_api_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = pricemonitor_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.OffersApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31 = {"pagination":{"start":0,"limit":10},"range":{"start":"2023-10-17T08:00:00Z","end":"2023-10-19T08:00:00Z"},"filter":{"oneOf":{"field":"customerProductId","values":["1","2","3","4","5","6","7","8","9","10"]}}} # ComPatagonaPricemonitorShareApiPostOfferStatisticsRequestV31 | The request body may include an optional products query. If omitted, all products are queried. Currently, product queries can be performed on two attributes:   - \"customerProductId\"   - \"productId\" (Patagona's internal product id; must be a numerical integer)  Pagination is supported with a maximum limit of 10,000. For optimized performance:   - Use a limit of 10,000 products per page when querying all products of a contract.   - Prefer using \"productId\" for queries when a product query is utilized.  Pagination operates based on the provided products query. This is particularly useful when querying a set of customerProductId's. For chunked requests over a set of ids, it's straightforward to specify up to 10,000 customerProductId's in the query with pagination set at start: 0, limit: 10,000.  The allowed query pattern is structured as follows:  { <br> &nbsp;&nbsp;\"pagination\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": ${start}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"limit\": ${limit} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"range\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": ${start}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"end\": ${end} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"filter\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"oneOf\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"field\": \"customerProductId\", <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"values\": [${customerProductIds as a list of strings}] <br> &nbsp;&nbsp;&nbsp;&nbsp;} <br> &nbsp;&nbsp;} <br> } <br> <br>  (optional)
-
-    try:
-        # Query offer statistics per product
-        api_response = api_instance.api_v31_vendor_contracts_contract_id_offers_stats_query_post(contract_id, com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31=com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling OffersApi->api_v31_vendor_contracts_contract_id_offers_stats_query_post: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
- **com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31** | [**ComPatagonaPricemonitorShareApiPostOfferStatisticsRequestV31**](ComPatagonaPricemonitorShareApiPostOfferStatisticsRequestV31.md)| The request body may include an optional products query. If omitted, all products are queried. Currently, product queries can be performed on two attributes:   - \&quot;customerProductId\&quot;   - \&quot;productId\&quot; (Patagona&#39;s internal product id; must be a numerical integer)  Pagination is supported with a maximum limit of 10,000. For optimized performance:   - Use a limit of 10,000 products per page when querying all products of a contract.   - Prefer using \&quot;productId\&quot; for queries when a product query is utilized.  Pagination operates based on the provided products query. This is particularly useful when querying a set of customerProductId&#39;s. For chunked requests over a set of ids, it&#39;s straightforward to specify up to 10,000 customerProductId&#39;s in the query with pagination set at start: 0, limit: 10,000.  The allowed query pattern is structured as follows:  { &lt;br&gt; &amp;nbsp;&amp;nbsp;\&quot;pagination\&quot;: { &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;start\&quot;: ${start}, &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;limit\&quot;: ${limit} &lt;br&gt; &amp;nbsp;&amp;nbsp;}, &lt;br&gt; &amp;nbsp;&amp;nbsp;\&quot;range\&quot;: { &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;start\&quot;: ${start}, &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;end\&quot;: ${end} &lt;br&gt; &amp;nbsp;&amp;nbsp;}, &lt;br&gt; &amp;nbsp;&amp;nbsp;\&quot;filter\&quot;: { &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;oneOf\&quot;: { &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;field\&quot;: \&quot;customerProductId\&quot;, &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;values\&quot;: [${customerProductIds as a list of strings}] &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;} &lt;br&gt; &amp;nbsp;&amp;nbsp;} &lt;br&gt; } &lt;br&gt; &lt;br&gt;  | [optional] 
-
-### Return type
-
-[**QueryOfferStatisticsV31ApiResponse**](QueryOfferStatisticsV31ApiResponse.md)
-
-### Authorization
-
-[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Returns a list of offer statistics per product. When a product has no market data then no offer statistics are returned for that product.  |  -  |
-**400** | A &#x60;400&#x60; error is returned under the following conditions: - The request body JSON is unparsable. - An unsupported filter is provided. - The specified time range exceeds 48 hours. - The pagination limit exceeds 10,000.  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_v3_manufacturer_contracts_contract_id_offers_get**
-> GetOffersApiResponse api_v3_manufacturer_contracts_contract_id_offers_get(contract_id, start=start, limit=limit, include_tags=include_tags, start_date=start_date, end_date=end_date)
-
-Get offers for timerange
-
-Returns the newest offers for a given time range.
-
-### Example
-
-* Basic Authentication (BasicAuth):
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: BasicAuth
-configuration = pricemonitor_api_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = pricemonitor_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.OffersApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-start = 0 # int | Where to start fetching the products (optional) (default to 0)
-limit = 1000 # int | Maximum number of results (optional) (default to 1000)
-include_tags = True # bool | Whether to return tags of products or not. (optional) (default to True)
-start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
-end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
-
-    try:
-        # Get offers for timerange
-        api_response = api_instance.api_v3_manufacturer_contracts_contract_id_offers_get(contract_id, start=start, limit=limit, include_tags=include_tags, start_date=start_date, end_date=end_date)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling OffersApi->api_v3_manufacturer_contracts_contract_id_offers_get: %s\n" % e)
-```
-
-* Bearer (JWT) Authentication (BearerAuth):
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: BasicAuth
-configuration = pricemonitor_api_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = pricemonitor_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.OffersApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-start = 0 # int | Where to start fetching the products (optional) (default to 0)
-limit = 1000 # int | Maximum number of results (optional) (default to 1000)
-include_tags = True # bool | Whether to return tags of products or not. (optional) (default to True)
-start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
-end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
-
-    try:
-        # Get offers for timerange
-        api_response = api_instance.api_v3_manufacturer_contracts_contract_id_offers_get(contract_id, start=start, limit=limit, include_tags=include_tags, start_date=start_date, end_date=end_date)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling OffersApi->api_v3_manufacturer_contracts_contract_id_offers_get: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
- **start** | **int**| Where to start fetching the products | [optional] [default to 0]
- **limit** | **int**| Maximum number of results | [optional] [default to 1000]
- **include_tags** | **bool**| Whether to return tags of products or not. | [optional] [default to True]
- **start_date** | **datetime**| Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is &#39;NOW - 48 hours to NOW&#39;. | [optional] 
- **end_date** | **datetime**| Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is &#39;NOW - 48 hours to NOW&#39;. | [optional] 
-
-### Return type
-
-[**GetOffersApiResponse**](GetOffersApiResponse.md)
-
-### Authorization
-
-[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | A list of products with their corresponding offers. |  -  |
-**400** | Returned in case of invalid time range or a limit greater than 10000. |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_v3_manufacturer_contracts_contract_id_offers_shops_get**
-> GetShopsByDomainResponseV3ApiResponse api_v3_manufacturer_contracts_contract_id_offers_shops_get(contract_id, start_date=start_date, end_date=end_date)
-
-Get shops with offers for time range
-
-Returns all shops which have at least one offer for a given time range per domain.
-
-### Example
-
-* Basic Authentication (BasicAuth):
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: BasicAuth
-configuration = pricemonitor_api_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = pricemonitor_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.OffersApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. The time range may not exceed 1 week. (optional)
-end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. The time range may not exceed 1 week. (optional)
-
-    try:
-        # Get shops with offers for time range
-        api_response = api_instance.api_v3_manufacturer_contracts_contract_id_offers_shops_get(contract_id, start_date=start_date, end_date=end_date)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling OffersApi->api_v3_manufacturer_contracts_contract_id_offers_shops_get: %s\n" % e)
-```
-
-* Bearer (JWT) Authentication (BearerAuth):
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: BasicAuth
-configuration = pricemonitor_api_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = pricemonitor_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.OffersApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. The time range may not exceed 1 week. (optional)
-end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. The time range may not exceed 1 week. (optional)
-
-    try:
-        # Get shops with offers for time range
-        api_response = api_instance.api_v3_manufacturer_contracts_contract_id_offers_shops_get(contract_id, start_date=start_date, end_date=end_date)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling OffersApi->api_v3_manufacturer_contracts_contract_id_offers_shops_get: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
- **start_date** | **datetime**| Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is &#39;NOW - 48 hours to NOW&#39;. The time range may not exceed 1 week. | [optional] 
- **end_date** | **datetime**| Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is &#39;NOW - 48 hours to NOW&#39;. The time range may not exceed 1 week. | [optional] 
-
-### Return type
-
-[**GetShopsByDomainResponseV3ApiResponse**](GetShopsByDomainResponseV3ApiResponse.md)
-
-### Authorization
-
-[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Shops which have at least one offer for a given time range per domain. |  -  |
-**400** | Specified time range is invalid (&gt; 7 days). |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_v3_vendor_contracts_contract_id_offers_get**
-> GetOffersApiResponse api_v3_vendor_contracts_contract_id_offers_get(contract_id, start=start, limit=limit, include_tags=include_tags, start_date=start_date, end_date=end_date)
-
-Get offers for timerange
-
-Returns the newest offers for a given time range.
-
-### Example
-
-* Basic Authentication (BasicAuth):
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: BasicAuth
-configuration = pricemonitor_api_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = pricemonitor_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.OffersApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-start = 0 # int | Where to start fetching the products (optional) (default to 0)
-limit = 1000 # int | Maximum number of results (optional) (default to 1000)
-include_tags = True # bool | Whether to return tags of products or not. (optional) (default to True)
-start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
-end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
-
-    try:
-        # Get offers for timerange
-        api_response = api_instance.api_v3_vendor_contracts_contract_id_offers_get(contract_id, start=start, limit=limit, include_tags=include_tags, start_date=start_date, end_date=end_date)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling OffersApi->api_v3_vendor_contracts_contract_id_offers_get: %s\n" % e)
-```
-
-* Bearer (JWT) Authentication (BearerAuth):
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: BasicAuth
-configuration = pricemonitor_api_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = pricemonitor_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.OffersApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-start = 0 # int | Where to start fetching the products (optional) (default to 0)
-limit = 1000 # int | Maximum number of results (optional) (default to 1000)
-include_tags = True # bool | Whether to return tags of products or not. (optional) (default to True)
-start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
-end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
-
-    try:
-        # Get offers for timerange
-        api_response = api_instance.api_v3_vendor_contracts_contract_id_offers_get(contract_id, start=start, limit=limit, include_tags=include_tags, start_date=start_date, end_date=end_date)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling OffersApi->api_v3_vendor_contracts_contract_id_offers_get: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
- **start** | **int**| Where to start fetching the products | [optional] [default to 0]
- **limit** | **int**| Maximum number of results | [optional] [default to 1000]
- **include_tags** | **bool**| Whether to return tags of products or not. | [optional] [default to True]
- **start_date** | **datetime**| Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is &#39;NOW - 48 hours to NOW&#39;. | [optional] 
- **end_date** | **datetime**| Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is &#39;NOW - 48 hours to NOW&#39;. | [optional] 
-
-### Return type
-
-[**GetOffersApiResponse**](GetOffersApiResponse.md)
-
-### Authorization
-
-[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | A list of products with their corresponding offers. |  -  |
-**400** | Returned in case of invalid time range or a limit greater than 10000. |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_v3_vendor_contracts_contract_id_offers_query_post**
-> QueryOffersApiResponse api_v3_vendor_contracts_contract_id_offers_query_post(contract_id, product_offers_api_query)
-
-Query offers
-
-Supports complex queries for offers.
-
-### Example
-
-* Basic Authentication (BasicAuth):
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: BasicAuth
-configuration = pricemonitor_api_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = pricemonitor_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.OffersApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-product_offers_api_query = pricemonitor_api_client.ProductOffersApiQuery() # ProductOffersApiQuery | The request body specifies which offers will be searched for.<br> Warning: It's highly recommended to not use this endpoint since it is error-prone due to complex query structure! Supported are queries with three different types of filters:<br> 1. Filtering for offers of a certain product<br> This can be done by a ComparisonFilter with   * the `left` side being a `StringValueProvider` with the `attributeName` value \"productId\"   * the `right` side being a `StringConstantValueProvider` with the `value` being the actual pricemonitor product ID to filter offers for   * the `comparison` being a `StringEquality`  2. Filtering for valid offers of a certain product<br> This can be done by an AndFilter with   * a) A product filter (see first supported filter)   * b) A NotFilter which contains a ComparisonFilter     * the `left` side being a `NumberValueProvider` with the `attributeName` value \"ignoredBy\"     * the `right` side being a `NumberConstantValueProvider` with the `value` being the numeric contract id to filter offers for     * the `comparison` being a `NumberEquality`  3. Filtering for offers of a certain vendor<br> This can be done by a ComparisonFilter with   * the `left` side being a `StringValueProvider` with the `attributeName` value \"reseller_name\"   * the `right` side being a `StringConstantValueProvider` with the `value` being the actual vendor name to filter offers for   * the `comparison` being a `StringEquality`  Note: This endpoint will only return the newest offers for each product for a given time range.
-
-    try:
-        # Query offers
-        api_response = api_instance.api_v3_vendor_contracts_contract_id_offers_query_post(contract_id, product_offers_api_query)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling OffersApi->api_v3_vendor_contracts_contract_id_offers_query_post: %s\n" % e)
-```
-
-* Bearer (JWT) Authentication (BearerAuth):
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: BasicAuth
-configuration = pricemonitor_api_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = pricemonitor_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.OffersApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-product_offers_api_query = pricemonitor_api_client.ProductOffersApiQuery() # ProductOffersApiQuery | The request body specifies which offers will be searched for.<br> Warning: It's highly recommended to not use this endpoint since it is error-prone due to complex query structure! Supported are queries with three different types of filters:<br> 1. Filtering for offers of a certain product<br> This can be done by a ComparisonFilter with   * the `left` side being a `StringValueProvider` with the `attributeName` value \"productId\"   * the `right` side being a `StringConstantValueProvider` with the `value` being the actual pricemonitor product ID to filter offers for   * the `comparison` being a `StringEquality`  2. Filtering for valid offers of a certain product<br> This can be done by an AndFilter with   * a) A product filter (see first supported filter)   * b) A NotFilter which contains a ComparisonFilter     * the `left` side being a `NumberValueProvider` with the `attributeName` value \"ignoredBy\"     * the `right` side being a `NumberConstantValueProvider` with the `value` being the numeric contract id to filter offers for     * the `comparison` being a `NumberEquality`  3. Filtering for offers of a certain vendor<br> This can be done by a ComparisonFilter with   * the `left` side being a `StringValueProvider` with the `attributeName` value \"reseller_name\"   * the `right` side being a `StringConstantValueProvider` with the `value` being the actual vendor name to filter offers for   * the `comparison` being a `StringEquality`  Note: This endpoint will only return the newest offers for each product for a given time range.
-
-    try:
-        # Query offers
-        api_response = api_instance.api_v3_vendor_contracts_contract_id_offers_query_post(contract_id, product_offers_api_query)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling OffersApi->api_v3_vendor_contracts_contract_id_offers_query_post: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
- **product_offers_api_query** | [**ProductOffersApiQuery**](ProductOffersApiQuery.md)| The request body specifies which offers will be searched for.&lt;br&gt; Warning: It&#39;s highly recommended to not use this endpoint since it is error-prone due to complex query structure! Supported are queries with three different types of filters:&lt;br&gt; 1. Filtering for offers of a certain product&lt;br&gt; This can be done by a ComparisonFilter with   * the &#x60;left&#x60; side being a &#x60;StringValueProvider&#x60; with the &#x60;attributeName&#x60; value \&quot;productId\&quot;   * the &#x60;right&#x60; side being a &#x60;StringConstantValueProvider&#x60; with the &#x60;value&#x60; being the actual pricemonitor product ID to filter offers for   * the &#x60;comparison&#x60; being a &#x60;StringEquality&#x60;  2. Filtering for valid offers of a certain product&lt;br&gt; This can be done by an AndFilter with   * a) A product filter (see first supported filter)   * b) A NotFilter which contains a ComparisonFilter     * the &#x60;left&#x60; side being a &#x60;NumberValueProvider&#x60; with the &#x60;attributeName&#x60; value \&quot;ignoredBy\&quot;     * the &#x60;right&#x60; side being a &#x60;NumberConstantValueProvider&#x60; with the &#x60;value&#x60; being the numeric contract id to filter offers for     * the &#x60;comparison&#x60; being a &#x60;NumberEquality&#x60;  3. Filtering for offers of a certain vendor&lt;br&gt; This can be done by a ComparisonFilter with   * the &#x60;left&#x60; side being a &#x60;StringValueProvider&#x60; with the &#x60;attributeName&#x60; value \&quot;reseller_name\&quot;   * the &#x60;right&#x60; side being a &#x60;StringConstantValueProvider&#x60; with the &#x60;value&#x60; being the actual vendor name to filter offers for   * the &#x60;comparison&#x60; being a &#x60;StringEquality&#x60;  Note: This endpoint will only return the newest offers for each product for a given time range. | 
-
-### Return type
-
-[**QueryOffersApiResponse**](QueryOffersApiResponse.md)
-
-### Authorization
-
-[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Returns either an Error or a list of ApiOffers matching the given filter. |  -  |
-**400** | Returned in case of unparsable request JSON or unsupported filter/sorting. |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_v3_vendor_contracts_contract_id_offers_shops_get**
-> GetShopsByDomainResponseV3ApiResponse api_v3_vendor_contracts_contract_id_offers_shops_get(contract_id, start_date=start_date, end_date=end_date)
-
-Get shops with offers for time range per domain
-
-Returns all shops which have at least one offer for a given time range per domain.
-
-### Example
-
-* Basic Authentication (BasicAuth):
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: BasicAuth
-configuration = pricemonitor_api_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = pricemonitor_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.OffersApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. The time range may not exceed 1 week. (optional)
-end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. The time range may not exceed 1 week. (optional)
-
-    try:
-        # Get shops with offers for time range per domain
-        api_response = api_instance.api_v3_vendor_contracts_contract_id_offers_shops_get(contract_id, start_date=start_date, end_date=end_date)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling OffersApi->api_v3_vendor_contracts_contract_id_offers_shops_get: %s\n" % e)
-```
-
-* Bearer (JWT) Authentication (BearerAuth):
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: BasicAuth
-configuration = pricemonitor_api_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = pricemonitor_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.OffersApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. The time range may not exceed 1 week. (optional)
-end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. The time range may not exceed 1 week. (optional)
-
-    try:
-        # Get shops with offers for time range per domain
-        api_response = api_instance.api_v3_vendor_contracts_contract_id_offers_shops_get(contract_id, start_date=start_date, end_date=end_date)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling OffersApi->api_v3_vendor_contracts_contract_id_offers_shops_get: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
- **start_date** | **datetime**| Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is &#39;NOW - 48 hours to NOW&#39;. The time range may not exceed 1 week. | [optional] 
- **end_date** | **datetime**| Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is &#39;NOW - 48 hours to NOW&#39;. The time range may not exceed 1 week. | [optional] 
-
-### Return type
-
-[**GetShopsByDomainResponseV3ApiResponse**](GetShopsByDomainResponseV3ApiResponse.md)
-
-### Authorization
-
-[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Shops which have at least one offer for a given time range per domain. |  -  |
-**400** | Specified time range is invalid (&gt; 7 days). |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_cheapest_vendors_manufacturer_v2**
 > object get_cheapest_vendors_manufacturer_v2(contract_id, session, include_delivery_costs, com_patagona_pricemonitor_share_api_tag_filtered_vendors_request=com_patagona_pricemonitor_share_api_tag_filtered_vendors_request)
@@ -1441,6 +536,536 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Returns a list of offer statistics per product. |  -  |
 **400** | Specified time range is invalid (&gt; 48h). |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_offers_manufacturer_v3**
+> GetOffersApiResponse get_offers_manufacturer_v3(contract_id, start=start, limit=limit, include_tags=include_tags, start_date=start_date, end_date=end_date)
+
+Get offers for timerange
+
+Returns the newest offers for a given time range.
+
+### Example
+
+* Basic Authentication (BasicAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.OffersApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+start = 0 # int | Where to start fetching the products (optional) (default to 0)
+limit = 1000 # int | Maximum number of results (optional) (default to 1000)
+include_tags = True # bool | Whether to return tags of products or not. (optional) (default to True)
+start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
+end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
+
+    try:
+        # Get offers for timerange
+        api_response = api_instance.get_offers_manufacturer_v3(contract_id, start=start, limit=limit, include_tags=include_tags, start_date=start_date, end_date=end_date)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling OffersApi->get_offers_manufacturer_v3: %s\n" % e)
+```
+
+* Bearer (JWT) Authentication (BearerAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.OffersApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+start = 0 # int | Where to start fetching the products (optional) (default to 0)
+limit = 1000 # int | Maximum number of results (optional) (default to 1000)
+include_tags = True # bool | Whether to return tags of products or not. (optional) (default to True)
+start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
+end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
+
+    try:
+        # Get offers for timerange
+        api_response = api_instance.get_offers_manufacturer_v3(contract_id, start=start, limit=limit, include_tags=include_tags, start_date=start_date, end_date=end_date)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling OffersApi->get_offers_manufacturer_v3: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **contract_id** | **str**| ID of the contract | 
+ **start** | **int**| Where to start fetching the products | [optional] [default to 0]
+ **limit** | **int**| Maximum number of results | [optional] [default to 1000]
+ **include_tags** | **bool**| Whether to return tags of products or not. | [optional] [default to True]
+ **start_date** | **datetime**| Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is &#39;NOW - 48 hours to NOW&#39;. | [optional] 
+ **end_date** | **datetime**| Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is &#39;NOW - 48 hours to NOW&#39;. | [optional] 
+
+### Return type
+
+[**GetOffersApiResponse**](GetOffersApiResponse.md)
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | A list of products with their corresponding offers. |  -  |
+**400** | Returned in case of invalid time range or a limit greater than 10000. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_offers_shops_manufacturer_v3**
+> GetShopsByDomainResponseV3ApiResponse get_offers_shops_manufacturer_v3(contract_id, start_date=start_date, end_date=end_date)
+
+Get shops with offers for time range
+
+Returns all shops which have at least one offer for a given time range per domain.
+
+### Example
+
+* Basic Authentication (BasicAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.OffersApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. The time range may not exceed 1 week. (optional)
+end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. The time range may not exceed 1 week. (optional)
+
+    try:
+        # Get shops with offers for time range
+        api_response = api_instance.get_offers_shops_manufacturer_v3(contract_id, start_date=start_date, end_date=end_date)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling OffersApi->get_offers_shops_manufacturer_v3: %s\n" % e)
+```
+
+* Bearer (JWT) Authentication (BearerAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.OffersApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. The time range may not exceed 1 week. (optional)
+end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. The time range may not exceed 1 week. (optional)
+
+    try:
+        # Get shops with offers for time range
+        api_response = api_instance.get_offers_shops_manufacturer_v3(contract_id, start_date=start_date, end_date=end_date)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling OffersApi->get_offers_shops_manufacturer_v3: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **contract_id** | **str**| ID of the contract | 
+ **start_date** | **datetime**| Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is &#39;NOW - 48 hours to NOW&#39;. The time range may not exceed 1 week. | [optional] 
+ **end_date** | **datetime**| Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is &#39;NOW - 48 hours to NOW&#39;. The time range may not exceed 1 week. | [optional] 
+
+### Return type
+
+[**GetShopsByDomainResponseV3ApiResponse**](GetShopsByDomainResponseV3ApiResponse.md)
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Shops which have at least one offer for a given time range per domain. |  -  |
+**400** | Specified time range is invalid (&gt; 7 days). |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_offers_shops_vendor_v3**
+> GetShopsByDomainResponseV3ApiResponse get_offers_shops_vendor_v3(contract_id, start_date=start_date, end_date=end_date)
+
+Get shops with offers for time range per domain
+
+Returns all shops which have at least one offer for a given time range per domain.
+
+### Example
+
+* Basic Authentication (BasicAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.OffersApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. The time range may not exceed 1 week. (optional)
+end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. The time range may not exceed 1 week. (optional)
+
+    try:
+        # Get shops with offers for time range per domain
+        api_response = api_instance.get_offers_shops_vendor_v3(contract_id, start_date=start_date, end_date=end_date)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling OffersApi->get_offers_shops_vendor_v3: %s\n" % e)
+```
+
+* Bearer (JWT) Authentication (BearerAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.OffersApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. The time range may not exceed 1 week. (optional)
+end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. The time range may not exceed 1 week. (optional)
+
+    try:
+        # Get shops with offers for time range per domain
+        api_response = api_instance.get_offers_shops_vendor_v3(contract_id, start_date=start_date, end_date=end_date)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling OffersApi->get_offers_shops_vendor_v3: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **contract_id** | **str**| ID of the contract | 
+ **start_date** | **datetime**| Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is &#39;NOW - 48 hours to NOW&#39;. The time range may not exceed 1 week. | [optional] 
+ **end_date** | **datetime**| Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is &#39;NOW - 48 hours to NOW&#39;. The time range may not exceed 1 week. | [optional] 
+
+### Return type
+
+[**GetShopsByDomainResponseV3ApiResponse**](GetShopsByDomainResponseV3ApiResponse.md)
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Shops which have at least one offer for a given time range per domain. |  -  |
+**400** | Specified time range is invalid (&gt; 7 days). |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_offers_vendor_v3**
+> GetOffersApiResponse get_offers_vendor_v3(contract_id, start=start, limit=limit, include_tags=include_tags, start_date=start_date, end_date=end_date)
+
+Get offers for timerange
+
+Returns the newest offers for a given time range.
+
+### Example
+
+* Basic Authentication (BasicAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.OffersApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+start = 0 # int | Where to start fetching the products (optional) (default to 0)
+limit = 1000 # int | Maximum number of results (optional) (default to 1000)
+include_tags = True # bool | Whether to return tags of products or not. (optional) (default to True)
+start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
+end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
+
+    try:
+        # Get offers for timerange
+        api_response = api_instance.get_offers_vendor_v3(contract_id, start=start, limit=limit, include_tags=include_tags, start_date=start_date, end_date=end_date)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling OffersApi->get_offers_vendor_v3: %s\n" % e)
+```
+
+* Bearer (JWT) Authentication (BearerAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.OffersApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+start = 0 # int | Where to start fetching the products (optional) (default to 0)
+limit = 1000 # int | Maximum number of results (optional) (default to 1000)
+include_tags = True # bool | Whether to return tags of products or not. (optional) (default to True)
+start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
+end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
+
+    try:
+        # Get offers for timerange
+        api_response = api_instance.get_offers_vendor_v3(contract_id, start=start, limit=limit, include_tags=include_tags, start_date=start_date, end_date=end_date)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling OffersApi->get_offers_vendor_v3: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **contract_id** | **str**| ID of the contract | 
+ **start** | **int**| Where to start fetching the products | [optional] [default to 0]
+ **limit** | **int**| Maximum number of results | [optional] [default to 1000]
+ **include_tags** | **bool**| Whether to return tags of products or not. | [optional] [default to True]
+ **start_date** | **datetime**| Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is &#39;NOW - 48 hours to NOW&#39;. | [optional] 
+ **end_date** | **datetime**| Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is &#39;NOW - 48 hours to NOW&#39;. | [optional] 
+
+### Return type
+
+[**GetOffersApiResponse**](GetOffersApiResponse.md)
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | A list of products with their corresponding offers. |  -  |
+**400** | Returned in case of invalid time range or a limit greater than 10000. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -3204,6 +2829,381 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | This is a generated entry and needs to be described. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **query_offers_stats_manufacturer_v31**
+> QueryOfferStatisticsV31ApiResponse query_offers_stats_manufacturer_v31(contract_id, com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31=com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31)
+
+Query offer statistics per product
+
+This endpoint can be used to query offer statistics (e.g. offer count, average price) grouped by product. Only the most recent market data is considered per product and domain.
+
+### Example
+
+* Basic Authentication (BasicAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.OffersApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31 = {"pagination":{"start":0,"limit":10},"range":{"start":"2023-10-17T08:00:00Z","end":"2023-10-19T08:00:00Z"},"filter":{"oneOf":{"field":"customerProductId","values":["1","2","3","4","5","6","7","8","9","10"]}}} # ComPatagonaPricemonitorShareApiPostOfferStatisticsRequestV31 | The request body may include an optional products query. If omitted, all products are queried. Currently, product queries can be performed on two attributes:   - \"customerProductId\"   - \"productId\" (Patagona's internal product id; must be a numerical integer)  Pagination is supported with a maximum limit of 10,000. For optimized performance:   - Use a limit of 10,000 products per page when querying all products of a contract.   - Prefer using \"productId\" for queries when a product query is utilized.  Pagination operates based on the provided products query. This is particularly useful when querying a set of customerProductId's. For chunked requests over a set of ids, it's straightforward to specify up to 10,000 customerProductId's in the query with pagination set at start: 0, limit: 10,000.  The allowed query pattern is structured as follows:  { <br> &nbsp;&nbsp;\"pagination\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": ${start}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"limit\": ${limit} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"range\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": ${start}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"end\": ${end} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"filter\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"oneOf\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"field\": \"customerProductId\", <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"values\": [${customerProductIds as a list of strings}] <br> &nbsp;&nbsp;&nbsp;&nbsp;} <br> &nbsp;&nbsp;} <br> } <br> <br>  (optional)
+
+    try:
+        # Query offer statistics per product
+        api_response = api_instance.query_offers_stats_manufacturer_v31(contract_id, com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31=com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling OffersApi->query_offers_stats_manufacturer_v31: %s\n" % e)
+```
+
+* Bearer (JWT) Authentication (BearerAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.OffersApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31 = {"pagination":{"start":0,"limit":10},"range":{"start":"2023-10-17T08:00:00Z","end":"2023-10-19T08:00:00Z"},"filter":{"oneOf":{"field":"customerProductId","values":["1","2","3","4","5","6","7","8","9","10"]}}} # ComPatagonaPricemonitorShareApiPostOfferStatisticsRequestV31 | The request body may include an optional products query. If omitted, all products are queried. Currently, product queries can be performed on two attributes:   - \"customerProductId\"   - \"productId\" (Patagona's internal product id; must be a numerical integer)  Pagination is supported with a maximum limit of 10,000. For optimized performance:   - Use a limit of 10,000 products per page when querying all products of a contract.   - Prefer using \"productId\" for queries when a product query is utilized.  Pagination operates based on the provided products query. This is particularly useful when querying a set of customerProductId's. For chunked requests over a set of ids, it's straightforward to specify up to 10,000 customerProductId's in the query with pagination set at start: 0, limit: 10,000.  The allowed query pattern is structured as follows:  { <br> &nbsp;&nbsp;\"pagination\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": ${start}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"limit\": ${limit} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"range\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": ${start}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"end\": ${end} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"filter\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"oneOf\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"field\": \"customerProductId\", <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"values\": [${customerProductIds as a list of strings}] <br> &nbsp;&nbsp;&nbsp;&nbsp;} <br> &nbsp;&nbsp;} <br> } <br> <br>  (optional)
+
+    try:
+        # Query offer statistics per product
+        api_response = api_instance.query_offers_stats_manufacturer_v31(contract_id, com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31=com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling OffersApi->query_offers_stats_manufacturer_v31: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **contract_id** | **str**| ID of the contract | 
+ **com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31** | [**ComPatagonaPricemonitorShareApiPostOfferStatisticsRequestV31**](ComPatagonaPricemonitorShareApiPostOfferStatisticsRequestV31.md)| The request body may include an optional products query. If omitted, all products are queried. Currently, product queries can be performed on two attributes:   - \&quot;customerProductId\&quot;   - \&quot;productId\&quot; (Patagona&#39;s internal product id; must be a numerical integer)  Pagination is supported with a maximum limit of 10,000. For optimized performance:   - Use a limit of 10,000 products per page when querying all products of a contract.   - Prefer using \&quot;productId\&quot; for queries when a product query is utilized.  Pagination operates based on the provided products query. This is particularly useful when querying a set of customerProductId&#39;s. For chunked requests over a set of ids, it&#39;s straightforward to specify up to 10,000 customerProductId&#39;s in the query with pagination set at start: 0, limit: 10,000.  The allowed query pattern is structured as follows:  { &lt;br&gt; &amp;nbsp;&amp;nbsp;\&quot;pagination\&quot;: { &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;start\&quot;: ${start}, &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;limit\&quot;: ${limit} &lt;br&gt; &amp;nbsp;&amp;nbsp;}, &lt;br&gt; &amp;nbsp;&amp;nbsp;\&quot;range\&quot;: { &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;start\&quot;: ${start}, &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;end\&quot;: ${end} &lt;br&gt; &amp;nbsp;&amp;nbsp;}, &lt;br&gt; &amp;nbsp;&amp;nbsp;\&quot;filter\&quot;: { &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;oneOf\&quot;: { &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;field\&quot;: \&quot;customerProductId\&quot;, &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;values\&quot;: [${customerProductIds as a list of strings}] &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;} &lt;br&gt; &amp;nbsp;&amp;nbsp;} &lt;br&gt; } &lt;br&gt; &lt;br&gt;  | [optional] 
+
+### Return type
+
+[**QueryOfferStatisticsV31ApiResponse**](QueryOfferStatisticsV31ApiResponse.md)
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Returns a list of offer statistics per product. When a product has no market data then no offer statistics are returned for that product.  |  -  |
+**400** | A &#x60;400&#x60; error is returned under the following conditions: - The request body JSON is unparsable. - An unsupported filter is provided. - The specified time range exceeds 48 hours. - The pagination limit exceeds 10,000.  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **query_offers_stats_vendor_v31**
+> QueryOfferStatisticsV31ApiResponse query_offers_stats_vendor_v31(contract_id, com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31=com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31)
+
+Query offer statistics per product
+
+This endpoint can be used to query offer statistics (e.g. offer count, average price) grouped by product. Only the most recent market data is considered per product and domain.
+
+### Example
+
+* Basic Authentication (BasicAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.OffersApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31 = {"pagination":{"start":0,"limit":10},"range":{"start":"2023-10-17T08:00:00Z","end":"2023-10-19T08:00:00Z"},"filter":{"oneOf":{"field":"customerProductId","values":["1","2","3","4","5","6","7","8","9","10"]}}} # ComPatagonaPricemonitorShareApiPostOfferStatisticsRequestV31 | The request body may include an optional products query. If omitted, all products are queried. Currently, product queries can be performed on two attributes:   - \"customerProductId\"   - \"productId\" (Patagona's internal product id; must be a numerical integer)  Pagination is supported with a maximum limit of 10,000. For optimized performance:   - Use a limit of 10,000 products per page when querying all products of a contract.   - Prefer using \"productId\" for queries when a product query is utilized.  Pagination operates based on the provided products query. This is particularly useful when querying a set of customerProductId's. For chunked requests over a set of ids, it's straightforward to specify up to 10,000 customerProductId's in the query with pagination set at start: 0, limit: 10,000.  The allowed query pattern is structured as follows:  { <br> &nbsp;&nbsp;\"pagination\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": ${start}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"limit\": ${limit} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"range\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": ${start}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"end\": ${end} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"filter\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"oneOf\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"field\": \"customerProductId\", <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"values\": [${customerProductIds as a list of strings}] <br> &nbsp;&nbsp;&nbsp;&nbsp;} <br> &nbsp;&nbsp;} <br> } <br> <br>  (optional)
+
+    try:
+        # Query offer statistics per product
+        api_response = api_instance.query_offers_stats_vendor_v31(contract_id, com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31=com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling OffersApi->query_offers_stats_vendor_v31: %s\n" % e)
+```
+
+* Bearer (JWT) Authentication (BearerAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.OffersApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31 = {"pagination":{"start":0,"limit":10},"range":{"start":"2023-10-17T08:00:00Z","end":"2023-10-19T08:00:00Z"},"filter":{"oneOf":{"field":"customerProductId","values":["1","2","3","4","5","6","7","8","9","10"]}}} # ComPatagonaPricemonitorShareApiPostOfferStatisticsRequestV31 | The request body may include an optional products query. If omitted, all products are queried. Currently, product queries can be performed on two attributes:   - \"customerProductId\"   - \"productId\" (Patagona's internal product id; must be a numerical integer)  Pagination is supported with a maximum limit of 10,000. For optimized performance:   - Use a limit of 10,000 products per page when querying all products of a contract.   - Prefer using \"productId\" for queries when a product query is utilized.  Pagination operates based on the provided products query. This is particularly useful when querying a set of customerProductId's. For chunked requests over a set of ids, it's straightforward to specify up to 10,000 customerProductId's in the query with pagination set at start: 0, limit: 10,000.  The allowed query pattern is structured as follows:  { <br> &nbsp;&nbsp;\"pagination\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": ${start}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"limit\": ${limit} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"range\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": ${start}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"end\": ${end} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"filter\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"oneOf\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"field\": \"customerProductId\", <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"values\": [${customerProductIds as a list of strings}] <br> &nbsp;&nbsp;&nbsp;&nbsp;} <br> &nbsp;&nbsp;} <br> } <br> <br>  (optional)
+
+    try:
+        # Query offer statistics per product
+        api_response = api_instance.query_offers_stats_vendor_v31(contract_id, com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31=com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling OffersApi->query_offers_stats_vendor_v31: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **contract_id** | **str**| ID of the contract | 
+ **com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31** | [**ComPatagonaPricemonitorShareApiPostOfferStatisticsRequestV31**](ComPatagonaPricemonitorShareApiPostOfferStatisticsRequestV31.md)| The request body may include an optional products query. If omitted, all products are queried. Currently, product queries can be performed on two attributes:   - \&quot;customerProductId\&quot;   - \&quot;productId\&quot; (Patagona&#39;s internal product id; must be a numerical integer)  Pagination is supported with a maximum limit of 10,000. For optimized performance:   - Use a limit of 10,000 products per page when querying all products of a contract.   - Prefer using \&quot;productId\&quot; for queries when a product query is utilized.  Pagination operates based on the provided products query. This is particularly useful when querying a set of customerProductId&#39;s. For chunked requests over a set of ids, it&#39;s straightforward to specify up to 10,000 customerProductId&#39;s in the query with pagination set at start: 0, limit: 10,000.  The allowed query pattern is structured as follows:  { &lt;br&gt; &amp;nbsp;&amp;nbsp;\&quot;pagination\&quot;: { &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;start\&quot;: ${start}, &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;limit\&quot;: ${limit} &lt;br&gt; &amp;nbsp;&amp;nbsp;}, &lt;br&gt; &amp;nbsp;&amp;nbsp;\&quot;range\&quot;: { &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;start\&quot;: ${start}, &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;end\&quot;: ${end} &lt;br&gt; &amp;nbsp;&amp;nbsp;}, &lt;br&gt; &amp;nbsp;&amp;nbsp;\&quot;filter\&quot;: { &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;oneOf\&quot;: { &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;field\&quot;: \&quot;customerProductId\&quot;, &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;values\&quot;: [${customerProductIds as a list of strings}] &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;} &lt;br&gt; &amp;nbsp;&amp;nbsp;} &lt;br&gt; } &lt;br&gt; &lt;br&gt;  | [optional] 
+
+### Return type
+
+[**QueryOfferStatisticsV31ApiResponse**](QueryOfferStatisticsV31ApiResponse.md)
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Returns a list of offer statistics per product. When a product has no market data then no offer statistics are returned for that product.  |  -  |
+**400** | A &#x60;400&#x60; error is returned under the following conditions: - The request body JSON is unparsable. - An unsupported filter is provided. - The specified time range exceeds 48 hours. - The pagination limit exceeds 10,000.  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **query_offers_vendor_v3**
+> QueryOffersApiResponse query_offers_vendor_v3(contract_id, product_offers_api_query)
+
+Query offers
+
+Supports complex queries for offers.
+
+### Example
+
+* Basic Authentication (BasicAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.OffersApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+product_offers_api_query = pricemonitor_api_client.ProductOffersApiQuery() # ProductOffersApiQuery | The request body specifies which offers will be searched for.<br> Warning: It's highly recommended to not use this endpoint since it is error-prone due to complex query structure! Supported are queries with three different types of filters:<br> 1. Filtering for offers of a certain product<br> This can be done by a ComparisonFilter with   * the `left` side being a `StringValueProvider` with the `attributeName` value \"productId\"   * the `right` side being a `StringConstantValueProvider` with the `value` being the actual pricemonitor product ID to filter offers for   * the `comparison` being a `StringEquality`  2. Filtering for valid offers of a certain product<br> This can be done by an AndFilter with   * a) A product filter (see first supported filter)   * b) A NotFilter which contains a ComparisonFilter     * the `left` side being a `NumberValueProvider` with the `attributeName` value \"ignoredBy\"     * the `right` side being a `NumberConstantValueProvider` with the `value` being the numeric contract id to filter offers for     * the `comparison` being a `NumberEquality`  3. Filtering for offers of a certain vendor<br> This can be done by a ComparisonFilter with   * the `left` side being a `StringValueProvider` with the `attributeName` value \"reseller_name\"   * the `right` side being a `StringConstantValueProvider` with the `value` being the actual vendor name to filter offers for   * the `comparison` being a `StringEquality`  Note: This endpoint will only return the newest offers for each product for a given time range.
+
+    try:
+        # Query offers
+        api_response = api_instance.query_offers_vendor_v3(contract_id, product_offers_api_query)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling OffersApi->query_offers_vendor_v3: %s\n" % e)
+```
+
+* Bearer (JWT) Authentication (BearerAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.OffersApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+product_offers_api_query = pricemonitor_api_client.ProductOffersApiQuery() # ProductOffersApiQuery | The request body specifies which offers will be searched for.<br> Warning: It's highly recommended to not use this endpoint since it is error-prone due to complex query structure! Supported are queries with three different types of filters:<br> 1. Filtering for offers of a certain product<br> This can be done by a ComparisonFilter with   * the `left` side being a `StringValueProvider` with the `attributeName` value \"productId\"   * the `right` side being a `StringConstantValueProvider` with the `value` being the actual pricemonitor product ID to filter offers for   * the `comparison` being a `StringEquality`  2. Filtering for valid offers of a certain product<br> This can be done by an AndFilter with   * a) A product filter (see first supported filter)   * b) A NotFilter which contains a ComparisonFilter     * the `left` side being a `NumberValueProvider` with the `attributeName` value \"ignoredBy\"     * the `right` side being a `NumberConstantValueProvider` with the `value` being the numeric contract id to filter offers for     * the `comparison` being a `NumberEquality`  3. Filtering for offers of a certain vendor<br> This can be done by a ComparisonFilter with   * the `left` side being a `StringValueProvider` with the `attributeName` value \"reseller_name\"   * the `right` side being a `StringConstantValueProvider` with the `value` being the actual vendor name to filter offers for   * the `comparison` being a `StringEquality`  Note: This endpoint will only return the newest offers for each product for a given time range.
+
+    try:
+        # Query offers
+        api_response = api_instance.query_offers_vendor_v3(contract_id, product_offers_api_query)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling OffersApi->query_offers_vendor_v3: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **contract_id** | **str**| ID of the contract | 
+ **product_offers_api_query** | [**ProductOffersApiQuery**](ProductOffersApiQuery.md)| The request body specifies which offers will be searched for.&lt;br&gt; Warning: It&#39;s highly recommended to not use this endpoint since it is error-prone due to complex query structure! Supported are queries with three different types of filters:&lt;br&gt; 1. Filtering for offers of a certain product&lt;br&gt; This can be done by a ComparisonFilter with   * the &#x60;left&#x60; side being a &#x60;StringValueProvider&#x60; with the &#x60;attributeName&#x60; value \&quot;productId\&quot;   * the &#x60;right&#x60; side being a &#x60;StringConstantValueProvider&#x60; with the &#x60;value&#x60; being the actual pricemonitor product ID to filter offers for   * the &#x60;comparison&#x60; being a &#x60;StringEquality&#x60;  2. Filtering for valid offers of a certain product&lt;br&gt; This can be done by an AndFilter with   * a) A product filter (see first supported filter)   * b) A NotFilter which contains a ComparisonFilter     * the &#x60;left&#x60; side being a &#x60;NumberValueProvider&#x60; with the &#x60;attributeName&#x60; value \&quot;ignoredBy\&quot;     * the &#x60;right&#x60; side being a &#x60;NumberConstantValueProvider&#x60; with the &#x60;value&#x60; being the numeric contract id to filter offers for     * the &#x60;comparison&#x60; being a &#x60;NumberEquality&#x60;  3. Filtering for offers of a certain vendor&lt;br&gt; This can be done by a ComparisonFilter with   * the &#x60;left&#x60; side being a &#x60;StringValueProvider&#x60; with the &#x60;attributeName&#x60; value \&quot;reseller_name\&quot;   * the &#x60;right&#x60; side being a &#x60;StringConstantValueProvider&#x60; with the &#x60;value&#x60; being the actual vendor name to filter offers for   * the &#x60;comparison&#x60; being a &#x60;StringEquality&#x60;  Note: This endpoint will only return the newest offers for each product for a given time range. | 
+
+### Return type
+
+[**QueryOffersApiResponse**](QueryOffersApiResponse.md)
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Returns either an Error or a list of ApiOffers matching the given filter. |  -  |
+**400** | Returned in case of unparsable request JSON or unsupported filter/sorting. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

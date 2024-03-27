@@ -8,17 +8,10 @@ Method | HTTP request | Description
 [**add_company_user**](InternalApi.md#add_company_user) | **PUT** /controlpanel/companies/{id}/users/{email} | 
 [**add_pricing_strategy_scenario**](InternalApi.md#add_pricing_strategy_scenario) | **POST** /api/v3/vendor/contracts/{contractId}/settings/pricingstrategies/scenarios | 
 [**add_user**](InternalApi.md#add_user) | **POST** /controlpanel/users | Add a new user
-[**api_v3_manufacturer_contracts_contract_id_offers_shop_query_post**](InternalApi.md#api_v3_manufacturer_contracts_contract_id_offers_shop_query_post) | **POST** /api/v3/manufacturer/contracts/{contractId}/offers/shop/query | 
-[**api_v3_manufacturer_contracts_contract_id_offers_shops_get**](InternalApi.md#api_v3_manufacturer_contracts_contract_id_offers_shops_get) | **GET** /api/v3/manufacturer/contracts/{contractId}/offers/shops | Get shops with offers for time range
-[**api_v3_manufacturer_contracts_contract_id_offers_stats_query_post**](InternalApi.md#api_v3_manufacturer_contracts_contract_id_offers_stats_query_post) | **POST** /api/v3/manufacturer/contracts/{contractId}/offers/stats/query | 
-[**api_v3_vendor_contracts_contract_id_offers_shop_query_post**](InternalApi.md#api_v3_vendor_contracts_contract_id_offers_shop_query_post) | **POST** /api/v3/vendor/contracts/{contractId}/offers/shop/query | 
-[**api_v3_vendor_contracts_contract_id_offers_shops_get**](InternalApi.md#api_v3_vendor_contracts_contract_id_offers_shops_get) | **GET** /api/v3/vendor/contracts/{contractId}/offers/shops | Get shops with offers for time range per domain
 [**authenticate**](InternalApi.md#authenticate) | **POST** /login | 
 [**change_password**](InternalApi.md#change_password) | **PUT** /api/account/password | 
 [**check_user_confirmation**](InternalApi.md#check_user_confirmation) | **HEAD** /api/account/confirm/{token} | Check if a specific confirmation token exists
 [**confirm_user**](InternalApi.md#confirm_user) | **POST** /api/account/confirm/{token} | Confirm an unconfirmed user
-[**controlpanel_api_companies_get**](InternalApi.md#controlpanel_api_companies_get) | **GET** /controlpanel/api/companies | Get a list of all companies
-[**controlpanel_api_v3_domains_post**](InternalApi.md#controlpanel_api_v3_domains_post) | **POST** /controlpanel/api/v3/domains | Add a new domain
 [**create_alert_settings**](InternalApi.md#create_alert_settings) | **POST** /api/1/{contractId}/settings/alerts | 
 [**create_auth_token**](InternalApi.md#create_auth_token) | **POST** /controlpanel/users/{email}/authtokens | 
 [**create_task**](InternalApi.md#create_task) | **POST** /api/1/{contractId}/tasks | 
@@ -42,7 +35,9 @@ Method | HTTP request | Description
 [**execute_monitoring_schedule_vendor_v3**](InternalApi.md#execute_monitoring_schedule_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/settings/monitoringschedules/{scheduleId}/execute | Trigger a monitoring pipeline task for vendor for configured monitoring schedule
 [**get_active_ebay_token_vendor_v2**](InternalApi.md#get_active_ebay_token_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/settings/ebay/token | 
 [**get_alert_settings**](InternalApi.md#get_alert_settings) | **GET** /api/1/{contractId}/settings/alerts | 
+[**get_all_companies**](InternalApi.md#get_all_companies) | **GET** /controlpanel/api/companies | Get a list of all companies
 [**get_all_contracts**](InternalApi.md#get_all_contracts) | **GET** /controlpanel/api/contracts | Get a list of all contracts
+[**get_all_domains_control_panel_v3**](InternalApi.md#get_all_domains_control_panel_v3) | **POST** /controlpanel/api/v3/domains | Add a new domain
 [**get_all_ebay_authorizations_vendor_v2**](InternalApi.md#get_all_ebay_authorizations_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/settings/ebay/authorizations | 
 [**get_all_ebay_tokens_vendor_v2**](InternalApi.md#get_all_ebay_tokens_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/settings/ebay/tokens | 
 [**get_all_portals**](InternalApi.md#get_all_portals) | **GET** /controlpanel/api/portals | Get a list of all portals
@@ -80,6 +75,8 @@ Method | HTTP request | Description
 [**get_offer_retention_settings_manufacturer_v3**](InternalApi.md#get_offer_retention_settings_manufacturer_v3) | **GET** /api/v3/manufacturer/contracts/{contractId}/settings/offerretention | 
 [**get_offer_retention_settings_vendor_v3**](InternalApi.md#get_offer_retention_settings_vendor_v3) | **GET** /api/v3/vendor/contracts/{contractId}/settings/offerretention | 
 [**get_offer_statistics_manufacturer_v3**](InternalApi.md#get_offer_statistics_manufacturer_v3) | **GET** /api/v3/manufacturer/contracts/{contractId}/offers/stats | Get offer statistics per product of a contract
+[**get_offers_shops_manufacturer_v3**](InternalApi.md#get_offers_shops_manufacturer_v3) | **GET** /api/v3/manufacturer/contracts/{contractId}/offers/shops | Get shops with offers for time range
+[**get_offers_shops_vendor_v3**](InternalApi.md#get_offers_shops_vendor_v3) | **GET** /api/v3/vendor/contracts/{contractId}/offers/shops | Get shops with offers for time range per domain
 [**get_orders_count_by_portal_by_contract**](InternalApi.md#get_orders_count_by_portal_by_contract) | **GET** /api/1/{contractId}/products/orderscountbyportal | Get orders count by portal
 [**get_price_cutters_manufacturer_v2**](InternalApi.md#get_price_cutters_manufacturer_v2) | **POST** /api/2/m/contracts/{contractId}/result/pricecutters | 
 [**get_price_cutters_vendor_v2**](InternalApi.md#get_price_cutters_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/result/pricecutters | 
@@ -167,6 +164,9 @@ Method | HTTP request | Description
 [**put_vendor_settings_vendor_v2**](InternalApi.md#put_vendor_settings_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/settings/repricing | 
 [**put_vendor_shop_mapping_manufacturer_v3**](InternalApi.md#put_vendor_shop_mapping_manufacturer_v3) | **PUT** /api/v3/manufacturer/contracts/{contractId}/vendors/{vendorId} | Update an existing vendor for a given contract and associate shops with the given vendor.
 [**query_offers_manufacturer_v3**](InternalApi.md#query_offers_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/offers/query | 
+[**query_offers_shop_manufacturer_v3**](InternalApi.md#query_offers_shop_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/offers/shop/query | 
+[**query_offers_shop_vendor_v3**](InternalApi.md#query_offers_shop_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/offers/shop/query | 
+[**query_offers_stats_manufacturer_v3**](InternalApi.md#query_offers_stats_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/offers/stats/query | 
 [**query_price_recommendations_vendor_v2**](InternalApi.md#query_price_recommendations_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/result/pricerecommendations/query | 
 [**query_products_by_filter_manufacturer_v3**](InternalApi.md#query_products_by_filter_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/products/query | 
 [**query_products_by_filter_vendor_v3**](InternalApi.md#query_products_by_filter_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/products/query | 
@@ -677,629 +677,6 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **api_v3_manufacturer_contracts_contract_id_offers_shop_query_post**
-> QueryOffersOfShopV3ApiResponse api_v3_manufacturer_contracts_contract_id_offers_shop_query_post(contract_id, com_patagona_pricemonitor_share_api_query_offers_of_shop_request_v3)
-
-
-
-Get all offers of a shop. Please note that it might return offers for inactive products.
-
-### Example
-
-* Basic Authentication (BasicAuth):
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: BasicAuth
-configuration = pricemonitor_api_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = pricemonitor_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.InternalApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-com_patagona_pricemonitor_share_api_query_offers_of_shop_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiQueryOffersOfShopRequestV3() # ComPatagonaPricemonitorShareApiQueryOffersOfShopRequestV3 | 
-
-    try:
-        api_response = api_instance.api_v3_manufacturer_contracts_contract_id_offers_shop_query_post(contract_id, com_patagona_pricemonitor_share_api_query_offers_of_shop_request_v3)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling InternalApi->api_v3_manufacturer_contracts_contract_id_offers_shop_query_post: %s\n" % e)
-```
-
-* Bearer (JWT) Authentication (BearerAuth):
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: BasicAuth
-configuration = pricemonitor_api_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = pricemonitor_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.InternalApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-com_patagona_pricemonitor_share_api_query_offers_of_shop_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiQueryOffersOfShopRequestV3() # ComPatagonaPricemonitorShareApiQueryOffersOfShopRequestV3 | 
-
-    try:
-        api_response = api_instance.api_v3_manufacturer_contracts_contract_id_offers_shop_query_post(contract_id, com_patagona_pricemonitor_share_api_query_offers_of_shop_request_v3)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling InternalApi->api_v3_manufacturer_contracts_contract_id_offers_shop_query_post: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
- **com_patagona_pricemonitor_share_api_query_offers_of_shop_request_v3** | [**ComPatagonaPricemonitorShareApiQueryOffersOfShopRequestV3**](ComPatagonaPricemonitorShareApiQueryOffersOfShopRequestV3.md)|  | 
-
-### Return type
-
-[**QueryOffersOfShopV3ApiResponse**](QueryOffersOfShopV3ApiResponse.md)
-
-### Authorization
-
-[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Returns offers of the shop |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_v3_manufacturer_contracts_contract_id_offers_shops_get**
-> GetShopsByDomainResponseV3ApiResponse api_v3_manufacturer_contracts_contract_id_offers_shops_get(contract_id, start_date=start_date, end_date=end_date)
-
-Get shops with offers for time range
-
-Returns all shops which have at least one offer for a given time range per domain.
-
-### Example
-
-* Basic Authentication (BasicAuth):
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: BasicAuth
-configuration = pricemonitor_api_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = pricemonitor_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.InternalApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. The time range may not exceed 1 week. (optional)
-end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. The time range may not exceed 1 week. (optional)
-
-    try:
-        # Get shops with offers for time range
-        api_response = api_instance.api_v3_manufacturer_contracts_contract_id_offers_shops_get(contract_id, start_date=start_date, end_date=end_date)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling InternalApi->api_v3_manufacturer_contracts_contract_id_offers_shops_get: %s\n" % e)
-```
-
-* Bearer (JWT) Authentication (BearerAuth):
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: BasicAuth
-configuration = pricemonitor_api_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = pricemonitor_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.InternalApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. The time range may not exceed 1 week. (optional)
-end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. The time range may not exceed 1 week. (optional)
-
-    try:
-        # Get shops with offers for time range
-        api_response = api_instance.api_v3_manufacturer_contracts_contract_id_offers_shops_get(contract_id, start_date=start_date, end_date=end_date)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling InternalApi->api_v3_manufacturer_contracts_contract_id_offers_shops_get: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
- **start_date** | **datetime**| Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is &#39;NOW - 48 hours to NOW&#39;. The time range may not exceed 1 week. | [optional] 
- **end_date** | **datetime**| Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is &#39;NOW - 48 hours to NOW&#39;. The time range may not exceed 1 week. | [optional] 
-
-### Return type
-
-[**GetShopsByDomainResponseV3ApiResponse**](GetShopsByDomainResponseV3ApiResponse.md)
-
-### Authorization
-
-[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Shops which have at least one offer for a given time range per domain. |  -  |
-**400** | Specified time range is invalid (&gt; 7 days). |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_v3_manufacturer_contracts_contract_id_offers_stats_query_post**
-> PostOfferStatisticsApiResponse api_v3_manufacturer_contracts_contract_id_offers_stats_query_post(contract_id, post_offer_statistics_request)
-
-
-
-This operation is used to get offer statistics (e.g. offer count, average price) grouped by product and domain. Warning: This endpoint contains complex query structure and will be replaced in the future. Please note that offer statistics can only be computed for at maximum 2500 products at a time.
-
-### Example
-
-* Basic Authentication (BasicAuth):
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: BasicAuth
-configuration = pricemonitor_api_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = pricemonitor_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.InternalApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-post_offer_statistics_request = pricemonitor_api_client.PostOfferStatisticsRequest() # PostOfferStatisticsRequest | 
-
-    try:
-        api_response = api_instance.api_v3_manufacturer_contracts_contract_id_offers_stats_query_post(contract_id, post_offer_statistics_request)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling InternalApi->api_v3_manufacturer_contracts_contract_id_offers_stats_query_post: %s\n" % e)
-```
-
-* Bearer (JWT) Authentication (BearerAuth):
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: BasicAuth
-configuration = pricemonitor_api_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = pricemonitor_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.InternalApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-post_offer_statistics_request = pricemonitor_api_client.PostOfferStatisticsRequest() # PostOfferStatisticsRequest | 
-
-    try:
-        api_response = api_instance.api_v3_manufacturer_contracts_contract_id_offers_stats_query_post(contract_id, post_offer_statistics_request)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling InternalApi->api_v3_manufacturer_contracts_contract_id_offers_stats_query_post: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
- **post_offer_statistics_request** | [**PostOfferStatisticsRequest**](PostOfferStatisticsRequest.md)|  | 
-
-### Return type
-
-[**PostOfferStatisticsApiResponse**](PostOfferStatisticsApiResponse.md)
-
-### Authorization
-
-[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Returns a list of offer statistics per product. |  -  |
-**400** | Returned in case of unparsable request body JSON or unsupported filter. |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_v3_vendor_contracts_contract_id_offers_shop_query_post**
-> QueryOffersOfShopV3ApiResponse api_v3_vendor_contracts_contract_id_offers_shop_query_post(contract_id, com_patagona_pricemonitor_share_api_query_offers_of_shop_request_v3)
-
-
-
-Get all offers of a shop. Please note that it might return offers for inactive products.
-
-### Example
-
-* Basic Authentication (BasicAuth):
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: BasicAuth
-configuration = pricemonitor_api_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = pricemonitor_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.InternalApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-com_patagona_pricemonitor_share_api_query_offers_of_shop_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiQueryOffersOfShopRequestV3() # ComPatagonaPricemonitorShareApiQueryOffersOfShopRequestV3 | 
-
-    try:
-        api_response = api_instance.api_v3_vendor_contracts_contract_id_offers_shop_query_post(contract_id, com_patagona_pricemonitor_share_api_query_offers_of_shop_request_v3)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling InternalApi->api_v3_vendor_contracts_contract_id_offers_shop_query_post: %s\n" % e)
-```
-
-* Bearer (JWT) Authentication (BearerAuth):
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: BasicAuth
-configuration = pricemonitor_api_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = pricemonitor_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.InternalApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-com_patagona_pricemonitor_share_api_query_offers_of_shop_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiQueryOffersOfShopRequestV3() # ComPatagonaPricemonitorShareApiQueryOffersOfShopRequestV3 | 
-
-    try:
-        api_response = api_instance.api_v3_vendor_contracts_contract_id_offers_shop_query_post(contract_id, com_patagona_pricemonitor_share_api_query_offers_of_shop_request_v3)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling InternalApi->api_v3_vendor_contracts_contract_id_offers_shop_query_post: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
- **com_patagona_pricemonitor_share_api_query_offers_of_shop_request_v3** | [**ComPatagonaPricemonitorShareApiQueryOffersOfShopRequestV3**](ComPatagonaPricemonitorShareApiQueryOffersOfShopRequestV3.md)|  | 
-
-### Return type
-
-[**QueryOffersOfShopV3ApiResponse**](QueryOffersOfShopV3ApiResponse.md)
-
-### Authorization
-
-[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Returns offers of the shop |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_v3_vendor_contracts_contract_id_offers_shops_get**
-> GetShopsByDomainResponseV3ApiResponse api_v3_vendor_contracts_contract_id_offers_shops_get(contract_id, start_date=start_date, end_date=end_date)
-
-Get shops with offers for time range per domain
-
-Returns all shops which have at least one offer for a given time range per domain.
-
-### Example
-
-* Basic Authentication (BasicAuth):
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: BasicAuth
-configuration = pricemonitor_api_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = pricemonitor_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.InternalApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. The time range may not exceed 1 week. (optional)
-end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. The time range may not exceed 1 week. (optional)
-
-    try:
-        # Get shops with offers for time range per domain
-        api_response = api_instance.api_v3_vendor_contracts_contract_id_offers_shops_get(contract_id, start_date=start_date, end_date=end_date)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling InternalApi->api_v3_vendor_contracts_contract_id_offers_shops_get: %s\n" % e)
-```
-
-* Bearer (JWT) Authentication (BearerAuth):
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: BasicAuth
-configuration = pricemonitor_api_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = pricemonitor_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.InternalApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. The time range may not exceed 1 week. (optional)
-end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. The time range may not exceed 1 week. (optional)
-
-    try:
-        # Get shops with offers for time range per domain
-        api_response = api_instance.api_v3_vendor_contracts_contract_id_offers_shops_get(contract_id, start_date=start_date, end_date=end_date)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling InternalApi->api_v3_vendor_contracts_contract_id_offers_shops_get: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
- **start_date** | **datetime**| Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is &#39;NOW - 48 hours to NOW&#39;. The time range may not exceed 1 week. | [optional] 
- **end_date** | **datetime**| Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is &#39;NOW - 48 hours to NOW&#39;. The time range may not exceed 1 week. | [optional] 
-
-### Return type
-
-[**GetShopsByDomainResponseV3ApiResponse**](GetShopsByDomainResponseV3ApiResponse.md)
-
-### Authorization
-
-[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Shops which have at least one offer for a given time range per domain. |  -  |
-**400** | Specified time range is invalid (&gt; 7 days). |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **authenticate**
 > object authenticate()
 
@@ -1706,248 +1083,6 @@ void (empty response body)
 **204** | User was confirmed &amp; logged in |  -  |
 **400** | Unable to confirm the user because of bad request data |  -  |
 **500** | Unable to confirm the user because of an unexpected error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **controlpanel_api_companies_get**
-> ComPatagonaPricemonitorShareApiAdminCompanyV2 controlpanel_api_companies_get(start=start, limit=limit)
-
-Get a list of all companies
-
-### Example
-
-* Basic Authentication (BasicAuth):
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: BasicAuth
-configuration = pricemonitor_api_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = pricemonitor_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.InternalApi(api_client)
-    start = 0 # int | Start of the pagination (optional) (default to 0)
-limit = 100 # int | Number of elements per page (optional) (default to 100)
-
-    try:
-        # Get a list of all companies
-        api_response = api_instance.controlpanel_api_companies_get(start=start, limit=limit)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling InternalApi->controlpanel_api_companies_get: %s\n" % e)
-```
-
-* Bearer (JWT) Authentication (BearerAuth):
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: BasicAuth
-configuration = pricemonitor_api_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = pricemonitor_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.InternalApi(api_client)
-    start = 0 # int | Start of the pagination (optional) (default to 0)
-limit = 100 # int | Number of elements per page (optional) (default to 100)
-
-    try:
-        # Get a list of all companies
-        api_response = api_instance.controlpanel_api_companies_get(start=start, limit=limit)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling InternalApi->controlpanel_api_companies_get: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **start** | **int**| Start of the pagination | [optional] [default to 0]
- **limit** | **int**| Number of elements per page | [optional] [default to 100]
-
-### Return type
-
-[**ComPatagonaPricemonitorShareApiAdminCompanyV2**](ComPatagonaPricemonitorShareApiAdminCompanyV2.md)
-
-### Authorization
-
-[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | A list of companies was loaded |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **controlpanel_api_v3_domains_post**
-> PostAdminAddDomainV3ApiResponse controlpanel_api_v3_domains_post(com_patagona_pricemonitor_share_api_post_admin_add_domain_body_v3=com_patagona_pricemonitor_share_api_post_admin_add_domain_body_v3)
-
-Add a new domain
-
-### Example
-
-* Basic Authentication (BasicAuth):
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: BasicAuth
-configuration = pricemonitor_api_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = pricemonitor_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.InternalApi(api_client)
-    com_patagona_pricemonitor_share_api_post_admin_add_domain_body_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostAdminAddDomainBodyV3() # ComPatagonaPricemonitorShareApiPostAdminAddDomainBodyV3 | The domain to be added and its offer sources (optional)
-
-    try:
-        # Add a new domain
-        api_response = api_instance.controlpanel_api_v3_domains_post(com_patagona_pricemonitor_share_api_post_admin_add_domain_body_v3=com_patagona_pricemonitor_share_api_post_admin_add_domain_body_v3)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling InternalApi->controlpanel_api_v3_domains_post: %s\n" % e)
-```
-
-* Bearer (JWT) Authentication (BearerAuth):
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: BasicAuth
-configuration = pricemonitor_api_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = pricemonitor_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.InternalApi(api_client)
-    com_patagona_pricemonitor_share_api_post_admin_add_domain_body_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostAdminAddDomainBodyV3() # ComPatagonaPricemonitorShareApiPostAdminAddDomainBodyV3 | The domain to be added and its offer sources (optional)
-
-    try:
-        # Add a new domain
-        api_response = api_instance.controlpanel_api_v3_domains_post(com_patagona_pricemonitor_share_api_post_admin_add_domain_body_v3=com_patagona_pricemonitor_share_api_post_admin_add_domain_body_v3)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling InternalApi->controlpanel_api_v3_domains_post: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **com_patagona_pricemonitor_share_api_post_admin_add_domain_body_v3** | [**ComPatagonaPricemonitorShareApiPostAdminAddDomainBodyV3**](ComPatagonaPricemonitorShareApiPostAdminAddDomainBodyV3.md)| The domain to be added and its offer sources | [optional] 
-
-### Return type
-
-[**PostAdminAddDomainV3ApiResponse**](PostAdminAddDomainV3ApiResponse.md)
-
-### Authorization
-
-[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | A new domain was added |  -  |
-**400** | - Offer sources must be valid and non-empty - Domain must be a valid internet domain and non-empty - Domain name must be unique and non-empty - Please refer to the request schema for what constitutes valid offer sources and a valid domain  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -4711,6 +3846,128 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_all_companies**
+> ComPatagonaPricemonitorShareApiAdminCompanyV2 get_all_companies(start=start, limit=limit)
+
+Get a list of all companies
+
+### Example
+
+* Basic Authentication (BasicAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.InternalApi(api_client)
+    start = 0 # int | Start of the pagination (optional) (default to 0)
+limit = 100 # int | Number of elements per page (optional) (default to 100)
+
+    try:
+        # Get a list of all companies
+        api_response = api_instance.get_all_companies(start=start, limit=limit)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling InternalApi->get_all_companies: %s\n" % e)
+```
+
+* Bearer (JWT) Authentication (BearerAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.InternalApi(api_client)
+    start = 0 # int | Start of the pagination (optional) (default to 0)
+limit = 100 # int | Number of elements per page (optional) (default to 100)
+
+    try:
+        # Get a list of all companies
+        api_response = api_instance.get_all_companies(start=start, limit=limit)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling InternalApi->get_all_companies: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **start** | **int**| Start of the pagination | [optional] [default to 0]
+ **limit** | **int**| Number of elements per page | [optional] [default to 100]
+
+### Return type
+
+[**ComPatagonaPricemonitorShareApiAdminCompanyV2**](ComPatagonaPricemonitorShareApiAdminCompanyV2.md)
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | A list of companies was loaded |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_all_contracts**
 > get_all_contracts()
 
@@ -4820,6 +4077,126 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A list of contracts was loaded |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_all_domains_control_panel_v3**
+> PostAdminAddDomainV3ApiResponse get_all_domains_control_panel_v3(com_patagona_pricemonitor_share_api_post_admin_add_domain_body_v3=com_patagona_pricemonitor_share_api_post_admin_add_domain_body_v3)
+
+Add a new domain
+
+### Example
+
+* Basic Authentication (BasicAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.InternalApi(api_client)
+    com_patagona_pricemonitor_share_api_post_admin_add_domain_body_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostAdminAddDomainBodyV3() # ComPatagonaPricemonitorShareApiPostAdminAddDomainBodyV3 | The domain to be added and its offer sources (optional)
+
+    try:
+        # Add a new domain
+        api_response = api_instance.get_all_domains_control_panel_v3(com_patagona_pricemonitor_share_api_post_admin_add_domain_body_v3=com_patagona_pricemonitor_share_api_post_admin_add_domain_body_v3)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling InternalApi->get_all_domains_control_panel_v3: %s\n" % e)
+```
+
+* Bearer (JWT) Authentication (BearerAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.InternalApi(api_client)
+    com_patagona_pricemonitor_share_api_post_admin_add_domain_body_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostAdminAddDomainBodyV3() # ComPatagonaPricemonitorShareApiPostAdminAddDomainBodyV3 | The domain to be added and its offer sources (optional)
+
+    try:
+        # Add a new domain
+        api_response = api_instance.get_all_domains_control_panel_v3(com_patagona_pricemonitor_share_api_post_admin_add_domain_body_v3=com_patagona_pricemonitor_share_api_post_admin_add_domain_body_v3)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling InternalApi->get_all_domains_control_panel_v3: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **com_patagona_pricemonitor_share_api_post_admin_add_domain_body_v3** | [**ComPatagonaPricemonitorShareApiPostAdminAddDomainBodyV3**](ComPatagonaPricemonitorShareApiPostAdminAddDomainBodyV3.md)| The domain to be added and its offer sources | [optional] 
+
+### Return type
+
+[**PostAdminAddDomainV3ApiResponse**](PostAdminAddDomainV3ApiResponse.md)
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | A new domain was added |  -  |
+**400** | - Offer sources must be valid and non-empty - Domain must be a valid internet domain and non-empty - Domain name must be unique and non-empty - Please refer to the request schema for what constitutes valid offer sources and a valid domain  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -9259,6 +8636,262 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Returns a list of offer statistics per product. |  -  |
 **400** | Specified time range is invalid (&gt; 48h). |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_offers_shops_manufacturer_v3**
+> GetShopsByDomainResponseV3ApiResponse get_offers_shops_manufacturer_v3(contract_id, start_date=start_date, end_date=end_date)
+
+Get shops with offers for time range
+
+Returns all shops which have at least one offer for a given time range per domain.
+
+### Example
+
+* Basic Authentication (BasicAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.InternalApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. The time range may not exceed 1 week. (optional)
+end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. The time range may not exceed 1 week. (optional)
+
+    try:
+        # Get shops with offers for time range
+        api_response = api_instance.get_offers_shops_manufacturer_v3(contract_id, start_date=start_date, end_date=end_date)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling InternalApi->get_offers_shops_manufacturer_v3: %s\n" % e)
+```
+
+* Bearer (JWT) Authentication (BearerAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.InternalApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. The time range may not exceed 1 week. (optional)
+end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. The time range may not exceed 1 week. (optional)
+
+    try:
+        # Get shops with offers for time range
+        api_response = api_instance.get_offers_shops_manufacturer_v3(contract_id, start_date=start_date, end_date=end_date)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling InternalApi->get_offers_shops_manufacturer_v3: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **contract_id** | **str**| ID of the contract | 
+ **start_date** | **datetime**| Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is &#39;NOW - 48 hours to NOW&#39;. The time range may not exceed 1 week. | [optional] 
+ **end_date** | **datetime**| Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is &#39;NOW - 48 hours to NOW&#39;. The time range may not exceed 1 week. | [optional] 
+
+### Return type
+
+[**GetShopsByDomainResponseV3ApiResponse**](GetShopsByDomainResponseV3ApiResponse.md)
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Shops which have at least one offer for a given time range per domain. |  -  |
+**400** | Specified time range is invalid (&gt; 7 days). |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_offers_shops_vendor_v3**
+> GetShopsByDomainResponseV3ApiResponse get_offers_shops_vendor_v3(contract_id, start_date=start_date, end_date=end_date)
+
+Get shops with offers for time range per domain
+
+Returns all shops which have at least one offer for a given time range per domain.
+
+### Example
+
+* Basic Authentication (BasicAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.InternalApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. The time range may not exceed 1 week. (optional)
+end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. The time range may not exceed 1 week. (optional)
+
+    try:
+        # Get shops with offers for time range per domain
+        api_response = api_instance.get_offers_shops_vendor_v3(contract_id, start_date=start_date, end_date=end_date)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling InternalApi->get_offers_shops_vendor_v3: %s\n" % e)
+```
+
+* Bearer (JWT) Authentication (BearerAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.InternalApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. The time range may not exceed 1 week. (optional)
+end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. The time range may not exceed 1 week. (optional)
+
+    try:
+        # Get shops with offers for time range per domain
+        api_response = api_instance.get_offers_shops_vendor_v3(contract_id, start_date=start_date, end_date=end_date)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling InternalApi->get_offers_shops_vendor_v3: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **contract_id** | **str**| ID of the contract | 
+ **start_date** | **datetime**| Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is &#39;NOW - 48 hours to NOW&#39;. The time range may not exceed 1 week. | [optional] 
+ **end_date** | **datetime**| Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is &#39;NOW - 48 hours to NOW&#39;. The time range may not exceed 1 week. | [optional] 
+
+### Return type
+
+[**GetShopsByDomainResponseV3ApiResponse**](GetShopsByDomainResponseV3ApiResponse.md)
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Shops which have at least one offer for a given time range per domain. |  -  |
+**400** | Specified time range is invalid (&gt; 7 days). |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -19681,6 +19314,373 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | This is a generated entry and needs to be described. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **query_offers_shop_manufacturer_v3**
+> QueryOffersOfShopV3ApiResponse query_offers_shop_manufacturer_v3(contract_id, com_patagona_pricemonitor_share_api_query_offers_of_shop_request_v3)
+
+
+
+Get all offers of a shop. Please note that it might return offers for inactive products.
+
+### Example
+
+* Basic Authentication (BasicAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.InternalApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+com_patagona_pricemonitor_share_api_query_offers_of_shop_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiQueryOffersOfShopRequestV3() # ComPatagonaPricemonitorShareApiQueryOffersOfShopRequestV3 | 
+
+    try:
+        api_response = api_instance.query_offers_shop_manufacturer_v3(contract_id, com_patagona_pricemonitor_share_api_query_offers_of_shop_request_v3)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling InternalApi->query_offers_shop_manufacturer_v3: %s\n" % e)
+```
+
+* Bearer (JWT) Authentication (BearerAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.InternalApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+com_patagona_pricemonitor_share_api_query_offers_of_shop_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiQueryOffersOfShopRequestV3() # ComPatagonaPricemonitorShareApiQueryOffersOfShopRequestV3 | 
+
+    try:
+        api_response = api_instance.query_offers_shop_manufacturer_v3(contract_id, com_patagona_pricemonitor_share_api_query_offers_of_shop_request_v3)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling InternalApi->query_offers_shop_manufacturer_v3: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **contract_id** | **str**| ID of the contract | 
+ **com_patagona_pricemonitor_share_api_query_offers_of_shop_request_v3** | [**ComPatagonaPricemonitorShareApiQueryOffersOfShopRequestV3**](ComPatagonaPricemonitorShareApiQueryOffersOfShopRequestV3.md)|  | 
+
+### Return type
+
+[**QueryOffersOfShopV3ApiResponse**](QueryOffersOfShopV3ApiResponse.md)
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Returns offers of the shop |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **query_offers_shop_vendor_v3**
+> QueryOffersOfShopV3ApiResponse query_offers_shop_vendor_v3(contract_id, com_patagona_pricemonitor_share_api_query_offers_of_shop_request_v3)
+
+
+
+Get all offers of a shop. Please note that it might return offers for inactive products.
+
+### Example
+
+* Basic Authentication (BasicAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.InternalApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+com_patagona_pricemonitor_share_api_query_offers_of_shop_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiQueryOffersOfShopRequestV3() # ComPatagonaPricemonitorShareApiQueryOffersOfShopRequestV3 | 
+
+    try:
+        api_response = api_instance.query_offers_shop_vendor_v3(contract_id, com_patagona_pricemonitor_share_api_query_offers_of_shop_request_v3)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling InternalApi->query_offers_shop_vendor_v3: %s\n" % e)
+```
+
+* Bearer (JWT) Authentication (BearerAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.InternalApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+com_patagona_pricemonitor_share_api_query_offers_of_shop_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiQueryOffersOfShopRequestV3() # ComPatagonaPricemonitorShareApiQueryOffersOfShopRequestV3 | 
+
+    try:
+        api_response = api_instance.query_offers_shop_vendor_v3(contract_id, com_patagona_pricemonitor_share_api_query_offers_of_shop_request_v3)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling InternalApi->query_offers_shop_vendor_v3: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **contract_id** | **str**| ID of the contract | 
+ **com_patagona_pricemonitor_share_api_query_offers_of_shop_request_v3** | [**ComPatagonaPricemonitorShareApiQueryOffersOfShopRequestV3**](ComPatagonaPricemonitorShareApiQueryOffersOfShopRequestV3.md)|  | 
+
+### Return type
+
+[**QueryOffersOfShopV3ApiResponse**](QueryOffersOfShopV3ApiResponse.md)
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Returns offers of the shop |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **query_offers_stats_manufacturer_v3**
+> PostOfferStatisticsApiResponse query_offers_stats_manufacturer_v3(contract_id, post_offer_statistics_request)
+
+
+
+This operation is used to get offer statistics (e.g. offer count, average price) grouped by product and domain. Warning: This endpoint contains complex query structure and will be replaced in the future. Please note that offer statistics can only be computed for at maximum 2500 products at a time.
+
+### Example
+
+* Basic Authentication (BasicAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.InternalApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+post_offer_statistics_request = pricemonitor_api_client.PostOfferStatisticsRequest() # PostOfferStatisticsRequest | 
+
+    try:
+        api_response = api_instance.query_offers_stats_manufacturer_v3(contract_id, post_offer_statistics_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling InternalApi->query_offers_stats_manufacturer_v3: %s\n" % e)
+```
+
+* Bearer (JWT) Authentication (BearerAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.InternalApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+post_offer_statistics_request = pricemonitor_api_client.PostOfferStatisticsRequest() # PostOfferStatisticsRequest | 
+
+    try:
+        api_response = api_instance.query_offers_stats_manufacturer_v3(contract_id, post_offer_statistics_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling InternalApi->query_offers_stats_manufacturer_v3: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **contract_id** | **str**| ID of the contract | 
+ **post_offer_statistics_request** | [**PostOfferStatisticsRequest**](PostOfferStatisticsRequest.md)|  | 
+
+### Return type
+
+[**PostOfferStatisticsApiResponse**](PostOfferStatisticsApiResponse.md)
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Returns a list of offer statistics per product. |  -  |
+**400** | Returned in case of unparsable request body JSON or unsupported filter. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
