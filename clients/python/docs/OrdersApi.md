@@ -7,8 +7,8 @@ Method | HTTP request | Description
 [**api_v3_vendor_contracts_contract_id_orders_delete_query_post**](OrdersApi.md#api_v3_vendor_contracts_contract_id_orders_delete_query_post) | **POST** /api/v3/vendor/contracts/{contractId}/orders/delete/query | Delete orders by query
 [**api_v3_vendor_contracts_contract_id_orders_stats_query_post**](OrdersApi.md#api_v3_vendor_contracts_contract_id_orders_stats_query_post) | **POST** /api/v3/vendor/contracts/{contractId}/orders/stats/query | Query order statistics per product
 [**delete_orders**](OrdersApi.md#delete_orders) | **DELETE** /api/v3/vendor/contracts/{contractId}/orders | Delete all orders for this contract
-[**get_orders_count_by_portal_by_contract**](OrdersApi.md#get_orders_count_by_portal_by_contract) | **GET** /api/1/{contractId}/products/orderscountbyportal | 
-[**get_orders_vendor_v3**](OrdersApi.md#get_orders_vendor_v3) | **GET** /api/v3/vendor/contracts/{contractId}/orders | 
+[**get_orders_count_by_portal_by_contract**](OrdersApi.md#get_orders_count_by_portal_by_contract) | **GET** /api/1/{contractId}/products/orderscountbyportal | Get orders count by portal
+[**get_orders_vendor_v3**](OrdersApi.md#get_orders_vendor_v3) | **GET** /api/v3/vendor/contracts/{contractId}/orders | Get all orders
 [**post_orders**](OrdersApi.md#post_orders) | **POST** /api/2/v/contracts/{contractId}/orders | Add orders in bulk
 [**put_orders_v3**](OrdersApi.md#put_orders_v3) | **PUT** /api/v3/vendor/contracts/{contractId}/orders | PUT orders in bulk
 
@@ -385,7 +385,9 @@ Name | Type | Description  | Notes
 # **get_orders_count_by_portal_by_contract**
 > object get_orders_count_by_portal_by_contract(contract_id)
 
+Get orders count by portal
 
+Get the number of orders by portal for the given contract.
 
 ### Example
 
@@ -425,6 +427,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get orders count by portal
         api_response = api_instance.get_orders_count_by_portal_by_contract(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -467,6 +470,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get orders count by portal
         api_response = api_instance.get_orders_count_by_portal_by_contract(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -502,7 +506,9 @@ Name | Type | Description  | Notes
 # **get_orders_vendor_v3**
 > object get_orders_vendor_v3(contract_id, start, limit, start_date=start_date, end_date=end_date)
 
+Get all orders
 
+Returns all orders for a given contract.
 
 ### Example
 
@@ -546,6 +552,7 @@ start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time
 end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range for fetching orders. Formatted as ISO 8601 format with timezone with reference to UTC (e.g. for [Europe/Berlin] in winter time: 2023-11-01T14:50:45.495+01:00. In summer time: 2023-11-01T14:50:45.495+02:00). If this value is omitted then no upper time limit is considered.  (optional)
 
     try:
+        # Get all orders
         api_response = api_instance.get_orders_vendor_v3(contract_id, start, limit, start_date=start_date, end_date=end_date)
         pprint(api_response)
     except ApiException as e:
@@ -592,6 +599,7 @@ start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time
 end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range for fetching orders. Formatted as ISO 8601 format with timezone with reference to UTC (e.g. for [Europe/Berlin] in winter time: 2023-11-01T14:50:45.495+01:00. In summer time: 2023-11-01T14:50:45.495+02:00). If this value is omitted then no upper time limit is considered.  (optional)
 
     try:
+        # Get all orders
         api_response = api_instance.get_orders_vendor_v3(contract_id, start, limit, start_date=start_date, end_date=end_date)
         pprint(api_response)
     except ApiException as e:

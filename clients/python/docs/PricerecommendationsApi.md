@@ -7,7 +7,7 @@ Method | HTTP request | Description
 [**delete_repricing_strategy_vendor_v2**](PricerecommendationsApi.md#delete_repricing_strategy_vendor_v2) | **DELETE** /api/2/v/contracts/{contractId}/settings/repricingstrategy | 
 [**get_price_recommendation**](PricerecommendationsApi.md#get_price_recommendation) | **GET** /api/2/v/contracts/{contractId}/result/pricerecommendations | Get all price recommendations
 [**get_price_recommendation_stats_vendor_v2**](PricerecommendationsApi.md#get_price_recommendation_stats_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/result/pricerecommendationstats | 
-[**get_price_recommendations**](PricerecommendationsApi.md#get_price_recommendations) | **GET** /api/1/{contractId}/products/analysis/pricerecommendations | Get price recommendations (deprecated)
+[**get_price_recommendations**](PricerecommendationsApi.md#get_price_recommendations) | **GET** /api/1/{contractId}/products/analysis/pricerecommendations | Get price recommendations
 [**get_repricing_strategy_vendor_v2**](PricerecommendationsApi.md#get_repricing_strategy_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/settings/repricingstrategy | 
 [**get_time_stamps**](PricerecommendationsApi.md#get_time_stamps) | **GET** /api/1/{contractId}/products/analysis/timestamps | 
 [**put_repricing_strategy_vendor_v2**](PricerecommendationsApi.md#put_repricing_strategy_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/settings/repricingstrategy | 
@@ -391,7 +391,7 @@ Name | Type | Description  | Notes
 # **get_price_recommendations**
 > GetPriceRecommendationsResponse get_price_recommendations(contract_id, start=start, limit=limit, since=since)
 
-Get price recommendations (deprecated)
+Get price recommendations
 
 ### Example
 
@@ -434,7 +434,7 @@ limit = 10000 # int | Maximal number of results (optional) (default to 10000)
 since = '2019-01-01T00:00:00.000Z' # datetime | Timestamp of the oldest results (optional)
 
     try:
-        # Get price recommendations (deprecated)
+        # Get price recommendations
         api_response = api_instance.get_price_recommendations(contract_id, start=start, limit=limit, since=since)
         pprint(api_response)
     except ApiException as e:
@@ -480,7 +480,7 @@ limit = 10000 # int | Maximal number of results (optional) (default to 10000)
 since = '2019-01-01T00:00:00.000Z' # datetime | Timestamp of the oldest results (optional)
 
     try:
-        # Get price recommendations (deprecated)
+        # Get price recommendations
         api_response = api_instance.get_price_recommendations(contract_id, start=start, limit=limit, since=since)
         pprint(api_response)
     except ApiException as e:

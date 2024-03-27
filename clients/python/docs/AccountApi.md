@@ -16,7 +16,7 @@ Method | HTTP request | Description
 [**reset_password**](AccountApi.md#reset_password) | **PUT** /api/account/password/reset | Reset the password
 [**update_user_role**](AccountApi.md#update_user_role) | **PUT** /api/2/users/{userId}/role/{roleName} | 
 [**user_info**](AccountApi.md#user_info) | **GET** /api/account | Details of the current user
-[**user_signup**](AccountApi.md#user_signup) | **POST** /api/account | Create a new user account in the Pricemonitor
+[**user_signup**](AccountApi.md#user_signup) | **POST** /api/account | Create a new user account in the system
 
 
 # **authenticate**
@@ -182,7 +182,7 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Change the current users password |  -  |
+**200** | Change the current user&#39;s password. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -658,7 +658,7 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Deauthenticate with the API and destroy the current session |  -  |
+**200** | Deauthenticate with the API and destroy the current session. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1205,7 +1205,7 @@ This endpoint does not need any parameter.
 # **user_signup**
 > user_signup(user_signup_request)
 
-Create a new user account in the Pricemonitor
+Create a new user account in the system
 
 ### Example
 
@@ -1242,10 +1242,10 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.AccountApi(api_client)
-    user_signup_request = pricemonitor_api_client.UserSignupRequest() # UserSignupRequest | The user signup data
+    user_signup_request = pricemonitor_api_client.UserSignupRequest() # UserSignupRequest | The user sign up data
 
     try:
-        # Create a new user account in the Pricemonitor
+        # Create a new user account in the system
         api_instance.user_signup(user_signup_request)
     except ApiException as e:
         print("Exception when calling AccountApi->user_signup: %s\n" % e)
@@ -1284,10 +1284,10 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.AccountApi(api_client)
-    user_signup_request = pricemonitor_api_client.UserSignupRequest() # UserSignupRequest | The user signup data
+    user_signup_request = pricemonitor_api_client.UserSignupRequest() # UserSignupRequest | The user sign up data
 
     try:
-        # Create a new user account in the Pricemonitor
+        # Create a new user account in the system
         api_instance.user_signup(user_signup_request)
     except ApiException as e:
         print("Exception when calling AccountApi->user_signup: %s\n" % e)
@@ -1297,7 +1297,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_signup_request** | [**UserSignupRequest**](UserSignupRequest.md)| The user signup data | 
+ **user_signup_request** | [**UserSignupRequest**](UserSignupRequest.md)| The user sign up data | 
 
 ### Return type
 
@@ -1316,7 +1316,7 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | No response was specified |  -  |
-**201** | User was created and confirmation eMail was sent |  -  |
+**201** | User was created and confirmation e-mail was sent |  -  |
 **400** | Unable to create the user because of bad request data |  -  |
 **500** | Unable to create the user because of an unexpected error |  -  |
 

@@ -4,14 +4,16 @@ All URIs are relative to *https://api.patagona.de*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**post_log_message**](LogsApi.md#post_log_message) | **POST** /api/2/log/messages | 
-[**post_log_messages**](LogsApi.md#post_log_messages) | **POST** /api/v3/log/messages | Stores the log messages. This endpoint aims to improve the API-integration process. One could integrate the Pricemonitor API in his/her own system and publish the integration logs so that Patagona could analyze them.
+[**post_log_message**](LogsApi.md#post_log_message) | **POST** /api/2/log/messages | Log a message
+[**post_log_messages**](LogsApi.md#post_log_messages) | **POST** /api/v3/log/messages | Store log messages
 
 
 # **post_log_message**
 > object post_log_message()
 
+Log a message
 
+Logs a message.
 
 ### Example
 
@@ -50,6 +52,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     api_instance = pricemonitor_api_client.LogsApi(api_client)
     
     try:
+        # Log a message
         api_response = api_instance.post_log_message()
         pprint(api_response)
     except ApiException as e:
@@ -91,6 +94,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     api_instance = pricemonitor_api_client.LogsApi(api_client)
     
     try:
+        # Log a message
         api_response = api_instance.post_log_message()
         pprint(api_response)
     except ApiException as e:
@@ -123,7 +127,9 @@ This endpoint does not need any parameter.
 # **post_log_messages**
 > post_log_messages(log_messages)
 
-Stores the log messages. This endpoint aims to improve the API-integration process. One could integrate the Pricemonitor API in his/her own system and publish the integration logs so that Patagona could analyze them.
+Store log messages
+
+Stores log messages in the platform. This endpoint aims to improve the API integration process.
 
 ### Example
 
@@ -163,7 +169,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     log_messages = pricemonitor_api_client.LogMessages() # LogMessages | 
 
     try:
-        # Stores the log messages. This endpoint aims to improve the API-integration process. One could integrate the Pricemonitor API in his/her own system and publish the integration logs so that Patagona could analyze them.
+        # Store log messages
         api_instance.post_log_messages(log_messages)
     except ApiException as e:
         print("Exception when calling LogsApi->post_log_messages: %s\n" % e)
@@ -205,7 +211,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     log_messages = pricemonitor_api_client.LogMessages() # LogMessages | 
 
     try:
-        # Stores the log messages. This endpoint aims to improve the API-integration process. One could integrate the Pricemonitor API in his/her own system and publish the integration logs so that Patagona could analyze them.
+        # Store log messages
         api_instance.post_log_messages(log_messages)
     except ApiException as e:
         print("Exception when calling LogsApi->post_log_messages: %s\n" % e)

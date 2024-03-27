@@ -6,7 +6,6 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**add_company**](UndocumentedApi.md#add_company) | **POST** /controlpanel/api/companies | 
 [**add_company_user**](UndocumentedApi.md#add_company_user) | **PUT** /controlpanel/companies/{id}/users/{email} | 
-[**all_available_portals**](UndocumentedApi.md#all_available_portals) | **GET** /api/2/domains | 
 [**authenticate**](UndocumentedApi.md#authenticate) | **POST** /login | 
 [**change_password**](UndocumentedApi.md#change_password) | **PUT** /api/account/password | 
 [**create_alert_settings**](UndocumentedApi.md#create_alert_settings) | **POST** /api/1/{contractId}/settings/alerts | 
@@ -52,7 +51,7 @@ Method | HTTP request | Description
 [**get_monitoring_settings_vendor_v3**](UndocumentedApi.md#get_monitoring_settings_vendor_v3) | **GET** /api/v3/vendor/contracts/{contractId}/settings/monitoring | 
 [**get_offer_retention_settings_manufacturer_v3**](UndocumentedApi.md#get_offer_retention_settings_manufacturer_v3) | **GET** /api/v3/manufacturer/contracts/{contractId}/settings/offerretention | 
 [**get_offer_retention_settings_vendor_v3**](UndocumentedApi.md#get_offer_retention_settings_vendor_v3) | **GET** /api/v3/vendor/contracts/{contractId}/settings/offerretention | 
-[**get_orders_count_by_portal_by_contract**](UndocumentedApi.md#get_orders_count_by_portal_by_contract) | **GET** /api/1/{contractId}/products/orderscountbyportal | 
+[**get_orders_count_by_portal_by_contract**](UndocumentedApi.md#get_orders_count_by_portal_by_contract) | **GET** /api/1/{contractId}/products/orderscountbyportal | Get orders count by portal
 [**get_price_cutters_manufacturer_v2**](UndocumentedApi.md#get_price_cutters_manufacturer_v2) | **POST** /api/2/m/contracts/{contractId}/result/pricecutters | 
 [**get_price_cutters_vendor_v2**](UndocumentedApi.md#get_price_cutters_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/result/pricecutters | 
 [**get_price_recommendation_stats_vendor_v2**](UndocumentedApi.md#get_price_recommendation_stats_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/result/pricerecommendationstats | 
@@ -91,7 +90,6 @@ Method | HTTP request | Description
 [**position_distribution**](UndocumentedApi.md#position_distribution) | **POST** /api/1/{contractId}/vendors/{vendor}/positions | 
 [**post_ebay_authorization_vendor_v2**](UndocumentedApi.md#post_ebay_authorization_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/settings/ebay/authorizations | 
 [**post_feed_vendor_v2**](UndocumentedApi.md#post_feed_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/feeds | 
-[**post_log_message**](UndocumentedApi.md#post_log_message) | **POST** /api/2/log/messages | 
 [**post_mappings_vendor_v2**](UndocumentedApi.md#post_mappings_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/productidentifiermapping | 
 [**put_callbacks_vendor_v2**](UndocumentedApi.md#put_callbacks_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/settings/callbacks | 
 [**put_currency_vendor_v2**](UndocumentedApi.md#put_currency_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/settings/currency | 
@@ -374,118 +372,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **all_available_portals**
-> object all_available_portals()
-
-
-
-### Example
-
-* Basic Authentication (BasicAuth):
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: BasicAuth
-configuration = pricemonitor_api_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = pricemonitor_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.UndocumentedApi(api_client)
-    
-    try:
-        api_response = api_instance.all_available_portals()
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling UndocumentedApi->all_available_portals: %s\n" % e)
-```
-
-* Bearer (JWT) Authentication (BearerAuth):
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: BasicAuth
-configuration = pricemonitor_api_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = pricemonitor_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.UndocumentedApi(api_client)
-    
-    try:
-        api_response = api_instance.all_available_portals()
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling UndocumentedApi->all_available_portals: %s\n" % e)
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-**object**
-
-### Authorization
-
-[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | This is a generated entry and needs to be described. |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **authenticate**
 > object authenticate()
 
@@ -649,7 +535,7 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Change the current users password |  -  |
+**200** | Change the current user&#39;s password. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -5771,7 +5657,9 @@ Name | Type | Description  | Notes
 # **get_orders_count_by_portal_by_contract**
 > object get_orders_count_by_portal_by_contract(contract_id)
 
+Get orders count by portal
 
+Get the number of orders by portal for the given contract.
 
 ### Example
 
@@ -5811,6 +5699,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get orders count by portal
         api_response = api_instance.get_orders_count_by_portal_by_contract(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -5853,6 +5742,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get orders count by portal
         api_response = api_instance.get_orders_count_by_portal_by_contract(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -9265,7 +9155,7 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Deauthenticate with the API and destroy the current session |  -  |
+**200** | Deauthenticate with the API and destroy the current session. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -10352,118 +10242,6 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | This is a generated entry and needs to be described. |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **post_log_message**
-> object post_log_message()
-
-
-
-### Example
-
-* Basic Authentication (BasicAuth):
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: BasicAuth
-configuration = pricemonitor_api_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = pricemonitor_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.UndocumentedApi(api_client)
-    
-    try:
-        api_response = api_instance.post_log_message()
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling UndocumentedApi->post_log_message: %s\n" % e)
-```
-
-* Bearer (JWT) Authentication (BearerAuth):
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: BasicAuth
-configuration = pricemonitor_api_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = pricemonitor_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.UndocumentedApi(api_client)
-    
-    try:
-        api_response = api_instance.post_log_message()
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling UndocumentedApi->post_log_message: %s\n" % e)
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-**object**
-
-### Authorization
-
-[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
  - **Accept**: application/json
 
 ### HTTP response details

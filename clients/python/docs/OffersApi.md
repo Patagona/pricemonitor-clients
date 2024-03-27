@@ -4,17 +4,17 @@ All URIs are relative to *https://api.patagona.de*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**api_v31_manufacturer_contracts_contract_id_offers_stats_query_post**](OffersApi.md#api_v31_manufacturer_contracts_contract_id_offers_stats_query_post) | **POST** /api/v3.1/manufacturer/contracts/{contractId}/offers/stats/query | Query offer statistics per product.
-[**api_v31_vendor_contracts_contract_id_offers_stats_query_post**](OffersApi.md#api_v31_vendor_contracts_contract_id_offers_stats_query_post) | **POST** /api/v3.1/vendor/contracts/{contractId}/offers/stats/query | Query offer statistics per product.
-[**api_v3_manufacturer_contracts_contract_id_offers_get**](OffersApi.md#api_v3_manufacturer_contracts_contract_id_offers_get) | **GET** /api/v3/manufacturer/contracts/{contractId}/offers | 
-[**api_v3_manufacturer_contracts_contract_id_offers_shops_get**](OffersApi.md#api_v3_manufacturer_contracts_contract_id_offers_shops_get) | **GET** /api/v3/manufacturer/contracts/{contractId}/offers/shops | Returns all shops which have at least one offer for a given time range per domain.
-[**api_v3_vendor_contracts_contract_id_offers_get**](OffersApi.md#api_v3_vendor_contracts_contract_id_offers_get) | **GET** /api/v3/vendor/contracts/{contractId}/offers | 
-[**api_v3_vendor_contracts_contract_id_offers_query_post**](OffersApi.md#api_v3_vendor_contracts_contract_id_offers_query_post) | **POST** /api/v3/vendor/contracts/{contractId}/offers/query | 
-[**api_v3_vendor_contracts_contract_id_offers_shops_get**](OffersApi.md#api_v3_vendor_contracts_contract_id_offers_shops_get) | **GET** /api/v3/vendor/contracts/{contractId}/offers/shops | Returns all shops which have at least one offer for a given time range per domain.
+[**api_v31_manufacturer_contracts_contract_id_offers_stats_query_post**](OffersApi.md#api_v31_manufacturer_contracts_contract_id_offers_stats_query_post) | **POST** /api/v3.1/manufacturer/contracts/{contractId}/offers/stats/query | Query offer statistics per product
+[**api_v31_vendor_contracts_contract_id_offers_stats_query_post**](OffersApi.md#api_v31_vendor_contracts_contract_id_offers_stats_query_post) | **POST** /api/v3.1/vendor/contracts/{contractId}/offers/stats/query | Query offer statistics per product
+[**api_v3_manufacturer_contracts_contract_id_offers_get**](OffersApi.md#api_v3_manufacturer_contracts_contract_id_offers_get) | **GET** /api/v3/manufacturer/contracts/{contractId}/offers | Get offers for timerange
+[**api_v3_manufacturer_contracts_contract_id_offers_shops_get**](OffersApi.md#api_v3_manufacturer_contracts_contract_id_offers_shops_get) | **GET** /api/v3/manufacturer/contracts/{contractId}/offers/shops | Get shops with offers for time range
+[**api_v3_vendor_contracts_contract_id_offers_get**](OffersApi.md#api_v3_vendor_contracts_contract_id_offers_get) | **GET** /api/v3/vendor/contracts/{contractId}/offers | Get offers for timerange
+[**api_v3_vendor_contracts_contract_id_offers_query_post**](OffersApi.md#api_v3_vendor_contracts_contract_id_offers_query_post) | **POST** /api/v3/vendor/contracts/{contractId}/offers/query | Query offers
+[**api_v3_vendor_contracts_contract_id_offers_shops_get**](OffersApi.md#api_v3_vendor_contracts_contract_id_offers_shops_get) | **GET** /api/v3/vendor/contracts/{contractId}/offers/shops | Get shops with offers for time range per domain
 [**get_cheapest_vendors_manufacturer_v2**](OffersApi.md#get_cheapest_vendors_manufacturer_v2) | **POST** /api/2/m/contracts/{contractId}/result/vendors/cheapest | 
 [**get_complex_offer_filters_vendor_v2**](OffersApi.md#get_complex_offer_filters_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/offerfilters/{listType}/complex | Get all complex filters for the given contract.
 [**get_offer_filters_vendor_v2**](OffersApi.md#get_offer_filters_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/offerfilters/{listType}/vendors | Get all the vendor filters for the given contract.
-[**get_offer_statistics_manufacturer_v3**](OffersApi.md#get_offer_statistics_manufacturer_v3) | **GET** /api/v3/manufacturer/contracts/{contractId}/offers/stats | Get offer statistics per product of a contract. Only the latest offers per product and domain the are taken into account.
+[**get_offer_statistics_manufacturer_v3**](OffersApi.md#get_offer_statistics_manufacturer_v3) | **GET** /api/v3/manufacturer/contracts/{contractId}/offers/stats | Get offer statistics per product of a contract
 [**get_price_cutters_manufacturer_v2**](OffersApi.md#get_price_cutters_manufacturer_v2) | **POST** /api/2/m/contracts/{contractId}/result/pricecutters | 
 [**get_price_cutters_vendor_v2**](OffersApi.md#get_price_cutters_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/result/pricecutters | 
 [**get_product_filters_by_id_vendor_v2**](OffersApi.md#get_product_filters_by_id_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/offerfilters/:listType/products/query | 
@@ -41,7 +41,7 @@ Method | HTTP request | Description
 # **api_v31_manufacturer_contracts_contract_id_offers_stats_query_post**
 > QueryOfferStatisticsV31ApiResponse api_v31_manufacturer_contracts_contract_id_offers_stats_query_post(contract_id, com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31=com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31)
 
-Query offer statistics per product.
+Query offer statistics per product
 
 This endpoint can be used to query offer statistics (e.g. offer count, average price) grouped by product. Only the most recent market data is considered per product and domain.
 
@@ -84,7 +84,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31 = {"pagination":{"start":0,"limit":10},"range":{"start":"2023-10-17T08:00:00Z","end":"2023-10-19T08:00:00Z"},"filter":{"oneOf":{"field":"customerProductId","values":["1","2","3","4","5","6","7","8","9","10"]}}} # ComPatagonaPricemonitorShareApiPostOfferStatisticsRequestV31 | The request body may include an optional products query. If omitted, all products are queried. Currently, product queries can be performed on two attributes:   - \"customerProductId\"   - \"productId\" (Patagona's internal product id; must be a numerical integer)  Pagination is supported with a maximum limit of 10,000. For optimized performance:   - Use a limit of 10,000 products per page when querying all products of a contract.   - Prefer using \"productId\" for queries when a product query is utilized.  Pagination operates based on the provided products query. This is particularly useful when querying a set of customerProductId's. For chunked requests over a set of ids, it's straightforward to specify up to 10,000 customerProductId's in the query with pagination set at start: 0, limit: 10,000.  The allowed query pattern is structured as follows:  { <br> &nbsp;&nbsp;\"pagination\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": ${start}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"limit\": ${limit} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"range\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": ${start}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"end\": ${end} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"filter\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"oneOf\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"field\": \"customerProductId\", <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"values\": [${customerProductIds as a list of strings}] <br> &nbsp;&nbsp;&nbsp;&nbsp;} <br> &nbsp;&nbsp;} <br> } <br> <br>  (optional)
 
     try:
-        # Query offer statistics per product.
+        # Query offer statistics per product
         api_response = api_instance.api_v31_manufacturer_contracts_contract_id_offers_stats_query_post(contract_id, com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31=com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31)
         pprint(api_response)
     except ApiException as e:
@@ -128,7 +128,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31 = {"pagination":{"start":0,"limit":10},"range":{"start":"2023-10-17T08:00:00Z","end":"2023-10-19T08:00:00Z"},"filter":{"oneOf":{"field":"customerProductId","values":["1","2","3","4","5","6","7","8","9","10"]}}} # ComPatagonaPricemonitorShareApiPostOfferStatisticsRequestV31 | The request body may include an optional products query. If omitted, all products are queried. Currently, product queries can be performed on two attributes:   - \"customerProductId\"   - \"productId\" (Patagona's internal product id; must be a numerical integer)  Pagination is supported with a maximum limit of 10,000. For optimized performance:   - Use a limit of 10,000 products per page when querying all products of a contract.   - Prefer using \"productId\" for queries when a product query is utilized.  Pagination operates based on the provided products query. This is particularly useful when querying a set of customerProductId's. For chunked requests over a set of ids, it's straightforward to specify up to 10,000 customerProductId's in the query with pagination set at start: 0, limit: 10,000.  The allowed query pattern is structured as follows:  { <br> &nbsp;&nbsp;\"pagination\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": ${start}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"limit\": ${limit} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"range\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": ${start}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"end\": ${end} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"filter\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"oneOf\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"field\": \"customerProductId\", <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"values\": [${customerProductIds as a list of strings}] <br> &nbsp;&nbsp;&nbsp;&nbsp;} <br> &nbsp;&nbsp;} <br> } <br> <br>  (optional)
 
     try:
-        # Query offer statistics per product.
+        # Query offer statistics per product
         api_response = api_instance.api_v31_manufacturer_contracts_contract_id_offers_stats_query_post(contract_id, com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31=com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31)
         pprint(api_response)
     except ApiException as e:
@@ -166,7 +166,7 @@ Name | Type | Description  | Notes
 # **api_v31_vendor_contracts_contract_id_offers_stats_query_post**
 > QueryOfferStatisticsV31ApiResponse api_v31_vendor_contracts_contract_id_offers_stats_query_post(contract_id, com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31=com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31)
 
-Query offer statistics per product.
+Query offer statistics per product
 
 This endpoint can be used to query offer statistics (e.g. offer count, average price) grouped by product. Only the most recent market data is considered per product and domain.
 
@@ -209,7 +209,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31 = {"pagination":{"start":0,"limit":10},"range":{"start":"2023-10-17T08:00:00Z","end":"2023-10-19T08:00:00Z"},"filter":{"oneOf":{"field":"customerProductId","values":["1","2","3","4","5","6","7","8","9","10"]}}} # ComPatagonaPricemonitorShareApiPostOfferStatisticsRequestV31 | The request body may include an optional products query. If omitted, all products are queried. Currently, product queries can be performed on two attributes:   - \"customerProductId\"   - \"productId\" (Patagona's internal product id; must be a numerical integer)  Pagination is supported with a maximum limit of 10,000. For optimized performance:   - Use a limit of 10,000 products per page when querying all products of a contract.   - Prefer using \"productId\" for queries when a product query is utilized.  Pagination operates based on the provided products query. This is particularly useful when querying a set of customerProductId's. For chunked requests over a set of ids, it's straightforward to specify up to 10,000 customerProductId's in the query with pagination set at start: 0, limit: 10,000.  The allowed query pattern is structured as follows:  { <br> &nbsp;&nbsp;\"pagination\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": ${start}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"limit\": ${limit} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"range\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": ${start}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"end\": ${end} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"filter\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"oneOf\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"field\": \"customerProductId\", <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"values\": [${customerProductIds as a list of strings}] <br> &nbsp;&nbsp;&nbsp;&nbsp;} <br> &nbsp;&nbsp;} <br> } <br> <br>  (optional)
 
     try:
-        # Query offer statistics per product.
+        # Query offer statistics per product
         api_response = api_instance.api_v31_vendor_contracts_contract_id_offers_stats_query_post(contract_id, com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31=com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31)
         pprint(api_response)
     except ApiException as e:
@@ -253,7 +253,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31 = {"pagination":{"start":0,"limit":10},"range":{"start":"2023-10-17T08:00:00Z","end":"2023-10-19T08:00:00Z"},"filter":{"oneOf":{"field":"customerProductId","values":["1","2","3","4","5","6","7","8","9","10"]}}} # ComPatagonaPricemonitorShareApiPostOfferStatisticsRequestV31 | The request body may include an optional products query. If omitted, all products are queried. Currently, product queries can be performed on two attributes:   - \"customerProductId\"   - \"productId\" (Patagona's internal product id; must be a numerical integer)  Pagination is supported with a maximum limit of 10,000. For optimized performance:   - Use a limit of 10,000 products per page when querying all products of a contract.   - Prefer using \"productId\" for queries when a product query is utilized.  Pagination operates based on the provided products query. This is particularly useful when querying a set of customerProductId's. For chunked requests over a set of ids, it's straightforward to specify up to 10,000 customerProductId's in the query with pagination set at start: 0, limit: 10,000.  The allowed query pattern is structured as follows:  { <br> &nbsp;&nbsp;\"pagination\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": ${start}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"limit\": ${limit} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"range\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": ${start}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"end\": ${end} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"filter\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"oneOf\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"field\": \"customerProductId\", <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"values\": [${customerProductIds as a list of strings}] <br> &nbsp;&nbsp;&nbsp;&nbsp;} <br> &nbsp;&nbsp;} <br> } <br> <br>  (optional)
 
     try:
-        # Query offer statistics per product.
+        # Query offer statistics per product
         api_response = api_instance.api_v31_vendor_contracts_contract_id_offers_stats_query_post(contract_id, com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31=com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31)
         pprint(api_response)
     except ApiException as e:
@@ -291,7 +291,7 @@ Name | Type | Description  | Notes
 # **api_v3_manufacturer_contracts_contract_id_offers_get**
 > GetOffersApiResponse api_v3_manufacturer_contracts_contract_id_offers_get(contract_id, start=start, limit=limit, include_tags=include_tags, start_date=start_date, end_date=end_date)
 
-
+Get offers for timerange
 
 Returns the newest offers for a given time range.
 
@@ -338,6 +338,7 @@ start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time
 end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
 
     try:
+        # Get offers for timerange
         api_response = api_instance.api_v3_manufacturer_contracts_contract_id_offers_get(contract_id, start=start, limit=limit, include_tags=include_tags, start_date=start_date, end_date=end_date)
         pprint(api_response)
     except ApiException as e:
@@ -385,6 +386,7 @@ start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time
 end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
 
     try:
+        # Get offers for timerange
         api_response = api_instance.api_v3_manufacturer_contracts_contract_id_offers_get(contract_id, start=start, limit=limit, include_tags=include_tags, start_date=start_date, end_date=end_date)
         pprint(api_response)
     except ApiException as e:
@@ -426,6 +428,8 @@ Name | Type | Description  | Notes
 # **api_v3_manufacturer_contracts_contract_id_offers_shops_get**
 > GetShopsByDomainResponseV3ApiResponse api_v3_manufacturer_contracts_contract_id_offers_shops_get(contract_id, start_date=start_date, end_date=end_date)
 
+Get shops with offers for time range
+
 Returns all shops which have at least one offer for a given time range per domain.
 
 ### Example
@@ -468,7 +472,7 @@ start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time
 end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. The time range may not exceed 1 week. (optional)
 
     try:
-        # Returns all shops which have at least one offer for a given time range per domain.
+        # Get shops with offers for time range
         api_response = api_instance.api_v3_manufacturer_contracts_contract_id_offers_shops_get(contract_id, start_date=start_date, end_date=end_date)
         pprint(api_response)
     except ApiException as e:
@@ -513,7 +517,7 @@ start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time
 end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. The time range may not exceed 1 week. (optional)
 
     try:
-        # Returns all shops which have at least one offer for a given time range per domain.
+        # Get shops with offers for time range
         api_response = api_instance.api_v3_manufacturer_contracts_contract_id_offers_shops_get(contract_id, start_date=start_date, end_date=end_date)
         pprint(api_response)
     except ApiException as e:
@@ -552,7 +556,7 @@ Name | Type | Description  | Notes
 # **api_v3_vendor_contracts_contract_id_offers_get**
 > GetOffersApiResponse api_v3_vendor_contracts_contract_id_offers_get(contract_id, start=start, limit=limit, include_tags=include_tags, start_date=start_date, end_date=end_date)
 
-
+Get offers for timerange
 
 Returns the newest offers for a given time range.
 
@@ -599,6 +603,7 @@ start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time
 end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
 
     try:
+        # Get offers for timerange
         api_response = api_instance.api_v3_vendor_contracts_contract_id_offers_get(contract_id, start=start, limit=limit, include_tags=include_tags, start_date=start_date, end_date=end_date)
         pprint(api_response)
     except ApiException as e:
@@ -646,6 +651,7 @@ start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time
 end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
 
     try:
+        # Get offers for timerange
         api_response = api_instance.api_v3_vendor_contracts_contract_id_offers_get(contract_id, start=start, limit=limit, include_tags=include_tags, start_date=start_date, end_date=end_date)
         pprint(api_response)
     except ApiException as e:
@@ -687,7 +693,9 @@ Name | Type | Description  | Notes
 # **api_v3_vendor_contracts_contract_id_offers_query_post**
 > QueryOffersApiResponse api_v3_vendor_contracts_contract_id_offers_query_post(contract_id, product_offers_api_query)
 
+Query offers
 
+Supports complex queries for offers.
 
 ### Example
 
@@ -728,6 +736,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 product_offers_api_query = pricemonitor_api_client.ProductOffersApiQuery() # ProductOffersApiQuery | The request body specifies which offers will be searched for.<br> Warning: It's highly recommended to not use this endpoint since it is error-prone due to complex query structure! Supported are queries with three different types of filters:<br> 1. Filtering for offers of a certain product<br> This can be done by a ComparisonFilter with   * the `left` side being a `StringValueProvider` with the `attributeName` value \"productId\"   * the `right` side being a `StringConstantValueProvider` with the `value` being the actual pricemonitor product ID to filter offers for   * the `comparison` being a `StringEquality`  2. Filtering for valid offers of a certain product<br> This can be done by an AndFilter with   * a) A product filter (see first supported filter)   * b) A NotFilter which contains a ComparisonFilter     * the `left` side being a `NumberValueProvider` with the `attributeName` value \"ignoredBy\"     * the `right` side being a `NumberConstantValueProvider` with the `value` being the numeric contract id to filter offers for     * the `comparison` being a `NumberEquality`  3. Filtering for offers of a certain vendor<br> This can be done by a ComparisonFilter with   * the `left` side being a `StringValueProvider` with the `attributeName` value \"reseller_name\"   * the `right` side being a `StringConstantValueProvider` with the `value` being the actual vendor name to filter offers for   * the `comparison` being a `StringEquality`  Note: This endpoint will only return the newest offers for each product for a given time range.
 
     try:
+        # Query offers
         api_response = api_instance.api_v3_vendor_contracts_contract_id_offers_query_post(contract_id, product_offers_api_query)
         pprint(api_response)
     except ApiException as e:
@@ -771,6 +780,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 product_offers_api_query = pricemonitor_api_client.ProductOffersApiQuery() # ProductOffersApiQuery | The request body specifies which offers will be searched for.<br> Warning: It's highly recommended to not use this endpoint since it is error-prone due to complex query structure! Supported are queries with three different types of filters:<br> 1. Filtering for offers of a certain product<br> This can be done by a ComparisonFilter with   * the `left` side being a `StringValueProvider` with the `attributeName` value \"productId\"   * the `right` side being a `StringConstantValueProvider` with the `value` being the actual pricemonitor product ID to filter offers for   * the `comparison` being a `StringEquality`  2. Filtering for valid offers of a certain product<br> This can be done by an AndFilter with   * a) A product filter (see first supported filter)   * b) A NotFilter which contains a ComparisonFilter     * the `left` side being a `NumberValueProvider` with the `attributeName` value \"ignoredBy\"     * the `right` side being a `NumberConstantValueProvider` with the `value` being the numeric contract id to filter offers for     * the `comparison` being a `NumberEquality`  3. Filtering for offers of a certain vendor<br> This can be done by a ComparisonFilter with   * the `left` side being a `StringValueProvider` with the `attributeName` value \"reseller_name\"   * the `right` side being a `StringConstantValueProvider` with the `value` being the actual vendor name to filter offers for   * the `comparison` being a `StringEquality`  Note: This endpoint will only return the newest offers for each product for a given time range.
 
     try:
+        # Query offers
         api_response = api_instance.api_v3_vendor_contracts_contract_id_offers_query_post(contract_id, product_offers_api_query)
         pprint(api_response)
     except ApiException as e:
@@ -807,6 +817,8 @@ Name | Type | Description  | Notes
 
 # **api_v3_vendor_contracts_contract_id_offers_shops_get**
 > GetShopsByDomainResponseV3ApiResponse api_v3_vendor_contracts_contract_id_offers_shops_get(contract_id, start_date=start_date, end_date=end_date)
+
+Get shops with offers for time range per domain
 
 Returns all shops which have at least one offer for a given time range per domain.
 
@@ -850,7 +862,7 @@ start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time
 end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. The time range may not exceed 1 week. (optional)
 
     try:
-        # Returns all shops which have at least one offer for a given time range per domain.
+        # Get shops with offers for time range per domain
         api_response = api_instance.api_v3_vendor_contracts_contract_id_offers_shops_get(contract_id, start_date=start_date, end_date=end_date)
         pprint(api_response)
     except ApiException as e:
@@ -895,7 +907,7 @@ start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time
 end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. The time range may not exceed 1 week. (optional)
 
     try:
-        # Returns all shops which have at least one offer for a given time range per domain.
+        # Get shops with offers for time range per domain
         api_response = api_instance.api_v3_vendor_contracts_contract_id_offers_shops_get(contract_id, start_date=start_date, end_date=end_date)
         pprint(api_response)
     except ApiException as e:
@@ -1304,6 +1316,8 @@ Name | Type | Description  | Notes
 # **get_offer_statistics_manufacturer_v3**
 > GetOfferStatisticsV3ApiResponse get_offer_statistics_manufacturer_v3(contract_id, include_delivery_costs, start_date=start_date, end_date=end_date)
 
+Get offer statistics per product of a contract
+
 Get offer statistics per product of a contract. Only the latest offers per product and domain the are taken into account.
 
 ### Example
@@ -1347,7 +1361,7 @@ start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time
 end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
 
     try:
-        # Get offer statistics per product of a contract. Only the latest offers per product and domain the are taken into account.
+        # Get offer statistics per product of a contract
         api_response = api_instance.get_offer_statistics_manufacturer_v3(contract_id, include_delivery_costs, start_date=start_date, end_date=end_date)
         pprint(api_response)
     except ApiException as e:
@@ -1393,7 +1407,7 @@ start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time
 end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
 
     try:
-        # Get offer statistics per product of a contract. Only the latest offers per product and domain the are taken into account.
+        # Get offer statistics per product of a contract
         api_response = api_instance.get_offer_statistics_manufacturer_v3(contract_id, include_delivery_costs, start_date=start_date, end_date=end_date)
         pprint(api_response)
     except ApiException as e:

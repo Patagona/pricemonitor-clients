@@ -1217,8 +1217,8 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**400** | Tags specified for deleting products are specified partially (either tagKey or tagValue is provided).  |  -  |
 **200** | Returns the number of deleted products. |  -  |
+**400** | Tags specified for deleting products are specified partially (either tagKey or tagValue is provided).  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2503,7 +2503,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
     contract_id = 'qbcxvb' # str | ID of the contract
-attributes = 'attributes_example' # str | null
+attributes = 'attributes_example' # str | Query string to filter products
 
     try:
         # Get all products
@@ -2547,7 +2547,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
     contract_id = 'qbcxvb' # str | ID of the contract
-attributes = 'attributes_example' # str | null
+attributes = 'attributes_example' # str | Query string to filter products
 
     try:
         # Get all products
@@ -2562,7 +2562,7 @@ attributes = 'attributes_example' # str | null
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **contract_id** | **str**| ID of the contract | 
- **attributes** | **str**| null | 
+ **attributes** | **str**| Query string to filter products | 
 
 ### Return type
 

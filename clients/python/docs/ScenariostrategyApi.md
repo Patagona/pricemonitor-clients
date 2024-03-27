@@ -4,13 +4,13 @@ All URIs are relative to *https://api.patagona.de*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**api_v3_vendor_contracts_contract_id_settings_pricingstrategies_scenarios_post**](ScenariostrategyApi.md#api_v3_vendor_contracts_contract_id_settings_pricingstrategies_scenarios_post) | **POST** /api/v3/vendor/contracts/{contractId}/settings/pricingstrategies/scenarios | 
+[**add_pricing_strategy_scenario**](ScenariostrategyApi.md#add_pricing_strategy_scenario) | **POST** /api/v3/vendor/contracts/{contractId}/settings/pricingstrategies/scenarios | 
 [**get_all_scenarios_metadata**](ScenariostrategyApi.md#get_all_scenarios_metadata) | **GET** /api/v3/vendor/contracts/{contractId}/settings/pricingstrategies/scenarios | Get a list of all strategy scenarios metadata for a contract
 [**get_scenario_by_id**](ScenariostrategyApi.md#get_scenario_by_id) | **GET** /api/v3/vendor/contracts/{contractId}/settings/pricingstrategies/scenarios/{scenarioId} | Get a strategy scenario with the provided scenario Id
 
 
-# **api_v3_vendor_contracts_contract_id_settings_pricingstrategies_scenarios_post**
-> PostScenarioStrategyResponseApiResponse api_v3_vendor_contracts_contract_id_settings_pricingstrategies_scenarios_post(contract_id, post_scenario_strategy_request=post_scenario_strategy_request)
+# **add_pricing_strategy_scenario**
+> PostScenarioStrategyResponseApiResponse add_pricing_strategy_scenario(contract_id, post_scenario_strategy_request=post_scenario_strategy_request)
 
 
 
@@ -53,10 +53,10 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 post_scenario_strategy_request = pricemonitor_api_client.PostScenarioStrategyRequest() # PostScenarioStrategyRequest | The scenario strategy to be stored. Including the necessary metadata. (optional)
 
     try:
-        api_response = api_instance.api_v3_vendor_contracts_contract_id_settings_pricingstrategies_scenarios_post(contract_id, post_scenario_strategy_request=post_scenario_strategy_request)
+        api_response = api_instance.add_pricing_strategy_scenario(contract_id, post_scenario_strategy_request=post_scenario_strategy_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling ScenariostrategyApi->api_v3_vendor_contracts_contract_id_settings_pricingstrategies_scenarios_post: %s\n" % e)
+        print("Exception when calling ScenariostrategyApi->add_pricing_strategy_scenario: %s\n" % e)
 ```
 
 * Bearer (JWT) Authentication (BearerAuth):
@@ -96,10 +96,10 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 post_scenario_strategy_request = pricemonitor_api_client.PostScenarioStrategyRequest() # PostScenarioStrategyRequest | The scenario strategy to be stored. Including the necessary metadata. (optional)
 
     try:
-        api_response = api_instance.api_v3_vendor_contracts_contract_id_settings_pricingstrategies_scenarios_post(contract_id, post_scenario_strategy_request=post_scenario_strategy_request)
+        api_response = api_instance.add_pricing_strategy_scenario(contract_id, post_scenario_strategy_request=post_scenario_strategy_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling ScenariostrategyApi->api_v3_vendor_contracts_contract_id_settings_pricingstrategies_scenarios_post: %s\n" % e)
+        print("Exception when calling ScenariostrategyApi->add_pricing_strategy_scenario: %s\n" % e)
 ```
 
 ### Parameters

@@ -6,6 +6,7 @@ import { AccountService } from './api/account.service';
 import { AmazonIntegrationService } from './api/amazonIntegration.service';
 import { CompaniesService } from './api/companies.service';
 import { ControlpanelService } from './api/controlpanel.service';
+import { DeprecatedService } from './api/deprecated.service';
 import { DomainsService } from './api/domains.service';
 import { FeedsService } from './api/feeds.service';
 import { InternalService } from './api/internal.service';

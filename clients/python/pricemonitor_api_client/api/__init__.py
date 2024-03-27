@@ -7,6 +7,7 @@ from pricemonitor_api_client.api.account_api import AccountApi
 from pricemonitor_api_client.api.amazon_integration_api import AmazonIntegrationApi
 from pricemonitor_api_client.api.companies_api import CompaniesApi
 from pricemonitor_api_client.api.controlpanel_api import ControlpanelApi
+from pricemonitor_api_client.api.deprecated_api import DeprecatedApi
 from pricemonitor_api_client.api.domains_api import DomainsApi
 from pricemonitor_api_client.api.feeds_api import FeedsApi
 from pricemonitor_api_client.api.internal_api import InternalApi

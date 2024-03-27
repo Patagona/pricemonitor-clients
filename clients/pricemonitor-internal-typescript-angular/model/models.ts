@@ -182,7 +182,6 @@ export * from './priceRecommendationApiQueryV2';
 export * from './priceRecommendationQuerySortOrderV2';
 export * from './product';
 export * from './productAndOffers';
-export * from './productAndOffers2';
 export * from './productOfferStatistics';
 export * from './productOffersApiQuery';
 export * from './productsFilter';
