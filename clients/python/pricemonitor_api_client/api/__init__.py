@@ -3,6 +3,7 @@ from __future__ import absolute_import
 # flake8: noqa
 
 # import apis into api package
+from pricemonitor_api_client.api.jobs_api import JobsApi
 from pricemonitor_api_client.api.account_api import AccountApi
 from pricemonitor_api_client.api.amazon_integration_api import AmazonIntegrationApi
 from pricemonitor_api_client.api.companies_api import CompaniesApi

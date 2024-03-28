@@ -7,7 +7,7 @@ info:
   summary: This is the API powering Omnia 2.0 and Pricemonitor, containing operations which can also be used directly by customers from their own systems.
   description: |
     The Omnia 2.0 API is RESTful and provides access to the backend of Omnia 2.0 and Pricemonitor. It is used to manage products, offers, contracts and more.
-  version: 0.0.6776
+  version: draft
   x-logo:
     url: https://www.omniaretail.com/hubfs/Omnia%20Logo%20SVG/Omnia_Retail_Full_Colour_Logo_On_White_RGB.svg
     altText: Omnia Retail
@@ -17,9 +17,6 @@ info:
 servers:
   - url: https://api.patagona.de
     description: Production API
-security:
-  - BasicAuth: []
-  - BearerAuth: []
 tags:
   - name: overview
     x-displayName: Overview
@@ -127,6 +124,21 @@ tags:
     description: |-
       All operations that are not yet documented.
       > Note: all operations intended for public usage should be documented.
+  - name: SchedulerOverview
+    description: |-
+      The Scheduler API operations allow for creating, updating, deleting and listing jobs for a contract.
+
+      One can create jobs which get executed on a given schedule. The possible types for a job are fixed and defined in the `patagona-scheduler-core`. See the [README](https://github.com/patagona/scheduler) for more information.
+
+      **Note:**  Scheduling job types unknown to the scheduler will result in errors.
+
+      **Note:** For more information on the Dkron types, see the [API documentation of Dkron](https://dkron.io/api/).
+    x-displayName: Scheduler Overview
+    x-audience: Internal
+    x-traitTag: true
+  - name: Jobs
+    description: Operations on scheduler jobs.
+    x-displayName: Scheduler Jobs
 paths:
   /api/v3/vendor/contracts/{contractId}/settings/repricingstrategy/history:
     get:
@@ -144,6 +156,9 @@ paths:
       operationId: getStrategyHistory
       tags:
         - strategy
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/v3/vendor/contracts/{contractId}/settings/pricingstrategies/history:
     get:
       parameters:
@@ -159,6 +174,9 @@ paths:
       operationId: getPricingStrategyHistory
       tags:
         - strategy
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/v3/vendor/contracts/{contractId}/settings/pricingstrategies/scenarios:
     x-audience: Internal
     get:
@@ -177,6 +195,9 @@ paths:
       tags:
         - scenariostrategy
         - internal
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     post:
       parameters:
         - $ref: '#/components/parameters/contractIdParam'
@@ -203,6 +224,9 @@ paths:
       tags:
         - scenariostrategy
         - internal
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/v3/vendor/contracts/{contractId}/settings/pricingstrategies/scenarios/{scenarioId}:
     x-audience: Internal
     get:
@@ -232,10 +256,11 @@ paths:
       tags:
         - scenariostrategy
         - internal
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/v3/domains:
     get:
-      operationId: getAllDomainsV3
-      summary: Get a list of all available domains (V3)
       responses:
         '200':
           content:
@@ -243,16 +268,20 @@ paths:
               schema:
                 $ref: '#/components/schemas/GetAllDomainsV3ApiResponse'
           description: A list of domains
+      summary: Get a list of all available domains (V3)
       description: |
         This endpoint provides all domains which are supported by our system.
         Along with other attributes we are providing the corresponding possible offer sources.
         Only domains which include the offer source DEFAULT_MONITORING are supported out-of-the-box by our monitoring pipeline.
+      operationId: getAllDomainsV3
       tags:
         - domains
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /controlpanel/api/v3/domains:
     x-audience: Internal
     post:
-      operationId: getAllDomainsControlPanelV3
       responses:
         '200':
           content:
@@ -280,6 +309,9 @@ paths:
         - controlpanel
         - internal
       summary: Add a new domain
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /version:
     x-audience: Internal
     get:
@@ -338,6 +370,9 @@ paths:
         - pricerecommendations
       operationId: getPriceRecommendations
       summary: Get price recommendations
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/2/companies:
@@ -378,6 +413,9 @@ paths:
         description: The company's name
         required: true
       summary: Allows users without one to create a new Company
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/2/companies/{companyId}/contracts:
     parameters:
       - $ref: '#/components/parameters/companyIdParam'
@@ -393,6 +431,9 @@ paths:
         - companies
       operationId: getCompanyContracts
       summary: Get all contracts for given company
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     post:
       responses:
         '200':
@@ -418,6 +459,9 @@ paths:
         description: Contract to be added
         required: true
       summary: Add contract for given company
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/2/m/contracts/{contractId}/settings/callbacks:
     x-audience: Internal
     parameters:
@@ -437,6 +481,9 @@ paths:
         - internal
       operationId: getCallbacks
       summary: Get callbacks
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     put:
       responses:
         '200':
@@ -455,6 +502,9 @@ paths:
         description: Callbacks
         required: true
       summary: Set callbacks
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     delete:
       responses:
         '200':
@@ -468,6 +518,9 @@ paths:
         - undocumented
         - settings
       operationId: deleteCallbackSettingsManufacturerV2
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/2/v/contracts/{contractId}/feeds:
     get:
       parameters:
@@ -487,6 +540,9 @@ paths:
       description: Feeds can contain offer-related information such as price recommendations. They can be configured to match individual demands.
       operationId: getFeeds
       summary: Get all feeds
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     post:
       x-audience: Internal
       responses:
@@ -507,6 +563,9 @@ paths:
             schema:
               type: object
         description: This is a generated entry and needs to be described.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/2/v/contracts/{contractId}/feeds/{feedId}:
@@ -533,6 +592,9 @@ paths:
       description: A feed can contain offer-related information such as price recommendations. Feeds can be configured to match individual demands.
       operationId: getFeed
       summary: Find feed by ID
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     put:
       x-audience: Internal
       responses:
@@ -553,6 +615,9 @@ paths:
             schema:
               type: object
         description: This is a generated entry and needs to be described.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     delete:
       x-audience: Internal
       responses:
@@ -567,6 +632,9 @@ paths:
         - undocumented
         - feeds
       operationId: deleteFeedVendorV2
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
       - in: path
@@ -598,6 +666,9 @@ paths:
       description: Dismiss already fetched feed-entries, so they will not be part of future responses.
       operationId: excludeFetchedFeedData
       summary: Dismiss already fetched feed-entries
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     get:
       x-audience: Internal
       responses:
@@ -624,6 +695,9 @@ paths:
           required: false
           schema:
             type: string
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/2/v/contracts/{contractId}/feeds/{feedId}/export/delta/{fileName}:
     get:
       parameters:
@@ -658,6 +732,9 @@ paths:
       description: In contrast of normal feeds, feed-deltas return only results, that are new since the last (DELETE-)request.
       operationId: getFeedExportDelta
       summary: Retrieve all feed-entries after last request
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/2/v/contracts/{contractId}/feeds/{feedId}/export/{fileName}:
     get:
       parameters:
@@ -692,6 +769,9 @@ paths:
       description: Lets you download a file, containing all the data of the feed.
       operationId: getFeedExport
       summary: Export feed-data
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/2/v/contracts/{contractId}/orders:
     post:
       parameters:
@@ -720,6 +800,9 @@ paths:
         description: Orders to be added
         required: true
       summary: Add orders in bulk
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/2/v/contracts/{contractId}/products:
     get:
       parameters:
@@ -753,6 +836,9 @@ paths:
         - products
       operationId: getProducts
       summary: Get all products
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     put:
       x-audience: Internal
       responses:
@@ -773,6 +859,9 @@ paths:
             schema:
               type: object
         description: This is a generated entry and needs to be described.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/2/v/contracts/{contractId}/products/csv:
@@ -815,6 +904,9 @@ paths:
         description: CSV file containing the products
         required: true
       summary: Set products via CSV file
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/2/v/contracts/{contractId}/result/offers:
@@ -848,6 +940,9 @@ paths:
         - products
       operationId: getOffers
       summary: Get all offers for all products
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/2/v/contracts/{contractId}/result/pricerecommendations:
@@ -894,6 +989,9 @@ paths:
         - pricerecommendations
       operationId: getPriceRecommendation
       summary: Get all price recommendations
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/2/v/contracts/{contractId}/settings/domains:
@@ -916,6 +1014,9 @@ paths:
         description: Settings
         required: true
       summary: Set contract domains
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     get:
       x-audience: Internal
       responses:
@@ -933,6 +1034,9 @@ paths:
         - internal
         - settings
       operationId: getDomainsVendorV2
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/2/v/contracts/{contractId}/tasks:
@@ -998,6 +1102,9 @@ paths:
       description: The search can be narrowed down by providing the IDs of the tasks, separated by comma
       operationId: getTasksVendorV2
       summary: Find all tasks
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     post:
       x-audience: Internal
       responses:
@@ -1018,6 +1125,9 @@ paths:
             schema:
               $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.CreateTaskBodyV2'
         description: Create a new task
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/2/v/contracts/{contractId}/tasks/{taskId}:
@@ -1044,6 +1154,9 @@ paths:
       description: Returns a task, associated with a certain contract and identified by its ID
       operationId: getTaskVendorV2
       summary: Find task by ID
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     put:
       x-audience: Internal
       responses:
@@ -1064,6 +1177,9 @@ paths:
             schema:
               type: object
         description: This is a generated entry and needs to be described.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
       - in: path
@@ -1087,6 +1203,9 @@ paths:
       description: Returns the current user with its companies and contracts
       operationId: userInfo
       summary: Details of the current user
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     post:
       responses:
         '200':
@@ -1117,6 +1236,9 @@ paths:
         description: The user sign up data
         required: true
       summary: Create a new user account in the system
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/account/confirm/{token}:
     x-audience: Internal
     head:
@@ -1138,6 +1260,9 @@ paths:
         - internal
       operationId: checkUserConfirmation
       summary: Check if a specific confirmation token exists
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     post:
       parameters:
         - in: path
@@ -1174,6 +1299,9 @@ paths:
         description: The password that should be set on the confirmed user
         required: true
       summary: Confirm an unconfirmed user
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - in: path
         name: token
@@ -1184,7 +1312,6 @@ paths:
     get:
       summary: Get offers for timerange
       description: Returns the newest offers for a given time range.
-      operationId: getOffersManufacturerV3
       parameters:
         - $ref: '#/components/parameters/contractIdParam'
         - description: Where to start fetching the products
@@ -1228,12 +1355,14 @@ paths:
           description: Returned in case of invalid time range or a limit greater than 10000.
       tags:
         - offers
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/v3/manufacturer/contracts/{contractId}/offers/shops:
     x-audience: Internal
     get:
-      operationId: getOffersShopsManufacturerV3
       parameters:
         - $ref: '#/components/parameters/contractIdParam'
         - $ref: '#/components/parameters/startDateOneWeekMax'
@@ -1256,10 +1385,12 @@ paths:
         - internal
       summary: Get shops with offers for time range
       description: Returns all shops which have at least one offer for a given time range per domain.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/v3/manufacturer/contracts/{contractId}/offers/shop/query:
     x-audience: Internal
     post:
-      operationId: queryOffersShopManufacturerV3
       parameters:
         - $ref: '#/components/parameters/contractIdParam'
       responses:
@@ -1279,10 +1410,12 @@ paths:
         - products
         - internal
       description: Get all offers of a shop. Please note that it might return offers for inactive products.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/v3/manufacturer/contracts/{contractId}/offers/stats/query:
     x-audience: Internal
     post:
-      operationId: queryOffersStatsManufacturerV3
       parameters:
         - $ref: '#/components/parameters/contractIdParam'
       responses:
@@ -1308,10 +1441,12 @@ paths:
               $ref: '#/components/schemas/PostOfferStatisticsRequest'
         required: true
       description: 'This operation is used to get offer statistics (e.g. offer count, average price) grouped by product and domain. Warning: This endpoint contains complex query structure and will be replaced in the future. Please note that offer statistics can only be computed for at maximum 2500 products at a time.'
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     summary: Get offer statistics per product
   /api/v3.1/manufacturer/contracts/{contractId}/offers/stats/query:
     post:
-      operationId: queryOffersStatsManufacturerV31
       parameters:
         - $ref: '#/components/parameters/contractIdParam'
       responses:
@@ -1340,6 +1475,9 @@ paths:
         $ref: '#/components/requestBodies/PostOfferStatisticsRequestV31Enriched'
       description: This endpoint can be used to query offer statistics (e.g. offer count, average price) grouped by product. Only the most recent market data is considered per product and domain.
       summary: Query offer statistics per product
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/v3/manufacturer/contracts/{contractId}/offers/stats:
     x-audience: Internal
     get:
@@ -1371,9 +1509,11 @@ paths:
         - internal
       summary: Get offer statistics per product of a contract
       description: Get offer statistics per product of a contract. Only the latest offers per product and domain the are taken into account.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/v3/manufacturer/contracts/{contractId}/products:
     put:
-      operationId: putCSVProductsManufacturerV3
       parameters:
         - $ref: '#/components/parameters/contractIdParam'
         - in: header
@@ -1478,6 +1618,9 @@ paths:
         description: 'CSV file containing the products. Note: The CSV file should be encoded in UTF-8.'
         required: true
       summary: Set products via CSV file
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     delete:
       x-audience: Internal
       responses:
@@ -1499,11 +1642,13 @@ paths:
           schema:
             type: string
             format: date-time
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/v3/vendor/contracts/{contractId}/offers:
     get:
-      operationId: getOffersVendorV3
       summary: Get offers for timerange
       description: Returns the newest offers for a given time range.
       parameters:
@@ -1550,12 +1695,14 @@ paths:
           description: Returned in case of invalid time range or a limit greater than 10000.
       tags:
         - offers
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/v3/vendor/contracts/{contractId}/offers/shops:
     x-audience: Internal
     get:
-      operationId: getOffersShopsVendorV3
       parameters:
         - $ref: '#/components/parameters/contractIdParam'
         - $ref: '#/components/parameters/startDateOneWeekMax'
@@ -1578,9 +1725,11 @@ paths:
         - internal
       summary: Get shops with offers for time range per domain
       description: Returns all shops which have at least one offer for a given time range per domain.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/v3/vendor/contracts/{contractId}/offers/query:
     post:
-      operationId: queryOffersVendorV3
       parameters:
         - $ref: '#/components/parameters/contractIdParam'
       responses:
@@ -1628,12 +1777,14 @@ paths:
 
           Note: This endpoint will only return the newest offers for each product for a given time range.
         required: true
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/v3/vendor/contracts/{contractId}/offers/shop/query:
     x-audience: Internal
     post:
-      operationId: queryOffersShopVendorV3
       parameters:
         - $ref: '#/components/parameters/contractIdParam'
       responses:
@@ -1653,9 +1804,11 @@ paths:
         - products
         - internal
       description: Get all offers of a shop. Please note that it might return offers for inactive products.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/v3/vendor/contracts/{contractId}/offers/pricedumpingstats:
     post:
-      operationId: queryOffersPriceDumpingStatsVendorV3
       parameters:
         - $ref: '#/components/parameters/contractIdParam'
       responses:
@@ -1673,6 +1826,9 @@ paths:
         required: true
       tags:
         - products
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/v3/vendor/contracts/{contractId}/offers/stats/query:
     x-audience: Internal
     post:
@@ -1723,10 +1879,12 @@ paths:
         To use the example request body from below, you have to adjust the `ownShopNames`, the `range` and `filter.right.value`. Where `filter.right.value` has to be a list of internal pricemonitor product ids corresponding to the `contractId` provided as part of the URL.
 
         All prices will be with or without delivery costs depending on the `includeDeliveryCosts` parameter in the body.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     summary: Get offer statistics per product
   /api/v3.1/vendor/contracts/{contractId}/offers/stats/query:
     post:
-      operationId: queryOffersStatsVendorV31
       parameters:
         - $ref: '#/components/parameters/contractIdParam'
       responses:
@@ -1755,9 +1913,11 @@ paths:
         $ref: '#/components/requestBodies/PostOfferStatisticsRequestV31Enriched'
       description: This endpoint can be used to query offer statistics (e.g. offer count, average price) grouped by product. Only the most recent market data is considered per product and domain.
       summary: Query offer statistics per product
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/v3/vendor/contracts/{contractId}/orders:
     delete:
-      operationId: deleteOrders
       parameters:
         - $ref: '#/components/parameters/contractIdParam'
       responses:
@@ -1769,10 +1929,12 @@ paths:
           description: Successfully deleted all orders
       tags:
         - orders
+      operationId: deleteOrders
       summary: Delete all orders for this contract
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     put:
-      operationId: putOrdersV3
-      summary: PUT orders in bulk
       description: |
         Saves orders in bulk. If an orderId was already used by this contract this order and all it's order-items will
         be overwritten.
@@ -1790,18 +1952,18 @@ paths:
               $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PutCustomerOrdersRequestV3'
             example:
               orders:
-                - shippingCosts: 5.9
-                  orderId: 2023-11_customer-a_001
-                  items:
-                    - unitPrice: 6.02
-                      itemId: itemId
-                      quantity: 1
-                      taxPercentage: 19
-                  totalPrice: 11.92
-                  origin: Amazon.de
-                  creationDate: '2023-11-23T11:20:21.034+01:00'
-                  currency: EUR
-              version: '3'
+                shippingCosts: 5.9
+                orderId: 2023-11_customer-a_001
+                items:
+                  - unitPrice: 6.02
+                    itemId: itemId
+                    quantity: 1
+                    taxPercentage: 19
+                totalPrice: 11.92
+                origin: Amazon.de
+                creationDate: '2023-11-23T11:20:21.034+01:00'
+                currency: EUR
+              version: 3
       responses:
         '201':
           description: The response provides the ids of the successfully imported orders
@@ -1822,6 +1984,11 @@ paths:
           description: Unable to add orders because of invalid request data
       tags:
         - orders
+      operationId: putOrdersV3
+      summary: PUT orders in bulk
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     get:
       responses:
         '200':
@@ -1850,11 +2017,13 @@ paths:
             format: int32
         - $ref: '#/components/parameters/getOrdersStartDate'
         - $ref: '#/components/parameters/getOrdersEndDate'
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/v3/vendor/contracts/{contractId}/orders/stats/query:
     post:
-      operationId: queryOrdersStatsVendorV3
       parameters:
         - $ref: '#/components/parameters/contractIdParam'
       responses:
@@ -1939,9 +2108,11 @@ paths:
           <br>
       description: This endpoint can be used to query order statistics grouped by product.
       summary: Query order statistics per product
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/v3/vendor/contracts/{contractId}/orders/delete/query:
     post:
-      operationId: deleteOrdersByQueryVendorV3
       parameters:
         - $ref: '#/components/parameters/contractIdParam'
       responses:
@@ -1989,11 +2160,13 @@ paths:
           <br>
       description: This endpoint can be used to delete customer orders by an order query
       summary: Delete orders by query
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/v3/vendor/contracts/{contractId}/products:
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
     put:
-      operationId: putProductsImportVendorV3
       parameters:
         - in: header
           name: content-type
@@ -2112,8 +2285,10 @@ paths:
         description: 'CSV file containing the products. Note: The CSV file should be encoded in UTF-8.'
         required: true
       summary: Set products via CSV file
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     post:
-      operationId: postProductsImportVendorV3
       parameters:
         - in: header
           name: content-type
@@ -2163,6 +2338,9 @@ paths:
         description: The body contains the products which should be added
         required: true
       summary: Add products in bulk
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     delete:
       parameters:
         - in: query
@@ -2203,6 +2381,9 @@ paths:
       operationId: deleteProducts
       description: Delete all products or delete products by a last updated timestamp.
       summary: Delete products
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/v3/vendor/contracts/{contractId}/products/{productId}/extendedtags:
     get:
       parameters:
@@ -2231,6 +2412,9 @@ paths:
         - products
       operationId: getExtendedTags
       summary: Return the extended tags for the given product
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
       - in: path
@@ -2259,6 +2443,9 @@ paths:
         - pluginregistration
       operationId: getPluginRegistration
       summary: Return the plugin registration for given contract
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     put:
       responses:
         '200':
@@ -2277,6 +2464,9 @@ paths:
             schema:
               $ref: '#/components/schemas/PutPluginRegistrationRequest'
       summary: Create and/or update the plugin registration for given contract
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     delete:
       responses:
         '200':
@@ -2289,6 +2479,9 @@ paths:
         - pluginregistration
       operationId: deletePluginRegistration
       summary: Delete the plugin registration for given contract
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/v3/log/messages:
     post:
       responses:
@@ -2305,10 +2498,12 @@ paths:
               $ref: '#/components/schemas/LogMessages'
       summary: Store log messages
       description: Stores log messages in the platform. This endpoint aims to improve the API integration process.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /controlpanel/api/companies:
     x-audience: Internal
     get:
-      operationId: getAllCompanies
       responses:
         '200':
           content:
@@ -2335,6 +2530,9 @@ paths:
         - internal
         - controlpanel
       summary: Get a list of all companies
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     post:
       responses:
         '200':
@@ -2348,6 +2546,9 @@ paths:
         - undocumented
         - controlpanel
       operationId: addCompany
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /controlpanel/api/contracts:
     x-audience: Internal
     get:
@@ -2360,6 +2561,9 @@ paths:
         - controlpanel
       summary: Get a list of all contracts
       operationId: getAllContracts
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /controlpanel/api/portals:
     x-audience: Internal
     get:
@@ -2372,6 +2576,9 @@ paths:
         - controlpanel
       summary: Get a list of all portals
       operationId: getAllPortals
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /controlpanel/api/users:
     x-audience: Internal
     get:
@@ -2384,6 +2591,9 @@ paths:
         - controlpanel
       summary: Get a list of all users
       operationId: getAllUsers
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /controlpanel/users:
     x-audience: Internal
     post:
@@ -2403,6 +2613,9 @@ paths:
         - controlpanel
       summary: Add a new user
       operationId: addUser
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/1/{contractId}/products/analysis/timestamps:
     x-audience: Internal
     get:
@@ -2418,6 +2631,9 @@ paths:
         - undocumented
         - pricerecommendations
       operationId: getTimeStamps
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - in: path
         name: contractId
@@ -2453,6 +2669,9 @@ paths:
           schema:
             type: string
             format: date-time
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/1/{contractId}/products/offers:
@@ -2495,6 +2714,9 @@ paths:
           schema:
             type: string
             format: date-time
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/1/{contractId}/products/orderscountbyportal:
@@ -2514,6 +2736,9 @@ paths:
       operationId: getOrdersCountByPortalByContract
       summary: Get orders count by portal
       description: Get the number of orders by portal for the given contract.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/1/{contractId}/settings:
@@ -2531,6 +2756,9 @@ paths:
         - undocumented
         - settings
       operationId: getSettings
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     put:
       responses:
         '200':
@@ -2550,6 +2778,9 @@ paths:
             schema:
               $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PutAdminContractSettingsBody'
         description: This is a generated entry and needs to be described.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/1/{contractId}/settings/alerts:
@@ -2567,6 +2798,9 @@ paths:
         - undocumented
         - settings
       operationId: getAlertSettings
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     post:
       responses:
         '200':
@@ -2586,6 +2820,9 @@ paths:
             schema:
               type: object
         description: This is a generated entry and needs to be described.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/1/{contractId}/settings/alerts/{alertId}:
@@ -2603,6 +2840,9 @@ paths:
         - undocumented
         - settings
       operationId: deleteAlertSettings
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     put:
       responses:
         '200':
@@ -2622,6 +2862,9 @@ paths:
             schema:
               type: object
         description: This is a generated entry and needs to be described.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
       - in: path
@@ -2644,6 +2887,9 @@ paths:
         - undocumented
         - settings
       operationId: getDynamicMonitoringSettings
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     put:
       responses:
         '200':
@@ -2663,6 +2909,9 @@ paths:
             schema:
               type: object
         description: This is a generated entry and needs to be described.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     delete:
       responses:
         '200':
@@ -2676,6 +2925,9 @@ paths:
         - undocumented
         - settings
       operationId: deleteDynamicMonitoringSettings
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/1/{contractId}/settings/include_delivery_costs:
@@ -2699,6 +2951,9 @@ paths:
             schema:
               type: object
         description: This is a generated entry and needs to be described.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/1/{contractId}/tasks:
@@ -2738,6 +2993,9 @@ paths:
           required: false
           schema:
             type: string
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     post:
       responses:
         '200':
@@ -2757,6 +3015,9 @@ paths:
             schema:
               $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.CreateTaskBodyV2'
         description: Create a new task
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/1/{contractId}/tasks/{taskId}:
@@ -2774,6 +3035,9 @@ paths:
         - undocumented
         - tasks
       operationId: getTask
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
       - in: path
@@ -2796,6 +3060,9 @@ paths:
         - undocumented
         - tasks
       operationId: getTaskState
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
       - in: path
@@ -2831,6 +3098,9 @@ paths:
             schema:
               type: object
         description: This is a generated entry and needs to be described.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
       - in: path
@@ -2853,6 +3123,9 @@ paths:
         - undocumented
         - companies
       operationId: getManufacturerManufacturerV2
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/2/m/contracts/{contractId}/products/csv:
@@ -2876,6 +3149,9 @@ paths:
             schema:
               type: object
         description: This is a generated entry and needs to be described.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/2/m/contracts/{contractId}/products/tags:
@@ -2893,6 +3169,9 @@ paths:
         - undocumented
         - products
       operationId: getTagsManufacturerV2
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/2/m/contracts/{contractId}/products/tags/{key}:
@@ -2910,6 +3189,9 @@ paths:
         - undocumented
         - products
       operationId: getTagValuesManufacturerV2
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
       - in: path
@@ -2939,6 +3221,9 @@ paths:
             type: string
             format: date-time
           description: A ISO 8601 timestamp which marks the end of a 48h time range in which the data is collected
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/2/m/contracts/{contractId}/result/offersegmentation:
@@ -2962,6 +3247,9 @@ paths:
             schema:
               type: object
         description: This is a generated entry and needs to be described.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/2/m/contracts/{contractId}/result/pricecutters:
@@ -3003,6 +3291,9 @@ paths:
             schema:
               type: object
         description: This is a generated entry and needs to be described.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/2/m/contracts/{contractId}/result/pricesbyday/productid/{productId}:
@@ -3027,6 +3318,9 @@ paths:
             schema:
               $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PricesByDayByProductIdRequestV2'
         description: Query all known prices for a given day & product ID. Can be filtered by using the selectors.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
       - in: path
@@ -3074,6 +3368,9 @@ paths:
           schema:
             type: number
             format: double
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/2/m/contracts/{contractId}/result/timestamps:
@@ -3098,6 +3395,9 @@ paths:
           schema:
             type: integer
             format: int32
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/2/m/contracts/{contractId}/result/validation:
@@ -3121,6 +3421,9 @@ paths:
             schema:
               type: object
         description: This is a generated entry and needs to be described.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/2/m/contracts/{contractId}/result/vendors/cheapest:
@@ -3156,6 +3459,9 @@ paths:
             schema:
               $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.TagFilteredVendorsRequest'
         description: This is a generated entry and needs to be described.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/2/m/contracts/{contractId}/result/vendors/list:
@@ -3202,6 +3508,9 @@ paths:
             schema:
               $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.TagFilteredVendorsRequest'
         description: This is a generated entry and needs to be described.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/2/m/contracts/{contractId}/settings/imagetag:
@@ -3225,6 +3534,9 @@ paths:
             schema:
               type: object
         description: This is a generated entry and needs to be described.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/2/m/contracts/{contractId}/settings/monitoring:
@@ -3242,6 +3554,9 @@ paths:
         - internal
         - settings
       operationId: getMonitoringSettingsManufacturerV2
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     put:
       description: Update the monitoring settings for a given contract
       responses:
@@ -3261,6 +3576,9 @@ paths:
             schema:
               type: object
         description: The monitoring settings object to be written to the database
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/2/m/contracts/{contractId}/tasks:
@@ -3337,6 +3655,9 @@ paths:
             type: boolean
             default: true
           description: Include failed tasks
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     post:
       x-audience: Internal
       description: Create a new task
@@ -3357,6 +3678,9 @@ paths:
             schema:
               $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.CreateTaskBodyV2'
         description: This is a generated entry and needs to be described.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/2/m/contracts/{contractId}/tasks/{taskId}:
@@ -3376,6 +3700,9 @@ paths:
         - tasks
       operationId: getTaskManufacturerV2
       description: Get the task designated by the taskId parameter
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     put:
       description: Update an existing task
       responses:
@@ -3394,6 +3721,9 @@ paths:
             schema:
               $ref: '#/components/schemas/UpdateTaskRequestV2'
         description: The new task object to be written to the database
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
       - in: path
@@ -3418,6 +3748,9 @@ paths:
         - internal
         - tasks
       operationId: getTaskDataManufacturerV2
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
       - in: path
@@ -3440,6 +3773,9 @@ paths:
         - undocumented
         - account
       operationId: deleteUserRole
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     put:
       responses:
         '200':
@@ -3459,6 +3795,9 @@ paths:
             schema:
               type: object
         description: This is a generated entry and needs to be described.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - in: path
         name: userId
@@ -3499,6 +3838,9 @@ paths:
           schema:
             type: string
             format: date-time
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/2/v/contracts/{contractId}:
     x-audience: Internal
     get:
@@ -3514,6 +3856,9 @@ paths:
         - undocumented
         - companies
       operationId: getVendorVendorV2
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     delete:
       responses:
         '200':
@@ -3527,6 +3872,9 @@ paths:
         - undocumented
         - companies
       operationId: deleteContractVendorV2
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/2/v/contracts/{contractId}/feeds/{feedId}/export:
@@ -3550,6 +3898,9 @@ paths:
           required: false
           schema:
             type: string
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
       - in: path
@@ -3572,6 +3923,9 @@ paths:
         - offers
       operationId: getComplexOfferFiltersVendorV2
       summary: Get all complex filters for the given contract.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     put:
       responses:
         '200':
@@ -3591,6 +3945,9 @@ paths:
             schema:
               $ref: '#/components/schemas/OfferFilterRequest'
         description: List of the filter that needs to be considered to ignore the individual offers.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
       - in: path
@@ -3626,6 +3983,9 @@ paths:
           schema:
             type: integer
             format: int32
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
       - in: path
@@ -3648,6 +4008,9 @@ paths:
         - products
       operationId: getProductFiltersVendorV2
       summary: Get all the filters of a given product for the given contract.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     put:
       responses:
         '200':
@@ -3667,6 +4030,9 @@ paths:
             schema:
               $ref: '#/components/schemas/OfferFilterRequest'
         description: List of the filter that needs to be considered to ignore the individual offers.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
       - in: path
@@ -3700,6 +4066,9 @@ paths:
             schema:
               type: object
         description: This is a generated entry and needs to be described.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/2/v/contracts/{contractId}/offerfilters/{listType}/vendors:
@@ -3717,6 +4086,9 @@ paths:
         - offers
       operationId: getOfferFiltersVendorV2
       summary: Get all the vendor filters for the given contract.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     put:
       responses:
         '200':
@@ -3736,6 +4108,9 @@ paths:
             schema:
               type: object
         description: List of the filters that needs to be considered to ignore the individual offers.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
       - in: path
@@ -3784,6 +4159,9 @@ paths:
         required: true
       parameters:
         - $ref: '#/components/parameters/contractIdParam'
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/2/v/contracts/{contractId}/productidentifiermapping:
     x-audience: Internal
     post:
@@ -3805,6 +4183,9 @@ paths:
             schema:
               type: object
         description: This is a generated entry and needs to be described.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     get:
       responses:
         '200':
@@ -3831,6 +4212,9 @@ paths:
             type: array
             items:
               type: string
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/2/v/contracts/{contractId}/products/import:
@@ -3860,6 +4244,9 @@ paths:
             schema:
               type: object
         description: This is a generated entry and needs to be described.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/2/v/contracts/{contractId}/products/tags:
@@ -3877,6 +4264,9 @@ paths:
         - undocumented
         - products
       operationId: getTagsVendorV2
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/2/v/contracts/{contractId}/products/tags/{key}:
@@ -3894,6 +4284,9 @@ paths:
         - undocumented
         - products
       operationId: getTagValuesVendorV2
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
       - in: path
@@ -3922,6 +4315,9 @@ paths:
             schema:
               type: object
         description: This is a generated entry and needs to be described.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/2/v/contracts/{contractId}/result/pricecutters:
@@ -3963,6 +4359,9 @@ paths:
             schema:
               type: object
         description: This is a generated entry and needs to be described.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/2/v/contracts/{contractId}/result/pricerecommendations/query:
@@ -3987,6 +4386,9 @@ paths:
             schema:
               $ref: '#/components/schemas/PriceRecommendationApiQueryV2'
         description: The request body specifies which price recommendations will be searched for.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     description: |
       This endpoint is used to query certain price recommendations. <br>
       Warning: This endpoint contains complex query structure and will be replaced in the future.
@@ -4026,6 +4428,9 @@ paths:
           schema:
             type: integer
             format: int32
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/2/v/contracts/{contractId}/result/priceviolations:
@@ -4067,6 +4472,9 @@ paths:
           schema:
             type: number
             format: double
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/2/v/contracts/{contractId}/result/validation:
@@ -4090,6 +4498,9 @@ paths:
             schema:
               type: object
         description: This is a generated entry and needs to be described.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/2/v/contracts/{contractId}/settings/callbacks:
@@ -4107,6 +4518,9 @@ paths:
         - undocumented
         - settings
       operationId: getCallbacksVendorV2
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     put:
       responses:
         '200':
@@ -4126,6 +4540,9 @@ paths:
             schema:
               type: object
         description: This is a generated entry and needs to be described.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     delete:
       responses:
         '200':
@@ -4139,6 +4556,9 @@ paths:
         - undocumented
         - settings
       operationId: deleteCallbackSettingsVendorV2
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/2/v/contracts/{contractId}/settings/currency:
@@ -4156,6 +4576,9 @@ paths:
         - undocumented
         - settings
       operationId: getCurrencyVendorV2
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     put:
       responses:
         '200':
@@ -4175,6 +4598,9 @@ paths:
             schema:
               type: object
         description: This is a generated entry and needs to be described.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/2/v/contracts/{contractId}/settings/ebay/authorizations:
@@ -4198,6 +4624,9 @@ paths:
             schema:
               type: object
         description: This is a generated entry and needs to be described.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     get:
       responses:
         '200':
@@ -4224,6 +4653,9 @@ paths:
           schema:
             type: integer
             format: int32
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/2/v/contracts/{contractId}/settings/ebay/authorizations/{authIds}:
@@ -4241,6 +4673,9 @@ paths:
         - undocumented
         - settings
       operationId: getEbayAuthorizationsVendorV2
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
       - in: path
@@ -4263,6 +4698,9 @@ paths:
         - undocumented
         - settings
       operationId: getActiveEbayTokenVendorV2
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/2/v/contracts/{contractId}/settings/ebay/tokens:
@@ -4293,6 +4731,9 @@ paths:
           schema:
             type: integer
             format: int32
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/2/v/contracts/{contractId}/settings/imagetag:
@@ -4316,6 +4757,9 @@ paths:
             schema:
               type: object
         description: This is a generated entry and needs to be described.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/2/v/contracts/{contractId}/settings/import:
@@ -4333,6 +4777,9 @@ paths:
         - undocumented
         - settings
       operationId: getImportSettingsVendorV2
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     put:
       responses:
         '200':
@@ -4352,6 +4799,9 @@ paths:
             schema:
               type: object
         description: This is a generated entry and needs to be described.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     delete:
       responses:
         '200':
@@ -4365,6 +4815,9 @@ paths:
         - undocumented
         - settings
       operationId: deleteImportSettingsVendorV2
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/2/v/contracts/{contractId}/settings/monitoring:
@@ -4382,6 +4835,9 @@ paths:
         - undocumented
         - settings
       operationId: getMonitoringSettingsVendorV2
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     put:
       responses:
         '200':
@@ -4401,6 +4857,9 @@ paths:
             schema:
               type: object
         description: This is a generated entry and needs to be described.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/2/v/contracts/{contractId}/settings/repricing:
@@ -4418,6 +4877,9 @@ paths:
         - undocumented
         - settings
       operationId: getVendorSettings_V2VendorV2
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     put:
       responses:
         '200':
@@ -4437,6 +4899,9 @@ paths:
             schema:
               type: object
         description: This is a generated entry and needs to be described.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/2/v/contracts/{contractId}/settings/repricingstrategy:
@@ -4463,6 +4928,9 @@ paths:
             type: integer
             format: int32
             minimum: 1
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     put:
       responses:
         '200':
@@ -4482,6 +4950,9 @@ paths:
             schema:
               type: object
         description: This is a generated entry and needs to be described.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     delete:
       responses:
         '200':
@@ -4495,6 +4966,9 @@ paths:
         - undocumented
         - pricerecommendations
       operationId: deleteRepricingStrategyVendorV2
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/2/v/contracts/{contractId}/tasks/{taskId}/data:
@@ -4512,6 +4986,9 @@ paths:
         - undocumented
         - tasks
       operationId: getTaskDataVendorV2
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
       - in: path
@@ -4547,6 +5024,9 @@ paths:
             schema:
               $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PostNewPasswordRequest'
         description: Request a new password.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     put:
       responses:
         '200':
@@ -4574,6 +5054,9 @@ paths:
             schema:
               $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PutResetPasswordRequest'
         description: Reset a password
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/login/token/{token}:
     x-audience: Internal
     get:
@@ -4611,6 +5094,9 @@ paths:
         - companies
       operationId: getManufacturerV3
       summary: Get the contract information
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/v3/manufacturer/contracts/{contractId}/monitoringpipeline/v1/searchattempts:
@@ -4634,6 +5120,9 @@ paths:
             schema:
               type: object
         description: This is a generated entry and needs to be described.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/v3/manufacturer/contracts/{contractId}/offers/query:
@@ -4657,6 +5146,9 @@ paths:
             schema:
               type: object
         description: This is a generated entry and needs to be described.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/v3/manufacturer/contracts/{contractId}/offers/pricedumpingstats:
@@ -4678,6 +5170,9 @@ paths:
         required: true
       tags:
         - products
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/v3/manufacturer/contracts/{contractId}/products/{productId}:
     x-audience: Internal
     patch:
@@ -4699,6 +5194,9 @@ paths:
             schema:
               type: object
         description: This is a generated entry and needs to be described.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
       - in: path
@@ -4721,6 +5219,9 @@ paths:
         - undocumented
         - products
       operationId: getExtendedTagsManufacturerV3
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
       - in: path
@@ -4748,6 +5249,9 @@ paths:
             schema:
               $ref: '#/components/schemas/QueryProductsRequestV3'
         description: The body contains the products query.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     summary: Get products of a contract
     description: This endpoint can be used for querying either all products or certain products by product ids.
     parameters:
@@ -4808,6 +5312,9 @@ paths:
           &nbsp;&nbsp;&nbsp;&nbsp;} <br>
           &nbsp;&nbsp;} <br>
           } <br>
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     summary: Get products of a contract
     description: This endpoint can be used for querying either all products or certain products by the 'customerProductId' or 'productId'.
     parameters:
@@ -4829,6 +5336,9 @@ paths:
         - undocumented
         - settings
       operationId: getCustomerContractSettingsManufaturerV3
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     put:
       responses:
         '200':
@@ -4848,6 +5358,9 @@ paths:
             schema:
               $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.CustomerContractSettings'
         description: This is a generated entry and needs to be described.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/v3/manufacturer/contracts/{contractId}/settings/monitoring:
     x-audience: Internal
     put:
@@ -4869,6 +5382,9 @@ paths:
             schema:
               type: object
         description: This is a generated entry and needs to be described.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     get:
       responses:
         '200':
@@ -4882,6 +5398,9 @@ paths:
         - undocumented
         - settings
       operationId: getMonitoringSettingsManufacturerV3
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/v3/manufacturer/contracts/{contractId}/settings/offerretention:
@@ -4908,6 +5427,9 @@ paths:
             enum:
               - Pricemonitor for manufacturers
               - Pricemonitor for resellers
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     put:
       responses:
         '200':
@@ -4936,6 +5458,9 @@ paths:
             schema:
               type: object
         description: This is a generated entry and needs to be described.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/v3/vendor/contracts/{contractId}:
@@ -4953,6 +5478,9 @@ paths:
         - undocumented
         - companies
       operationId: getVendorV3
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/v3/vendor/contracts/{contractId}/monitoringpipeline/v1/searchattempts:
@@ -4976,6 +5504,9 @@ paths:
             schema:
               type: object
         description: This is a generated entry and needs to be described.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/v3/vendor/contracts/{contractId}/products/{productId}:
@@ -4999,6 +5530,9 @@ paths:
             schema:
               type: object
         description: This is a generated entry and needs to be described.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
       - in: path
@@ -5018,6 +5552,9 @@ paths:
       tags:
         - products
       operationId: getProductMonitoringStatusVendorV3
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
       - in: query
@@ -5048,6 +5585,9 @@ paths:
         - undocumented
         - internal
       operationId: getProductMonitoringStatusStatsVendorV3
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/v3/vendor/contracts/{contractId}/products/query:
@@ -5070,6 +5610,9 @@ paths:
             schema:
               $ref: '#/components/schemas/QueryProductsRequestV3'
         description: The body contains the products query.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     summary: Query products of a contract
     description: This endpoint can be used for querying either all products or certain products by product ids.
     parameters:
@@ -5092,6 +5635,9 @@ paths:
       tags:
         - products
       operationId: getProductPriceRecommendationHistory
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     summary: Get price recommendations of one product in time range
     description: This endpoint returns all price recommendations for one product within a given time range
     parameters:
@@ -5155,6 +5701,9 @@ paths:
           &nbsp;&nbsp;&nbsp;&nbsp;} <br>
           &nbsp;&nbsp;} <br>
           } <br>
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     summary: Query products of a contract
     description: This endpoint can be used for querying either all products or certain products by the 'customerProductId' or 'productId'.
     parameters:
@@ -5176,6 +5725,9 @@ paths:
         - undocumented
         - settings
       operationId: getCustomerContractSettingsVendorV3
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     put:
       responses:
         '200':
@@ -5195,6 +5747,9 @@ paths:
             schema:
               $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.CustomerContractSettings'
         description: This is a generated entry and needs to be described.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/v3/vendor/contracts/{contractId}/settings/monitoring:
     x-audience: Internal
     put:
@@ -5216,6 +5771,9 @@ paths:
             schema:
               type: object
         description: This is a generated entry and needs to be described.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     get:
       responses:
         '200':
@@ -5229,6 +5787,9 @@ paths:
         - undocumented
         - settings
       operationId: getMonitoringSettingsVendorV3
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/v3/vendor/contracts/{contractId}/settings/offerretention:
@@ -5255,6 +5816,9 @@ paths:
             enum:
               - Pricemonitor for manufacturers
               - Pricemonitor for resellers
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     put:
       responses:
         '200':
@@ -5283,6 +5847,9 @@ paths:
             schema:
               type: object
         description: This is a generated entry and needs to be described.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /controlpanel/api/companies/{companyId}:
@@ -5300,6 +5867,9 @@ paths:
         - undocumented
         - companies
       operationId: getCompany
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/companyIdParam'
   /controlpanel/api/companies/{companyId}/users:
@@ -5317,6 +5887,9 @@ paths:
         - undocumented
         - companies
       operationId: getUsers
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/companyIdParam'
   /controlpanel/api/companies/{companyId}/users/{userId}:
@@ -5334,6 +5907,9 @@ paths:
         - undocumented
         - companies
       operationId: removeUser
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/companyIdParam'
       - in: path
@@ -5404,6 +5980,9 @@ paths:
           schema:
             type: integer
             format: int32
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /controlpanel/api/tasks/stats:
     x-audience: Internal
     get:
@@ -5426,6 +6005,9 @@ paths:
           schema:
             type: integer
             format: int32
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /controlpanel/api/users/{email}:
     x-audience: Internal
     get:
@@ -5441,6 +6023,9 @@ paths:
         - undocumented
         - controlpanel
       operationId: getUser
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - in: path
         name: email
@@ -5468,6 +6053,9 @@ paths:
             schema:
               type: object
         description: This is a generated entry and needs to be described.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - in: path
         name: id
@@ -5501,6 +6089,9 @@ paths:
             schema:
               type: object
         description: This is a generated entry and needs to be described.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - in: path
         name: email
@@ -5522,6 +6113,9 @@ paths:
         - undocumented
         - controlpanel
       operationId: deleteAuthToken
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     put:
       responses:
         '200':
@@ -5541,6 +6135,9 @@ paths:
             schema:
               type: object
         description: This is a generated entry and needs to be described.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - in: path
         name: email
@@ -5580,6 +6177,9 @@ paths:
           schema:
             type: number
             format: double
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - in: path
         name: vendor
@@ -5607,6 +6207,9 @@ paths:
           required: true
           schema:
             type: string
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /login:
     x-audience: Internal
     post:
@@ -5655,6 +6258,9 @@ paths:
         - account
         - internal
       operationId: changePassword
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/2/v/contracts/{contractId}/shop-integration/{path}:
     x-audience: Internal
     get:
@@ -5669,6 +6275,9 @@ paths:
         - undocumented
         - internal
       operationId: shopIntegrationGetRequest
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     post:
       responses:
         '200':
@@ -5681,6 +6290,9 @@ paths:
         - undocumented
         - internal
       operationId: shopIntegrationPostRequest
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
       - description: The shop-integration path to be called
@@ -5706,6 +6318,9 @@ paths:
       operationId: postLogMessage
       summary: Log a message
       description: Logs a message.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/2/domains:
     get:
       deprecated: true
@@ -5724,6 +6339,9 @@ paths:
         - deprecated
         - domains
       operationId: getAllDomainsV2
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/v3/vendor/contracts/{contractId}/monitoringpipeline/{path}:
     x-audience: Internal
     post:
@@ -5738,6 +6356,9 @@ paths:
         - undocumented
         - internal
       operationId: monitoringPipelinePostRequestVendorV3
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
       - description: The monitoring-pipeline path to be called
@@ -5760,6 +6381,9 @@ paths:
         - undocumented
         - internal
       operationId: monitoringPipelinePostRequestManufacturerV3
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
       - description: The monitoring-pipeline path to be called
@@ -5782,6 +6406,9 @@ paths:
         - undocumented
         - internal
       operationId: schedulerGetRequestVendorV3
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     post:
       responses:
         '200':
@@ -5794,6 +6421,9 @@ paths:
         - undocumented
         - internal
       operationId: schedulerPostRequestVendorV3
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     put:
       responses:
         '200':
@@ -5806,6 +6436,9 @@ paths:
         - undocumented
         - internal
       operationId: schedulerPutRequestVendorV3
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     delete:
       responses:
         '200':
@@ -5818,6 +6451,9 @@ paths:
         - undocumented
         - internal
       operationId: schedulerDeleteRequestVendorV3
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
       - description: The scheduler path to be called
@@ -5840,6 +6476,9 @@ paths:
         - undocumented
         - internal
       operationId: schedulerGetRequestManufacturerV3
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     post:
       responses:
         '200':
@@ -5852,6 +6491,9 @@ paths:
         - undocumented
         - internal
       operationId: schedulerPostRequestManufacturerV3
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     put:
       responses:
         '200':
@@ -5864,6 +6506,9 @@ paths:
         - undocumented
         - internal
       operationId: schedulerPutRequestManufacturerV3
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     delete:
       responses:
         '200':
@@ -5876,6 +6521,9 @@ paths:
         - undocumented
         - internal
       operationId: schedulerDeleteRequestManufacturerV3
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
       - description: The scheduler path to be called
@@ -5907,6 +6555,9 @@ paths:
               $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PostEmbedSSOUrlRequestV3'
         description: Payload for retrieving a signed embed SSO url using Looker API.
       summary: Retrieve an embed SSO url for Looker.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/v3/manufacturer/contracts/{contractId}/looker/sso/embed/url:
     x-audience: Internal
     parameters:
@@ -5930,6 +6581,9 @@ paths:
               $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PostEmbedSSOUrlRequestV3'
         description: Payload for retrieving a signed embed SSO url using Looker API.
       summary: Retrieve an embed SSO url for Looker.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/v3/companies/{companyId}/amazon/marketplace:
     x-audience: Internal
     parameters:
@@ -5964,6 +6618,9 @@ paths:
       summary: |
         Activate marketplace of a customer in our system. By activation, it means that our system can
         write prices back into the customer's Amazon shop.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/v3/companies/{companyId}/amazon/marketplace/{marketplaceCountryCode}/contracts/{contractId}:
     x-audience: Internal
     parameters:
@@ -5999,6 +6656,9 @@ paths:
       operationId: getMarketplaceActivationStatus
       summary: |
         Get marketplace activation status of a customer in our system.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/v3/companies/{companyId}/amazon/authorization/status:
     x-audience: Internal
     parameters:
@@ -6019,6 +6679,9 @@ paths:
         Get OAuth authorization status for customer's Amazon seller central account.
         For setting up OAuth authorization, have a look at the endpoint
         POST /api/v3/companies/{companyId}/amazon/authorization.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/v3/companies/{companyId}/amazon/authorization:
     x-audience: Internal
     parameters:
@@ -6046,6 +6709,9 @@ paths:
         It establishes a connection between our system and the customer's Amazon shop using the Amazon SP-API.
         Once connected, our system can write prices back to the customer's Amazon shop, allowing them to benefit
         from our price recommendations.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/v3/vendor/contracts/{contractId}/settings/monitoringschedules:
     x-audience: Internal
     parameters:
@@ -6075,6 +6741,9 @@ paths:
               $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PostMonitoringScheduleRequestV3'
         description: Request body for creating monitoring schedule.
       summary: Add a monitoring schedule for a given contract.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     get:
       responses:
         '200':
@@ -6088,6 +6757,9 @@ paths:
         - internal
       operationId: getMonitoringSchedulesVendorV3
       summary: Get all the monitoring schedules for a specified contract.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/v3/vendor/contracts/{contractId}/settings/monitoringschedules/{scheduleId}:
     x-audience: Internal
     parameters:
@@ -6118,6 +6790,9 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Monitoring schedule could not be deleted due to an internal server error.
       summary: Delete a monitoring schedule for a given contract.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     put:
       responses:
         '201':
@@ -6149,6 +6824,9 @@ paths:
               $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PostMonitoringScheduleRequestV3'
         description: Request body for updating monitoring schedule.
       summary: Update a monitoring schedule for a given contract.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/v3/vendor/contracts/{contractId}/settings/monitoringschedules/{scheduleId}/execute:
     x-audience: Internal
     parameters:
@@ -6174,6 +6852,9 @@ paths:
         - monitoring-schedules
       operationId: executeMonitoringScheduleVendorV3
       summary: Trigger a monitoring pipeline task for vendor for configured monitoring schedule
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/v3/manufacturer/contracts/{contractId}/settings/monitoringschedules:
     x-audience: Internal
     parameters:
@@ -6197,6 +6878,9 @@ paths:
               $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PostMonitoringScheduleRequestV3'
         description: Request body for creating monitoring schedule.
       summary: Add a monitoring schedule for a given contract.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     get:
       responses:
         '200':
@@ -6210,6 +6894,9 @@ paths:
         - internal
       operationId: getMonitoringSchedulesManufacturerV3
       summary: Get all the monitoring schedules for a specified contract.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/v3/manufacturer/contracts/{contractId}/settings/monitoringschedules/{scheduleId}:
     x-audience: Internal
     parameters:
@@ -6234,6 +6921,9 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Specified monitoring schedule does not exist.
       summary: Delete a monitoring schedule for a given contract.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     put:
       responses:
         '201':
@@ -6259,6 +6949,9 @@ paths:
               $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PostMonitoringScheduleRequestV3'
         description: Request body for updating monitoring schedule.
       summary: Update a monitoring schedule for a given contract.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/v3/manufacturer/contracts/{contractId}/settings/monitoringschedules/{scheduleId}/execute:
     x-audience: Internal
     parameters:
@@ -6284,6 +6977,9 @@ paths:
         - monitoring-schedules
       operationId: executeMonitoringScheduleManufacturerV3
       summary: Trigger a monitoring pipeline task for manufacturer for configured monitoring schedule
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/v3/vendor/contracts/{contractId}/tasks/preprocessing:
     x-audience: Internal
     parameters:
@@ -6318,6 +7014,9 @@ paths:
         - preprocessing
       operationId: publishPreprocessingTaskVendorV3
       summary: Publish a preprocessing task for vendor.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/v3/manufacturer/contracts/{contractId}/vendors:
     x-audience: Internal
     parameters:
@@ -6335,6 +7034,9 @@ paths:
         - internal
       operationId: getVendorShopMappingsManufacturerV3
       summary: Get all the vendors along with their associated shops for a specified contract.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     post:
       requestBody:
         content:
@@ -6372,6 +7074,9 @@ paths:
         - vendor-shop-mapping
       operationId: postVendorShopMappingManufacturerV3
       summary: Add a new vendor for a given contract and associate shops with the given vendor.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/v3/manufacturer/contracts/{contractId}/vendors/{vendorId}:
     x-audience: Internal
     parameters:
@@ -6414,6 +7119,9 @@ paths:
         - vendor-shop-mapping
       operationId: putVendorShopMappingManufacturerV3
       summary: Update an existing vendor for a given contract and associate shops with the given vendor.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     get:
       responses:
         '200':
@@ -6433,6 +7141,9 @@ paths:
         - internal
       operationId: getVendorShopMappingManufacturerV3
       summary: Get vendor along with their associated shop for given vendor id and contract.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     delete:
       tags:
         - vendor-shop-mapping
@@ -6452,6 +7163,9 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Specified vendor does not exist.
       summary: Delete a vendor and associated shops for a given contract.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/v3/account:
     x-audience: Internal
     post:
@@ -6539,6 +7253,136 @@ paths:
             - The start parameter is negative
             - The limit parameter is negative and larger than 50,000
             - The contract has more than one amazon domain configured.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
+  /api/v3/vendor/contracts/{contractId}/scheduler/jobs:
+    x-audience: Internal
+    parameters:
+      - $ref: '#/components/parameters/ContractId'
+    get:
+      tags:
+        - Jobs
+      parameters:
+        - $ref: '#/components/parameters/JobType'
+      operationId: getContractJobs
+      summary: Get all jobs of a contract
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobsApiResponse'
+    post:
+      tags:
+        - Jobs
+      operationId: createJob
+      summary: Create new job
+      description: |
+        The `_id` **must** not be sent when creating a job. It is ignored otherwise.
+
+        The `contractId` is taken from the URL path.
+
+        **NOTE**: When also sending the `contractId` in the body and it does not conform to the path `contractId`, the request will be rejected.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Job'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobApiResponse'
+  /api/v3/vendor/contracts/{contractId}/scheduler/jobs/{jobId}:
+    x-audience: Internal
+    parameters:
+      - $ref: '#/components/parameters/JobId'
+      - $ref: '#/components/parameters/ContractId'
+    get:
+      tags:
+        - Jobs
+      operationId: getJob
+      summary: Get job
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobApiResponse'
+    delete:
+      tags:
+        - Jobs
+      operationId: deleteJob
+      summary: Delete a job
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobApiResponse'
+    put:
+      tags:
+        - Jobs
+      operationId: updateJob
+      summary: Update Job
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Job'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobApiResponse'
+        '400':
+          description: Bad request. Incorrect jobId provided.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchedulerSchedulerApiErrorResponse'
+  /api/v3/vendor/contracts/{contractId}/scheduler/jobs/{jobId}/dkron:
+    x-audience: Internal
+    parameters:
+      - $ref: '#/components/parameters/JobId'
+      - $ref: '#/components/parameters/ContractId'
+    get:
+      tags:
+        - Jobs
+      operationId: getDkronJob
+      summary: Get Dkron job definition
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DkronJobApiResponse'
+  /api/v3/vendor/contracts/{contractId}/scheduler/jobs/{jobId}/dkron/executions:
+    x-audience: Internal
+    parameters:
+      - $ref: '#/components/parameters/JobId'
+      - $ref: '#/components/parameters/ContractId'
+    get:
+      tags:
+        - Jobs
+      operationId: getDkronExecutions
+      summary: Get Dkron job executions
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DkronExecutionsApiResponse'
 components:
   parameters:
     companyIdParam:
@@ -6644,6 +7488,30 @@ components:
       schema:
         type: boolean
         description: A flag to trigger follow up tasks once current is completed. By default it is set to true.
+    ContractId:
+      name: contractId
+      description: Each job must have a `contractId`
+      in: path
+      required: true
+      example: qbcxvb
+      schema:
+        type: string
+    JobType:
+      name: jobType
+      description: Filter by job types
+      in: query
+      required: false
+      example: ShopIntegrationUpdateProductsJob
+      schema:
+        type: string
+    JobId:
+      name: jobId
+      description: The internal job ID
+      in: path
+      required: true
+      example: 507f1f77bcf86cd799439011
+      schema:
+        type: string
   schemas:
     LogMessages:
       properties:
@@ -6956,6 +7824,7 @@ components:
       properties:
         data:
           $ref: '#/components/schemas/PluginRegistration'
+          type: object
     PluginRegistrationEmptyApiResponse:
       properties:
         data:
@@ -7961,6 +8830,20 @@ components:
         - itemId
         - unitPrice
         - quantity
+    com.patagona.pricemonitor.share.api.CustomerOrderProductMappingV2:
+      description: We originally planned to support complex mappings, but for sake of maintainability we restrict the mappings to itemId-> (customerProductId or productId)
+      properties:
+        source:
+          type: string
+          description: Identifier field within item. Only valid value is 'itemId'
+        target:
+          type: string
+          description: Must be 'customerProductId' or 'productId' since plugins are still publishing both values. The semantics are actually the same. In both cases they address the customerProductId.
+      additionalProperties: false
+      type: object
+      required:
+        - source
+        - target
     com.patagona.pricemonitor.share.api.CustomerOrderV2:
       description: An order placed in a shop.
       properties:
@@ -7981,18 +8864,7 @@ components:
         productMappings:
           type: array
           items:
-            type: object
-            additionalProperties: false
-            properties:
-              source:
-                type: string
-                description: Identifier field within item. Only valid value is 'itemId'
-              target:
-                type: string
-                description: Must be 'customerProductId' or 'productId' since plugins are still publishing both values. The semantics are actually the same. In both cases they address the customerProductId.
-            required:
-              - source
-              - target
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.CustomerOrderProductMappingV2'
           description: A relation from the products in your system to the pricemonitor. Currently it must contain exactly one element.
         origin:
           type: string
@@ -8889,25 +9761,28 @@ components:
           items:
             $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PostOrderStatisticsResponseV3'
           type: array
+    com.patagona.pricemonitor.share.api.DeleteOrderQueryV3:
+      description: Query to specify the order to be deleted
+      properties:
+        orderId:
+          type: string
+          description: Unique identifier of the order
+        creationDate:
+          type: string
+          format: date-time
+          description: Creation date of the corresponding order. It is a Timestamp in UTC time zone
+      additionalProperties: false
+      type: object
+      required:
+        - orderId
+        - creationDate
     com.patagona.pricemonitor.share.api.DeleteOrdersByQueryRequestV3:
       description: 'Request to delete a list of customer orders by providing an order query Notes: <br> - At maximum it''s allowed to provide 10,000 order queries per request. <br>'
       properties:
         orders:
           type: array
           items:
-            type: object
-            additionalProperties: false
-            properties:
-              orderId:
-                type: string
-                description: Unique identifier of the order
-              creationDate:
-                type: string
-                format: date-time
-                description: Creation date of the corresponding order. It is a Timestamp in UTC time zone
-            required:
-              - orderId
-              - creationDate
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.DeleteOrderQueryV3'
           description: List of order queries, each query should include an order id and its corresponding creation date
       additionalProperties: false
       type: object
@@ -9151,6 +10026,25 @@ components:
       required:
         - day
         - offers
+    com.patagona.pricemonitor.share.api.PricesByDayByProductIdResponsePricePointV2:
+      description: A single price point of a product
+      properties:
+        price:
+          type: number
+          description: The price
+        deliveryCosts:
+          type: number
+          description: The delivery costs
+        timestamp:
+          type: string
+          format: date-time
+          description: The timestamp of when the price was found
+      additionalProperties: false
+      type: object
+      required:
+        - price
+        - deliveryCosts
+        - timestamp
     com.patagona.pricemonitor.share.api.PricesByDayByProductIdResponseV2:
       description: Contains all known prices for a given day & product ID for one domain & vendor combination.
       properties:
@@ -9166,23 +10060,7 @@ components:
         prices:
           type: array
           items:
-            type: object
-            additionalProperties: false
-            properties:
-              price:
-                type: number
-                description: The price
-              deliveryCosts:
-                type: number
-                description: The delivery costs
-              timestamp:
-                type: string
-                format: date-time
-                description: The timestamp of when the price was found
-            required:
-              - price
-              - deliveryCosts
-              - timestamp
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.PricesByDayByProductIdResponsePricePointV2'
           description: A list of `PricesByDayByProductIdResponsePricePointV2` elements containing the prices
       additionalProperties: false
       type: object
@@ -9240,6 +10118,20 @@ components:
       required:
         - data
         - totalCount
+    com.patagona.pricemonitor.share.api.ApiOfferAttributeV2:
+      description: Represents an additional attribute for an offer which is not in the predefined fields.
+      properties:
+        key:
+          type: string
+          description: The attribute name. It's not allowed to be empty.
+        value:
+          type: string
+          description: The corresponding attribute value.
+      additionalProperties: false
+      type: object
+      required:
+        - key
+        - value
     com.patagona.pricemonitor.share.api.ApiOfferV2:
       description: Represents an offer for a product on a certain domain.
       properties:
@@ -9261,18 +10153,7 @@ components:
         attributes:
           type: array
           items:
-            type: object
-            additionalProperties: false
-            properties:
-              key:
-                type: string
-                description: The attribute name. It's not allowed to be empty.
-              value:
-                type: string
-                description: The corresponding attribute value.
-            required:
-              - key
-              - value
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ApiOfferAttributeV2'
           description: A list of additional offer details.
         vendorName:
           type: string
@@ -9637,29 +10518,31 @@ components:
         - analysisRange
         - threshold
         - adjustedInterval
+    com.patagona.pricemonitor.share.api.Callback:
+      properties:
+        method:
+          type: string
+        name:
+          type: string
+        bodyTemplate:
+          type: string
+        url:
+          type: string
+        headers:
+          type: object
+          additionalProperties:
+            type: string
+      additionalProperties: false
+      type: object
+      required:
+        - url
+        - headers
     com.patagona.pricemonitor.share.api.Callbacks:
       properties:
         pricemonitorCompleted:
           type: array
           items:
-            type: object
-            additionalProperties: false
-            properties:
-              method:
-                type: string
-              name:
-                type: string
-              bodyTemplate:
-                type: string
-              url:
-                type: string
-              headers:
-                type: object
-                additionalProperties:
-                  type: string
-            required:
-              - url
-              - headers
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.Callback'
       additionalProperties: false
       type: object
       required:
@@ -9779,6 +10662,17 @@ components:
           items:
             $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ProductMonitoringStatus'
           type: array
+    com.patagona.pricemonitor.share.api.ProductMonitoringStatusOutcomeStats:
+      properties:
+        outcome:
+          type: string
+        count:
+          type: integer
+      additionalProperties: false
+      type: object
+      required:
+        - outcome
+        - count
     com.patagona.pricemonitor.share.api.ProductMonitoringStatusStats:
       properties:
         domain:
@@ -9790,16 +10684,7 @@ components:
         outcomes:
           type: array
           items:
-            type: object
-            additionalProperties: false
-            properties:
-              outcome:
-                type: string
-              count:
-                type: integer
-            required:
-              - outcome
-              - count
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ProductMonitoringStatusOutcomeStats'
           uniqueItems: true
       additionalProperties: false
       type: object
@@ -10184,6 +11069,348 @@ components:
           items:
             $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.AmazonBuyboxProductStatsV3'
           type: array
+    SchedulerApiError:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    ApiHealthResponse:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          properties:
+            healthy:
+              type: boolean
+          description: Whether the server is healthy
+    SchedulerSchedulerApiErrorResponse:
+      type: object
+      required:
+        - data
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/SchedulerApiError'
+    JobsApiResponse:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Job'
+    JobApiResponse:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          allOf:
+            - $ref: '#/components/schemas/Job'
+    DkronJobApiResponse:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          allOf:
+            - $ref: '#/components/schemas/DkronJob'
+    DkronExecutionsApiResponse:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Execution'
+    Job:
+      type: object
+      discriminator:
+        propertyName: type
+        mapping:
+          ShopIntegrationStartShopSyncJob: '#/components/schemas/ShopIntegrationStartShopSyncJob'
+          ShopIntegrationUpdateProductsJob: '#/components/schemas/ShopIntegrationUpdateProductsJob'
+          MonitoringJob: '#/components/schemas/MonitoringJob'
+          PreprocessingJob: '#/components/schemas/PreprocessingJob'
+      required:
+        - schedule
+        - type
+        - timezone
+      properties:
+        type:
+          type: string
+          description: |
+            The types are fixed and defined in the scheduler code.
+          enum:
+            - ShopIntegrationUpdateProductsJob
+            - ShopIntegrationStartShopSyncJob
+            - MonitoringJob
+            - PreprocessingJob
+            - ReportJob
+            - ProductImportJob
+            - PricewatchJob
+        _id:
+          type: string
+          description: |
+            The internal job id. **Not** needed when creating a job.
+          example: 507f1f77bcf86cd799439011
+        timezone:
+          type: string
+          description: |
+            See [tz database time zones](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+          example: Europe/Berlin
+        contractId:
+          type: string
+          description: |
+            Each job **must** be attached to a specific contract SID.
+          example: contractId
+        schedule:
+          type: string
+          minLength: 1
+          description: |
+            See [CRON spec](https://www.alonsodomin.me/cron4s/userguide/index.html)
+
+            Only valid CRON expressions are allowed. Extra expressions from Dkron, e.g. "@every 5s", are not allowed.
+          example: '* * * * 10 ?'
+    ShopIntegrationStartShopSyncJob:
+      allOf:
+        - $ref: '#/components/schemas/Job'
+        - type: object
+    ShopIntegrationUpdateProductsJob:
+      allOf:
+        - $ref: '#/components/schemas/Job'
+        - type: object
+    MonitoringJob:
+      allOf:
+        - $ref: '#/components/schemas/Job'
+        - type: object
+          required:
+            - monitoringScheduleId
+          properties:
+            monitoringScheduleId:
+              type: integer
+              format: int64
+              description: |
+                Monitoring schedule entry used by the pricemonitor to specify different run monitoring configuration for a
+                given contract.
+    PreprocessingJob:
+      allOf:
+        - $ref: '#/components/schemas/Job'
+        - type: object
+          required:
+            - retrospectiveInMin
+          properties:
+            retrospectiveInMin:
+              type: integer
+              format: int32
+              description: |
+                The timespan, in minutes, used by pricemonitor for considering offers in preprocessing.
+    ReportJob:
+      allOf:
+        - $ref: '#/components/schemas/Job'
+        - type: object
+          required:
+            - reportId
+          properties:
+            reportId:
+              type: string
+              description: |
+                The id of the report to be scheduled.
+    ProductImportJob:
+      allOf:
+        - $ref: '#/components/schemas/Job'
+        - type: object
+    PricewatchJob:
+      allOf:
+        - $ref: '#/components/schemas/Job'
+        - type: object
+    DkronExecutorConfig:
+      type: object
+      description: 'Dkron: Executor plugin parameters'
+      properties:
+        method:
+          type: string
+          description: Request method in uppercase
+        url:
+          type: string
+          description: Request url
+        headers:
+          type: string
+          description: 'Json string, such as "["Content-Type: application/json"]"'
+        body:
+          type: string
+          description: POST body
+        timeout:
+          type: string
+          description: Request timeout, unit seconds
+        expectCode:
+          type: string
+          description: Expect response code, such as 200,206
+        expectBody:
+          type: string
+          description: Expect response body, support regexp, such as /success/
+        debug:
+          type: string
+          description: Debug option, will log everything when this option is not empty
+    DkronJob:
+      type: object
+      description: 'Dkron: A Job represents a scheduled task to execute.'
+      required:
+        - name
+        - schedule
+      properties:
+        name:
+          type: string
+          description: Name for the job.
+          readOnly: false
+          example: job1
+        schedule:
+          type: string
+          description: Cron expression for the job.
+          readOnly: false
+          example: '* * * * * ?'
+        timezone:
+          type: string
+          description: Timezone where the job will be executed. By default and when field is set to empty string, the job will run in local time.
+          readOnly: false
+          example: Europe/Berlin
+        owner:
+          type: string
+          description: Owner of the job
+          readOnly: false
+          example: Platform Team
+        owner_email:
+          type: string
+          description: Email of the owner
+          readOnly: false
+          example: platform@example.com
+        success_count:
+          type: integer
+          description: Number of successful executions
+          readOnly: true
+        error_count:
+          type: integer
+          description: Number of failed executions
+          readOnly: true
+        last_success:
+          type: string
+          format: date-time
+          description: Last time this job executed successfully
+          readOnly: true
+        last_error:
+          type: string
+          format: date-time
+          description: Last time this job failed
+          readOnly: true
+        disabled:
+          type: boolean
+          description: Disabled state of the job
+          readOnly: false
+        tags:
+          type: object
+          description: Target nodes tags of this job
+          additionalProperties:
+            type: string
+          readOnly: false
+          example:
+            dkron_server: 'true'
+        retries:
+          type: integer
+          description: Number of times to retry a failed job execution
+          example: 2
+          readOnly: false
+        parent_job:
+          type: string
+          description: The name/id of the job that will trigger the execution of this job
+          example: parent_job
+          readOnly: false
+        dependent_jobs:
+          type: array
+          items:
+            type: string
+          description: Array containing the jobs that depends on this one
+          example:
+            - dependent_job
+          readOnly: true
+        processors:
+          type: object
+        concurrency:
+          type: string
+          description: Concurrency policy for the job allow/forbid
+          example: allow
+          readOnly: false
+        executor:
+          type: string
+          description: Executor plugin used to run the job
+          readOnly: false
+          example: shell
+        executor_config:
+          $ref: '#/components/schemas/DkronExecutorConfig'
+        status:
+          type: string
+          readOnly: true
+          description: Status of the job
+          example: success
+    Execution:
+      title: Execution
+      properties:
+        job_name:
+          type: string
+          description: job name
+          example: job_1
+        started_at:
+          type: string
+          format: date-time
+          description: start time of the execution
+        finished_at:
+          type: string
+          format: date-time
+          description: when the execution finished running
+        success:
+          type: boolean
+          description: the execution run successfuly
+        output:
+          type: string
+          description: partial output of the command execution
+          example: Hello from Dkron
+        node_name:
+          type: string
+          description: name of the node that executed the command
+          example: dkron1
+      required:
+        - job_name
+        - started_at
+        - finished_at
+        - output
+        - node_name
+    DkronWebhookRequest:
+      type: object
+      description: Dkron webhook request body
+      properties:
+        name:
+          type: string
+        success:
+          type: boolean
+        finishedAt:
+          type: string
+        startedAt:
+          type: string
+        reportingNode:
+          type: string
+        nodeName:
+          type: string
+        output:
+          type: string
   securitySchemes:
     BasicAuth:
       scheme: basic
@@ -10251,3 +11478,34 @@ components:
         &nbsp;&nbsp;} <br>
         } <br>
         <br>
+x-tagGroups:
+  - name: Omnia 2.0 API
+    tags:
+      - overview
+      - products
+      - pricerecommendations
+      - offers
+      - feeds
+      - account
+      - logs
+      - companies
+      - orders
+      - settings
+      - tasks
+      - strategy
+      - scenariostrategy
+      - domains
+      - controlpanel
+      - pluginregistration
+      - looker
+      - amazon-integration
+      - monitoring-schedules
+      - preprocessing
+      - vendor-shop-mapping
+      - deprecated
+      - internal
+      - undocumented
+  - name: Scheduler API
+    tags:
+      - SchedulerOverview
+      - Jobs
