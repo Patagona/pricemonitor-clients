@@ -14,7 +14,7 @@ package com.patagona.pricemonitor.client.model
 import com.patagona.pricemonitor.client.core.ApiModel
 
 case class Callbacks(
-  pricemonitorCompleted: Seq[ComPatagonaPricemonitorShareApiCallbacksPricemonitorCompleted]
+  pricemonitorCompleted: Seq[Callback]
 ) extends ApiModel
 
 

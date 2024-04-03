@@ -17,7 +17,7 @@ case class ProductMonitoringStatusStats(
   domain: String,
   started: Int,
   completed: Int,
-  outcomes: Set[ComPatagonaPricemonitorShareApiProductMonitoringStatusStatsOutcomes]
+  outcomes: Set[ProductMonitoringStatusOutcomeStats]
 ) extends ApiModel
 
 

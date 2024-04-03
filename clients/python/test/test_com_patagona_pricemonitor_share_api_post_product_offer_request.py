@@ -47,7 +47,7 @@ class TestComPatagonaPricemonitorShareApiPostProductOfferRequest(unittest.TestCa
                         price = 1.337, 
                         availability = True, 
                         attributes = [
-                            pricemonitor_api_client.models.com_patagona_pricemonitor_share_api_api_offer_v2_attributes.com_patagona_pricemonitor_share_api_ApiOfferV2_attributes(
+                            pricemonitor_api_client.models.com/patagona/pricemonitor/share/api/api_offer_attribute_v2.com.patagona.pricemonitor.share.api.ApiOfferAttributeV2(
                                 key = '0', 
                                 value = '0', )
                             ], 
@@ -73,7 +73,7 @@ class TestComPatagonaPricemonitorShareApiPostProductOfferRequest(unittest.TestCa
                         price = 1.337, 
                         availability = True, 
                         attributes = [
-                            pricemonitor_api_client.models.com_patagona_pricemonitor_share_api_api_offer_v2_attributes.com_patagona_pricemonitor_share_api_ApiOfferV2_attributes(
+                            pricemonitor_api_client.models.com/patagona/pricemonitor/share/api/api_offer_attribute_v2.com.patagona.pricemonitor.share.api.ApiOfferAttributeV2(
                                 key = '0', 
                                 value = '0', )
                             ], 

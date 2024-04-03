@@ -37,7 +37,7 @@ class TestComPatagonaPricemonitorShareApiCallbacks(unittest.TestCase):
         if include_optional :
             return ComPatagonaPricemonitorShareApiCallbacks(
                 pricemonitor_completed = [
-                    pricemonitor_api_client.models.com_patagona_pricemonitor_share_api_callbacks_pricemonitor_completed.com_patagona_pricemonitor_share_api_Callbacks_pricemonitorCompleted(
+                    pricemonitor_api_client.models.com/patagona/pricemonitor/share/api/callback.com.patagona.pricemonitor.share.api.Callback(
                         method = '0', 
                         name = '0', 
                         body_template = '0', 
@@ -50,7 +50,7 @@ class TestComPatagonaPricemonitorShareApiCallbacks(unittest.TestCase):
         else :
             return ComPatagonaPricemonitorShareApiCallbacks(
                 pricemonitor_completed = [
-                    pricemonitor_api_client.models.com_patagona_pricemonitor_share_api_callbacks_pricemonitor_completed.com_patagona_pricemonitor_share_api_Callbacks_pricemonitorCompleted(
+                    pricemonitor_api_client.models.com/patagona/pricemonitor/share/api/callback.com.patagona.pricemonitor.share.api.Callback(
                         method = '0', 
                         name = '0', 
                         body_template = '0', 

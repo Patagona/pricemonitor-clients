@@ -37,7 +37,7 @@ class ComPatagonaPricemonitorShareApiCustomerOrderV2(object):
         'order_id': 'str',
         'items': 'list[ComPatagonaPricemonitorShareApiCustomerOrderItemV2]',
         'total_price': 'float',
-        'product_mappings': 'list[ComPatagonaPricemonitorShareApiCustomerOrderV2ProductMappings]',
+        'product_mappings': 'list[ComPatagonaPricemonitorShareApiCustomerOrderProductMappingV2]',
         'origin': 'str',
         'creation_date': 'datetime',
         'currency': 'str',
@@ -191,7 +191,7 @@ class ComPatagonaPricemonitorShareApiCustomerOrderV2(object):
         A relation from the products in your system to the pricemonitor. Currently it must contain exactly one element.  # noqa: E501
 
         :return: The product_mappings of this ComPatagonaPricemonitorShareApiCustomerOrderV2.  # noqa: E501
-        :rtype: list[ComPatagonaPricemonitorShareApiCustomerOrderV2ProductMappings]
+        :rtype: list[ComPatagonaPricemonitorShareApiCustomerOrderProductMappingV2]
         """
         return self._product_mappings
 
@@ -202,7 +202,7 @@ class ComPatagonaPricemonitorShareApiCustomerOrderV2(object):
         A relation from the products in your system to the pricemonitor. Currently it must contain exactly one element.  # noqa: E501
 
         :param product_mappings: The product_mappings of this ComPatagonaPricemonitorShareApiCustomerOrderV2.  # noqa: E501
-        :type: list[ComPatagonaPricemonitorShareApiCustomerOrderV2ProductMappings]
+        :type: list[ComPatagonaPricemonitorShareApiCustomerOrderProductMappingV2]
         """
         if self.local_vars_configuration.client_side_validation and product_mappings is None:  # noqa: E501
             raise ValueError("Invalid value for `product_mappings`, must not be `None`")  # noqa: E501

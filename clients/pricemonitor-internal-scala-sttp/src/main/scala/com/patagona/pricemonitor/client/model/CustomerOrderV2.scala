@@ -27,7 +27,7 @@ case class CustomerOrderV2(
   /* Total price of the order */
   totalPrice: Double,
   /* A relation from the products in your system to the pricemonitor. Currently it must contain exactly one element. */
-  productMappings: Seq[ComPatagonaPricemonitorShareApiCustomerOrderV2ProductMappings],
+  productMappings: Seq[CustomerOrderProductMappingV2],
   /* Origin of an order, e.g. the online shop were the order is placed */
   origin: String,
   /* Date when the order is created in UTC */

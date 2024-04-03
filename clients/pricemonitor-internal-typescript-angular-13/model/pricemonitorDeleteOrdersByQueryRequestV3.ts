@@ -9,7 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { PricemonitorDeleteOrdersByQueryRequestV3OrdersInner } from './pricemonitorDeleteOrdersByQueryRequestV3OrdersInner';
+import { PricemonitorDeleteOrderQueryV3 } from './pricemonitorDeleteOrderQueryV3';
 
 
 /**
@@ -19,6 +19,6 @@ export interface PricemonitorDeleteOrdersByQueryRequestV3 {
     /**
      * List of order queries, each query should include an order id and its corresponding creation date
      */
-    orders: Array<PricemonitorDeleteOrdersByQueryRequestV3OrdersInner>;
+    orders: Array<PricemonitorDeleteOrderQueryV3>;
 }
 

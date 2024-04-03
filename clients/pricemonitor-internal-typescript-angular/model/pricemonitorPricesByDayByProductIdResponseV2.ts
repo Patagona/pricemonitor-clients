@@ -9,7 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { PricemonitorPricesByDayByProductIdResponseV2Prices } from './pricemonitorPricesByDayByProductIdResponseV2Prices';
+import { PricemonitorPricesByDayByProductIdResponsePricePointV2 } from './pricemonitorPricesByDayByProductIdResponsePricePointV2';
 
 
 /**
@@ -31,6 +31,6 @@ export interface PricemonitorPricesByDayByProductIdResponseV2 {
     /**
      * A list of `PricesByDayByProductIdResponsePricePointV2` elements containing the prices
      */
-    prices: Array<PricemonitorPricesByDayByProductIdResponseV2Prices>;
+    prices: Array<PricemonitorPricesByDayByProductIdResponsePricePointV2>;
 }
 

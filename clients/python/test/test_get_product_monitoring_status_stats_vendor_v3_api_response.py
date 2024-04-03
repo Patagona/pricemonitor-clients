@@ -42,7 +42,7 @@ class TestGetProductMonitoringStatusStatsVendorV3ApiResponse(unittest.TestCase):
                         started = 56, 
                         completed = 56, 
                         outcomes = [
-                            pricemonitor_api_client.models.com_patagona_pricemonitor_share_api_product_monitoring_status_stats_outcomes.com_patagona_pricemonitor_share_api_ProductMonitoringStatusStats_outcomes(
+                            pricemonitor_api_client.models.com/patagona/pricemonitor/share/api/product_monitoring_status_outcome_stats.com.patagona.pricemonitor.share.api.ProductMonitoringStatusOutcomeStats(
                                 outcome = '0', 
                                 count = 56, )
                             ], )
@@ -56,7 +56,7 @@ class TestGetProductMonitoringStatusStatsVendorV3ApiResponse(unittest.TestCase):
                         started = 56, 
                         completed = 56, 
                         outcomes = [
-                            pricemonitor_api_client.models.com_patagona_pricemonitor_share_api_product_monitoring_status_stats_outcomes.com_patagona_pricemonitor_share_api_ProductMonitoringStatusStats_outcomes(
+                            pricemonitor_api_client.models.com/patagona/pricemonitor/share/api/product_monitoring_status_outcome_stats.com.patagona.pricemonitor.share.api.ProductMonitoringStatusOutcomeStats(
                                 outcome = '0', 
                                 count = 56, )
                             ], )

@@ -29,7 +29,7 @@ case class ApiOfferV2(
   /* An optional flag indicating whether the product is currently in stock and available for purchase. */
   availability: Option[Boolean] = None,
   /* A list of additional offer details. */
-  attributes: Seq[ComPatagonaPricemonitorShareApiApiOfferV2Attributes],
+  attributes: Seq[ApiOfferAttributeV2],
   /* The display name of the shop which sells the product. */
   vendorName: String,
   /* Optional timestamp based on ISO 8601 when this offer information was last fetched from the domain. */

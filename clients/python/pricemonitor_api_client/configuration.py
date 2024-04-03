@@ -349,6 +349,21 @@ conf = pricemonitor_api_client.Configuration(
                 'key': 'Authorization',
                 'value': 'Bearer ' + self.access_token
             }
+        if self.username is not None and self.password is not None:
+            auth['basicAuth'] = {
+                'type': 'basic',
+                'in': 'header',
+                'key': 'Authorization',
+                'value': self.get_basic_auth_token()
+            }
+        if self.access_token is not None:
+            auth['bearerAuth'] = {
+                'type': 'bearer',
+                'in': 'header',
+                'format': 'JWT',
+                'key': 'Authorization',
+                'value': 'Bearer ' + self.access_token
+            }
         return auth
 
     def to_debug_report(self):

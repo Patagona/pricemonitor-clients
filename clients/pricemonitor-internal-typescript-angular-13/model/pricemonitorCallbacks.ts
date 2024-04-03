@@ -9,10 +9,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { PricemonitorCallbacksPricemonitorCompletedInner } from './pricemonitorCallbacksPricemonitorCompletedInner';
+import { PricemonitorCallback } from './pricemonitorCallback';
 
 
 export interface PricemonitorCallbacks { 
-    pricemonitorCompleted: Array<PricemonitorCallbacksPricemonitorCompletedInner>;
+    pricemonitorCompleted: Array<PricemonitorCallback>;
 }
 

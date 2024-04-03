@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **vendor_domain_id** | **str** | Optional identifier representing the vendor on a certain domain. | [optional] 
 **price** | **float** | The current listed unit price of the product. | 
 **availability** | **bool** | An optional flag indicating whether the product is currently in stock and available for purchase. | [optional] 
-**attributes** | [**list[ComPatagonaPricemonitorShareApiApiOfferV2Attributes]**](ComPatagonaPricemonitorShareApiApiOfferV2Attributes.md) | A list of additional offer details. | 
+**attributes** | [**list[ComPatagonaPricemonitorShareApiApiOfferAttributeV2]**](ComPatagonaPricemonitorShareApiApiOfferAttributeV2.md) | A list of additional offer details. | 
 **vendor_name** | **str** | The display name of the shop which sells the product. | 
 **retrieval_date** | **datetime** | Optional timestamp based on ISO 8601 when this offer information was last fetched from the domain. | [optional] 
 **id** | **str** | A unique identifier for the offer. It&#39;s crucial that it&#39;s unique across all offers independent of the timestamp. If you don&#39;t have a unique identifier then please use a UUID. | 

@@ -9,7 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { PricemonitorCustomerOrderV2ProductMappings } from './pricemonitorCustomerOrderV2ProductMappings';
+import { PricemonitorCustomerOrderProductMappingV2 } from './pricemonitorCustomerOrderProductMappingV2';
 import { PricemonitorCustomerOrderItemV2 } from './pricemonitorCustomerOrderItemV2';
 
 
@@ -36,7 +36,7 @@ export interface PricemonitorCustomerOrderV2 {
     /**
      * A relation from the products in your system to the pricemonitor. Currently it must contain exactly one element.
      */
-    productMappings: Array<PricemonitorCustomerOrderV2ProductMappings>;
+    productMappings: Array<PricemonitorCustomerOrderProductMappingV2>;
     /**
      * Origin of an order, e.g. the online shop were the order is placed
      */

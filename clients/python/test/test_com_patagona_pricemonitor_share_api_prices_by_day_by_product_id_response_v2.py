@@ -40,7 +40,7 @@ class TestComPatagonaPricemonitorShareApiPricesByDayByProductIdResponseV2(unitte
                 vendor_name = '0', 
                 product_name = '0', 
                 prices = [
-                    pricemonitor_api_client.models.com_patagona_pricemonitor_share_api_prices_by_day_by_product_id_response_v2_prices.com_patagona_pricemonitor_share_api_PricesByDayByProductIdResponseV2_prices(
+                    pricemonitor_api_client.models.com/patagona/pricemonitor/share/api/prices_by_day_by_product_id_response_price_point_v2.com.patagona.pricemonitor.share.api.PricesByDayByProductIdResponsePricePointV2(
                         price = 1.337, 
                         delivery_costs = 1.337, 
                         timestamp = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
@@ -52,7 +52,7 @@ class TestComPatagonaPricemonitorShareApiPricesByDayByProductIdResponseV2(unitte
                 vendor_name = '0',
                 product_name = '0',
                 prices = [
-                    pricemonitor_api_client.models.com_patagona_pricemonitor_share_api_prices_by_day_by_product_id_response_v2_prices.com_patagona_pricemonitor_share_api_PricesByDayByProductIdResponseV2_prices(
+                    pricemonitor_api_client.models.com/patagona/pricemonitor/share/api/prices_by_day_by_product_id_response_price_point_v2.com.patagona.pricemonitor.share.api.PricesByDayByProductIdResponsePricePointV2(
                         price = 1.337, 
                         delivery_costs = 1.337, 
                         timestamp = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )

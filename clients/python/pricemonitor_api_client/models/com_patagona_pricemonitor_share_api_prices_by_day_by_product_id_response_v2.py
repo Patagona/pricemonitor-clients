@@ -36,7 +36,7 @@ class ComPatagonaPricemonitorShareApiPricesByDayByProductIdResponseV2(object):
         'domain': 'str',
         'vendor_name': 'str',
         'product_name': 'str',
-        'prices': 'list[ComPatagonaPricemonitorShareApiPricesByDayByProductIdResponseV2Prices]'
+        'prices': 'list[ComPatagonaPricemonitorShareApiPricesByDayByProductIdResponsePricePointV2]'
     }
 
     attribute_map = {
@@ -145,7 +145,7 @@ class ComPatagonaPricemonitorShareApiPricesByDayByProductIdResponseV2(object):
         A list of `PricesByDayByProductIdResponsePricePointV2` elements containing the prices  # noqa: E501
 
         :return: The prices of this ComPatagonaPricemonitorShareApiPricesByDayByProductIdResponseV2.  # noqa: E501
-        :rtype: list[ComPatagonaPricemonitorShareApiPricesByDayByProductIdResponseV2Prices]
+        :rtype: list[ComPatagonaPricemonitorShareApiPricesByDayByProductIdResponsePricePointV2]
         """
         return self._prices
 
@@ -156,7 +156,7 @@ class ComPatagonaPricemonitorShareApiPricesByDayByProductIdResponseV2(object):
         A list of `PricesByDayByProductIdResponsePricePointV2` elements containing the prices  # noqa: E501
 
         :param prices: The prices of this ComPatagonaPricemonitorShareApiPricesByDayByProductIdResponseV2.  # noqa: E501
-        :type: list[ComPatagonaPricemonitorShareApiPricesByDayByProductIdResponseV2Prices]
+        :type: list[ComPatagonaPricemonitorShareApiPricesByDayByProductIdResponsePricePointV2]
         """
         if self.local_vars_configuration.client_side_validation and prices is None:  # noqa: E501
             raise ValueError("Invalid value for `prices`, must not be `None`")  # noqa: E501

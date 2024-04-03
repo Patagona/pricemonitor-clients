@@ -24,7 +24,7 @@ case class PricesByDayByProductIdResponseV2(
   /* The name of the product the vendor is using */
   productName: String,
   /* A list of `PricesByDayByProductIdResponsePricePointV2` elements containing the prices */
-  prices: Seq[ComPatagonaPricemonitorShareApiPricesByDayByProductIdResponseV2Prices]
+  prices: Seq[PricesByDayByProductIdResponsePricePointV2]
 ) extends ApiModel
 
 

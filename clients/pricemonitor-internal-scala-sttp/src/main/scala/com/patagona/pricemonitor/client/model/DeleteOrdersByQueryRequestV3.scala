@@ -18,7 +18,7 @@ import com.patagona.pricemonitor.client.core.ApiModel
    */
 case class DeleteOrdersByQueryRequestV3(
   /* List of order queries, each query should include an order id and its corresponding creation date */
-  orders: Seq[ComPatagonaPricemonitorShareApiDeleteOrdersByQueryRequestV3Orders]
+  orders: Seq[DeleteOrderQueryV3]
 ) extends ApiModel
 
 

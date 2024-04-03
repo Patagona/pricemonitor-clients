@@ -9,13 +9,13 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { PricemonitorProductMonitoringStatusStatsOutcomes } from './pricemonitorProductMonitoringStatusStatsOutcomes';
+import { PricemonitorProductMonitoringStatusOutcomeStats } from './pricemonitorProductMonitoringStatusOutcomeStats';
 
 
 export interface PricemonitorProductMonitoringStatusStats { 
     domain: string;
     started: number;
     completed: number;
-    outcomes: Array<PricemonitorProductMonitoringStatusStatsOutcomes>;
+    outcomes: Array<PricemonitorProductMonitoringStatusOutcomeStats>;
 }
 

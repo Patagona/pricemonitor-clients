@@ -20,17 +20,25 @@ object EnumsSerializers {
   def all: Seq[Serializer[_]] = Seq[Serializer[_]]() :+
     new EnumNameSerializer(GenericTaskEnums.State) :+
     new EnumNameSerializer(GenericTaskWithUrlEnums.State) :+
+    new EnumNameSerializer(JobEnums.`Type`) :+
     new EnumNameSerializer(LogMessageEnums.Severity) :+
     new EnumNameSerializer(LogMessagesEnums.Version) :+
+    new EnumNameSerializer(MonitoringJobEnums.`Type`) :+
     new EnumNameSerializer(OffersQuerySortOrderV30Enums.Metric) :+
     new EnumNameSerializer(OffersQuerySortOrderV30Enums.Order) :+
     new EnumNameSerializer(PostProductsRequestEnums.Version) :+
+    new EnumNameSerializer(PreprocessingJobEnums.`Type`) :+
     new EnumNameSerializer(PriceRecommendationQuerySortOrderV2Enums.Metric) :+
     new EnumNameSerializer(PriceRecommendationQuerySortOrderV2Enums.Order) :+
+    new EnumNameSerializer(PricewatchJobEnums.`Type`) :+
+    new EnumNameSerializer(ProductImportJobEnums.`Type`) :+
     new EnumNameSerializer(ProductsFilterEnums.`Type`) :+
     new EnumNameSerializer(ProductsFilterEnums.Comparison) :+
     new EnumNameSerializer(PutPluginRegistrationRequestEnums.Version) :+
     new EnumNameSerializer(PutPluginRegistrationRequestAllOfEnums.Version) :+
+    new EnumNameSerializer(ReportJobEnums.`Type`) :+
+    new EnumNameSerializer(ShopIntegrationStartShopSyncJobEnums.`Type`) :+
+    new EnumNameSerializer(ShopIntegrationUpdateProductsJobEnums.`Type`) :+
     new EnumNameSerializer(UpdateTaskRequestV2Enums.State)
 
   private class EnumNameSerializer[E <: Enumeration: ClassTag](enum: E)

@@ -9,7 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { PricemonitorApiOfferV2Attributes } from './pricemonitorApiOfferV2Attributes';
+import { PricemonitorApiOfferAttributeV2 } from './pricemonitorApiOfferAttributeV2';
 
 
 /**
@@ -39,7 +39,7 @@ export interface PricemonitorApiOfferV2 {
     /**
      * A list of additional offer details.
      */
-    attributes: Array<PricemonitorApiOfferV2Attributes>;
+    attributes: Array<PricemonitorApiOfferAttributeV2>;
     /**
      * The display name of the shop which sells the product.
      */
