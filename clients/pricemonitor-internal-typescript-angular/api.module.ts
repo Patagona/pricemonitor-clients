@@ -11,6 +11,7 @@ import { DeprecatedService } from './api/deprecated.service';
 import { DomainsService } from './api/domains.service';
 import { FeedsService } from './api/feeds.service';
 import { InternalService } from './api/internal.service';
+import { JobsService } from './api/jobs.service';
 import { LogsService } from './api/logs.service';
 import { LookerService } from './api/looker.service';
 import { MonitoringSchedulesService } from './api/monitoringSchedules.service';
