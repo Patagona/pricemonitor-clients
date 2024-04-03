@@ -7,7 +7,7 @@ info:
   summary: This is the API powering Omnia 2.0 and Pricemonitor, containing operations which can also be used directly by customers from their own systems.
   description: |
     The Omnia 2.0 API is RESTful and provides access to the backend of Omnia 2.0 and Pricemonitor. It is used to manage products, offers, contracts and more.
-  version: 0.0.6776
+  version: 0.0.6777
   x-logo:
     url: https://www.omniaretail.com/hubfs/Omnia%20Logo%20SVG/Omnia_Retail_Full_Colour_Logo_On_White_RGB.svg
     altText: Omnia Retail
