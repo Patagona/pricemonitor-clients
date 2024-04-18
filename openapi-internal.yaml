@@ -10,7 +10,7 @@ info:
   description: >
     The Omnia 2.0 API is RESTful and provides access to the backend of Omnia 2.0
     and Pricemonitor. It is used to manage products, offers, contracts and more.
-  version: 0.0.6793
+  version: 0.0.6799
   x-logo:
     url: >-
       https://www.omniaretail.com/hubfs/Omnia%20Logo%20SVG/Omnia_Retail_Full_Colour_Logo_On_White_RGB.svg
@@ -25,7 +25,7 @@ tags:
   - name: overview
     x-displayName: Overview
     x-traitTag: true
-    description: >
+    description: >+
       Overview, explanation and pointers to the API documentation.
 
 
@@ -45,13 +45,80 @@ tags:
       ## Common use cases for Omnia 2.0
 
 
-      - Retrieve market data via API
+      These are common API operations for customers to integrate Omnia with
+      their own systems:
 
-      - Retrieve price recommendations via API
+      - Retrieve market data
 
-      - Manage your product assortment via API
+      - Retrieve price recommendations
 
-      - Provide offers for custom sources via API
+      - Manage your product assortment
+
+      - Provide offers for custom sources
+
+
+      ### Retrieve market data via API
+
+
+      Use [this operation](../tag/offers#operation/getOffersVendorV3) to
+      retrieve the newest offers in the market for products for a given time
+      range. It supports returning paged results. We recommend to retrieve with
+      a page size of at most 1,000 products.
+
+
+      ### Retrieve price recommendations via API
+
+
+      Use [this
+      operation](../tag/pricerecommendations#operation/getPriceRecommendation)
+      to retrieve the price recommendations for all products for a specified
+      timerange. It supports returning paged results.
+
+
+      ### Query products via API
+
+
+      Use [this operation](../tag/products#operation/queryProductsVendorV3) to
+      retrieve products via a query. It supports returning paged results. We
+      recommend to retrieve with a page size of 10,000 products.
+
+
+      ### Manage your product assortment
+
+
+      Use [this operation](../tag/products#operation/postProductsImportVendorV3)
+      to upload your product assortment in JSON format. We recommend that you
+      provide your product data in multiple parts via sequential requests to
+      this endpoint. After providing all data, you need to delete the old data
+      via [this operation](tag/products#operation/deleteProducts) by specifying
+      a timestamp just before your import.
+
+
+      If you cannot use the JSON format, as a fallback, we support uploading
+      your product assortment to our system in CSV format via [this
+      operation](../tag/products#operation/putProductsImportVendorV3).
+
+
+      ### Provide offers for custom sources
+
+
+      Use [this operation](../tag/offers#operation/postOffersInABulkVendorV2) to
+      provide external offers for your products to our system.
+
+
+      ## Authentication
+
+
+      There are two authentication methods supported:
+
+      - For API integration with other systems basic authentication is used.
+
+      - The Omnia 2.0 application uses JWT bearer tokens.
+
+
+      <SecurityDefinitions />
+
+
   - name: products
     x-displayName: Products Management
     description: Operations to manage your products.
@@ -1966,6 +2033,11 @@ paths:
   /api/v3/vendor/contracts/{contractId}/offers/pricedumpingstats:
     post:
       operationId: queryOffersPriceDumpingStatsVendorV3
+      x-audience: Internal
+      summary: Query price dumping statistics
+      description: >-
+        This operation is used to query price dumping statistics for a time
+        range for a set of shops.
       parameters:
         - $ref: '#/components/parameters/contractIdParam'
       responses:
@@ -1984,6 +2056,7 @@ paths:
         required: true
       tags:
         - products
+        - internal
       security:
         - BasicAuth: []
         - BearerAuth: []
@@ -2412,8 +2485,74 @@ paths:
   /api/v3/vendor/contracts/{contractId}/products:
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
+    post:
+      operationId: postProductsImportVendorV3
+      summary: Add products in bulk (JSON)
+      parameters:
+        - in: header
+          name: content-type
+          required: true
+          example: application/json
+          schema:
+            enum:
+              - application/json
+            type: string
+        - in: header
+          name: patagona-tags-decimal-separator
+          description: >-
+            The decimal separator is used for parsing numbers in tags. English
+            and German number formats are supported: dot and comma.
+          required: true
+          example: .
+          schema:
+            type: string
+            enum:
+              - .
+              - ','
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkedPostProductsApiResponse'
+          description: >-
+            The response provides sorted import results in respective to the
+            order of the provided products.
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: Unable to add products because of invalid request data
+      tags:
+        - products
+      description: >-
+        This operation is used to import products into the system from JSON
+        formatted data:<br>
+
+        Products that are already present will be updated and new products will
+        be added. Identification of the products is done based on the
+        identifying attributes, which need to be provided via the request
+        body.<br><br>Note:<br> This endpoint should be used in conjunction with:
+        DELETE  /api/v3/vendor/contracts/{contractId}/products.<br><br>
+
+        Procedure:<br> 1. Add your products in bulks with multiple requests via
+        this endpoint.<br> 2. Send a DELETE request to
+        /api/v3/vendor/contracts/{contractId}/products
+           and set the parameter updatedMax to a date which is older or equal to your first request from step 1.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostProductsRequest'
+        description: The body contains the products which should be added
+        required: true
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
     put:
       operationId: putProductsImportVendorV3
+      summary: Add products in bulk (CSV)
       parameters:
         - in: header
           name: content-type
@@ -2532,7 +2671,8 @@ paths:
       tags:
         - products
       description: >-
-        This operation is used to import products into the pricemonitor.
+        This operation is used to import products into the system from CSV
+        formatted data.
 
         This process is represented by a task, which is processed
         asynchronously.
@@ -2554,6 +2694,10 @@ paths:
 
         Identification of the products is done based on the identifying
         attributes (see parameter: patagona-product-identifying-attributes)
+
+
+        Note: It is recommended to use the JSON variant to add products as it
+        works synchronously and more efficient.
       requestBody:
         content:
           text/csv:
@@ -2563,78 +2707,6 @@ paths:
           CSV file containing the products. Note: The CSV file should be encoded
           in UTF-8.
         required: true
-      summary: Set products via CSV file
-      security:
-        - BasicAuth: []
-        - BearerAuth: []
-    post:
-      operationId: postProductsImportVendorV3
-      parameters:
-        - in: header
-          name: content-type
-          required: true
-          example: application/json
-          schema:
-            enum:
-              - application/json
-            type: string
-        - in: header
-          name: patagona-tags-decimal-separator
-          description: >-
-            The decimal separator is used for parsing numbers in tags. English
-            and German number formats are supported: dot and comma.
-          required: true
-          example: .
-          schema:
-            type: string
-            enum:
-              - .
-              - ','
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BulkedPostProductsApiResponse'
-          description: >-
-            The response provides sorted import results in respective to the
-            order of the provided products.
-        '400':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApiErrorResponse'
-          description: Unable to add products because of invalid request data
-      tags:
-        - products
-      description: >-
-        This operation is used to import products into the pricemonitor:<br>
-
-        Products that are already present will be updated and new products will
-        be added. Identification of the products is done based on the
-        identifying attributes, which need to be provided via the request
-        body.<br><br>
-
-        Attention:<br> This endpoint should only be used when dealing with large
-        number of products at your side is an issue. Otherwise please use the
-        PUT-counterpart of this endpoint which accepts products via a csv
-        file.<br><br>
-
-        Note:<br> This endpoint should be used in conjunction with: DELETE 
-        /api/v3/vendor/contracts/{contractId}/products.<br><br>
-
-        Procedure:<br> 1. Add your products in bulks with multiple requests via
-        this endpoint.<br> 2. Send a DELETE request to
-        /api/v3/vendor/contracts/{contractId}/products
-           and set the parameter updatedMax to a date which is older or equal to your first request from step 1.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/PostProductsRequest'
-        description: The body contains the products which should be added
-        required: true
-      summary: Add products in bulk
       security:
         - BasicAuth: []
         - BearerAuth: []
@@ -5531,6 +5603,12 @@ paths:
       - $ref: '#/components/parameters/contractIdParam'
   /api/v3/manufacturer/contracts/{contractId}/offers/pricedumpingstats:
     post:
+      operationId: queryOffersPriceDumpingStatsManufacturerV3
+      x-audience: Internal
+      summary: Query price dumping statistics
+      description: >-
+        This operation is used to query price dumping statistics for a time
+        range for a set of shops.
       parameters:
         - $ref: '#/components/parameters/contractIdParam'
       responses:
@@ -5549,6 +5627,7 @@ paths:
         required: true
       tags:
         - products
+        - internal
       security:
         - BasicAuth: []
         - BearerAuth: []
@@ -5640,6 +5719,8 @@ paths:
       - $ref: '#/components/parameters/contractIdParam'
   /api/v3.1/manufacturer/contracts/{contractId}/products/query:
     post:
+      operationId: queryProductsManufacturerV3
+      summary: Query products for manufacturer
       responses:
         '200':
           content:
@@ -5649,7 +5730,6 @@ paths:
           description: Returns a list of found products.
       tags:
         - products
-      operationId: queryProductsManufacturerV3
       requestBody:
         content:
           application/json:
@@ -5968,6 +6048,8 @@ paths:
           type: string
   /api/v3/vendor/contracts/{contractId}/products/monitoringstatus:
     get:
+      operationId: getProductMonitoringStatusVendorV3
+      summary: Get monitoring status of queried products
       responses:
         '200':
           content:
@@ -5978,7 +6060,6 @@ paths:
           description: Monitoring status of the queried products
       tags:
         - products
-      operationId: getProductMonitoringStatusVendorV3
       security:
         - BasicAuth: []
         - BearerAuth: []
@@ -6021,6 +6102,8 @@ paths:
   /api/v3/vendor/contracts/{contractId}/products/query:
     x-audience: Internal
     post:
+      operationId: queryProductsByFilterVendorV3
+      summary: Query products of a contract
       responses:
         '200':
           content:
@@ -6031,24 +6114,24 @@ paths:
       tags:
         - internal
         - products
-      operationId: queryProductsByFilterVendorV3
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/QueryProductsRequestV3'
         description: The body contains the products query.
+      description: >-
+        This endpoint can be used for querying either all products or certain
+        products by product ids.
       security:
         - BasicAuth: []
         - BearerAuth: []
-    summary: Query products of a contract
-    description: >-
-      This endpoint can be used for querying either all products or certain
-      products by product ids.
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/v3/vendor/contracts/{contractId}/products/{productId}/pricerecommendationhistory:
     get:
+      operationId: getProductPriceRecommendationHistory
+      summary: Get price recommendations for time range
       responses:
         '200':
           content:
@@ -6064,14 +6147,12 @@ paths:
           description: E.g. when the time range spans more than 48h.
       tags:
         - products
-      operationId: getProductPriceRecommendationHistory
+      description: >-
+        This endpoint returns all price recommendations for one product within a
+        given time range
       security:
         - BasicAuth: []
         - BearerAuth: []
-    summary: Get price recommendations of one product in time range
-    description: >-
-      This endpoint returns all price recommendations for one product within a
-      given time range
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
       - $ref: '#/components/parameters/productIdParam'
@@ -6079,6 +6160,11 @@ paths:
       - $ref: '#/components/parameters/endDate'
   /api/v3.1/vendor/contracts/{contractId}/products/query:
     post:
+      operationId: queryProductsVendorV3
+      summary: Query products of a contract
+      description: >-
+        This endpoint can be used for querying either all products or certain
+        products by the 'customerProductId' or 'productId'.
       responses:
         '200':
           content:
@@ -6088,7 +6174,6 @@ paths:
           description: Returns a list of found products.
       tags:
         - products
-      operationId: queryProductsVendorV3
       requestBody:
         content:
           application/json:
@@ -6177,10 +6262,6 @@ paths:
       security:
         - BasicAuth: []
         - BearerAuth: []
-    summary: Query products of a contract
-    description: >-
-      This endpoint can be used for querying either all products or certain
-      products by the 'customerProductId' or 'productId'.
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/v3/vendor/contracts/{contractId}/settings/customer:

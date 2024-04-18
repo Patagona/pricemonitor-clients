@@ -4,7 +4,6 @@ All URIs are relative to *https://api.patagona.de*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**api_v3_manufacturer_contracts_contract_id_offers_pricedumpingstats_post**](ProductsApi.md#api_v3_manufacturer_contracts_contract_id_offers_pricedumpingstats_post) | **POST** /api/v3/manufacturer/contracts/{contractId}/offers/pricedumpingstats | 
 [**delete_products**](ProductsApi.md#delete_products) | **DELETE** /api/v3/vendor/contracts/{contractId}/products | Delete products
 [**delete_products_manufacturer_v3**](ProductsApi.md#delete_products_manufacturer_v3) | **DELETE** /api/v3/manufacturer/contracts/{contractId}/products | 
 [**get_amazon_buybox_product_stats_v3**](ProductsApi.md#get_amazon_buybox_product_stats_v3) | **GET** /api/v3/vendor/contracts/{contractId}/products/amazon/buybox/stats | Retrieve latest Amazon Buybox statistics per product and amazon domain for a given time range.
@@ -14,8 +13,8 @@ Method | HTTP request | Description
 [**get_offers**](ProductsApi.md#get_offers) | **GET** /api/2/v/contracts/{contractId}/result/offers | Get all offers for all products
 [**get_product_filters_vendor_v2**](ProductsApi.md#get_product_filters_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/offerfilters/{listType}/products/{productId} | Get all the filters of a given product for the given contract.
 [**get_product_monitoring_status_stats_vendor_v3**](ProductsApi.md#get_product_monitoring_status_stats_vendor_v3) | **GET** /api/v3/vendor/contracts/{contractId}/products/monitoringstatus/stats | 
-[**get_product_monitoring_status_vendor_v3**](ProductsApi.md#get_product_monitoring_status_vendor_v3) | **GET** /api/v3/vendor/contracts/{contractId}/products/monitoringstatus | 
-[**get_product_price_recommendation_history**](ProductsApi.md#get_product_price_recommendation_history) | **GET** /api/v3/vendor/contracts/{contractId}/products/{productId}/pricerecommendationhistory | 
+[**get_product_monitoring_status_vendor_v3**](ProductsApi.md#get_product_monitoring_status_vendor_v3) | **GET** /api/v3/vendor/contracts/{contractId}/products/monitoringstatus | Get monitoring status of queried products
+[**get_product_price_recommendation_history**](ProductsApi.md#get_product_price_recommendation_history) | **GET** /api/v3/vendor/contracts/{contractId}/products/{productId}/pricerecommendationhistory | Get price recommendations for time range
 [**get_products**](ProductsApi.md#get_products) | **GET** /api/2/v/contracts/{contractId}/products | Get all products
 [**get_tag_values_manufacturer_v2**](ProductsApi.md#get_tag_values_manufacturer_v2) | **GET** /api/2/m/contracts/{contractId}/products/tags/{key} | 
 [**get_tag_values_vendor_v2**](ProductsApi.md#get_tag_values_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/products/tags/{key} | 
@@ -27,143 +26,24 @@ Method | HTTP request | Description
 [**patch_product_vendor_v3**](ProductsApi.md#patch_product_vendor_v3) | **PATCH** /api/v3/vendor/contracts/{contractId}/products/{productId} | 
 [**post_mappings_vendor_v2**](ProductsApi.md#post_mappings_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/productidentifiermapping | 
 [**post_offer_statistics_vendor_query**](ProductsApi.md#post_offer_statistics_vendor_query) | **POST** /api/v3/vendor/contracts/{contractId}/offers/stats/query | 
-[**post_products_import_vendor_v3**](ProductsApi.md#post_products_import_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/products | Add products in bulk
+[**post_products_import_vendor_v3**](ProductsApi.md#post_products_import_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/products | Add products in bulk (JSON)
 [**put_csv_products**](ProductsApi.md#put_csv_products) | **PUT** /api/2/v/contracts/{contractId}/products/csv | Set products via CSV file
 [**put_csv_products_manufacturer_v3**](ProductsApi.md#put_csv_products_manufacturer_v3) | **PUT** /api/v3/manufacturer/contracts/{contractId}/products | Set products via CSV file
 [**put_product_filters_vendor_v2**](ProductsApi.md#put_product_filters_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/offerfilters/{listType}/products/{productId} | Store the filters of a given product for the given contract.
 [**put_products_csv_manufacturer_v2**](ProductsApi.md#put_products_csv_manufacturer_v2) | **PUT** /api/2/m/contracts/{contractId}/products/csv | 
-[**put_products_import_vendor_v3**](ProductsApi.md#put_products_import_vendor_v3) | **PUT** /api/v3/vendor/contracts/{contractId}/products | Set products via CSV file
+[**put_products_import_vendor_v3**](ProductsApi.md#put_products_import_vendor_v3) | **PUT** /api/v3/vendor/contracts/{contractId}/products | Add products in bulk (CSV)
 [**put_products_vendor_v2**](ProductsApi.md#put_products_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/products | 
-[**query_offers_price_dumping_stats_vendor_v3**](ProductsApi.md#query_offers_price_dumping_stats_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/offers/pricedumpingstats | 
+[**query_offers_price_dumping_stats_manufacturer_v3**](ProductsApi.md#query_offers_price_dumping_stats_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/offers/pricedumpingstats | Query price dumping statistics
+[**query_offers_price_dumping_stats_vendor_v3**](ProductsApi.md#query_offers_price_dumping_stats_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/offers/pricedumpingstats | Query price dumping statistics
 [**query_offers_shop_manufacturer_v3**](ProductsApi.md#query_offers_shop_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/offers/shop/query | 
 [**query_offers_shop_vendor_v3**](ProductsApi.md#query_offers_shop_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/offers/shop/query | 
 [**query_offers_stats_manufacturer_v3**](ProductsApi.md#query_offers_stats_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/offers/stats/query | 
 [**query_products_by_filter_manufacturer_v3**](ProductsApi.md#query_products_by_filter_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/products/query | 
-[**query_products_by_filter_vendor_v3**](ProductsApi.md#query_products_by_filter_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/products/query | 
-[**query_products_manufacturer_v3**](ProductsApi.md#query_products_manufacturer_v3) | **POST** /api/v3.1/manufacturer/contracts/{contractId}/products/query | 
-[**query_products_vendor_v3**](ProductsApi.md#query_products_vendor_v3) | **POST** /api/v3.1/vendor/contracts/{contractId}/products/query | 
+[**query_products_by_filter_vendor_v3**](ProductsApi.md#query_products_by_filter_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/products/query | Query products of a contract
+[**query_products_manufacturer_v3**](ProductsApi.md#query_products_manufacturer_v3) | **POST** /api/v3.1/manufacturer/contracts/{contractId}/products/query | Query products for manufacturer
+[**query_products_vendor_v3**](ProductsApi.md#query_products_vendor_v3) | **POST** /api/v3.1/vendor/contracts/{contractId}/products/query | Query products of a contract
 [**shop_integration_post_request_vendor_v2**](ProductsApi.md#shop_integration_post_request_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/products/import | 
 
-
-# **api_v3_manufacturer_contracts_contract_id_offers_pricedumpingstats_post**
-> QueryPriceDumpingStatsApiResponse api_v3_manufacturer_contracts_contract_id_offers_pricedumpingstats_post(contract_id, com_patagona_pricemonitor_share_api_price_dumping_stats_request)
-
-
-
-### Example
-
-* Basic Authentication (BasicAuth):
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: BasicAuth
-configuration = pricemonitor_api_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = pricemonitor_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-com_patagona_pricemonitor_share_api_price_dumping_stats_request = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPriceDumpingStatsRequest() # ComPatagonaPricemonitorShareApiPriceDumpingStatsRequest | 
-
-    try:
-        api_response = api_instance.api_v3_manufacturer_contracts_contract_id_offers_pricedumpingstats_post(contract_id, com_patagona_pricemonitor_share_api_price_dumping_stats_request)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling ProductsApi->api_v3_manufacturer_contracts_contract_id_offers_pricedumpingstats_post: %s\n" % e)
-```
-
-* Bearer (JWT) Authentication (BearerAuth):
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: BasicAuth
-configuration = pricemonitor_api_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = pricemonitor_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-com_patagona_pricemonitor_share_api_price_dumping_stats_request = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPriceDumpingStatsRequest() # ComPatagonaPricemonitorShareApiPriceDumpingStatsRequest | 
-
-    try:
-        api_response = api_instance.api_v3_manufacturer_contracts_contract_id_offers_pricedumpingstats_post(contract_id, com_patagona_pricemonitor_share_api_price_dumping_stats_request)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling ProductsApi->api_v3_manufacturer_contracts_contract_id_offers_pricedumpingstats_post: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
- **com_patagona_pricemonitor_share_api_price_dumping_stats_request** | [**ComPatagonaPricemonitorShareApiPriceDumpingStatsRequest**](ComPatagonaPricemonitorShareApiPriceDumpingStatsRequest.md)|  | 
-
-### Return type
-
-[**QueryPriceDumpingStatsApiResponse**](QueryPriceDumpingStatsApiResponse.md)
-
-### Authorization
-
-[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Returns the price dumping statistics in the given time range. |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_products**
 > DeleteProductsApiResponse delete_products(contract_id, updated_max=updated_max, tag_key=tag_key, tag_value=tag_value)
@@ -1292,7 +1172,7 @@ Name | Type | Description  | Notes
 # **get_product_monitoring_status_vendor_v3**
 > GetProductMonitoringStatusVendorV3ApiResponse get_product_monitoring_status_vendor_v3(contract_id, product_ids)
 
-
+Get monitoring status of queried products
 
 ### Example
 
@@ -1333,6 +1213,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 product_ids = [56] # list[int] | The product ids for which the monitoring state should be returned
 
     try:
+        # Get monitoring status of queried products
         api_response = api_instance.get_product_monitoring_status_vendor_v3(contract_id, product_ids)
         pprint(api_response)
     except ApiException as e:
@@ -1376,6 +1257,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 product_ids = [56] # list[int] | The product ids for which the monitoring state should be returned
 
     try:
+        # Get monitoring status of queried products
         api_response = api_instance.get_product_monitoring_status_vendor_v3(contract_id, product_ids)
         pprint(api_response)
     except ApiException as e:
@@ -1412,7 +1294,9 @@ Name | Type | Description  | Notes
 # **get_product_price_recommendation_history**
 > GetPriceRecommendationHistoryApiResponse get_product_price_recommendation_history(contract_id, product_id, start_date=start_date, end_date=end_date)
 
+Get price recommendations for time range
 
+This endpoint returns all price recommendations for one product within a given time range
 
 ### Example
 
@@ -1455,6 +1339,7 @@ start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time
 end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
 
     try:
+        # Get price recommendations for time range
         api_response = api_instance.get_product_price_recommendation_history(contract_id, product_id, start_date=start_date, end_date=end_date)
         pprint(api_response)
     except ApiException as e:
@@ -1500,6 +1385,7 @@ start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time
 end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
 
     try:
+        # Get price recommendations for time range
         api_response = api_instance.get_product_price_recommendation_history(contract_id, product_id, start_date=start_date, end_date=end_date)
         pprint(api_response)
     except ApiException as e:
@@ -2864,9 +2750,9 @@ Name | Type | Description  | Notes
 # **post_products_import_vendor_v3**
 > BulkedPostProductsApiResponse post_products_import_vendor_v3(contract_id, content_type, patagona_tags_decimal_separator, post_products_request)
 
-Add products in bulk
+Add products in bulk (JSON)
 
-This operation is used to import products into the pricemonitor:<br> Products that are already present will be updated and new products will be added. Identification of the products is done based on the identifying attributes, which need to be provided via the request body.<br><br> Attention:<br> This endpoint should only be used when dealing with large number of products at your side is an issue. Otherwise please use the PUT-counterpart of this endpoint which accepts products via a csv file.<br><br> Note:<br> This endpoint should be used in conjunction with: DELETE  /api/v3/vendor/contracts/{contractId}/products.<br><br> Procedure:<br> 1. Add your products in bulks with multiple requests via this endpoint.<br> 2. Send a DELETE request to /api/v3/vendor/contracts/{contractId}/products    and set the parameter updatedMax to a date which is older or equal to your first request from step 1.
+This operation is used to import products into the system from JSON formatted data:<br> Products that are already present will be updated and new products will be added. Identification of the products is done based on the identifying attributes, which need to be provided via the request body.<br><br>Note:<br> This endpoint should be used in conjunction with: DELETE  /api/v3/vendor/contracts/{contractId}/products.<br><br> Procedure:<br> 1. Add your products in bulks with multiple requests via this endpoint.<br> 2. Send a DELETE request to /api/v3/vendor/contracts/{contractId}/products    and set the parameter updatedMax to a date which is older or equal to your first request from step 1.
 
 ### Example
 
@@ -2909,7 +2795,7 @@ patagona_tags_decimal_separator = '.' # str | The decimal separator is used for 
 post_products_request = pricemonitor_api_client.PostProductsRequest() # PostProductsRequest | The body contains the products which should be added
 
     try:
-        # Add products in bulk
+        # Add products in bulk (JSON)
         api_response = api_instance.post_products_import_vendor_v3(contract_id, content_type, patagona_tags_decimal_separator, post_products_request)
         pprint(api_response)
     except ApiException as e:
@@ -2955,7 +2841,7 @@ patagona_tags_decimal_separator = '.' # str | The decimal separator is used for 
 post_products_request = pricemonitor_api_client.PostProductsRequest() # PostProductsRequest | The body contains the products which should be added
 
     try:
-        # Add products in bulk
+        # Add products in bulk (JSON)
         api_response = api_instance.post_products_import_vendor_v3(contract_id, content_type, patagona_tags_decimal_separator, post_products_request)
         pprint(api_response)
     except ApiException as e:
@@ -3517,9 +3403,9 @@ Name | Type | Description  | Notes
 # **put_products_import_vendor_v3**
 > PutProductsApiResponse put_products_import_vendor_v3(contract_id, content_type, patagona_product_identifying_attributes, patagona_product_name, patagona_product_reference_price, patagona_product_min_price, patagona_product_max_price, patagona_decimal_separator, patagona_csv_column_separator, patagona_csv_quotation_character, body, patagona_product_gtin=patagona_product_gtin, patagona_product_customer_id=patagona_product_customer_id)
 
-Set products via CSV file
+Add products in bulk (CSV)
 
-This operation is used to import products into the pricemonitor. This process is represented by a task, which is processed asynchronously. In the response you will receive a url which is used to check the status of the import process. <br>  When the process is done all products in csv file from the request body will be in the pricemonitor. Products that were already present before have been updated and new products have been added. <br>  Warning: All products that were in the pricemonitor before but are not present in the new import will be deleted.  Identification of the products is done based on the identifying attributes (see parameter: patagona-product-identifying-attributes)
+This operation is used to import products into the system from CSV formatted data. This process is represented by a task, which is processed asynchronously. In the response you will receive a url which is used to check the status of the import process. <br>  When the process is done all products in csv file from the request body will be in the pricemonitor. Products that were already present before have been updated and new products have been added. <br>  Warning: All products that were in the pricemonitor before but are not present in the new import will be deleted.  Identification of the products is done based on the identifying attributes (see parameter: patagona-product-identifying-attributes)  Note: It is recommended to use the JSON variant to add products as it works synchronously and more efficient.
 
 ### Example
 
@@ -3571,7 +3457,7 @@ patagona_product_gtin = 'max-price-column' # str | Csv column that contains the 
 patagona_product_customer_id = 'id-column' # str | Csv column that contains an id (There is no requirement for this field to be unique) (optional)
 
     try:
-        # Set products via CSV file
+        # Add products in bulk (CSV)
         api_response = api_instance.put_products_import_vendor_v3(contract_id, content_type, patagona_product_identifying_attributes, patagona_product_name, patagona_product_reference_price, patagona_product_min_price, patagona_product_max_price, patagona_decimal_separator, patagona_csv_column_separator, patagona_csv_quotation_character, body, patagona_product_gtin=patagona_product_gtin, patagona_product_customer_id=patagona_product_customer_id)
         pprint(api_response)
     except ApiException as e:
@@ -3626,7 +3512,7 @@ patagona_product_gtin = 'max-price-column' # str | Csv column that contains the 
 patagona_product_customer_id = 'id-column' # str | Csv column that contains an id (There is no requirement for this field to be unique) (optional)
 
     try:
-        # Set products via CSV file
+        # Add products in bulk (CSV)
         api_response = api_instance.put_products_import_vendor_v3(contract_id, content_type, patagona_product_identifying_attributes, patagona_product_name, patagona_product_reference_price, patagona_product_min_price, patagona_product_max_price, patagona_decimal_separator, patagona_csv_column_separator, patagona_csv_quotation_character, body, patagona_product_gtin=patagona_product_gtin, patagona_product_customer_id=patagona_product_customer_id)
         pprint(api_response)
     except ApiException as e:
@@ -3791,10 +3677,12 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **query_offers_price_dumping_stats_vendor_v3**
-> QueryPriceDumpingStatsApiResponse query_offers_price_dumping_stats_vendor_v3(contract_id, com_patagona_pricemonitor_share_api_price_dumping_stats_request)
+# **query_offers_price_dumping_stats_manufacturer_v3**
+> QueryPriceDumpingStatsApiResponse query_offers_price_dumping_stats_manufacturer_v3(contract_id, com_patagona_pricemonitor_share_api_price_dumping_stats_request)
 
+Query price dumping statistics
 
+This operation is used to query price dumping statistics for a time range for a set of shops.
 
 ### Example
 
@@ -3835,6 +3723,131 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_price_dumping_stats_request = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPriceDumpingStatsRequest() # ComPatagonaPricemonitorShareApiPriceDumpingStatsRequest | 
 
     try:
+        # Query price dumping statistics
+        api_response = api_instance.query_offers_price_dumping_stats_manufacturer_v3(contract_id, com_patagona_pricemonitor_share_api_price_dumping_stats_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling ProductsApi->query_offers_price_dumping_stats_manufacturer_v3: %s\n" % e)
+```
+
+* Bearer (JWT) Authentication (BearerAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.ProductsApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+com_patagona_pricemonitor_share_api_price_dumping_stats_request = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPriceDumpingStatsRequest() # ComPatagonaPricemonitorShareApiPriceDumpingStatsRequest | 
+
+    try:
+        # Query price dumping statistics
+        api_response = api_instance.query_offers_price_dumping_stats_manufacturer_v3(contract_id, com_patagona_pricemonitor_share_api_price_dumping_stats_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling ProductsApi->query_offers_price_dumping_stats_manufacturer_v3: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **contract_id** | **str**| ID of the contract | 
+ **com_patagona_pricemonitor_share_api_price_dumping_stats_request** | [**ComPatagonaPricemonitorShareApiPriceDumpingStatsRequest**](ComPatagonaPricemonitorShareApiPriceDumpingStatsRequest.md)|  | 
+
+### Return type
+
+[**QueryPriceDumpingStatsApiResponse**](QueryPriceDumpingStatsApiResponse.md)
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Returns the price dumping statistics in the given time range. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **query_offers_price_dumping_stats_vendor_v3**
+> QueryPriceDumpingStatsApiResponse query_offers_price_dumping_stats_vendor_v3(contract_id, com_patagona_pricemonitor_share_api_price_dumping_stats_request)
+
+Query price dumping statistics
+
+This operation is used to query price dumping statistics for a time range for a set of shops.
+
+### Example
+
+* Basic Authentication (BasicAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.ProductsApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+com_patagona_pricemonitor_share_api_price_dumping_stats_request = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPriceDumpingStatsRequest() # ComPatagonaPricemonitorShareApiPriceDumpingStatsRequest | 
+
+    try:
+        # Query price dumping statistics
         api_response = api_instance.query_offers_price_dumping_stats_vendor_v3(contract_id, com_patagona_pricemonitor_share_api_price_dumping_stats_request)
         pprint(api_response)
     except ApiException as e:
@@ -3878,6 +3891,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_price_dumping_stats_request = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPriceDumpingStatsRequest() # ComPatagonaPricemonitorShareApiPriceDumpingStatsRequest | 
 
     try:
+        # Query price dumping statistics
         api_response = api_instance.query_offers_price_dumping_stats_vendor_v3(contract_id, com_patagona_pricemonitor_share_api_price_dumping_stats_request)
         pprint(api_response)
     except ApiException as e:
@@ -4401,7 +4415,9 @@ Name | Type | Description  | Notes
 # **query_products_by_filter_vendor_v3**
 > QueryProductsByFilterVendorV3ApiResponse query_products_by_filter_vendor_v3(contract_id, query_products_request_v3=query_products_request_v3)
 
+Query products of a contract
 
+This endpoint can be used for querying either all products or certain products by product ids.
 
 ### Example
 
@@ -4442,6 +4458,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 query_products_request_v3 = pricemonitor_api_client.QueryProductsRequestV3() # QueryProductsRequestV3 | The body contains the products query. (optional)
 
     try:
+        # Query products of a contract
         api_response = api_instance.query_products_by_filter_vendor_v3(contract_id, query_products_request_v3=query_products_request_v3)
         pprint(api_response)
     except ApiException as e:
@@ -4485,6 +4502,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 query_products_request_v3 = pricemonitor_api_client.QueryProductsRequestV3() # QueryProductsRequestV3 | The body contains the products query. (optional)
 
     try:
+        # Query products of a contract
         api_response = api_instance.query_products_by_filter_vendor_v3(contract_id, query_products_request_v3=query_products_request_v3)
         pprint(api_response)
     except ApiException as e:
@@ -4521,7 +4539,7 @@ Name | Type | Description  | Notes
 # **query_products_manufacturer_v3**
 > QueryProductsManufacturerV3ApiResponse query_products_manufacturer_v3(contract_id, com_patagona_pricemonitor_share_api_api_query=com_patagona_pricemonitor_share_api_api_query)
 
-
+Query products for manufacturer
 
 ### Example
 
@@ -4562,6 +4580,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_api_query = pricemonitor_api_client.ComPatagonaPricemonitorShareApiApiQuery() # ComPatagonaPricemonitorShareApiApiQuery | The body contains the products query. <br> Currently, it supports only product queries for two attributes:<br> <ul>   <li> by \"customerProductId\"</li>   <li> by \"productId\" (Patagona's internal product id). Allowed values for 'productId' are numerical integer values</li> </ul> The maximum allowed limit in the pagination is 10000. <br> For better performance, when paginating over all products of a contract, we recommend to use a limit of 10000 products per page. Pagination works with respective to the given products query. <br> This is most relevant when querying for a set of customerProductId's. <br> When the requests are chunked over a set of ids, it is easiest to provide up to 10000 customerProductId's in the query and keep the pagination at start: 0, limit: 10000. <br> The only allowed pattern is currently: <br> { <br> &nbsp;&nbsp;\"pagination\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": ${start}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"limit\": ${limit} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"filter\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"oneOf\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"field\": \"customerProductId\", <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"values\": [${customerProductIds as a list of strings}] <br> &nbsp;&nbsp;&nbsp;&nbsp;} <br> &nbsp;&nbsp;} <br> } <br> <br> example: <br> { <br> &nbsp;&nbsp;\"pagination\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": 0, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"limit\": 10 <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"filter\": { <br> &nbsp;&nbsp;\"oneOf\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"field\": \"customerProductId\", <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"values\": [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\"] <br> &nbsp;&nbsp;&nbsp;&nbsp;} <br> &nbsp;&nbsp;} <br> } <br>  (optional)
 
     try:
+        # Query products for manufacturer
         api_response = api_instance.query_products_manufacturer_v3(contract_id, com_patagona_pricemonitor_share_api_api_query=com_patagona_pricemonitor_share_api_api_query)
         pprint(api_response)
     except ApiException as e:
@@ -4605,6 +4624,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_api_query = pricemonitor_api_client.ComPatagonaPricemonitorShareApiApiQuery() # ComPatagonaPricemonitorShareApiApiQuery | The body contains the products query. <br> Currently, it supports only product queries for two attributes:<br> <ul>   <li> by \"customerProductId\"</li>   <li> by \"productId\" (Patagona's internal product id). Allowed values for 'productId' are numerical integer values</li> </ul> The maximum allowed limit in the pagination is 10000. <br> For better performance, when paginating over all products of a contract, we recommend to use a limit of 10000 products per page. Pagination works with respective to the given products query. <br> This is most relevant when querying for a set of customerProductId's. <br> When the requests are chunked over a set of ids, it is easiest to provide up to 10000 customerProductId's in the query and keep the pagination at start: 0, limit: 10000. <br> The only allowed pattern is currently: <br> { <br> &nbsp;&nbsp;\"pagination\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": ${start}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"limit\": ${limit} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"filter\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"oneOf\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"field\": \"customerProductId\", <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"values\": [${customerProductIds as a list of strings}] <br> &nbsp;&nbsp;&nbsp;&nbsp;} <br> &nbsp;&nbsp;} <br> } <br> <br> example: <br> { <br> &nbsp;&nbsp;\"pagination\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": 0, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"limit\": 10 <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"filter\": { <br> &nbsp;&nbsp;\"oneOf\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"field\": \"customerProductId\", <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"values\": [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\"] <br> &nbsp;&nbsp;&nbsp;&nbsp;} <br> &nbsp;&nbsp;} <br> } <br>  (optional)
 
     try:
+        # Query products for manufacturer
         api_response = api_instance.query_products_manufacturer_v3(contract_id, com_patagona_pricemonitor_share_api_api_query=com_patagona_pricemonitor_share_api_api_query)
         pprint(api_response)
     except ApiException as e:
@@ -4641,7 +4661,9 @@ Name | Type | Description  | Notes
 # **query_products_vendor_v3**
 > QueryProductsVendorV3ApiResponse query_products_vendor_v3(contract_id, com_patagona_pricemonitor_share_api_api_query=com_patagona_pricemonitor_share_api_api_query)
 
+Query products of a contract
 
+This endpoint can be used for querying either all products or certain products by the 'customerProductId' or 'productId'.
 
 ### Example
 
@@ -4682,6 +4704,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_api_query = pricemonitor_api_client.ComPatagonaPricemonitorShareApiApiQuery() # ComPatagonaPricemonitorShareApiApiQuery | The body contains the products query. <br> Currently, it supports only product queries for two attributes:<br> <ul>   <li> by \"customerProductId\"</li>   <li> by \"productId\" (Patagona's internal product id). Allowed values for 'productId' are numerical integer values</li> </ul> The maximum allowed limit in the pagination is 10000. <br> For better performance, when paginating over all products of a contract, we recommend to use a limit of 10000 products per page. Pagination works with respective to the given products query. <br> This is most relevant when querying for a set of customerProductId's. <br> When the requests are chunked over a set of ids, it is easiest to provide up to 10000 customerProductId's in the query and keep the pagination at start: 0, limit: 10000. <br> The only allowed pattern is currently: <br> { <br> &nbsp;&nbsp;\"pagination\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": ${start}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"limit\": ${limit} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"filter\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"oneOf\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"field\": \"customerProductId\", <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"values\": [${customerProductIds as a list of strings}] <br> &nbsp;&nbsp;&nbsp;&nbsp;} <br> &nbsp;&nbsp;} <br> } <br> <br> example: <br> { <br> &nbsp;&nbsp;\"pagination\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": 0, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"limit\": 10 <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"filter\": { <br> &nbsp;&nbsp;\"oneOf\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"field\": \"customerProductId\", <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"values\": [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\"] <br> &nbsp;&nbsp;&nbsp;&nbsp;} <br> &nbsp;&nbsp;} <br> } <br>  (optional)
 
     try:
+        # Query products of a contract
         api_response = api_instance.query_products_vendor_v3(contract_id, com_patagona_pricemonitor_share_api_api_query=com_patagona_pricemonitor_share_api_api_query)
         pprint(api_response)
     except ApiException as e:
@@ -4725,6 +4748,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_api_query = pricemonitor_api_client.ComPatagonaPricemonitorShareApiApiQuery() # ComPatagonaPricemonitorShareApiApiQuery | The body contains the products query. <br> Currently, it supports only product queries for two attributes:<br> <ul>   <li> by \"customerProductId\"</li>   <li> by \"productId\" (Patagona's internal product id). Allowed values for 'productId' are numerical integer values</li> </ul> The maximum allowed limit in the pagination is 10000. <br> For better performance, when paginating over all products of a contract, we recommend to use a limit of 10000 products per page. Pagination works with respective to the given products query. <br> This is most relevant when querying for a set of customerProductId's. <br> When the requests are chunked over a set of ids, it is easiest to provide up to 10000 customerProductId's in the query and keep the pagination at start: 0, limit: 10000. <br> The only allowed pattern is currently: <br> { <br> &nbsp;&nbsp;\"pagination\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": ${start}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"limit\": ${limit} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"filter\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"oneOf\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"field\": \"customerProductId\", <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"values\": [${customerProductIds as a list of strings}] <br> &nbsp;&nbsp;&nbsp;&nbsp;} <br> &nbsp;&nbsp;} <br> } <br> <br> example: <br> { <br> &nbsp;&nbsp;\"pagination\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": 0, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"limit\": 10 <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"filter\": { <br> &nbsp;&nbsp;\"oneOf\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"field\": \"customerProductId\", <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"values\": [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\"] <br> &nbsp;&nbsp;&nbsp;&nbsp;} <br> &nbsp;&nbsp;} <br> } <br>  (optional)
 
     try:
+        # Query products of a contract
         api_response = api_instance.query_products_vendor_v3(contract_id, com_patagona_pricemonitor_share_api_api_query=com_patagona_pricemonitor_share_api_api_query)
         pprint(api_response)
     except ApiException as e:
