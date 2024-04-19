@@ -10,7 +10,7 @@ info:
   description: >
     The Omnia 2.0 API is RESTful and provides access to the backend of Omnia 2.0
     and Pricemonitor. It is used to manage products, offers, contracts and more.
-  version: 0.0.6799
+  version: 0.0.6801
   x-logo:
     url: >-
       https://www.omniaretail.com/hubfs/Omnia%20Logo%20SVG/Omnia_Retail_Full_Colour_Logo_On_White_RGB.svg
@@ -60,50 +60,49 @@ tags:
       ### Retrieve market data via API
 
 
-      Use [this operation](../tag/offers#operation/getOffersVendorV3) to
-      retrieve the newest offers in the market for products for a given time
-      range. It supports returning paged results. We recommend to retrieve with
-      a page size of at most 1,000 products.
+      Use [this operation](#operation/getOffersVendorV3) to retrieve the newest
+      offers in the market for products for a given time range. It supports
+      returning paged results. We recommend to retrieve with a page size of at
+      most 1,000 products.
 
 
       ### Retrieve price recommendations via API
 
 
-      Use [this
-      operation](../tag/pricerecommendations#operation/getPriceRecommendation)
-      to retrieve the price recommendations for all products for a specified
-      timerange. It supports returning paged results.
+      Use [this operation](#operation/getPriceRecommendation) to retrieve the
+      price recommendations for all products for a specified timerange. It
+      supports returning paged results.
 
 
       ### Query products via API
 
 
-      Use [this operation](../tag/products#operation/queryProductsVendorV3) to
-      retrieve products via a query. It supports returning paged results. We
-      recommend to retrieve with a page size of 10,000 products.
+      Use [this operation](#operation/queryProductsVendorV3) to retrieve
+      products via a query. It supports returning paged results. We recommend to
+      retrieve with a page size of 10,000 products.
 
 
       ### Manage your product assortment
 
 
-      Use [this operation](../tag/products#operation/postProductsImportVendorV3)
-      to upload your product assortment in JSON format. We recommend that you
-      provide your product data in multiple parts via sequential requests to
-      this endpoint. After providing all data, you need to delete the old data
-      via [this operation](tag/products#operation/deleteProducts) by specifying
-      a timestamp just before your import.
+      Use [this operation](#operation/postProductsImportVendorV3) to upload your
+      product assortment in JSON format. We recommend that you provide your
+      product data in multiple parts via sequential requests to this endpoint.
+      After providing all data, you need to delete the old data via [this
+      operation](#operation/deleteProducts) by specifying a timestamp just
+      before your import.
 
 
       If you cannot use the JSON format, as a fallback, we support uploading
       your product assortment to our system in CSV format via [this
-      operation](../tag/products#operation/putProductsImportVendorV3).
+      operation](#operation/putProductsImportVendorV3).
 
 
       ### Provide offers for custom sources
 
 
-      Use [this operation](../tag/offers#operation/postOffersInABulkVendorV2) to
-      provide external offers for your products to our system.
+      Use [this operation](#operation/postOffersInABulkVendorV2) to provide
+      external offers for your products to our system.
 
 
       ## Authentication
@@ -204,6 +203,7 @@ tags:
     description: Operations to manage the vendor shop mappings.
   - name: deprecated
     x-displayName: Deprecated
+    x-audience: Internal
     description: >-
       All operations that are deprecated and should not be used anymore. Also
       not internally.
@@ -244,6 +244,7 @@ tags:
     x-displayName: Scheduler Jobs
 paths:
   /api/v3/vendor/contracts/{contractId}/settings/repricingstrategy/history:
+    x-audience: Internal
     get:
       deprecated: true
       parameters:
@@ -258,6 +259,7 @@ paths:
       summary: Get a list of metadata of all strategy versions for a contract
       operationId: getStrategyHistory
       tags:
+        - deprecated
         - strategy
       security:
         - BasicAuth: []
@@ -445,6 +447,7 @@ paths:
       summary: Get the current application version
       security: []
   /api/1/{contractId}/products/analysis/pricerecommendations:
+    x-audience: Internal
     get:
       deprecated: true
       parameters:
@@ -484,6 +487,7 @@ paths:
           description: No response was specified
       tags:
         - pricerecommendations
+        - deprecated
       operationId: getPriceRecommendations
       summary: Get price recommendations
       security:
@@ -1448,6 +1452,7 @@ paths:
         schema:
           type: string
   /api/v3/manufacturer/contracts/{contractId}/offers:
+    x-audience: Internal
     get:
       summary: Get offers for timerange
       description: Returns the newest offers for a given time range.
@@ -1605,6 +1610,7 @@ paths:
         - BearerAuth: []
     summary: Get offer statistics per product
   /api/v3.1/manufacturer/contracts/{contractId}/offers/stats/query:
+    x-audience: Internal
     post:
       operationId: queryOffersStatsManufacturerV31
       parameters:
@@ -1633,6 +1639,7 @@ paths:
             - The pagination limit exceeds 10,000.
       tags:
         - offers
+        - internal
       requestBody:
         $ref: '#/components/requestBodies/PostOfferStatisticsRequestV31Enriched'
       description: >-
@@ -1680,6 +1687,7 @@ paths:
         - BasicAuth: []
         - BearerAuth: []
   /api/v3/manufacturer/contracts/{contractId}/products:
+    x-audience: Internal
     put:
       operationId: putCSVProductsManufacturerV3
       parameters:
@@ -1783,6 +1791,7 @@ paths:
             import.
       tags:
         - products
+        - internal
       description: >-
         This operation is used to import products into the pricemonitor.
 
@@ -5602,9 +5611,9 @@ paths:
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/v3/manufacturer/contracts/{contractId}/offers/pricedumpingstats:
+    x-audience: Internal
     post:
       operationId: queryOffersPriceDumpingStatsManufacturerV3
-      x-audience: Internal
       summary: Query price dumping statistics
       description: >-
         This operation is used to query price dumping statistics for a time
@@ -5718,6 +5727,7 @@ paths:
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/v3.1/manufacturer/contracts/{contractId}/products/query:
+    x-audience: Internal
     post:
       operationId: queryProductsManufacturerV3
       summary: Query products for manufacturer
@@ -5730,6 +5740,7 @@ paths:
           description: Returns a list of found products.
       tags:
         - products
+        - internal
       requestBody:
         content:
           application/json:
@@ -6879,6 +6890,7 @@ paths:
         - BasicAuth: []
         - BearerAuth: []
   /api/2/domains:
+    x-audience: Internal
     get:
       deprecated: true
       responses:

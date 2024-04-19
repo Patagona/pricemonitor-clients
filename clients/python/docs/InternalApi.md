@@ -139,6 +139,7 @@ Method | HTTP request | Description
 [**put_callbacks**](InternalApi.md#put_callbacks) | **PUT** /api/2/m/contracts/{contractId}/settings/callbacks | Set callbacks
 [**put_callbacks_vendor_v2**](InternalApi.md#put_callbacks_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/settings/callbacks | 
 [**put_complex_offer_filters_vendor_v2**](InternalApi.md#put_complex_offer_filters_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/offerfilters/{listType}/complex | Add the complex filters for the given contract.
+[**put_csv_products_manufacturer_v3**](InternalApi.md#put_csv_products_manufacturer_v3) | **PUT** /api/v3/manufacturer/contracts/{contractId}/products | Set products via CSV file
 [**put_currency_vendor_v2**](InternalApi.md#put_currency_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/settings/currency | 
 [**put_customer_contract_settings_manufacturer_v3**](InternalApi.md#put_customer_contract_settings_manufacturer_v3) | **PUT** /api/v3/manufacturer/contracts/{contractId}/settings/customer | 
 [**put_customer_contract_settings_vendor_v3**](InternalApi.md#put_customer_contract_settings_vendor_v3) | **PUT** /api/v3/vendor/contracts/{contractId}/settings/customer | 
@@ -169,9 +170,11 @@ Method | HTTP request | Description
 [**query_offers_shop_manufacturer_v3**](InternalApi.md#query_offers_shop_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/offers/shop/query | 
 [**query_offers_shop_vendor_v3**](InternalApi.md#query_offers_shop_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/offers/shop/query | 
 [**query_offers_stats_manufacturer_v3**](InternalApi.md#query_offers_stats_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/offers/stats/query | 
+[**query_offers_stats_manufacturer_v31**](InternalApi.md#query_offers_stats_manufacturer_v31) | **POST** /api/v3.1/manufacturer/contracts/{contractId}/offers/stats/query | Query offer statistics per product
 [**query_price_recommendations_vendor_v2**](InternalApi.md#query_price_recommendations_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/result/pricerecommendations/query | 
 [**query_products_by_filter_manufacturer_v3**](InternalApi.md#query_products_by_filter_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/products/query | 
 [**query_products_by_filter_vendor_v3**](InternalApi.md#query_products_by_filter_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/products/query | Query products of a contract
+[**query_products_manufacturer_v3**](InternalApi.md#query_products_manufacturer_v3) | **POST** /api/v3.1/manufacturer/contracts/{contractId}/products/query | Query products for manufacturer
 [**raw_offers**](InternalApi.md#raw_offers) | **GET** /api/1/{contractId}/products/offers | 
 [**remove_user**](InternalApi.md#remove_user) | **DELETE** /controlpanel/api/companies/{companyId}/users/{userId} | 
 [**request_new_password**](InternalApi.md#request_new_password) | **POST** /api/account/password/reset | Request a new password
@@ -16274,6 +16277,157 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **put_csv_products_manufacturer_v3**
+> PutProductsApiResponse put_csv_products_manufacturer_v3(contract_id, content_type, patagona_product_identifying_attributes, patagona_product_name, patagona_product_reference_price, patagona_decimal_separator, patagona_csv_column_separator, patagona_csv_quotation_character, body, patagona_product_gtin=patagona_product_gtin, patagona_product_customer_id=patagona_product_customer_id)
+
+Set products via CSV file
+
+This operation is used to import products into the pricemonitor. This process is represented by a task, which is processed asynchronously. In the response you will receive a url which is used to check the status of the import process. <br>  When the process is done all products in csv file from the request body will be in the pricemonitor. Products that were already present before have been updated and new products have been added. <br>  Warning: All products that were in the pricemonitor before but are not present in the new import will be deleted.  Identification of the products is done based on the identifying attributes (see parameter: patagona-product-identifying-attributes)
+
+### Example
+
+* Basic Authentication (BasicAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.InternalApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+content_type = 'text/csv' # str | 
+patagona_product_identifying_attributes = 'id-column' # str | Comma separated list of csv columns that identify a product uniquely
+patagona_product_name = 'name-column' # str | Csv column that contains the product name
+patagona_product_reference_price = 'reference-price-column' # str | Csv column that contains the reference price
+patagona_decimal_separator = '.' # str | Decimal separator used for parsing numbers \\ The values for patagona-decimal-separator, patagona-csv-column-separator and patagona-csv-quotation-character must be different from one another. \\ Available values: \",\", \".\"
+patagona_csv_column_separator = ',' # str | The csv column separator \\ The values for patagona-decimal-separator, patagona-csv-column-separator and patagona-csv-quotation-character must be different from one another.
+patagona_csv_quotation_character = '\"' # str | The csv quotation character \\ The values for patagona-decimal-separator, patagona-csv-column-separator and patagona-csv-quotation-character must be different from one another.
+body = 'body_example' # str | CSV file containing the products. Note: The CSV file should be encoded in UTF-8.
+patagona_product_gtin = 'gtin-column' # str | Csv column that contains the gtin (optional)
+patagona_product_customer_id = 'id-column' # str | Csv column that contains an id (There is no requirement for this field to be unique) (optional)
+
+    try:
+        # Set products via CSV file
+        api_response = api_instance.put_csv_products_manufacturer_v3(contract_id, content_type, patagona_product_identifying_attributes, patagona_product_name, patagona_product_reference_price, patagona_decimal_separator, patagona_csv_column_separator, patagona_csv_quotation_character, body, patagona_product_gtin=patagona_product_gtin, patagona_product_customer_id=patagona_product_customer_id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling InternalApi->put_csv_products_manufacturer_v3: %s\n" % e)
+```
+
+* Bearer (JWT) Authentication (BearerAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.InternalApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+content_type = 'text/csv' # str | 
+patagona_product_identifying_attributes = 'id-column' # str | Comma separated list of csv columns that identify a product uniquely
+patagona_product_name = 'name-column' # str | Csv column that contains the product name
+patagona_product_reference_price = 'reference-price-column' # str | Csv column that contains the reference price
+patagona_decimal_separator = '.' # str | Decimal separator used for parsing numbers \\ The values for patagona-decimal-separator, patagona-csv-column-separator and patagona-csv-quotation-character must be different from one another. \\ Available values: \",\", \".\"
+patagona_csv_column_separator = ',' # str | The csv column separator \\ The values for patagona-decimal-separator, patagona-csv-column-separator and patagona-csv-quotation-character must be different from one another.
+patagona_csv_quotation_character = '\"' # str | The csv quotation character \\ The values for patagona-decimal-separator, patagona-csv-column-separator and patagona-csv-quotation-character must be different from one another.
+body = 'body_example' # str | CSV file containing the products. Note: The CSV file should be encoded in UTF-8.
+patagona_product_gtin = 'gtin-column' # str | Csv column that contains the gtin (optional)
+patagona_product_customer_id = 'id-column' # str | Csv column that contains an id (There is no requirement for this field to be unique) (optional)
+
+    try:
+        # Set products via CSV file
+        api_response = api_instance.put_csv_products_manufacturer_v3(contract_id, content_type, patagona_product_identifying_attributes, patagona_product_name, patagona_product_reference_price, patagona_decimal_separator, patagona_csv_column_separator, patagona_csv_quotation_character, body, patagona_product_gtin=patagona_product_gtin, patagona_product_customer_id=patagona_product_customer_id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling InternalApi->put_csv_products_manufacturer_v3: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **contract_id** | **str**| ID of the contract | 
+ **content_type** | **str**|  | 
+ **patagona_product_identifying_attributes** | **str**| Comma separated list of csv columns that identify a product uniquely | 
+ **patagona_product_name** | **str**| Csv column that contains the product name | 
+ **patagona_product_reference_price** | **str**| Csv column that contains the reference price | 
+ **patagona_decimal_separator** | **str**| Decimal separator used for parsing numbers \\ The values for patagona-decimal-separator, patagona-csv-column-separator and patagona-csv-quotation-character must be different from one another. \\ Available values: \&quot;,\&quot;, \&quot;.\&quot; | 
+ **patagona_csv_column_separator** | **str**| The csv column separator \\ The values for patagona-decimal-separator, patagona-csv-column-separator and patagona-csv-quotation-character must be different from one another. | 
+ **patagona_csv_quotation_character** | **str**| The csv quotation character \\ The values for patagona-decimal-separator, patagona-csv-column-separator and patagona-csv-quotation-character must be different from one another. | 
+ **body** | **str**| CSV file containing the products. Note: The CSV file should be encoded in UTF-8. | 
+ **patagona_product_gtin** | **str**| Csv column that contains the gtin | [optional] 
+ **patagona_product_customer_id** | **str**| Csv column that contains an id (There is no requirement for this field to be unique) | [optional] 
+
+### Return type
+
+[**PutProductsApiResponse**](PutProductsApiResponse.md)
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: text/csv
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** | The field data.url in the returned object allows to check the status of the import process. It will point to the endpoint GET /api/2/v/contracts/{contractId}/tasks/{taskId}. \\ The field data.id is the task id corresponding to the product import. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **put_currency_vendor_v2**
 > object put_currency_vendor_v2(contract_id, body=body)
 
@@ -19934,6 +20088,131 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **query_offers_stats_manufacturer_v31**
+> QueryOfferStatisticsV31ApiResponse query_offers_stats_manufacturer_v31(contract_id, com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31=com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31)
+
+Query offer statistics per product
+
+This endpoint can be used to query offer statistics (e.g. offer count, average price) grouped by product. Only the most recent market data is considered per product and domain.
+
+### Example
+
+* Basic Authentication (BasicAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.InternalApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31 = {"pagination":{"start":0,"limit":10},"range":{"start":"2023-10-17T08:00:00Z","end":"2023-10-19T08:00:00Z"},"filter":{"oneOf":{"field":"customerProductId","values":["1","2","3","4","5","6","7","8","9","10"]}}} # ComPatagonaPricemonitorShareApiPostOfferStatisticsRequestV31 | The request body may include an optional products query. If omitted, all products are queried. Currently, product queries can be performed on two attributes:   - \"customerProductId\"   - \"productId\" (Patagona's internal product id; must be a numerical integer)  Pagination is supported with a maximum limit of 10,000. For optimized performance:   - Use a limit of 10,000 products per page when querying all products of a contract.   - Prefer using \"productId\" for queries when a product query is utilized.  Pagination operates based on the provided products query. This is particularly useful when querying a set of customerProductId's. For chunked requests over a set of ids, it's straightforward to specify up to 10,000 customerProductId's in the query with pagination set at start: 0, limit: 10,000.  The allowed query pattern is structured as follows:  { <br> &nbsp;&nbsp;\"pagination\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": ${start}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"limit\": ${limit} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"range\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": ${start}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"end\": ${end} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"filter\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"oneOf\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"field\": \"customerProductId\", <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"values\": [${customerProductIds as a list of strings}] <br> &nbsp;&nbsp;&nbsp;&nbsp;} <br> &nbsp;&nbsp;} <br> } <br> <br>  (optional)
+
+    try:
+        # Query offer statistics per product
+        api_response = api_instance.query_offers_stats_manufacturer_v31(contract_id, com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31=com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling InternalApi->query_offers_stats_manufacturer_v31: %s\n" % e)
+```
+
+* Bearer (JWT) Authentication (BearerAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.InternalApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31 = {"pagination":{"start":0,"limit":10},"range":{"start":"2023-10-17T08:00:00Z","end":"2023-10-19T08:00:00Z"},"filter":{"oneOf":{"field":"customerProductId","values":["1","2","3","4","5","6","7","8","9","10"]}}} # ComPatagonaPricemonitorShareApiPostOfferStatisticsRequestV31 | The request body may include an optional products query. If omitted, all products are queried. Currently, product queries can be performed on two attributes:   - \"customerProductId\"   - \"productId\" (Patagona's internal product id; must be a numerical integer)  Pagination is supported with a maximum limit of 10,000. For optimized performance:   - Use a limit of 10,000 products per page when querying all products of a contract.   - Prefer using \"productId\" for queries when a product query is utilized.  Pagination operates based on the provided products query. This is particularly useful when querying a set of customerProductId's. For chunked requests over a set of ids, it's straightforward to specify up to 10,000 customerProductId's in the query with pagination set at start: 0, limit: 10,000.  The allowed query pattern is structured as follows:  { <br> &nbsp;&nbsp;\"pagination\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": ${start}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"limit\": ${limit} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"range\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": ${start}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"end\": ${end} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"filter\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"oneOf\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"field\": \"customerProductId\", <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"values\": [${customerProductIds as a list of strings}] <br> &nbsp;&nbsp;&nbsp;&nbsp;} <br> &nbsp;&nbsp;} <br> } <br> <br>  (optional)
+
+    try:
+        # Query offer statistics per product
+        api_response = api_instance.query_offers_stats_manufacturer_v31(contract_id, com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31=com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling InternalApi->query_offers_stats_manufacturer_v31: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **contract_id** | **str**| ID of the contract | 
+ **com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31** | [**ComPatagonaPricemonitorShareApiPostOfferStatisticsRequestV31**](ComPatagonaPricemonitorShareApiPostOfferStatisticsRequestV31.md)| The request body may include an optional products query. If omitted, all products are queried. Currently, product queries can be performed on two attributes:   - \&quot;customerProductId\&quot;   - \&quot;productId\&quot; (Patagona&#39;s internal product id; must be a numerical integer)  Pagination is supported with a maximum limit of 10,000. For optimized performance:   - Use a limit of 10,000 products per page when querying all products of a contract.   - Prefer using \&quot;productId\&quot; for queries when a product query is utilized.  Pagination operates based on the provided products query. This is particularly useful when querying a set of customerProductId&#39;s. For chunked requests over a set of ids, it&#39;s straightforward to specify up to 10,000 customerProductId&#39;s in the query with pagination set at start: 0, limit: 10,000.  The allowed query pattern is structured as follows:  { &lt;br&gt; &amp;nbsp;&amp;nbsp;\&quot;pagination\&quot;: { &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;start\&quot;: ${start}, &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;limit\&quot;: ${limit} &lt;br&gt; &amp;nbsp;&amp;nbsp;}, &lt;br&gt; &amp;nbsp;&amp;nbsp;\&quot;range\&quot;: { &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;start\&quot;: ${start}, &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;end\&quot;: ${end} &lt;br&gt; &amp;nbsp;&amp;nbsp;}, &lt;br&gt; &amp;nbsp;&amp;nbsp;\&quot;filter\&quot;: { &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;oneOf\&quot;: { &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;field\&quot;: \&quot;customerProductId\&quot;, &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;values\&quot;: [${customerProductIds as a list of strings}] &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;} &lt;br&gt; &amp;nbsp;&amp;nbsp;} &lt;br&gt; } &lt;br&gt; &lt;br&gt;  | [optional] 
+
+### Return type
+
+[**QueryOfferStatisticsV31ApiResponse**](QueryOfferStatisticsV31ApiResponse.md)
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Returns a list of offer statistics per product. When a product has no market data then no offer statistics are returned for that product.  |  -  |
+**400** | A &#x60;400&#x60; error is returned under the following conditions: - The request body JSON is unparsable. - An unsupported filter is provided. - The specified time range exceeds 48 hours. - The pagination limit exceeds 10,000.  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **query_price_recommendations_vendor_v2**
 > QueryPriceRecommendationsV2ApiResponse query_price_recommendations_vendor_v2(contract_id, price_recommendation_api_query_v2=price_recommendation_api_query_v2)
 
@@ -20281,6 +20560,128 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**QueryProductsByFilterVendorV3ApiResponse**](QueryProductsByFilterVendorV3ApiResponse.md)
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Returns a list of found products. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **query_products_manufacturer_v3**
+> QueryProductsManufacturerV3ApiResponse query_products_manufacturer_v3(contract_id, com_patagona_pricemonitor_share_api_api_query=com_patagona_pricemonitor_share_api_api_query)
+
+Query products for manufacturer
+
+### Example
+
+* Basic Authentication (BasicAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.InternalApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+com_patagona_pricemonitor_share_api_api_query = pricemonitor_api_client.ComPatagonaPricemonitorShareApiApiQuery() # ComPatagonaPricemonitorShareApiApiQuery | The body contains the products query. <br> Currently, it supports only product queries for two attributes:<br> <ul>   <li> by \"customerProductId\"</li>   <li> by \"productId\" (Patagona's internal product id). Allowed values for 'productId' are numerical integer values</li> </ul> The maximum allowed limit in the pagination is 10000. <br> For better performance, when paginating over all products of a contract, we recommend to use a limit of 10000 products per page. Pagination works with respective to the given products query. <br> This is most relevant when querying for a set of customerProductId's. <br> When the requests are chunked over a set of ids, it is easiest to provide up to 10000 customerProductId's in the query and keep the pagination at start: 0, limit: 10000. <br> The only allowed pattern is currently: <br> { <br> &nbsp;&nbsp;\"pagination\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": ${start}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"limit\": ${limit} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"filter\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"oneOf\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"field\": \"customerProductId\", <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"values\": [${customerProductIds as a list of strings}] <br> &nbsp;&nbsp;&nbsp;&nbsp;} <br> &nbsp;&nbsp;} <br> } <br> <br> example: <br> { <br> &nbsp;&nbsp;\"pagination\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": 0, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"limit\": 10 <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"filter\": { <br> &nbsp;&nbsp;\"oneOf\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"field\": \"customerProductId\", <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"values\": [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\"] <br> &nbsp;&nbsp;&nbsp;&nbsp;} <br> &nbsp;&nbsp;} <br> } <br>  (optional)
+
+    try:
+        # Query products for manufacturer
+        api_response = api_instance.query_products_manufacturer_v3(contract_id, com_patagona_pricemonitor_share_api_api_query=com_patagona_pricemonitor_share_api_api_query)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling InternalApi->query_products_manufacturer_v3: %s\n" % e)
+```
+
+* Bearer (JWT) Authentication (BearerAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.InternalApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+com_patagona_pricemonitor_share_api_api_query = pricemonitor_api_client.ComPatagonaPricemonitorShareApiApiQuery() # ComPatagonaPricemonitorShareApiApiQuery | The body contains the products query. <br> Currently, it supports only product queries for two attributes:<br> <ul>   <li> by \"customerProductId\"</li>   <li> by \"productId\" (Patagona's internal product id). Allowed values for 'productId' are numerical integer values</li> </ul> The maximum allowed limit in the pagination is 10000. <br> For better performance, when paginating over all products of a contract, we recommend to use a limit of 10000 products per page. Pagination works with respective to the given products query. <br> This is most relevant when querying for a set of customerProductId's. <br> When the requests are chunked over a set of ids, it is easiest to provide up to 10000 customerProductId's in the query and keep the pagination at start: 0, limit: 10000. <br> The only allowed pattern is currently: <br> { <br> &nbsp;&nbsp;\"pagination\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": ${start}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"limit\": ${limit} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"filter\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"oneOf\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"field\": \"customerProductId\", <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"values\": [${customerProductIds as a list of strings}] <br> &nbsp;&nbsp;&nbsp;&nbsp;} <br> &nbsp;&nbsp;} <br> } <br> <br> example: <br> { <br> &nbsp;&nbsp;\"pagination\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": 0, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"limit\": 10 <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"filter\": { <br> &nbsp;&nbsp;\"oneOf\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"field\": \"customerProductId\", <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"values\": [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\"] <br> &nbsp;&nbsp;&nbsp;&nbsp;} <br> &nbsp;&nbsp;} <br> } <br>  (optional)
+
+    try:
+        # Query products for manufacturer
+        api_response = api_instance.query_products_manufacturer_v3(contract_id, com_patagona_pricemonitor_share_api_api_query=com_patagona_pricemonitor_share_api_api_query)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling InternalApi->query_products_manufacturer_v3: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **contract_id** | **str**| ID of the contract | 
+ **com_patagona_pricemonitor_share_api_api_query** | [**ComPatagonaPricemonitorShareApiApiQuery**](ComPatagonaPricemonitorShareApiApiQuery.md)| The body contains the products query. &lt;br&gt; Currently, it supports only product queries for two attributes:&lt;br&gt; &lt;ul&gt;   &lt;li&gt; by \&quot;customerProductId\&quot;&lt;/li&gt;   &lt;li&gt; by \&quot;productId\&quot; (Patagona&#39;s internal product id). Allowed values for &#39;productId&#39; are numerical integer values&lt;/li&gt; &lt;/ul&gt; The maximum allowed limit in the pagination is 10000. &lt;br&gt; For better performance, when paginating over all products of a contract, we recommend to use a limit of 10000 products per page. Pagination works with respective to the given products query. &lt;br&gt; This is most relevant when querying for a set of customerProductId&#39;s. &lt;br&gt; When the requests are chunked over a set of ids, it is easiest to provide up to 10000 customerProductId&#39;s in the query and keep the pagination at start: 0, limit: 10000. &lt;br&gt; The only allowed pattern is currently: &lt;br&gt; { &lt;br&gt; &amp;nbsp;&amp;nbsp;\&quot;pagination\&quot;: { &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;start\&quot;: ${start}, &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;limit\&quot;: ${limit} &lt;br&gt; &amp;nbsp;&amp;nbsp;}, &lt;br&gt; &amp;nbsp;&amp;nbsp;\&quot;filter\&quot;: { &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;oneOf\&quot;: { &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;field\&quot;: \&quot;customerProductId\&quot;, &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;values\&quot;: [${customerProductIds as a list of strings}] &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;} &lt;br&gt; &amp;nbsp;&amp;nbsp;} &lt;br&gt; } &lt;br&gt; &lt;br&gt; example: &lt;br&gt; { &lt;br&gt; &amp;nbsp;&amp;nbsp;\&quot;pagination\&quot;: { &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;start\&quot;: 0, &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;limit\&quot;: 10 &lt;br&gt; &amp;nbsp;&amp;nbsp;}, &lt;br&gt; &amp;nbsp;&amp;nbsp;\&quot;filter\&quot;: { &lt;br&gt; &amp;nbsp;&amp;nbsp;\&quot;oneOf\&quot;: { &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;field\&quot;: \&quot;customerProductId\&quot;, &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;values\&quot;: [\&quot;1\&quot;, \&quot;2\&quot;, \&quot;3\&quot;, \&quot;4\&quot;, \&quot;5\&quot;, \&quot;6\&quot;, \&quot;7\&quot;, \&quot;8\&quot;, \&quot;9\&quot;, \&quot;10\&quot;] &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;} &lt;br&gt; &amp;nbsp;&amp;nbsp;} &lt;br&gt; } &lt;br&gt;  | [optional] 
+
+### Return type
+
+[**QueryProductsManufacturerV3ApiResponse**](QueryProductsManufacturerV3ApiResponse.md)
 
 ### Authorization
 
