@@ -10,7 +10,7 @@ info:
   description: >
     The Omnia 2.0 API is RESTful and provides access to the backend of Omnia 2.0
     and Pricemonitor. It is used to manage products, offers, contracts and more.
-  version: 0.0.6802
+  version: 0.0.6805
   x-logo:
     url: >-
       https://www.omniaretail.com/hubfs/Omnia%20Logo%20SVG/Omnia_Retail_Full_Colour_Logo_On_White_RGB.svg
@@ -995,7 +995,10 @@ paths:
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/2/v/contracts/{contractId}/products/csv:
+    x-audience: Internal
     put:
+      operationId: putCSVProducts
+      summary: Set products via CSV file
       parameters:
         - $ref: '#/components/parameters/contractIdParam'
       responses:
@@ -1009,6 +1012,8 @@ paths:
           description: Accepted
       tags:
         - products
+        - deprecated
+        - internal
       description: |-
         Warning: Deletes all existing products.
                 <br/>Note that this will not happen immediately. Instead, you receive the ID of a task that has been created.
@@ -1025,7 +1030,6 @@ paths:
                   purpose.
                 </ul>
                 <br/>Column separator must be semicolon, the decimal separator must be dot. File encoding must be UTF-8.
-      operationId: putCSVProducts
       requestBody:
         content:
           text/csv:
@@ -1033,14 +1037,17 @@ paths:
               type: string
         description: CSV file containing the products
         required: true
-      summary: Set products via CSV file
       security:
         - BasicAuth: []
         - BearerAuth: []
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/2/v/contracts/{contractId}/result/offers:
+    x-audience: Internal
     get:
+      operationId: getOffers
+      deprecated: true
+      summary: Get all offers for all products
       parameters:
         - $ref: '#/components/parameters/contractIdParam'
         - description: Start product index for pagination
@@ -1067,9 +1074,9 @@ paths:
                 $ref: '#/components/schemas/GetOffersResponse'
           description: No response was specified
       tags:
-        - products
-      operationId: getOffers
-      summary: Get all offers for all products
+        - offers
+        - deprecated
+        - internal
       security:
         - BasicAuth: []
         - BearerAuth: []
@@ -1077,6 +1084,12 @@ paths:
       - $ref: '#/components/parameters/contractIdParam'
   /api/2/v/contracts/{contractId}/result/pricerecommendations:
     get:
+      operationId: getPriceRecommendation
+      summary: Get all price recommendations
+      description: >-
+        Gets all price recommendations for a contract for the specified
+        timerange. Only the newest price recommendations are returned in case of
+        multiple price recommendations per product
       parameters:
         - $ref: '#/components/parameters/contractIdParam'
         - description: >-
@@ -1124,8 +1137,6 @@ paths:
             returned in case of multiple price recommendations per product.
       tags:
         - pricerecommendations
-      operationId: getPriceRecommendation
-      summary: Get all price recommendations
       security:
         - BasicAuth: []
         - BearerAuth: []
@@ -6142,7 +6153,7 @@ paths:
   /api/v3/vendor/contracts/{contractId}/products/{productId}/pricerecommendationhistory:
     get:
       operationId: getProductPriceRecommendationHistory
-      summary: Get price recommendations for time range
+      summary: Get price recommendations for one product
       responses:
         '200':
           content:
@@ -6158,9 +6169,10 @@ paths:
           description: E.g. when the time range spans more than 48h.
       tags:
         - products
+        - pricerecommendations
       description: >-
         This endpoint returns all price recommendations for one product within a
-        given time range
+        given time range.
       security:
         - BasicAuth: []
         - BearerAuth: []
@@ -7847,11 +7859,13 @@ paths:
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
     get:
+      operationId: getAmazonBuyboxProductStatsV3
+      summary: Get Amazon Buy Box statistics for time range
       parameters:
         - $ref: '#/components/parameters/startDate'
         - $ref: '#/components/parameters/endDate'
         - description: >-
-            Where to start fetching the amazon buybox statistics. Must be
+            Where to start fetching the Amazon Buy Box statistics. Must be
             positive. Default value is 0.
           in: query
           name: start
@@ -7872,15 +7886,11 @@ paths:
             type: integer
       tags:
         - products
-      operationId: getAmazonBuyboxProductStatsV3
-      summary: >-
-        Retrieve latest Amazon Buybox statistics per product and amazon domain
-        for a given time range.
       description: |
-        Provides latest Amazon Buybox statistics
-        - product is in Amazon Buybox for Prime users
-        - product is in Amazon Buybox for Non-Prime users
-        per product on Amazon domain for a given time range.
+        Provides latest Amazon Buy Box statistics, i.e., whether a
+        - product is in Amazon Buy Box for Prime users
+        - product is in Amazon Buy Box for Non-Prime users
+        per product per Amazon domain for a given time range.
       responses:
         '200':
           content:

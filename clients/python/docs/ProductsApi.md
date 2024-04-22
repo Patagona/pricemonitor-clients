@@ -6,15 +6,14 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**delete_products**](ProductsApi.md#delete_products) | **DELETE** /api/v3/vendor/contracts/{contractId}/products | Delete products
 [**delete_products_manufacturer_v3**](ProductsApi.md#delete_products_manufacturer_v3) | **DELETE** /api/v3/manufacturer/contracts/{contractId}/products | 
-[**get_amazon_buybox_product_stats_v3**](ProductsApi.md#get_amazon_buybox_product_stats_v3) | **GET** /api/v3/vendor/contracts/{contractId}/products/amazon/buybox/stats | Retrieve latest Amazon Buybox statistics per product and amazon domain for a given time range.
+[**get_amazon_buybox_product_stats_v3**](ProductsApi.md#get_amazon_buybox_product_stats_v3) | **GET** /api/v3/vendor/contracts/{contractId}/products/amazon/buybox/stats | Get Amazon Buy Box statistics for time range
 [**get_extended_tags**](ProductsApi.md#get_extended_tags) | **GET** /api/v3/vendor/contracts/{contractId}/products/{productId}/extendedtags | Return the extended tags for the given product
 [**get_extended_tags_manufacturer_v3**](ProductsApi.md#get_extended_tags_manufacturer_v3) | **GET** /api/v3/manufacturer/contracts/{contractId}/products/{productId}/extendedtags | 
 [**get_mappings_vendor_v2**](ProductsApi.md#get_mappings_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/productidentifiermapping | 
-[**get_offers**](ProductsApi.md#get_offers) | **GET** /api/2/v/contracts/{contractId}/result/offers | Get all offers for all products
 [**get_product_filters_vendor_v2**](ProductsApi.md#get_product_filters_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/offerfilters/{listType}/products/{productId} | Get all the filters of a given product for the given contract.
 [**get_product_monitoring_status_stats_vendor_v3**](ProductsApi.md#get_product_monitoring_status_stats_vendor_v3) | **GET** /api/v3/vendor/contracts/{contractId}/products/monitoringstatus/stats | 
 [**get_product_monitoring_status_vendor_v3**](ProductsApi.md#get_product_monitoring_status_vendor_v3) | **GET** /api/v3/vendor/contracts/{contractId}/products/monitoringstatus | Get monitoring status of queried products
-[**get_product_price_recommendation_history**](ProductsApi.md#get_product_price_recommendation_history) | **GET** /api/v3/vendor/contracts/{contractId}/products/{productId}/pricerecommendationhistory | Get price recommendations for time range
+[**get_product_price_recommendation_history**](ProductsApi.md#get_product_price_recommendation_history) | **GET** /api/v3/vendor/contracts/{contractId}/products/{productId}/pricerecommendationhistory | Get price recommendations for one product
 [**get_products**](ProductsApi.md#get_products) | **GET** /api/2/v/contracts/{contractId}/products | Get all products
 [**get_tag_values_manufacturer_v2**](ProductsApi.md#get_tag_values_manufacturer_v2) | **GET** /api/2/m/contracts/{contractId}/products/tags/{key} | 
 [**get_tag_values_vendor_v2**](ProductsApi.md#get_tag_values_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/products/tags/{key} | 
@@ -299,9 +298,9 @@ Name | Type | Description  | Notes
 # **get_amazon_buybox_product_stats_v3**
 > AmazonBuyboxProductStatsV3ApiResponse get_amazon_buybox_product_stats_v3(contract_id, start_date=start_date, end_date=end_date, start=start, limit=limit)
 
-Retrieve latest Amazon Buybox statistics per product and amazon domain for a given time range.
+Get Amazon Buy Box statistics for time range
 
-Provides latest Amazon Buybox statistics - product is in Amazon Buybox for Prime users - product is in Amazon Buybox for Non-Prime users per product on Amazon domain for a given time range. 
+Provides latest Amazon Buy Box statistics, i.e., whether a - product is in Amazon Buy Box for Prime users - product is in Amazon Buy Box for Non-Prime users per product per Amazon domain for a given time range. 
 
 ### Example
 
@@ -341,11 +340,11 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
 end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
-start = 0 # int | Where to start fetching the amazon buybox statistics. Must be positive. Default value is 0. (optional)
+start = 0 # int | Where to start fetching the Amazon Buy Box statistics. Must be positive. Default value is 0. (optional)
 limit = 50000 # int | Maximum number of results. Must be positive and not bigger than 50,000. Default value is 50,000. (optional)
 
     try:
-        # Retrieve latest Amazon Buybox statistics per product and amazon domain for a given time range.
+        # Get Amazon Buy Box statistics for time range
         api_response = api_instance.get_amazon_buybox_product_stats_v3(contract_id, start_date=start_date, end_date=end_date, start=start, limit=limit)
         pprint(api_response)
     except ApiException as e:
@@ -388,11 +387,11 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
 end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
-start = 0 # int | Where to start fetching the amazon buybox statistics. Must be positive. Default value is 0. (optional)
+start = 0 # int | Where to start fetching the Amazon Buy Box statistics. Must be positive. Default value is 0. (optional)
 limit = 50000 # int | Maximum number of results. Must be positive and not bigger than 50,000. Default value is 50,000. (optional)
 
     try:
-        # Retrieve latest Amazon Buybox statistics per product and amazon domain for a given time range.
+        # Get Amazon Buy Box statistics for time range
         api_response = api_instance.get_amazon_buybox_product_stats_v3(contract_id, start_date=start_date, end_date=end_date, start=start, limit=limit)
         pprint(api_response)
     except ApiException as e:
@@ -406,7 +405,7 @@ Name | Type | Description  | Notes
  **contract_id** | **str**| ID of the contract | 
  **start_date** | **datetime**| Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is &#39;NOW - 48 hours to NOW&#39;. | [optional] 
  **end_date** | **datetime**| Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is &#39;NOW - 48 hours to NOW&#39;. | [optional] 
- **start** | **int**| Where to start fetching the amazon buybox statistics. Must be positive. Default value is 0. | [optional] 
+ **start** | **int**| Where to start fetching the Amazon Buy Box statistics. Must be positive. Default value is 0. | [optional] 
  **limit** | **int**| Maximum number of results. Must be positive and not bigger than 50,000. Default value is 50,000. | [optional] 
 
 ### Return type
@@ -796,137 +795,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_offers**
-> GetOffersResponse get_offers(contract_id, start, limit, start_date=start_date, end_date=end_date)
-
-Get all offers for all products
-
-### Example
-
-* Basic Authentication (BasicAuth):
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: BasicAuth
-configuration = pricemonitor_api_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = pricemonitor_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-start = 56 # int | Start product index for pagination
-limit = 56 # int | Number of products for pagination
-start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
-end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
-
-    try:
-        # Get all offers for all products
-        api_response = api_instance.get_offers(contract_id, start, limit, start_date=start_date, end_date=end_date)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling ProductsApi->get_offers: %s\n" % e)
-```
-
-* Bearer (JWT) Authentication (BearerAuth):
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: BasicAuth
-configuration = pricemonitor_api_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = pricemonitor_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-start = 56 # int | Start product index for pagination
-limit = 56 # int | Number of products for pagination
-start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
-end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
-
-    try:
-        # Get all offers for all products
-        api_response = api_instance.get_offers(contract_id, start, limit, start_date=start_date, end_date=end_date)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling ProductsApi->get_offers: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
- **start** | **int**| Start product index for pagination | 
- **limit** | **int**| Number of products for pagination | 
- **start_date** | **datetime**| Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is &#39;NOW - 48 hours to NOW&#39;. | [optional] 
- **end_date** | **datetime**| Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is &#39;NOW - 48 hours to NOW&#39;. | [optional] 
-
-### Return type
-
-[**GetOffersResponse**](GetOffersResponse.md)
-
-### Authorization
-
-[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | No response was specified |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **get_product_filters_vendor_v2**
 > OfferFilterApiResponse get_product_filters_vendor_v2(contract_id, list_type, product_id)
 
@@ -1294,9 +1162,9 @@ Name | Type | Description  | Notes
 # **get_product_price_recommendation_history**
 > GetPriceRecommendationHistoryApiResponse get_product_price_recommendation_history(contract_id, product_id, start_date=start_date, end_date=end_date)
 
-Get price recommendations for time range
+Get price recommendations for one product
 
-This endpoint returns all price recommendations for one product within a given time range
+This endpoint returns all price recommendations for one product within a given time range.
 
 ### Example
 
@@ -1339,7 +1207,7 @@ start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time
 end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
 
     try:
-        # Get price recommendations for time range
+        # Get price recommendations for one product
         api_response = api_instance.get_product_price_recommendation_history(contract_id, product_id, start_date=start_date, end_date=end_date)
         pprint(api_response)
     except ApiException as e:
@@ -1385,7 +1253,7 @@ start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time
 end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
 
     try:
-        # Get price recommendations for time range
+        # Get price recommendations for one product
         api_response = api_instance.get_product_price_recommendation_history(contract_id, product_id, start_date=start_date, end_date=end_date)
         pprint(api_response)
     except ApiException as e:
