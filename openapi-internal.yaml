@@ -10,7 +10,7 @@ info:
   description: >
     The Omnia 2.0 API is RESTful and provides access to the backend of Omnia 2.0
     and Pricemonitor. It is used to manage products, offers, contracts and more.
-  version: 0.0.6807
+  version: 0.0.6808
   x-logo:
     url: >-
       https://www.omniaretail.com/hubfs/Omnia%20Logo%20SVG/Omnia_Retail_Full_Colour_Logo_On_White_RGB.svg
@@ -2820,6 +2820,40 @@ paths:
         required: true
         schema:
           type: string
+  /api/v3/vendor/contracts/{contractId}/products/{productId}/properties:
+    x-audience: Internal
+    parameters:
+      - $ref: '#/components/parameters/contractIdParam'
+      - description: ID of the product (Omnia's internal product id)
+        in: path
+        name: productId
+        required: true
+        example: 12345678
+        schema:
+          type: integer
+          format: int64
+    get:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetProductPropertiesV3ApiResponse'
+          description: A list of product properties
+      tags:
+        - products
+        - internal
+      operationId: getProductPropertiesV3
+      description: >-
+        This endpoint returns a list product properties for a certain product
+        and contract.
+
+        Product properties represent additional information for a product,
+        independent of the imported products and tags.
+      summary: Get all product properties for a product
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/v3/vendor/contracts/{contractId}/plugin:
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
@@ -10794,6 +10828,46 @@ components:
         data:
           items:
             $ref: '#/components/schemas/ExtendedTag'
+          type: array
+    com.patagona.pricemonitor.share.api.OmniaProductProperty:
+      description: >-
+        Omnia Product Properties represent additional information for a product.
+        They can contain evaluated values like numbers and dates. The
+        `stringValue` is used for deriving the evaluated values.
+      properties:
+        key:
+          type: string
+          description: >-
+            The name of the property. It can't be empty. At maximum 100
+            characters are allowed.
+        stringValue:
+          type: string
+          description: >-
+            The text value of the property. At maximum 10,000 characters are
+            allowed.
+        decimalValue:
+          type: number
+          description: The numeric value of the property.
+        dateValue:
+          type: string
+          format: date-time
+          description: The timestamp of the property.
+      additionalProperties: false
+      type: object
+      required:
+        - key
+        - stringValue
+    GetProductPropertiesV3ApiResponse:
+      required:
+        - data
+      type: object
+      additionalProperties: false
+      description: ''
+      properties:
+        data:
+          items:
+            $ref: >-
+              #/components/schemas/com.patagona.pricemonitor.share.api.OmniaProductProperty
           type: array
     com.patagona.pricemonitor.share.api.ContractType:
       type: string

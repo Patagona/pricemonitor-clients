@@ -89,6 +89,7 @@ Method | HTTP request | Description
 [**get_product_monitoring_status_stats_vendor_v3**](InternalApi.md#get_product_monitoring_status_stats_vendor_v3) | **GET** /api/v3/vendor/contracts/{contractId}/products/monitoringstatus/stats | 
 [**get_product_price_violations_manufacturer_v2**](InternalApi.md#get_product_price_violations_manufacturer_v2) | **GET** /api/2/m/contracts/{contractId}/result/priceviolations | 
 [**get_product_price_violations_vendor_v2**](InternalApi.md#get_product_price_violations_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/result/priceviolations | 
+[**get_product_properties_v3**](InternalApi.md#get_product_properties_v3) | **GET** /api/v3/vendor/contracts/{contractId}/products/{productId}/properties | Get all product properties for a product
 [**get_repricing_strategy_vendor_v2**](InternalApi.md#get_repricing_strategy_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/settings/repricingstrategy | 
 [**get_scenario_by_id**](InternalApi.md#get_scenario_by_id) | **GET** /api/v3/vendor/contracts/{contractId}/settings/pricingstrategies/scenarios/{scenarioId} | Get a strategy scenario with the provided scenario Id
 [**get_settings**](InternalApi.md#get_settings) | **GET** /api/1/{contractId}/settings | 
@@ -10406,6 +10407,130 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | This is a generated entry and needs to be described. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_product_properties_v3**
+> GetProductPropertiesV3ApiResponse get_product_properties_v3(contract_id, product_id)
+
+Get all product properties for a product
+
+This endpoint returns a list product properties for a certain product and contract. Product properties represent additional information for a product, independent of the imported products and tags.
+
+### Example
+
+* Basic Authentication (BasicAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.InternalApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+product_id = 12345678 # int | ID of the product (Omnia's internal product id)
+
+    try:
+        # Get all product properties for a product
+        api_response = api_instance.get_product_properties_v3(contract_id, product_id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling InternalApi->get_product_properties_v3: %s\n" % e)
+```
+
+* Bearer (JWT) Authentication (BearerAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.InternalApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+product_id = 12345678 # int | ID of the product (Omnia's internal product id)
+
+    try:
+        # Get all product properties for a product
+        api_response = api_instance.get_product_properties_v3(contract_id, product_id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling InternalApi->get_product_properties_v3: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **contract_id** | **str**| ID of the contract | 
+ **product_id** | **int**| ID of the product (Omnia&#39;s internal product id) | 
+
+### Return type
+
+[**GetProductPropertiesV3ApiResponse**](GetProductPropertiesV3ApiResponse.md)
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | A list of product properties |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

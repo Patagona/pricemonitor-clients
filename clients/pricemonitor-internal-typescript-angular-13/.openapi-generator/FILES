@@ -88,6 +88,7 @@ model/pricemonitorMonitoringScheduleV3.ts
 model/pricemonitorOfferAttribute.ts
 model/pricemonitorOfferSelector.ts
 model/pricemonitorOfferStatsPerDomain.ts
+model/pricemonitorOmniaProductProperty.ts
 model/pricemonitorOneOfProductsQuery.ts
 model/pricemonitorPagination.ts
 model/pricemonitorPaginationResponse.ts
@@ -188,6 +189,7 @@ model/getPriceRecommendationsResponsePriceRecommendationsInner.ts
 model/getPricingStrategyHistoryApiResponse.ts
 model/getProductMonitoringStatusStatsVendorV3ApiResponse.ts
 model/getProductMonitoringStatusVendorV3ApiResponse.ts
+model/getProductPropertiesV3ApiResponse.ts
 model/getShopsByDomainResponseV3ApiResponse.ts
 model/getVendorShopMappingsApiResponse.ts
 model/job.ts
