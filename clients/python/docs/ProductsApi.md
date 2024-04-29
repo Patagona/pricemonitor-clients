@@ -30,6 +30,7 @@ Method | HTTP request | Description
 [**put_csv_products**](ProductsApi.md#put_csv_products) | **PUT** /api/2/v/contracts/{contractId}/products/csv | Set products via CSV file
 [**put_csv_products_manufacturer_v3**](ProductsApi.md#put_csv_products_manufacturer_v3) | **PUT** /api/v3/manufacturer/contracts/{contractId}/products | Set products via CSV file
 [**put_product_filters_vendor_v2**](ProductsApi.md#put_product_filters_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/offerfilters/{listType}/products/{productId} | Store the filters of a given product for the given contract.
+[**put_product_properties_v3**](ProductsApi.md#put_product_properties_v3) | **PUT** /api/v3/vendor/contracts/{contractId}/products/{productId}/properties | Manage product properties for a product
 [**put_products_csv_manufacturer_v2**](ProductsApi.md#put_products_csv_manufacturer_v2) | **PUT** /api/2/m/contracts/{contractId}/products/csv | 
 [**put_products_import_vendor_v3**](ProductsApi.md#put_products_import_vendor_v3) | **PUT** /api/v3/vendor/contracts/{contractId}/products | Add products in bulk (CSV)
 [**put_products_vendor_v2**](ProductsApi.md#put_products_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/products | 
@@ -3270,6 +3271,134 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | List of the filters that have been sent as the request body. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_product_properties_v3**
+> EmptyApiResponse put_product_properties_v3(contract_id, product_id, com_patagona_pricemonitor_share_api_put_product_properties_request_v3)
+
+Manage product properties for a product
+
+This endpoint allows creating, updating, or deleting product properties for a certain product and contract. For deleting product properties, it's sufficient to provide an empty list of product properties. When providing dates, please use the ISO 8601 format. When providing numbers, please set the corresponding decimal separator in the request body.  Product properties represent additional information for a product, independent of imported products and tags. 
+
+### Example
+
+* Basic Authentication (BasicAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.ProductsApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+product_id = 12345678 # int | ID of the product (Omnia's internal product id)
+com_patagona_pricemonitor_share_api_put_product_properties_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPutProductPropertiesRequestV3() # ComPatagonaPricemonitorShareApiPutProductPropertiesRequestV3 | 
+
+    try:
+        # Manage product properties for a product
+        api_response = api_instance.put_product_properties_v3(contract_id, product_id, com_patagona_pricemonitor_share_api_put_product_properties_request_v3)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling ProductsApi->put_product_properties_v3: %s\n" % e)
+```
+
+* Bearer (JWT) Authentication (BearerAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.ProductsApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+product_id = 12345678 # int | ID of the product (Omnia's internal product id)
+com_patagona_pricemonitor_share_api_put_product_properties_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPutProductPropertiesRequestV3() # ComPatagonaPricemonitorShareApiPutProductPropertiesRequestV3 | 
+
+    try:
+        # Manage product properties for a product
+        api_response = api_instance.put_product_properties_v3(contract_id, product_id, com_patagona_pricemonitor_share_api_put_product_properties_request_v3)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling ProductsApi->put_product_properties_v3: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **contract_id** | **str**| ID of the contract | 
+ **product_id** | **int**| ID of the product (Omnia&#39;s internal product id) | 
+ **com_patagona_pricemonitor_share_api_put_product_properties_request_v3** | [**ComPatagonaPricemonitorShareApiPutProductPropertiesRequestV3**](ComPatagonaPricemonitorShareApiPutProductPropertiesRequestV3.md)|  | 
+
+### Return type
+
+[**EmptyApiResponse**](EmptyApiResponse.md)
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The product properties have been stored successfully for the product. |  -  |
+**400** | Returned if the request body is invalid: - The request body is not a valid JSON string. - The provided product properties contain duplicated keys. - The provided product properties contain an empty key. - The provided product properties contain a key which is too long. - The provided product properties contain a value which is too long. - The request body contains an unsupported decimal separator.  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

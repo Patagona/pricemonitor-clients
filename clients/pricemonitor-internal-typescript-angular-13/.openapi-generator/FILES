@@ -53,6 +53,7 @@ model/pricemonitorApiOfferAttributeV2.ts
 model/pricemonitorApiOfferV2.ts
 model/pricemonitorApiPriceRecommendation.ts
 model/pricemonitorApiProduct.ts
+model/pricemonitorApiProductProperty.ts
 model/pricemonitorApiProductV3.ts
 model/pricemonitorApiQuery.ts
 model/pricemonitorApplicationVersion.ts
@@ -128,6 +129,7 @@ model/pricemonitorProductPriceDumpingStats.ts
 model/pricemonitorPutAdminContractSettingsBody.ts
 model/pricemonitorPutCustomerOrdersRequestV3.ts
 model/pricemonitorPutItemsResponseV3.ts
+model/pricemonitorPutProductPropertiesRequestV3.ts
 model/pricemonitorPutResetPasswordRequest.ts
 model/pricemonitorQuery.ts
 model/pricemonitorQueryIn.ts
