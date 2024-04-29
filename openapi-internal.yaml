@@ -10,7 +10,7 @@ info:
   description: >
     The Omnia 2.0 API is RESTful and provides access to the backend of Omnia 2.0
     and Pricemonitor. It is used to manage products, offers, contracts and more.
-  version: 0.0.6811
+  version: 0.0.6812
   x-logo:
     url: >-
       https://www.omniaretail.com/hubfs/Omnia%20Logo%20SVG/Omnia_Retail_Full_Colour_Logo_On_White_RGB.svg
@@ -2904,6 +2904,33 @@ paths:
         Product properties represent additional information for a product,
         independent of imported products and tags.
       summary: Manage product properties for a product
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
+  /api/v3/vendor/contracts/{contractId}/products/properties/keys:
+    x-audience: Internal
+    parameters:
+      - $ref: '#/components/parameters/contractIdParam'
+    get:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    items:
+                      type: string
+                    type: array
+          description: A list of distinct keys of all product properties.
+      tags:
+        - products
+        - internal
+      operationId: getProductPropertyKeysV3
+      description: >-
+        This endpoint returns a list of distinct product property keys for all
+        imported products of a contract.
+      summary: Get all product properties keys
       security:
         - BasicAuth: []
         - BearerAuth: []
