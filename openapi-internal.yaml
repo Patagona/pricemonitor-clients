@@ -10,7 +10,7 @@ info:
   description: >
     The Omnia 2.0 API is RESTful and provides access to the backend of Omnia 2.0
     and Pricemonitor. It is used to manage products, offers, contracts and more.
-  version: 0.0.6813
+  version: 0.0.6816
   x-logo:
     url: >-
       https://www.omniaretail.com/hubfs/Omnia%20Logo%20SVG/Omnia_Retail_Full_Colour_Logo_On_White_RGB.svg
@@ -8032,11 +8032,17 @@ paths:
     parameters:
       - $ref: '#/components/parameters/ContractId'
     get:
+      operationId: getContractJobs
       tags:
         - Jobs
       parameters:
-        - $ref: '#/components/parameters/JobType'
-      operationId: getContractJobs
+        - name: jobType
+          description: Filter by job type
+          in: query
+          required: false
+          example: ShopIntegrationUpdateProductsJob
+          schema:
+            $ref: '#/components/schemas/JobType'
       summary: Get all jobs of a contract
       responses:
         '200':
@@ -8049,9 +8055,9 @@ paths:
         - bearerAuth: []
         - basicAuth: []
     post:
+      operationId: createJob
       tags:
         - Jobs
-      operationId: createJob
       summary: Create new job
       description: >
         The `_id` **must** not be sent when creating a job. It is ignored
@@ -8317,14 +8323,6 @@ components:
       in: path
       required: true
       example: qbcxvb
-      schema:
-        type: string
-    JobType:
-      name: jobType
-      description: Filter by job types
-      in: query
-      required: false
-      example: ShopIntegrationUpdateProductsJob
       schema:
         type: string
     JobId:
@@ -12441,6 +12439,18 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SchedulerApiError'
+    JobType:
+      type: string
+      description: |
+        The job types are fixed and defined in the scheduler code.
+      enum:
+        - ShopIntegrationUpdateProductsJob
+        - ShopIntegrationStartShopSyncJob
+        - MonitoringJob
+        - PreprocessingJob
+        - ReportJob
+        - ProductImportJob
+        - PricewatchJob
     JobsApiResponse:
       type: object
       required:
@@ -12490,17 +12500,7 @@ components:
         - timezone
       properties:
         type:
-          type: string
-          description: |
-            The types are fixed and defined in the scheduler code.
-          enum:
-            - ShopIntegrationUpdateProductsJob
-            - ShopIntegrationStartShopSyncJob
-            - MonitoringJob
-            - PreprocessingJob
-            - ReportJob
-            - ProductImportJob
-            - PricewatchJob
+          $ref: '#/components/schemas/JobType'
         _id:
           type: string
           description: |
@@ -12521,12 +12521,24 @@ components:
           type: string
           minLength: 1
           description: >
-            See [CRON
-            spec](https://www.alonsodomin.me/cron4s/userguide/index.html)
-
-
             Only valid CRON expressions are allowed. Extra expressions from
             Dkron, e.g. "@every 5s", are not allowed.
+
+            Cron expressions that go from seconds to day of week in the
+            following order:
+
+            - Seconds (Allowed value: 0-59)
+
+            - Minutes (Allowed value: 0-59)
+
+            - Hour Of Day (Allowed value: 0-23)
+
+            - Day Of Month (Allowed value: 1-31)
+
+            - Month (Allowed value: 1-12)
+
+            - Day Of Week (Allowed value: 0-7). Please note that 0 represents
+            Sunday and 7 represents Saturday. 
           example: '* * * * 10 ?'
     ShopIntegrationStartShopSyncJob:
       allOf:

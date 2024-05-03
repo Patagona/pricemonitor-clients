@@ -197,6 +197,7 @@ model/getVendorShopMappingsApiResponse.ts
 model/job.ts
 model/jobApiResponse.ts
 model/jobApiResponseData.ts
+model/jobType.ts
 model/jobsApiResponse.ts
 model/logMessage.ts
 model/logMessages.ts

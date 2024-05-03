@@ -300,7 +300,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.JobsApi(api_client)
     contract_id = 'qbcxvb' # str | Each job must have a `contractId`
-job_type = 'ShopIntegrationUpdateProductsJob' # str | Filter by job types (optional)
+job_type = pricemonitor_api_client.JobType() # JobType | Filter by job type (optional)
 
     try:
         # Get all jobs of a contract
@@ -344,7 +344,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.JobsApi(api_client)
     contract_id = 'qbcxvb' # str | Each job must have a `contractId`
-job_type = 'ShopIntegrationUpdateProductsJob' # str | Filter by job types (optional)
+job_type = pricemonitor_api_client.JobType() # JobType | Filter by job type (optional)
 
     try:
         # Get all jobs of a contract
@@ -359,7 +359,7 @@ job_type = 'ShopIntegrationUpdateProductsJob' # str | Filter by job types (optio
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **contract_id** | **str**| Each job must have a &#x60;contractId&#x60; | 
- **job_type** | **str**| Filter by job types | [optional] 
+ **job_type** | [**JobType**](.md)| Filter by job type | [optional] 
 
 ### Return type
 

@@ -161,6 +161,7 @@ export * from './getShopsByDomainResponseV3ApiResponse';
 export * from './getVendorShopMappingsApiResponse';
 export * from './job';
 export * from './jobApiResponse';
+export * from './jobType';
 export * from './jobsApiResponse';
 export * from './logMessage';
 export * from './logMessages';
