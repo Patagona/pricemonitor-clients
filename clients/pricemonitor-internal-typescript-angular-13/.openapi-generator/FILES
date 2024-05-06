@@ -174,7 +174,6 @@ model/getAllDomainsV3ApiResponse.ts
 model/getAuthorizationStatusResponseV3ApiResponse.ts
 model/getCompanyContractsApiResponse.ts
 model/getCustomerContractSettingsApiResponse.ts
-model/getDomainsVendorV2200Response.ts
 model/getExtendedTagsApiResponse.ts
 model/getManufacturerV3ApiResponse.ts
 model/getMonitoringSchedulesApiResponse.ts
@@ -270,6 +269,7 @@ model/schedulerSchedulerApiErrorResponse.ts
 model/shopIntegrationStartShopSyncJob.ts
 model/shopIntegrationUpdateProductsJob.ts
 model/shopRank.ts
+model/stringArrayResponse.ts
 model/tag.ts
 model/tagInput.ts
 model/task.ts

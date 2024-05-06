@@ -10,7 +10,7 @@ info:
   description: >
     The Omnia 2.0 API is RESTful and provides access to the backend of Omnia 2.0
     and Pricemonitor. It is used to manage products, offers, contracts and more.
-  version: 0.0.6816
+  version: 0.0.6817
   x-logo:
     url: >-
       https://www.omniaretail.com/hubfs/Omnia%20Logo%20SVG/Omnia_Retail_Full_Colour_Logo_On_White_RGB.svg
@@ -1172,11 +1172,7 @@ paths:
           content:
             application/json:
               schema:
-                properties:
-                  data:
-                    items:
-                      type: string
-                    type: array
+                $ref: '#/components/schemas/StringArrayResponse'
           description: A list of configured domains is returned.
       tags:
         - internal
@@ -2917,11 +2913,7 @@ paths:
           content:
             application/json:
               schema:
-                properties:
-                  data:
-                    items:
-                      type: string
-                    type: array
+                $ref: '#/components/schemas/StringArrayResponse'
           description: A list of distinct keys of all product properties.
       tags:
         - products
@@ -9434,6 +9426,13 @@ components:
       required:
         - email
         - name
+    StringArrayResponse:
+      description: generic array of strings response
+      properties:
+        data:
+          type: array
+          items:
+            type: string
     com.patagona.pricemonitor.share.api.StrategyMetadataResponseV3:
       description: Metadata used for strategy versioning.
       properties:

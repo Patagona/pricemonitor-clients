@@ -1831,7 +1831,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_domains_vendor_v2**
-> object get_domains_vendor_v2(contract_id)
+> StringArrayResponse get_domains_vendor_v2(contract_id)
 
 
 
@@ -1929,7 +1929,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**StringArrayResponse**](StringArrayResponse.md)
 
 ### Authorization
 

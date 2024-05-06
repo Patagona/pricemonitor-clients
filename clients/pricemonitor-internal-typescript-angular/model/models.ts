@@ -231,6 +231,7 @@ export * from './schedulerSchedulerApiErrorResponse';
 export * from './shopIntegrationStartShopSyncJob';
 export * from './shopIntegrationUpdateProductsJob';
 export * from './shopRank';
+export * from './stringArrayResponse';
 export * from './tag';
 export * from './tagInput';
 export * from './task';
