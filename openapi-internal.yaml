@@ -10,7 +10,7 @@ info:
   description: >
     The Omnia 2.0 API is RESTful and provides access to the backend of Omnia 2.0
     and Pricemonitor. It is used to manage products, offers, contracts and more.
-  version: 0.0.6821
+  version: 0.0.6822
   x-logo:
     url: >-
       https://www.omniaretail.com/hubfs/Omnia%20Logo%20SVG/Omnia_Retail_Full_Colour_Logo_On_White_RGB.svg
@@ -2872,7 +2872,6 @@ paths:
             - The provided product properties contain an empty key.
             - The provided product properties contain a key which is too long.
             - The provided product properties contain a value which is too long.
-            - The request body contains an unsupported decimal separator.
       tags:
         - products
         - internal
@@ -2893,8 +2892,7 @@ paths:
 
         When providing dates, please use the ISO 8601 format.
 
-        When providing numbers, please set the corresponding decimal separator
-        in the request body.
+        When providing numbers, please use dot as decimal separator.
 
 
         Product properties represent additional information for a product,
@@ -10953,8 +10951,8 @@ components:
         server-side: - **Date Properties**: Submit dates in the `stringValue`
         field using the ISO 8601 format (e.g., `YYYY-MM-DDTHH:MM:SSZ`). This
         ensures that the server correctly interprets the date and time. -
-        **Numeric Properties**: Submit numbers in the `stringValue` field, using
-        the appropriate decimal separator as specified.
+        **Numeric Properties**: Submit numbers in the `stringValue` field by
+        using dot as decimal separator.
       properties:
         key:
           type: string
@@ -10985,16 +10983,10 @@ components:
           description: >-
             A list of product properties. Multiple properties with the same key
             are not allowed.
-        decimalSeparator:
-          type: string
-          description: >-
-            A character used as a decimal point in numerical values, must be
-            either comma (",") or period (".").
       additionalProperties: false
       type: object
       required:
         - properties
-        - decimalSeparator
     com.patagona.pricemonitor.share.api.ContractType:
       type: string
       enum:

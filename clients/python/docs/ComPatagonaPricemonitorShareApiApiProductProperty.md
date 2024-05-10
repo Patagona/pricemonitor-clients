@@ -1,6 +1,6 @@
 # ComPatagonaPricemonitorShareApiApiProductProperty
 
-Product properties represent additional information for a product. The `stringValue` is used for deriving further evaluated values at server-side: - **Date Properties**: Submit dates in the `stringValue` field using the ISO 8601 format (e.g., `YYYY-MM-DDTHH:MM:SSZ`). This ensures that the server correctly interprets the date and time. - **Numeric Properties**: Submit numbers in the `stringValue` field, using the appropriate decimal separator as specified.
+Product properties represent additional information for a product. The `stringValue` is used for deriving further evaluated values at server-side: - **Date Properties**: Submit dates in the `stringValue` field using the ISO 8601 format (e.g., `YYYY-MM-DDTHH:MM:SSZ`). This ensures that the server correctly interprets the date and time. - **Numeric Properties**: Submit numbers in the `stringValue` field by using dot as decimal separator.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

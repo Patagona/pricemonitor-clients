@@ -3401,7 +3401,7 @@ Name | Type | Description  | Notes
 
 Manage product properties for a product
 
-This endpoint allows creating, updating, or deleting product properties for a certain product and contract. For deleting product properties, it's sufficient to provide an empty list of product properties. When providing dates, please use the ISO 8601 format. When providing numbers, please set the corresponding decimal separator in the request body.  Product properties represent additional information for a product, independent of imported products and tags. 
+This endpoint allows creating, updating, or deleting product properties for a certain product and contract. For deleting product properties, it's sufficient to provide an empty list of product properties. When providing dates, please use the ISO 8601 format. When providing numbers, please use dot as decimal separator.  Product properties represent additional information for a product, independent of imported products and tags. 
 
 ### Example
 
@@ -3520,7 +3520,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The product properties have been stored successfully for the product. |  -  |
-**400** | Returned if the request body is invalid: - The request body is not a valid JSON string. - The provided product properties contain duplicated keys. - The provided product properties contain an empty key. - The provided product properties contain a key which is too long. - The provided product properties contain a value which is too long. - The request body contains an unsupported decimal separator.  |  -  |
+**400** | Returned if the request body is invalid: - The request body is not a valid JSON string. - The provided product properties contain duplicated keys. - The provided product properties contain an empty key. - The provided product properties contain a key which is too long. - The provided product properties contain a value which is too long.  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

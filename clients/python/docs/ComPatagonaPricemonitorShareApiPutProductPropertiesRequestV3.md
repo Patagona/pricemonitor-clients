@@ -5,7 +5,6 @@ Represents a PUT request for inserting, updating or deleting product properties.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **properties** | [**list[ComPatagonaPricemonitorShareApiApiProductProperty]**](ComPatagonaPricemonitorShareApiApiProductProperty.md) | A list of product properties. Multiple properties with the same key are not allowed. | 
-**decimal_separator** | **str** | A character used as a decimal point in numerical values, must be either comma (\&quot;,\&quot;) or period (\&quot;.\&quot;). | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
