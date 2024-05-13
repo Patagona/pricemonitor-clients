@@ -10,7 +10,7 @@ info:
   description: >
     The Omnia 2.0 API is RESTful and provides access to the backend of Omnia 2.0
     and Pricemonitor. It is used to manage products, offers, contracts and more.
-  version: 0.0.6822
+  version: 0.0.6823
   x-logo:
     url: >-
       https://www.omniaretail.com/hubfs/Omnia%20Logo%20SVG/Omnia_Retail_Full_Colour_Logo_On_White_RGB.svg
@@ -2836,6 +2836,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/GetProductPropertiesV3ApiResponse'
           description: A list of product properties
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: Returned if the product does not exist.
       tags:
         - products
         - internal
@@ -2872,6 +2878,12 @@ paths:
             - The provided product properties contain an empty key.
             - The provided product properties contain a key which is too long.
             - The provided product properties contain a value which is too long.
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: Returned if the product does not exist.
       tags:
         - products
         - internal

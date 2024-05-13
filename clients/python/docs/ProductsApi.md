@@ -1414,6 +1414,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A list of product properties |  -  |
+**404** | Returned if the product does not exist. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -3521,6 +3522,7 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | The product properties have been stored successfully for the product. |  -  |
 **400** | Returned if the request body is invalid: - The request body is not a valid JSON string. - The provided product properties contain duplicated keys. - The provided product properties contain an empty key. - The provided product properties contain a key which is too long. - The provided product properties contain a value which is too long.  |  -  |
+**404** | Returned if the product does not exist. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
