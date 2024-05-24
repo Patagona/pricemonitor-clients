@@ -10,7 +10,7 @@ info:
   description: >
     The Omnia 2.0 API is RESTful and provides access to the backend of Omnia 2.0
     and Pricemonitor. It is used to manage products, offers, contracts and more.
-  version: 0.0.6835
+  version: 0.0.6836
   x-logo:
     url: >-
       https://www.omniaretail.com/hubfs/Omnia%20Logo%20SVG/Omnia_Retail_Full_Colour_Logo_On_White_RGB.svg
@@ -12560,8 +12560,8 @@ components:
 
             - Month (Allowed value: 1-12)
 
-            - Day Of Week (Allowed value: 0-7). Please note that 0 represents
-            Sunday and 7 represents Saturday. 
+            - Day Of Week (Allowed value: 0-7). Please note that 0 and 7
+            represent Sunday and 6 represents Saturday. 
           example: '* * * * 10 ?'
     ShopIntegrationStartShopSyncJob:
       allOf:
