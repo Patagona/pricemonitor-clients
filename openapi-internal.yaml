@@ -10,7 +10,7 @@ info:
   description: >
     The Omnia 2.0 API is RESTful and provides access to the backend of Omnia 2.0
     and Pricemonitor. It is used to manage products, offers, contracts and more.
-  version: 0.0.6832
+  version: 0.0.6835
   x-logo:
     url: >-
       https://www.omniaretail.com/hubfs/Omnia%20Logo%20SVG/Omnia_Retail_Full_Colour_Logo_On_White_RGB.svg
@@ -12208,8 +12208,18 @@ components:
         schedule:
           type: string
           description: >-
-            Only valid CRON expressions are allowed. See Cron spec
-            [[https://www.alonsodomin.me/cron4s/userguide/index.html]].
+            Only valid CRON expressions are allowed. Expressions such as "@every
+            5s" are not allowed. Cron expressions that go from seconds to day of
+            week in the following order:<br/> <ul> <li>Seconds (Allowed value:
+            0-59 and Allowed Special Characters: * , - /).</li> <li>Minutes
+            (Allowed value: 0-59 and Allowed Special Characters: * , - /).</li>
+            <li>Hour Of Day (Allowed value: 0-23 and Allowed Special Characters:
+            * , - /).</li> <li>Day Of Month (Allowed value: 1-31 and Allowed
+            Special Characters: * ? , - /).</li> <li>Month (Allowed value: 1-12
+            and Allowed Special Characters: * , -).</li> <li>Day Of Week
+            (Allowed value: 0-7 and Allowed Special Characters: * ? , - /
+            ).</li> </ul> Please note that 0 and 7 represent Sunday and 6
+            represents Saturday.
         schedulerJobId:
           type: string
           description: Internal job id used by the scheduler.
@@ -12256,17 +12266,18 @@ components:
         schedule:
           type: string
           description: >-
-            Only valid CRON expressions are allowed. Expression such as "@every
-            5s" is not allowed. Cron expressions that go from seconds to day of
-            week in the following order: - Seconds (Allowed value: 0-59 and
-            Allowed Special Characters: * , - /) - Minutes (Allowed value: 0-59
-            and Allowed Special Characters: * , - /) - Hour Of Day (Allowed
-            value: 0-23 and Allowed Special Characters: * , - /) - Day Of Month
-            (Allowed value: 1-31 and Allowed Special Characters: * ? , - /) -
-            Month (Allowed value: 1-12 and Allowed Special Characters: * , -) -
-            Day Of Week (Allowed value: 0-7 and Allowed Special Characters: * ?
-            , - / ). Please note that 0 represents Sunday and 7 represents
-            Saturday.
+            Only valid CRON expressions are allowed. Expressions such as "@every
+            5s" are not allowed. Cron expressions that go from seconds to day of
+            week in the following order:<br/> <ul> <li>Seconds (Allowed value:
+            0-59 and Allowed Special Characters: * , - /).</li> <li>Minutes
+            (Allowed value: 0-59 and Allowed Special Characters: * , - /).</li>
+            <li>Hour Of Day (Allowed value: 0-23 and Allowed Special Characters:
+            * , - /).</li> <li>Day Of Month (Allowed value: 1-31 and Allowed
+            Special Characters: * ? , - /).</li> <li>Month (Allowed value: 1-12
+            and Allowed Special Characters: * , -).</li> <li>Day Of Week
+            (Allowed value: 0-7 and Allowed Special Characters: * ? , - /
+            ).</li> </ul> Please note that 0 and 7 represent Sunday and 6
+            represents Saturday.
       additionalProperties: false
       type: object
       required:
