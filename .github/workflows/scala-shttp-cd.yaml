@@ -4,6 +4,7 @@ on:
   release:
     types: [created]
 
+
 defaults:
   run:
     working-directory: clients/pricemonitor-internal-scala-sttp/
@@ -24,6 +25,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       AWS_DEFAULT_REGION: eu-west-1
+      _JAVA_OPTIONS: "-Dsbt.log.noformat=true"
+      SBT_VERSION: "1.9.9"
     steps:
     # https://www.automat-it.com/post/using-github-actions-with-aws-iam-roles
     # https://github.com/aws-actions/configure-aws-credentials/blob/master/action.yml
@@ -37,10 +40,10 @@ jobs:
         aws-region: ${{env.AWS_DEFAULT_REGION}}
     - name: Checkout
       uses: actions/checkout@v3
-    - name: Setup Scala
-      uses: olafurpg/setup-scala@v11
+    - name: Setup Java and SBT
+      uses: coursier/setup-action@v1
       with:
-        java-version: "adopt@1.8"
+        apps: sbt:${{ env.SBT_VERSION }}
     - name: Coursier cache
       uses: coursier/cache-action@v6
     - name: Build
