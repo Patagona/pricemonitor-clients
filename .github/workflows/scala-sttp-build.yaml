@@ -12,7 +12,10 @@ jobs:
     runs-on: ubuntu-latest
     env:
       _JAVA_OPTIONS: "-Dsbt.log.noformat=true"
-      SBT_VERSION: "1.9.9"
+      # Please keep this version in sync with
+      # - clients/pricemonitor-internal-scala-sttp/project/build.properties
+      # - clients-test/pricemonitor-internal-scala-sttp-test/project/build.properties
+      SBT_VERSION: "1.8.2"
     steps:
     - name: Checkout
       uses: actions/checkout@v3

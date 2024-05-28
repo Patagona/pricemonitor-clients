@@ -26,7 +26,10 @@ jobs:
     env:
       AWS_DEFAULT_REGION: eu-west-1
       _JAVA_OPTIONS: "-Dsbt.log.noformat=true"
-      SBT_VERSION: "1.9.9"
+      # Please keep this version in sync with
+      # - clients/pricemonitor-internal-scala-sttp/project/build.properties
+      # - clients-test/pricemonitor-internal-scala-sttp-test/project/build.properties
+      SBT_VERSION: "1.8.2"
     steps:
     # https://www.automat-it.com/post/using-github-actions-with-aws-iam-roles
     # https://github.com/aws-actions/configure-aws-credentials/blob/master/action.yml
