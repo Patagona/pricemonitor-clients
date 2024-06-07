@@ -4,7 +4,7 @@
 sleep 60
 
 # Download the combined OpenAPI specification file.
-branch_name=release-${API_VERSION}
+branch_name=release-general-${API_VERSION}
 url=https://api.github.com/repos/Patagona/patagona-api-docs/contents/assets-joined/internal-with-scheduler-openapi.yaml?ref=${branch_name}
 echo "Downloading file $url"
 
