@@ -108,7 +108,7 @@ Method | HTTP request | Description
 [**get_tasks_stats**](InternalApi.md#get_tasks_stats) | **GET** /controlpanel/api/tasks/stats | 
 [**get_time_stamps**](InternalApi.md#get_time_stamps) | **GET** /api/1/{contractId}/products/analysis/timestamps | 
 [**get_user**](InternalApi.md#get_user) | **GET** /controlpanel/api/users/{email} | 
-[**get_users**](InternalApi.md#get_users) | **GET** /controlpanel/api/companies/{companyId}/users | 
+[**get_users**](InternalApi.md#get_users) | **GET** /controlpanel/api/companies/{companyId}/users | Get all users of a company
 [**get_vendor_settings_v2_vendor_v2**](InternalApi.md#get_vendor_settings_v2_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/settings/repricing | 
 [**get_vendor_shop_mapping_manufacturer_v3**](InternalApi.md#get_vendor_shop_mapping_manufacturer_v3) | **GET** /api/v3/manufacturer/contracts/{contractId}/vendors/{vendorId} | Get vendor along with their associated shop for given vendor id and contract.
 [**get_vendor_shop_mappings_manufacturer_v3**](InternalApi.md#get_vendor_shop_mappings_manufacturer_v3) | **GET** /api/v3/manufacturer/contracts/{contractId}/vendors | Get all the vendors along with their associated shops for a specified contract.
@@ -12717,9 +12717,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_users**
-> object get_users(company_id)
+> list[ComPatagonaPricemonitorShareApiGetCompanyUsersUser] get_users(company_id)
 
+Get all users of a company
 
+This endpoint returns all users that are assigned to a company. It is only accessible for admins or company admins.
 
 ### Example
 
@@ -12759,6 +12761,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     company_id = 1 # int | ID of a company
 
     try:
+        # Get all users of a company
         api_response = api_instance.get_users(company_id)
         pprint(api_response)
     except ApiException as e:
@@ -12801,6 +12804,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     company_id = 1 # int | ID of a company
 
     try:
+        # Get all users of a company
         api_response = api_instance.get_users(company_id)
         pprint(api_response)
     except ApiException as e:
@@ -12815,7 +12819,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**list[ComPatagonaPricemonitorShareApiGetCompanyUsersUser]**](ComPatagonaPricemonitorShareApiGetCompanyUsersUser.md)
 
 ### Authorization
 

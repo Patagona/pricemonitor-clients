@@ -10,7 +10,7 @@ info:
   description: >
     The Omnia 2.0 API is RESTful and provides access to the backend of Omnia 2.0
     and Pricemonitor. It is used to manage products, offers, contracts and more.
-  version: 0.0.6854
+  version: 0.0.6857
   x-logo:
     url: >-
       https://www.omniaretail.com/hubfs/Omnia%20Logo%20SVG/Omnia_Retail_Full_Colour_Logo_On_White_RGB.svg
@@ -6571,16 +6571,22 @@ paths:
   /controlpanel/api/companies/{companyId}/users:
     x-audience: Internal
     get:
+      summary: Get all users of a company
+      description: >-
+        This endpoint returns all users that are assigned to a company. It is
+        only accessible for admins or company admins.
       responses:
         '200':
           content:
             application/json:
               schema:
-                type: object
+                type: array
+                items:
+                  $ref: >-
+                    #/components/schemas/com.patagona.pricemonitor.share.api.GetCompanyUsersUser
           description: This is a generated entry and needs to be described.
       tags:
         - internal
-        - undocumented
         - companies
       operationId: getUsers
       security:
@@ -12055,6 +12061,24 @@ components:
             $ref: >-
               #/components/schemas/com.patagona.pricemonitor.share.api.ApiProductV3
           type: array
+    com.patagona.pricemonitor.share.api.GetCompanyUsersUser:
+      properties:
+        id:
+          type: number
+        email:
+          type: string
+        name:
+          type: string
+        lastActiveDate:
+          type: string
+          format: date-time
+      additionalProperties: false
+      type: object
+      required:
+        - id
+        - email
+        - name
+        - lastActiveDate
     com.patagona.pricemonitor.share.api.PostEmbedSSOUrlRequestV3:
       description: Request body to retrieve signed embed sso url using looker api.
       properties:

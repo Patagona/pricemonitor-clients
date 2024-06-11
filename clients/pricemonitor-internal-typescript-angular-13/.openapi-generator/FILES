@@ -80,6 +80,7 @@ model/pricemonitorExtendedTag.ts
 model/pricemonitorGetAllDomainsV3.ts
 model/pricemonitorGetAllDomainsV3DomainsInner.ts
 model/pricemonitorGetAuthorizationStatusResponseV3.ts
+model/pricemonitorGetCompanyUsersUser.ts
 model/pricemonitorGetContractResponseV3.ts
 model/pricemonitorGetContractSettingsResponseV1.ts
 model/pricemonitorGetOfferStatisticsV3.ts

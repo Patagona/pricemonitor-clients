@@ -12,7 +12,7 @@ Method | HTTP request | Description
 [**get_contracts_vendor_v2**](CompaniesApi.md#get_contracts_vendor_v2) | **GET** /api/2/v/contracts | 
 [**get_manufacturer_manufacturer_v2**](CompaniesApi.md#get_manufacturer_manufacturer_v2) | **GET** /api/2/m/contracts/{contractId} | 
 [**get_manufacturer_v3**](CompaniesApi.md#get_manufacturer_v3) | **GET** /api/v3/manufacturer/contracts/{contractId} | Get the contract information
-[**get_users**](CompaniesApi.md#get_users) | **GET** /controlpanel/api/companies/{companyId}/users | 
+[**get_users**](CompaniesApi.md#get_users) | **GET** /controlpanel/api/companies/{companyId}/users | Get all users of a company
 [**get_vendor_v3**](CompaniesApi.md#get_vendor_v3) | **GET** /api/v3/vendor/contracts/{contractId} | 
 [**get_vendor_vendor_v2**](CompaniesApi.md#get_vendor_vendor_v2) | **GET** /api/2/v/contracts/{contractId} | 
 [**remove_user**](CompaniesApi.md#remove_user) | **DELETE** /controlpanel/api/companies/{companyId}/users/{userId} | 
@@ -973,9 +973,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_users**
-> object get_users(company_id)
+> list[ComPatagonaPricemonitorShareApiGetCompanyUsersUser] get_users(company_id)
 
+Get all users of a company
 
+This endpoint returns all users that are assigned to a company. It is only accessible for admins or company admins.
 
 ### Example
 
@@ -1015,6 +1017,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     company_id = 1 # int | ID of a company
 
     try:
+        # Get all users of a company
         api_response = api_instance.get_users(company_id)
         pprint(api_response)
     except ApiException as e:
@@ -1057,6 +1060,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     company_id = 1 # int | ID of a company
 
     try:
+        # Get all users of a company
         api_response = api_instance.get_users(company_id)
         pprint(api_response)
     except ApiException as e:
@@ -1071,7 +1075,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**list[ComPatagonaPricemonitorShareApiGetCompanyUsersUser]**](ComPatagonaPricemonitorShareApiGetCompanyUsersUser.md)
 
 ### Authorization
 

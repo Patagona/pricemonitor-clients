@@ -47,6 +47,7 @@ export * from './pricemonitorExtendedTag';
 export * from './pricemonitorGetAllDomainsV3';
 export * from './pricemonitorGetAllDomainsV3DomainsInner';
 export * from './pricemonitorGetAuthorizationStatusResponseV3';
+export * from './pricemonitorGetCompanyUsersUser';
 export * from './pricemonitorGetContractResponseV3';
 export * from './pricemonitorGetContractSettingsResponseV1';
 export * from './pricemonitorGetOfferStatisticsV3';
