@@ -10,7 +10,7 @@ info:
   description: >
     The Omnia 2.0 API is RESTful and provides access to the backend of Omnia 2.0
     and Pricemonitor. It is used to manage products, offers, contracts and more.
-  version: 0.0.6857
+  version: 0.0.6860
   x-logo:
     url: >-
       https://www.omniaretail.com/hubfs/Omnia%20Logo%20SVG/Omnia_Retail_Full_Colour_Logo_On_White_RGB.svg
@@ -7235,6 +7235,28 @@ paths:
         required: true
         schema:
           type: string
+  /api/v3/user/looker/attributes:
+    x-audience: Internal
+    get:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LookerUserAttributesV3ApiResponse'
+          description: Looker user attributes.
+      tags:
+        - internal
+        - looker
+      operationId: getLookerUserAttributes
+      summary: Get Looker user attributes
+      description: >-
+        Retrieves user attributes from Looker. We created the endpoint to allow
+        us to track the impact of the issue described in
+        [Confluence](https://omniaretail.atlassian.net/wiki/spaces/DEV/pages/648151090/Looker+Dashboard+Mismatch+Problem+in+Omnia+2.0)
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/v3/vendor/contracts/{contractId}/looker/sso/embed/url:
     x-audience: Internal
     parameters:
@@ -12079,6 +12101,37 @@ components:
         - email
         - name
         - lastActiveDate
+    com.patagona.pricemonitor.share.api.LookerUserAttributesV3:
+      description: >-
+        Response body containing looker user attributes First introduced to
+        track the internal state of looker to avoid mismatches in the ui state
+        and the looker state.
+      properties:
+        contractSid:
+          type: string
+          description: >-
+            The contract sid of the user according to looker. References the
+            attribute {{contract_sid}} in looker.
+        contractId:
+          type: number
+          description: >-
+            The contract id of the user according to looker. References the
+            attribute {{contract_id}} in looker.
+      additionalProperties: false
+      type: object
+      required: []
+    LookerUserAttributesV3ApiResponse:
+      required:
+        - data
+      type: object
+      additionalProperties: false
+      description: ''
+      properties:
+        data:
+          items:
+            $ref: >-
+              #/components/schemas/com.patagona.pricemonitor.share.api.LookerUserAttributesV3
+          type: array
     com.patagona.pricemonitor.share.api.PostEmbedSSOUrlRequestV3:
       description: Request body to retrieve signed embed sso url using looker api.
       properties:

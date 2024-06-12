@@ -86,6 +86,7 @@ model/pricemonitorGetContractSettingsResponseV1.ts
 model/pricemonitorGetOfferStatisticsV3.ts
 model/pricemonitorGetPricingStrategyHistoryResponse.ts
 model/pricemonitorGetShopsByDomainResponseV3.ts
+model/pricemonitorLookerUserAttributesV3.ts
 model/pricemonitorMonitoringScheduleV3.ts
 model/pricemonitorOfferAttribute.ts
 model/pricemonitorOfferSelector.ts
@@ -201,6 +202,7 @@ model/jobType.ts
 model/jobsApiResponse.ts
 model/logMessage.ts
 model/logMessages.ts
+model/lookerUserAttributesV3ApiResponse.ts
 model/models.ts
 model/monitoringJob.ts
 model/monitoringJobAllOf.ts
