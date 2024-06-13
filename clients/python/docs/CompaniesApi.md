@@ -4,24 +4,26 @@ All URIs are relative to *https://api.patagona.de*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**add_company_contract**](CompaniesApi.md#add_company_contract) | **POST** /api/2/companies/{companyId}/contracts | Add contract for given company
-[**create_company**](CompaniesApi.md#create_company) | **POST** /api/2/companies | Allows users without one to create a new Company
-[**delete_contract_vendor_v2**](CompaniesApi.md#delete_contract_vendor_v2) | **DELETE** /api/2/v/contracts/{contractId} | 
-[**get_company**](CompaniesApi.md#get_company) | **GET** /controlpanel/api/companies/{companyId} | 
-[**get_company_contracts**](CompaniesApi.md#get_company_contracts) | **GET** /api/2/companies/{companyId}/contracts | Get all contracts for given company
-[**get_contracts_vendor_v2**](CompaniesApi.md#get_contracts_vendor_v2) | **GET** /api/2/v/contracts | 
-[**get_manufacturer_manufacturer_v2**](CompaniesApi.md#get_manufacturer_manufacturer_v2) | **GET** /api/2/m/contracts/{contractId} | 
-[**get_manufacturer_v3**](CompaniesApi.md#get_manufacturer_v3) | **GET** /api/v3/manufacturer/contracts/{contractId} | Get the contract information
+[**add_company_contract**](CompaniesApi.md#add_company_contract) | **POST** /api/2/companies/{companyId}/contracts | Add contract for company
+[**create_company**](CompaniesApi.md#create_company) | **POST** /api/2/companies | Create company
+[**delete_contract_vendor_v2**](CompaniesApi.md#delete_contract_vendor_v2) | **DELETE** /api/2/v/contracts/{contractId} | Delete contract [vendor]
+[**get_company**](CompaniesApi.md#get_company) | **GET** /controlpanel/api/companies/{companyId} | Get company
+[**get_company_contracts**](CompaniesApi.md#get_company_contracts) | **GET** /api/2/companies/{companyId}/contracts | Get all contracts for company
+[**get_contracts_vendor_v2**](CompaniesApi.md#get_contracts_vendor_v2) | **GET** /api/2/v/contracts | Get contracts [vendor]
+[**get_manufacturer_manufacturer_v2**](CompaniesApi.md#get_manufacturer_manufacturer_v2) | **GET** /api/2/m/contracts/{contractId} | Get contract [manufacturer]
+[**get_manufacturer_v3**](CompaniesApi.md#get_manufacturer_v3) | **GET** /api/v3/manufacturer/contracts/{contractId} | Get contract [manufacturer]
 [**get_users**](CompaniesApi.md#get_users) | **GET** /controlpanel/api/companies/{companyId}/users | Get all users of a company
-[**get_vendor_v3**](CompaniesApi.md#get_vendor_v3) | **GET** /api/v3/vendor/contracts/{contractId} | 
-[**get_vendor_vendor_v2**](CompaniesApi.md#get_vendor_vendor_v2) | **GET** /api/2/v/contracts/{contractId} | 
-[**remove_user**](CompaniesApi.md#remove_user) | **DELETE** /controlpanel/api/companies/{companyId}/users/{userId} | 
+[**get_vendor_v3**](CompaniesApi.md#get_vendor_v3) | **GET** /api/v3/vendor/contracts/{contractId} | Get contract [vendor]
+[**get_vendor_vendor_v2**](CompaniesApi.md#get_vendor_vendor_v2) | **GET** /api/2/v/contracts/{contractId} | Get contract [vendor]
+[**remove_user**](CompaniesApi.md#remove_user) | **DELETE** /controlpanel/api/companies/{companyId}/users/{userId} | Remove user from company
 
 
 # **add_company_contract**
 > AddCompanyContractApiResponse add_company_contract(company_id, com_patagona_pricemonitor_share_api_create_contract_request)
 
-Add contract for given company
+Add contract for company
+
+Add a contract for the given company.
 
 ### Example
 
@@ -62,7 +64,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_create_contract_request = pricemonitor_api_client.ComPatagonaPricemonitorShareApiCreateContractRequest() # ComPatagonaPricemonitorShareApiCreateContractRequest | Contract to be added
 
     try:
-        # Add contract for given company
+        # Add contract for company
         api_response = api_instance.add_company_contract(company_id, com_patagona_pricemonitor_share_api_create_contract_request)
         pprint(api_response)
     except ApiException as e:
@@ -106,7 +108,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_create_contract_request = pricemonitor_api_client.ComPatagonaPricemonitorShareApiCreateContractRequest() # ComPatagonaPricemonitorShareApiCreateContractRequest | Contract to be added
 
     try:
-        # Add contract for given company
+        # Add contract for company
         api_response = api_instance.add_company_contract(company_id, com_patagona_pricemonitor_share_api_create_contract_request)
         pprint(api_response)
     except ApiException as e:
@@ -144,7 +146,9 @@ Name | Type | Description  | Notes
 # **create_company**
 > CreateCompanyApiResponse create_company(body)
 
-Allows users without one to create a new Company
+Create company
+
+Allows users without a company to create a new company.
 
 ### Example
 
@@ -184,7 +188,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     body = 'body_example' # str | The company's name
 
     try:
-        # Allows users without one to create a new Company
+        # Create company
         api_response = api_instance.create_company(body)
         pprint(api_response)
     except ApiException as e:
@@ -227,7 +231,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     body = 'body_example' # str | The company's name
 
     try:
-        # Allows users without one to create a new Company
+        # Create company
         api_response = api_instance.create_company(body)
         pprint(api_response)
     except ApiException as e:
@@ -256,17 +260,17 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | No response was specified |  -  |
-**400** | The company name may not be empty |  -  |
-**403** | User already belongs to a company |  -  |
-**500** | The company could not be created |  -  |
+**200** | Information about the created company. |  -  |
+**400** | The company name may not be empty. |  -  |
+**403** | User already belongs to a company. |  -  |
+**500** | The company could not be created. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_contract_vendor_v2**
 > object delete_contract_vendor_v2(contract_id)
 
-
+Delete contract [vendor]
 
 ### Example
 
@@ -306,6 +310,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Delete contract [vendor]
         api_response = api_instance.delete_contract_vendor_v2(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -348,6 +353,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Delete contract [vendor]
         api_response = api_instance.delete_contract_vendor_v2(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -383,7 +389,7 @@ Name | Type | Description  | Notes
 # **get_company**
 > object get_company(company_id)
 
-
+Get company
 
 ### Example
 
@@ -423,6 +429,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     company_id = 1 # int | ID of a company
 
     try:
+        # Get company
         api_response = api_instance.get_company(company_id)
         pprint(api_response)
     except ApiException as e:
@@ -465,6 +472,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     company_id = 1 # int | ID of a company
 
     try:
+        # Get company
         api_response = api_instance.get_company(company_id)
         pprint(api_response)
     except ApiException as e:
@@ -500,7 +508,9 @@ Name | Type | Description  | Notes
 # **get_company_contracts**
 > GetCompanyContractsApiResponse get_company_contracts(company_id)
 
-Get all contracts for given company
+Get all contracts for company
+
+Get all contracts for the given company.
 
 ### Example
 
@@ -540,7 +550,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     company_id = 1 # int | ID of a company
 
     try:
-        # Get all contracts for given company
+        # Get all contracts for company
         api_response = api_instance.get_company_contracts(company_id)
         pprint(api_response)
     except ApiException as e:
@@ -583,7 +593,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     company_id = 1 # int | ID of a company
 
     try:
-        # Get all contracts for given company
+        # Get all contracts for company
         api_response = api_instance.get_company_contracts(company_id)
         pprint(api_response)
     except ApiException as e:
@@ -619,7 +629,7 @@ Name | Type | Description  | Notes
 # **get_contracts_vendor_v2**
 > object get_contracts_vendor_v2(max_creation_date=max_creation_date, min_expiration_date=min_expiration_date)
 
-
+Get contracts [vendor]
 
 ### Example
 
@@ -660,6 +670,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 min_expiration_date = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 
     try:
+        # Get contracts [vendor]
         api_response = api_instance.get_contracts_vendor_v2(max_creation_date=max_creation_date, min_expiration_date=min_expiration_date)
         pprint(api_response)
     except ApiException as e:
@@ -703,6 +714,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 min_expiration_date = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 
     try:
+        # Get contracts [vendor]
         api_response = api_instance.get_contracts_vendor_v2(max_creation_date=max_creation_date, min_expiration_date=min_expiration_date)
         pprint(api_response)
     except ApiException as e:
@@ -739,7 +751,7 @@ Name | Type | Description  | Notes
 # **get_manufacturer_manufacturer_v2**
 > object get_manufacturer_manufacturer_v2(contract_id)
 
-
+Get contract [manufacturer]
 
 ### Example
 
@@ -779,6 +791,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get contract [manufacturer]
         api_response = api_instance.get_manufacturer_manufacturer_v2(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -821,6 +834,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get contract [manufacturer]
         api_response = api_instance.get_manufacturer_manufacturer_v2(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -856,7 +870,7 @@ Name | Type | Description  | Notes
 # **get_manufacturer_v3**
 > GetManufacturerV3ApiResponse get_manufacturer_v3(contract_id)
 
-Get the contract information
+Get contract [manufacturer]
 
 ### Example
 
@@ -896,7 +910,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
-        # Get the contract information
+        # Get contract [manufacturer]
         api_response = api_instance.get_manufacturer_v3(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -939,7 +953,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
-        # Get the contract information
+        # Get contract [manufacturer]
         api_response = api_instance.get_manufacturer_v3(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -1096,7 +1110,7 @@ Name | Type | Description  | Notes
 # **get_vendor_v3**
 > object get_vendor_v3(contract_id)
 
-
+Get contract [vendor]
 
 ### Example
 
@@ -1136,6 +1150,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get contract [vendor]
         api_response = api_instance.get_vendor_v3(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -1178,6 +1193,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get contract [vendor]
         api_response = api_instance.get_vendor_v3(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -1213,7 +1229,7 @@ Name | Type | Description  | Notes
 # **get_vendor_vendor_v2**
 > object get_vendor_vendor_v2(contract_id)
 
-
+Get contract [vendor]
 
 ### Example
 
@@ -1253,6 +1269,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get contract [vendor]
         api_response = api_instance.get_vendor_vendor_v2(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -1295,6 +1312,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get contract [vendor]
         api_response = api_instance.get_vendor_vendor_v2(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -1330,7 +1348,7 @@ Name | Type | Description  | Notes
 # **remove_user**
 > object remove_user(company_id, user_id)
 
-
+Remove user from company
 
 ### Example
 
@@ -1371,6 +1389,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 user_id = 56 # int | 
 
     try:
+        # Remove user from company
         api_response = api_instance.remove_user(company_id, user_id)
         pprint(api_response)
     except ApiException as e:
@@ -1414,6 +1433,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 user_id = 56 # int | 
 
     try:
+        # Remove user from company
         api_response = api_instance.remove_user(company_id, user_id)
         pprint(api_response)
     except ApiException as e:

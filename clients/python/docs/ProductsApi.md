@@ -4,53 +4,53 @@ All URIs are relative to *https://api.patagona.de*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**delete_products**](ProductsApi.md#delete_products) | **DELETE** /api/v3/vendor/contracts/{contractId}/products | Delete products
-[**delete_products_manufacturer_v3**](ProductsApi.md#delete_products_manufacturer_v3) | **DELETE** /api/v3/manufacturer/contracts/{contractId}/products | 
+[**delete_products**](ProductsApi.md#delete_products) | **DELETE** /api/v3/vendor/contracts/{contractId}/products | Delete products [vendor]
+[**delete_products_manufacturer_v3**](ProductsApi.md#delete_products_manufacturer_v3) | **DELETE** /api/v3/manufacturer/contracts/{contractId}/products | Delete products [manufacturer]
 [**get_amazon_buybox_product_stats_v3**](ProductsApi.md#get_amazon_buybox_product_stats_v3) | **GET** /api/v3/vendor/contracts/{contractId}/products/amazon/buybox/stats | Get Amazon Buy Box statistics for time range
 [**get_extended_tags**](ProductsApi.md#get_extended_tags) | **GET** /api/v3/vendor/contracts/{contractId}/products/{productId}/extendedtags | Return the extended tags for the given product
-[**get_extended_tags_manufacturer_v3**](ProductsApi.md#get_extended_tags_manufacturer_v3) | **GET** /api/v3/manufacturer/contracts/{contractId}/products/{productId}/extendedtags | 
-[**get_mappings_vendor_v2**](ProductsApi.md#get_mappings_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/productidentifiermapping | 
+[**get_extended_tags_manufacturer_v3**](ProductsApi.md#get_extended_tags_manufacturer_v3) | **GET** /api/v3/manufacturer/contracts/{contractId}/products/{productId}/extendedtags | Get extended tags [manufacturer]
+[**get_mappings_vendor_v2**](ProductsApi.md#get_mappings_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/productidentifiermapping | Get product mappings
 [**get_product_filters_vendor_v2**](ProductsApi.md#get_product_filters_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/offerfilters/{listType}/products/{productId} | Get all the filters of a given product for the given contract.
-[**get_product_monitoring_status_stats_vendor_v3**](ProductsApi.md#get_product_monitoring_status_stats_vendor_v3) | **GET** /api/v3/vendor/contracts/{contractId}/products/monitoringstatus/stats | 
+[**get_product_monitoring_status_stats_vendor_v3**](ProductsApi.md#get_product_monitoring_status_stats_vendor_v3) | **GET** /api/v3/vendor/contracts/{contractId}/products/monitoringstatus/stats | Get product monitoring status stats [vendor]
 [**get_product_monitoring_status_vendor_v3**](ProductsApi.md#get_product_monitoring_status_vendor_v3) | **GET** /api/v3/vendor/contracts/{contractId}/products/monitoringstatus | Get monitoring status of queried products
 [**get_product_price_recommendation_history**](ProductsApi.md#get_product_price_recommendation_history) | **GET** /api/v3/vendor/contracts/{contractId}/products/{productId}/pricerecommendationhistory | Get price recommendations for one product
 [**get_product_properties_v3**](ProductsApi.md#get_product_properties_v3) | **GET** /api/v3/vendor/contracts/{contractId}/products/{productId}/properties | Get all product properties for a product
 [**get_product_property_keys_v3**](ProductsApi.md#get_product_property_keys_v3) | **GET** /api/v3/vendor/contracts/{contractId}/products/properties/keys | Get all product properties keys
-[**get_products**](ProductsApi.md#get_products) | **GET** /api/2/v/contracts/{contractId}/products | Get all products
-[**get_tag_values_manufacturer_v2**](ProductsApi.md#get_tag_values_manufacturer_v2) | **GET** /api/2/m/contracts/{contractId}/products/tags/{key} | 
-[**get_tag_values_vendor_v2**](ProductsApi.md#get_tag_values_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/products/tags/{key} | 
-[**get_tags_manufacturer_v2**](ProductsApi.md#get_tags_manufacturer_v2) | **GET** /api/2/m/contracts/{contractId}/products/tags | 
-[**get_tags_vendor_v2**](ProductsApi.md#get_tags_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/products/tags | 
-[**monitoring_pipeline_upsert_search_attempts_manufacturer_v3**](ProductsApi.md#monitoring_pipeline_upsert_search_attempts_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/monitoringpipeline/v1/searchattempts | 
-[**monitoring_pipeline_upsert_search_attempts_vendor_v3**](ProductsApi.md#monitoring_pipeline_upsert_search_attempts_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/monitoringpipeline/v1/searchattempts | 
-[**patch_product_manufacturer_v3**](ProductsApi.md#patch_product_manufacturer_v3) | **PATCH** /api/v3/manufacturer/contracts/{contractId}/products/{productId} | 
-[**patch_product_vendor_v3**](ProductsApi.md#patch_product_vendor_v3) | **PATCH** /api/v3/vendor/contracts/{contractId}/products/{productId} | 
-[**post_mappings_vendor_v2**](ProductsApi.md#post_mappings_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/productidentifiermapping | 
-[**post_offer_statistics_vendor_query**](ProductsApi.md#post_offer_statistics_vendor_query) | **POST** /api/v3/vendor/contracts/{contractId}/offers/stats/query | 
+[**get_products**](ProductsApi.md#get_products) | **GET** /api/2/v/contracts/{contractId}/products | Get all products for a contract
+[**get_tag_values_manufacturer_v2**](ProductsApi.md#get_tag_values_manufacturer_v2) | **GET** /api/2/m/contracts/{contractId}/products/tags/{key} | Get product tag values [manufacturer]
+[**get_tag_values_vendor_v2**](ProductsApi.md#get_tag_values_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/products/tags/{key} | Get tag values for key
+[**get_tags_manufacturer_v2**](ProductsApi.md#get_tags_manufacturer_v2) | **GET** /api/2/m/contracts/{contractId}/products/tags | Get product tags [manufacturer]
+[**get_tags_vendor_v2**](ProductsApi.md#get_tags_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/products/tags | Get product tags [vendor]
+[**monitoring_pipeline_upsert_search_attempts_manufacturer_v3**](ProductsApi.md#monitoring_pipeline_upsert_search_attempts_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/monitoringpipeline/v1/searchattempts | Update monitoring pipeline search attempts [manufacturer]
+[**monitoring_pipeline_upsert_search_attempts_vendor_v3**](ProductsApi.md#monitoring_pipeline_upsert_search_attempts_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/monitoringpipeline/v1/searchattempts | Update monitoring pipeline search attempts [vendor]
+[**patch_product_manufacturer_v3**](ProductsApi.md#patch_product_manufacturer_v3) | **PATCH** /api/v3/manufacturer/contracts/{contractId}/products/{productId} | Update product [manufacturer]
+[**patch_product_vendor_v3**](ProductsApi.md#patch_product_vendor_v3) | **PATCH** /api/v3/vendor/contracts/{contractId}/products/{productId} | Update product [vendor]
+[**post_mappings_vendor_v2**](ProductsApi.md#post_mappings_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/productidentifiermapping | Update product identifier mapping
+[**post_offer_statistics_vendor_query**](ProductsApi.md#post_offer_statistics_vendor_query) | **POST** /api/v3/vendor/contracts/{contractId}/offers/stats/query | Get offer statistics per product
 [**post_products_import_vendor_v3**](ProductsApi.md#post_products_import_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/products | Add products in bulk (JSON)
-[**put_csv_products**](ProductsApi.md#put_csv_products) | **PUT** /api/2/v/contracts/{contractId}/products/csv | Set products via CSV file
-[**put_csv_products_manufacturer_v3**](ProductsApi.md#put_csv_products_manufacturer_v3) | **PUT** /api/v3/manufacturer/contracts/{contractId}/products | Set products via CSV file
+[**put_csv_products**](ProductsApi.md#put_csv_products) | **PUT** /api/2/v/contracts/{contractId}/products/csv | Set products via CSV file (V2)
+[**put_csv_products_manufacturer_v3**](ProductsApi.md#put_csv_products_manufacturer_v3) | **PUT** /api/v3/manufacturer/contracts/{contractId}/products | Set products via CSV file (V3)
 [**put_product_filters_vendor_v2**](ProductsApi.md#put_product_filters_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/offerfilters/{listType}/products/{productId} | Store the filters of a given product for the given contract.
 [**put_product_properties_v3**](ProductsApi.md#put_product_properties_v3) | **PUT** /api/v3/vendor/contracts/{contractId}/products/{productId}/properties | Manage product properties for a product
-[**put_products_csv_manufacturer_v2**](ProductsApi.md#put_products_csv_manufacturer_v2) | **PUT** /api/2/m/contracts/{contractId}/products/csv | 
+[**put_products_csv_manufacturer_v2**](ProductsApi.md#put_products_csv_manufacturer_v2) | **PUT** /api/2/m/contracts/{contractId}/products/csv | Set products via CSV file [manufacturer]
 [**put_products_import_vendor_v3**](ProductsApi.md#put_products_import_vendor_v3) | **PUT** /api/v3/vendor/contracts/{contractId}/products | Add products in bulk (CSV)
-[**put_products_vendor_v2**](ProductsApi.md#put_products_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/products | 
+[**put_products_vendor_v2**](ProductsApi.md#put_products_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/products | Update products in bulk (JSON)
 [**query_offers_price_dumping_stats_manufacturer_v3**](ProductsApi.md#query_offers_price_dumping_stats_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/offers/pricedumpingstats | Query price dumping statistics
 [**query_offers_price_dumping_stats_vendor_v3**](ProductsApi.md#query_offers_price_dumping_stats_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/offers/pricedumpingstats | Query price dumping statistics
-[**query_offers_shop_manufacturer_v3**](ProductsApi.md#query_offers_shop_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/offers/shop/query | 
-[**query_offers_shop_vendor_v3**](ProductsApi.md#query_offers_shop_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/offers/shop/query | 
-[**query_offers_stats_manufacturer_v3**](ProductsApi.md#query_offers_stats_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/offers/stats/query | 
-[**query_products_by_filter_manufacturer_v3**](ProductsApi.md#query_products_by_filter_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/products/query | 
+[**query_offers_shop_manufacturer_v3**](ProductsApi.md#query_offers_shop_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/offers/shop/query | Get all offers [manufacturer]
+[**query_offers_shop_vendor_v3**](ProductsApi.md#query_offers_shop_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/offers/shop/query | Get all offers [vendor]
+[**query_offers_stats_manufacturer_v3**](ProductsApi.md#query_offers_stats_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/offers/stats/query | Query offer statistics per product
+[**query_products_by_filter_manufacturer_v3**](ProductsApi.md#query_products_by_filter_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/products/query | Get products of a contract
 [**query_products_by_filter_vendor_v3**](ProductsApi.md#query_products_by_filter_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/products/query | Query products of a contract
 [**query_products_manufacturer_v3**](ProductsApi.md#query_products_manufacturer_v3) | **POST** /api/v3.1/manufacturer/contracts/{contractId}/products/query | Query products for manufacturer
 [**query_products_vendor_v3**](ProductsApi.md#query_products_vendor_v3) | **POST** /api/v3.1/vendor/contracts/{contractId}/products/query | Query products of a contract
-[**shop_integration_post_request_vendor_v2**](ProductsApi.md#shop_integration_post_request_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/products/import | 
+[**shop_integration_post_request_vendor_v2**](ProductsApi.md#shop_integration_post_request_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/products/import | Update shop integration import
 
 
 # **delete_products**
 > DeleteProductsApiResponse delete_products(contract_id, updated_max=updated_max, tag_key=tag_key, tag_value=tag_value)
 
-Delete products
+Delete products [vendor]
 
 Delete all products or delete products by a last updated timestamp.
 
@@ -95,7 +95,7 @@ tag_key = 'tag_key_example' # str | Tag key to consider for deleting products. T
 tag_value = 'tag_value_example' # str | Tag value to consider for deleting products. This parameter works in combination with tagKey. (optional)
 
     try:
-        # Delete products
+        # Delete products [vendor]
         api_response = api_instance.delete_products(contract_id, updated_max=updated_max, tag_key=tag_key, tag_value=tag_value)
         pprint(api_response)
     except ApiException as e:
@@ -141,7 +141,7 @@ tag_key = 'tag_key_example' # str | Tag key to consider for deleting products. T
 tag_value = 'tag_value_example' # str | Tag value to consider for deleting products. This parameter works in combination with tagKey. (optional)
 
     try:
-        # Delete products
+        # Delete products [vendor]
         api_response = api_instance.delete_products(contract_id, updated_max=updated_max, tag_key=tag_key, tag_value=tag_value)
         pprint(api_response)
     except ApiException as e:
@@ -181,7 +181,7 @@ Name | Type | Description  | Notes
 # **delete_products_manufacturer_v3**
 > object delete_products_manufacturer_v3(contract_id, updated_max=updated_max)
 
-
+Delete products [manufacturer]
 
 ### Example
 
@@ -222,6 +222,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 updated_max = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 
     try:
+        # Delete products [manufacturer]
         api_response = api_instance.delete_products_manufacturer_v3(contract_id, updated_max=updated_max)
         pprint(api_response)
     except ApiException as e:
@@ -265,6 +266,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 updated_max = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 
     try:
+        # Delete products [manufacturer]
         api_response = api_instance.delete_products_manufacturer_v3(contract_id, updated_max=updated_max)
         pprint(api_response)
     except ApiException as e:
@@ -558,7 +560,7 @@ Name | Type | Description  | Notes
 # **get_extended_tags_manufacturer_v3**
 > object get_extended_tags_manufacturer_v3(contract_id, product_id)
 
-
+Get extended tags [manufacturer]
 
 ### Example
 
@@ -599,6 +601,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 product_id = 'product_id_example' # str | 
 
     try:
+        # Get extended tags [manufacturer]
         api_response = api_instance.get_extended_tags_manufacturer_v3(contract_id, product_id)
         pprint(api_response)
     except ApiException as e:
@@ -642,6 +645,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 product_id = 'product_id_example' # str | 
 
     try:
+        # Get extended tags [manufacturer]
         api_response = api_instance.get_extended_tags_manufacturer_v3(contract_id, product_id)
         pprint(api_response)
     except ApiException as e:
@@ -678,7 +682,7 @@ Name | Type | Description  | Notes
 # **get_mappings_vendor_v2**
 > object get_mappings_vendor_v2(contract_id, input_type, identifiers)
 
-
+Get product mappings
 
 ### Example
 
@@ -720,6 +724,7 @@ input_type = 'input_type_example' # str |
 identifiers = ['identifiers_example'] # list[str] | 
 
     try:
+        # Get product mappings
         api_response = api_instance.get_mappings_vendor_v2(contract_id, input_type, identifiers)
         pprint(api_response)
     except ApiException as e:
@@ -764,6 +769,7 @@ input_type = 'input_type_example' # str |
 identifiers = ['identifiers_example'] # list[str] | 
 
     try:
+        # Get product mappings
         api_response = api_instance.get_mappings_vendor_v2(contract_id, input_type, identifiers)
         pprint(api_response)
     except ApiException as e:
@@ -926,7 +932,7 @@ Name | Type | Description  | Notes
 # **get_product_monitoring_status_stats_vendor_v3**
 > GetProductMonitoringStatusStatsVendorV3ApiResponse get_product_monitoring_status_stats_vendor_v3(contract_id)
 
-
+Get product monitoring status stats [vendor]
 
 ### Example
 
@@ -966,6 +972,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get product monitoring status stats [vendor]
         api_response = api_instance.get_product_monitoring_status_stats_vendor_v3(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -1008,6 +1015,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get product monitoring status stats [vendor]
         api_response = api_instance.get_product_monitoring_status_stats_vendor_v3(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -1542,7 +1550,9 @@ Name | Type | Description  | Notes
 # **get_products**
 > list[Product] get_products(contract_id, attributes)
 
-Get all products
+Get all products for a contract
+
+Gets all products for a contract. Does not support pagination.
 
 ### Example
 
@@ -1583,7 +1593,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 attributes = 'attributes_example' # str | Query string to filter products
 
     try:
-        # Get all products
+        # Get all products for a contract
         api_response = api_instance.get_products(contract_id, attributes)
         pprint(api_response)
     except ApiException as e:
@@ -1627,7 +1637,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 attributes = 'attributes_example' # str | Query string to filter products
 
     try:
-        # Get all products
+        # Get all products for a contract
         api_response = api_instance.get_products(contract_id, attributes)
         pprint(api_response)
     except ApiException as e:
@@ -1664,7 +1674,7 @@ Name | Type | Description  | Notes
 # **get_tag_values_manufacturer_v2**
 > object get_tag_values_manufacturer_v2(contract_id, key)
 
-
+Get product tag values [manufacturer]
 
 ### Example
 
@@ -1705,6 +1715,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 key = 'key_example' # str | 
 
     try:
+        # Get product tag values [manufacturer]
         api_response = api_instance.get_tag_values_manufacturer_v2(contract_id, key)
         pprint(api_response)
     except ApiException as e:
@@ -1748,6 +1759,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 key = 'key_example' # str | 
 
     try:
+        # Get product tag values [manufacturer]
         api_response = api_instance.get_tag_values_manufacturer_v2(contract_id, key)
         pprint(api_response)
     except ApiException as e:
@@ -1784,7 +1796,7 @@ Name | Type | Description  | Notes
 # **get_tag_values_vendor_v2**
 > object get_tag_values_vendor_v2(contract_id, key)
 
-
+Get tag values for key
 
 ### Example
 
@@ -1825,6 +1837,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 key = 'key_example' # str | 
 
     try:
+        # Get tag values for key
         api_response = api_instance.get_tag_values_vendor_v2(contract_id, key)
         pprint(api_response)
     except ApiException as e:
@@ -1868,6 +1881,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 key = 'key_example' # str | 
 
     try:
+        # Get tag values for key
         api_response = api_instance.get_tag_values_vendor_v2(contract_id, key)
         pprint(api_response)
     except ApiException as e:
@@ -1904,7 +1918,7 @@ Name | Type | Description  | Notes
 # **get_tags_manufacturer_v2**
 > object get_tags_manufacturer_v2(contract_id)
 
-
+Get product tags [manufacturer]
 
 ### Example
 
@@ -1944,6 +1958,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get product tags [manufacturer]
         api_response = api_instance.get_tags_manufacturer_v2(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -1986,6 +2001,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get product tags [manufacturer]
         api_response = api_instance.get_tags_manufacturer_v2(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -2021,7 +2037,7 @@ Name | Type | Description  | Notes
 # **get_tags_vendor_v2**
 > object get_tags_vendor_v2(contract_id)
 
-
+Get product tags [vendor]
 
 ### Example
 
@@ -2061,6 +2077,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get product tags [vendor]
         api_response = api_instance.get_tags_vendor_v2(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -2103,6 +2120,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get product tags [vendor]
         api_response = api_instance.get_tags_vendor_v2(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -2138,7 +2156,7 @@ Name | Type | Description  | Notes
 # **monitoring_pipeline_upsert_search_attempts_manufacturer_v3**
 > object monitoring_pipeline_upsert_search_attempts_manufacturer_v3(contract_id, body=body)
 
-
+Update monitoring pipeline search attempts [manufacturer]
 
 ### Example
 
@@ -2179,6 +2197,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update monitoring pipeline search attempts [manufacturer]
         api_response = api_instance.monitoring_pipeline_upsert_search_attempts_manufacturer_v3(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -2222,6 +2241,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update monitoring pipeline search attempts [manufacturer]
         api_response = api_instance.monitoring_pipeline_upsert_search_attempts_manufacturer_v3(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -2258,7 +2278,7 @@ Name | Type | Description  | Notes
 # **monitoring_pipeline_upsert_search_attempts_vendor_v3**
 > object monitoring_pipeline_upsert_search_attempts_vendor_v3(contract_id, body=body)
 
-
+Update monitoring pipeline search attempts [vendor]
 
 ### Example
 
@@ -2299,6 +2319,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update monitoring pipeline search attempts [vendor]
         api_response = api_instance.monitoring_pipeline_upsert_search_attempts_vendor_v3(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -2342,6 +2363,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update monitoring pipeline search attempts [vendor]
         api_response = api_instance.monitoring_pipeline_upsert_search_attempts_vendor_v3(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -2378,7 +2400,7 @@ Name | Type | Description  | Notes
 # **patch_product_manufacturer_v3**
 > object patch_product_manufacturer_v3(contract_id, product_id, body=body)
 
-
+Update product [manufacturer]
 
 ### Example
 
@@ -2420,6 +2442,7 @@ product_id = 'product_id_example' # str |
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update product [manufacturer]
         api_response = api_instance.patch_product_manufacturer_v3(contract_id, product_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -2464,6 +2487,7 @@ product_id = 'product_id_example' # str |
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update product [manufacturer]
         api_response = api_instance.patch_product_manufacturer_v3(contract_id, product_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -2501,7 +2525,7 @@ Name | Type | Description  | Notes
 # **patch_product_vendor_v3**
 > object patch_product_vendor_v3(contract_id, product_id, body=body)
 
-
+Update product [vendor]
 
 ### Example
 
@@ -2543,6 +2567,7 @@ product_id = 'product_id_example' # str |
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update product [vendor]
         api_response = api_instance.patch_product_vendor_v3(contract_id, product_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -2587,6 +2612,7 @@ product_id = 'product_id_example' # str |
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update product [vendor]
         api_response = api_instance.patch_product_vendor_v3(contract_id, product_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -2624,7 +2650,7 @@ Name | Type | Description  | Notes
 # **post_mappings_vendor_v2**
 > object post_mappings_vendor_v2(contract_id, body=body)
 
-
+Update product identifier mapping
 
 ### Example
 
@@ -2665,6 +2691,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update product identifier mapping
         api_response = api_instance.post_mappings_vendor_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -2708,6 +2735,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update product identifier mapping
         api_response = api_instance.post_mappings_vendor_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -2744,7 +2772,7 @@ Name | Type | Description  | Notes
 # **post_offer_statistics_vendor_query**
 > PostOfferStatisticsApiResponse post_offer_statistics_vendor_query(contract_id, post_offer_statistics_request)
 
-
+Get offer statistics per product
 
 This operation is used to get offer statistics (e.g. offer count, average price) grouped by product and domain.  Warning: This endpoint contains complex filter structure and will be replaced in the future. Currently, we only allow filtering by a list of internal pricemonitor product ids. Please note that offer statistics can only be computed for at **maximum 2500** products at a time.  To use the example request body from below, you have to adjust the `ownShopNames`, the `range` and `filter.right.value`. Where `filter.right.value` has to be a list of internal pricemonitor product ids corresponding to the `contractId` provided as part of the URL.  All prices will be with or without delivery costs depending on the `includeDeliveryCosts` parameter in the body. 
 
@@ -2787,6 +2815,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 post_offer_statistics_request = pricemonitor_api_client.PostOfferStatisticsRequest() # PostOfferStatisticsRequest | 
 
     try:
+        # Get offer statistics per product
         api_response = api_instance.post_offer_statistics_vendor_query(contract_id, post_offer_statistics_request)
         pprint(api_response)
     except ApiException as e:
@@ -2830,6 +2859,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 post_offer_statistics_request = pricemonitor_api_client.PostOfferStatisticsRequest() # PostOfferStatisticsRequest | 
 
     try:
+        # Get offer statistics per product
         api_response = api_instance.post_offer_statistics_vendor_query(contract_id, post_offer_statistics_request)
         pprint(api_response)
     except ApiException as e:
@@ -2998,7 +3028,7 @@ Name | Type | Description  | Notes
 # **put_csv_products**
 > put_csv_products(contract_id, body)
 
-Set products via CSV file
+Set products via CSV file (V2)
 
 Warning: Deletes all existing products.         <br/>Note that this will not happen immediately. Instead, you receive the ID of a task that has been created.         <br/>Furthermore you receive an URL which you can use to check if the task was executed successfully.         <br>The csv file must contain following columns:         <ul>           <li>productId - arbitrary string, can be used for the systems product id.</li>           <li>gtin - the GTIN of the product           <li>description - name or short description of the product           <li>referencePrice - arbitrary decimal number, usually the current price or recommended retail price (gross)           <li>minPriceBoundary - decimal number defining the lower price boundary (gross)           <li>maxPriceBoundary - decimal number defining the upper price boundary (gross)           <li>Additional columns are added as product tags. Tags are used for repricing strategies and several other           purpose.         </ul>         <br/>Column separator must be semicolon, the decimal separator must be dot. File encoding must be UTF-8.
 
@@ -3041,7 +3071,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = 'body_example' # str | CSV file containing the products
 
     try:
-        # Set products via CSV file
+        # Set products via CSV file (V2)
         api_instance.put_csv_products(contract_id, body)
     except ApiException as e:
         print("Exception when calling ProductsApi->put_csv_products: %s\n" % e)
@@ -3084,7 +3114,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = 'body_example' # str | CSV file containing the products
 
     try:
-        # Set products via CSV file
+        # Set products via CSV file (V2)
         api_instance.put_csv_products(contract_id, body)
     except ApiException as e:
         print("Exception when calling ProductsApi->put_csv_products: %s\n" % e)
@@ -3121,9 +3151,9 @@ void (empty response body)
 # **put_csv_products_manufacturer_v3**
 > PutProductsApiResponse put_csv_products_manufacturer_v3(contract_id, content_type, patagona_product_identifying_attributes, patagona_product_name, patagona_product_reference_price, patagona_decimal_separator, patagona_csv_column_separator, patagona_csv_quotation_character, body, patagona_product_gtin=patagona_product_gtin, patagona_product_customer_id=patagona_product_customer_id)
 
-Set products via CSV file
+Set products via CSV file (V3)
 
-This operation is used to import products into the pricemonitor. This process is represented by a task, which is processed asynchronously. In the response you will receive a url which is used to check the status of the import process. <br>  When the process is done all products in csv file from the request body will be in the pricemonitor. Products that were already present before have been updated and new products have been added. <br>  Warning: All products that were in the pricemonitor before but are not present in the new import will be deleted.  Identification of the products is done based on the identifying attributes (see parameter: patagona-product-identifying-attributes)
+This operation is used to import products into the pricemonitor. This process is represented by a task, which is processed asynchronously. In the response you will receive a url which is used to check the status of the import process. <br>  When the process is done all products in csv file from the request body will be in the pricemonitor. Products that were already present before have been updated and new products have been added. <br>  Warning: All products that were in the pricemonitor before but are not present in the new import will be deleted.  Identification of the products is done based on the identifying attributes (see parameter: patagona-product-identifying-attributes)'
 
 ### Example
 
@@ -3173,7 +3203,7 @@ patagona_product_gtin = 'gtin-column' # str | Csv column that contains the gtin 
 patagona_product_customer_id = 'id-column' # str | Csv column that contains an id (There is no requirement for this field to be unique) (optional)
 
     try:
-        # Set products via CSV file
+        # Set products via CSV file (V3)
         api_response = api_instance.put_csv_products_manufacturer_v3(contract_id, content_type, patagona_product_identifying_attributes, patagona_product_name, patagona_product_reference_price, patagona_decimal_separator, patagona_csv_column_separator, patagona_csv_quotation_character, body, patagona_product_gtin=patagona_product_gtin, patagona_product_customer_id=patagona_product_customer_id)
         pprint(api_response)
     except ApiException as e:
@@ -3226,7 +3256,7 @@ patagona_product_gtin = 'gtin-column' # str | Csv column that contains the gtin 
 patagona_product_customer_id = 'id-column' # str | Csv column that contains an id (There is no requirement for this field to be unique) (optional)
 
     try:
-        # Set products via CSV file
+        # Set products via CSV file (V3)
         api_response = api_instance.put_csv_products_manufacturer_v3(contract_id, content_type, patagona_product_identifying_attributes, patagona_product_name, patagona_product_reference_price, patagona_decimal_separator, patagona_csv_column_separator, patagona_csv_quotation_character, body, patagona_product_gtin=patagona_product_gtin, patagona_product_customer_id=patagona_product_customer_id)
         pprint(api_response)
     except ApiException as e:
@@ -3529,7 +3559,7 @@ Name | Type | Description  | Notes
 # **put_products_csv_manufacturer_v2**
 > object put_products_csv_manufacturer_v2(contract_id, body=body)
 
-
+Set products via CSV file [manufacturer]
 
 ### Example
 
@@ -3570,6 +3600,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Set products via CSV file [manufacturer]
         api_response = api_instance.put_products_csv_manufacturer_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -3613,6 +3644,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Set products via CSV file [manufacturer]
         api_response = api_instance.put_products_csv_manufacturer_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -3806,7 +3838,7 @@ Name | Type | Description  | Notes
 # **put_products_vendor_v2**
 > object put_products_vendor_v2(contract_id, body=body)
 
-
+Update products in bulk (JSON)
 
 ### Example
 
@@ -3847,6 +3879,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update products in bulk (JSON)
         api_response = api_instance.put_products_vendor_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -3890,6 +3923,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update products in bulk (JSON)
         api_response = api_instance.put_products_vendor_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -4174,7 +4208,7 @@ Name | Type | Description  | Notes
 # **query_offers_shop_manufacturer_v3**
 > QueryOffersOfShopV3ApiResponse query_offers_shop_manufacturer_v3(contract_id, com_patagona_pricemonitor_share_api_query_offers_of_shop_request_v3)
 
-
+Get all offers [manufacturer]
 
 Get all offers of a shop. Please note that it might return offers for inactive products.
 
@@ -4217,6 +4251,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_query_offers_of_shop_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiQueryOffersOfShopRequestV3() # ComPatagonaPricemonitorShareApiQueryOffersOfShopRequestV3 | 
 
     try:
+        # Get all offers [manufacturer]
         api_response = api_instance.query_offers_shop_manufacturer_v3(contract_id, com_patagona_pricemonitor_share_api_query_offers_of_shop_request_v3)
         pprint(api_response)
     except ApiException as e:
@@ -4260,6 +4295,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_query_offers_of_shop_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiQueryOffersOfShopRequestV3() # ComPatagonaPricemonitorShareApiQueryOffersOfShopRequestV3 | 
 
     try:
+        # Get all offers [manufacturer]
         api_response = api_instance.query_offers_shop_manufacturer_v3(contract_id, com_patagona_pricemonitor_share_api_query_offers_of_shop_request_v3)
         pprint(api_response)
     except ApiException as e:
@@ -4296,7 +4332,7 @@ Name | Type | Description  | Notes
 # **query_offers_shop_vendor_v3**
 > QueryOffersOfShopV3ApiResponse query_offers_shop_vendor_v3(contract_id, com_patagona_pricemonitor_share_api_query_offers_of_shop_request_v3)
 
-
+Get all offers [vendor]
 
 Get all offers of a shop. Please note that it might return offers for inactive products.
 
@@ -4339,6 +4375,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_query_offers_of_shop_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiQueryOffersOfShopRequestV3() # ComPatagonaPricemonitorShareApiQueryOffersOfShopRequestV3 | 
 
     try:
+        # Get all offers [vendor]
         api_response = api_instance.query_offers_shop_vendor_v3(contract_id, com_patagona_pricemonitor_share_api_query_offers_of_shop_request_v3)
         pprint(api_response)
     except ApiException as e:
@@ -4382,6 +4419,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_query_offers_of_shop_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiQueryOffersOfShopRequestV3() # ComPatagonaPricemonitorShareApiQueryOffersOfShopRequestV3 | 
 
     try:
+        # Get all offers [vendor]
         api_response = api_instance.query_offers_shop_vendor_v3(contract_id, com_patagona_pricemonitor_share_api_query_offers_of_shop_request_v3)
         pprint(api_response)
     except ApiException as e:
@@ -4418,7 +4456,7 @@ Name | Type | Description  | Notes
 # **query_offers_stats_manufacturer_v3**
 > PostOfferStatisticsApiResponse query_offers_stats_manufacturer_v3(contract_id, post_offer_statistics_request)
 
-
+Query offer statistics per product
 
 This operation is used to get offer statistics (e.g. offer count, average price) grouped by product and domain. Warning: This endpoint contains complex query structure and will be replaced in the future. Please note that offer statistics can only be computed for at maximum 2500 products at a time.
 
@@ -4461,6 +4499,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 post_offer_statistics_request = pricemonitor_api_client.PostOfferStatisticsRequest() # PostOfferStatisticsRequest | 
 
     try:
+        # Query offer statistics per product
         api_response = api_instance.query_offers_stats_manufacturer_v3(contract_id, post_offer_statistics_request)
         pprint(api_response)
     except ApiException as e:
@@ -4504,6 +4543,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 post_offer_statistics_request = pricemonitor_api_client.PostOfferStatisticsRequest() # PostOfferStatisticsRequest | 
 
     try:
+        # Query offer statistics per product
         api_response = api_instance.query_offers_stats_manufacturer_v3(contract_id, post_offer_statistics_request)
         pprint(api_response)
     except ApiException as e:
@@ -4541,7 +4581,9 @@ Name | Type | Description  | Notes
 # **query_products_by_filter_manufacturer_v3**
 > QueryProductsByFilterManufacturerV3ApiResponse query_products_by_filter_manufacturer_v3(contract_id, query_products_request_v3=query_products_request_v3)
 
+Get products of a contract
 
+This endpoint can be used for querying either all products or certain products by product ids.
 
 ### Example
 
@@ -4582,6 +4624,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 query_products_request_v3 = pricemonitor_api_client.QueryProductsRequestV3() # QueryProductsRequestV3 | The body contains the products query. (optional)
 
     try:
+        # Get products of a contract
         api_response = api_instance.query_products_by_filter_manufacturer_v3(contract_id, query_products_request_v3=query_products_request_v3)
         pprint(api_response)
     except ApiException as e:
@@ -4625,6 +4668,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 query_products_request_v3 = pricemonitor_api_client.QueryProductsRequestV3() # QueryProductsRequestV3 | The body contains the products query. (optional)
 
     try:
+        # Get products of a contract
         api_response = api_instance.query_products_by_filter_manufacturer_v3(contract_id, query_products_request_v3=query_products_request_v3)
         pprint(api_response)
     except ApiException as e:
@@ -5031,7 +5075,7 @@ Name | Type | Description  | Notes
 # **shop_integration_post_request_vendor_v2**
 > object shop_integration_post_request_vendor_v2(contract_id, path, body=body)
 
-
+Update shop integration import
 
 ### Example
 
@@ -5073,6 +5117,7 @@ path = 'path_example' # str |
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update shop integration import
         api_response = api_instance.shop_integration_post_request_vendor_v2(contract_id, path, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -5117,6 +5162,7 @@ path = 'path_example' # str |
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update shop integration import
         api_response = api_instance.shop_integration_post_request_vendor_v2(contract_id, path, body=body)
         pprint(api_response)
     except ApiException as e:

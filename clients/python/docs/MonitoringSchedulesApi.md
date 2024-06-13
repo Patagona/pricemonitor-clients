@@ -4,22 +4,24 @@ All URIs are relative to *https://api.patagona.de*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**delete_monitoring_schedule_manufacturer_v3**](MonitoringSchedulesApi.md#delete_monitoring_schedule_manufacturer_v3) | **DELETE** /api/v3/manufacturer/contracts/{contractId}/settings/monitoringschedules/{scheduleId} | Delete a monitoring schedule for a given contract.
-[**delete_monitoring_schedule_vendor_v3**](MonitoringSchedulesApi.md#delete_monitoring_schedule_vendor_v3) | **DELETE** /api/v3/vendor/contracts/{contractId}/settings/monitoringschedules/{scheduleId} | Delete a monitoring schedule for a given contract.
-[**execute_monitoring_schedule_manufacturer_v3**](MonitoringSchedulesApi.md#execute_monitoring_schedule_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/settings/monitoringschedules/{scheduleId}/execute | Trigger a monitoring pipeline task for manufacturer for configured monitoring schedule
-[**execute_monitoring_schedule_vendor_v3**](MonitoringSchedulesApi.md#execute_monitoring_schedule_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/settings/monitoringschedules/{scheduleId}/execute | Trigger a monitoring pipeline task for vendor for configured monitoring schedule
-[**get_monitoring_schedules_manufacturer_v3**](MonitoringSchedulesApi.md#get_monitoring_schedules_manufacturer_v3) | **GET** /api/v3/manufacturer/contracts/{contractId}/settings/monitoringschedules | Get all the monitoring schedules for a specified contract.
-[**get_monitoring_schedules_vendor_v3**](MonitoringSchedulesApi.md#get_monitoring_schedules_vendor_v3) | **GET** /api/v3/vendor/contracts/{contractId}/settings/monitoringschedules | Get all the monitoring schedules for a specified contract.
-[**post_monitoring_schedule_manufacturer_v3**](MonitoringSchedulesApi.md#post_monitoring_schedule_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/settings/monitoringschedules | Add a monitoring schedule for a given contract.
-[**post_monitoring_schedule_vendor_v3**](MonitoringSchedulesApi.md#post_monitoring_schedule_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/settings/monitoringschedules | Add a monitoring schedule for a given contract.
-[**put_monitoring_schedule_manufacturer_v3**](MonitoringSchedulesApi.md#put_monitoring_schedule_manufacturer_v3) | **PUT** /api/v3/manufacturer/contracts/{contractId}/settings/monitoringschedules/{scheduleId} | Update a monitoring schedule for a given contract.
-[**put_monitoring_schedule_vendor_v3**](MonitoringSchedulesApi.md#put_monitoring_schedule_vendor_v3) | **PUT** /api/v3/vendor/contracts/{contractId}/settings/monitoringschedules/{scheduleId} | Update a monitoring schedule for a given contract.
+[**delete_monitoring_schedule_manufacturer_v3**](MonitoringSchedulesApi.md#delete_monitoring_schedule_manufacturer_v3) | **DELETE** /api/v3/manufacturer/contracts/{contractId}/settings/monitoringschedules/{scheduleId} | Delete monitoring schedule for contract [manufacturer]
+[**delete_monitoring_schedule_vendor_v3**](MonitoringSchedulesApi.md#delete_monitoring_schedule_vendor_v3) | **DELETE** /api/v3/vendor/contracts/{contractId}/settings/monitoringschedules/{scheduleId} | Delete monitoring schedule for contract [vendor]
+[**execute_monitoring_schedule_manufacturer_v3**](MonitoringSchedulesApi.md#execute_monitoring_schedule_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/settings/monitoringschedules/{scheduleId}/execute | Trigger monitoring pipeline for schedule [manufacturer]
+[**execute_monitoring_schedule_vendor_v3**](MonitoringSchedulesApi.md#execute_monitoring_schedule_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/settings/monitoringschedules/{scheduleId}/execute | Trigger monitoring pipeline for schedule [vendor]
+[**get_monitoring_schedules_manufacturer_v3**](MonitoringSchedulesApi.md#get_monitoring_schedules_manufacturer_v3) | **GET** /api/v3/manufacturer/contracts/{contractId}/settings/monitoringschedules | Get all monitoring schedules for contract [manufacturer]
+[**get_monitoring_schedules_vendor_v3**](MonitoringSchedulesApi.md#get_monitoring_schedules_vendor_v3) | **GET** /api/v3/vendor/contracts/{contractId}/settings/monitoringschedules | Get all monitoring schedules for contract [vendor]
+[**post_monitoring_schedule_manufacturer_v3**](MonitoringSchedulesApi.md#post_monitoring_schedule_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/settings/monitoringschedules | Add monitoring schedule for contract [manufacturer]
+[**post_monitoring_schedule_vendor_v3**](MonitoringSchedulesApi.md#post_monitoring_schedule_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/settings/monitoringschedules | Add monitoring schedule for contract
+[**put_monitoring_schedule_manufacturer_v3**](MonitoringSchedulesApi.md#put_monitoring_schedule_manufacturer_v3) | **PUT** /api/v3/manufacturer/contracts/{contractId}/settings/monitoringschedules/{scheduleId} | Update monitoring schedule for contract [manufacturer]
+[**put_monitoring_schedule_vendor_v3**](MonitoringSchedulesApi.md#put_monitoring_schedule_vendor_v3) | **PUT** /api/v3/vendor/contracts/{contractId}/settings/monitoringschedules/{scheduleId} | Update monitoring schedule for contract [vendor]
 
 
 # **delete_monitoring_schedule_manufacturer_v3**
 > ComPatagonaPricemonitorShareApiDeleteByNumericIdApiResponse delete_monitoring_schedule_manufacturer_v3(contract_id, schedule_id)
 
-Delete a monitoring schedule for a given contract.
+Delete monitoring schedule for contract [manufacturer]
+
+Delete a monitoring schedule for a given manufacturer contract.
 
 ### Example
 
@@ -60,7 +62,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 schedule_id = 56 # int | ID of a monitoring schedule
 
     try:
-        # Delete a monitoring schedule for a given contract.
+        # Delete monitoring schedule for contract [manufacturer]
         api_response = api_instance.delete_monitoring_schedule_manufacturer_v3(contract_id, schedule_id)
         pprint(api_response)
     except ApiException as e:
@@ -104,7 +106,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 schedule_id = 56 # int | ID of a monitoring schedule
 
     try:
-        # Delete a monitoring schedule for a given contract.
+        # Delete monitoring schedule for contract [manufacturer]
         api_response = api_instance.delete_monitoring_schedule_manufacturer_v3(contract_id, schedule_id)
         pprint(api_response)
     except ApiException as e:
@@ -142,7 +144,9 @@ Name | Type | Description  | Notes
 # **delete_monitoring_schedule_vendor_v3**
 > ComPatagonaPricemonitorShareApiDeleteByNumericIdApiResponse delete_monitoring_schedule_vendor_v3(contract_id, schedule_id)
 
-Delete a monitoring schedule for a given contract.
+Delete monitoring schedule for contract [vendor]
+
+Delete a monitoring schedule for a given vendor contract.
 
 ### Example
 
@@ -183,7 +187,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 schedule_id = 56 # int | ID of a monitoring schedule
 
     try:
-        # Delete a monitoring schedule for a given contract.
+        # Delete monitoring schedule for contract [vendor]
         api_response = api_instance.delete_monitoring_schedule_vendor_v3(contract_id, schedule_id)
         pprint(api_response)
     except ApiException as e:
@@ -227,7 +231,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 schedule_id = 56 # int | ID of a monitoring schedule
 
     try:
-        # Delete a monitoring schedule for a given contract.
+        # Delete monitoring schedule for contract [vendor]
         api_response = api_instance.delete_monitoring_schedule_vendor_v3(contract_id, schedule_id)
         pprint(api_response)
     except ApiException as e:
@@ -266,7 +270,9 @@ Name | Type | Description  | Notes
 # **execute_monitoring_schedule_manufacturer_v3**
 > EmptyApiResponse execute_monitoring_schedule_manufacturer_v3(contract_id, schedule_id, trigger_follow_up_task=trigger_follow_up_task)
 
-Trigger a monitoring pipeline task for manufacturer for configured monitoring schedule
+Trigger monitoring pipeline for schedule [manufacturer]
+
+Trigger a monitoring pipeline task for a manufacturer for a configured monitoring schedule.
 
 ### Example
 
@@ -308,7 +314,7 @@ schedule_id = 56 # int | ID of a monitoring schedule
 trigger_follow_up_task = True # bool |  (optional)
 
     try:
-        # Trigger a monitoring pipeline task for manufacturer for configured monitoring schedule
+        # Trigger monitoring pipeline for schedule [manufacturer]
         api_response = api_instance.execute_monitoring_schedule_manufacturer_v3(contract_id, schedule_id, trigger_follow_up_task=trigger_follow_up_task)
         pprint(api_response)
     except ApiException as e:
@@ -353,7 +359,7 @@ schedule_id = 56 # int | ID of a monitoring schedule
 trigger_follow_up_task = True # bool |  (optional)
 
     try:
-        # Trigger a monitoring pipeline task for manufacturer for configured monitoring schedule
+        # Trigger monitoring pipeline for schedule [manufacturer]
         api_response = api_instance.execute_monitoring_schedule_manufacturer_v3(contract_id, schedule_id, trigger_follow_up_task=trigger_follow_up_task)
         pprint(api_response)
     except ApiException as e:
@@ -392,7 +398,9 @@ Name | Type | Description  | Notes
 # **execute_monitoring_schedule_vendor_v3**
 > EmptyApiResponse execute_monitoring_schedule_vendor_v3(contract_id, schedule_id, trigger_follow_up_task=trigger_follow_up_task)
 
-Trigger a monitoring pipeline task for vendor for configured monitoring schedule
+Trigger monitoring pipeline for schedule [vendor]
+
+Trigger a monitoring pipeline task for a vendor for a configured monitoring schedule.
 
 ### Example
 
@@ -434,7 +442,7 @@ schedule_id = 56 # int | ID of a monitoring schedule
 trigger_follow_up_task = True # bool |  (optional)
 
     try:
-        # Trigger a monitoring pipeline task for vendor for configured monitoring schedule
+        # Trigger monitoring pipeline for schedule [vendor]
         api_response = api_instance.execute_monitoring_schedule_vendor_v3(contract_id, schedule_id, trigger_follow_up_task=trigger_follow_up_task)
         pprint(api_response)
     except ApiException as e:
@@ -479,7 +487,7 @@ schedule_id = 56 # int | ID of a monitoring schedule
 trigger_follow_up_task = True # bool |  (optional)
 
     try:
-        # Trigger a monitoring pipeline task for vendor for configured monitoring schedule
+        # Trigger monitoring pipeline for schedule [vendor]
         api_response = api_instance.execute_monitoring_schedule_vendor_v3(contract_id, schedule_id, trigger_follow_up_task=trigger_follow_up_task)
         pprint(api_response)
     except ApiException as e:
@@ -518,7 +526,9 @@ Name | Type | Description  | Notes
 # **get_monitoring_schedules_manufacturer_v3**
 > GetMonitoringSchedulesApiResponse get_monitoring_schedules_manufacturer_v3(contract_id)
 
-Get all the monitoring schedules for a specified contract.
+Get all monitoring schedules for contract [manufacturer]
+
+Get all the monitoring schedules for a specified manufacturer contract.
 
 ### Example
 
@@ -558,7 +568,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
-        # Get all the monitoring schedules for a specified contract.
+        # Get all monitoring schedules for contract [manufacturer]
         api_response = api_instance.get_monitoring_schedules_manufacturer_v3(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -601,7 +611,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
-        # Get all the monitoring schedules for a specified contract.
+        # Get all monitoring schedules for contract [manufacturer]
         api_response = api_instance.get_monitoring_schedules_manufacturer_v3(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -637,7 +647,9 @@ Name | Type | Description  | Notes
 # **get_monitoring_schedules_vendor_v3**
 > GetMonitoringSchedulesApiResponse get_monitoring_schedules_vendor_v3(contract_id)
 
-Get all the monitoring schedules for a specified contract.
+Get all monitoring schedules for contract [vendor]
+
+Get all the monitoring schedules for a specified vendor contract.
 
 ### Example
 
@@ -677,7 +689,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
-        # Get all the monitoring schedules for a specified contract.
+        # Get all monitoring schedules for contract [vendor]
         api_response = api_instance.get_monitoring_schedules_vendor_v3(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -720,7 +732,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
-        # Get all the monitoring schedules for a specified contract.
+        # Get all monitoring schedules for contract [vendor]
         api_response = api_instance.get_monitoring_schedules_vendor_v3(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -756,7 +768,9 @@ Name | Type | Description  | Notes
 # **post_monitoring_schedule_manufacturer_v3**
 > PutMonitoringSchedulesApiResponse post_monitoring_schedule_manufacturer_v3(contract_id, com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3=com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3)
 
-Add a monitoring schedule for a given contract.
+Add monitoring schedule for contract [manufacturer]
+
+Add a monitoring schedule for a given manufacturer contract.
 
 ### Example
 
@@ -797,7 +811,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3() # ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3 | Request body for creating monitoring schedule. (optional)
 
     try:
-        # Add a monitoring schedule for a given contract.
+        # Add monitoring schedule for contract [manufacturer]
         api_response = api_instance.post_monitoring_schedule_manufacturer_v3(contract_id, com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3=com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3)
         pprint(api_response)
     except ApiException as e:
@@ -841,7 +855,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3() # ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3 | Request body for creating monitoring schedule. (optional)
 
     try:
-        # Add a monitoring schedule for a given contract.
+        # Add monitoring schedule for contract [manufacturer]
         api_response = api_instance.post_monitoring_schedule_manufacturer_v3(contract_id, com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3=com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3)
         pprint(api_response)
     except ApiException as e:
@@ -878,6 +892,8 @@ Name | Type | Description  | Notes
 # **post_monitoring_schedule_vendor_v3**
 > PutMonitoringSchedulesApiResponse post_monitoring_schedule_vendor_v3(contract_id, com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3=com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3)
 
+Add monitoring schedule for contract
+
 Add a monitoring schedule for a given contract.
 
 ### Example
@@ -919,7 +935,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3() # ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3 | Request body for creating monitoring schedule. (optional)
 
     try:
-        # Add a monitoring schedule for a given contract.
+        # Add monitoring schedule for contract
         api_response = api_instance.post_monitoring_schedule_vendor_v3(contract_id, com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3=com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3)
         pprint(api_response)
     except ApiException as e:
@@ -963,7 +979,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3() # ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3 | Request body for creating monitoring schedule. (optional)
 
     try:
-        # Add a monitoring schedule for a given contract.
+        # Add monitoring schedule for contract
         api_response = api_instance.post_monitoring_schedule_vendor_v3(contract_id, com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3=com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3)
         pprint(api_response)
     except ApiException as e:
@@ -1001,7 +1017,9 @@ Name | Type | Description  | Notes
 # **put_monitoring_schedule_manufacturer_v3**
 > PutMonitoringSchedulesApiResponse put_monitoring_schedule_manufacturer_v3(contract_id, schedule_id, com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3=com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3)
 
-Update a monitoring schedule for a given contract.
+Update monitoring schedule for contract [manufacturer]
+
+Update a monitoring schedule for a given manufacturer contract.
 
 ### Example
 
@@ -1043,7 +1061,7 @@ schedule_id = 56 # int | ID of a monitoring schedule
 com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3() # ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3 | Request body for updating monitoring schedule. (optional)
 
     try:
-        # Update a monitoring schedule for a given contract.
+        # Update monitoring schedule for contract [manufacturer]
         api_response = api_instance.put_monitoring_schedule_manufacturer_v3(contract_id, schedule_id, com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3=com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3)
         pprint(api_response)
     except ApiException as e:
@@ -1088,7 +1106,7 @@ schedule_id = 56 # int | ID of a monitoring schedule
 com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3() # ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3 | Request body for updating monitoring schedule. (optional)
 
     try:
-        # Update a monitoring schedule for a given contract.
+        # Update monitoring schedule for contract [manufacturer]
         api_response = api_instance.put_monitoring_schedule_manufacturer_v3(contract_id, schedule_id, com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3=com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3)
         pprint(api_response)
     except ApiException as e:
@@ -1127,7 +1145,9 @@ Name | Type | Description  | Notes
 # **put_monitoring_schedule_vendor_v3**
 > PutMonitoringSchedulesApiResponse put_monitoring_schedule_vendor_v3(contract_id, schedule_id, com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3=com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3)
 
-Update a monitoring schedule for a given contract.
+Update monitoring schedule for contract [vendor]
+
+Update a monitoring schedule for a given vendor contract.
 
 ### Example
 
@@ -1169,7 +1189,7 @@ schedule_id = 56 # int | ID of a monitoring schedule
 com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3() # ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3 | Request body for updating monitoring schedule. (optional)
 
     try:
-        # Update a monitoring schedule for a given contract.
+        # Update monitoring schedule for contract [vendor]
         api_response = api_instance.put_monitoring_schedule_vendor_v3(contract_id, schedule_id, com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3=com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3)
         pprint(api_response)
     except ApiException as e:
@@ -1214,7 +1234,7 @@ schedule_id = 56 # int | ID of a monitoring schedule
 com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3() # ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3 | Request body for updating monitoring schedule. (optional)
 
     try:
-        # Update a monitoring schedule for a given contract.
+        # Update monitoring schedule for contract [vendor]
         api_response = api_instance.put_monitoring_schedule_vendor_v3(contract_id, schedule_id, com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3=com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3)
         pprint(api_response)
     except ApiException as e:

@@ -4,17 +4,17 @@ All URIs are relative to *https://api.patagona.de*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**authenticate**](AccountApi.md#authenticate) | **POST** /login | 
-[**change_password**](AccountApi.md#change_password) | **PUT** /api/account/password | 
+[**authenticate**](AccountApi.md#authenticate) | **POST** /login | Authenticate
+[**change_password**](AccountApi.md#change_password) | **PUT** /api/account/password | Change password
 [**check_user_confirmation**](AccountApi.md#check_user_confirmation) | **HEAD** /api/account/confirm/{token} | Check if a specific confirmation token exists
 [**confirm_user**](AccountApi.md#confirm_user) | **POST** /api/account/confirm/{token} | Confirm an unconfirmed user
-[**delete_user_role**](AccountApi.md#delete_user_role) | **DELETE** /api/2/users/{userId}/role/{roleName} | 
-[**login_by_auth_token**](AccountApi.md#login_by_auth_token) | **GET** /api/login/token/{token} | 
-[**logout**](AccountApi.md#logout) | **POST** /logout | 
-[**post_account_v3**](AccountApi.md#post_account_v3) | **POST** /api/v3/account | Create a new user account
+[**delete_user_role**](AccountApi.md#delete_user_role) | **DELETE** /api/2/users/{userId}/role/{roleName} | Delete user role
+[**login_by_auth_token**](AccountApi.md#login_by_auth_token) | **GET** /api/login/token/{token} | Log in with authentication token
+[**logout**](AccountApi.md#logout) | **POST** /logout | Log out
+[**post_account_v3**](AccountApi.md#post_account_v3) | **POST** /api/v3/account | Create user account
 [**request_new_password**](AccountApi.md#request_new_password) | **POST** /api/account/password/reset | Request a new password
 [**reset_password**](AccountApi.md#reset_password) | **PUT** /api/account/password/reset | Reset the password
-[**update_user_role**](AccountApi.md#update_user_role) | **PUT** /api/2/users/{userId}/role/{roleName} | 
+[**update_user_role**](AccountApi.md#update_user_role) | **PUT** /api/2/users/{userId}/role/{roleName} | Add user role
 [**user_info**](AccountApi.md#user_info) | **GET** /api/account | Details of the current user
 [**user_signup**](AccountApi.md#user_signup) | **POST** /api/account | Create a new user account in the system
 
@@ -22,7 +22,7 @@ Method | HTTP request | Description
 # **authenticate**
 > object authenticate()
 
-
+Authenticate
 
 ### Example
 
@@ -45,6 +45,7 @@ with pricemonitor_api_client.ApiClient() as api_client:
     api_instance = pricemonitor_api_client.AccountApi(api_client)
     
     try:
+        # Authenticate
         api_response = api_instance.authenticate()
         pprint(api_response)
     except ApiException as e:
@@ -77,7 +78,7 @@ No authorization required
 # **change_password**
 > object change_password()
 
-
+Change password
 
 ### Example
 
@@ -116,6 +117,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     api_instance = pricemonitor_api_client.AccountApi(api_client)
     
     try:
+        # Change password
         api_response = api_instance.change_password()
         pprint(api_response)
     except ApiException as e:
@@ -157,6 +159,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     api_instance = pricemonitor_api_client.AccountApi(api_client)
     
     try:
+        # Change password
         api_response = api_instance.change_password()
         pprint(api_response)
     except ApiException as e:
@@ -431,7 +434,9 @@ void (empty response body)
 # **delete_user_role**
 > object delete_user_role(user_id, role_name)
 
+Delete user role
 
+Remove the specified role from the given user.
 
 ### Example
 
@@ -472,6 +477,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 role_name = 'role_name_example' # str | 
 
     try:
+        # Delete user role
         api_response = api_instance.delete_user_role(user_id, role_name)
         pprint(api_response)
     except ApiException as e:
@@ -515,6 +521,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 role_name = 'role_name_example' # str | 
 
     try:
+        # Delete user role
         api_response = api_instance.delete_user_role(user_id, role_name)
         pprint(api_response)
     except ApiException as e:
@@ -551,7 +558,7 @@ Name | Type | Description  | Notes
 # **login_by_auth_token**
 > object login_by_auth_token(token)
 
-
+Log in with authentication token
 
 ### Example
 
@@ -575,6 +582,7 @@ with pricemonitor_api_client.ApiClient() as api_client:
     token = 'token_example' # str | 
 
     try:
+        # Log in with authentication token
         api_response = api_instance.login_by_auth_token(token)
         pprint(api_response)
     except ApiException as e:
@@ -610,7 +618,7 @@ No authorization required
 # **logout**
 > object logout()
 
-
+Log out
 
 ### Example
 
@@ -633,6 +641,7 @@ with pricemonitor_api_client.ApiClient() as api_client:
     api_instance = pricemonitor_api_client.AccountApi(api_client)
     
     try:
+        # Log out
         api_response = api_instance.logout()
         pprint(api_response)
     except ApiException as e:
@@ -665,7 +674,9 @@ No authorization required
 # **post_account_v3**
 > PostAccountResponseV3ApiResponse post_account_v3(com_patagona_pricemonitor_share_api_post_account_request_v3=com_patagona_pricemonitor_share_api_post_account_request_v3)
 
-Create a new user account
+Create user account
+
+Create a new user account.
 
 ### Example
 
@@ -689,7 +700,7 @@ with pricemonitor_api_client.ApiClient() as api_client:
     com_patagona_pricemonitor_share_api_post_account_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostAccountRequestV3() # ComPatagonaPricemonitorShareApiPostAccountRequestV3 | Request body for creating a new user account. It must contain name, email and password. (optional)
 
     try:
-        # Create a new user account
+        # Create user account
         api_response = api_instance.post_account_v3(com_patagona_pricemonitor_share_api_post_account_request_v3=com_patagona_pricemonitor_share_api_post_account_request_v3)
         pprint(api_response)
     except ApiException as e:
@@ -966,7 +977,9 @@ Name | Type | Description  | Notes
 # **update_user_role**
 > object update_user_role(user_id, role_name, body=body)
 
+Add user role
 
+Add the specified role to the given user.
 
 ### Example
 
@@ -1008,6 +1021,7 @@ role_name = 'role_name_example' # str |
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Add user role
         api_response = api_instance.update_user_role(user_id, role_name, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -1052,6 +1066,7 @@ role_name = 'role_name_example' # str |
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Add user role
         api_response = api_instance.update_user_role(user_id, role_name, body=body)
         pprint(api_response)
     except ApiException as e:

@@ -1,6 +1,6 @@
 # ScenarioStrategyResponse
 
-Response body which contains the strategy scenario and relevant metadata
+Response body which contains the scenario strategy and relevant metadata
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

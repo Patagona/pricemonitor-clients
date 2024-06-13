@@ -4,15 +4,15 @@ All URIs are relative to *https://api.patagona.de*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**add_pricing_strategy_scenario**](ScenariostrategyApi.md#add_pricing_strategy_scenario) | **POST** /api/v3/vendor/contracts/{contractId}/settings/pricingstrategies/scenarios | 
-[**get_all_scenarios_metadata**](ScenariostrategyApi.md#get_all_scenarios_metadata) | **GET** /api/v3/vendor/contracts/{contractId}/settings/pricingstrategies/scenarios | Get a list of all strategy scenarios metadata for a contract
-[**get_scenario_by_id**](ScenariostrategyApi.md#get_scenario_by_id) | **GET** /api/v3/vendor/contracts/{contractId}/settings/pricingstrategies/scenarios/{scenarioId} | Get a strategy scenario with the provided scenario Id
+[**add_pricing_strategy_scenario**](ScenariostrategyApi.md#add_pricing_strategy_scenario) | **POST** /api/v3/vendor/contracts/{contractId}/settings/pricingstrategies/scenarios | Add scenario strategy
+[**get_all_scenarios_metadata**](ScenariostrategyApi.md#get_all_scenarios_metadata) | **GET** /api/v3/vendor/contracts/{contractId}/settings/pricingstrategies/scenarios | Get all scenario strategies
+[**get_scenario_by_id**](ScenariostrategyApi.md#get_scenario_by_id) | **GET** /api/v3/vendor/contracts/{contractId}/settings/pricingstrategies/scenarios/{scenarioId} | Get scenario strategy
 
 
 # **add_pricing_strategy_scenario**
 > PostScenarioStrategyResponseApiResponse add_pricing_strategy_scenario(contract_id, post_scenario_strategy_request=post_scenario_strategy_request)
 
-
+Add scenario strategy
 
 ### Example
 
@@ -53,6 +53,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 post_scenario_strategy_request = pricemonitor_api_client.PostScenarioStrategyRequest() # PostScenarioStrategyRequest | The scenario strategy to be stored. Including the necessary metadata. (optional)
 
     try:
+        # Add scenario strategy
         api_response = api_instance.add_pricing_strategy_scenario(contract_id, post_scenario_strategy_request=post_scenario_strategy_request)
         pprint(api_response)
     except ApiException as e:
@@ -96,6 +97,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 post_scenario_strategy_request = pricemonitor_api_client.PostScenarioStrategyRequest() # PostScenarioStrategyRequest | The scenario strategy to be stored. Including the necessary metadata. (optional)
 
     try:
+        # Add scenario strategy
         api_response = api_instance.add_pricing_strategy_scenario(contract_id, post_scenario_strategy_request=post_scenario_strategy_request)
         pprint(api_response)
     except ApiException as e:
@@ -133,7 +135,9 @@ Name | Type | Description  | Notes
 # **get_all_scenarios_metadata**
 > list[ScenarioStrategyMetadataResponseApiResponse] get_all_scenarios_metadata(contract_id)
 
-Get a list of all strategy scenarios metadata for a contract
+Get all scenario strategies
+
+Get a list of all scenario strategy metadata for a contract.
 
 ### Example
 
@@ -173,7 +177,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
-        # Get a list of all strategy scenarios metadata for a contract
+        # Get all scenario strategies
         api_response = api_instance.get_all_scenarios_metadata(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -216,7 +220,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
-        # Get a list of all strategy scenarios metadata for a contract
+        # Get all scenario strategies
         api_response = api_instance.get_all_scenarios_metadata(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -245,14 +249,16 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | List of all strategy scenarios metadata |  -  |
+**200** | List of all scenario strategy metadata |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_scenario_by_id**
 > ScenarioStrategyResponse get_scenario_by_id(contract_id, scenario_id)
 
-Get a strategy scenario with the provided scenario Id
+Get scenario strategy
+
+Get a scenario strategy with the provided scenario id.
 
 ### Example
 
@@ -290,10 +296,10 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ScenariostrategyApi(api_client)
     contract_id = 'qbcxvb' # str | ID of the contract
-scenario_id = 56 # int | ID of the required strategy scenario
+scenario_id = 56 # int | ID of the required scenario strategy
 
     try:
-        # Get a strategy scenario with the provided scenario Id
+        # Get scenario strategy
         api_response = api_instance.get_scenario_by_id(contract_id, scenario_id)
         pprint(api_response)
     except ApiException as e:
@@ -334,10 +340,10 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ScenariostrategyApi(api_client)
     contract_id = 'qbcxvb' # str | ID of the contract
-scenario_id = 56 # int | ID of the required strategy scenario
+scenario_id = 56 # int | ID of the required scenario strategy
 
     try:
-        # Get a strategy scenario with the provided scenario Id
+        # Get scenario strategy
         api_response = api_instance.get_scenario_by_id(contract_id, scenario_id)
         pprint(api_response)
     except ApiException as e:
@@ -349,7 +355,7 @@ scenario_id = 56 # int | ID of the required strategy scenario
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **contract_id** | **str**| ID of the contract | 
- **scenario_id** | **int**| ID of the required strategy scenario | 
+ **scenario_id** | **int**| ID of the required scenario strategy | 
 
 ### Return type
 
@@ -367,8 +373,8 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A strategy scenario |  -  |
-**404** | Strategy scenario with the provided Id was not found. |  -  |
+**200** | A scenario strategy |  -  |
+**404** | Scenario strategy with the provided Id was not found. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

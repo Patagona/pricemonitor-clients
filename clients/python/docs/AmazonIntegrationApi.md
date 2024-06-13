@@ -4,14 +4,16 @@ All URIs are relative to *https://api.patagona.de*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_authorization_status_vendor_v3**](AmazonIntegrationApi.md#get_authorization_status_vendor_v3) | **GET** /api/v3/companies/{companyId}/amazon/authorization/status | Get OAuth authorization status for customer&#39;s Amazon seller central account. For setting up OAuth authorization, have a look at the endpoint POST /api/v3/companies/{companyId}/amazon/authorization. 
-[**get_marketplace_activation_status**](AmazonIntegrationApi.md#get_marketplace_activation_status) | **GET** /api/v3/companies/{companyId}/amazon/marketplace/{marketplaceCountryCode}/contracts/{contractId} | Get marketplace activation status of a customer in our system. 
-[**post_activate_marketplace_vendor_v3**](AmazonIntegrationApi.md#post_activate_marketplace_vendor_v3) | **POST** /api/v3/companies/{companyId}/amazon/marketplace | Activate marketplace of a customer in our system. By activation, it means that our system can write prices back into the customer&#39;s Amazon shop. 
-[**post_authorize_seller_vendor_v3**](AmazonIntegrationApi.md#post_authorize_seller_vendor_v3) | **POST** /api/v3/companies/{companyId}/amazon/authorization | Set up an OAuth authorization for a customer&#39;s Amazon Seller Central account. It establishes a connection between our system and the customer&#39;s Amazon shop using the Amazon SP-API. Once connected, our system can write prices back to the customer&#39;s Amazon shop, allowing them to benefit from our price recommendations. 
+[**get_authorization_status_vendor_v3**](AmazonIntegrationApi.md#get_authorization_status_vendor_v3) | **GET** /api/v3/companies/{companyId}/amazon/authorization/status | Get authorization status for Amazon seller account
+[**get_marketplace_activation_status**](AmazonIntegrationApi.md#get_marketplace_activation_status) | **GET** /api/v3/companies/{companyId}/amazon/marketplace/{marketplaceCountryCode}/contracts/{contractId} | Get marketplace activation status
+[**post_activate_marketplace_vendor_v3**](AmazonIntegrationApi.md#post_activate_marketplace_vendor_v3) | **POST** /api/v3/companies/{companyId}/amazon/marketplace | Activate Amazon marketplace
+[**post_authorize_seller_vendor_v3**](AmazonIntegrationApi.md#post_authorize_seller_vendor_v3) | **POST** /api/v3/companies/{companyId}/amazon/authorization | Set up authorization for Amazon seller account
 
 
 # **get_authorization_status_vendor_v3**
 > GetAuthorizationStatusResponseV3ApiResponse get_authorization_status_vendor_v3(company_id)
+
+Get authorization status for Amazon seller account
 
 Get OAuth authorization status for customer's Amazon seller central account. For setting up OAuth authorization, have a look at the endpoint POST /api/v3/companies/{companyId}/amazon/authorization. 
 
@@ -53,7 +55,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     company_id = 1 # int | ID of a company
 
     try:
-        # Get OAuth authorization status for customer's Amazon seller central account. For setting up OAuth authorization, have a look at the endpoint POST /api/v3/companies/{companyId}/amazon/authorization. 
+        # Get authorization status for Amazon seller account
         api_response = api_instance.get_authorization_status_vendor_v3(company_id)
         pprint(api_response)
     except ApiException as e:
@@ -96,7 +98,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     company_id = 1 # int | ID of a company
 
     try:
-        # Get OAuth authorization status for customer's Amazon seller central account. For setting up OAuth authorization, have a look at the endpoint POST /api/v3/companies/{companyId}/amazon/authorization. 
+        # Get authorization status for Amazon seller account
         api_response = api_instance.get_authorization_status_vendor_v3(company_id)
         pprint(api_response)
     except ApiException as e:
@@ -131,6 +133,8 @@ Name | Type | Description  | Notes
 
 # **get_marketplace_activation_status**
 > ActivateMarketplaceResponseV3ApiResponse get_marketplace_activation_status(marketplace_country_code, company_id, contract_id)
+
+Get marketplace activation status
 
 Get marketplace activation status of a customer in our system. 
 
@@ -174,7 +178,7 @@ company_id = 1 # int | ID of a company
 contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
-        # Get marketplace activation status of a customer in our system. 
+        # Get marketplace activation status
         api_response = api_instance.get_marketplace_activation_status(marketplace_country_code, company_id, contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -219,7 +223,7 @@ company_id = 1 # int | ID of a company
 contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
-        # Get marketplace activation status of a customer in our system. 
+        # Get marketplace activation status
         api_response = api_instance.get_marketplace_activation_status(marketplace_country_code, company_id, contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -257,6 +261,8 @@ Name | Type | Description  | Notes
 
 # **post_activate_marketplace_vendor_v3**
 > ActivateMarketplaceResponseV3ApiResponse post_activate_marketplace_vendor_v3(company_id, com_patagona_pricemonitor_share_api_post_activate_marketplace_request_v3=com_patagona_pricemonitor_share_api_post_activate_marketplace_request_v3)
+
+Activate Amazon marketplace
 
 Activate marketplace of a customer in our system. By activation, it means that our system can write prices back into the customer's Amazon shop. 
 
@@ -299,7 +305,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_post_activate_marketplace_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostActivateMarketplaceRequestV3() # ComPatagonaPricemonitorShareApiPostActivateMarketplaceRequestV3 | Marketplace of a customer to be activated. (optional)
 
     try:
-        # Activate marketplace of a customer in our system. By activation, it means that our system can write prices back into the customer's Amazon shop. 
+        # Activate Amazon marketplace
         api_response = api_instance.post_activate_marketplace_vendor_v3(company_id, com_patagona_pricemonitor_share_api_post_activate_marketplace_request_v3=com_patagona_pricemonitor_share_api_post_activate_marketplace_request_v3)
         pprint(api_response)
     except ApiException as e:
@@ -343,7 +349,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_post_activate_marketplace_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostActivateMarketplaceRequestV3() # ComPatagonaPricemonitorShareApiPostActivateMarketplaceRequestV3 | Marketplace of a customer to be activated. (optional)
 
     try:
-        # Activate marketplace of a customer in our system. By activation, it means that our system can write prices back into the customer's Amazon shop. 
+        # Activate Amazon marketplace
         api_response = api_instance.post_activate_marketplace_vendor_v3(company_id, com_patagona_pricemonitor_share_api_post_activate_marketplace_request_v3=com_patagona_pricemonitor_share_api_post_activate_marketplace_request_v3)
         pprint(api_response)
     except ApiException as e:
@@ -380,6 +386,8 @@ Name | Type | Description  | Notes
 
 # **post_authorize_seller_vendor_v3**
 > PostAuthorizeSellerResponseV3ApiResponse post_authorize_seller_vendor_v3(company_id, com_patagona_pricemonitor_share_api_post_authorize_seller_request_v3=com_patagona_pricemonitor_share_api_post_authorize_seller_request_v3)
+
+Set up authorization for Amazon seller account
 
 Set up an OAuth authorization for a customer's Amazon Seller Central account. It establishes a connection between our system and the customer's Amazon shop using the Amazon SP-API. Once connected, our system can write prices back to the customer's Amazon shop, allowing them to benefit from our price recommendations. 
 
@@ -422,7 +430,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_post_authorize_seller_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostAuthorizeSellerRequestV3() # ComPatagonaPricemonitorShareApiPostAuthorizeSellerRequestV3 | Customer's Amazon seller central account to be authorized. (optional)
 
     try:
-        # Set up an OAuth authorization for a customer's Amazon Seller Central account. It establishes a connection between our system and the customer's Amazon shop using the Amazon SP-API. Once connected, our system can write prices back to the customer's Amazon shop, allowing them to benefit from our price recommendations. 
+        # Set up authorization for Amazon seller account
         api_response = api_instance.post_authorize_seller_vendor_v3(company_id, com_patagona_pricemonitor_share_api_post_authorize_seller_request_v3=com_patagona_pricemonitor_share_api_post_authorize_seller_request_v3)
         pprint(api_response)
     except ApiException as e:
@@ -466,7 +474,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_post_authorize_seller_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostAuthorizeSellerRequestV3() # ComPatagonaPricemonitorShareApiPostAuthorizeSellerRequestV3 | Customer's Amazon seller central account to be authorized. (optional)
 
     try:
-        # Set up an OAuth authorization for a customer's Amazon Seller Central account. It establishes a connection between our system and the customer's Amazon shop using the Amazon SP-API. Once connected, our system can write prices back to the customer's Amazon shop, allowing them to benefit from our price recommendations. 
+        # Set up authorization for Amazon seller account
         api_response = api_instance.post_authorize_seller_vendor_v3(company_id, com_patagona_pricemonitor_share_api_post_authorize_seller_request_v3=com_patagona_pricemonitor_share_api_post_authorize_seller_request_v3)
         pprint(api_response)
     except ApiException as e:

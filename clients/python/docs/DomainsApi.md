@@ -129,7 +129,7 @@ This endpoint does not need any parameter.
 
 Get a list of all available domains (V3)
 
-This endpoint provides all domains which are supported by our system. Along with other attributes we are providing the corresponding possible offer sources. Only domains which include the offer source DEFAULT_MONITORING are supported out-of-the-box by our monitoring pipeline. 
+This endpoint provides all domains which are supported by our system. Along with other attributes we are providing the corresponding possible offer sources. Only domains which include the offer source DEFAULT_MONITORING are supported out-of-the-box by our monitoring pipeline.
 
 ### Example
 

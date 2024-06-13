@@ -4,220 +4,222 @@ All URIs are relative to *https://api.patagona.de*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**add_company**](InternalApi.md#add_company) | **POST** /controlpanel/api/companies | 
-[**add_company_user**](InternalApi.md#add_company_user) | **PUT** /controlpanel/companies/{id}/users/{email} | 
-[**add_pricing_strategy_scenario**](InternalApi.md#add_pricing_strategy_scenario) | **POST** /api/v3/vendor/contracts/{contractId}/settings/pricingstrategies/scenarios | 
+[**add_company**](InternalApi.md#add_company) | **POST** /controlpanel/api/companies | Add company
+[**add_company_user**](InternalApi.md#add_company_user) | **PUT** /controlpanel/companies/{id}/users/{email} | Add user to company
+[**add_pricing_strategy_scenario**](InternalApi.md#add_pricing_strategy_scenario) | **POST** /api/v3/vendor/contracts/{contractId}/settings/pricingstrategies/scenarios | Add scenario strategy
 [**add_user**](InternalApi.md#add_user) | **POST** /controlpanel/users | Add a new user
-[**authenticate**](InternalApi.md#authenticate) | **POST** /login | 
-[**change_password**](InternalApi.md#change_password) | **PUT** /api/account/password | 
+[**authenticate**](InternalApi.md#authenticate) | **POST** /login | Authenticate
+[**change_password**](InternalApi.md#change_password) | **PUT** /api/account/password | Change password
 [**check_user_confirmation**](InternalApi.md#check_user_confirmation) | **HEAD** /api/account/confirm/{token} | Check if a specific confirmation token exists
 [**confirm_user**](InternalApi.md#confirm_user) | **POST** /api/account/confirm/{token} | Confirm an unconfirmed user
-[**create_alert_settings**](InternalApi.md#create_alert_settings) | **POST** /api/1/{contractId}/settings/alerts | 
-[**create_auth_token**](InternalApi.md#create_auth_token) | **POST** /controlpanel/users/{email}/authtokens | 
-[**create_task**](InternalApi.md#create_task) | **POST** /api/1/{contractId}/tasks | 
-[**create_task_manufacturer_v2**](InternalApi.md#create_task_manufacturer_v2) | **POST** /api/2/m/contracts/{contractId}/tasks | 
-[**create_task_vendor_v2**](InternalApi.md#create_task_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/tasks | 
-[**delete_alert_settings**](InternalApi.md#delete_alert_settings) | **DELETE** /api/1/{contractId}/settings/alerts/{alertId} | 
-[**delete_auth_token**](InternalApi.md#delete_auth_token) | **DELETE** /controlpanel/users/{email}/authtokens/{token} | 
-[**delete_callback_settings_manufacturer_v2**](InternalApi.md#delete_callback_settings_manufacturer_v2) | **DELETE** /api/2/m/contracts/{contractId}/settings/callbacks | 
-[**delete_callback_settings_vendor_v2**](InternalApi.md#delete_callback_settings_vendor_v2) | **DELETE** /api/2/v/contracts/{contractId}/settings/callbacks | 
-[**delete_contract_vendor_v2**](InternalApi.md#delete_contract_vendor_v2) | **DELETE** /api/2/v/contracts/{contractId} | 
-[**delete_dynamic_monitoring_settings**](InternalApi.md#delete_dynamic_monitoring_settings) | **DELETE** /api/1/{contractId}/settings/dynamicmonitoring | 
-[**delete_feed_vendor_v2**](InternalApi.md#delete_feed_vendor_v2) | **DELETE** /api/2/v/contracts/{contractId}/feeds/{feedId} | 
-[**delete_import_settings_vendor_v2**](InternalApi.md#delete_import_settings_vendor_v2) | **DELETE** /api/2/v/contracts/{contractId}/settings/import | 
-[**delete_monitoring_schedule_manufacturer_v3**](InternalApi.md#delete_monitoring_schedule_manufacturer_v3) | **DELETE** /api/v3/manufacturer/contracts/{contractId}/settings/monitoringschedules/{scheduleId} | Delete a monitoring schedule for a given contract.
-[**delete_monitoring_schedule_vendor_v3**](InternalApi.md#delete_monitoring_schedule_vendor_v3) | **DELETE** /api/v3/vendor/contracts/{contractId}/settings/monitoringschedules/{scheduleId} | Delete a monitoring schedule for a given contract.
-[**delete_products_manufacturer_v3**](InternalApi.md#delete_products_manufacturer_v3) | **DELETE** /api/v3/manufacturer/contracts/{contractId}/products | 
-[**delete_repricing_strategy_vendor_v2**](InternalApi.md#delete_repricing_strategy_vendor_v2) | **DELETE** /api/2/v/contracts/{contractId}/settings/repricingstrategy | 
-[**delete_user_role**](InternalApi.md#delete_user_role) | **DELETE** /api/2/users/{userId}/role/{roleName} | 
-[**delete_vendor_shop_mapping_manufacturer_v3**](InternalApi.md#delete_vendor_shop_mapping_manufacturer_v3) | **DELETE** /api/v3/manufacturer/contracts/{contractId}/vendors/{vendorId} | Delete a vendor and associated shops for a given contract.
-[**execute_monitoring_schedule_manufacturer_v3**](InternalApi.md#execute_monitoring_schedule_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/settings/monitoringschedules/{scheduleId}/execute | Trigger a monitoring pipeline task for manufacturer for configured monitoring schedule
-[**execute_monitoring_schedule_vendor_v3**](InternalApi.md#execute_monitoring_schedule_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/settings/monitoringschedules/{scheduleId}/execute | Trigger a monitoring pipeline task for vendor for configured monitoring schedule
-[**get_active_ebay_token_vendor_v2**](InternalApi.md#get_active_ebay_token_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/settings/ebay/token | 
-[**get_alert_settings**](InternalApi.md#get_alert_settings) | **GET** /api/1/{contractId}/settings/alerts | 
+[**create_alert_settings**](InternalApi.md#create_alert_settings) | **POST** /api/1/{contractId}/settings/alerts | Create alert settings
+[**create_auth_token**](InternalApi.md#create_auth_token) | **POST** /controlpanel/users/{email}/authtokens | Create authentication token
+[**create_task**](InternalApi.md#create_task) | **POST** /api/1/{contractId}/tasks | Create task
+[**create_task_manufacturer_v2**](InternalApi.md#create_task_manufacturer_v2) | **POST** /api/2/m/contracts/{contractId}/tasks | Create task [manufacturer]
+[**create_task_vendor_v2**](InternalApi.md#create_task_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/tasks | Create a task [vendor]
+[**delete_alert_settings**](InternalApi.md#delete_alert_settings) | **DELETE** /api/1/{contractId}/settings/alerts/{alertId} | Delete alert settings
+[**delete_auth_token**](InternalApi.md#delete_auth_token) | **DELETE** /controlpanel/users/{email}/authtokens/{token} | Delete authentication token
+[**delete_callback_settings_manufacturer_v2**](InternalApi.md#delete_callback_settings_manufacturer_v2) | **DELETE** /api/2/m/contracts/{contractId}/settings/callbacks | Delete callbacks [manufacturer]
+[**delete_callback_settings_vendor_v2**](InternalApi.md#delete_callback_settings_vendor_v2) | **DELETE** /api/2/v/contracts/{contractId}/settings/callbacks | Delete callbacks [vendor]
+[**delete_contract_vendor_v2**](InternalApi.md#delete_contract_vendor_v2) | **DELETE** /api/2/v/contracts/{contractId} | Delete contract [vendor]
+[**delete_dynamic_monitoring_settings**](InternalApi.md#delete_dynamic_monitoring_settings) | **DELETE** /api/1/{contractId}/settings/dynamicmonitoring | Delete dynamic monitoring settings
+[**delete_feed_vendor_v2**](InternalApi.md#delete_feed_vendor_v2) | **DELETE** /api/2/v/contracts/{contractId}/feeds/{feedId} | Deleted feed
+[**delete_import_settings_vendor_v2**](InternalApi.md#delete_import_settings_vendor_v2) | **DELETE** /api/2/v/contracts/{contractId}/settings/import | Delete import settings
+[**delete_monitoring_schedule_manufacturer_v3**](InternalApi.md#delete_monitoring_schedule_manufacturer_v3) | **DELETE** /api/v3/manufacturer/contracts/{contractId}/settings/monitoringschedules/{scheduleId} | Delete monitoring schedule for contract [manufacturer]
+[**delete_monitoring_schedule_vendor_v3**](InternalApi.md#delete_monitoring_schedule_vendor_v3) | **DELETE** /api/v3/vendor/contracts/{contractId}/settings/monitoringschedules/{scheduleId} | Delete monitoring schedule for contract [vendor]
+[**delete_products_manufacturer_v3**](InternalApi.md#delete_products_manufacturer_v3) | **DELETE** /api/v3/manufacturer/contracts/{contractId}/products | Delete products [manufacturer]
+[**delete_repricing_strategy_vendor_v2**](InternalApi.md#delete_repricing_strategy_vendor_v2) | **DELETE** /api/2/v/contracts/{contractId}/settings/repricingstrategy | Delete repricing strategy
+[**delete_user_role**](InternalApi.md#delete_user_role) | **DELETE** /api/2/users/{userId}/role/{roleName} | Delete user role
+[**delete_vendor_shop_mapping_manufacturer_v3**](InternalApi.md#delete_vendor_shop_mapping_manufacturer_v3) | **DELETE** /api/v3/manufacturer/contracts/{contractId}/vendors/{vendorId} | Delete vendor and associated shops for contract
+[**execute_monitoring_schedule_manufacturer_v3**](InternalApi.md#execute_monitoring_schedule_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/settings/monitoringschedules/{scheduleId}/execute | Trigger monitoring pipeline for schedule [manufacturer]
+[**execute_monitoring_schedule_vendor_v3**](InternalApi.md#execute_monitoring_schedule_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/settings/monitoringschedules/{scheduleId}/execute | Trigger monitoring pipeline for schedule [vendor]
+[**get_active_ebay_token_vendor_v2**](InternalApi.md#get_active_ebay_token_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/settings/ebay/token | Get active Ebay token
+[**get_alert_settings**](InternalApi.md#get_alert_settings) | **GET** /api/1/{contractId}/settings/alerts | Get alert settings
 [**get_all_companies**](InternalApi.md#get_all_companies) | **GET** /controlpanel/api/companies | Get a list of all companies
 [**get_all_contracts**](InternalApi.md#get_all_contracts) | **GET** /controlpanel/api/contracts | Get a list of all contracts
-[**get_all_domains_control_panel_v3**](InternalApi.md#get_all_domains_control_panel_v3) | **POST** /controlpanel/api/v3/domains | Add a new domain
-[**get_all_ebay_authorizations_vendor_v2**](InternalApi.md#get_all_ebay_authorizations_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/settings/ebay/authorizations | 
-[**get_all_ebay_tokens_vendor_v2**](InternalApi.md#get_all_ebay_tokens_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/settings/ebay/tokens | 
+[**get_all_domains_control_panel_v3**](InternalApi.md#get_all_domains_control_panel_v3) | **POST** /controlpanel/api/v3/domains | Add domain
+[**get_all_ebay_authorizations_vendor_v2**](InternalApi.md#get_all_ebay_authorizations_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/settings/ebay/authorizations | Get Ebay authorizations
+[**get_all_ebay_tokens_vendor_v2**](InternalApi.md#get_all_ebay_tokens_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/settings/ebay/tokens | Get all Ebay tokens
 [**get_all_portals**](InternalApi.md#get_all_portals) | **GET** /controlpanel/api/portals | Get a list of all portals
-[**get_all_scenarios_metadata**](InternalApi.md#get_all_scenarios_metadata) | **GET** /api/v3/vendor/contracts/{contractId}/settings/pricingstrategies/scenarios | Get a list of all strategy scenarios metadata for a contract
-[**get_all_tasks**](InternalApi.md#get_all_tasks) | **GET** /controlpanel/api/tasks | 
+[**get_all_scenarios_metadata**](InternalApi.md#get_all_scenarios_metadata) | **GET** /api/v3/vendor/contracts/{contractId}/settings/pricingstrategies/scenarios | Get all scenario strategies
+[**get_all_tasks**](InternalApi.md#get_all_tasks) | **GET** /controlpanel/api/tasks | Get all tasks
 [**get_all_users**](InternalApi.md#get_all_users) | **GET** /controlpanel/api/users | Get a list of all users
-[**get_authorization_status_vendor_v3**](InternalApi.md#get_authorization_status_vendor_v3) | **GET** /api/v3/companies/{companyId}/amazon/authorization/status | Get OAuth authorization status for customer&#39;s Amazon seller central account. For setting up OAuth authorization, have a look at the endpoint POST /api/v3/companies/{companyId}/amazon/authorization. 
-[**get_callbacks**](InternalApi.md#get_callbacks) | **GET** /api/2/m/contracts/{contractId}/settings/callbacks | Get callbacks
-[**get_callbacks_vendor_v2**](InternalApi.md#get_callbacks_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/settings/callbacks | 
-[**get_cheapest_vendors_manufacturer_v2**](InternalApi.md#get_cheapest_vendors_manufacturer_v2) | **POST** /api/2/m/contracts/{contractId}/result/vendors/cheapest | 
-[**get_company**](InternalApi.md#get_company) | **GET** /controlpanel/api/companies/{companyId} | 
+[**get_authorization_status_vendor_v3**](InternalApi.md#get_authorization_status_vendor_v3) | **GET** /api/v3/companies/{companyId}/amazon/authorization/status | Get authorization status for Amazon seller account
+[**get_callbacks**](InternalApi.md#get_callbacks) | **GET** /api/2/m/contracts/{contractId}/settings/callbacks | Get callbacks [manufacturer]
+[**get_callbacks_vendor_v2**](InternalApi.md#get_callbacks_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/settings/callbacks | Get callbacks [vendor]
+[**get_cheapest_vendors_manufacturer_v2**](InternalApi.md#get_cheapest_vendors_manufacturer_v2) | **POST** /api/2/m/contracts/{contractId}/result/vendors/cheapest | Query cheapest offers
+[**get_company**](InternalApi.md#get_company) | **GET** /controlpanel/api/companies/{companyId} | Get company
 [**get_complex_offer_filters_vendor_v2**](InternalApi.md#get_complex_offer_filters_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/offerfilters/{listType}/complex | Get all complex filters for the given contract.
-[**get_contracts_vendor_v2**](InternalApi.md#get_contracts_vendor_v2) | **GET** /api/2/v/contracts | 
-[**get_currency_vendor_v2**](InternalApi.md#get_currency_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/settings/currency | 
-[**get_customer_contract_settings_manufaturer_v3**](InternalApi.md#get_customer_contract_settings_manufaturer_v3) | **GET** /api/v3/manufacturer/contracts/{contractId}/settings/customer | 
-[**get_customer_contract_settings_vendor_v3**](InternalApi.md#get_customer_contract_settings_vendor_v3) | **GET** /api/v3/vendor/contracts/{contractId}/settings/customer | 
-[**get_domains_vendor_v2**](InternalApi.md#get_domains_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/settings/domains | 
-[**get_dynamic_monitoring_settings**](InternalApi.md#get_dynamic_monitoring_settings) | **GET** /api/1/{contractId}/settings/dynamicmonitoring | 
-[**get_ebay_authorizations_vendor_v2**](InternalApi.md#get_ebay_authorizations_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/settings/ebay/authorizations/{authIds} | 
-[**get_extended_tags_manufacturer_v3**](InternalApi.md#get_extended_tags_manufacturer_v3) | **GET** /api/v3/manufacturer/contracts/{contractId}/products/{productId}/extendedtags | 
-[**get_feed_export_delta_vendor_v2**](InternalApi.md#get_feed_export_delta_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/feeds/{feedId}/export/delta | 
-[**get_feed_export_vendor_v2**](InternalApi.md#get_feed_export_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/feeds/{feedId}/export | 
-[**get_import_settings_vendor_v2**](InternalApi.md#get_import_settings_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/settings/import | 
+[**get_contracts_vendor_v2**](InternalApi.md#get_contracts_vendor_v2) | **GET** /api/2/v/contracts | Get contracts [vendor]
+[**get_currency_vendor_v2**](InternalApi.md#get_currency_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/settings/currency | Get currency settings [vendor]
+[**get_customer_contract_settings_manufaturer_v3**](InternalApi.md#get_customer_contract_settings_manufaturer_v3) | **GET** /api/v3/manufacturer/contracts/{contractId}/settings/customer | Get contract settings [manufacturer]
+[**get_customer_contract_settings_vendor_v3**](InternalApi.md#get_customer_contract_settings_vendor_v3) | **GET** /api/v3/vendor/contracts/{contractId}/settings/customer | Get customer contract settings [vendor]
+[**get_domains_vendor_v2**](InternalApi.md#get_domains_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/settings/domains | Get domains for contract
+[**get_dynamic_monitoring_settings**](InternalApi.md#get_dynamic_monitoring_settings) | **GET** /api/1/{contractId}/settings/dynamicmonitoring | Get dynamic monitoring settings
+[**get_ebay_authorizations_vendor_v2**](InternalApi.md#get_ebay_authorizations_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/settings/ebay/authorizations/{authIds} | Get Ebay authorization
+[**get_extended_tags_manufacturer_v3**](InternalApi.md#get_extended_tags_manufacturer_v3) | **GET** /api/v3/manufacturer/contracts/{contractId}/products/{productId}/extendedtags | Get extended tags [manufacturer]
+[**get_feed_export_delta_vendor_v2**](InternalApi.md#get_feed_export_delta_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/feeds/{feedId}/export/delta | Get delta export feed
+[**get_feed_export_vendor_v2**](InternalApi.md#get_feed_export_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/feeds/{feedId}/export | Get export feed
+[**get_import_settings_vendor_v2**](InternalApi.md#get_import_settings_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/settings/import | Get import settings
 [**get_looker_user_attributes**](InternalApi.md#get_looker_user_attributes) | **GET** /api/v3/user/looker/attributes | Get Looker user attributes
-[**get_manufacturer_manufacturer_v2**](InternalApi.md#get_manufacturer_manufacturer_v2) | **GET** /api/2/m/contracts/{contractId} | 
-[**get_manufacturer_v3**](InternalApi.md#get_manufacturer_v3) | **GET** /api/v3/manufacturer/contracts/{contractId} | Get the contract information
-[**get_mappings_vendor_v2**](InternalApi.md#get_mappings_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/productidentifiermapping | 
-[**get_marketplace_activation_status**](InternalApi.md#get_marketplace_activation_status) | **GET** /api/v3/companies/{companyId}/amazon/marketplace/{marketplaceCountryCode}/contracts/{contractId} | Get marketplace activation status of a customer in our system. 
-[**get_monitoring_schedules_manufacturer_v3**](InternalApi.md#get_monitoring_schedules_manufacturer_v3) | **GET** /api/v3/manufacturer/contracts/{contractId}/settings/monitoringschedules | Get all the monitoring schedules for a specified contract.
-[**get_monitoring_schedules_vendor_v3**](InternalApi.md#get_monitoring_schedules_vendor_v3) | **GET** /api/v3/vendor/contracts/{contractId}/settings/monitoringschedules | Get all the monitoring schedules for a specified contract.
-[**get_monitoring_settings_manufacturer_v2**](InternalApi.md#get_monitoring_settings_manufacturer_v2) | **GET** /api/2/m/contracts/{contractId}/settings/monitoring | 
-[**get_monitoring_settings_manufacturer_v3**](InternalApi.md#get_monitoring_settings_manufacturer_v3) | **GET** /api/v3/manufacturer/contracts/{contractId}/settings/monitoring | 
-[**get_monitoring_settings_vendor_v2**](InternalApi.md#get_monitoring_settings_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/settings/monitoring | 
-[**get_monitoring_settings_vendor_v3**](InternalApi.md#get_monitoring_settings_vendor_v3) | **GET** /api/v3/vendor/contracts/{contractId}/settings/monitoring | 
-[**get_offer_filters_vendor_v2**](InternalApi.md#get_offer_filters_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/offerfilters/{listType}/vendors | Get all the vendor filters for the given contract.
-[**get_offer_retention_settings_manufacturer_v3**](InternalApi.md#get_offer_retention_settings_manufacturer_v3) | **GET** /api/v3/manufacturer/contracts/{contractId}/settings/offerretention | 
-[**get_offer_retention_settings_vendor_v3**](InternalApi.md#get_offer_retention_settings_vendor_v3) | **GET** /api/v3/vendor/contracts/{contractId}/settings/offerretention | 
+[**get_manufacturer_manufacturer_v2**](InternalApi.md#get_manufacturer_manufacturer_v2) | **GET** /api/2/m/contracts/{contractId} | Get contract [manufacturer]
+[**get_manufacturer_v3**](InternalApi.md#get_manufacturer_v3) | **GET** /api/v3/manufacturer/contracts/{contractId} | Get contract [manufacturer]
+[**get_mappings_vendor_v2**](InternalApi.md#get_mappings_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/productidentifiermapping | Get product mappings
+[**get_marketplace_activation_status**](InternalApi.md#get_marketplace_activation_status) | **GET** /api/v3/companies/{companyId}/amazon/marketplace/{marketplaceCountryCode}/contracts/{contractId} | Get marketplace activation status
+[**get_monitoring_schedules_manufacturer_v3**](InternalApi.md#get_monitoring_schedules_manufacturer_v3) | **GET** /api/v3/manufacturer/contracts/{contractId}/settings/monitoringschedules | Get all monitoring schedules for contract [manufacturer]
+[**get_monitoring_schedules_vendor_v3**](InternalApi.md#get_monitoring_schedules_vendor_v3) | **GET** /api/v3/vendor/contracts/{contractId}/settings/monitoringschedules | Get all monitoring schedules for contract [vendor]
+[**get_monitoring_settings_manufacturer_v2**](InternalApi.md#get_monitoring_settings_manufacturer_v2) | **GET** /api/2/m/contracts/{contractId}/settings/monitoring | Get monitoring settings for contract
+[**get_monitoring_settings_manufacturer_v3**](InternalApi.md#get_monitoring_settings_manufacturer_v3) | **GET** /api/v3/manufacturer/contracts/{contractId}/settings/monitoring | Get monitoring settings [manufacturer]
+[**get_monitoring_settings_vendor_v2**](InternalApi.md#get_monitoring_settings_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/settings/monitoring | Get monitoring settings [vendor]
+[**get_monitoring_settings_vendor_v3**](InternalApi.md#get_monitoring_settings_vendor_v3) | **GET** /api/v3/vendor/contracts/{contractId}/settings/monitoring | Get monitoring settings [vendor]
+[**get_offer_filters_vendor_v2**](InternalApi.md#get_offer_filters_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/offerfilters/{listType}/vendors | Get all vendor filters for contract
+[**get_offer_retention_settings_manufacturer_v3**](InternalApi.md#get_offer_retention_settings_manufacturer_v3) | **GET** /api/v3/manufacturer/contracts/{contractId}/settings/offerretention | Get offer retention settings [manufacturer]
+[**get_offer_retention_settings_vendor_v3**](InternalApi.md#get_offer_retention_settings_vendor_v3) | **GET** /api/v3/vendor/contracts/{contractId}/settings/offerretention | Get offer retention settings [vendor]
 [**get_offer_statistics_manufacturer_v3**](InternalApi.md#get_offer_statistics_manufacturer_v3) | **GET** /api/v3/manufacturer/contracts/{contractId}/offers/stats | Get offer statistics per product of a contract
 [**get_offers**](InternalApi.md#get_offers) | **GET** /api/2/v/contracts/{contractId}/result/offers | Get all offers for all products
 [**get_offers_shops_manufacturer_v3**](InternalApi.md#get_offers_shops_manufacturer_v3) | **GET** /api/v3/manufacturer/contracts/{contractId}/offers/shops | Get shops with offers for time range
 [**get_offers_shops_vendor_v3**](InternalApi.md#get_offers_shops_vendor_v3) | **GET** /api/v3/vendor/contracts/{contractId}/offers/shops | Get shops with offers for time range per domain
 [**get_orders_count_by_portal_by_contract**](InternalApi.md#get_orders_count_by_portal_by_contract) | **GET** /api/1/{contractId}/products/orderscountbyportal | Get orders count by portal
-[**get_price_cutters_manufacturer_v2**](InternalApi.md#get_price_cutters_manufacturer_v2) | **POST** /api/2/m/contracts/{contractId}/result/pricecutters | 
-[**get_price_cutters_vendor_v2**](InternalApi.md#get_price_cutters_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/result/pricecutters | 
-[**get_price_recommendation_stats_vendor_v2**](InternalApi.md#get_price_recommendation_stats_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/result/pricerecommendationstats | 
-[**get_product_filters_by_id_vendor_v2**](InternalApi.md#get_product_filters_by_id_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/offerfilters/:listType/products/query | 
+[**get_price_cutters_manufacturer_v2**](InternalApi.md#get_price_cutters_manufacturer_v2) | **POST** /api/2/m/contracts/{contractId}/result/pricecutters | Query price cutters [manufacturer]
+[**get_price_cutters_vendor_v2**](InternalApi.md#get_price_cutters_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/result/pricecutters | Query price cutters [vendor]
+[**get_price_recommendation_stats_vendor_v2**](InternalApi.md#get_price_recommendation_stats_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/result/pricerecommendationstats | Get price reommendation stats
+[**get_product_filters_by_id_vendor_v2**](InternalApi.md#get_product_filters_by_id_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/offerfilters/:listType/products/query | Get filtered offers
 [**get_product_filters_by_range_vendor_v2**](InternalApi.md#get_product_filters_by_range_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/offerfilters/{listType}/products | Get all the filters product-wise for the given contract.
 [**get_product_filters_vendor_v2**](InternalApi.md#get_product_filters_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/offerfilters/{listType}/products/{productId} | Get all the filters of a given product for the given contract.
-[**get_product_metrics_by_contract**](InternalApi.md#get_product_metrics_by_contract) | **GET** /api/1/{contractId}/products/articlescountbyportal | 
-[**get_product_monitoring_status_stats_vendor_v3**](InternalApi.md#get_product_monitoring_status_stats_vendor_v3) | **GET** /api/v3/vendor/contracts/{contractId}/products/monitoringstatus/stats | 
-[**get_product_price_violations_manufacturer_v2**](InternalApi.md#get_product_price_violations_manufacturer_v2) | **GET** /api/2/m/contracts/{contractId}/result/priceviolations | 
-[**get_product_price_violations_vendor_v2**](InternalApi.md#get_product_price_violations_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/result/priceviolations | 
+[**get_product_metrics_by_contract**](InternalApi.md#get_product_metrics_by_contract) | **GET** /api/1/{contractId}/products/articlescountbyportal | Get product metrics for contract
+[**get_product_monitoring_status_stats_vendor_v3**](InternalApi.md#get_product_monitoring_status_stats_vendor_v3) | **GET** /api/v3/vendor/contracts/{contractId}/products/monitoringstatus/stats | Get product monitoring status stats [vendor]
+[**get_product_price_violations_manufacturer_v2**](InternalApi.md#get_product_price_violations_manufacturer_v2) | **GET** /api/2/m/contracts/{contractId}/result/priceviolations | Get product price violations [manufacturer]
+[**get_product_price_violations_vendor_v2**](InternalApi.md#get_product_price_violations_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/result/priceviolations | Get product price violations [vendor]
 [**get_product_properties_v3**](InternalApi.md#get_product_properties_v3) | **GET** /api/v3/vendor/contracts/{contractId}/products/{productId}/properties | Get all product properties for a product
 [**get_product_property_keys_v3**](InternalApi.md#get_product_property_keys_v3) | **GET** /api/v3/vendor/contracts/{contractId}/products/properties/keys | Get all product properties keys
-[**get_repricing_strategy_vendor_v2**](InternalApi.md#get_repricing_strategy_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/settings/repricingstrategy | 
-[**get_scenario_by_id**](InternalApi.md#get_scenario_by_id) | **GET** /api/v3/vendor/contracts/{contractId}/settings/pricingstrategies/scenarios/{scenarioId} | Get a strategy scenario with the provided scenario Id
-[**get_settings**](InternalApi.md#get_settings) | **GET** /api/1/{contractId}/settings | 
-[**get_tag_values_manufacturer_v2**](InternalApi.md#get_tag_values_manufacturer_v2) | **GET** /api/2/m/contracts/{contractId}/products/tags/{key} | 
-[**get_tag_values_vendor_v2**](InternalApi.md#get_tag_values_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/products/tags/{key} | 
-[**get_tags_manufacturer_v2**](InternalApi.md#get_tags_manufacturer_v2) | **GET** /api/2/m/contracts/{contractId}/products/tags | 
-[**get_tags_vendor_v2**](InternalApi.md#get_tags_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/products/tags | 
-[**get_task**](InternalApi.md#get_task) | **GET** /api/1/{contractId}/tasks/{taskId} | 
-[**get_task_data_manufacturer_v2**](InternalApi.md#get_task_data_manufacturer_v2) | **GET** /api/2/m/contracts/{contractId}/tasks/{taskId}/data | 
-[**get_task_data_vendor_v2**](InternalApi.md#get_task_data_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/tasks/{taskId}/data | 
-[**get_task_manufacturer_v2**](InternalApi.md#get_task_manufacturer_v2) | **GET** /api/2/m/contracts/{contractId}/tasks/{taskId} | 
-[**get_task_state**](InternalApi.md#get_task_state) | **GET** /api/1/{contractId}/tasks/{taskId}/state | 
-[**get_tasks**](InternalApi.md#get_tasks) | **GET** /api/1/{contractId}/tasks | 
-[**get_tasks_manufacturer_v2**](InternalApi.md#get_tasks_manufacturer_v2) | **GET** /api/2/m/contracts/{contractId}/tasks | 
-[**get_tasks_stats**](InternalApi.md#get_tasks_stats) | **GET** /controlpanel/api/tasks/stats | 
-[**get_time_stamps**](InternalApi.md#get_time_stamps) | **GET** /api/1/{contractId}/products/analysis/timestamps | 
-[**get_user**](InternalApi.md#get_user) | **GET** /controlpanel/api/users/{email} | 
+[**get_repricing_strategy_vendor_v2**](InternalApi.md#get_repricing_strategy_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/settings/repricingstrategy | Get repricing strategy
+[**get_scenario_by_id**](InternalApi.md#get_scenario_by_id) | **GET** /api/v3/vendor/contracts/{contractId}/settings/pricingstrategies/scenarios/{scenarioId} | Get scenario strategy
+[**get_settings**](InternalApi.md#get_settings) | **GET** /api/1/{contractId}/settings | Get settings for contract
+[**get_tag_values_manufacturer_v2**](InternalApi.md#get_tag_values_manufacturer_v2) | **GET** /api/2/m/contracts/{contractId}/products/tags/{key} | Get product tag values [manufacturer]
+[**get_tag_values_vendor_v2**](InternalApi.md#get_tag_values_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/products/tags/{key} | Get tag values for key
+[**get_tags_manufacturer_v2**](InternalApi.md#get_tags_manufacturer_v2) | **GET** /api/2/m/contracts/{contractId}/products/tags | Get product tags [manufacturer]
+[**get_tags_vendor_v2**](InternalApi.md#get_tags_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/products/tags | Get product tags [vendor]
+[**get_task**](InternalApi.md#get_task) | **GET** /api/1/{contractId}/tasks/{taskId} | Get task
+[**get_task_data_manufacturer_v2**](InternalApi.md#get_task_data_manufacturer_v2) | **GET** /api/2/m/contracts/{contractId}/tasks/{taskId}/data | Get task data [manufacturer]
+[**get_task_data_vendor_v2**](InternalApi.md#get_task_data_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/tasks/{taskId}/data | Get task data [vendor]
+[**get_task_manufacturer_v2**](InternalApi.md#get_task_manufacturer_v2) | **GET** /api/2/m/contracts/{contractId}/tasks/{taskId} | Get task [manufacturer]
+[**get_task_state**](InternalApi.md#get_task_state) | **GET** /api/1/{contractId}/tasks/{taskId}/state | Get task state
+[**get_tasks**](InternalApi.md#get_tasks) | **GET** /api/1/{contractId}/tasks | Get tasks
+[**get_tasks_manufacturer_v2**](InternalApi.md#get_tasks_manufacturer_v2) | **GET** /api/2/m/contracts/{contractId}/tasks | Find tasks for contract [manufactuerer]
+[**get_tasks_stats**](InternalApi.md#get_tasks_stats) | **GET** /controlpanel/api/tasks/stats | Get all task stats
+[**get_time_stamps**](InternalApi.md#get_time_stamps) | **GET** /api/1/{contractId}/products/analysis/timestamps | Get time stamps
+[**get_user**](InternalApi.md#get_user) | **GET** /controlpanel/api/users/{email} | Get user
 [**get_users**](InternalApi.md#get_users) | **GET** /controlpanel/api/companies/{companyId}/users | Get all users of a company
-[**get_vendor_settings_v2_vendor_v2**](InternalApi.md#get_vendor_settings_v2_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/settings/repricing | 
-[**get_vendor_shop_mapping_manufacturer_v3**](InternalApi.md#get_vendor_shop_mapping_manufacturer_v3) | **GET** /api/v3/manufacturer/contracts/{contractId}/vendors/{vendorId} | Get vendor along with their associated shop for given vendor id and contract.
-[**get_vendor_shop_mappings_manufacturer_v3**](InternalApi.md#get_vendor_shop_mappings_manufacturer_v3) | **GET** /api/v3/manufacturer/contracts/{contractId}/vendors | Get all the vendors along with their associated shops for a specified contract.
-[**get_vendor_v3**](InternalApi.md#get_vendor_v3) | **GET** /api/v3/vendor/contracts/{contractId} | 
-[**get_vendor_vendor_v2**](InternalApi.md#get_vendor_vendor_v2) | **GET** /api/2/v/contracts/{contractId} | 
-[**get_vendors_by_domain_manufacturer_v2**](InternalApi.md#get_vendors_by_domain_manufacturer_v2) | **POST** /api/2/m/contracts/{contractId}/result/vendors/list | 
-[**list_vendors**](InternalApi.md#list_vendors) | **GET** /controlpanel/vendors | 
-[**login_by_auth_token**](InternalApi.md#login_by_auth_token) | **GET** /api/login/token/{token} | 
-[**logout**](InternalApi.md#logout) | **POST** /logout | 
-[**monitoring_pipeline_post_request_manufacturer_v3**](InternalApi.md#monitoring_pipeline_post_request_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/monitoringpipeline/{path} | 
-[**monitoring_pipeline_post_request_vendor_v3**](InternalApi.md#monitoring_pipeline_post_request_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/monitoringpipeline/{path} | 
-[**monitoring_pipeline_upsert_search_attempts_manufacturer_v3**](InternalApi.md#monitoring_pipeline_upsert_search_attempts_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/monitoringpipeline/v1/searchattempts | 
-[**monitoring_pipeline_upsert_search_attempts_vendor_v3**](InternalApi.md#monitoring_pipeline_upsert_search_attempts_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/monitoringpipeline/v1/searchattempts | 
-[**patch_product_manufacturer_v3**](InternalApi.md#patch_product_manufacturer_v3) | **PATCH** /api/v3/manufacturer/contracts/{contractId}/products/{productId} | 
-[**patch_product_vendor_v3**](InternalApi.md#patch_product_vendor_v3) | **PATCH** /api/v3/vendor/contracts/{contractId}/products/{productId} | 
-[**position_distribution**](InternalApi.md#position_distribution) | **POST** /api/1/{contractId}/vendors/{vendor}/positions | 
-[**post_account_v3**](InternalApi.md#post_account_v3) | **POST** /api/v3/account | Create a new user account
-[**post_activate_marketplace_vendor_v3**](InternalApi.md#post_activate_marketplace_vendor_v3) | **POST** /api/v3/companies/{companyId}/amazon/marketplace | Activate marketplace of a customer in our system. By activation, it means that our system can write prices back into the customer&#39;s Amazon shop. 
-[**post_authorize_seller_vendor_v3**](InternalApi.md#post_authorize_seller_vendor_v3) | **POST** /api/v3/companies/{companyId}/amazon/authorization | Set up an OAuth authorization for a customer&#39;s Amazon Seller Central account. It establishes a connection between our system and the customer&#39;s Amazon shop using the Amazon SP-API. Once connected, our system can write prices back to the customer&#39;s Amazon shop, allowing them to benefit from our price recommendations. 
-[**post_ebay_authorization_vendor_v2**](InternalApi.md#post_ebay_authorization_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/settings/ebay/authorizations | 
-[**post_embed_sso_url_manufacturer**](InternalApi.md#post_embed_sso_url_manufacturer) | **POST** /api/v3/manufacturer/contracts/{contractId}/looker/sso/embed/url | Retrieve an embed SSO url for Looker.
-[**post_embed_sso_url_vendor**](InternalApi.md#post_embed_sso_url_vendor) | **POST** /api/v3/vendor/contracts/{contractId}/looker/sso/embed/url | Retrieve an embed SSO url for Looker.
-[**post_feed_vendor_v2**](InternalApi.md#post_feed_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/feeds | 
-[**post_mappings_vendor_v2**](InternalApi.md#post_mappings_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/productidentifiermapping | 
-[**post_monitoring_schedule_manufacturer_v3**](InternalApi.md#post_monitoring_schedule_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/settings/monitoringschedules | Add a monitoring schedule for a given contract.
-[**post_monitoring_schedule_vendor_v3**](InternalApi.md#post_monitoring_schedule_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/settings/monitoringschedules | Add a monitoring schedule for a given contract.
-[**post_offer_statistics_vendor_query**](InternalApi.md#post_offer_statistics_vendor_query) | **POST** /api/v3/vendor/contracts/{contractId}/offers/stats/query | 
-[**post_vendor_shop_mapping_manufacturer_v3**](InternalApi.md#post_vendor_shop_mapping_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/vendors | Add a new vendor for a given contract and associate shops with the given vendor.
-[**prices_by_day_by_product_id_manufacturer_v2**](InternalApi.md#prices_by_day_by_product_id_manufacturer_v2) | **POST** /api/2/m/contracts/{contractId}/result/pricesbyday/productid/{productId} | 
-[**publish_preprocessing_task_vendor_v3**](InternalApi.md#publish_preprocessing_task_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/tasks/preprocessing | Publish a preprocessing task for vendor.
-[**put_callbacks**](InternalApi.md#put_callbacks) | **PUT** /api/2/m/contracts/{contractId}/settings/callbacks | Set callbacks
-[**put_callbacks_vendor_v2**](InternalApi.md#put_callbacks_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/settings/callbacks | 
+[**get_vendor_settings_v2_vendor_v2**](InternalApi.md#get_vendor_settings_v2_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/settings/repricing | Get repricing settings
+[**get_vendor_shop_mapping_manufacturer_v3**](InternalApi.md#get_vendor_shop_mapping_manufacturer_v3) | **GET** /api/v3/manufacturer/contracts/{contractId}/vendors/{vendorId} | Get vendor and shops for contract
+[**get_vendor_shop_mappings_manufacturer_v3**](InternalApi.md#get_vendor_shop_mappings_manufacturer_v3) | **GET** /api/v3/manufacturer/contracts/{contractId}/vendors | Get all vendors and shops for contract
+[**get_vendor_v3**](InternalApi.md#get_vendor_v3) | **GET** /api/v3/vendor/contracts/{contractId} | Get contract [vendor]
+[**get_vendor_vendor_v2**](InternalApi.md#get_vendor_vendor_v2) | **GET** /api/2/v/contracts/{contractId} | Get contract [vendor]
+[**get_vendors_by_domain_manufacturer_v2**](InternalApi.md#get_vendors_by_domain_manufacturer_v2) | **POST** /api/2/m/contracts/{contractId}/result/vendors/list | Get vendors by domain
+[**list_vendors**](InternalApi.md#list_vendors) | **GET** /controlpanel/vendors | Get list of vendors
+[**login_by_auth_token**](InternalApi.md#login_by_auth_token) | **GET** /api/login/token/{token} | Log in with authentication token
+[**logout**](InternalApi.md#logout) | **POST** /logout | Log out
+[**monitoring_pipeline_post_request_manufacturer_v3**](InternalApi.md#monitoring_pipeline_post_request_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/monitoringpipeline/{path} | Update monitoring pipeline [manufacturer]
+[**monitoring_pipeline_post_request_vendor_v3**](InternalApi.md#monitoring_pipeline_post_request_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/monitoringpipeline/{path} | Update monitoring pipeline [vendor]
+[**monitoring_pipeline_upsert_search_attempts_manufacturer_v3**](InternalApi.md#monitoring_pipeline_upsert_search_attempts_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/monitoringpipeline/v1/searchattempts | Update monitoring pipeline search attempts [manufacturer]
+[**monitoring_pipeline_upsert_search_attempts_vendor_v3**](InternalApi.md#monitoring_pipeline_upsert_search_attempts_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/monitoringpipeline/v1/searchattempts | Update monitoring pipeline search attempts [vendor]
+[**patch_product_manufacturer_v3**](InternalApi.md#patch_product_manufacturer_v3) | **PATCH** /api/v3/manufacturer/contracts/{contractId}/products/{productId} | Update product [manufacturer]
+[**patch_product_vendor_v3**](InternalApi.md#patch_product_vendor_v3) | **PATCH** /api/v3/vendor/contracts/{contractId}/products/{productId} | Update product [vendor]
+[**position_distribution**](InternalApi.md#position_distribution) | **POST** /api/1/{contractId}/vendors/{vendor}/positions | Update position distribution
+[**post_account_v3**](InternalApi.md#post_account_v3) | **POST** /api/v3/account | Create user account
+[**post_activate_marketplace_vendor_v3**](InternalApi.md#post_activate_marketplace_vendor_v3) | **POST** /api/v3/companies/{companyId}/amazon/marketplace | Activate Amazon marketplace
+[**post_authorize_seller_vendor_v3**](InternalApi.md#post_authorize_seller_vendor_v3) | **POST** /api/v3/companies/{companyId}/amazon/authorization | Set up authorization for Amazon seller account
+[**post_ebay_authorization_vendor_v2**](InternalApi.md#post_ebay_authorization_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/settings/ebay/authorizations | Update Ebay authorization
+[**post_embed_sso_url_manufacturer**](InternalApi.md#post_embed_sso_url_manufacturer) | **POST** /api/v3/manufacturer/contracts/{contractId}/looker/sso/embed/url | Retrieve Looker embed SSO url [manufacturer]
+[**post_embed_sso_url_vendor**](InternalApi.md#post_embed_sso_url_vendor) | **POST** /api/v3/vendor/contracts/{contractId}/looker/sso/embed/url | Retrieve Looker embed SSO url [vendor]
+[**post_feed_vendor_v2**](InternalApi.md#post_feed_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/feeds | Create feed
+[**post_mappings_vendor_v2**](InternalApi.md#post_mappings_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/productidentifiermapping | Update product identifier mapping
+[**post_monitoring_schedule_manufacturer_v3**](InternalApi.md#post_monitoring_schedule_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/settings/monitoringschedules | Add monitoring schedule for contract [manufacturer]
+[**post_monitoring_schedule_vendor_v3**](InternalApi.md#post_monitoring_schedule_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/settings/monitoringschedules | Add monitoring schedule for contract
+[**post_offer_statistics_vendor_query**](InternalApi.md#post_offer_statistics_vendor_query) | **POST** /api/v3/vendor/contracts/{contractId}/offers/stats/query | Get offer statistics per product
+[**post_vendor_shop_mapping_manufacturer_v3**](InternalApi.md#post_vendor_shop_mapping_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/vendors | Add new vendor to contract and associate shops
+[**prices_by_day_by_product_id_manufacturer_v2**](InternalApi.md#prices_by_day_by_product_id_manufacturer_v2) | **POST** /api/2/m/contracts/{contractId}/result/pricesbyday/productid/{productId} | Query prices by day by product
+[**publish_preprocessing_task_vendor_v3**](InternalApi.md#publish_preprocessing_task_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/tasks/preprocessing | Publish preprocessing task [vendor]
+[**put_callbacks**](InternalApi.md#put_callbacks) | **PUT** /api/2/m/contracts/{contractId}/settings/callbacks | Update callbacks [manufacturer]
+[**put_callbacks_vendor_v2**](InternalApi.md#put_callbacks_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/settings/callbacks | Update callbacks [vendor]
 [**put_complex_offer_filters_vendor_v2**](InternalApi.md#put_complex_offer_filters_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/offerfilters/{listType}/complex | Add the complex filters for the given contract.
-[**put_csv_products**](InternalApi.md#put_csv_products) | **PUT** /api/2/v/contracts/{contractId}/products/csv | Set products via CSV file
-[**put_csv_products_manufacturer_v3**](InternalApi.md#put_csv_products_manufacturer_v3) | **PUT** /api/v3/manufacturer/contracts/{contractId}/products | Set products via CSV file
-[**put_currency_vendor_v2**](InternalApi.md#put_currency_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/settings/currency | 
-[**put_customer_contract_settings_manufacturer_v3**](InternalApi.md#put_customer_contract_settings_manufacturer_v3) | **PUT** /api/v3/manufacturer/contracts/{contractId}/settings/customer | 
-[**put_customer_contract_settings_vendor_v3**](InternalApi.md#put_customer_contract_settings_vendor_v3) | **PUT** /api/v3/vendor/contracts/{contractId}/settings/customer | 
-[**put_dynamic_monitoring_settings**](InternalApi.md#put_dynamic_monitoring_settings) | **PUT** /api/1/{contractId}/settings/dynamicmonitoring | 
-[**put_feed_vendor_v2**](InternalApi.md#put_feed_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/feeds/{feedId} | 
-[**put_image_tag_manufacturer_v2**](InternalApi.md#put_image_tag_manufacturer_v2) | **PUT** /api/2/m/contracts/{contractId}/settings/imagetag | 
-[**put_image_tag_vendor_v2**](InternalApi.md#put_image_tag_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/settings/imagetag | 
-[**put_import_settings_vendor_v2**](InternalApi.md#put_import_settings_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/settings/import | 
-[**put_monitoring_schedule_manufacturer_v3**](InternalApi.md#put_monitoring_schedule_manufacturer_v3) | **PUT** /api/v3/manufacturer/contracts/{contractId}/settings/monitoringschedules/{scheduleId} | Update a monitoring schedule for a given contract.
-[**put_monitoring_schedule_vendor_v3**](InternalApi.md#put_monitoring_schedule_vendor_v3) | **PUT** /api/v3/vendor/contracts/{contractId}/settings/monitoringschedules/{scheduleId} | Update a monitoring schedule for a given contract.
-[**put_monitoring_settings_manufacturer_v2**](InternalApi.md#put_monitoring_settings_manufacturer_v2) | **PUT** /api/2/m/contracts/{contractId}/settings/monitoring | 
-[**put_monitoring_settings_manufacturer_v3**](InternalApi.md#put_monitoring_settings_manufacturer_v3) | **PUT** /api/v3/manufacturer/contracts/{contractId}/settings/monitoring | 
-[**put_monitoring_settings_vendor_v2**](InternalApi.md#put_monitoring_settings_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/settings/monitoring | 
-[**put_monitoring_settings_vendor_v3**](InternalApi.md#put_monitoring_settings_vendor_v3) | **PUT** /api/v3/vendor/contracts/{contractId}/settings/monitoring | 
-[**put_offer_filters_vendor_v2**](InternalApi.md#put_offer_filters_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/offerfilters/{listType}/vendors | Store the vendor filters for the given contract.
-[**put_offer_retention_settings_manufacturer_v3**](InternalApi.md#put_offer_retention_settings_manufacturer_v3) | **PUT** /api/v3/manufacturer/contracts/{contractId}/settings/offerretention | 
-[**put_offer_retention_settings_vendor_v3**](InternalApi.md#put_offer_retention_settings_vendor_v3) | **PUT** /api/v3/vendor/contracts/{contractId}/settings/offerretention | 
+[**put_csv_products**](InternalApi.md#put_csv_products) | **PUT** /api/2/v/contracts/{contractId}/products/csv | Set products via CSV file (V2)
+[**put_csv_products_manufacturer_v3**](InternalApi.md#put_csv_products_manufacturer_v3) | **PUT** /api/v3/manufacturer/contracts/{contractId}/products | Set products via CSV file (V3)
+[**put_currency_vendor_v2**](InternalApi.md#put_currency_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/settings/currency | Update currency settings [vendor]
+[**put_customer_contract_settings_manufacturer_v3**](InternalApi.md#put_customer_contract_settings_manufacturer_v3) | **PUT** /api/v3/manufacturer/contracts/{contractId}/settings/customer | Update contract settings [manufacturer]
+[**put_customer_contract_settings_vendor_v3**](InternalApi.md#put_customer_contract_settings_vendor_v3) | **PUT** /api/v3/vendor/contracts/{contractId}/settings/customer | Update customer contract settings [vendor]
+[**put_dynamic_monitoring_settings**](InternalApi.md#put_dynamic_monitoring_settings) | **PUT** /api/1/{contractId}/settings/dynamicmonitoring | Update dynamic monitoring settings
+[**put_feed_vendor_v2**](InternalApi.md#put_feed_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/feeds/{feedId} | Update feed
+[**put_image_tag_manufacturer_v2**](InternalApi.md#put_image_tag_manufacturer_v2) | **PUT** /api/2/m/contracts/{contractId}/settings/imagetag | Update image tag [manufacturer]
+[**put_image_tag_vendor_v2**](InternalApi.md#put_image_tag_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/settings/imagetag | Update image tag [vendor]
+[**put_import_settings_vendor_v2**](InternalApi.md#put_import_settings_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/settings/import | Update import settings
+[**put_monitoring_schedule_manufacturer_v3**](InternalApi.md#put_monitoring_schedule_manufacturer_v3) | **PUT** /api/v3/manufacturer/contracts/{contractId}/settings/monitoringschedules/{scheduleId} | Update monitoring schedule for contract [manufacturer]
+[**put_monitoring_schedule_vendor_v3**](InternalApi.md#put_monitoring_schedule_vendor_v3) | **PUT** /api/v3/vendor/contracts/{contractId}/settings/monitoringschedules/{scheduleId} | Update monitoring schedule for contract [vendor]
+[**put_monitoring_settings_manufacturer_v2**](InternalApi.md#put_monitoring_settings_manufacturer_v2) | **PUT** /api/2/m/contracts/{contractId}/settings/monitoring | Update monitoring settings for contract
+[**put_monitoring_settings_manufacturer_v3**](InternalApi.md#put_monitoring_settings_manufacturer_v3) | **PUT** /api/v3/manufacturer/contracts/{contractId}/settings/monitoring | Update monitoring settings [manufacturer]
+[**put_monitoring_settings_vendor_v2**](InternalApi.md#put_monitoring_settings_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/settings/monitoring | Update monitoring settings [vendor]
+[**put_monitoring_settings_vendor_v3**](InternalApi.md#put_monitoring_settings_vendor_v3) | **PUT** /api/v3/vendor/contracts/{contractId}/settings/monitoring | Update monitoring settings [vendor]
+[**put_offer_filters_vendor_v2**](InternalApi.md#put_offer_filters_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/offerfilters/{listType}/vendors | Store vendor filters for contract
+[**put_offer_retention_settings_manufacturer_v3**](InternalApi.md#put_offer_retention_settings_manufacturer_v3) | **PUT** /api/v3/manufacturer/contracts/{contractId}/settings/offerretention | Update offer retention settings [manufacturer]
+[**put_offer_retention_settings_vendor_v3**](InternalApi.md#put_offer_retention_settings_vendor_v3) | **PUT** /api/v3/vendor/contracts/{contractId}/settings/offerretention | Update offer retention settings [vendor]
 [**put_product_filters_vendor_v2**](InternalApi.md#put_product_filters_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/offerfilters/{listType}/products/{productId} | Store the filters of a given product for the given contract.
 [**put_product_properties_v3**](InternalApi.md#put_product_properties_v3) | **PUT** /api/v3/vendor/contracts/{contractId}/products/{productId}/properties | Manage product properties for a product
-[**put_products_csv_manufacturer_v2**](InternalApi.md#put_products_csv_manufacturer_v2) | **PUT** /api/2/m/contracts/{contractId}/products/csv | 
-[**put_products_vendor_v2**](InternalApi.md#put_products_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/products | 
-[**put_repricing_strategy_vendor_v2**](InternalApi.md#put_repricing_strategy_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/settings/repricingstrategy | 
-[**put_settings**](InternalApi.md#put_settings) | **PUT** /api/1/{contractId}/settings | 
-[**put_vendor_settings_vendor_v2**](InternalApi.md#put_vendor_settings_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/settings/repricing | 
-[**put_vendor_shop_mapping_manufacturer_v3**](InternalApi.md#put_vendor_shop_mapping_manufacturer_v3) | **PUT** /api/v3/manufacturer/contracts/{contractId}/vendors/{vendorId} | Update an existing vendor for a given contract and associate shops with the given vendor.
-[**query_offers_manufacturer_v3**](InternalApi.md#query_offers_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/offers/query | 
+[**put_products_csv_manufacturer_v2**](InternalApi.md#put_products_csv_manufacturer_v2) | **PUT** /api/2/m/contracts/{contractId}/products/csv | Set products via CSV file [manufacturer]
+[**put_products_vendor_v2**](InternalApi.md#put_products_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/products | Update products in bulk (JSON)
+[**put_repricing_strategy_vendor_v2**](InternalApi.md#put_repricing_strategy_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/settings/repricingstrategy | Update repricing strategy
+[**put_settings**](InternalApi.md#put_settings) | **PUT** /api/1/{contractId}/settings | Update settings for contract
+[**put_vendor_settings_vendor_v2**](InternalApi.md#put_vendor_settings_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/settings/repricing | Update repricing settings
+[**put_vendor_shop_mapping_manufacturer_v3**](InternalApi.md#put_vendor_shop_mapping_manufacturer_v3) | **PUT** /api/v3/manufacturer/contracts/{contractId}/vendors/{vendorId} | Update vendor for contract and associate shops
+[**query_offers_manufacturer_v3**](InternalApi.md#query_offers_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/offers/query | Query offers [manufacturer]
 [**query_offers_price_dumping_stats_manufacturer_v3**](InternalApi.md#query_offers_price_dumping_stats_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/offers/pricedumpingstats | Query price dumping statistics
 [**query_offers_price_dumping_stats_vendor_v3**](InternalApi.md#query_offers_price_dumping_stats_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/offers/pricedumpingstats | Query price dumping statistics
-[**query_offers_shop_manufacturer_v3**](InternalApi.md#query_offers_shop_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/offers/shop/query | 
-[**query_offers_shop_vendor_v3**](InternalApi.md#query_offers_shop_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/offers/shop/query | 
-[**query_offers_stats_manufacturer_v3**](InternalApi.md#query_offers_stats_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/offers/stats/query | 
+[**query_offers_shop_manufacturer_v3**](InternalApi.md#query_offers_shop_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/offers/shop/query | Get all offers [manufacturer]
+[**query_offers_shop_vendor_v3**](InternalApi.md#query_offers_shop_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/offers/shop/query | Get all offers [vendor]
+[**query_offers_stats_manufacturer_v3**](InternalApi.md#query_offers_stats_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/offers/stats/query | Query offer statistics per product
 [**query_offers_stats_manufacturer_v31**](InternalApi.md#query_offers_stats_manufacturer_v31) | **POST** /api/v3.1/manufacturer/contracts/{contractId}/offers/stats/query | Query offer statistics per product
-[**query_price_recommendations_vendor_v2**](InternalApi.md#query_price_recommendations_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/result/pricerecommendations/query | 
-[**query_products_by_filter_manufacturer_v3**](InternalApi.md#query_products_by_filter_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/products/query | 
+[**query_price_recommendations_vendor_v2**](InternalApi.md#query_price_recommendations_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/result/pricerecommendations/query | Query price recommendations
+[**query_products_by_filter_manufacturer_v3**](InternalApi.md#query_products_by_filter_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/products/query | Get products of a contract
 [**query_products_by_filter_vendor_v3**](InternalApi.md#query_products_by_filter_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/products/query | Query products of a contract
 [**query_products_manufacturer_v3**](InternalApi.md#query_products_manufacturer_v3) | **POST** /api/v3.1/manufacturer/contracts/{contractId}/products/query | Query products for manufacturer
-[**raw_offers**](InternalApi.md#raw_offers) | **GET** /api/1/{contractId}/products/offers | 
-[**remove_user**](InternalApi.md#remove_user) | **DELETE** /controlpanel/api/companies/{companyId}/users/{userId} | 
+[**raw_offers**](InternalApi.md#raw_offers) | **GET** /api/1/{contractId}/products/offers | Get offers for contract
+[**remove_user**](InternalApi.md#remove_user) | **DELETE** /controlpanel/api/companies/{companyId}/users/{userId} | Remove user from company
 [**request_new_password**](InternalApi.md#request_new_password) | **POST** /api/account/password/reset | Request a new password
 [**reset_password**](InternalApi.md#reset_password) | **PUT** /api/account/password/reset | Reset the password
-[**save_include_delivery_costs**](InternalApi.md#save_include_delivery_costs) | **POST** /api/1/{contractId}/settings/include_delivery_costs | 
-[**scheduler_delete_request_manufacturer_v3**](InternalApi.md#scheduler_delete_request_manufacturer_v3) | **DELETE** /api/v3/manufacturer/contracts/{contractId}/scheduler/{path} | 
-[**scheduler_delete_request_vendor_v3**](InternalApi.md#scheduler_delete_request_vendor_v3) | **DELETE** /api/v3/vendor/contracts/{contractId}/scheduler/{path} | 
-[**scheduler_get_request_manufacturer_v3**](InternalApi.md#scheduler_get_request_manufacturer_v3) | **GET** /api/v3/manufacturer/contracts/{contractId}/scheduler/{path} | 
-[**scheduler_get_request_vendor_v3**](InternalApi.md#scheduler_get_request_vendor_v3) | **GET** /api/v3/vendor/contracts/{contractId}/scheduler/{path} | 
-[**scheduler_post_request_manufacturer_v3**](InternalApi.md#scheduler_post_request_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/scheduler/{path} | 
-[**scheduler_post_request_vendor_v3**](InternalApi.md#scheduler_post_request_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/scheduler/{path} | 
-[**scheduler_put_request_manufacturer_v3**](InternalApi.md#scheduler_put_request_manufacturer_v3) | **PUT** /api/v3/manufacturer/contracts/{contractId}/scheduler/{path} | 
-[**scheduler_put_request_vendor_v3**](InternalApi.md#scheduler_put_request_vendor_v3) | **PUT** /api/v3/vendor/contracts/{contractId}/scheduler/{path} | 
-[**segment_offers_manufacturer_v2**](InternalApi.md#segment_offers_manufacturer_v2) | **POST** /api/2/m/contracts/{contractId}/result/offersegmentation | 
-[**segment_offers_vendor_v2**](InternalApi.md#segment_offers_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/result/offersegmentation | 
-[**shop_integration_get_request**](InternalApi.md#shop_integration_get_request) | **GET** /api/2/v/contracts/{contractId}/shop-integration/{path} | 
-[**shop_integration_post_request**](InternalApi.md#shop_integration_post_request) | **POST** /api/2/v/contracts/{contractId}/shop-integration/{path} | 
-[**shop_integration_post_request_vendor_v2**](InternalApi.md#shop_integration_post_request_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/products/import | 
-[**stats_manufacturer_v2**](InternalApi.md#stats_manufacturer_v2) | **GET** /api/2/m/contracts/{contractId}/result/contract/stats | 
-[**timestamps_manufacturer_v2**](InternalApi.md#timestamps_manufacturer_v2) | **GET** /api/2/m/contracts/{contractId}/result/timestamps | 
-[**update_alert_settings**](InternalApi.md#update_alert_settings) | **PUT** /api/1/{contractId}/settings/alerts/{alertId} | 
-[**update_auth_token**](InternalApi.md#update_auth_token) | **PUT** /controlpanel/users/{email}/authtokens/{token} | 
-[**update_task_manufacturer_v2**](InternalApi.md#update_task_manufacturer_v2) | **PUT** /api/2/m/contracts/{contractId}/tasks/{taskId} | 
-[**update_task_vendor_v2**](InternalApi.md#update_task_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/tasks/{taskId} | 
-[**update_user_role**](InternalApi.md#update_user_role) | **PUT** /api/2/users/{userId}/role/{roleName} | 
+[**save_include_delivery_costs**](InternalApi.md#save_include_delivery_costs) | **POST** /api/1/{contractId}/settings/include_delivery_costs | Update includes delivery costs setting
+[**scheduler_delete_request_manufacturer_v3**](InternalApi.md#scheduler_delete_request_manufacturer_v3) | **DELETE** /api/v3/manufacturer/contracts/{contractId}/scheduler/{path} | Delete scheduler operation [manufacturer]
+[**scheduler_delete_request_vendor_v3**](InternalApi.md#scheduler_delete_request_vendor_v3) | **DELETE** /api/v3/vendor/contracts/{contractId}/scheduler/{path} | Delete scheduler operation
+[**scheduler_get_request_manufacturer_v3**](InternalApi.md#scheduler_get_request_manufacturer_v3) | **GET** /api/v3/manufacturer/contracts/{contractId}/scheduler/{path} | Get scheduler operation [manufacturer]
+[**scheduler_get_request_vendor_v3**](InternalApi.md#scheduler_get_request_vendor_v3) | **GET** /api/v3/vendor/contracts/{contractId}/scheduler/{path} | Get scheduler operation [vendor]
+[**scheduler_post_request_manufacturer_v3**](InternalApi.md#scheduler_post_request_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/scheduler/{path} | Create scheduler operation [manufacturer]
+[**scheduler_post_request_vendor_v3**](InternalApi.md#scheduler_post_request_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/scheduler/{path} | Create scheduler operation
+[**scheduler_put_request_manufacturer_v3**](InternalApi.md#scheduler_put_request_manufacturer_v3) | **PUT** /api/v3/manufacturer/contracts/{contractId}/scheduler/{path} | Update scheduler operation [manufacturer]
+[**scheduler_put_request_vendor_v3**](InternalApi.md#scheduler_put_request_vendor_v3) | **PUT** /api/v3/vendor/contracts/{contractId}/scheduler/{path} | Update scheduler operation
+[**segment_offers_manufacturer_v2**](InternalApi.md#segment_offers_manufacturer_v2) | **POST** /api/2/m/contracts/{contractId}/result/offersegmentation | Update segment offers [manufacturer]
+[**segment_offers_vendor_v2**](InternalApi.md#segment_offers_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/result/offersegmentation | Update segment offers [vendor]
+[**shop_integration_get_request**](InternalApi.md#shop_integration_get_request) | **GET** /api/2/v/contracts/{contractId}/shop-integration/{path} | Get shop integration
+[**shop_integration_post_request**](InternalApi.md#shop_integration_post_request) | **POST** /api/2/v/contracts/{contractId}/shop-integration/{path} | Update shop integration
+[**shop_integration_post_request_vendor_v2**](InternalApi.md#shop_integration_post_request_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/products/import | Update shop integration import
+[**stats_manufacturer_v2**](InternalApi.md#stats_manufacturer_v2) | **GET** /api/2/m/contracts/{contractId}/result/contract/stats | Get contract statistics [manufacturer]
+[**timestamps_manufacturer_v2**](InternalApi.md#timestamps_manufacturer_v2) | **GET** /api/2/m/contracts/{contractId}/result/timestamps | Get timestamps
+[**update_alert_settings**](InternalApi.md#update_alert_settings) | **PUT** /api/1/{contractId}/settings/alerts/{alertId} | Update alert settings
+[**update_auth_token**](InternalApi.md#update_auth_token) | **PUT** /controlpanel/users/{email}/authtokens/{token} | Update authentication token
+[**update_task_manufacturer_v2**](InternalApi.md#update_task_manufacturer_v2) | **PUT** /api/2/m/contracts/{contractId}/tasks/{taskId} | Update task [manufacturer]
+[**update_task_vendor_v2**](InternalApi.md#update_task_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/tasks/{taskId} | Update a task
+[**update_user_role**](InternalApi.md#update_user_role) | **PUT** /api/2/users/{userId}/role/{roleName} | Add user role
 [**user_info**](InternalApi.md#user_info) | **GET** /api/account | Details of the current user
 [**user_signup**](InternalApi.md#user_signup) | **POST** /api/account | Create a new user account in the system
-[**validate_offers_manufacturer_v2**](InternalApi.md#validate_offers_manufacturer_v2) | **POST** /api/2/m/contracts/{contractId}/result/validation | 
-[**validate_offers_vendor_v2**](InternalApi.md#validate_offers_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/result/validation | 
-[**vendor_data**](InternalApi.md#vendor_data) | **GET** /controlpanel/vendorexport/{vendor} | 
-[**version**](InternalApi.md#version) | **GET** /version | Get the current application version
+[**validate_offers_manufacturer_v2**](InternalApi.md#validate_offers_manufacturer_v2) | **POST** /api/2/m/contracts/{contractId}/result/validation | Validate offers [manufacturer]
+[**validate_offers_vendor_v2**](InternalApi.md#validate_offers_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/result/validation | Validate offers [vendor]
+[**vendor_data**](InternalApi.md#vendor_data) | **GET** /controlpanel/vendorexport/{vendor} | Get vendor export data
+[**version**](InternalApi.md#version) | **GET** /version | Get application version
 
 
 # **add_company**
 > object add_company()
 
+Add company
 
+Add a company.
 
 ### Example
 
@@ -256,6 +258,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     api_instance = pricemonitor_api_client.InternalApi(api_client)
     
     try:
+        # Add company
         api_response = api_instance.add_company()
         pprint(api_response)
     except ApiException as e:
@@ -297,6 +300,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     api_instance = pricemonitor_api_client.InternalApi(api_client)
     
     try:
+        # Add company
         api_response = api_instance.add_company()
         pprint(api_response)
     except ApiException as e:
@@ -329,7 +333,7 @@ This endpoint does not need any parameter.
 # **add_company_user**
 > object add_company_user(id, email, body=body)
 
-
+Add user to company
 
 ### Example
 
@@ -371,6 +375,7 @@ email = 'email_example' # str |
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Add user to company
         api_response = api_instance.add_company_user(id, email, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -415,6 +420,7 @@ email = 'email_example' # str |
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Add user to company
         api_response = api_instance.add_company_user(id, email, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -452,7 +458,7 @@ Name | Type | Description  | Notes
 # **add_pricing_strategy_scenario**
 > PostScenarioStrategyResponseApiResponse add_pricing_strategy_scenario(contract_id, post_scenario_strategy_request=post_scenario_strategy_request)
 
-
+Add scenario strategy
 
 ### Example
 
@@ -493,6 +499,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 post_scenario_strategy_request = pricemonitor_api_client.PostScenarioStrategyRequest() # PostScenarioStrategyRequest | The scenario strategy to be stored. Including the necessary metadata. (optional)
 
     try:
+        # Add scenario strategy
         api_response = api_instance.add_pricing_strategy_scenario(contract_id, post_scenario_strategy_request=post_scenario_strategy_request)
         pprint(api_response)
     except ApiException as e:
@@ -536,6 +543,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 post_scenario_strategy_request = pricemonitor_api_client.PostScenarioStrategyRequest() # PostScenarioStrategyRequest | The scenario strategy to be stored. Including the necessary metadata. (optional)
 
     try:
+        # Add scenario strategy
         api_response = api_instance.add_pricing_strategy_scenario(contract_id, post_scenario_strategy_request=post_scenario_strategy_request)
         pprint(api_response)
     except ApiException as e:
@@ -691,7 +699,7 @@ void (empty response body)
 # **authenticate**
 > object authenticate()
 
-
+Authenticate
 
 ### Example
 
@@ -714,6 +722,7 @@ with pricemonitor_api_client.ApiClient() as api_client:
     api_instance = pricemonitor_api_client.InternalApi(api_client)
     
     try:
+        # Authenticate
         api_response = api_instance.authenticate()
         pprint(api_response)
     except ApiException as e:
@@ -746,7 +755,7 @@ No authorization required
 # **change_password**
 > object change_password()
 
-
+Change password
 
 ### Example
 
@@ -785,6 +794,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     api_instance = pricemonitor_api_client.InternalApi(api_client)
     
     try:
+        # Change password
         api_response = api_instance.change_password()
         pprint(api_response)
     except ApiException as e:
@@ -826,6 +836,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     api_instance = pricemonitor_api_client.InternalApi(api_client)
     
     try:
+        # Change password
         api_response = api_instance.change_password()
         pprint(api_response)
     except ApiException as e:
@@ -1100,7 +1111,7 @@ void (empty response body)
 # **create_alert_settings**
 > object create_alert_settings(contract_id, body=body)
 
-
+Create alert settings
 
 ### Example
 
@@ -1141,6 +1152,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Create alert settings
         api_response = api_instance.create_alert_settings(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -1184,6 +1196,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Create alert settings
         api_response = api_instance.create_alert_settings(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -1220,7 +1233,7 @@ Name | Type | Description  | Notes
 # **create_auth_token**
 > object create_auth_token(email, body=body)
 
-
+Create authentication token
 
 ### Example
 
@@ -1261,6 +1274,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Create authentication token
         api_response = api_instance.create_auth_token(email, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -1304,6 +1318,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Create authentication token
         api_response = api_instance.create_auth_token(email, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -1340,127 +1355,7 @@ Name | Type | Description  | Notes
 # **create_task**
 > object create_task(contract_id, com_patagona_pricemonitor_share_api_create_task_body_v2=com_patagona_pricemonitor_share_api_create_task_body_v2)
 
-
-
-### Example
-
-* Basic Authentication (BasicAuth):
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: BasicAuth
-configuration = pricemonitor_api_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = pricemonitor_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.InternalApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-com_patagona_pricemonitor_share_api_create_task_body_v2 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiCreateTaskBodyV2() # ComPatagonaPricemonitorShareApiCreateTaskBodyV2 | Create a new task (optional)
-
-    try:
-        api_response = api_instance.create_task(contract_id, com_patagona_pricemonitor_share_api_create_task_body_v2=com_patagona_pricemonitor_share_api_create_task_body_v2)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling InternalApi->create_task: %s\n" % e)
-```
-
-* Bearer (JWT) Authentication (BearerAuth):
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: BasicAuth
-configuration = pricemonitor_api_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = pricemonitor_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.InternalApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-com_patagona_pricemonitor_share_api_create_task_body_v2 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiCreateTaskBodyV2() # ComPatagonaPricemonitorShareApiCreateTaskBodyV2 | Create a new task (optional)
-
-    try:
-        api_response = api_instance.create_task(contract_id, com_patagona_pricemonitor_share_api_create_task_body_v2=com_patagona_pricemonitor_share_api_create_task_body_v2)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling InternalApi->create_task: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
- **com_patagona_pricemonitor_share_api_create_task_body_v2** | [**ComPatagonaPricemonitorShareApiCreateTaskBodyV2**](ComPatagonaPricemonitorShareApiCreateTaskBodyV2.md)| Create a new task | [optional] 
-
-### Return type
-
-**object**
-
-### Authorization
-
-[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | This is a generated entry and needs to be described. |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **create_task_manufacturer_v2**
-> GenericTaskWithUrl create_task_manufacturer_v2(contract_id, com_patagona_pricemonitor_share_api_create_task_body_v2=com_patagona_pricemonitor_share_api_create_task_body_v2)
-
-
+Create task
 
 Create a new task
 
@@ -1500,9 +1395,134 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.InternalApi(api_client)
     contract_id = 'qbcxvb' # str | ID of the contract
+com_patagona_pricemonitor_share_api_create_task_body_v2 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiCreateTaskBodyV2() # ComPatagonaPricemonitorShareApiCreateTaskBodyV2 | Create a new task (optional)
+
+    try:
+        # Create task
+        api_response = api_instance.create_task(contract_id, com_patagona_pricemonitor_share_api_create_task_body_v2=com_patagona_pricemonitor_share_api_create_task_body_v2)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling InternalApi->create_task: %s\n" % e)
+```
+
+* Bearer (JWT) Authentication (BearerAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.InternalApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+com_patagona_pricemonitor_share_api_create_task_body_v2 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiCreateTaskBodyV2() # ComPatagonaPricemonitorShareApiCreateTaskBodyV2 | Create a new task (optional)
+
+    try:
+        # Create task
+        api_response = api_instance.create_task(contract_id, com_patagona_pricemonitor_share_api_create_task_body_v2=com_patagona_pricemonitor_share_api_create_task_body_v2)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling InternalApi->create_task: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **contract_id** | **str**| ID of the contract | 
+ **com_patagona_pricemonitor_share_api_create_task_body_v2** | [**ComPatagonaPricemonitorShareApiCreateTaskBodyV2**](ComPatagonaPricemonitorShareApiCreateTaskBodyV2.md)| Create a new task | [optional] 
+
+### Return type
+
+**object**
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | This is a generated entry and needs to be described. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **create_task_manufacturer_v2**
+> GenericTaskWithUrl create_task_manufacturer_v2(contract_id, com_patagona_pricemonitor_share_api_create_task_body_v2=com_patagona_pricemonitor_share_api_create_task_body_v2)
+
+Create task [manufacturer]
+
+Creates a new task for a manufacturer contract
+
+### Example
+
+* Basic Authentication (BasicAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.InternalApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
 com_patagona_pricemonitor_share_api_create_task_body_v2 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiCreateTaskBodyV2() # ComPatagonaPricemonitorShareApiCreateTaskBodyV2 | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Create task [manufacturer]
         api_response = api_instance.create_task_manufacturer_v2(contract_id, com_patagona_pricemonitor_share_api_create_task_body_v2=com_patagona_pricemonitor_share_api_create_task_body_v2)
         pprint(api_response)
     except ApiException as e:
@@ -1546,6 +1566,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_create_task_body_v2 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiCreateTaskBodyV2() # ComPatagonaPricemonitorShareApiCreateTaskBodyV2 | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Create task [manufacturer]
         api_response = api_instance.create_task_manufacturer_v2(contract_id, com_patagona_pricemonitor_share_api_create_task_body_v2=com_patagona_pricemonitor_share_api_create_task_body_v2)
         pprint(api_response)
     except ApiException as e:
@@ -1582,7 +1603,9 @@ Name | Type | Description  | Notes
 # **create_task_vendor_v2**
 > object create_task_vendor_v2(contract_id, com_patagona_pricemonitor_share_api_create_task_body_v2=com_patagona_pricemonitor_share_api_create_task_body_v2)
 
+Create a task [vendor]
 
+Creates a new task for a vendor contract.
 
 ### Example
 
@@ -1623,6 +1646,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_create_task_body_v2 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiCreateTaskBodyV2() # ComPatagonaPricemonitorShareApiCreateTaskBodyV2 | Create a new task (optional)
 
     try:
+        # Create a task [vendor]
         api_response = api_instance.create_task_vendor_v2(contract_id, com_patagona_pricemonitor_share_api_create_task_body_v2=com_patagona_pricemonitor_share_api_create_task_body_v2)
         pprint(api_response)
     except ApiException as e:
@@ -1666,6 +1690,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_create_task_body_v2 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiCreateTaskBodyV2() # ComPatagonaPricemonitorShareApiCreateTaskBodyV2 | Create a new task (optional)
 
     try:
+        # Create a task [vendor]
         api_response = api_instance.create_task_vendor_v2(contract_id, com_patagona_pricemonitor_share_api_create_task_body_v2=com_patagona_pricemonitor_share_api_create_task_body_v2)
         pprint(api_response)
     except ApiException as e:
@@ -1702,7 +1727,7 @@ Name | Type | Description  | Notes
 # **delete_alert_settings**
 > object delete_alert_settings(contract_id, alert_id)
 
-
+Delete alert settings
 
 ### Example
 
@@ -1743,6 +1768,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 alert_id = 'alert_id_example' # str | 
 
     try:
+        # Delete alert settings
         api_response = api_instance.delete_alert_settings(contract_id, alert_id)
         pprint(api_response)
     except ApiException as e:
@@ -1786,6 +1812,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 alert_id = 'alert_id_example' # str | 
 
     try:
+        # Delete alert settings
         api_response = api_instance.delete_alert_settings(contract_id, alert_id)
         pprint(api_response)
     except ApiException as e:
@@ -1822,7 +1849,7 @@ Name | Type | Description  | Notes
 # **delete_auth_token**
 > object delete_auth_token(email, token)
 
-
+Delete authentication token
 
 ### Example
 
@@ -1863,6 +1890,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 token = 'token_example' # str | 
 
     try:
+        # Delete authentication token
         api_response = api_instance.delete_auth_token(email, token)
         pprint(api_response)
     except ApiException as e:
@@ -1906,6 +1934,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 token = 'token_example' # str | 
 
     try:
+        # Delete authentication token
         api_response = api_instance.delete_auth_token(email, token)
         pprint(api_response)
     except ApiException as e:
@@ -1942,7 +1971,7 @@ Name | Type | Description  | Notes
 # **delete_callback_settings_manufacturer_v2**
 > object delete_callback_settings_manufacturer_v2(contract_id)
 
-
+Delete callbacks [manufacturer]
 
 ### Example
 
@@ -1982,6 +2011,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Delete callbacks [manufacturer]
         api_response = api_instance.delete_callback_settings_manufacturer_v2(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -2024,6 +2054,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Delete callbacks [manufacturer]
         api_response = api_instance.delete_callback_settings_manufacturer_v2(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -2059,7 +2090,7 @@ Name | Type | Description  | Notes
 # **delete_callback_settings_vendor_v2**
 > object delete_callback_settings_vendor_v2(contract_id)
 
-
+Delete callbacks [vendor]
 
 ### Example
 
@@ -2099,6 +2130,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Delete callbacks [vendor]
         api_response = api_instance.delete_callback_settings_vendor_v2(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -2141,6 +2173,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Delete callbacks [vendor]
         api_response = api_instance.delete_callback_settings_vendor_v2(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -2176,7 +2209,7 @@ Name | Type | Description  | Notes
 # **delete_contract_vendor_v2**
 > object delete_contract_vendor_v2(contract_id)
 
-
+Delete contract [vendor]
 
 ### Example
 
@@ -2216,6 +2249,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Delete contract [vendor]
         api_response = api_instance.delete_contract_vendor_v2(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -2258,6 +2292,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Delete contract [vendor]
         api_response = api_instance.delete_contract_vendor_v2(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -2293,7 +2328,7 @@ Name | Type | Description  | Notes
 # **delete_dynamic_monitoring_settings**
 > object delete_dynamic_monitoring_settings(contract_id)
 
-
+Delete dynamic monitoring settings
 
 ### Example
 
@@ -2333,6 +2368,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Delete dynamic monitoring settings
         api_response = api_instance.delete_dynamic_monitoring_settings(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -2375,6 +2411,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Delete dynamic monitoring settings
         api_response = api_instance.delete_dynamic_monitoring_settings(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -2410,7 +2447,7 @@ Name | Type | Description  | Notes
 # **delete_feed_vendor_v2**
 > object delete_feed_vendor_v2(contract_id, feed_id)
 
-
+Deleted feed
 
 ### Example
 
@@ -2451,6 +2488,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 feed_id = 'feed_id_example' # str | 
 
     try:
+        # Deleted feed
         api_response = api_instance.delete_feed_vendor_v2(contract_id, feed_id)
         pprint(api_response)
     except ApiException as e:
@@ -2494,6 +2532,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 feed_id = 'feed_id_example' # str | 
 
     try:
+        # Deleted feed
         api_response = api_instance.delete_feed_vendor_v2(contract_id, feed_id)
         pprint(api_response)
     except ApiException as e:
@@ -2530,7 +2569,7 @@ Name | Type | Description  | Notes
 # **delete_import_settings_vendor_v2**
 > object delete_import_settings_vendor_v2(contract_id)
 
-
+Delete import settings
 
 ### Example
 
@@ -2570,6 +2609,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Delete import settings
         api_response = api_instance.delete_import_settings_vendor_v2(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -2612,6 +2652,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Delete import settings
         api_response = api_instance.delete_import_settings_vendor_v2(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -2647,7 +2688,9 @@ Name | Type | Description  | Notes
 # **delete_monitoring_schedule_manufacturer_v3**
 > ComPatagonaPricemonitorShareApiDeleteByNumericIdApiResponse delete_monitoring_schedule_manufacturer_v3(contract_id, schedule_id)
 
-Delete a monitoring schedule for a given contract.
+Delete monitoring schedule for contract [manufacturer]
+
+Delete a monitoring schedule for a given manufacturer contract.
 
 ### Example
 
@@ -2688,7 +2731,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 schedule_id = 56 # int | ID of a monitoring schedule
 
     try:
-        # Delete a monitoring schedule for a given contract.
+        # Delete monitoring schedule for contract [manufacturer]
         api_response = api_instance.delete_monitoring_schedule_manufacturer_v3(contract_id, schedule_id)
         pprint(api_response)
     except ApiException as e:
@@ -2732,7 +2775,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 schedule_id = 56 # int | ID of a monitoring schedule
 
     try:
-        # Delete a monitoring schedule for a given contract.
+        # Delete monitoring schedule for contract [manufacturer]
         api_response = api_instance.delete_monitoring_schedule_manufacturer_v3(contract_id, schedule_id)
         pprint(api_response)
     except ApiException as e:
@@ -2770,7 +2813,9 @@ Name | Type | Description  | Notes
 # **delete_monitoring_schedule_vendor_v3**
 > ComPatagonaPricemonitorShareApiDeleteByNumericIdApiResponse delete_monitoring_schedule_vendor_v3(contract_id, schedule_id)
 
-Delete a monitoring schedule for a given contract.
+Delete monitoring schedule for contract [vendor]
+
+Delete a monitoring schedule for a given vendor contract.
 
 ### Example
 
@@ -2811,7 +2856,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 schedule_id = 56 # int | ID of a monitoring schedule
 
     try:
-        # Delete a monitoring schedule for a given contract.
+        # Delete monitoring schedule for contract [vendor]
         api_response = api_instance.delete_monitoring_schedule_vendor_v3(contract_id, schedule_id)
         pprint(api_response)
     except ApiException as e:
@@ -2855,7 +2900,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 schedule_id = 56 # int | ID of a monitoring schedule
 
     try:
-        # Delete a monitoring schedule for a given contract.
+        # Delete monitoring schedule for contract [vendor]
         api_response = api_instance.delete_monitoring_schedule_vendor_v3(contract_id, schedule_id)
         pprint(api_response)
     except ApiException as e:
@@ -2894,7 +2939,7 @@ Name | Type | Description  | Notes
 # **delete_products_manufacturer_v3**
 > object delete_products_manufacturer_v3(contract_id, updated_max=updated_max)
 
-
+Delete products [manufacturer]
 
 ### Example
 
@@ -2935,6 +2980,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 updated_max = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 
     try:
+        # Delete products [manufacturer]
         api_response = api_instance.delete_products_manufacturer_v3(contract_id, updated_max=updated_max)
         pprint(api_response)
     except ApiException as e:
@@ -2978,6 +3024,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 updated_max = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 
     try:
+        # Delete products [manufacturer]
         api_response = api_instance.delete_products_manufacturer_v3(contract_id, updated_max=updated_max)
         pprint(api_response)
     except ApiException as e:
@@ -3014,7 +3061,7 @@ Name | Type | Description  | Notes
 # **delete_repricing_strategy_vendor_v2**
 > object delete_repricing_strategy_vendor_v2(contract_id)
 
-
+Delete repricing strategy
 
 ### Example
 
@@ -3054,6 +3101,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Delete repricing strategy
         api_response = api_instance.delete_repricing_strategy_vendor_v2(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -3096,6 +3144,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Delete repricing strategy
         api_response = api_instance.delete_repricing_strategy_vendor_v2(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -3131,7 +3180,9 @@ Name | Type | Description  | Notes
 # **delete_user_role**
 > object delete_user_role(user_id, role_name)
 
+Delete user role
 
+Remove the specified role from the given user.
 
 ### Example
 
@@ -3172,6 +3223,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 role_name = 'role_name_example' # str | 
 
     try:
+        # Delete user role
         api_response = api_instance.delete_user_role(user_id, role_name)
         pprint(api_response)
     except ApiException as e:
@@ -3215,6 +3267,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 role_name = 'role_name_example' # str | 
 
     try:
+        # Delete user role
         api_response = api_instance.delete_user_role(user_id, role_name)
         pprint(api_response)
     except ApiException as e:
@@ -3251,7 +3304,9 @@ Name | Type | Description  | Notes
 # **delete_vendor_shop_mapping_manufacturer_v3**
 > ComPatagonaPricemonitorShareApiDeleteByNumericIdApiResponse delete_vendor_shop_mapping_manufacturer_v3(contract_id, vendor_id)
 
-Delete a vendor and associated shops for a given contract.
+Delete vendor and associated shops for contract
+
+Delete a vendor and associated shops for a given manufacturer contract.
 
 ### Example
 
@@ -3292,7 +3347,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 vendor_id = 1 # int | ID of vendor shop mapping
 
     try:
-        # Delete a vendor and associated shops for a given contract.
+        # Delete vendor and associated shops for contract
         api_response = api_instance.delete_vendor_shop_mapping_manufacturer_v3(contract_id, vendor_id)
         pprint(api_response)
     except ApiException as e:
@@ -3336,7 +3391,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 vendor_id = 1 # int | ID of vendor shop mapping
 
     try:
-        # Delete a vendor and associated shops for a given contract.
+        # Delete vendor and associated shops for contract
         api_response = api_instance.delete_vendor_shop_mapping_manufacturer_v3(contract_id, vendor_id)
         pprint(api_response)
     except ApiException as e:
@@ -3374,7 +3429,9 @@ Name | Type | Description  | Notes
 # **execute_monitoring_schedule_manufacturer_v3**
 > EmptyApiResponse execute_monitoring_schedule_manufacturer_v3(contract_id, schedule_id, trigger_follow_up_task=trigger_follow_up_task)
 
-Trigger a monitoring pipeline task for manufacturer for configured monitoring schedule
+Trigger monitoring pipeline for schedule [manufacturer]
+
+Trigger a monitoring pipeline task for a manufacturer for a configured monitoring schedule.
 
 ### Example
 
@@ -3416,7 +3473,7 @@ schedule_id = 56 # int | ID of a monitoring schedule
 trigger_follow_up_task = True # bool |  (optional)
 
     try:
-        # Trigger a monitoring pipeline task for manufacturer for configured monitoring schedule
+        # Trigger monitoring pipeline for schedule [manufacturer]
         api_response = api_instance.execute_monitoring_schedule_manufacturer_v3(contract_id, schedule_id, trigger_follow_up_task=trigger_follow_up_task)
         pprint(api_response)
     except ApiException as e:
@@ -3461,7 +3518,7 @@ schedule_id = 56 # int | ID of a monitoring schedule
 trigger_follow_up_task = True # bool |  (optional)
 
     try:
-        # Trigger a monitoring pipeline task for manufacturer for configured monitoring schedule
+        # Trigger monitoring pipeline for schedule [manufacturer]
         api_response = api_instance.execute_monitoring_schedule_manufacturer_v3(contract_id, schedule_id, trigger_follow_up_task=trigger_follow_up_task)
         pprint(api_response)
     except ApiException as e:
@@ -3500,7 +3557,9 @@ Name | Type | Description  | Notes
 # **execute_monitoring_schedule_vendor_v3**
 > EmptyApiResponse execute_monitoring_schedule_vendor_v3(contract_id, schedule_id, trigger_follow_up_task=trigger_follow_up_task)
 
-Trigger a monitoring pipeline task for vendor for configured monitoring schedule
+Trigger monitoring pipeline for schedule [vendor]
+
+Trigger a monitoring pipeline task for a vendor for a configured monitoring schedule.
 
 ### Example
 
@@ -3542,7 +3601,7 @@ schedule_id = 56 # int | ID of a monitoring schedule
 trigger_follow_up_task = True # bool |  (optional)
 
     try:
-        # Trigger a monitoring pipeline task for vendor for configured monitoring schedule
+        # Trigger monitoring pipeline for schedule [vendor]
         api_response = api_instance.execute_monitoring_schedule_vendor_v3(contract_id, schedule_id, trigger_follow_up_task=trigger_follow_up_task)
         pprint(api_response)
     except ApiException as e:
@@ -3587,7 +3646,7 @@ schedule_id = 56 # int | ID of a monitoring schedule
 trigger_follow_up_task = True # bool |  (optional)
 
     try:
-        # Trigger a monitoring pipeline task for vendor for configured monitoring schedule
+        # Trigger monitoring pipeline for schedule [vendor]
         api_response = api_instance.execute_monitoring_schedule_vendor_v3(contract_id, schedule_id, trigger_follow_up_task=trigger_follow_up_task)
         pprint(api_response)
     except ApiException as e:
@@ -3626,7 +3685,7 @@ Name | Type | Description  | Notes
 # **get_active_ebay_token_vendor_v2**
 > object get_active_ebay_token_vendor_v2(contract_id)
 
-
+Get active Ebay token
 
 ### Example
 
@@ -3666,6 +3725,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get active Ebay token
         api_response = api_instance.get_active_ebay_token_vendor_v2(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -3708,6 +3768,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get active Ebay token
         api_response = api_instance.get_active_ebay_token_vendor_v2(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -3743,7 +3804,7 @@ Name | Type | Description  | Notes
 # **get_alert_settings**
 > object get_alert_settings(contract_id)
 
-
+Get alert settings
 
 ### Example
 
@@ -3783,6 +3844,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get alert settings
         api_response = api_instance.get_alert_settings(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -3825,6 +3887,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get alert settings
         api_response = api_instance.get_alert_settings(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -4094,7 +4157,9 @@ void (empty response body)
 # **get_all_domains_control_panel_v3**
 > PostAdminAddDomainV3ApiResponse get_all_domains_control_panel_v3(com_patagona_pricemonitor_share_api_post_admin_add_domain_body_v3=com_patagona_pricemonitor_share_api_post_admin_add_domain_body_v3)
 
-Add a new domain
+Add domain
+
+Add a new domain.
 
 ### Example
 
@@ -4134,7 +4199,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     com_patagona_pricemonitor_share_api_post_admin_add_domain_body_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostAdminAddDomainBodyV3() # ComPatagonaPricemonitorShareApiPostAdminAddDomainBodyV3 | The domain to be added and its offer sources (optional)
 
     try:
-        # Add a new domain
+        # Add domain
         api_response = api_instance.get_all_domains_control_panel_v3(com_patagona_pricemonitor_share_api_post_admin_add_domain_body_v3=com_patagona_pricemonitor_share_api_post_admin_add_domain_body_v3)
         pprint(api_response)
     except ApiException as e:
@@ -4177,7 +4242,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     com_patagona_pricemonitor_share_api_post_admin_add_domain_body_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostAdminAddDomainBodyV3() # ComPatagonaPricemonitorShareApiPostAdminAddDomainBodyV3 | The domain to be added and its offer sources (optional)
 
     try:
-        # Add a new domain
+        # Add domain
         api_response = api_instance.get_all_domains_control_panel_v3(com_patagona_pricemonitor_share_api_post_admin_add_domain_body_v3=com_patagona_pricemonitor_share_api_post_admin_add_domain_body_v3)
         pprint(api_response)
     except ApiException as e:
@@ -4214,7 +4279,7 @@ Name | Type | Description  | Notes
 # **get_all_ebay_authorizations_vendor_v2**
 > object get_all_ebay_authorizations_vendor_v2(contract_id, start, limit)
 
-
+Get Ebay authorizations
 
 ### Example
 
@@ -4256,6 +4321,7 @@ start = 56 # int |
 limit = 56 # int | 
 
     try:
+        # Get Ebay authorizations
         api_response = api_instance.get_all_ebay_authorizations_vendor_v2(contract_id, start, limit)
         pprint(api_response)
     except ApiException as e:
@@ -4300,6 +4366,7 @@ start = 56 # int |
 limit = 56 # int | 
 
     try:
+        # Get Ebay authorizations
         api_response = api_instance.get_all_ebay_authorizations_vendor_v2(contract_id, start, limit)
         pprint(api_response)
     except ApiException as e:
@@ -4337,7 +4404,7 @@ Name | Type | Description  | Notes
 # **get_all_ebay_tokens_vendor_v2**
 > object get_all_ebay_tokens_vendor_v2(contract_id, start, limit)
 
-
+Get all Ebay tokens
 
 ### Example
 
@@ -4379,6 +4446,7 @@ start = 56 # int |
 limit = 56 # int | 
 
     try:
+        # Get all Ebay tokens
         api_response = api_instance.get_all_ebay_tokens_vendor_v2(contract_id, start, limit)
         pprint(api_response)
     except ApiException as e:
@@ -4423,6 +4491,7 @@ start = 56 # int |
 limit = 56 # int | 
 
     try:
+        # Get all Ebay tokens
         api_response = api_instance.get_all_ebay_tokens_vendor_v2(contract_id, start, limit)
         pprint(api_response)
     except ApiException as e:
@@ -4572,7 +4641,9 @@ void (empty response body)
 # **get_all_scenarios_metadata**
 > list[ScenarioStrategyMetadataResponseApiResponse] get_all_scenarios_metadata(contract_id)
 
-Get a list of all strategy scenarios metadata for a contract
+Get all scenario strategies
+
+Get a list of all scenario strategy metadata for a contract.
 
 ### Example
 
@@ -4612,7 +4683,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
-        # Get a list of all strategy scenarios metadata for a contract
+        # Get all scenario strategies
         api_response = api_instance.get_all_scenarios_metadata(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -4655,7 +4726,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
-        # Get a list of all strategy scenarios metadata for a contract
+        # Get all scenario strategies
         api_response = api_instance.get_all_scenarios_metadata(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -4684,14 +4755,14 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | List of all strategy scenarios metadata |  -  |
+**200** | List of all scenario strategy metadata |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_all_tasks**
 > object get_all_tasks(contract_id, task_id, task_type, task_state, limit, min_creation_date=min_creation_date, max_creation_date=max_creation_date)
 
-
+Get all tasks
 
 ### Example
 
@@ -4737,6 +4808,7 @@ min_creation_date = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 max_creation_date = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 
     try:
+        # Get all tasks
         api_response = api_instance.get_all_tasks(contract_id, task_id, task_type, task_state, limit, min_creation_date=min_creation_date, max_creation_date=max_creation_date)
         pprint(api_response)
     except ApiException as e:
@@ -4785,6 +4857,7 @@ min_creation_date = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 max_creation_date = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 
     try:
+        # Get all tasks
         api_response = api_instance.get_all_tasks(contract_id, task_id, task_type, task_state, limit, min_creation_date=min_creation_date, max_creation_date=max_creation_date)
         pprint(api_response)
     except ApiException as e:
@@ -4938,6 +5011,8 @@ void (empty response body)
 # **get_authorization_status_vendor_v3**
 > GetAuthorizationStatusResponseV3ApiResponse get_authorization_status_vendor_v3(company_id)
 
+Get authorization status for Amazon seller account
+
 Get OAuth authorization status for customer's Amazon seller central account. For setting up OAuth authorization, have a look at the endpoint POST /api/v3/companies/{companyId}/amazon/authorization. 
 
 ### Example
@@ -4978,7 +5053,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     company_id = 1 # int | ID of a company
 
     try:
-        # Get OAuth authorization status for customer's Amazon seller central account. For setting up OAuth authorization, have a look at the endpoint POST /api/v3/companies/{companyId}/amazon/authorization. 
+        # Get authorization status for Amazon seller account
         api_response = api_instance.get_authorization_status_vendor_v3(company_id)
         pprint(api_response)
     except ApiException as e:
@@ -5021,7 +5096,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     company_id = 1 # int | ID of a company
 
     try:
-        # Get OAuth authorization status for customer's Amazon seller central account. For setting up OAuth authorization, have a look at the endpoint POST /api/v3/companies/{companyId}/amazon/authorization. 
+        # Get authorization status for Amazon seller account
         api_response = api_instance.get_authorization_status_vendor_v3(company_id)
         pprint(api_response)
     except ApiException as e:
@@ -5057,7 +5132,7 @@ Name | Type | Description  | Notes
 # **get_callbacks**
 > Callbacks get_callbacks(contract_id)
 
-Get callbacks
+Get callbacks [manufacturer]
 
 ### Example
 
@@ -5097,7 +5172,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
-        # Get callbacks
+        # Get callbacks [manufacturer]
         api_response = api_instance.get_callbacks(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -5140,7 +5215,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
-        # Get callbacks
+        # Get callbacks [manufacturer]
         api_response = api_instance.get_callbacks(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -5177,7 +5252,7 @@ Name | Type | Description  | Notes
 # **get_callbacks_vendor_v2**
 > object get_callbacks_vendor_v2(contract_id)
 
-
+Get callbacks [vendor]
 
 ### Example
 
@@ -5217,6 +5292,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get callbacks [vendor]
         api_response = api_instance.get_callbacks_vendor_v2(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -5259,6 +5335,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get callbacks [vendor]
         api_response = api_instance.get_callbacks_vendor_v2(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -5294,7 +5371,7 @@ Name | Type | Description  | Notes
 # **get_cheapest_vendors_manufacturer_v2**
 > object get_cheapest_vendors_manufacturer_v2(contract_id, session, include_delivery_costs, com_patagona_pricemonitor_share_api_tag_filtered_vendors_request=com_patagona_pricemonitor_share_api_tag_filtered_vendors_request)
 
-
+Query cheapest offers
 
 ### Example
 
@@ -5337,6 +5414,7 @@ include_delivery_costs = True # bool |
 com_patagona_pricemonitor_share_api_tag_filtered_vendors_request = pricemonitor_api_client.ComPatagonaPricemonitorShareApiTagFilteredVendorsRequest() # ComPatagonaPricemonitorShareApiTagFilteredVendorsRequest | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Query cheapest offers
         api_response = api_instance.get_cheapest_vendors_manufacturer_v2(contract_id, session, include_delivery_costs, com_patagona_pricemonitor_share_api_tag_filtered_vendors_request=com_patagona_pricemonitor_share_api_tag_filtered_vendors_request)
         pprint(api_response)
     except ApiException as e:
@@ -5382,6 +5460,7 @@ include_delivery_costs = True # bool |
 com_patagona_pricemonitor_share_api_tag_filtered_vendors_request = pricemonitor_api_client.ComPatagonaPricemonitorShareApiTagFilteredVendorsRequest() # ComPatagonaPricemonitorShareApiTagFilteredVendorsRequest | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Query cheapest offers
         api_response = api_instance.get_cheapest_vendors_manufacturer_v2(contract_id, session, include_delivery_costs, com_patagona_pricemonitor_share_api_tag_filtered_vendors_request=com_patagona_pricemonitor_share_api_tag_filtered_vendors_request)
         pprint(api_response)
     except ApiException as e:
@@ -5420,7 +5499,7 @@ Name | Type | Description  | Notes
 # **get_company**
 > object get_company(company_id)
 
-
+Get company
 
 ### Example
 
@@ -5460,6 +5539,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     company_id = 1 # int | ID of a company
 
     try:
+        # Get company
         api_response = api_instance.get_company(company_id)
         pprint(api_response)
     except ApiException as e:
@@ -5502,6 +5582,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     company_id = 1 # int | ID of a company
 
     try:
+        # Get company
         api_response = api_instance.get_company(company_id)
         pprint(api_response)
     except ApiException as e:
@@ -5659,7 +5740,7 @@ Name | Type | Description  | Notes
 # **get_contracts_vendor_v2**
 > object get_contracts_vendor_v2(max_creation_date=max_creation_date, min_expiration_date=min_expiration_date)
 
-
+Get contracts [vendor]
 
 ### Example
 
@@ -5700,6 +5781,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 min_expiration_date = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 
     try:
+        # Get contracts [vendor]
         api_response = api_instance.get_contracts_vendor_v2(max_creation_date=max_creation_date, min_expiration_date=min_expiration_date)
         pprint(api_response)
     except ApiException as e:
@@ -5743,6 +5825,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 min_expiration_date = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 
     try:
+        # Get contracts [vendor]
         api_response = api_instance.get_contracts_vendor_v2(max_creation_date=max_creation_date, min_expiration_date=min_expiration_date)
         pprint(api_response)
     except ApiException as e:
@@ -5779,7 +5862,7 @@ Name | Type | Description  | Notes
 # **get_currency_vendor_v2**
 > object get_currency_vendor_v2(contract_id)
 
-
+Get currency settings [vendor]
 
 ### Example
 
@@ -5819,6 +5902,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get currency settings [vendor]
         api_response = api_instance.get_currency_vendor_v2(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -5861,6 +5945,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get currency settings [vendor]
         api_response = api_instance.get_currency_vendor_v2(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -5896,7 +5981,7 @@ Name | Type | Description  | Notes
 # **get_customer_contract_settings_manufaturer_v3**
 > GetCustomerContractSettingsApiResponse get_customer_contract_settings_manufaturer_v3(contract_id)
 
-
+Get contract settings [manufacturer]
 
 ### Example
 
@@ -5936,6 +6021,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get contract settings [manufacturer]
         api_response = api_instance.get_customer_contract_settings_manufaturer_v3(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -5978,6 +6064,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get contract settings [manufacturer]
         api_response = api_instance.get_customer_contract_settings_manufaturer_v3(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -6013,7 +6100,7 @@ Name | Type | Description  | Notes
 # **get_customer_contract_settings_vendor_v3**
 > GetCustomerContractSettingsApiResponse get_customer_contract_settings_vendor_v3(contract_id)
 
-
+Get customer contract settings [vendor]
 
 ### Example
 
@@ -6053,6 +6140,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get customer contract settings [vendor]
         api_response = api_instance.get_customer_contract_settings_vendor_v3(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -6095,6 +6183,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get customer contract settings [vendor]
         api_response = api_instance.get_customer_contract_settings_vendor_v3(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -6130,7 +6219,7 @@ Name | Type | Description  | Notes
 # **get_domains_vendor_v2**
 > StringArrayResponse get_domains_vendor_v2(contract_id)
 
-
+Get domains for contract
 
 ### Example
 
@@ -6170,6 +6259,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get domains for contract
         api_response = api_instance.get_domains_vendor_v2(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -6212,6 +6302,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get domains for contract
         api_response = api_instance.get_domains_vendor_v2(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -6247,7 +6338,7 @@ Name | Type | Description  | Notes
 # **get_dynamic_monitoring_settings**
 > object get_dynamic_monitoring_settings(contract_id)
 
-
+Get dynamic monitoring settings
 
 ### Example
 
@@ -6287,6 +6378,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get dynamic monitoring settings
         api_response = api_instance.get_dynamic_monitoring_settings(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -6329,6 +6421,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get dynamic monitoring settings
         api_response = api_instance.get_dynamic_monitoring_settings(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -6364,7 +6457,7 @@ Name | Type | Description  | Notes
 # **get_ebay_authorizations_vendor_v2**
 > object get_ebay_authorizations_vendor_v2(contract_id, auth_ids)
 
-
+Get Ebay authorization
 
 ### Example
 
@@ -6405,6 +6498,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 auth_ids = 'auth_ids_example' # str | 
 
     try:
+        # Get Ebay authorization
         api_response = api_instance.get_ebay_authorizations_vendor_v2(contract_id, auth_ids)
         pprint(api_response)
     except ApiException as e:
@@ -6448,6 +6542,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 auth_ids = 'auth_ids_example' # str | 
 
     try:
+        # Get Ebay authorization
         api_response = api_instance.get_ebay_authorizations_vendor_v2(contract_id, auth_ids)
         pprint(api_response)
     except ApiException as e:
@@ -6484,7 +6579,7 @@ Name | Type | Description  | Notes
 # **get_extended_tags_manufacturer_v3**
 > object get_extended_tags_manufacturer_v3(contract_id, product_id)
 
-
+Get extended tags [manufacturer]
 
 ### Example
 
@@ -6525,6 +6620,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 product_id = 'product_id_example' # str | 
 
     try:
+        # Get extended tags [manufacturer]
         api_response = api_instance.get_extended_tags_manufacturer_v3(contract_id, product_id)
         pprint(api_response)
     except ApiException as e:
@@ -6568,6 +6664,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 product_id = 'product_id_example' # str | 
 
     try:
+        # Get extended tags [manufacturer]
         api_response = api_instance.get_extended_tags_manufacturer_v3(contract_id, product_id)
         pprint(api_response)
     except ApiException as e:
@@ -6604,7 +6701,7 @@ Name | Type | Description  | Notes
 # **get_feed_export_delta_vendor_v2**
 > object get_feed_export_delta_vendor_v2(contract_id, feed_id, file_name=file_name)
 
-
+Get delta export feed
 
 ### Example
 
@@ -6646,6 +6743,7 @@ feed_id = 'feed_id_example' # str |
 file_name = 'file_name_example' # str |  (optional)
 
     try:
+        # Get delta export feed
         api_response = api_instance.get_feed_export_delta_vendor_v2(contract_id, feed_id, file_name=file_name)
         pprint(api_response)
     except ApiException as e:
@@ -6690,6 +6788,7 @@ feed_id = 'feed_id_example' # str |
 file_name = 'file_name_example' # str |  (optional)
 
     try:
+        # Get delta export feed
         api_response = api_instance.get_feed_export_delta_vendor_v2(contract_id, feed_id, file_name=file_name)
         pprint(api_response)
     except ApiException as e:
@@ -6727,7 +6826,7 @@ Name | Type | Description  | Notes
 # **get_feed_export_vendor_v2**
 > object get_feed_export_vendor_v2(contract_id, feed_id, file_name=file_name)
 
-
+Get export feed
 
 ### Example
 
@@ -6769,6 +6868,7 @@ feed_id = 'feed_id_example' # str |
 file_name = 'file_name_example' # str |  (optional)
 
     try:
+        # Get export feed
         api_response = api_instance.get_feed_export_vendor_v2(contract_id, feed_id, file_name=file_name)
         pprint(api_response)
     except ApiException as e:
@@ -6813,6 +6913,7 @@ feed_id = 'feed_id_example' # str |
 file_name = 'file_name_example' # str |  (optional)
 
     try:
+        # Get export feed
         api_response = api_instance.get_feed_export_vendor_v2(contract_id, feed_id, file_name=file_name)
         pprint(api_response)
     except ApiException as e:
@@ -6850,7 +6951,7 @@ Name | Type | Description  | Notes
 # **get_import_settings_vendor_v2**
 > object get_import_settings_vendor_v2(contract_id)
 
-
+Get import settings
 
 ### Example
 
@@ -6890,6 +6991,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get import settings
         api_response = api_instance.get_import_settings_vendor_v2(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -6932,6 +7034,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get import settings
         api_response = api_instance.get_import_settings_vendor_v2(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -6969,7 +7072,7 @@ Name | Type | Description  | Notes
 
 Get Looker user attributes
 
-Retrieves user attributes from Looker. We created the endpoint to allow us to track the impact of the issue described in [Confluence](https://omniaretail.atlassian.net/wiki/spaces/DEV/pages/648151090/Looker+Dashboard+Mismatch+Problem+in+Omnia+2.0)
+Retrieves user attributes from Looker. We created the endpoint to allow us to track the impact of the issue described in [Confluence](https://omniaretail.atlassian.net/wiki/spaces/DEV/pages/648151090/Looker+Dashboard+Mismatch+Problem+in+Omnia+2.0) 
 
 ### Example
 
@@ -7083,7 +7186,7 @@ This endpoint does not need any parameter.
 # **get_manufacturer_manufacturer_v2**
 > object get_manufacturer_manufacturer_v2(contract_id)
 
-
+Get contract [manufacturer]
 
 ### Example
 
@@ -7123,6 +7226,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get contract [manufacturer]
         api_response = api_instance.get_manufacturer_manufacturer_v2(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -7165,6 +7269,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get contract [manufacturer]
         api_response = api_instance.get_manufacturer_manufacturer_v2(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -7200,7 +7305,7 @@ Name | Type | Description  | Notes
 # **get_manufacturer_v3**
 > GetManufacturerV3ApiResponse get_manufacturer_v3(contract_id)
 
-Get the contract information
+Get contract [manufacturer]
 
 ### Example
 
@@ -7240,7 +7345,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
-        # Get the contract information
+        # Get contract [manufacturer]
         api_response = api_instance.get_manufacturer_v3(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -7283,7 +7388,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
-        # Get the contract information
+        # Get contract [manufacturer]
         api_response = api_instance.get_manufacturer_v3(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -7319,7 +7424,7 @@ Name | Type | Description  | Notes
 # **get_mappings_vendor_v2**
 > object get_mappings_vendor_v2(contract_id, input_type, identifiers)
 
-
+Get product mappings
 
 ### Example
 
@@ -7361,6 +7466,7 @@ input_type = 'input_type_example' # str |
 identifiers = ['identifiers_example'] # list[str] | 
 
     try:
+        # Get product mappings
         api_response = api_instance.get_mappings_vendor_v2(contract_id, input_type, identifiers)
         pprint(api_response)
     except ApiException as e:
@@ -7405,6 +7511,7 @@ input_type = 'input_type_example' # str |
 identifiers = ['identifiers_example'] # list[str] | 
 
     try:
+        # Get product mappings
         api_response = api_instance.get_mappings_vendor_v2(contract_id, input_type, identifiers)
         pprint(api_response)
     except ApiException as e:
@@ -7441,6 +7548,8 @@ Name | Type | Description  | Notes
 
 # **get_marketplace_activation_status**
 > ActivateMarketplaceResponseV3ApiResponse get_marketplace_activation_status(marketplace_country_code, company_id, contract_id)
+
+Get marketplace activation status
 
 Get marketplace activation status of a customer in our system. 
 
@@ -7484,7 +7593,7 @@ company_id = 1 # int | ID of a company
 contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
-        # Get marketplace activation status of a customer in our system. 
+        # Get marketplace activation status
         api_response = api_instance.get_marketplace_activation_status(marketplace_country_code, company_id, contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -7529,7 +7638,7 @@ company_id = 1 # int | ID of a company
 contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
-        # Get marketplace activation status of a customer in our system. 
+        # Get marketplace activation status
         api_response = api_instance.get_marketplace_activation_status(marketplace_country_code, company_id, contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -7568,7 +7677,9 @@ Name | Type | Description  | Notes
 # **get_monitoring_schedules_manufacturer_v3**
 > GetMonitoringSchedulesApiResponse get_monitoring_schedules_manufacturer_v3(contract_id)
 
-Get all the monitoring schedules for a specified contract.
+Get all monitoring schedules for contract [manufacturer]
+
+Get all the monitoring schedules for a specified manufacturer contract.
 
 ### Example
 
@@ -7608,7 +7719,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
-        # Get all the monitoring schedules for a specified contract.
+        # Get all monitoring schedules for contract [manufacturer]
         api_response = api_instance.get_monitoring_schedules_manufacturer_v3(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -7651,7 +7762,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
-        # Get all the monitoring schedules for a specified contract.
+        # Get all monitoring schedules for contract [manufacturer]
         api_response = api_instance.get_monitoring_schedules_manufacturer_v3(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -7687,7 +7798,9 @@ Name | Type | Description  | Notes
 # **get_monitoring_schedules_vendor_v3**
 > GetMonitoringSchedulesApiResponse get_monitoring_schedules_vendor_v3(contract_id)
 
-Get all the monitoring schedules for a specified contract.
+Get all monitoring schedules for contract [vendor]
+
+Get all the monitoring schedules for a specified vendor contract.
 
 ### Example
 
@@ -7727,7 +7840,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
-        # Get all the monitoring schedules for a specified contract.
+        # Get all monitoring schedules for contract [vendor]
         api_response = api_instance.get_monitoring_schedules_vendor_v3(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -7770,7 +7883,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
-        # Get all the monitoring schedules for a specified contract.
+        # Get all monitoring schedules for contract [vendor]
         api_response = api_instance.get_monitoring_schedules_vendor_v3(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -7806,7 +7919,7 @@ Name | Type | Description  | Notes
 # **get_monitoring_settings_manufacturer_v2**
 > object get_monitoring_settings_manufacturer_v2(contract_id)
 
-
+Get monitoring settings for contract
 
 Get the current monitoring settings for a given contract
 
@@ -7848,6 +7961,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get monitoring settings for contract
         api_response = api_instance.get_monitoring_settings_manufacturer_v2(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -7890,6 +8004,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get monitoring settings for contract
         api_response = api_instance.get_monitoring_settings_manufacturer_v2(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -7925,7 +8040,7 @@ Name | Type | Description  | Notes
 # **get_monitoring_settings_manufacturer_v3**
 > object get_monitoring_settings_manufacturer_v3(contract_id)
 
-
+Get monitoring settings [manufacturer]
 
 ### Example
 
@@ -7965,6 +8080,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get monitoring settings [manufacturer]
         api_response = api_instance.get_monitoring_settings_manufacturer_v3(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -8007,6 +8123,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get monitoring settings [manufacturer]
         api_response = api_instance.get_monitoring_settings_manufacturer_v3(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -8042,7 +8159,7 @@ Name | Type | Description  | Notes
 # **get_monitoring_settings_vendor_v2**
 > object get_monitoring_settings_vendor_v2(contract_id)
 
-
+Get monitoring settings [vendor]
 
 ### Example
 
@@ -8082,6 +8199,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get monitoring settings [vendor]
         api_response = api_instance.get_monitoring_settings_vendor_v2(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -8124,6 +8242,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get monitoring settings [vendor]
         api_response = api_instance.get_monitoring_settings_vendor_v2(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -8159,7 +8278,7 @@ Name | Type | Description  | Notes
 # **get_monitoring_settings_vendor_v3**
 > object get_monitoring_settings_vendor_v3(contract_id)
 
-
+Get monitoring settings [vendor]
 
 ### Example
 
@@ -8199,6 +8318,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get monitoring settings [vendor]
         api_response = api_instance.get_monitoring_settings_vendor_v3(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -8241,6 +8361,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get monitoring settings [vendor]
         api_response = api_instance.get_monitoring_settings_vendor_v3(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -8275,6 +8396,8 @@ Name | Type | Description  | Notes
 
 # **get_offer_filters_vendor_v2**
 > object get_offer_filters_vendor_v2(contract_id, list_type)
+
+Get all vendor filters for contract
 
 Get all the vendor filters for the given contract.
 
@@ -8317,7 +8440,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 list_type = 'list_type_example' # str | 
 
     try:
-        # Get all the vendor filters for the given contract.
+        # Get all vendor filters for contract
         api_response = api_instance.get_offer_filters_vendor_v2(contract_id, list_type)
         pprint(api_response)
     except ApiException as e:
@@ -8361,7 +8484,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 list_type = 'list_type_example' # str | 
 
     try:
-        # Get all the vendor filters for the given contract.
+        # Get all vendor filters for contract
         api_response = api_instance.get_offer_filters_vendor_v2(contract_id, list_type)
         pprint(api_response)
     except ApiException as e:
@@ -8398,7 +8521,7 @@ Name | Type | Description  | Notes
 # **get_offer_retention_settings_manufacturer_v3**
 > object get_offer_retention_settings_manufacturer_v3(contract_id, contract_type)
 
-
+Get offer retention settings [manufacturer]
 
 ### Example
 
@@ -8439,6 +8562,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 contract_type = 'contract_type_example' # str | 
 
     try:
+        # Get offer retention settings [manufacturer]
         api_response = api_instance.get_offer_retention_settings_manufacturer_v3(contract_id, contract_type)
         pprint(api_response)
     except ApiException as e:
@@ -8482,6 +8606,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 contract_type = 'contract_type_example' # str | 
 
     try:
+        # Get offer retention settings [manufacturer]
         api_response = api_instance.get_offer_retention_settings_manufacturer_v3(contract_id, contract_type)
         pprint(api_response)
     except ApiException as e:
@@ -8518,7 +8643,7 @@ Name | Type | Description  | Notes
 # **get_offer_retention_settings_vendor_v3**
 > object get_offer_retention_settings_vendor_v3(contract_id, contract_type)
 
-
+Get offer retention settings [vendor]
 
 ### Example
 
@@ -8559,6 +8684,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 contract_type = 'contract_type_example' # str | 
 
     try:
+        # Get offer retention settings [vendor]
         api_response = api_instance.get_offer_retention_settings_vendor_v3(contract_id, contract_type)
         pprint(api_response)
     except ApiException as e:
@@ -8602,6 +8728,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 contract_type = 'contract_type_example' # str | 
 
     try:
+        # Get offer retention settings [vendor]
         api_response = api_instance.get_offer_retention_settings_vendor_v3(contract_id, contract_type)
         pprint(api_response)
     except ApiException as e:
@@ -9277,7 +9404,7 @@ Name | Type | Description  | Notes
 # **get_price_cutters_manufacturer_v2**
 > object get_price_cutters_manufacturer_v2(contract_id, session, limit, include_delivery_costs, body=body)
 
-
+Query price cutters [manufacturer]
 
 ### Example
 
@@ -9321,6 +9448,7 @@ include_delivery_costs = True # bool |
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Query price cutters [manufacturer]
         api_response = api_instance.get_price_cutters_manufacturer_v2(contract_id, session, limit, include_delivery_costs, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -9367,6 +9495,7 @@ include_delivery_costs = True # bool |
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Query price cutters [manufacturer]
         api_response = api_instance.get_price_cutters_manufacturer_v2(contract_id, session, limit, include_delivery_costs, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -9406,7 +9535,7 @@ Name | Type | Description  | Notes
 # **get_price_cutters_vendor_v2**
 > object get_price_cutters_vendor_v2(contract_id, session, limit, include_delivery_costs, body=body)
 
-
+Query price cutters [vendor]
 
 ### Example
 
@@ -9450,6 +9579,7 @@ include_delivery_costs = True # bool |
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Query price cutters [vendor]
         api_response = api_instance.get_price_cutters_vendor_v2(contract_id, session, limit, include_delivery_costs, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -9496,6 +9626,7 @@ include_delivery_costs = True # bool |
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Query price cutters [vendor]
         api_response = api_instance.get_price_cutters_vendor_v2(contract_id, session, limit, include_delivery_costs, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -9535,7 +9666,7 @@ Name | Type | Description  | Notes
 # **get_price_recommendation_stats_vendor_v2**
 > object get_price_recommendation_stats_vendor_v2(contract_id, start_time, end_time, max_positions)
 
-
+Get price reommendation stats
 
 ### Example
 
@@ -9578,6 +9709,7 @@ end_time = '2013-10-20T19:20:30+01:00' # datetime |
 max_positions = 56 # int | 
 
     try:
+        # Get price reommendation stats
         api_response = api_instance.get_price_recommendation_stats_vendor_v2(contract_id, start_time, end_time, max_positions)
         pprint(api_response)
     except ApiException as e:
@@ -9623,6 +9755,7 @@ end_time = '2013-10-20T19:20:30+01:00' # datetime |
 max_positions = 56 # int | 
 
     try:
+        # Get price reommendation stats
         api_response = api_instance.get_price_recommendation_stats_vendor_v2(contract_id, start_time, end_time, max_positions)
         pprint(api_response)
     except ApiException as e:
@@ -9661,7 +9794,7 @@ Name | Type | Description  | Notes
 # **get_product_filters_by_id_vendor_v2**
 > object get_product_filters_by_id_vendor_v2(contract_id, body=body)
 
-
+Get filtered offers
 
 ### Example
 
@@ -9702,6 +9835,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Get filtered offers
         api_response = api_instance.get_product_filters_by_id_vendor_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -9745,6 +9879,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Get filtered offers
         api_response = api_instance.get_product_filters_by_id_vendor_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -10034,7 +10169,7 @@ Name | Type | Description  | Notes
 # **get_product_metrics_by_contract**
 > object get_product_metrics_by_contract(contract_id, start, end)
 
-
+Get product metrics for contract
 
 ### Example
 
@@ -10076,6 +10211,7 @@ start = '2013-10-20T19:20:30+01:00' # datetime |
 end = '2013-10-20T19:20:30+01:00' # datetime | 
 
     try:
+        # Get product metrics for contract
         api_response = api_instance.get_product_metrics_by_contract(contract_id, start, end)
         pprint(api_response)
     except ApiException as e:
@@ -10120,6 +10256,7 @@ start = '2013-10-20T19:20:30+01:00' # datetime |
 end = '2013-10-20T19:20:30+01:00' # datetime | 
 
     try:
+        # Get product metrics for contract
         api_response = api_instance.get_product_metrics_by_contract(contract_id, start, end)
         pprint(api_response)
     except ApiException as e:
@@ -10157,7 +10294,7 @@ Name | Type | Description  | Notes
 # **get_product_monitoring_status_stats_vendor_v3**
 > GetProductMonitoringStatusStatsVendorV3ApiResponse get_product_monitoring_status_stats_vendor_v3(contract_id)
 
-
+Get product monitoring status stats [vendor]
 
 ### Example
 
@@ -10197,6 +10334,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get product monitoring status stats [vendor]
         api_response = api_instance.get_product_monitoring_status_stats_vendor_v3(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -10239,6 +10377,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get product monitoring status stats [vendor]
         api_response = api_instance.get_product_monitoring_status_stats_vendor_v3(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -10274,7 +10413,7 @@ Name | Type | Description  | Notes
 # **get_product_price_violations_manufacturer_v2**
 > object get_product_price_violations_manufacturer_v2(contract_id, start, end, include_delivery_costs, reference_price_delta)
 
-
+Get product price violations [manufacturer]
 
 ### Example
 
@@ -10318,6 +10457,7 @@ include_delivery_costs = True # bool |
 reference_price_delta = 3.4 # float | 
 
     try:
+        # Get product price violations [manufacturer]
         api_response = api_instance.get_product_price_violations_manufacturer_v2(contract_id, start, end, include_delivery_costs, reference_price_delta)
         pprint(api_response)
     except ApiException as e:
@@ -10364,6 +10504,7 @@ include_delivery_costs = True # bool |
 reference_price_delta = 3.4 # float | 
 
     try:
+        # Get product price violations [manufacturer]
         api_response = api_instance.get_product_price_violations_manufacturer_v2(contract_id, start, end, include_delivery_costs, reference_price_delta)
         pprint(api_response)
     except ApiException as e:
@@ -10403,7 +10544,7 @@ Name | Type | Description  | Notes
 # **get_product_price_violations_vendor_v2**
 > object get_product_price_violations_vendor_v2(contract_id, start, end, include_delivery_costs, reference_price_delta)
 
-
+Get product price violations [vendor]
 
 ### Example
 
@@ -10447,6 +10588,7 @@ include_delivery_costs = True # bool |
 reference_price_delta = 3.4 # float | 
 
     try:
+        # Get product price violations [vendor]
         api_response = api_instance.get_product_price_violations_vendor_v2(contract_id, start, end, include_delivery_costs, reference_price_delta)
         pprint(api_response)
     except ApiException as e:
@@ -10493,6 +10635,7 @@ include_delivery_costs = True # bool |
 reference_price_delta = 3.4 # float | 
 
     try:
+        # Get product price violations [vendor]
         api_response = api_instance.get_product_price_violations_vendor_v2(contract_id, start, end, include_delivery_costs, reference_price_delta)
         pprint(api_response)
     except ApiException as e:
@@ -10778,7 +10921,7 @@ Name | Type | Description  | Notes
 # **get_repricing_strategy_vendor_v2**
 > object get_repricing_strategy_vendor_v2(contract_id, document_version=document_version)
 
-
+Get repricing strategy
 
 ### Example
 
@@ -10819,6 +10962,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 document_version = 5 # int |  (optional)
 
     try:
+        # Get repricing strategy
         api_response = api_instance.get_repricing_strategy_vendor_v2(contract_id, document_version=document_version)
         pprint(api_response)
     except ApiException as e:
@@ -10862,6 +11006,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 document_version = 5 # int |  (optional)
 
     try:
+        # Get repricing strategy
         api_response = api_instance.get_repricing_strategy_vendor_v2(contract_id, document_version=document_version)
         pprint(api_response)
     except ApiException as e:
@@ -10898,7 +11043,9 @@ Name | Type | Description  | Notes
 # **get_scenario_by_id**
 > ScenarioStrategyResponse get_scenario_by_id(contract_id, scenario_id)
 
-Get a strategy scenario with the provided scenario Id
+Get scenario strategy
+
+Get a scenario strategy with the provided scenario id.
 
 ### Example
 
@@ -10936,10 +11083,10 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.InternalApi(api_client)
     contract_id = 'qbcxvb' # str | ID of the contract
-scenario_id = 56 # int | ID of the required strategy scenario
+scenario_id = 56 # int | ID of the required scenario strategy
 
     try:
-        # Get a strategy scenario with the provided scenario Id
+        # Get scenario strategy
         api_response = api_instance.get_scenario_by_id(contract_id, scenario_id)
         pprint(api_response)
     except ApiException as e:
@@ -10980,10 +11127,10 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.InternalApi(api_client)
     contract_id = 'qbcxvb' # str | ID of the contract
-scenario_id = 56 # int | ID of the required strategy scenario
+scenario_id = 56 # int | ID of the required scenario strategy
 
     try:
-        # Get a strategy scenario with the provided scenario Id
+        # Get scenario strategy
         api_response = api_instance.get_scenario_by_id(contract_id, scenario_id)
         pprint(api_response)
     except ApiException as e:
@@ -10995,7 +11142,7 @@ scenario_id = 56 # int | ID of the required strategy scenario
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **contract_id** | **str**| ID of the contract | 
- **scenario_id** | **int**| ID of the required strategy scenario | 
+ **scenario_id** | **int**| ID of the required scenario strategy | 
 
 ### Return type
 
@@ -11013,15 +11160,15 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A strategy scenario |  -  |
-**404** | Strategy scenario with the provided Id was not found. |  -  |
+**200** | A scenario strategy |  -  |
+**404** | Scenario strategy with the provided Id was not found. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_settings**
 > ComPatagonaPricemonitorShareApiGetContractSettingsResponseV1 get_settings(contract_id)
 
-
+Get settings for contract
 
 ### Example
 
@@ -11061,6 +11208,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get settings for contract
         api_response = api_instance.get_settings(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -11103,6 +11251,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get settings for contract
         api_response = api_instance.get_settings(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -11138,7 +11287,7 @@ Name | Type | Description  | Notes
 # **get_tag_values_manufacturer_v2**
 > object get_tag_values_manufacturer_v2(contract_id, key)
 
-
+Get product tag values [manufacturer]
 
 ### Example
 
@@ -11179,6 +11328,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 key = 'key_example' # str | 
 
     try:
+        # Get product tag values [manufacturer]
         api_response = api_instance.get_tag_values_manufacturer_v2(contract_id, key)
         pprint(api_response)
     except ApiException as e:
@@ -11222,6 +11372,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 key = 'key_example' # str | 
 
     try:
+        # Get product tag values [manufacturer]
         api_response = api_instance.get_tag_values_manufacturer_v2(contract_id, key)
         pprint(api_response)
     except ApiException as e:
@@ -11258,7 +11409,7 @@ Name | Type | Description  | Notes
 # **get_tag_values_vendor_v2**
 > object get_tag_values_vendor_v2(contract_id, key)
 
-
+Get tag values for key
 
 ### Example
 
@@ -11299,6 +11450,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 key = 'key_example' # str | 
 
     try:
+        # Get tag values for key
         api_response = api_instance.get_tag_values_vendor_v2(contract_id, key)
         pprint(api_response)
     except ApiException as e:
@@ -11342,6 +11494,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 key = 'key_example' # str | 
 
     try:
+        # Get tag values for key
         api_response = api_instance.get_tag_values_vendor_v2(contract_id, key)
         pprint(api_response)
     except ApiException as e:
@@ -11378,7 +11531,7 @@ Name | Type | Description  | Notes
 # **get_tags_manufacturer_v2**
 > object get_tags_manufacturer_v2(contract_id)
 
-
+Get product tags [manufacturer]
 
 ### Example
 
@@ -11418,6 +11571,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get product tags [manufacturer]
         api_response = api_instance.get_tags_manufacturer_v2(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -11460,6 +11614,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get product tags [manufacturer]
         api_response = api_instance.get_tags_manufacturer_v2(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -11495,7 +11650,7 @@ Name | Type | Description  | Notes
 # **get_tags_vendor_v2**
 > object get_tags_vendor_v2(contract_id)
 
-
+Get product tags [vendor]
 
 ### Example
 
@@ -11535,6 +11690,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get product tags [vendor]
         api_response = api_instance.get_tags_vendor_v2(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -11577,6 +11733,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get product tags [vendor]
         api_response = api_instance.get_tags_vendor_v2(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -11612,7 +11769,9 @@ Name | Type | Description  | Notes
 # **get_task**
 > object get_task(contract_id, task_id)
 
+Get task
 
+Get a task by id
 
 ### Example
 
@@ -11653,6 +11812,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 task_id = 'task_id_example' # str | 
 
     try:
+        # Get task
         api_response = api_instance.get_task(contract_id, task_id)
         pprint(api_response)
     except ApiException as e:
@@ -11696,6 +11856,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 task_id = 'task_id_example' # str | 
 
     try:
+        # Get task
         api_response = api_instance.get_task(contract_id, task_id)
         pprint(api_response)
     except ApiException as e:
@@ -11732,7 +11893,7 @@ Name | Type | Description  | Notes
 # **get_task_data_manufacturer_v2**
 > object get_task_data_manufacturer_v2(contract_id, task_id)
 
-
+Get task data [manufacturer]
 
 ### Example
 
@@ -11773,6 +11934,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 task_id = 'task_id_example' # str | 
 
     try:
+        # Get task data [manufacturer]
         api_response = api_instance.get_task_data_manufacturer_v2(contract_id, task_id)
         pprint(api_response)
     except ApiException as e:
@@ -11816,6 +11978,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 task_id = 'task_id_example' # str | 
 
     try:
+        # Get task data [manufacturer]
         api_response = api_instance.get_task_data_manufacturer_v2(contract_id, task_id)
         pprint(api_response)
     except ApiException as e:
@@ -11853,7 +12016,7 @@ Name | Type | Description  | Notes
 # **get_task_data_vendor_v2**
 > object get_task_data_vendor_v2(contract_id, task_id)
 
-
+Get task data [vendor]
 
 ### Example
 
@@ -11894,6 +12057,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 task_id = 'task_id_example' # str | 
 
     try:
+        # Get task data [vendor]
         api_response = api_instance.get_task_data_vendor_v2(contract_id, task_id)
         pprint(api_response)
     except ApiException as e:
@@ -11937,6 +12101,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 task_id = 'task_id_example' # str | 
 
     try:
+        # Get task data [vendor]
         api_response = api_instance.get_task_data_vendor_v2(contract_id, task_id)
         pprint(api_response)
     except ApiException as e:
@@ -11973,9 +12138,9 @@ Name | Type | Description  | Notes
 # **get_task_manufacturer_v2**
 > GenericTask get_task_manufacturer_v2(contract_id, task_id)
 
+Get task [manufacturer]
 
-
-Get the task designated by the taskId parameter
+Get the task with the specified id.
 
 ### Example
 
@@ -12016,6 +12181,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 task_id = 'task_id_example' # str | 
 
     try:
+        # Get task [manufacturer]
         api_response = api_instance.get_task_manufacturer_v2(contract_id, task_id)
         pprint(api_response)
     except ApiException as e:
@@ -12059,6 +12225,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 task_id = 'task_id_example' # str | 
 
     try:
+        # Get task [manufacturer]
         api_response = api_instance.get_task_manufacturer_v2(contract_id, task_id)
         pprint(api_response)
     except ApiException as e:
@@ -12096,7 +12263,9 @@ Name | Type | Description  | Notes
 # **get_task_state**
 > object get_task_state(contract_id, task_id)
 
+Get task state
 
+Gets the state of a task.
 
 ### Example
 
@@ -12137,6 +12306,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 task_id = 'task_id_example' # str | 
 
     try:
+        # Get task state
         api_response = api_instance.get_task_state(contract_id, task_id)
         pprint(api_response)
     except ApiException as e:
@@ -12180,6 +12350,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 task_id = 'task_id_example' # str | 
 
     try:
+        # Get task state
         api_response = api_instance.get_task_state(contract_id, task_id)
         pprint(api_response)
     except ApiException as e:
@@ -12216,7 +12387,7 @@ Name | Type | Description  | Notes
 # **get_tasks**
 > object get_tasks(contract_id, tasks, attributes, limit, task_type=task_type)
 
-
+Get tasks
 
 ### Example
 
@@ -12260,6 +12431,7 @@ limit = 56 # int |
 task_type = 'task_type_example' # str |  (optional)
 
     try:
+        # Get tasks
         api_response = api_instance.get_tasks(contract_id, tasks, attributes, limit, task_type=task_type)
         pprint(api_response)
     except ApiException as e:
@@ -12306,6 +12478,7 @@ limit = 56 # int |
 task_type = 'task_type_example' # str |  (optional)
 
     try:
+        # Get tasks
         api_response = api_instance.get_tasks(contract_id, tasks, attributes, limit, task_type=task_type)
         pprint(api_response)
     except ApiException as e:
@@ -12345,7 +12518,7 @@ Name | Type | Description  | Notes
 # **get_tasks_manufacturer_v2**
 > list[GenericTask] get_tasks_manufacturer_v2(contract_id, task_type_filter, task_state, limit, include_failures, task_ids_filter=task_ids_filter, min_creation_date=min_creation_date, max_creation_date=max_creation_date)
 
-
+Find tasks for contract [manufactuerer]
 
 Returns a list of task objects for the given contract
 
@@ -12394,6 +12567,7 @@ min_creation_date = '2013-10-20T19:20:30+01:00' # datetime | Ignore all tasks cr
 max_creation_date = '2013-10-20T19:20:30+01:00' # datetime | Ignore all tasks created later than this date (ISO 8601) (optional)
 
     try:
+        # Find tasks for contract [manufactuerer]
         api_response = api_instance.get_tasks_manufacturer_v2(contract_id, task_type_filter, task_state, limit, include_failures, task_ids_filter=task_ids_filter, min_creation_date=min_creation_date, max_creation_date=max_creation_date)
         pprint(api_response)
     except ApiException as e:
@@ -12443,6 +12617,7 @@ min_creation_date = '2013-10-20T19:20:30+01:00' # datetime | Ignore all tasks cr
 max_creation_date = '2013-10-20T19:20:30+01:00' # datetime | Ignore all tasks created later than this date (ISO 8601) (optional)
 
     try:
+        # Find tasks for contract [manufactuerer]
         api_response = api_instance.get_tasks_manufacturer_v2(contract_id, task_type_filter, task_state, limit, include_failures, task_ids_filter=task_ids_filter, min_creation_date=min_creation_date, max_creation_date=max_creation_date)
         pprint(api_response)
     except ApiException as e:
@@ -12485,7 +12660,7 @@ Name | Type | Description  | Notes
 # **get_tasks_stats**
 > object get_tasks_stats(since_seconds)
 
-
+Get all task stats
 
 ### Example
 
@@ -12525,6 +12700,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     since_seconds = 56 # int | 
 
     try:
+        # Get all task stats
         api_response = api_instance.get_tasks_stats(since_seconds)
         pprint(api_response)
     except ApiException as e:
@@ -12567,6 +12743,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     since_seconds = 56 # int | 
 
     try:
+        # Get all task stats
         api_response = api_instance.get_tasks_stats(since_seconds)
         pprint(api_response)
     except ApiException as e:
@@ -12602,7 +12779,7 @@ Name | Type | Description  | Notes
 # **get_time_stamps**
 > object get_time_stamps(contract_id)
 
-
+Get time stamps
 
 ### Example
 
@@ -12642,6 +12819,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 56 # int | 
 
     try:
+        # Get time stamps
         api_response = api_instance.get_time_stamps(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -12684,6 +12862,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 56 # int | 
 
     try:
+        # Get time stamps
         api_response = api_instance.get_time_stamps(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -12719,7 +12898,9 @@ Name | Type | Description  | Notes
 # **get_user**
 > object get_user(email)
 
+Get user
 
+Get the user with the specified email address.
 
 ### Example
 
@@ -12759,6 +12940,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     email = 'email_example' # str | 
 
     try:
+        # Get user
         api_response = api_instance.get_user(email)
         pprint(api_response)
     except ApiException as e:
@@ -12801,6 +12983,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     email = 'email_example' # str | 
 
     try:
+        # Get user
         api_response = api_instance.get_user(email)
         pprint(api_response)
     except ApiException as e:
@@ -12957,7 +13140,7 @@ Name | Type | Description  | Notes
 # **get_vendor_settings_v2_vendor_v2**
 > object get_vendor_settings_v2_vendor_v2(contract_id)
 
-
+Get repricing settings
 
 ### Example
 
@@ -12997,6 +13180,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get repricing settings
         api_response = api_instance.get_vendor_settings_v2_vendor_v2(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -13039,6 +13223,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get repricing settings
         api_response = api_instance.get_vendor_settings_v2_vendor_v2(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -13074,7 +13259,9 @@ Name | Type | Description  | Notes
 # **get_vendor_shop_mapping_manufacturer_v3**
 > VendorShopMappingV3ApiResponse get_vendor_shop_mapping_manufacturer_v3(contract_id, vendor_id)
 
-Get vendor along with their associated shop for given vendor id and contract.
+Get vendor and shops for contract
+
+Get vendor along with their associated shop for given vendor id and manufacturer contract.
 
 ### Example
 
@@ -13115,7 +13302,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 vendor_id = 1 # int | ID of vendor shop mapping
 
     try:
-        # Get vendor along with their associated shop for given vendor id and contract.
+        # Get vendor and shops for contract
         api_response = api_instance.get_vendor_shop_mapping_manufacturer_v3(contract_id, vendor_id)
         pprint(api_response)
     except ApiException as e:
@@ -13159,7 +13346,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 vendor_id = 1 # int | ID of vendor shop mapping
 
     try:
-        # Get vendor along with their associated shop for given vendor id and contract.
+        # Get vendor and shops for contract
         api_response = api_instance.get_vendor_shop_mapping_manufacturer_v3(contract_id, vendor_id)
         pprint(api_response)
     except ApiException as e:
@@ -13197,7 +13384,9 @@ Name | Type | Description  | Notes
 # **get_vendor_shop_mappings_manufacturer_v3**
 > GetVendorShopMappingsApiResponse get_vendor_shop_mappings_manufacturer_v3(contract_id)
 
-Get all the vendors along with their associated shops for a specified contract.
+Get all vendors and shops for contract
+
+Get all the vendors along with their associated shops for a specified manufacturer contract.
 
 ### Example
 
@@ -13237,7 +13426,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
-        # Get all the vendors along with their associated shops for a specified contract.
+        # Get all vendors and shops for contract
         api_response = api_instance.get_vendor_shop_mappings_manufacturer_v3(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -13280,7 +13469,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
-        # Get all the vendors along with their associated shops for a specified contract.
+        # Get all vendors and shops for contract
         api_response = api_instance.get_vendor_shop_mappings_manufacturer_v3(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -13316,7 +13505,7 @@ Name | Type | Description  | Notes
 # **get_vendor_v3**
 > object get_vendor_v3(contract_id)
 
-
+Get contract [vendor]
 
 ### Example
 
@@ -13356,6 +13545,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get contract [vendor]
         api_response = api_instance.get_vendor_v3(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -13398,6 +13588,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get contract [vendor]
         api_response = api_instance.get_vendor_v3(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -13433,7 +13624,7 @@ Name | Type | Description  | Notes
 # **get_vendor_vendor_v2**
 > object get_vendor_vendor_v2(contract_id)
 
-
+Get contract [vendor]
 
 ### Example
 
@@ -13473,6 +13664,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get contract [vendor]
         api_response = api_instance.get_vendor_vendor_v2(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -13515,6 +13707,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Get contract [vendor]
         api_response = api_instance.get_vendor_vendor_v2(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -13550,7 +13743,7 @@ Name | Type | Description  | Notes
 # **get_vendors_by_domain_manufacturer_v2**
 > ComPatagonaPricemonitorShareApiPostVendorsByDomainResponse get_vendors_by_domain_manufacturer_v2(contract_id, domain, start, include_delivery_costs, session, com_patagona_pricemonitor_share_api_tag_filtered_vendors_request=com_patagona_pricemonitor_share_api_tag_filtered_vendors_request)
 
-
+Get vendors by domain
 
 ### Example
 
@@ -13595,6 +13788,7 @@ session = '2013-10-20T19:20:30+01:00' # datetime |
 com_patagona_pricemonitor_share_api_tag_filtered_vendors_request = pricemonitor_api_client.ComPatagonaPricemonitorShareApiTagFilteredVendorsRequest() # ComPatagonaPricemonitorShareApiTagFilteredVendorsRequest | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Get vendors by domain
         api_response = api_instance.get_vendors_by_domain_manufacturer_v2(contract_id, domain, start, include_delivery_costs, session, com_patagona_pricemonitor_share_api_tag_filtered_vendors_request=com_patagona_pricemonitor_share_api_tag_filtered_vendors_request)
         pprint(api_response)
     except ApiException as e:
@@ -13642,6 +13836,7 @@ session = '2013-10-20T19:20:30+01:00' # datetime |
 com_patagona_pricemonitor_share_api_tag_filtered_vendors_request = pricemonitor_api_client.ComPatagonaPricemonitorShareApiTagFilteredVendorsRequest() # ComPatagonaPricemonitorShareApiTagFilteredVendorsRequest | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Get vendors by domain
         api_response = api_instance.get_vendors_by_domain_manufacturer_v2(contract_id, domain, start, include_delivery_costs, session, com_patagona_pricemonitor_share_api_tag_filtered_vendors_request=com_patagona_pricemonitor_share_api_tag_filtered_vendors_request)
         pprint(api_response)
     except ApiException as e:
@@ -13682,7 +13877,7 @@ Name | Type | Description  | Notes
 # **list_vendors**
 > object list_vendors(name_filter)
 
-
+Get list of vendors
 
 ### Example
 
@@ -13722,6 +13917,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     name_filter = 'name_filter_example' # str | 
 
     try:
+        # Get list of vendors
         api_response = api_instance.list_vendors(name_filter)
         pprint(api_response)
     except ApiException as e:
@@ -13764,6 +13960,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     name_filter = 'name_filter_example' # str | 
 
     try:
+        # Get list of vendors
         api_response = api_instance.list_vendors(name_filter)
         pprint(api_response)
     except ApiException as e:
@@ -13799,7 +13996,7 @@ Name | Type | Description  | Notes
 # **login_by_auth_token**
 > object login_by_auth_token(token)
 
-
+Log in with authentication token
 
 ### Example
 
@@ -13823,6 +14020,7 @@ with pricemonitor_api_client.ApiClient() as api_client:
     token = 'token_example' # str | 
 
     try:
+        # Log in with authentication token
         api_response = api_instance.login_by_auth_token(token)
         pprint(api_response)
     except ApiException as e:
@@ -13858,7 +14056,7 @@ No authorization required
 # **logout**
 > object logout()
 
-
+Log out
 
 ### Example
 
@@ -13881,6 +14079,7 @@ with pricemonitor_api_client.ApiClient() as api_client:
     api_instance = pricemonitor_api_client.InternalApi(api_client)
     
     try:
+        # Log out
         api_response = api_instance.logout()
         pprint(api_response)
     except ApiException as e:
@@ -13913,7 +14112,7 @@ No authorization required
 # **monitoring_pipeline_post_request_manufacturer_v3**
 > object monitoring_pipeline_post_request_manufacturer_v3(contract_id, path)
 
-
+Update monitoring pipeline [manufacturer]
 
 ### Example
 
@@ -13954,6 +14153,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 path = 'path_example' # str | The monitoring-pipeline path to be called
 
     try:
+        # Update monitoring pipeline [manufacturer]
         api_response = api_instance.monitoring_pipeline_post_request_manufacturer_v3(contract_id, path)
         pprint(api_response)
     except ApiException as e:
@@ -13997,6 +14197,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 path = 'path_example' # str | The monitoring-pipeline path to be called
 
     try:
+        # Update monitoring pipeline [manufacturer]
         api_response = api_instance.monitoring_pipeline_post_request_manufacturer_v3(contract_id, path)
         pprint(api_response)
     except ApiException as e:
@@ -14033,7 +14234,7 @@ Name | Type | Description  | Notes
 # **monitoring_pipeline_post_request_vendor_v3**
 > object monitoring_pipeline_post_request_vendor_v3(contract_id, path)
 
-
+Update monitoring pipeline [vendor]
 
 ### Example
 
@@ -14074,6 +14275,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 path = 'path_example' # str | The monitoring-pipeline path to be called
 
     try:
+        # Update monitoring pipeline [vendor]
         api_response = api_instance.monitoring_pipeline_post_request_vendor_v3(contract_id, path)
         pprint(api_response)
     except ApiException as e:
@@ -14117,6 +14319,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 path = 'path_example' # str | The monitoring-pipeline path to be called
 
     try:
+        # Update monitoring pipeline [vendor]
         api_response = api_instance.monitoring_pipeline_post_request_vendor_v3(contract_id, path)
         pprint(api_response)
     except ApiException as e:
@@ -14153,7 +14356,7 @@ Name | Type | Description  | Notes
 # **monitoring_pipeline_upsert_search_attempts_manufacturer_v3**
 > object monitoring_pipeline_upsert_search_attempts_manufacturer_v3(contract_id, body=body)
 
-
+Update monitoring pipeline search attempts [manufacturer]
 
 ### Example
 
@@ -14194,6 +14397,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update monitoring pipeline search attempts [manufacturer]
         api_response = api_instance.monitoring_pipeline_upsert_search_attempts_manufacturer_v3(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -14237,6 +14441,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update monitoring pipeline search attempts [manufacturer]
         api_response = api_instance.monitoring_pipeline_upsert_search_attempts_manufacturer_v3(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -14273,7 +14478,7 @@ Name | Type | Description  | Notes
 # **monitoring_pipeline_upsert_search_attempts_vendor_v3**
 > object monitoring_pipeline_upsert_search_attempts_vendor_v3(contract_id, body=body)
 
-
+Update monitoring pipeline search attempts [vendor]
 
 ### Example
 
@@ -14314,6 +14519,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update monitoring pipeline search attempts [vendor]
         api_response = api_instance.monitoring_pipeline_upsert_search_attempts_vendor_v3(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -14357,6 +14563,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update monitoring pipeline search attempts [vendor]
         api_response = api_instance.monitoring_pipeline_upsert_search_attempts_vendor_v3(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -14393,7 +14600,7 @@ Name | Type | Description  | Notes
 # **patch_product_manufacturer_v3**
 > object patch_product_manufacturer_v3(contract_id, product_id, body=body)
 
-
+Update product [manufacturer]
 
 ### Example
 
@@ -14435,6 +14642,7 @@ product_id = 'product_id_example' # str |
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update product [manufacturer]
         api_response = api_instance.patch_product_manufacturer_v3(contract_id, product_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -14479,6 +14687,7 @@ product_id = 'product_id_example' # str |
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update product [manufacturer]
         api_response = api_instance.patch_product_manufacturer_v3(contract_id, product_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -14516,7 +14725,7 @@ Name | Type | Description  | Notes
 # **patch_product_vendor_v3**
 > object patch_product_vendor_v3(contract_id, product_id, body=body)
 
-
+Update product [vendor]
 
 ### Example
 
@@ -14558,6 +14767,7 @@ product_id = 'product_id_example' # str |
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update product [vendor]
         api_response = api_instance.patch_product_vendor_v3(contract_id, product_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -14602,6 +14812,7 @@ product_id = 'product_id_example' # str |
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update product [vendor]
         api_response = api_instance.patch_product_vendor_v3(contract_id, product_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -14639,7 +14850,7 @@ Name | Type | Description  | Notes
 # **position_distribution**
 > object position_distribution(contract_id, vendor, day, body=body)
 
-
+Update position distribution
 
 ### Example
 
@@ -14682,6 +14893,7 @@ day = '2013-10-20T19:20:30+01:00' # datetime |
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update position distribution
         api_response = api_instance.position_distribution(contract_id, vendor, day, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -14727,6 +14939,7 @@ day = '2013-10-20T19:20:30+01:00' # datetime |
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update position distribution
         api_response = api_instance.position_distribution(contract_id, vendor, day, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -14765,7 +14978,9 @@ Name | Type | Description  | Notes
 # **post_account_v3**
 > PostAccountResponseV3ApiResponse post_account_v3(com_patagona_pricemonitor_share_api_post_account_request_v3=com_patagona_pricemonitor_share_api_post_account_request_v3)
 
-Create a new user account
+Create user account
+
+Create a new user account.
 
 ### Example
 
@@ -14789,7 +15004,7 @@ with pricemonitor_api_client.ApiClient() as api_client:
     com_patagona_pricemonitor_share_api_post_account_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostAccountRequestV3() # ComPatagonaPricemonitorShareApiPostAccountRequestV3 | Request body for creating a new user account. It must contain name, email and password. (optional)
 
     try:
-        # Create a new user account
+        # Create user account
         api_response = api_instance.post_account_v3(com_patagona_pricemonitor_share_api_post_account_request_v3=com_patagona_pricemonitor_share_api_post_account_request_v3)
         pprint(api_response)
     except ApiException as e:
@@ -14825,6 +15040,8 @@ No authorization required
 
 # **post_activate_marketplace_vendor_v3**
 > ActivateMarketplaceResponseV3ApiResponse post_activate_marketplace_vendor_v3(company_id, com_patagona_pricemonitor_share_api_post_activate_marketplace_request_v3=com_patagona_pricemonitor_share_api_post_activate_marketplace_request_v3)
+
+Activate Amazon marketplace
 
 Activate marketplace of a customer in our system. By activation, it means that our system can write prices back into the customer's Amazon shop. 
 
@@ -14867,7 +15084,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_post_activate_marketplace_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostActivateMarketplaceRequestV3() # ComPatagonaPricemonitorShareApiPostActivateMarketplaceRequestV3 | Marketplace of a customer to be activated. (optional)
 
     try:
-        # Activate marketplace of a customer in our system. By activation, it means that our system can write prices back into the customer's Amazon shop. 
+        # Activate Amazon marketplace
         api_response = api_instance.post_activate_marketplace_vendor_v3(company_id, com_patagona_pricemonitor_share_api_post_activate_marketplace_request_v3=com_patagona_pricemonitor_share_api_post_activate_marketplace_request_v3)
         pprint(api_response)
     except ApiException as e:
@@ -14911,7 +15128,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_post_activate_marketplace_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostActivateMarketplaceRequestV3() # ComPatagonaPricemonitorShareApiPostActivateMarketplaceRequestV3 | Marketplace of a customer to be activated. (optional)
 
     try:
-        # Activate marketplace of a customer in our system. By activation, it means that our system can write prices back into the customer's Amazon shop. 
+        # Activate Amazon marketplace
         api_response = api_instance.post_activate_marketplace_vendor_v3(company_id, com_patagona_pricemonitor_share_api_post_activate_marketplace_request_v3=com_patagona_pricemonitor_share_api_post_activate_marketplace_request_v3)
         pprint(api_response)
     except ApiException as e:
@@ -14948,6 +15165,8 @@ Name | Type | Description  | Notes
 
 # **post_authorize_seller_vendor_v3**
 > PostAuthorizeSellerResponseV3ApiResponse post_authorize_seller_vendor_v3(company_id, com_patagona_pricemonitor_share_api_post_authorize_seller_request_v3=com_patagona_pricemonitor_share_api_post_authorize_seller_request_v3)
+
+Set up authorization for Amazon seller account
 
 Set up an OAuth authorization for a customer's Amazon Seller Central account. It establishes a connection between our system and the customer's Amazon shop using the Amazon SP-API. Once connected, our system can write prices back to the customer's Amazon shop, allowing them to benefit from our price recommendations. 
 
@@ -14990,7 +15209,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_post_authorize_seller_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostAuthorizeSellerRequestV3() # ComPatagonaPricemonitorShareApiPostAuthorizeSellerRequestV3 | Customer's Amazon seller central account to be authorized. (optional)
 
     try:
-        # Set up an OAuth authorization for a customer's Amazon Seller Central account. It establishes a connection between our system and the customer's Amazon shop using the Amazon SP-API. Once connected, our system can write prices back to the customer's Amazon shop, allowing them to benefit from our price recommendations. 
+        # Set up authorization for Amazon seller account
         api_response = api_instance.post_authorize_seller_vendor_v3(company_id, com_patagona_pricemonitor_share_api_post_authorize_seller_request_v3=com_patagona_pricemonitor_share_api_post_authorize_seller_request_v3)
         pprint(api_response)
     except ApiException as e:
@@ -15034,7 +15253,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_post_authorize_seller_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostAuthorizeSellerRequestV3() # ComPatagonaPricemonitorShareApiPostAuthorizeSellerRequestV3 | Customer's Amazon seller central account to be authorized. (optional)
 
     try:
-        # Set up an OAuth authorization for a customer's Amazon Seller Central account. It establishes a connection between our system and the customer's Amazon shop using the Amazon SP-API. Once connected, our system can write prices back to the customer's Amazon shop, allowing them to benefit from our price recommendations. 
+        # Set up authorization for Amazon seller account
         api_response = api_instance.post_authorize_seller_vendor_v3(company_id, com_patagona_pricemonitor_share_api_post_authorize_seller_request_v3=com_patagona_pricemonitor_share_api_post_authorize_seller_request_v3)
         pprint(api_response)
     except ApiException as e:
@@ -15071,7 +15290,7 @@ Name | Type | Description  | Notes
 # **post_ebay_authorization_vendor_v2**
 > object post_ebay_authorization_vendor_v2(contract_id, body=body)
 
-
+Update Ebay authorization
 
 ### Example
 
@@ -15112,6 +15331,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update Ebay authorization
         api_response = api_instance.post_ebay_authorization_vendor_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -15155,6 +15375,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update Ebay authorization
         api_response = api_instance.post_ebay_authorization_vendor_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -15191,7 +15412,9 @@ Name | Type | Description  | Notes
 # **post_embed_sso_url_manufacturer**
 > EmbedSSOUrlResponseV3ApiResponse post_embed_sso_url_manufacturer(contract_id, com_patagona_pricemonitor_share_api_post_embed_sso_url_request_v3=com_patagona_pricemonitor_share_api_post_embed_sso_url_request_v3)
 
-Retrieve an embed SSO url for Looker.
+Retrieve Looker embed SSO url [manufacturer]
+
+Retrieve an embed SSO url for Looker for a manufacturer contract.
 
 ### Example
 
@@ -15232,7 +15455,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_post_embed_sso_url_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostEmbedSSOUrlRequestV3() # ComPatagonaPricemonitorShareApiPostEmbedSSOUrlRequestV3 | Payload for retrieving a signed embed SSO url using Looker API. (optional)
 
     try:
-        # Retrieve an embed SSO url for Looker.
+        # Retrieve Looker embed SSO url [manufacturer]
         api_response = api_instance.post_embed_sso_url_manufacturer(contract_id, com_patagona_pricemonitor_share_api_post_embed_sso_url_request_v3=com_patagona_pricemonitor_share_api_post_embed_sso_url_request_v3)
         pprint(api_response)
     except ApiException as e:
@@ -15276,7 +15499,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_post_embed_sso_url_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostEmbedSSOUrlRequestV3() # ComPatagonaPricemonitorShareApiPostEmbedSSOUrlRequestV3 | Payload for retrieving a signed embed SSO url using Looker API. (optional)
 
     try:
-        # Retrieve an embed SSO url for Looker.
+        # Retrieve Looker embed SSO url [manufacturer]
         api_response = api_instance.post_embed_sso_url_manufacturer(contract_id, com_patagona_pricemonitor_share_api_post_embed_sso_url_request_v3=com_patagona_pricemonitor_share_api_post_embed_sso_url_request_v3)
         pprint(api_response)
     except ApiException as e:
@@ -15313,7 +15536,9 @@ Name | Type | Description  | Notes
 # **post_embed_sso_url_vendor**
 > EmbedSSOUrlResponseV3ApiResponse post_embed_sso_url_vendor(contract_id, com_patagona_pricemonitor_share_api_post_embed_sso_url_request_v3=com_patagona_pricemonitor_share_api_post_embed_sso_url_request_v3)
 
-Retrieve an embed SSO url for Looker.
+Retrieve Looker embed SSO url [vendor]
+
+Retrieve an embed SSO url for Looker for a vendor contract.
 
 ### Example
 
@@ -15354,7 +15579,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_post_embed_sso_url_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostEmbedSSOUrlRequestV3() # ComPatagonaPricemonitorShareApiPostEmbedSSOUrlRequestV3 | Payload for retrieving a signed embed SSO url using Looker API. (optional)
 
     try:
-        # Retrieve an embed SSO url for Looker.
+        # Retrieve Looker embed SSO url [vendor]
         api_response = api_instance.post_embed_sso_url_vendor(contract_id, com_patagona_pricemonitor_share_api_post_embed_sso_url_request_v3=com_patagona_pricemonitor_share_api_post_embed_sso_url_request_v3)
         pprint(api_response)
     except ApiException as e:
@@ -15398,7 +15623,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_post_embed_sso_url_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostEmbedSSOUrlRequestV3() # ComPatagonaPricemonitorShareApiPostEmbedSSOUrlRequestV3 | Payload for retrieving a signed embed SSO url using Looker API. (optional)
 
     try:
-        # Retrieve an embed SSO url for Looker.
+        # Retrieve Looker embed SSO url [vendor]
         api_response = api_instance.post_embed_sso_url_vendor(contract_id, com_patagona_pricemonitor_share_api_post_embed_sso_url_request_v3=com_patagona_pricemonitor_share_api_post_embed_sso_url_request_v3)
         pprint(api_response)
     except ApiException as e:
@@ -15435,7 +15660,7 @@ Name | Type | Description  | Notes
 # **post_feed_vendor_v2**
 > object post_feed_vendor_v2(contract_id, body=body)
 
-
+Create feed
 
 ### Example
 
@@ -15476,6 +15701,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Create feed
         api_response = api_instance.post_feed_vendor_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -15519,6 +15745,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Create feed
         api_response = api_instance.post_feed_vendor_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -15555,7 +15782,7 @@ Name | Type | Description  | Notes
 # **post_mappings_vendor_v2**
 > object post_mappings_vendor_v2(contract_id, body=body)
 
-
+Update product identifier mapping
 
 ### Example
 
@@ -15596,6 +15823,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update product identifier mapping
         api_response = api_instance.post_mappings_vendor_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -15639,6 +15867,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update product identifier mapping
         api_response = api_instance.post_mappings_vendor_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -15675,7 +15904,9 @@ Name | Type | Description  | Notes
 # **post_monitoring_schedule_manufacturer_v3**
 > PutMonitoringSchedulesApiResponse post_monitoring_schedule_manufacturer_v3(contract_id, com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3=com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3)
 
-Add a monitoring schedule for a given contract.
+Add monitoring schedule for contract [manufacturer]
+
+Add a monitoring schedule for a given manufacturer contract.
 
 ### Example
 
@@ -15716,7 +15947,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3() # ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3 | Request body for creating monitoring schedule. (optional)
 
     try:
-        # Add a monitoring schedule for a given contract.
+        # Add monitoring schedule for contract [manufacturer]
         api_response = api_instance.post_monitoring_schedule_manufacturer_v3(contract_id, com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3=com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3)
         pprint(api_response)
     except ApiException as e:
@@ -15760,7 +15991,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3() # ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3 | Request body for creating monitoring schedule. (optional)
 
     try:
-        # Add a monitoring schedule for a given contract.
+        # Add monitoring schedule for contract [manufacturer]
         api_response = api_instance.post_monitoring_schedule_manufacturer_v3(contract_id, com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3=com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3)
         pprint(api_response)
     except ApiException as e:
@@ -15796,6 +16027,8 @@ Name | Type | Description  | Notes
 
 # **post_monitoring_schedule_vendor_v3**
 > PutMonitoringSchedulesApiResponse post_monitoring_schedule_vendor_v3(contract_id, com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3=com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3)
+
+Add monitoring schedule for contract
 
 Add a monitoring schedule for a given contract.
 
@@ -15838,7 +16071,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3() # ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3 | Request body for creating monitoring schedule. (optional)
 
     try:
-        # Add a monitoring schedule for a given contract.
+        # Add monitoring schedule for contract
         api_response = api_instance.post_monitoring_schedule_vendor_v3(contract_id, com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3=com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3)
         pprint(api_response)
     except ApiException as e:
@@ -15882,7 +16115,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3() # ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3 | Request body for creating monitoring schedule. (optional)
 
     try:
-        # Add a monitoring schedule for a given contract.
+        # Add monitoring schedule for contract
         api_response = api_instance.post_monitoring_schedule_vendor_v3(contract_id, com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3=com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3)
         pprint(api_response)
     except ApiException as e:
@@ -15920,7 +16153,7 @@ Name | Type | Description  | Notes
 # **post_offer_statistics_vendor_query**
 > PostOfferStatisticsApiResponse post_offer_statistics_vendor_query(contract_id, post_offer_statistics_request)
 
-
+Get offer statistics per product
 
 This operation is used to get offer statistics (e.g. offer count, average price) grouped by product and domain.  Warning: This endpoint contains complex filter structure and will be replaced in the future. Currently, we only allow filtering by a list of internal pricemonitor product ids. Please note that offer statistics can only be computed for at **maximum 2500** products at a time.  To use the example request body from below, you have to adjust the `ownShopNames`, the `range` and `filter.right.value`. Where `filter.right.value` has to be a list of internal pricemonitor product ids corresponding to the `contractId` provided as part of the URL.  All prices will be with or without delivery costs depending on the `includeDeliveryCosts` parameter in the body. 
 
@@ -15963,6 +16196,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 post_offer_statistics_request = pricemonitor_api_client.PostOfferStatisticsRequest() # PostOfferStatisticsRequest | 
 
     try:
+        # Get offer statistics per product
         api_response = api_instance.post_offer_statistics_vendor_query(contract_id, post_offer_statistics_request)
         pprint(api_response)
     except ApiException as e:
@@ -16006,6 +16240,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 post_offer_statistics_request = pricemonitor_api_client.PostOfferStatisticsRequest() # PostOfferStatisticsRequest | 
 
     try:
+        # Get offer statistics per product
         api_response = api_instance.post_offer_statistics_vendor_query(contract_id, post_offer_statistics_request)
         pprint(api_response)
     except ApiException as e:
@@ -16043,7 +16278,9 @@ Name | Type | Description  | Notes
 # **post_vendor_shop_mapping_manufacturer_v3**
 > VendorShopMappingV3ApiResponse post_vendor_shop_mapping_manufacturer_v3(contract_id, com_patagona_pricemonitor_share_api_post_vendor_shop_mapping_request_v3=com_patagona_pricemonitor_share_api_post_vendor_shop_mapping_request_v3)
 
-Add a new vendor for a given contract and associate shops with the given vendor.
+Add new vendor to contract and associate shops
+
+Add a new vendor for a given manufacturer contract and associate shops with the given vendor.
 
 ### Example
 
@@ -16084,7 +16321,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_post_vendor_shop_mapping_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostVendorShopMappingRequestV3() # ComPatagonaPricemonitorShareApiPostVendorShopMappingRequestV3 | Request body for creating a new vendor and associate shops with it. Please note that atleast one shop is required for a successful creation. (optional)
 
     try:
-        # Add a new vendor for a given contract and associate shops with the given vendor.
+        # Add new vendor to contract and associate shops
         api_response = api_instance.post_vendor_shop_mapping_manufacturer_v3(contract_id, com_patagona_pricemonitor_share_api_post_vendor_shop_mapping_request_v3=com_patagona_pricemonitor_share_api_post_vendor_shop_mapping_request_v3)
         pprint(api_response)
     except ApiException as e:
@@ -16128,7 +16365,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_post_vendor_shop_mapping_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostVendorShopMappingRequestV3() # ComPatagonaPricemonitorShareApiPostVendorShopMappingRequestV3 | Request body for creating a new vendor and associate shops with it. Please note that atleast one shop is required for a successful creation. (optional)
 
     try:
-        # Add a new vendor for a given contract and associate shops with the given vendor.
+        # Add new vendor to contract and associate shops
         api_response = api_instance.post_vendor_shop_mapping_manufacturer_v3(contract_id, com_patagona_pricemonitor_share_api_post_vendor_shop_mapping_request_v3=com_patagona_pricemonitor_share_api_post_vendor_shop_mapping_request_v3)
         pprint(api_response)
     except ApiException as e:
@@ -16168,7 +16405,7 @@ Name | Type | Description  | Notes
 # **prices_by_day_by_product_id_manufacturer_v2**
 > list[ComPatagonaPricemonitorShareApiPricesByDayByProductIdResponseV2] prices_by_day_by_product_id_manufacturer_v2(contract_id, product_id, com_patagona_pricemonitor_share_api_prices_by_day_by_product_id_request_v2=com_patagona_pricemonitor_share_api_prices_by_day_by_product_id_request_v2)
 
-
+Query prices by day by product
 
 ### Example
 
@@ -16210,6 +16447,7 @@ product_id = 'product_id_example' # str | The product ID to filter for
 com_patagona_pricemonitor_share_api_prices_by_day_by_product_id_request_v2 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPricesByDayByProductIdRequestV2() # ComPatagonaPricemonitorShareApiPricesByDayByProductIdRequestV2 | Query all known prices for a given day & product ID. Can be filtered by using the selectors. (optional)
 
     try:
+        # Query prices by day by product
         api_response = api_instance.prices_by_day_by_product_id_manufacturer_v2(contract_id, product_id, com_patagona_pricemonitor_share_api_prices_by_day_by_product_id_request_v2=com_patagona_pricemonitor_share_api_prices_by_day_by_product_id_request_v2)
         pprint(api_response)
     except ApiException as e:
@@ -16254,6 +16492,7 @@ product_id = 'product_id_example' # str | The product ID to filter for
 com_patagona_pricemonitor_share_api_prices_by_day_by_product_id_request_v2 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPricesByDayByProductIdRequestV2() # ComPatagonaPricemonitorShareApiPricesByDayByProductIdRequestV2 | Query all known prices for a given day & product ID. Can be filtered by using the selectors. (optional)
 
     try:
+        # Query prices by day by product
         api_response = api_instance.prices_by_day_by_product_id_manufacturer_v2(contract_id, product_id, com_patagona_pricemonitor_share_api_prices_by_day_by_product_id_request_v2=com_patagona_pricemonitor_share_api_prices_by_day_by_product_id_request_v2)
         pprint(api_response)
     except ApiException as e:
@@ -16291,7 +16530,9 @@ Name | Type | Description  | Notes
 # **publish_preprocessing_task_vendor_v3**
 > EmptyApiResponse publish_preprocessing_task_vendor_v3(retrospective_in_minutes, contract_id, trigger_follow_up_task=trigger_follow_up_task)
 
-Publish a preprocessing task for vendor.
+Publish preprocessing task [vendor]
+
+Publish a preprocessing task for a vendor.
 
 ### Example
 
@@ -16333,7 +16574,7 @@ contract_id = 'qbcxvb' # str | ID of the contract
 trigger_follow_up_task = True # bool |  (optional)
 
     try:
-        # Publish a preprocessing task for vendor.
+        # Publish preprocessing task [vendor]
         api_response = api_instance.publish_preprocessing_task_vendor_v3(retrospective_in_minutes, contract_id, trigger_follow_up_task=trigger_follow_up_task)
         pprint(api_response)
     except ApiException as e:
@@ -16378,7 +16619,7 @@ contract_id = 'qbcxvb' # str | ID of the contract
 trigger_follow_up_task = True # bool |  (optional)
 
     try:
-        # Publish a preprocessing task for vendor.
+        # Publish preprocessing task [vendor]
         api_response = api_instance.publish_preprocessing_task_vendor_v3(retrospective_in_minutes, contract_id, trigger_follow_up_task=trigger_follow_up_task)
         pprint(api_response)
     except ApiException as e:
@@ -16417,7 +16658,7 @@ Name | Type | Description  | Notes
 # **put_callbacks**
 > put_callbacks(contract_id, callbacks)
 
-Set callbacks
+Update callbacks [manufacturer]
 
 ### Example
 
@@ -16458,7 +16699,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 callbacks = pricemonitor_api_client.Callbacks() # Callbacks | Callbacks
 
     try:
-        # Set callbacks
+        # Update callbacks [manufacturer]
         api_instance.put_callbacks(contract_id, callbacks)
     except ApiException as e:
         print("Exception when calling InternalApi->put_callbacks: %s\n" % e)
@@ -16501,7 +16742,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 callbacks = pricemonitor_api_client.Callbacks() # Callbacks | Callbacks
 
     try:
-        # Set callbacks
+        # Update callbacks [manufacturer]
         api_instance.put_callbacks(contract_id, callbacks)
     except ApiException as e:
         print("Exception when calling InternalApi->put_callbacks: %s\n" % e)
@@ -16538,7 +16779,7 @@ void (empty response body)
 # **put_callbacks_vendor_v2**
 > object put_callbacks_vendor_v2(contract_id, body=body)
 
-
+Update callbacks [vendor]
 
 ### Example
 
@@ -16579,6 +16820,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update callbacks [vendor]
         api_response = api_instance.put_callbacks_vendor_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -16622,6 +16864,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update callbacks [vendor]
         api_response = api_instance.put_callbacks_vendor_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -16783,7 +17026,7 @@ Name | Type | Description  | Notes
 # **put_csv_products**
 > put_csv_products(contract_id, body)
 
-Set products via CSV file
+Set products via CSV file (V2)
 
 Warning: Deletes all existing products.         <br/>Note that this will not happen immediately. Instead, you receive the ID of a task that has been created.         <br/>Furthermore you receive an URL which you can use to check if the task was executed successfully.         <br>The csv file must contain following columns:         <ul>           <li>productId - arbitrary string, can be used for the systems product id.</li>           <li>gtin - the GTIN of the product           <li>description - name or short description of the product           <li>referencePrice - arbitrary decimal number, usually the current price or recommended retail price (gross)           <li>minPriceBoundary - decimal number defining the lower price boundary (gross)           <li>maxPriceBoundary - decimal number defining the upper price boundary (gross)           <li>Additional columns are added as product tags. Tags are used for repricing strategies and several other           purpose.         </ul>         <br/>Column separator must be semicolon, the decimal separator must be dot. File encoding must be UTF-8.
 
@@ -16826,7 +17069,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = 'body_example' # str | CSV file containing the products
 
     try:
-        # Set products via CSV file
+        # Set products via CSV file (V2)
         api_instance.put_csv_products(contract_id, body)
     except ApiException as e:
         print("Exception when calling InternalApi->put_csv_products: %s\n" % e)
@@ -16869,7 +17112,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = 'body_example' # str | CSV file containing the products
 
     try:
-        # Set products via CSV file
+        # Set products via CSV file (V2)
         api_instance.put_csv_products(contract_id, body)
     except ApiException as e:
         print("Exception when calling InternalApi->put_csv_products: %s\n" % e)
@@ -16906,9 +17149,9 @@ void (empty response body)
 # **put_csv_products_manufacturer_v3**
 > PutProductsApiResponse put_csv_products_manufacturer_v3(contract_id, content_type, patagona_product_identifying_attributes, patagona_product_name, patagona_product_reference_price, patagona_decimal_separator, patagona_csv_column_separator, patagona_csv_quotation_character, body, patagona_product_gtin=patagona_product_gtin, patagona_product_customer_id=patagona_product_customer_id)
 
-Set products via CSV file
+Set products via CSV file (V3)
 
-This operation is used to import products into the pricemonitor. This process is represented by a task, which is processed asynchronously. In the response you will receive a url which is used to check the status of the import process. <br>  When the process is done all products in csv file from the request body will be in the pricemonitor. Products that were already present before have been updated and new products have been added. <br>  Warning: All products that were in the pricemonitor before but are not present in the new import will be deleted.  Identification of the products is done based on the identifying attributes (see parameter: patagona-product-identifying-attributes)
+This operation is used to import products into the pricemonitor. This process is represented by a task, which is processed asynchronously. In the response you will receive a url which is used to check the status of the import process. <br>  When the process is done all products in csv file from the request body will be in the pricemonitor. Products that were already present before have been updated and new products have been added. <br>  Warning: All products that were in the pricemonitor before but are not present in the new import will be deleted.  Identification of the products is done based on the identifying attributes (see parameter: patagona-product-identifying-attributes)'
 
 ### Example
 
@@ -16958,7 +17201,7 @@ patagona_product_gtin = 'gtin-column' # str | Csv column that contains the gtin 
 patagona_product_customer_id = 'id-column' # str | Csv column that contains an id (There is no requirement for this field to be unique) (optional)
 
     try:
-        # Set products via CSV file
+        # Set products via CSV file (V3)
         api_response = api_instance.put_csv_products_manufacturer_v3(contract_id, content_type, patagona_product_identifying_attributes, patagona_product_name, patagona_product_reference_price, patagona_decimal_separator, patagona_csv_column_separator, patagona_csv_quotation_character, body, patagona_product_gtin=patagona_product_gtin, patagona_product_customer_id=patagona_product_customer_id)
         pprint(api_response)
     except ApiException as e:
@@ -17011,7 +17254,7 @@ patagona_product_gtin = 'gtin-column' # str | Csv column that contains the gtin 
 patagona_product_customer_id = 'id-column' # str | Csv column that contains an id (There is no requirement for this field to be unique) (optional)
 
     try:
-        # Set products via CSV file
+        # Set products via CSV file (V3)
         api_response = api_instance.put_csv_products_manufacturer_v3(contract_id, content_type, patagona_product_identifying_attributes, patagona_product_name, patagona_product_reference_price, patagona_decimal_separator, patagona_csv_column_separator, patagona_csv_quotation_character, body, patagona_product_gtin=patagona_product_gtin, patagona_product_customer_id=patagona_product_customer_id)
         pprint(api_response)
     except ApiException as e:
@@ -17057,7 +17300,7 @@ Name | Type | Description  | Notes
 # **put_currency_vendor_v2**
 > object put_currency_vendor_v2(contract_id, body=body)
 
-
+Update currency settings [vendor]
 
 ### Example
 
@@ -17098,6 +17341,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update currency settings [vendor]
         api_response = api_instance.put_currency_vendor_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -17141,6 +17385,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update currency settings [vendor]
         api_response = api_instance.put_currency_vendor_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -17177,7 +17422,7 @@ Name | Type | Description  | Notes
 # **put_customer_contract_settings_manufacturer_v3**
 > PutCustomerContractSettingsApiResponse put_customer_contract_settings_manufacturer_v3(contract_id, com_patagona_pricemonitor_share_api_customer_contract_settings=com_patagona_pricemonitor_share_api_customer_contract_settings)
 
-
+Update contract settings [manufacturer]
 
 ### Example
 
@@ -17218,6 +17463,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_customer_contract_settings = pricemonitor_api_client.ComPatagonaPricemonitorShareApiCustomerContractSettings() # ComPatagonaPricemonitorShareApiCustomerContractSettings | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update contract settings [manufacturer]
         api_response = api_instance.put_customer_contract_settings_manufacturer_v3(contract_id, com_patagona_pricemonitor_share_api_customer_contract_settings=com_patagona_pricemonitor_share_api_customer_contract_settings)
         pprint(api_response)
     except ApiException as e:
@@ -17261,6 +17507,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_customer_contract_settings = pricemonitor_api_client.ComPatagonaPricemonitorShareApiCustomerContractSettings() # ComPatagonaPricemonitorShareApiCustomerContractSettings | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update contract settings [manufacturer]
         api_response = api_instance.put_customer_contract_settings_manufacturer_v3(contract_id, com_patagona_pricemonitor_share_api_customer_contract_settings=com_patagona_pricemonitor_share_api_customer_contract_settings)
         pprint(api_response)
     except ApiException as e:
@@ -17297,7 +17544,7 @@ Name | Type | Description  | Notes
 # **put_customer_contract_settings_vendor_v3**
 > PutCustomerContractSettingsApiResponse put_customer_contract_settings_vendor_v3(contract_id, com_patagona_pricemonitor_share_api_customer_contract_settings=com_patagona_pricemonitor_share_api_customer_contract_settings)
 
-
+Update customer contract settings [vendor]
 
 ### Example
 
@@ -17338,6 +17585,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_customer_contract_settings = pricemonitor_api_client.ComPatagonaPricemonitorShareApiCustomerContractSettings() # ComPatagonaPricemonitorShareApiCustomerContractSettings | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update customer contract settings [vendor]
         api_response = api_instance.put_customer_contract_settings_vendor_v3(contract_id, com_patagona_pricemonitor_share_api_customer_contract_settings=com_patagona_pricemonitor_share_api_customer_contract_settings)
         pprint(api_response)
     except ApiException as e:
@@ -17381,6 +17629,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_customer_contract_settings = pricemonitor_api_client.ComPatagonaPricemonitorShareApiCustomerContractSettings() # ComPatagonaPricemonitorShareApiCustomerContractSettings | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update customer contract settings [vendor]
         api_response = api_instance.put_customer_contract_settings_vendor_v3(contract_id, com_patagona_pricemonitor_share_api_customer_contract_settings=com_patagona_pricemonitor_share_api_customer_contract_settings)
         pprint(api_response)
     except ApiException as e:
@@ -17417,7 +17666,7 @@ Name | Type | Description  | Notes
 # **put_dynamic_monitoring_settings**
 > object put_dynamic_monitoring_settings(contract_id, body=body)
 
-
+Update dynamic monitoring settings
 
 ### Example
 
@@ -17458,6 +17707,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update dynamic monitoring settings
         api_response = api_instance.put_dynamic_monitoring_settings(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -17501,6 +17751,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update dynamic monitoring settings
         api_response = api_instance.put_dynamic_monitoring_settings(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -17537,7 +17788,7 @@ Name | Type | Description  | Notes
 # **put_feed_vendor_v2**
 > object put_feed_vendor_v2(contract_id, feed_id, body=body)
 
-
+Update feed
 
 ### Example
 
@@ -17579,6 +17830,7 @@ feed_id = 'feed_id_example' # str |
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update feed
         api_response = api_instance.put_feed_vendor_v2(contract_id, feed_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -17623,6 +17875,7 @@ feed_id = 'feed_id_example' # str |
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update feed
         api_response = api_instance.put_feed_vendor_v2(contract_id, feed_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -17660,7 +17913,7 @@ Name | Type | Description  | Notes
 # **put_image_tag_manufacturer_v2**
 > object put_image_tag_manufacturer_v2(contract_id, body=body)
 
-
+Update image tag [manufacturer]
 
 ### Example
 
@@ -17701,6 +17954,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update image tag [manufacturer]
         api_response = api_instance.put_image_tag_manufacturer_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -17744,6 +17998,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update image tag [manufacturer]
         api_response = api_instance.put_image_tag_manufacturer_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -17780,7 +18035,7 @@ Name | Type | Description  | Notes
 # **put_image_tag_vendor_v2**
 > object put_image_tag_vendor_v2(contract_id, body=body)
 
-
+Update image tag [vendor]
 
 ### Example
 
@@ -17821,6 +18076,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update image tag [vendor]
         api_response = api_instance.put_image_tag_vendor_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -17864,6 +18120,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update image tag [vendor]
         api_response = api_instance.put_image_tag_vendor_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -17900,7 +18157,7 @@ Name | Type | Description  | Notes
 # **put_import_settings_vendor_v2**
 > object put_import_settings_vendor_v2(contract_id, body=body)
 
-
+Update import settings
 
 ### Example
 
@@ -17941,6 +18198,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update import settings
         api_response = api_instance.put_import_settings_vendor_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -17984,6 +18242,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update import settings
         api_response = api_instance.put_import_settings_vendor_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -18020,7 +18279,9 @@ Name | Type | Description  | Notes
 # **put_monitoring_schedule_manufacturer_v3**
 > PutMonitoringSchedulesApiResponse put_monitoring_schedule_manufacturer_v3(contract_id, schedule_id, com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3=com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3)
 
-Update a monitoring schedule for a given contract.
+Update monitoring schedule for contract [manufacturer]
+
+Update a monitoring schedule for a given manufacturer contract.
 
 ### Example
 
@@ -18062,7 +18323,7 @@ schedule_id = 56 # int | ID of a monitoring schedule
 com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3() # ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3 | Request body for updating monitoring schedule. (optional)
 
     try:
-        # Update a monitoring schedule for a given contract.
+        # Update monitoring schedule for contract [manufacturer]
         api_response = api_instance.put_monitoring_schedule_manufacturer_v3(contract_id, schedule_id, com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3=com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3)
         pprint(api_response)
     except ApiException as e:
@@ -18107,7 +18368,7 @@ schedule_id = 56 # int | ID of a monitoring schedule
 com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3() # ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3 | Request body for updating monitoring schedule. (optional)
 
     try:
-        # Update a monitoring schedule for a given contract.
+        # Update monitoring schedule for contract [manufacturer]
         api_response = api_instance.put_monitoring_schedule_manufacturer_v3(contract_id, schedule_id, com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3=com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3)
         pprint(api_response)
     except ApiException as e:
@@ -18146,7 +18407,9 @@ Name | Type | Description  | Notes
 # **put_monitoring_schedule_vendor_v3**
 > PutMonitoringSchedulesApiResponse put_monitoring_schedule_vendor_v3(contract_id, schedule_id, com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3=com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3)
 
-Update a monitoring schedule for a given contract.
+Update monitoring schedule for contract [vendor]
+
+Update a monitoring schedule for a given vendor contract.
 
 ### Example
 
@@ -18188,7 +18451,7 @@ schedule_id = 56 # int | ID of a monitoring schedule
 com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3() # ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3 | Request body for updating monitoring schedule. (optional)
 
     try:
-        # Update a monitoring schedule for a given contract.
+        # Update monitoring schedule for contract [vendor]
         api_response = api_instance.put_monitoring_schedule_vendor_v3(contract_id, schedule_id, com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3=com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3)
         pprint(api_response)
     except ApiException as e:
@@ -18233,7 +18496,7 @@ schedule_id = 56 # int | ID of a monitoring schedule
 com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3() # ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3 | Request body for updating monitoring schedule. (optional)
 
     try:
-        # Update a monitoring schedule for a given contract.
+        # Update monitoring schedule for contract [vendor]
         api_response = api_instance.put_monitoring_schedule_vendor_v3(contract_id, schedule_id, com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3=com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3)
         pprint(api_response)
     except ApiException as e:
@@ -18273,7 +18536,7 @@ Name | Type | Description  | Notes
 # **put_monitoring_settings_manufacturer_v2**
 > object put_monitoring_settings_manufacturer_v2(contract_id, body=body)
 
-
+Update monitoring settings for contract
 
 Update the monitoring settings for a given contract
 
@@ -18316,6 +18579,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | The monitoring settings object to be written to the database (optional)
 
     try:
+        # Update monitoring settings for contract
         api_response = api_instance.put_monitoring_settings_manufacturer_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -18359,6 +18623,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | The monitoring settings object to be written to the database (optional)
 
     try:
+        # Update monitoring settings for contract
         api_response = api_instance.put_monitoring_settings_manufacturer_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -18395,7 +18660,7 @@ Name | Type | Description  | Notes
 # **put_monitoring_settings_manufacturer_v3**
 > object put_monitoring_settings_manufacturer_v3(contract_id, body=body)
 
-
+Update monitoring settings [manufacturer]
 
 ### Example
 
@@ -18436,6 +18701,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update monitoring settings [manufacturer]
         api_response = api_instance.put_monitoring_settings_manufacturer_v3(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -18479,6 +18745,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update monitoring settings [manufacturer]
         api_response = api_instance.put_monitoring_settings_manufacturer_v3(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -18515,7 +18782,7 @@ Name | Type | Description  | Notes
 # **put_monitoring_settings_vendor_v2**
 > object put_monitoring_settings_vendor_v2(contract_id, body=body)
 
-
+Update monitoring settings [vendor]
 
 ### Example
 
@@ -18556,6 +18823,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update monitoring settings [vendor]
         api_response = api_instance.put_monitoring_settings_vendor_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -18599,6 +18867,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update monitoring settings [vendor]
         api_response = api_instance.put_monitoring_settings_vendor_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -18635,7 +18904,7 @@ Name | Type | Description  | Notes
 # **put_monitoring_settings_vendor_v3**
 > object put_monitoring_settings_vendor_v3(contract_id, body=body)
 
-
+Update monitoring settings [vendor]
 
 ### Example
 
@@ -18676,6 +18945,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update monitoring settings [vendor]
         api_response = api_instance.put_monitoring_settings_vendor_v3(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -18719,6 +18989,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update monitoring settings [vendor]
         api_response = api_instance.put_monitoring_settings_vendor_v3(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -18754,6 +19025,8 @@ Name | Type | Description  | Notes
 
 # **put_offer_filters_vendor_v2**
 > object put_offer_filters_vendor_v2(contract_id, list_type, body=body)
+
+Store vendor filters for contract
 
 Store the vendor filters for the given contract.
 
@@ -18797,7 +19070,7 @@ list_type = 'list_type_example' # str |
 body = None # object | List of the filters that needs to be considered to ignore the individual offers. (optional)
 
     try:
-        # Store the vendor filters for the given contract.
+        # Store vendor filters for contract
         api_response = api_instance.put_offer_filters_vendor_v2(contract_id, list_type, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -18842,7 +19115,7 @@ list_type = 'list_type_example' # str |
 body = None # object | List of the filters that needs to be considered to ignore the individual offers. (optional)
 
     try:
-        # Store the vendor filters for the given contract.
+        # Store vendor filters for contract
         api_response = api_instance.put_offer_filters_vendor_v2(contract_id, list_type, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -18880,7 +19153,7 @@ Name | Type | Description  | Notes
 # **put_offer_retention_settings_manufacturer_v3**
 > object put_offer_retention_settings_manufacturer_v3(contract_id, contract_type, body=body)
 
-
+Update offer retention settings [manufacturer]
 
 ### Example
 
@@ -18922,6 +19195,7 @@ contract_type = 'contract_type_example' # str |
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update offer retention settings [manufacturer]
         api_response = api_instance.put_offer_retention_settings_manufacturer_v3(contract_id, contract_type, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -18966,6 +19240,7 @@ contract_type = 'contract_type_example' # str |
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update offer retention settings [manufacturer]
         api_response = api_instance.put_offer_retention_settings_manufacturer_v3(contract_id, contract_type, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -19003,7 +19278,7 @@ Name | Type | Description  | Notes
 # **put_offer_retention_settings_vendor_v3**
 > object put_offer_retention_settings_vendor_v3(contract_id, contract_type, body=body)
 
-
+Update offer retention settings [vendor]
 
 ### Example
 
@@ -19045,6 +19320,7 @@ contract_type = 'contract_type_example' # str |
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update offer retention settings [vendor]
         api_response = api_instance.put_offer_retention_settings_vendor_v3(contract_id, contract_type, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -19089,6 +19365,7 @@ contract_type = 'contract_type_example' # str |
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update offer retention settings [vendor]
         api_response = api_instance.put_offer_retention_settings_vendor_v3(contract_id, contract_type, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -19383,7 +19660,7 @@ Name | Type | Description  | Notes
 # **put_products_csv_manufacturer_v2**
 > object put_products_csv_manufacturer_v2(contract_id, body=body)
 
-
+Set products via CSV file [manufacturer]
 
 ### Example
 
@@ -19424,6 +19701,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Set products via CSV file [manufacturer]
         api_response = api_instance.put_products_csv_manufacturer_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -19467,6 +19745,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Set products via CSV file [manufacturer]
         api_response = api_instance.put_products_csv_manufacturer_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -19503,7 +19782,7 @@ Name | Type | Description  | Notes
 # **put_products_vendor_v2**
 > object put_products_vendor_v2(contract_id, body=body)
 
-
+Update products in bulk (JSON)
 
 ### Example
 
@@ -19544,6 +19823,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update products in bulk (JSON)
         api_response = api_instance.put_products_vendor_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -19587,6 +19867,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update products in bulk (JSON)
         api_response = api_instance.put_products_vendor_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -19623,7 +19904,7 @@ Name | Type | Description  | Notes
 # **put_repricing_strategy_vendor_v2**
 > object put_repricing_strategy_vendor_v2(contract_id, body=body)
 
-
+Update repricing strategy
 
 ### Example
 
@@ -19664,6 +19945,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update repricing strategy
         api_response = api_instance.put_repricing_strategy_vendor_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -19707,6 +19989,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update repricing strategy
         api_response = api_instance.put_repricing_strategy_vendor_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -19743,7 +20026,7 @@ Name | Type | Description  | Notes
 # **put_settings**
 > ComPatagonaPricemonitorShareApiPutAdminContractSettingsBody put_settings(contract_id, com_patagona_pricemonitor_share_api_put_admin_contract_settings_body=com_patagona_pricemonitor_share_api_put_admin_contract_settings_body)
 
-
+Update settings for contract
 
 ### Example
 
@@ -19784,6 +20067,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_put_admin_contract_settings_body = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPutAdminContractSettingsBody() # ComPatagonaPricemonitorShareApiPutAdminContractSettingsBody | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update settings for contract
         api_response = api_instance.put_settings(contract_id, com_patagona_pricemonitor_share_api_put_admin_contract_settings_body=com_patagona_pricemonitor_share_api_put_admin_contract_settings_body)
         pprint(api_response)
     except ApiException as e:
@@ -19827,6 +20111,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_put_admin_contract_settings_body = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPutAdminContractSettingsBody() # ComPatagonaPricemonitorShareApiPutAdminContractSettingsBody | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update settings for contract
         api_response = api_instance.put_settings(contract_id, com_patagona_pricemonitor_share_api_put_admin_contract_settings_body=com_patagona_pricemonitor_share_api_put_admin_contract_settings_body)
         pprint(api_response)
     except ApiException as e:
@@ -19863,7 +20148,7 @@ Name | Type | Description  | Notes
 # **put_vendor_settings_vendor_v2**
 > object put_vendor_settings_vendor_v2(contract_id, body=body)
 
-
+Update repricing settings
 
 ### Example
 
@@ -19904,6 +20189,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update repricing settings
         api_response = api_instance.put_vendor_settings_vendor_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -19947,6 +20233,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update repricing settings
         api_response = api_instance.put_vendor_settings_vendor_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -19983,7 +20270,9 @@ Name | Type | Description  | Notes
 # **put_vendor_shop_mapping_manufacturer_v3**
 > VendorShopMappingV3ApiResponse put_vendor_shop_mapping_manufacturer_v3(contract_id, vendor_id, com_patagona_pricemonitor_share_api_post_vendor_shop_mapping_request_v3=com_patagona_pricemonitor_share_api_post_vendor_shop_mapping_request_v3)
 
-Update an existing vendor for a given contract and associate shops with the given vendor.
+Update vendor for contract and associate shops
+
+Update an existing vendor for a given manufacturer contract and associate shops with the given vendor.
 
 ### Example
 
@@ -20022,10 +20311,10 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     api_instance = pricemonitor_api_client.InternalApi(api_client)
     contract_id = 'qbcxvb' # str | ID of the contract
 vendor_id = 1 # int | ID of vendor shop mapping
-com_patagona_pricemonitor_share_api_post_vendor_shop_mapping_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostVendorShopMappingRequestV3() # ComPatagonaPricemonitorShareApiPostVendorShopMappingRequestV3 | Request body for updating an existing vendor and associate shops with it. Please note that atleast one shop is required for a successful creation. (optional)
+com_patagona_pricemonitor_share_api_post_vendor_shop_mapping_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostVendorShopMappingRequestV3() # ComPatagonaPricemonitorShareApiPostVendorShopMappingRequestV3 | Request body for updating an existing vendor and associate shops with it. Please note that at least one shop is required for a successful creation. (optional)
 
     try:
-        # Update an existing vendor for a given contract and associate shops with the given vendor.
+        # Update vendor for contract and associate shops
         api_response = api_instance.put_vendor_shop_mapping_manufacturer_v3(contract_id, vendor_id, com_patagona_pricemonitor_share_api_post_vendor_shop_mapping_request_v3=com_patagona_pricemonitor_share_api_post_vendor_shop_mapping_request_v3)
         pprint(api_response)
     except ApiException as e:
@@ -20067,10 +20356,10 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     api_instance = pricemonitor_api_client.InternalApi(api_client)
     contract_id = 'qbcxvb' # str | ID of the contract
 vendor_id = 1 # int | ID of vendor shop mapping
-com_patagona_pricemonitor_share_api_post_vendor_shop_mapping_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostVendorShopMappingRequestV3() # ComPatagonaPricemonitorShareApiPostVendorShopMappingRequestV3 | Request body for updating an existing vendor and associate shops with it. Please note that atleast one shop is required for a successful creation. (optional)
+com_patagona_pricemonitor_share_api_post_vendor_shop_mapping_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostVendorShopMappingRequestV3() # ComPatagonaPricemonitorShareApiPostVendorShopMappingRequestV3 | Request body for updating an existing vendor and associate shops with it. Please note that at least one shop is required for a successful creation. (optional)
 
     try:
-        # Update an existing vendor for a given contract and associate shops with the given vendor.
+        # Update vendor for contract and associate shops
         api_response = api_instance.put_vendor_shop_mapping_manufacturer_v3(contract_id, vendor_id, com_patagona_pricemonitor_share_api_post_vendor_shop_mapping_request_v3=com_patagona_pricemonitor_share_api_post_vendor_shop_mapping_request_v3)
         pprint(api_response)
     except ApiException as e:
@@ -20083,7 +20372,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **contract_id** | **str**| ID of the contract | 
  **vendor_id** | **int**| ID of vendor shop mapping | 
- **com_patagona_pricemonitor_share_api_post_vendor_shop_mapping_request_v3** | [**ComPatagonaPricemonitorShareApiPostVendorShopMappingRequestV3**](ComPatagonaPricemonitorShareApiPostVendorShopMappingRequestV3.md)| Request body for updating an existing vendor and associate shops with it. Please note that atleast one shop is required for a successful creation. | [optional] 
+ **com_patagona_pricemonitor_share_api_post_vendor_shop_mapping_request_v3** | [**ComPatagonaPricemonitorShareApiPostVendorShopMappingRequestV3**](ComPatagonaPricemonitorShareApiPostVendorShopMappingRequestV3.md)| Request body for updating an existing vendor and associate shops with it. Please note that at least one shop is required for a successful creation. | [optional] 
 
 ### Return type
 
@@ -20111,7 +20400,7 @@ Name | Type | Description  | Notes
 # **query_offers_manufacturer_v3**
 > object query_offers_manufacturer_v3(contract_id, body=body)
 
-
+Query offers [manufacturer]
 
 ### Example
 
@@ -20152,6 +20441,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Query offers [manufacturer]
         api_response = api_instance.query_offers_manufacturer_v3(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -20195,6 +20485,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Query offers [manufacturer]
         api_response = api_instance.query_offers_manufacturer_v3(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -20479,7 +20770,7 @@ Name | Type | Description  | Notes
 # **query_offers_shop_manufacturer_v3**
 > QueryOffersOfShopV3ApiResponse query_offers_shop_manufacturer_v3(contract_id, com_patagona_pricemonitor_share_api_query_offers_of_shop_request_v3)
 
-
+Get all offers [manufacturer]
 
 Get all offers of a shop. Please note that it might return offers for inactive products.
 
@@ -20522,6 +20813,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_query_offers_of_shop_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiQueryOffersOfShopRequestV3() # ComPatagonaPricemonitorShareApiQueryOffersOfShopRequestV3 | 
 
     try:
+        # Get all offers [manufacturer]
         api_response = api_instance.query_offers_shop_manufacturer_v3(contract_id, com_patagona_pricemonitor_share_api_query_offers_of_shop_request_v3)
         pprint(api_response)
     except ApiException as e:
@@ -20565,6 +20857,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_query_offers_of_shop_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiQueryOffersOfShopRequestV3() # ComPatagonaPricemonitorShareApiQueryOffersOfShopRequestV3 | 
 
     try:
+        # Get all offers [manufacturer]
         api_response = api_instance.query_offers_shop_manufacturer_v3(contract_id, com_patagona_pricemonitor_share_api_query_offers_of_shop_request_v3)
         pprint(api_response)
     except ApiException as e:
@@ -20601,7 +20894,7 @@ Name | Type | Description  | Notes
 # **query_offers_shop_vendor_v3**
 > QueryOffersOfShopV3ApiResponse query_offers_shop_vendor_v3(contract_id, com_patagona_pricemonitor_share_api_query_offers_of_shop_request_v3)
 
-
+Get all offers [vendor]
 
 Get all offers of a shop. Please note that it might return offers for inactive products.
 
@@ -20644,6 +20937,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_query_offers_of_shop_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiQueryOffersOfShopRequestV3() # ComPatagonaPricemonitorShareApiQueryOffersOfShopRequestV3 | 
 
     try:
+        # Get all offers [vendor]
         api_response = api_instance.query_offers_shop_vendor_v3(contract_id, com_patagona_pricemonitor_share_api_query_offers_of_shop_request_v3)
         pprint(api_response)
     except ApiException as e:
@@ -20687,6 +20981,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_query_offers_of_shop_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiQueryOffersOfShopRequestV3() # ComPatagonaPricemonitorShareApiQueryOffersOfShopRequestV3 | 
 
     try:
+        # Get all offers [vendor]
         api_response = api_instance.query_offers_shop_vendor_v3(contract_id, com_patagona_pricemonitor_share_api_query_offers_of_shop_request_v3)
         pprint(api_response)
     except ApiException as e:
@@ -20723,7 +21018,7 @@ Name | Type | Description  | Notes
 # **query_offers_stats_manufacturer_v3**
 > PostOfferStatisticsApiResponse query_offers_stats_manufacturer_v3(contract_id, post_offer_statistics_request)
 
-
+Query offer statistics per product
 
 This operation is used to get offer statistics (e.g. offer count, average price) grouped by product and domain. Warning: This endpoint contains complex query structure and will be replaced in the future. Please note that offer statistics can only be computed for at maximum 2500 products at a time.
 
@@ -20766,6 +21061,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 post_offer_statistics_request = pricemonitor_api_client.PostOfferStatisticsRequest() # PostOfferStatisticsRequest | 
 
     try:
+        # Query offer statistics per product
         api_response = api_instance.query_offers_stats_manufacturer_v3(contract_id, post_offer_statistics_request)
         pprint(api_response)
     except ApiException as e:
@@ -20809,6 +21105,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 post_offer_statistics_request = pricemonitor_api_client.PostOfferStatisticsRequest() # PostOfferStatisticsRequest | 
 
     try:
+        # Query offer statistics per product
         api_response = api_instance.query_offers_stats_manufacturer_v3(contract_id, post_offer_statistics_request)
         pprint(api_response)
     except ApiException as e:
@@ -20848,7 +21145,7 @@ Name | Type | Description  | Notes
 
 Query offer statistics per product
 
-This endpoint can be used to query offer statistics (e.g. offer count, average price) grouped by product. Only the most recent market data is considered per product and domain.
+This endpoint can be used to query offer statistics (e.g. offer count, average price) grouped by product. Only the most recent market data is considered per product and domain. 
 
 ### Example
 
@@ -20886,7 +21183,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.InternalApi(api_client)
     contract_id = 'qbcxvb' # str | ID of the contract
-com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31 = {"pagination":{"start":0,"limit":10},"range":{"start":"2023-10-17T08:00:00Z","end":"2023-10-19T08:00:00Z"},"filter":{"oneOf":{"field":"customerProductId","values":["1","2","3","4","5","6","7","8","9","10"]}}} # ComPatagonaPricemonitorShareApiPostOfferStatisticsRequestV31 | The request body may include an optional products query. If omitted, all products are queried. Currently, product queries can be performed on two attributes:   - \"customerProductId\"   - \"productId\" (Patagona's internal product id; must be a numerical integer)  Pagination is supported with a maximum limit of 10,000. For optimized performance:   - Use a limit of 10,000 products per page when querying all products of a contract.   - Prefer using \"productId\" for queries when a product query is utilized.  Pagination operates based on the provided products query. This is particularly useful when querying a set of customerProductId's. For chunked requests over a set of ids, it's straightforward to specify up to 10,000 customerProductId's in the query with pagination set at start: 0, limit: 10,000.  The allowed query pattern is structured as follows:  { <br> &nbsp;&nbsp;\"pagination\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": ${start}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"limit\": ${limit} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"range\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": ${start}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"end\": ${end} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"filter\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"oneOf\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"field\": \"customerProductId\", <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"values\": [${customerProductIds as a list of strings}] <br> &nbsp;&nbsp;&nbsp;&nbsp;} <br> &nbsp;&nbsp;} <br> } <br> <br>  (optional)
+com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31 = {"pagination":{"start":0,"limit":10},"range":{"start":"2023-10-17T08:00:00Z","end":"2023-10-19T08:00:00Z"},"filter":{"oneOf":{"field":"customerProductId","values":["1","2","3","4","5","6","7","8","9","10"]}}} # ComPatagonaPricemonitorShareApiPostOfferStatisticsRequestV31 | The request body may include an optional products query. If omitted, all products are queried. Currently, product queries can be performed on two attributes:   - \"customerProductId\"   - \"productId\" (Patagona's internal product id; must be a numerical integer)  Pagination is supported with a maximum limit of 10,000. For optimized performance:   - Use a limit of 10,000 products per page when querying all products of a contract.   - Prefer using \"productId\" for queries when a product query is utilized.  Pagination operates based on the provided products query. This is particularly useful when querying a set of customerProductId's. For chunked requests over a set of ids, it's straightforward to specify up to 10,000 customerProductId's in the query with pagination set at start: 0, limit: 10,000. The allowed query pattern is structured as follows: ``` json {   \"pagination\": {     \"start\": ${start},     \"limit\": ${limit}   },   \"range\": {     \"start\": ${start},     \"end\": ${end}   },   \"filter\": {     \"oneOf\": {       \"field\": \"customerProductId\",       \"values\": [${customerProductIds as a list of strings}]     }   } } ``` (optional)
 
     try:
         # Query offer statistics per product
@@ -20930,7 +21227,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.InternalApi(api_client)
     contract_id = 'qbcxvb' # str | ID of the contract
-com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31 = {"pagination":{"start":0,"limit":10},"range":{"start":"2023-10-17T08:00:00Z","end":"2023-10-19T08:00:00Z"},"filter":{"oneOf":{"field":"customerProductId","values":["1","2","3","4","5","6","7","8","9","10"]}}} # ComPatagonaPricemonitorShareApiPostOfferStatisticsRequestV31 | The request body may include an optional products query. If omitted, all products are queried. Currently, product queries can be performed on two attributes:   - \"customerProductId\"   - \"productId\" (Patagona's internal product id; must be a numerical integer)  Pagination is supported with a maximum limit of 10,000. For optimized performance:   - Use a limit of 10,000 products per page when querying all products of a contract.   - Prefer using \"productId\" for queries when a product query is utilized.  Pagination operates based on the provided products query. This is particularly useful when querying a set of customerProductId's. For chunked requests over a set of ids, it's straightforward to specify up to 10,000 customerProductId's in the query with pagination set at start: 0, limit: 10,000.  The allowed query pattern is structured as follows:  { <br> &nbsp;&nbsp;\"pagination\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": ${start}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"limit\": ${limit} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"range\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": ${start}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"end\": ${end} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"filter\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"oneOf\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"field\": \"customerProductId\", <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"values\": [${customerProductIds as a list of strings}] <br> &nbsp;&nbsp;&nbsp;&nbsp;} <br> &nbsp;&nbsp;} <br> } <br> <br>  (optional)
+com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31 = {"pagination":{"start":0,"limit":10},"range":{"start":"2023-10-17T08:00:00Z","end":"2023-10-19T08:00:00Z"},"filter":{"oneOf":{"field":"customerProductId","values":["1","2","3","4","5","6","7","8","9","10"]}}} # ComPatagonaPricemonitorShareApiPostOfferStatisticsRequestV31 | The request body may include an optional products query. If omitted, all products are queried. Currently, product queries can be performed on two attributes:   - \"customerProductId\"   - \"productId\" (Patagona's internal product id; must be a numerical integer)  Pagination is supported with a maximum limit of 10,000. For optimized performance:   - Use a limit of 10,000 products per page when querying all products of a contract.   - Prefer using \"productId\" for queries when a product query is utilized.  Pagination operates based on the provided products query. This is particularly useful when querying a set of customerProductId's. For chunked requests over a set of ids, it's straightforward to specify up to 10,000 customerProductId's in the query with pagination set at start: 0, limit: 10,000. The allowed query pattern is structured as follows: ``` json {   \"pagination\": {     \"start\": ${start},     \"limit\": ${limit}   },   \"range\": {     \"start\": ${start},     \"end\": ${end}   },   \"filter\": {     \"oneOf\": {       \"field\": \"customerProductId\",       \"values\": [${customerProductIds as a list of strings}]     }   } } ``` (optional)
 
     try:
         # Query offer statistics per product
@@ -20945,7 +21242,7 @@ com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31 = {"pagina
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **contract_id** | **str**| ID of the contract | 
- **com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31** | [**ComPatagonaPricemonitorShareApiPostOfferStatisticsRequestV31**](ComPatagonaPricemonitorShareApiPostOfferStatisticsRequestV31.md)| The request body may include an optional products query. If omitted, all products are queried. Currently, product queries can be performed on two attributes:   - \&quot;customerProductId\&quot;   - \&quot;productId\&quot; (Patagona&#39;s internal product id; must be a numerical integer)  Pagination is supported with a maximum limit of 10,000. For optimized performance:   - Use a limit of 10,000 products per page when querying all products of a contract.   - Prefer using \&quot;productId\&quot; for queries when a product query is utilized.  Pagination operates based on the provided products query. This is particularly useful when querying a set of customerProductId&#39;s. For chunked requests over a set of ids, it&#39;s straightforward to specify up to 10,000 customerProductId&#39;s in the query with pagination set at start: 0, limit: 10,000.  The allowed query pattern is structured as follows:  { &lt;br&gt; &amp;nbsp;&amp;nbsp;\&quot;pagination\&quot;: { &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;start\&quot;: ${start}, &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;limit\&quot;: ${limit} &lt;br&gt; &amp;nbsp;&amp;nbsp;}, &lt;br&gt; &amp;nbsp;&amp;nbsp;\&quot;range\&quot;: { &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;start\&quot;: ${start}, &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;end\&quot;: ${end} &lt;br&gt; &amp;nbsp;&amp;nbsp;}, &lt;br&gt; &amp;nbsp;&amp;nbsp;\&quot;filter\&quot;: { &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;oneOf\&quot;: { &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;field\&quot;: \&quot;customerProductId\&quot;, &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;values\&quot;: [${customerProductIds as a list of strings}] &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;} &lt;br&gt; &amp;nbsp;&amp;nbsp;} &lt;br&gt; } &lt;br&gt; &lt;br&gt;  | [optional] 
+ **com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31** | [**ComPatagonaPricemonitorShareApiPostOfferStatisticsRequestV31**](ComPatagonaPricemonitorShareApiPostOfferStatisticsRequestV31.md)| The request body may include an optional products query. If omitted, all products are queried. Currently, product queries can be performed on two attributes:   - \&quot;customerProductId\&quot;   - \&quot;productId\&quot; (Patagona&#39;s internal product id; must be a numerical integer)  Pagination is supported with a maximum limit of 10,000. For optimized performance:   - Use a limit of 10,000 products per page when querying all products of a contract.   - Prefer using \&quot;productId\&quot; for queries when a product query is utilized.  Pagination operates based on the provided products query. This is particularly useful when querying a set of customerProductId&#39;s. For chunked requests over a set of ids, it&#39;s straightforward to specify up to 10,000 customerProductId&#39;s in the query with pagination set at start: 0, limit: 10,000. The allowed query pattern is structured as follows: &#x60;&#x60;&#x60; json {   \&quot;pagination\&quot;: {     \&quot;start\&quot;: ${start},     \&quot;limit\&quot;: ${limit}   },   \&quot;range\&quot;: {     \&quot;start\&quot;: ${start},     \&quot;end\&quot;: ${end}   },   \&quot;filter\&quot;: {     \&quot;oneOf\&quot;: {       \&quot;field\&quot;: \&quot;customerProductId\&quot;,       \&quot;values\&quot;: [${customerProductIds as a list of strings}]     }   } } &#x60;&#x60;&#x60; | [optional] 
 
 ### Return type
 
@@ -20971,7 +21268,9 @@ Name | Type | Description  | Notes
 # **query_price_recommendations_vendor_v2**
 > QueryPriceRecommendationsV2ApiResponse query_price_recommendations_vendor_v2(contract_id, price_recommendation_api_query_v2=price_recommendation_api_query_v2)
 
+Query price recommendations
 
+This endpoint is used to query certain price recommendations. It supports a rather complex filtering structure. Most commonly it's used for querying by our internal product id.  Here you can find an example request body for querying one product id (here `123456`):  <details> <summary>Click to expand</summary>  ``` json {   \"pagination\": {     \"start\": 0,     \"limit\": 500   },   \"range\": {     \"start\": \"2023-01-07T12:05:01.000Z\",     \"end\": \"2023-01-09T12:05:01.000Z\"   },   \"filter\": {     \"filters\": [{       \"left\": {         \"attributeName\": \"productId\",         \"type\": \"StringValueProvider\"       },       \"right\": {         \"value\": \"123456\",         \"type\": \"StringConstantValueProvider\"       },       \"comparison\": {         \"type\": \"StringEquality\"       },       \"type\": \"ComparisonFilter\"     }],     \"type\": \"OrFilter\"   } } ``` </details>  If you want to query for multiple product ids, then you need to provide one object per product id in the filters-array.  It's recommended to query for at most 1000 price recommendations at once.
 
 ### Example
 
@@ -21012,6 +21311,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 price_recommendation_api_query_v2 = pricemonitor_api_client.PriceRecommendationApiQueryV2() # PriceRecommendationApiQueryV2 | The request body specifies which price recommendations will be searched for. (optional)
 
     try:
+        # Query price recommendations
         api_response = api_instance.query_price_recommendations_vendor_v2(contract_id, price_recommendation_api_query_v2=price_recommendation_api_query_v2)
         pprint(api_response)
     except ApiException as e:
@@ -21055,6 +21355,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 price_recommendation_api_query_v2 = pricemonitor_api_client.PriceRecommendationApiQueryV2() # PriceRecommendationApiQueryV2 | The request body specifies which price recommendations will be searched for. (optional)
 
     try:
+        # Query price recommendations
         api_response = api_instance.query_price_recommendations_vendor_v2(contract_id, price_recommendation_api_query_v2=price_recommendation_api_query_v2)
         pprint(api_response)
     except ApiException as e:
@@ -21091,7 +21392,9 @@ Name | Type | Description  | Notes
 # **query_products_by_filter_manufacturer_v3**
 > QueryProductsByFilterManufacturerV3ApiResponse query_products_by_filter_manufacturer_v3(contract_id, query_products_request_v3=query_products_request_v3)
 
+Get products of a contract
 
+This endpoint can be used for querying either all products or certain products by product ids.
 
 ### Example
 
@@ -21132,6 +21435,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 query_products_request_v3 = pricemonitor_api_client.QueryProductsRequestV3() # QueryProductsRequestV3 | The body contains the products query. (optional)
 
     try:
+        # Get products of a contract
         api_response = api_instance.query_products_by_filter_manufacturer_v3(contract_id, query_products_request_v3=query_products_request_v3)
         pprint(api_response)
     except ApiException as e:
@@ -21175,6 +21479,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 query_products_request_v3 = pricemonitor_api_client.QueryProductsRequestV3() # QueryProductsRequestV3 | The body contains the products query. (optional)
 
     try:
+        # Get products of a contract
         api_response = api_instance.query_products_by_filter_manufacturer_v3(contract_id, query_products_request_v3=query_products_request_v3)
         pprint(api_response)
     except ApiException as e:
@@ -21457,7 +21762,7 @@ Name | Type | Description  | Notes
 # **raw_offers**
 > object raw_offers(contract_id, start, limit, since=since, until=until)
 
-
+Get offers for contract
 
 ### Example
 
@@ -21501,6 +21806,7 @@ since = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 until = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 
     try:
+        # Get offers for contract
         api_response = api_instance.raw_offers(contract_id, start, limit, since=since, until=until)
         pprint(api_response)
     except ApiException as e:
@@ -21547,6 +21853,7 @@ since = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 until = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 
     try:
+        # Get offers for contract
         api_response = api_instance.raw_offers(contract_id, start, limit, since=since, until=until)
         pprint(api_response)
     except ApiException as e:
@@ -21586,7 +21893,7 @@ Name | Type | Description  | Notes
 # **remove_user**
 > object remove_user(company_id, user_id)
 
-
+Remove user from company
 
 ### Example
 
@@ -21627,6 +21934,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 user_id = 56 # int | 
 
     try:
+        # Remove user from company
         api_response = api_instance.remove_user(company_id, user_id)
         pprint(api_response)
     except ApiException as e:
@@ -21670,6 +21978,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 user_id = 56 # int | 
 
     try:
+        # Remove user from company
         api_response = api_instance.remove_user(company_id, user_id)
         pprint(api_response)
     except ApiException as e:
@@ -21946,7 +22255,7 @@ Name | Type | Description  | Notes
 # **save_include_delivery_costs**
 > object save_include_delivery_costs(contract_id, body=body)
 
-
+Update includes delivery costs setting
 
 ### Example
 
@@ -21987,6 +22296,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update includes delivery costs setting
         api_response = api_instance.save_include_delivery_costs(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -22030,6 +22340,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update includes delivery costs setting
         api_response = api_instance.save_include_delivery_costs(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -22066,7 +22377,9 @@ Name | Type | Description  | Notes
 # **scheduler_delete_request_manufacturer_v3**
 > object scheduler_delete_request_manufacturer_v3(contract_id, path)
 
+Delete scheduler operation [manufacturer]
 
+The DELETE request is proxied to the internal Scheduler API.
 
 ### Example
 
@@ -22107,6 +22420,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 path = 'path_example' # str | The scheduler path to be called
 
     try:
+        # Delete scheduler operation [manufacturer]
         api_response = api_instance.scheduler_delete_request_manufacturer_v3(contract_id, path)
         pprint(api_response)
     except ApiException as e:
@@ -22150,6 +22464,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 path = 'path_example' # str | The scheduler path to be called
 
     try:
+        # Delete scheduler operation [manufacturer]
         api_response = api_instance.scheduler_delete_request_manufacturer_v3(contract_id, path)
         pprint(api_response)
     except ApiException as e:
@@ -22186,7 +22501,9 @@ Name | Type | Description  | Notes
 # **scheduler_delete_request_vendor_v3**
 > object scheduler_delete_request_vendor_v3(contract_id, path)
 
+Delete scheduler operation
 
+The DELETE request is proxied to the internal Scheduler API.
 
 ### Example
 
@@ -22227,6 +22544,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 path = 'path_example' # str | The scheduler path to be called
 
     try:
+        # Delete scheduler operation
         api_response = api_instance.scheduler_delete_request_vendor_v3(contract_id, path)
         pprint(api_response)
     except ApiException as e:
@@ -22270,6 +22588,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 path = 'path_example' # str | The scheduler path to be called
 
     try:
+        # Delete scheduler operation
         api_response = api_instance.scheduler_delete_request_vendor_v3(contract_id, path)
         pprint(api_response)
     except ApiException as e:
@@ -22306,7 +22625,9 @@ Name | Type | Description  | Notes
 # **scheduler_get_request_manufacturer_v3**
 > object scheduler_get_request_manufacturer_v3(contract_id, path)
 
+Get scheduler operation [manufacturer]
 
+The GET request is proxied to the internal Scheduler API.
 
 ### Example
 
@@ -22347,6 +22668,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 path = 'path_example' # str | The scheduler path to be called
 
     try:
+        # Get scheduler operation [manufacturer]
         api_response = api_instance.scheduler_get_request_manufacturer_v3(contract_id, path)
         pprint(api_response)
     except ApiException as e:
@@ -22390,6 +22712,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 path = 'path_example' # str | The scheduler path to be called
 
     try:
+        # Get scheduler operation [manufacturer]
         api_response = api_instance.scheduler_get_request_manufacturer_v3(contract_id, path)
         pprint(api_response)
     except ApiException as e:
@@ -22426,7 +22749,9 @@ Name | Type | Description  | Notes
 # **scheduler_get_request_vendor_v3**
 > object scheduler_get_request_vendor_v3(contract_id, path)
 
+Get scheduler operation [vendor]
 
+The GET request is proxied to the internal Scheduler API.
 
 ### Example
 
@@ -22467,6 +22792,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 path = 'path_example' # str | The scheduler path to be called
 
     try:
+        # Get scheduler operation [vendor]
         api_response = api_instance.scheduler_get_request_vendor_v3(contract_id, path)
         pprint(api_response)
     except ApiException as e:
@@ -22510,6 +22836,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 path = 'path_example' # str | The scheduler path to be called
 
     try:
+        # Get scheduler operation [vendor]
         api_response = api_instance.scheduler_get_request_vendor_v3(contract_id, path)
         pprint(api_response)
     except ApiException as e:
@@ -22546,7 +22873,9 @@ Name | Type | Description  | Notes
 # **scheduler_post_request_manufacturer_v3**
 > object scheduler_post_request_manufacturer_v3(contract_id, path)
 
+Create scheduler operation [manufacturer]
 
+The POST request is proxied to the internal Scheduler API.
 
 ### Example
 
@@ -22587,6 +22916,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 path = 'path_example' # str | The scheduler path to be called
 
     try:
+        # Create scheduler operation [manufacturer]
         api_response = api_instance.scheduler_post_request_manufacturer_v3(contract_id, path)
         pprint(api_response)
     except ApiException as e:
@@ -22630,6 +22960,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 path = 'path_example' # str | The scheduler path to be called
 
     try:
+        # Create scheduler operation [manufacturer]
         api_response = api_instance.scheduler_post_request_manufacturer_v3(contract_id, path)
         pprint(api_response)
     except ApiException as e:
@@ -22666,7 +22997,9 @@ Name | Type | Description  | Notes
 # **scheduler_post_request_vendor_v3**
 > object scheduler_post_request_vendor_v3(contract_id, path)
 
+Create scheduler operation
 
+The POST request is proxied to the internal Scheduler API.
 
 ### Example
 
@@ -22707,6 +23040,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 path = 'path_example' # str | The scheduler path to be called
 
     try:
+        # Create scheduler operation
         api_response = api_instance.scheduler_post_request_vendor_v3(contract_id, path)
         pprint(api_response)
     except ApiException as e:
@@ -22750,6 +23084,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 path = 'path_example' # str | The scheduler path to be called
 
     try:
+        # Create scheduler operation
         api_response = api_instance.scheduler_post_request_vendor_v3(contract_id, path)
         pprint(api_response)
     except ApiException as e:
@@ -22786,7 +23121,9 @@ Name | Type | Description  | Notes
 # **scheduler_put_request_manufacturer_v3**
 > object scheduler_put_request_manufacturer_v3(contract_id, path)
 
+Update scheduler operation [manufacturer]
 
+The PUT request is proxied to the internal Scheduler API.
 
 ### Example
 
@@ -22827,6 +23164,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 path = 'path_example' # str | The scheduler path to be called
 
     try:
+        # Update scheduler operation [manufacturer]
         api_response = api_instance.scheduler_put_request_manufacturer_v3(contract_id, path)
         pprint(api_response)
     except ApiException as e:
@@ -22870,6 +23208,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 path = 'path_example' # str | The scheduler path to be called
 
     try:
+        # Update scheduler operation [manufacturer]
         api_response = api_instance.scheduler_put_request_manufacturer_v3(contract_id, path)
         pprint(api_response)
     except ApiException as e:
@@ -22906,7 +23245,9 @@ Name | Type | Description  | Notes
 # **scheduler_put_request_vendor_v3**
 > object scheduler_put_request_vendor_v3(contract_id, path)
 
+Update scheduler operation
 
+The PUT request is proxied to the internal Scheduler API.
 
 ### Example
 
@@ -22947,6 +23288,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 path = 'path_example' # str | The scheduler path to be called
 
     try:
+        # Update scheduler operation
         api_response = api_instance.scheduler_put_request_vendor_v3(contract_id, path)
         pprint(api_response)
     except ApiException as e:
@@ -22990,6 +23332,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 path = 'path_example' # str | The scheduler path to be called
 
     try:
+        # Update scheduler operation
         api_response = api_instance.scheduler_put_request_vendor_v3(contract_id, path)
         pprint(api_response)
     except ApiException as e:
@@ -23026,7 +23369,7 @@ Name | Type | Description  | Notes
 # **segment_offers_manufacturer_v2**
 > object segment_offers_manufacturer_v2(contract_id, body=body)
 
-
+Update segment offers [manufacturer]
 
 ### Example
 
@@ -23067,6 +23410,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update segment offers [manufacturer]
         api_response = api_instance.segment_offers_manufacturer_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -23110,6 +23454,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update segment offers [manufacturer]
         api_response = api_instance.segment_offers_manufacturer_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -23146,7 +23491,7 @@ Name | Type | Description  | Notes
 # **segment_offers_vendor_v2**
 > object segment_offers_vendor_v2(contract_id, body=body)
 
-
+Update segment offers [vendor]
 
 ### Example
 
@@ -23187,6 +23532,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update segment offers [vendor]
         api_response = api_instance.segment_offers_vendor_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -23230,6 +23576,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update segment offers [vendor]
         api_response = api_instance.segment_offers_vendor_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -23266,7 +23613,7 @@ Name | Type | Description  | Notes
 # **shop_integration_get_request**
 > object shop_integration_get_request(contract_id, path)
 
-
+Get shop integration
 
 ### Example
 
@@ -23307,6 +23654,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 path = 'path_example' # str | The shop-integration path to be called
 
     try:
+        # Get shop integration
         api_response = api_instance.shop_integration_get_request(contract_id, path)
         pprint(api_response)
     except ApiException as e:
@@ -23350,6 +23698,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 path = 'path_example' # str | The shop-integration path to be called
 
     try:
+        # Get shop integration
         api_response = api_instance.shop_integration_get_request(contract_id, path)
         pprint(api_response)
     except ApiException as e:
@@ -23386,7 +23735,7 @@ Name | Type | Description  | Notes
 # **shop_integration_post_request**
 > object shop_integration_post_request(contract_id, path)
 
-
+Update shop integration
 
 ### Example
 
@@ -23427,6 +23776,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 path = 'path_example' # str | The shop-integration path to be called
 
     try:
+        # Update shop integration
         api_response = api_instance.shop_integration_post_request(contract_id, path)
         pprint(api_response)
     except ApiException as e:
@@ -23470,6 +23820,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 path = 'path_example' # str | The shop-integration path to be called
 
     try:
+        # Update shop integration
         api_response = api_instance.shop_integration_post_request(contract_id, path)
         pprint(api_response)
     except ApiException as e:
@@ -23506,7 +23857,7 @@ Name | Type | Description  | Notes
 # **shop_integration_post_request_vendor_v2**
 > object shop_integration_post_request_vendor_v2(contract_id, path, body=body)
 
-
+Update shop integration import
 
 ### Example
 
@@ -23548,6 +23899,7 @@ path = 'path_example' # str |
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update shop integration import
         api_response = api_instance.shop_integration_post_request_vendor_v2(contract_id, path, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -23592,6 +23944,7 @@ path = 'path_example' # str |
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update shop integration import
         api_response = api_instance.shop_integration_post_request_vendor_v2(contract_id, path, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -23629,7 +23982,7 @@ Name | Type | Description  | Notes
 # **stats_manufacturer_v2**
 > ComPatagonaPricemonitorShareApiContractStats stats_manufacturer_v2(contract_id, session)
 
-
+Get contract statistics [manufacturer]
 
 ### Example
 
@@ -23670,6 +24023,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 session = '2013-10-20T19:20:30+01:00' # datetime | A ISO 8601 timestamp which marks the end of a 48h time range in which the data is collected
 
     try:
+        # Get contract statistics [manufacturer]
         api_response = api_instance.stats_manufacturer_v2(contract_id, session)
         pprint(api_response)
     except ApiException as e:
@@ -23713,6 +24067,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 session = '2013-10-20T19:20:30+01:00' # datetime | A ISO 8601 timestamp which marks the end of a 48h time range in which the data is collected
 
     try:
+        # Get contract statistics [manufacturer]
         api_response = api_instance.stats_manufacturer_v2(contract_id, session)
         pprint(api_response)
     except ApiException as e:
@@ -23749,7 +24104,7 @@ Name | Type | Description  | Notes
 # **timestamps_manufacturer_v2**
 > object timestamps_manufacturer_v2(contract_id, limit)
 
-
+Get timestamps
 
 ### Example
 
@@ -23790,6 +24145,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 limit = 56 # int | 
 
     try:
+        # Get timestamps
         api_response = api_instance.timestamps_manufacturer_v2(contract_id, limit)
         pprint(api_response)
     except ApiException as e:
@@ -23833,6 +24189,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 limit = 56 # int | 
 
     try:
+        # Get timestamps
         api_response = api_instance.timestamps_manufacturer_v2(contract_id, limit)
         pprint(api_response)
     except ApiException as e:
@@ -23869,7 +24226,7 @@ Name | Type | Description  | Notes
 # **update_alert_settings**
 > object update_alert_settings(contract_id, alert_id, body=body)
 
-
+Update alert settings
 
 ### Example
 
@@ -23911,6 +24268,7 @@ alert_id = 'alert_id_example' # str |
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update alert settings
         api_response = api_instance.update_alert_settings(contract_id, alert_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -23955,6 +24313,7 @@ alert_id = 'alert_id_example' # str |
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update alert settings
         api_response = api_instance.update_alert_settings(contract_id, alert_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -23992,7 +24351,7 @@ Name | Type | Description  | Notes
 # **update_auth_token**
 > object update_auth_token(email, token, body=body)
 
-
+Update authentication token
 
 ### Example
 
@@ -24034,6 +24393,7 @@ token = 'token_example' # str |
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update authentication token
         api_response = api_instance.update_auth_token(email, token, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -24078,6 +24438,7 @@ token = 'token_example' # str |
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update authentication token
         api_response = api_instance.update_auth_token(email, token, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -24115,9 +24476,9 @@ Name | Type | Description  | Notes
 # **update_task_manufacturer_v2**
 > GenericTask update_task_manufacturer_v2(contract_id, task_id, update_task_request_v2=update_task_request_v2)
 
+Update task [manufacturer]
 
-
-Update an existing task
+Update an existing task.
 
 ### Example
 
@@ -24159,6 +24520,7 @@ task_id = 'task_id_example' # str |
 update_task_request_v2 = pricemonitor_api_client.UpdateTaskRequestV2() # UpdateTaskRequestV2 | The new task object to be written to the database (optional)
 
     try:
+        # Update task [manufacturer]
         api_response = api_instance.update_task_manufacturer_v2(contract_id, task_id, update_task_request_v2=update_task_request_v2)
         pprint(api_response)
     except ApiException as e:
@@ -24203,6 +24565,7 @@ task_id = 'task_id_example' # str |
 update_task_request_v2 = pricemonitor_api_client.UpdateTaskRequestV2() # UpdateTaskRequestV2 | The new task object to be written to the database (optional)
 
     try:
+        # Update task [manufacturer]
         api_response = api_instance.update_task_manufacturer_v2(contract_id, task_id, update_task_request_v2=update_task_request_v2)
         pprint(api_response)
     except ApiException as e:
@@ -24240,7 +24603,9 @@ Name | Type | Description  | Notes
 # **update_task_vendor_v2**
 > object update_task_vendor_v2(contract_id, task_id, body=body)
 
+Update a task
 
+Update the task with the specified id for the given contract.
 
 ### Example
 
@@ -24282,6 +24647,7 @@ task_id = 'task_id_example' # str |
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update a task
         api_response = api_instance.update_task_vendor_v2(contract_id, task_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -24326,6 +24692,7 @@ task_id = 'task_id_example' # str |
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update a task
         api_response = api_instance.update_task_vendor_v2(contract_id, task_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -24363,7 +24730,9 @@ Name | Type | Description  | Notes
 # **update_user_role**
 > object update_user_role(user_id, role_name, body=body)
 
+Add user role
 
+Add the specified role to the given user.
 
 ### Example
 
@@ -24405,6 +24774,7 @@ role_name = 'role_name_example' # str |
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Add user role
         api_response = api_instance.update_user_role(user_id, role_name, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -24449,6 +24819,7 @@ role_name = 'role_name_example' # str |
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Add user role
         api_response = api_instance.update_user_role(user_id, role_name, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -24722,7 +25093,7 @@ void (empty response body)
 # **validate_offers_manufacturer_v2**
 > object validate_offers_manufacturer_v2(contract_id, body=body)
 
-
+Validate offers [manufacturer]
 
 ### Example
 
@@ -24763,6 +25134,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Validate offers [manufacturer]
         api_response = api_instance.validate_offers_manufacturer_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -24806,6 +25178,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Validate offers [manufacturer]
         api_response = api_instance.validate_offers_manufacturer_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -24842,7 +25215,7 @@ Name | Type | Description  | Notes
 # **validate_offers_vendor_v2**
 > object validate_offers_vendor_v2(contract_id, body=body)
 
-
+Validate offers [vendor]
 
 ### Example
 
@@ -24883,6 +25256,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Validate offers [vendor]
         api_response = api_instance.validate_offers_vendor_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -24926,6 +25300,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Validate offers [vendor]
         api_response = api_instance.validate_offers_vendor_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -24962,7 +25337,7 @@ Name | Type | Description  | Notes
 # **vendor_data**
 > object vendor_data(vendor, min_price, max_price)
 
-
+Get vendor export data
 
 ### Example
 
@@ -25004,6 +25379,7 @@ min_price = 3.4 # float |
 max_price = 3.4 # float | 
 
     try:
+        # Get vendor export data
         api_response = api_instance.vendor_data(vendor, min_price, max_price)
         pprint(api_response)
     except ApiException as e:
@@ -25048,6 +25424,7 @@ min_price = 3.4 # float |
 max_price = 3.4 # float | 
 
     try:
+        # Get vendor export data
         api_response = api_instance.vendor_data(vendor, min_price, max_price)
         pprint(api_response)
     except ApiException as e:
@@ -25085,6 +25462,8 @@ Name | Type | Description  | Notes
 # **version**
 > VersionApiResponse version()
 
+Get application version
+
 Get the current application version
 
 ### Example
@@ -25108,7 +25487,7 @@ with pricemonitor_api_client.ApiClient() as api_client:
     api_instance = pricemonitor_api_client.InternalApi(api_client)
     
     try:
-        # Get the current application version
+        # Get application version
         api_response = api_instance.version()
         pprint(api_response)
     except ApiException as e:

@@ -4,13 +4,15 @@ All URIs are relative to *https://api.patagona.de*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**publish_preprocessing_task_vendor_v3**](PreprocessingApi.md#publish_preprocessing_task_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/tasks/preprocessing | Publish a preprocessing task for vendor.
+[**publish_preprocessing_task_vendor_v3**](PreprocessingApi.md#publish_preprocessing_task_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/tasks/preprocessing | Publish preprocessing task [vendor]
 
 
 # **publish_preprocessing_task_vendor_v3**
 > EmptyApiResponse publish_preprocessing_task_vendor_v3(retrospective_in_minutes, contract_id, trigger_follow_up_task=trigger_follow_up_task)
 
-Publish a preprocessing task for vendor.
+Publish preprocessing task [vendor]
+
+Publish a preprocessing task for a vendor.
 
 ### Example
 
@@ -52,7 +54,7 @@ contract_id = 'qbcxvb' # str | ID of the contract
 trigger_follow_up_task = True # bool |  (optional)
 
     try:
-        # Publish a preprocessing task for vendor.
+        # Publish preprocessing task [vendor]
         api_response = api_instance.publish_preprocessing_task_vendor_v3(retrospective_in_minutes, contract_id, trigger_follow_up_task=trigger_follow_up_task)
         pprint(api_response)
     except ApiException as e:
@@ -97,7 +99,7 @@ contract_id = 'qbcxvb' # str | ID of the contract
 trigger_follow_up_task = True # bool |  (optional)
 
     try:
-        # Publish a preprocessing task for vendor.
+        # Publish preprocessing task [vendor]
         api_response = api_instance.publish_preprocessing_task_vendor_v3(retrospective_in_minutes, contract_id, trigger_follow_up_task=trigger_follow_up_task)
         pprint(api_response)
     except ApiException as e:

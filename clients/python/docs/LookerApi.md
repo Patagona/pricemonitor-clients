@@ -5,8 +5,8 @@ All URIs are relative to *https://api.patagona.de*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**get_looker_user_attributes**](LookerApi.md#get_looker_user_attributes) | **GET** /api/v3/user/looker/attributes | Get Looker user attributes
-[**post_embed_sso_url_manufacturer**](LookerApi.md#post_embed_sso_url_manufacturer) | **POST** /api/v3/manufacturer/contracts/{contractId}/looker/sso/embed/url | Retrieve an embed SSO url for Looker.
-[**post_embed_sso_url_vendor**](LookerApi.md#post_embed_sso_url_vendor) | **POST** /api/v3/vendor/contracts/{contractId}/looker/sso/embed/url | Retrieve an embed SSO url for Looker.
+[**post_embed_sso_url_manufacturer**](LookerApi.md#post_embed_sso_url_manufacturer) | **POST** /api/v3/manufacturer/contracts/{contractId}/looker/sso/embed/url | Retrieve Looker embed SSO url [manufacturer]
+[**post_embed_sso_url_vendor**](LookerApi.md#post_embed_sso_url_vendor) | **POST** /api/v3/vendor/contracts/{contractId}/looker/sso/embed/url | Retrieve Looker embed SSO url [vendor]
 
 
 # **get_looker_user_attributes**
@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 Get Looker user attributes
 
-Retrieves user attributes from Looker. We created the endpoint to allow us to track the impact of the issue described in [Confluence](https://omniaretail.atlassian.net/wiki/spaces/DEV/pages/648151090/Looker+Dashboard+Mismatch+Problem+in+Omnia+2.0)
+Retrieves user attributes from Looker. We created the endpoint to allow us to track the impact of the issue described in [Confluence](https://omniaretail.atlassian.net/wiki/spaces/DEV/pages/648151090/Looker+Dashboard+Mismatch+Problem+in+Omnia+2.0) 
 
 ### Example
 
@@ -128,7 +128,9 @@ This endpoint does not need any parameter.
 # **post_embed_sso_url_manufacturer**
 > EmbedSSOUrlResponseV3ApiResponse post_embed_sso_url_manufacturer(contract_id, com_patagona_pricemonitor_share_api_post_embed_sso_url_request_v3=com_patagona_pricemonitor_share_api_post_embed_sso_url_request_v3)
 
-Retrieve an embed SSO url for Looker.
+Retrieve Looker embed SSO url [manufacturer]
+
+Retrieve an embed SSO url for Looker for a manufacturer contract.
 
 ### Example
 
@@ -169,7 +171,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_post_embed_sso_url_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostEmbedSSOUrlRequestV3() # ComPatagonaPricemonitorShareApiPostEmbedSSOUrlRequestV3 | Payload for retrieving a signed embed SSO url using Looker API. (optional)
 
     try:
-        # Retrieve an embed SSO url for Looker.
+        # Retrieve Looker embed SSO url [manufacturer]
         api_response = api_instance.post_embed_sso_url_manufacturer(contract_id, com_patagona_pricemonitor_share_api_post_embed_sso_url_request_v3=com_patagona_pricemonitor_share_api_post_embed_sso_url_request_v3)
         pprint(api_response)
     except ApiException as e:
@@ -213,7 +215,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_post_embed_sso_url_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostEmbedSSOUrlRequestV3() # ComPatagonaPricemonitorShareApiPostEmbedSSOUrlRequestV3 | Payload for retrieving a signed embed SSO url using Looker API. (optional)
 
     try:
-        # Retrieve an embed SSO url for Looker.
+        # Retrieve Looker embed SSO url [manufacturer]
         api_response = api_instance.post_embed_sso_url_manufacturer(contract_id, com_patagona_pricemonitor_share_api_post_embed_sso_url_request_v3=com_patagona_pricemonitor_share_api_post_embed_sso_url_request_v3)
         pprint(api_response)
     except ApiException as e:
@@ -250,7 +252,9 @@ Name | Type | Description  | Notes
 # **post_embed_sso_url_vendor**
 > EmbedSSOUrlResponseV3ApiResponse post_embed_sso_url_vendor(contract_id, com_patagona_pricemonitor_share_api_post_embed_sso_url_request_v3=com_patagona_pricemonitor_share_api_post_embed_sso_url_request_v3)
 
-Retrieve an embed SSO url for Looker.
+Retrieve Looker embed SSO url [vendor]
+
+Retrieve an embed SSO url for Looker for a vendor contract.
 
 ### Example
 
@@ -291,7 +295,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_post_embed_sso_url_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostEmbedSSOUrlRequestV3() # ComPatagonaPricemonitorShareApiPostEmbedSSOUrlRequestV3 | Payload for retrieving a signed embed SSO url using Looker API. (optional)
 
     try:
-        # Retrieve an embed SSO url for Looker.
+        # Retrieve Looker embed SSO url [vendor]
         api_response = api_instance.post_embed_sso_url_vendor(contract_id, com_patagona_pricemonitor_share_api_post_embed_sso_url_request_v3=com_patagona_pricemonitor_share_api_post_embed_sso_url_request_v3)
         pprint(api_response)
     except ApiException as e:
@@ -335,7 +339,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_post_embed_sso_url_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostEmbedSSOUrlRequestV3() # ComPatagonaPricemonitorShareApiPostEmbedSSOUrlRequestV3 | Payload for retrieving a signed embed SSO url using Looker API. (optional)
 
     try:
-        # Retrieve an embed SSO url for Looker.
+        # Retrieve Looker embed SSO url [vendor]
         api_response = api_instance.post_embed_sso_url_vendor(contract_id, com_patagona_pricemonitor_share_api_post_embed_sso_url_request_v3=com_patagona_pricemonitor_share_api_post_embed_sso_url_request_v3)
         pprint(api_response)
     except ApiException as e:

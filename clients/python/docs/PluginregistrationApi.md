@@ -4,15 +4,17 @@ All URIs are relative to *https://api.patagona.de*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**delete_plugin_registration**](PluginregistrationApi.md#delete_plugin_registration) | **DELETE** /api/v3/vendor/contracts/{contractId}/plugin | Delete the plugin registration for given contract
-[**get_plugin_registration**](PluginregistrationApi.md#get_plugin_registration) | **GET** /api/v3/vendor/contracts/{contractId}/plugin | Return the plugin registration for given contract
-[**put_plugin_registration**](PluginregistrationApi.md#put_plugin_registration) | **PUT** /api/v3/vendor/contracts/{contractId}/plugin | Create and/or update the plugin registration for given contract
+[**delete_plugin_registration**](PluginregistrationApi.md#delete_plugin_registration) | **DELETE** /api/v3/vendor/contracts/{contractId}/plugin | Delete plugin registration for contract
+[**get_plugin_registration**](PluginregistrationApi.md#get_plugin_registration) | **GET** /api/v3/vendor/contracts/{contractId}/plugin | Get plugin registration for contract
+[**put_plugin_registration**](PluginregistrationApi.md#put_plugin_registration) | **PUT** /api/v3/vendor/contracts/{contractId}/plugin | Create/update plugin registration for contract
 
 
 # **delete_plugin_registration**
 > PluginRegistrationEmptyApiResponse delete_plugin_registration(contract_id)
 
-Delete the plugin registration for given contract
+Delete plugin registration for contract
+
+Delete the plugin registration for the given contract.
 
 ### Example
 
@@ -52,7 +54,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
-        # Delete the plugin registration for given contract
+        # Delete plugin registration for contract
         api_response = api_instance.delete_plugin_registration(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -95,7 +97,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
-        # Delete the plugin registration for given contract
+        # Delete plugin registration for contract
         api_response = api_instance.delete_plugin_registration(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -131,7 +133,9 @@ Name | Type | Description  | Notes
 # **get_plugin_registration**
 > PluginRegistrationApiResponse get_plugin_registration(contract_id)
 
-Return the plugin registration for given contract
+Get plugin registration for contract
+
+Return the plugin registration for the given contract.
 
 ### Example
 
@@ -171,7 +175,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
-        # Return the plugin registration for given contract
+        # Get plugin registration for contract
         api_response = api_instance.get_plugin_registration(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -214,7 +218,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
-        # Return the plugin registration for given contract
+        # Get plugin registration for contract
         api_response = api_instance.get_plugin_registration(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -251,7 +255,9 @@ Name | Type | Description  | Notes
 # **put_plugin_registration**
 > PluginRegistrationEmptyApiResponse put_plugin_registration(contract_id, put_plugin_registration_request)
 
-Create and/or update the plugin registration for given contract
+Create/update plugin registration for contract
+
+Create and/or update the plugin registration for given contract.
 
 ### Example
 
@@ -292,7 +298,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 put_plugin_registration_request = pricemonitor_api_client.PutPluginRegistrationRequest() # PutPluginRegistrationRequest | 
 
     try:
-        # Create and/or update the plugin registration for given contract
+        # Create/update plugin registration for contract
         api_response = api_instance.put_plugin_registration(contract_id, put_plugin_registration_request)
         pprint(api_response)
     except ApiException as e:
@@ -336,7 +342,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 put_plugin_registration_request = pricemonitor_api_client.PutPluginRegistrationRequest() # PutPluginRegistrationRequest | 
 
     try:
-        # Create and/or update the plugin registration for given contract
+        # Create/update plugin registration for contract
         api_response = api_instance.put_plugin_registration(contract_id, put_plugin_registration_request)
         pprint(api_response)
     except ApiException as e:

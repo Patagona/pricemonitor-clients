@@ -4,7 +4,7 @@ All URIs are relative to *https://api.patagona.de*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**delete_orders**](OrdersApi.md#delete_orders) | **DELETE** /api/v3/vendor/contracts/{contractId}/orders | Delete all orders for this contract
+[**delete_orders**](OrdersApi.md#delete_orders) | **DELETE** /api/v3/vendor/contracts/{contractId}/orders | Delete all orders
 [**delete_orders_by_query_vendor_v3**](OrdersApi.md#delete_orders_by_query_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/orders/delete/query | Delete orders by query
 [**get_orders_count_by_portal_by_contract**](OrdersApi.md#get_orders_count_by_portal_by_contract) | **GET** /api/1/{contractId}/products/orderscountbyportal | Get orders count by portal
 [**get_orders_vendor_v3**](OrdersApi.md#get_orders_vendor_v3) | **GET** /api/v3/vendor/contracts/{contractId}/orders | Get all orders
@@ -16,7 +16,9 @@ Method | HTTP request | Description
 # **delete_orders**
 > DeletedItemsApiResponse delete_orders(contract_id)
 
-Delete all orders for this contract
+Delete all orders
+
+Delete all orders for this contract.
 
 ### Example
 
@@ -56,7 +58,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
-        # Delete all orders for this contract
+        # Delete all orders
         api_response = api_instance.delete_orders(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -99,7 +101,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
-        # Delete all orders for this contract
+        # Delete all orders
         api_response = api_instance.delete_orders(contract_id)
         pprint(api_response)
     except ApiException as e:

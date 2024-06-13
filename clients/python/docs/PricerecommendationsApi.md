@@ -4,21 +4,21 @@ All URIs are relative to *https://api.patagona.de*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**delete_repricing_strategy_vendor_v2**](PricerecommendationsApi.md#delete_repricing_strategy_vendor_v2) | **DELETE** /api/2/v/contracts/{contractId}/settings/repricingstrategy | 
+[**delete_repricing_strategy_vendor_v2**](PricerecommendationsApi.md#delete_repricing_strategy_vendor_v2) | **DELETE** /api/2/v/contracts/{contractId}/settings/repricingstrategy | Delete repricing strategy
 [**get_price_recommendation**](PricerecommendationsApi.md#get_price_recommendation) | **GET** /api/2/v/contracts/{contractId}/result/pricerecommendations | Get all price recommendations
-[**get_price_recommendation_stats_vendor_v2**](PricerecommendationsApi.md#get_price_recommendation_stats_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/result/pricerecommendationstats | 
+[**get_price_recommendation_stats_vendor_v2**](PricerecommendationsApi.md#get_price_recommendation_stats_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/result/pricerecommendationstats | Get price reommendation stats
 [**get_price_recommendations**](PricerecommendationsApi.md#get_price_recommendations) | **GET** /api/1/{contractId}/products/analysis/pricerecommendations | Get price recommendations
 [**get_product_price_recommendation_history**](PricerecommendationsApi.md#get_product_price_recommendation_history) | **GET** /api/v3/vendor/contracts/{contractId}/products/{productId}/pricerecommendationhistory | Get price recommendations for one product
-[**get_repricing_strategy_vendor_v2**](PricerecommendationsApi.md#get_repricing_strategy_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/settings/repricingstrategy | 
-[**get_time_stamps**](PricerecommendationsApi.md#get_time_stamps) | **GET** /api/1/{contractId}/products/analysis/timestamps | 
-[**put_repricing_strategy_vendor_v2**](PricerecommendationsApi.md#put_repricing_strategy_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/settings/repricingstrategy | 
-[**query_price_recommendations_vendor_v2**](PricerecommendationsApi.md#query_price_recommendations_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/result/pricerecommendations/query | 
+[**get_repricing_strategy_vendor_v2**](PricerecommendationsApi.md#get_repricing_strategy_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/settings/repricingstrategy | Get repricing strategy
+[**get_time_stamps**](PricerecommendationsApi.md#get_time_stamps) | **GET** /api/1/{contractId}/products/analysis/timestamps | Get time stamps
+[**put_repricing_strategy_vendor_v2**](PricerecommendationsApi.md#put_repricing_strategy_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/settings/repricingstrategy | Update repricing strategy
+[**query_price_recommendations_vendor_v2**](PricerecommendationsApi.md#query_price_recommendations_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/result/pricerecommendations/query | Query price recommendations
 
 
 # **delete_repricing_strategy_vendor_v2**
 > object delete_repricing_strategy_vendor_v2(contract_id)
 
-
+Delete repricing strategy
 
 ### Example
 
@@ -58,6 +58,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Delete repricing strategy
         api_response = api_instance.delete_repricing_strategy_vendor_v2(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -100,6 +101,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
+        # Delete repricing strategy
         api_response = api_instance.delete_repricing_strategy_vendor_v2(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -268,7 +270,7 @@ Name | Type | Description  | Notes
 # **get_price_recommendation_stats_vendor_v2**
 > object get_price_recommendation_stats_vendor_v2(contract_id, start_time, end_time, max_positions)
 
-
+Get price reommendation stats
 
 ### Example
 
@@ -311,6 +313,7 @@ end_time = '2013-10-20T19:20:30+01:00' # datetime |
 max_positions = 56 # int | 
 
     try:
+        # Get price reommendation stats
         api_response = api_instance.get_price_recommendation_stats_vendor_v2(contract_id, start_time, end_time, max_positions)
         pprint(api_response)
     except ApiException as e:
@@ -356,6 +359,7 @@ end_time = '2013-10-20T19:20:30+01:00' # datetime |
 max_positions = 56 # int | 
 
     try:
+        # Get price reommendation stats
         api_response = api_instance.get_price_recommendation_stats_vendor_v2(contract_id, start_time, end_time, max_positions)
         pprint(api_response)
     except ApiException as e:
@@ -653,7 +657,7 @@ Name | Type | Description  | Notes
 # **get_repricing_strategy_vendor_v2**
 > object get_repricing_strategy_vendor_v2(contract_id, document_version=document_version)
 
-
+Get repricing strategy
 
 ### Example
 
@@ -694,6 +698,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 document_version = 5 # int |  (optional)
 
     try:
+        # Get repricing strategy
         api_response = api_instance.get_repricing_strategy_vendor_v2(contract_id, document_version=document_version)
         pprint(api_response)
     except ApiException as e:
@@ -737,6 +742,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 document_version = 5 # int |  (optional)
 
     try:
+        # Get repricing strategy
         api_response = api_instance.get_repricing_strategy_vendor_v2(contract_id, document_version=document_version)
         pprint(api_response)
     except ApiException as e:
@@ -773,7 +779,7 @@ Name | Type | Description  | Notes
 # **get_time_stamps**
 > object get_time_stamps(contract_id)
 
-
+Get time stamps
 
 ### Example
 
@@ -813,6 +819,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 56 # int | 
 
     try:
+        # Get time stamps
         api_response = api_instance.get_time_stamps(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -855,6 +862,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 56 # int | 
 
     try:
+        # Get time stamps
         api_response = api_instance.get_time_stamps(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -890,7 +898,7 @@ Name | Type | Description  | Notes
 # **put_repricing_strategy_vendor_v2**
 > object put_repricing_strategy_vendor_v2(contract_id, body=body)
 
-
+Update repricing strategy
 
 ### Example
 
@@ -931,6 +939,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update repricing strategy
         api_response = api_instance.put_repricing_strategy_vendor_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -974,6 +983,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update repricing strategy
         api_response = api_instance.put_repricing_strategy_vendor_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -1010,7 +1020,9 @@ Name | Type | Description  | Notes
 # **query_price_recommendations_vendor_v2**
 > QueryPriceRecommendationsV2ApiResponse query_price_recommendations_vendor_v2(contract_id, price_recommendation_api_query_v2=price_recommendation_api_query_v2)
 
+Query price recommendations
 
+This endpoint is used to query certain price recommendations. It supports a rather complex filtering structure. Most commonly it's used for querying by our internal product id.  Here you can find an example request body for querying one product id (here `123456`):  <details> <summary>Click to expand</summary>  ``` json {   \"pagination\": {     \"start\": 0,     \"limit\": 500   },   \"range\": {     \"start\": \"2023-01-07T12:05:01.000Z\",     \"end\": \"2023-01-09T12:05:01.000Z\"   },   \"filter\": {     \"filters\": [{       \"left\": {         \"attributeName\": \"productId\",         \"type\": \"StringValueProvider\"       },       \"right\": {         \"value\": \"123456\",         \"type\": \"StringConstantValueProvider\"       },       \"comparison\": {         \"type\": \"StringEquality\"       },       \"type\": \"ComparisonFilter\"     }],     \"type\": \"OrFilter\"   } } ``` </details>  If you want to query for multiple product ids, then you need to provide one object per product id in the filters-array.  It's recommended to query for at most 1000 price recommendations at once.
 
 ### Example
 
@@ -1051,6 +1063,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 price_recommendation_api_query_v2 = pricemonitor_api_client.PriceRecommendationApiQueryV2() # PriceRecommendationApiQueryV2 | The request body specifies which price recommendations will be searched for. (optional)
 
     try:
+        # Query price recommendations
         api_response = api_instance.query_price_recommendations_vendor_v2(contract_id, price_recommendation_api_query_v2=price_recommendation_api_query_v2)
         pprint(api_response)
     except ApiException as e:
@@ -1094,6 +1107,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 price_recommendation_api_query_v2 = pricemonitor_api_client.PriceRecommendationApiQueryV2() # PriceRecommendationApiQueryV2 | The request body specifies which price recommendations will be searched for. (optional)
 
     try:
+        # Query price recommendations
         api_response = api_instance.query_price_recommendations_vendor_v2(contract_id, price_recommendation_api_query_v2=price_recommendation_api_query_v2)
         pprint(api_response)
     except ApiException as e:

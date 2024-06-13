@@ -4,14 +4,16 @@ All URIs are relative to *https://api.patagona.de*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_pricing_strategy_history**](StrategyApi.md#get_pricing_strategy_history) | **GET** /api/v3/vendor/contracts/{contractId}/settings/pricingstrategies/history | Get a list of metadata of all strategy versions for a contract
-[**get_strategy_history**](StrategyApi.md#get_strategy_history) | **GET** /api/v3/vendor/contracts/{contractId}/settings/repricingstrategy/history | Get a list of metadata of all strategy versions for a contract
+[**get_pricing_strategy_history**](StrategyApi.md#get_pricing_strategy_history) | **GET** /api/v3/vendor/contracts/{contractId}/settings/pricingstrategies/history | Get all strategy versions metadata for contract
+[**get_strategy_history**](StrategyApi.md#get_strategy_history) | **GET** /api/v3/vendor/contracts/{contractId}/settings/repricingstrategy/history | Get metadata of all strategy versions for contract
 
 
 # **get_pricing_strategy_history**
 > GetPricingStrategyHistoryApiResponse get_pricing_strategy_history(contract_id)
 
-Get a list of metadata of all strategy versions for a contract
+Get all strategy versions metadata for contract
+
+Get a list of metadata of all strategy versions for a contract.
 
 ### Example
 
@@ -51,7 +53,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
-        # Get a list of metadata of all strategy versions for a contract
+        # Get all strategy versions metadata for contract
         api_response = api_instance.get_pricing_strategy_history(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -94,7 +96,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
-        # Get a list of metadata of all strategy versions for a contract
+        # Get all strategy versions metadata for contract
         api_response = api_instance.get_pricing_strategy_history(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -130,7 +132,9 @@ Name | Type | Description  | Notes
 # **get_strategy_history**
 > GetPricingStrategyHistoryApiResponse get_strategy_history(contract_id)
 
-Get a list of metadata of all strategy versions for a contract
+Get metadata of all strategy versions for contract
+
+Get a list of metadata of all strategy versions for a contract.
 
 ### Example
 
@@ -170,7 +174,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
-        # Get a list of metadata of all strategy versions for a contract
+        # Get metadata of all strategy versions for contract
         api_response = api_instance.get_strategy_history(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -213,7 +217,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
-        # Get a list of metadata of all strategy versions for a contract
+        # Get metadata of all strategy versions for contract
         api_response = api_instance.get_strategy_history(contract_id)
         pprint(api_response)
     except ApiException as e:

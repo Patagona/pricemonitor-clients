@@ -4,17 +4,19 @@ All URIs are relative to *https://api.patagona.de*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**delete_vendor_shop_mapping_manufacturer_v3**](VendorShopMappingApi.md#delete_vendor_shop_mapping_manufacturer_v3) | **DELETE** /api/v3/manufacturer/contracts/{contractId}/vendors/{vendorId} | Delete a vendor and associated shops for a given contract.
-[**get_vendor_shop_mapping_manufacturer_v3**](VendorShopMappingApi.md#get_vendor_shop_mapping_manufacturer_v3) | **GET** /api/v3/manufacturer/contracts/{contractId}/vendors/{vendorId} | Get vendor along with their associated shop for given vendor id and contract.
-[**get_vendor_shop_mappings_manufacturer_v3**](VendorShopMappingApi.md#get_vendor_shop_mappings_manufacturer_v3) | **GET** /api/v3/manufacturer/contracts/{contractId}/vendors | Get all the vendors along with their associated shops for a specified contract.
-[**post_vendor_shop_mapping_manufacturer_v3**](VendorShopMappingApi.md#post_vendor_shop_mapping_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/vendors | Add a new vendor for a given contract and associate shops with the given vendor.
-[**put_vendor_shop_mapping_manufacturer_v3**](VendorShopMappingApi.md#put_vendor_shop_mapping_manufacturer_v3) | **PUT** /api/v3/manufacturer/contracts/{contractId}/vendors/{vendorId} | Update an existing vendor for a given contract and associate shops with the given vendor.
+[**delete_vendor_shop_mapping_manufacturer_v3**](VendorShopMappingApi.md#delete_vendor_shop_mapping_manufacturer_v3) | **DELETE** /api/v3/manufacturer/contracts/{contractId}/vendors/{vendorId} | Delete vendor and associated shops for contract
+[**get_vendor_shop_mapping_manufacturer_v3**](VendorShopMappingApi.md#get_vendor_shop_mapping_manufacturer_v3) | **GET** /api/v3/manufacturer/contracts/{contractId}/vendors/{vendorId} | Get vendor and shops for contract
+[**get_vendor_shop_mappings_manufacturer_v3**](VendorShopMappingApi.md#get_vendor_shop_mappings_manufacturer_v3) | **GET** /api/v3/manufacturer/contracts/{contractId}/vendors | Get all vendors and shops for contract
+[**post_vendor_shop_mapping_manufacturer_v3**](VendorShopMappingApi.md#post_vendor_shop_mapping_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/vendors | Add new vendor to contract and associate shops
+[**put_vendor_shop_mapping_manufacturer_v3**](VendorShopMappingApi.md#put_vendor_shop_mapping_manufacturer_v3) | **PUT** /api/v3/manufacturer/contracts/{contractId}/vendors/{vendorId} | Update vendor for contract and associate shops
 
 
 # **delete_vendor_shop_mapping_manufacturer_v3**
 > ComPatagonaPricemonitorShareApiDeleteByNumericIdApiResponse delete_vendor_shop_mapping_manufacturer_v3(contract_id, vendor_id)
 
-Delete a vendor and associated shops for a given contract.
+Delete vendor and associated shops for contract
+
+Delete a vendor and associated shops for a given manufacturer contract.
 
 ### Example
 
@@ -55,7 +57,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 vendor_id = 1 # int | ID of vendor shop mapping
 
     try:
-        # Delete a vendor and associated shops for a given contract.
+        # Delete vendor and associated shops for contract
         api_response = api_instance.delete_vendor_shop_mapping_manufacturer_v3(contract_id, vendor_id)
         pprint(api_response)
     except ApiException as e:
@@ -99,7 +101,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 vendor_id = 1 # int | ID of vendor shop mapping
 
     try:
-        # Delete a vendor and associated shops for a given contract.
+        # Delete vendor and associated shops for contract
         api_response = api_instance.delete_vendor_shop_mapping_manufacturer_v3(contract_id, vendor_id)
         pprint(api_response)
     except ApiException as e:
@@ -137,7 +139,9 @@ Name | Type | Description  | Notes
 # **get_vendor_shop_mapping_manufacturer_v3**
 > VendorShopMappingV3ApiResponse get_vendor_shop_mapping_manufacturer_v3(contract_id, vendor_id)
 
-Get vendor along with their associated shop for given vendor id and contract.
+Get vendor and shops for contract
+
+Get vendor along with their associated shop for given vendor id and manufacturer contract.
 
 ### Example
 
@@ -178,7 +182,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 vendor_id = 1 # int | ID of vendor shop mapping
 
     try:
-        # Get vendor along with their associated shop for given vendor id and contract.
+        # Get vendor and shops for contract
         api_response = api_instance.get_vendor_shop_mapping_manufacturer_v3(contract_id, vendor_id)
         pprint(api_response)
     except ApiException as e:
@@ -222,7 +226,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 vendor_id = 1 # int | ID of vendor shop mapping
 
     try:
-        # Get vendor along with their associated shop for given vendor id and contract.
+        # Get vendor and shops for contract
         api_response = api_instance.get_vendor_shop_mapping_manufacturer_v3(contract_id, vendor_id)
         pprint(api_response)
     except ApiException as e:
@@ -260,7 +264,9 @@ Name | Type | Description  | Notes
 # **get_vendor_shop_mappings_manufacturer_v3**
 > GetVendorShopMappingsApiResponse get_vendor_shop_mappings_manufacturer_v3(contract_id)
 
-Get all the vendors along with their associated shops for a specified contract.
+Get all vendors and shops for contract
+
+Get all the vendors along with their associated shops for a specified manufacturer contract.
 
 ### Example
 
@@ -300,7 +306,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
-        # Get all the vendors along with their associated shops for a specified contract.
+        # Get all vendors and shops for contract
         api_response = api_instance.get_vendor_shop_mappings_manufacturer_v3(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -343,7 +349,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
-        # Get all the vendors along with their associated shops for a specified contract.
+        # Get all vendors and shops for contract
         api_response = api_instance.get_vendor_shop_mappings_manufacturer_v3(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -379,7 +385,9 @@ Name | Type | Description  | Notes
 # **post_vendor_shop_mapping_manufacturer_v3**
 > VendorShopMappingV3ApiResponse post_vendor_shop_mapping_manufacturer_v3(contract_id, com_patagona_pricemonitor_share_api_post_vendor_shop_mapping_request_v3=com_patagona_pricemonitor_share_api_post_vendor_shop_mapping_request_v3)
 
-Add a new vendor for a given contract and associate shops with the given vendor.
+Add new vendor to contract and associate shops
+
+Add a new vendor for a given manufacturer contract and associate shops with the given vendor.
 
 ### Example
 
@@ -420,7 +428,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_post_vendor_shop_mapping_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostVendorShopMappingRequestV3() # ComPatagonaPricemonitorShareApiPostVendorShopMappingRequestV3 | Request body for creating a new vendor and associate shops with it. Please note that atleast one shop is required for a successful creation. (optional)
 
     try:
-        # Add a new vendor for a given contract and associate shops with the given vendor.
+        # Add new vendor to contract and associate shops
         api_response = api_instance.post_vendor_shop_mapping_manufacturer_v3(contract_id, com_patagona_pricemonitor_share_api_post_vendor_shop_mapping_request_v3=com_patagona_pricemonitor_share_api_post_vendor_shop_mapping_request_v3)
         pprint(api_response)
     except ApiException as e:
@@ -464,7 +472,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_post_vendor_shop_mapping_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostVendorShopMappingRequestV3() # ComPatagonaPricemonitorShareApiPostVendorShopMappingRequestV3 | Request body for creating a new vendor and associate shops with it. Please note that atleast one shop is required for a successful creation. (optional)
 
     try:
-        # Add a new vendor for a given contract and associate shops with the given vendor.
+        # Add new vendor to contract and associate shops
         api_response = api_instance.post_vendor_shop_mapping_manufacturer_v3(contract_id, com_patagona_pricemonitor_share_api_post_vendor_shop_mapping_request_v3=com_patagona_pricemonitor_share_api_post_vendor_shop_mapping_request_v3)
         pprint(api_response)
     except ApiException as e:
@@ -504,7 +512,9 @@ Name | Type | Description  | Notes
 # **put_vendor_shop_mapping_manufacturer_v3**
 > VendorShopMappingV3ApiResponse put_vendor_shop_mapping_manufacturer_v3(contract_id, vendor_id, com_patagona_pricemonitor_share_api_post_vendor_shop_mapping_request_v3=com_patagona_pricemonitor_share_api_post_vendor_shop_mapping_request_v3)
 
-Update an existing vendor for a given contract and associate shops with the given vendor.
+Update vendor for contract and associate shops
+
+Update an existing vendor for a given manufacturer contract and associate shops with the given vendor.
 
 ### Example
 
@@ -543,10 +553,10 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     api_instance = pricemonitor_api_client.VendorShopMappingApi(api_client)
     contract_id = 'qbcxvb' # str | ID of the contract
 vendor_id = 1 # int | ID of vendor shop mapping
-com_patagona_pricemonitor_share_api_post_vendor_shop_mapping_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostVendorShopMappingRequestV3() # ComPatagonaPricemonitorShareApiPostVendorShopMappingRequestV3 | Request body for updating an existing vendor and associate shops with it. Please note that atleast one shop is required for a successful creation. (optional)
+com_patagona_pricemonitor_share_api_post_vendor_shop_mapping_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostVendorShopMappingRequestV3() # ComPatagonaPricemonitorShareApiPostVendorShopMappingRequestV3 | Request body for updating an existing vendor and associate shops with it. Please note that at least one shop is required for a successful creation. (optional)
 
     try:
-        # Update an existing vendor for a given contract and associate shops with the given vendor.
+        # Update vendor for contract and associate shops
         api_response = api_instance.put_vendor_shop_mapping_manufacturer_v3(contract_id, vendor_id, com_patagona_pricemonitor_share_api_post_vendor_shop_mapping_request_v3=com_patagona_pricemonitor_share_api_post_vendor_shop_mapping_request_v3)
         pprint(api_response)
     except ApiException as e:
@@ -588,10 +598,10 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     api_instance = pricemonitor_api_client.VendorShopMappingApi(api_client)
     contract_id = 'qbcxvb' # str | ID of the contract
 vendor_id = 1 # int | ID of vendor shop mapping
-com_patagona_pricemonitor_share_api_post_vendor_shop_mapping_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostVendorShopMappingRequestV3() # ComPatagonaPricemonitorShareApiPostVendorShopMappingRequestV3 | Request body for updating an existing vendor and associate shops with it. Please note that atleast one shop is required for a successful creation. (optional)
+com_patagona_pricemonitor_share_api_post_vendor_shop_mapping_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostVendorShopMappingRequestV3() # ComPatagonaPricemonitorShareApiPostVendorShopMappingRequestV3 | Request body for updating an existing vendor and associate shops with it. Please note that at least one shop is required for a successful creation. (optional)
 
     try:
-        # Update an existing vendor for a given contract and associate shops with the given vendor.
+        # Update vendor for contract and associate shops
         api_response = api_instance.put_vendor_shop_mapping_manufacturer_v3(contract_id, vendor_id, com_patagona_pricemonitor_share_api_post_vendor_shop_mapping_request_v3=com_patagona_pricemonitor_share_api_post_vendor_shop_mapping_request_v3)
         pprint(api_response)
     except ApiException as e:
@@ -604,7 +614,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **contract_id** | **str**| ID of the contract | 
  **vendor_id** | **int**| ID of vendor shop mapping | 
- **com_patagona_pricemonitor_share_api_post_vendor_shop_mapping_request_v3** | [**ComPatagonaPricemonitorShareApiPostVendorShopMappingRequestV3**](ComPatagonaPricemonitorShareApiPostVendorShopMappingRequestV3.md)| Request body for updating an existing vendor and associate shops with it. Please note that atleast one shop is required for a successful creation. | [optional] 
+ **com_patagona_pricemonitor_share_api_post_vendor_shop_mapping_request_v3** | [**ComPatagonaPricemonitorShareApiPostVendorShopMappingRequestV3**](ComPatagonaPricemonitorShareApiPostVendorShopMappingRequestV3.md)| Request body for updating an existing vendor and associate shops with it. Please note that at least one shop is required for a successful creation. | [optional] 
 
 ### Return type
 

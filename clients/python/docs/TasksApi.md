@@ -4,145 +4,25 @@ All URIs are relative to *https://api.patagona.de*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_task**](TasksApi.md#create_task) | **POST** /api/1/{contractId}/tasks | 
-[**create_task_manufacturer_v2**](TasksApi.md#create_task_manufacturer_v2) | **POST** /api/2/m/contracts/{contractId}/tasks | 
-[**create_task_vendor_v2**](TasksApi.md#create_task_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/tasks | 
-[**get_task**](TasksApi.md#get_task) | **GET** /api/1/{contractId}/tasks/{taskId} | 
-[**get_task_data_manufacturer_v2**](TasksApi.md#get_task_data_manufacturer_v2) | **GET** /api/2/m/contracts/{contractId}/tasks/{taskId}/data | 
-[**get_task_data_vendor_v2**](TasksApi.md#get_task_data_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/tasks/{taskId}/data | 
-[**get_task_manufacturer_v2**](TasksApi.md#get_task_manufacturer_v2) | **GET** /api/2/m/contracts/{contractId}/tasks/{taskId} | 
-[**get_task_state**](TasksApi.md#get_task_state) | **GET** /api/1/{contractId}/tasks/{taskId}/state | 
-[**get_task_vendor_v2**](TasksApi.md#get_task_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/tasks/{taskId} | Find task by ID
-[**get_tasks**](TasksApi.md#get_tasks) | **GET** /api/1/{contractId}/tasks | 
-[**get_tasks_manufacturer_v2**](TasksApi.md#get_tasks_manufacturer_v2) | **GET** /api/2/m/contracts/{contractId}/tasks | 
-[**get_tasks_vendor_v2**](TasksApi.md#get_tasks_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/tasks | Find all tasks
-[**update_task_vendor_v2**](TasksApi.md#update_task_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/tasks/{taskId} | 
+[**create_task**](TasksApi.md#create_task) | **POST** /api/1/{contractId}/tasks | Create task
+[**create_task_manufacturer_v2**](TasksApi.md#create_task_manufacturer_v2) | **POST** /api/2/m/contracts/{contractId}/tasks | Create task [manufacturer]
+[**create_task_vendor_v2**](TasksApi.md#create_task_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/tasks | Create a task [vendor]
+[**get_task**](TasksApi.md#get_task) | **GET** /api/1/{contractId}/tasks/{taskId} | Get task
+[**get_task_data_manufacturer_v2**](TasksApi.md#get_task_data_manufacturer_v2) | **GET** /api/2/m/contracts/{contractId}/tasks/{taskId}/data | Get task data [manufacturer]
+[**get_task_data_vendor_v2**](TasksApi.md#get_task_data_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/tasks/{taskId}/data | Get task data [vendor]
+[**get_task_manufacturer_v2**](TasksApi.md#get_task_manufacturer_v2) | **GET** /api/2/m/contracts/{contractId}/tasks/{taskId} | Get task [manufacturer]
+[**get_task_state**](TasksApi.md#get_task_state) | **GET** /api/1/{contractId}/tasks/{taskId}/state | Get task state
+[**get_task_vendor_v2**](TasksApi.md#get_task_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/tasks/{taskId} | Get task
+[**get_tasks**](TasksApi.md#get_tasks) | **GET** /api/1/{contractId}/tasks | Get tasks
+[**get_tasks_manufacturer_v2**](TasksApi.md#get_tasks_manufacturer_v2) | **GET** /api/2/m/contracts/{contractId}/tasks | Find tasks for contract [manufactuerer]
+[**get_tasks_vendor_v2**](TasksApi.md#get_tasks_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/tasks | Find tasks for contract [vendor]
+[**update_task_vendor_v2**](TasksApi.md#update_task_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/tasks/{taskId} | Update a task
 
 
 # **create_task**
 > object create_task(contract_id, com_patagona_pricemonitor_share_api_create_task_body_v2=com_patagona_pricemonitor_share_api_create_task_body_v2)
 
-
-
-### Example
-
-* Basic Authentication (BasicAuth):
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: BasicAuth
-configuration = pricemonitor_api_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = pricemonitor_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.TasksApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-com_patagona_pricemonitor_share_api_create_task_body_v2 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiCreateTaskBodyV2() # ComPatagonaPricemonitorShareApiCreateTaskBodyV2 | Create a new task (optional)
-
-    try:
-        api_response = api_instance.create_task(contract_id, com_patagona_pricemonitor_share_api_create_task_body_v2=com_patagona_pricemonitor_share_api_create_task_body_v2)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling TasksApi->create_task: %s\n" % e)
-```
-
-* Bearer (JWT) Authentication (BearerAuth):
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: BasicAuth
-configuration = pricemonitor_api_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = pricemonitor_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.TasksApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-com_patagona_pricemonitor_share_api_create_task_body_v2 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiCreateTaskBodyV2() # ComPatagonaPricemonitorShareApiCreateTaskBodyV2 | Create a new task (optional)
-
-    try:
-        api_response = api_instance.create_task(contract_id, com_patagona_pricemonitor_share_api_create_task_body_v2=com_patagona_pricemonitor_share_api_create_task_body_v2)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling TasksApi->create_task: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
- **com_patagona_pricemonitor_share_api_create_task_body_v2** | [**ComPatagonaPricemonitorShareApiCreateTaskBodyV2**](ComPatagonaPricemonitorShareApiCreateTaskBodyV2.md)| Create a new task | [optional] 
-
-### Return type
-
-**object**
-
-### Authorization
-
-[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | This is a generated entry and needs to be described. |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **create_task_manufacturer_v2**
-> GenericTaskWithUrl create_task_manufacturer_v2(contract_id, com_patagona_pricemonitor_share_api_create_task_body_v2=com_patagona_pricemonitor_share_api_create_task_body_v2)
-
-
+Create task
 
 Create a new task
 
@@ -182,9 +62,134 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.TasksApi(api_client)
     contract_id = 'qbcxvb' # str | ID of the contract
+com_patagona_pricemonitor_share_api_create_task_body_v2 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiCreateTaskBodyV2() # ComPatagonaPricemonitorShareApiCreateTaskBodyV2 | Create a new task (optional)
+
+    try:
+        # Create task
+        api_response = api_instance.create_task(contract_id, com_patagona_pricemonitor_share_api_create_task_body_v2=com_patagona_pricemonitor_share_api_create_task_body_v2)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling TasksApi->create_task: %s\n" % e)
+```
+
+* Bearer (JWT) Authentication (BearerAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.TasksApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+com_patagona_pricemonitor_share_api_create_task_body_v2 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiCreateTaskBodyV2() # ComPatagonaPricemonitorShareApiCreateTaskBodyV2 | Create a new task (optional)
+
+    try:
+        # Create task
+        api_response = api_instance.create_task(contract_id, com_patagona_pricemonitor_share_api_create_task_body_v2=com_patagona_pricemonitor_share_api_create_task_body_v2)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling TasksApi->create_task: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **contract_id** | **str**| ID of the contract | 
+ **com_patagona_pricemonitor_share_api_create_task_body_v2** | [**ComPatagonaPricemonitorShareApiCreateTaskBodyV2**](ComPatagonaPricemonitorShareApiCreateTaskBodyV2.md)| Create a new task | [optional] 
+
+### Return type
+
+**object**
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | This is a generated entry and needs to be described. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **create_task_manufacturer_v2**
+> GenericTaskWithUrl create_task_manufacturer_v2(contract_id, com_patagona_pricemonitor_share_api_create_task_body_v2=com_patagona_pricemonitor_share_api_create_task_body_v2)
+
+Create task [manufacturer]
+
+Creates a new task for a manufacturer contract
+
+### Example
+
+* Basic Authentication (BasicAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.TasksApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
 com_patagona_pricemonitor_share_api_create_task_body_v2 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiCreateTaskBodyV2() # ComPatagonaPricemonitorShareApiCreateTaskBodyV2 | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Create task [manufacturer]
         api_response = api_instance.create_task_manufacturer_v2(contract_id, com_patagona_pricemonitor_share_api_create_task_body_v2=com_patagona_pricemonitor_share_api_create_task_body_v2)
         pprint(api_response)
     except ApiException as e:
@@ -228,6 +233,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_create_task_body_v2 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiCreateTaskBodyV2() # ComPatagonaPricemonitorShareApiCreateTaskBodyV2 | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Create task [manufacturer]
         api_response = api_instance.create_task_manufacturer_v2(contract_id, com_patagona_pricemonitor_share_api_create_task_body_v2=com_patagona_pricemonitor_share_api_create_task_body_v2)
         pprint(api_response)
     except ApiException as e:
@@ -264,7 +270,9 @@ Name | Type | Description  | Notes
 # **create_task_vendor_v2**
 > object create_task_vendor_v2(contract_id, com_patagona_pricemonitor_share_api_create_task_body_v2=com_patagona_pricemonitor_share_api_create_task_body_v2)
 
+Create a task [vendor]
 
+Creates a new task for a vendor contract.
 
 ### Example
 
@@ -305,6 +313,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_create_task_body_v2 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiCreateTaskBodyV2() # ComPatagonaPricemonitorShareApiCreateTaskBodyV2 | Create a new task (optional)
 
     try:
+        # Create a task [vendor]
         api_response = api_instance.create_task_vendor_v2(contract_id, com_patagona_pricemonitor_share_api_create_task_body_v2=com_patagona_pricemonitor_share_api_create_task_body_v2)
         pprint(api_response)
     except ApiException as e:
@@ -348,6 +357,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 com_patagona_pricemonitor_share_api_create_task_body_v2 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiCreateTaskBodyV2() # ComPatagonaPricemonitorShareApiCreateTaskBodyV2 | Create a new task (optional)
 
     try:
+        # Create a task [vendor]
         api_response = api_instance.create_task_vendor_v2(contract_id, com_patagona_pricemonitor_share_api_create_task_body_v2=com_patagona_pricemonitor_share_api_create_task_body_v2)
         pprint(api_response)
     except ApiException as e:
@@ -384,7 +394,9 @@ Name | Type | Description  | Notes
 # **get_task**
 > object get_task(contract_id, task_id)
 
+Get task
 
+Get a task by id
 
 ### Example
 
@@ -425,6 +437,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 task_id = 'task_id_example' # str | 
 
     try:
+        # Get task
         api_response = api_instance.get_task(contract_id, task_id)
         pprint(api_response)
     except ApiException as e:
@@ -468,6 +481,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 task_id = 'task_id_example' # str | 
 
     try:
+        # Get task
         api_response = api_instance.get_task(contract_id, task_id)
         pprint(api_response)
     except ApiException as e:
@@ -504,7 +518,7 @@ Name | Type | Description  | Notes
 # **get_task_data_manufacturer_v2**
 > object get_task_data_manufacturer_v2(contract_id, task_id)
 
-
+Get task data [manufacturer]
 
 ### Example
 
@@ -545,6 +559,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 task_id = 'task_id_example' # str | 
 
     try:
+        # Get task data [manufacturer]
         api_response = api_instance.get_task_data_manufacturer_v2(contract_id, task_id)
         pprint(api_response)
     except ApiException as e:
@@ -588,6 +603,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 task_id = 'task_id_example' # str | 
 
     try:
+        # Get task data [manufacturer]
         api_response = api_instance.get_task_data_manufacturer_v2(contract_id, task_id)
         pprint(api_response)
     except ApiException as e:
@@ -625,7 +641,7 @@ Name | Type | Description  | Notes
 # **get_task_data_vendor_v2**
 > object get_task_data_vendor_v2(contract_id, task_id)
 
-
+Get task data [vendor]
 
 ### Example
 
@@ -666,6 +682,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 task_id = 'task_id_example' # str | 
 
     try:
+        # Get task data [vendor]
         api_response = api_instance.get_task_data_vendor_v2(contract_id, task_id)
         pprint(api_response)
     except ApiException as e:
@@ -709,6 +726,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 task_id = 'task_id_example' # str | 
 
     try:
+        # Get task data [vendor]
         api_response = api_instance.get_task_data_vendor_v2(contract_id, task_id)
         pprint(api_response)
     except ApiException as e:
@@ -745,9 +763,9 @@ Name | Type | Description  | Notes
 # **get_task_manufacturer_v2**
 > GenericTask get_task_manufacturer_v2(contract_id, task_id)
 
+Get task [manufacturer]
 
-
-Get the task designated by the taskId parameter
+Get the task with the specified id.
 
 ### Example
 
@@ -788,6 +806,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 task_id = 'task_id_example' # str | 
 
     try:
+        # Get task [manufacturer]
         api_response = api_instance.get_task_manufacturer_v2(contract_id, task_id)
         pprint(api_response)
     except ApiException as e:
@@ -831,6 +850,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 task_id = 'task_id_example' # str | 
 
     try:
+        # Get task [manufacturer]
         api_response = api_instance.get_task_manufacturer_v2(contract_id, task_id)
         pprint(api_response)
     except ApiException as e:
@@ -868,7 +888,9 @@ Name | Type | Description  | Notes
 # **get_task_state**
 > object get_task_state(contract_id, task_id)
 
+Get task state
 
+Gets the state of a task.
 
 ### Example
 
@@ -909,6 +931,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 task_id = 'task_id_example' # str | 
 
     try:
+        # Get task state
         api_response = api_instance.get_task_state(contract_id, task_id)
         pprint(api_response)
     except ApiException as e:
@@ -952,6 +975,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 task_id = 'task_id_example' # str | 
 
     try:
+        # Get task state
         api_response = api_instance.get_task_state(contract_id, task_id)
         pprint(api_response)
     except ApiException as e:
@@ -988,9 +1012,9 @@ Name | Type | Description  | Notes
 # **get_task_vendor_v2**
 > TaskWithContractResourceApiResponse get_task_vendor_v2(contract_id, task_id)
 
-Find task by ID
+Get task
 
-Returns a task, associated with a certain contract and identified by its ID
+Finds a task with the specified id for the given contract.
 
 ### Example
 
@@ -1031,7 +1055,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 task_id = 'task_id_example' # str | Id of the task
 
     try:
-        # Find task by ID
+        # Get task
         api_response = api_instance.get_task_vendor_v2(contract_id, task_id)
         pprint(api_response)
     except ApiException as e:
@@ -1075,7 +1099,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 task_id = 'task_id_example' # str | Id of the task
 
     try:
-        # Find task by ID
+        # Get task
         api_response = api_instance.get_task_vendor_v2(contract_id, task_id)
         pprint(api_response)
     except ApiException as e:
@@ -1113,7 +1137,7 @@ Name | Type | Description  | Notes
 # **get_tasks**
 > object get_tasks(contract_id, tasks, attributes, limit, task_type=task_type)
 
-
+Get tasks
 
 ### Example
 
@@ -1157,6 +1181,7 @@ limit = 56 # int |
 task_type = 'task_type_example' # str |  (optional)
 
     try:
+        # Get tasks
         api_response = api_instance.get_tasks(contract_id, tasks, attributes, limit, task_type=task_type)
         pprint(api_response)
     except ApiException as e:
@@ -1203,6 +1228,7 @@ limit = 56 # int |
 task_type = 'task_type_example' # str |  (optional)
 
     try:
+        # Get tasks
         api_response = api_instance.get_tasks(contract_id, tasks, attributes, limit, task_type=task_type)
         pprint(api_response)
     except ApiException as e:
@@ -1242,7 +1268,7 @@ Name | Type | Description  | Notes
 # **get_tasks_manufacturer_v2**
 > list[GenericTask] get_tasks_manufacturer_v2(contract_id, task_type_filter, task_state, limit, include_failures, task_ids_filter=task_ids_filter, min_creation_date=min_creation_date, max_creation_date=max_creation_date)
 
-
+Find tasks for contract [manufactuerer]
 
 Returns a list of task objects for the given contract
 
@@ -1291,6 +1317,7 @@ min_creation_date = '2013-10-20T19:20:30+01:00' # datetime | Ignore all tasks cr
 max_creation_date = '2013-10-20T19:20:30+01:00' # datetime | Ignore all tasks created later than this date (ISO 8601) (optional)
 
     try:
+        # Find tasks for contract [manufactuerer]
         api_response = api_instance.get_tasks_manufacturer_v2(contract_id, task_type_filter, task_state, limit, include_failures, task_ids_filter=task_ids_filter, min_creation_date=min_creation_date, max_creation_date=max_creation_date)
         pprint(api_response)
     except ApiException as e:
@@ -1340,6 +1367,7 @@ min_creation_date = '2013-10-20T19:20:30+01:00' # datetime | Ignore all tasks cr
 max_creation_date = '2013-10-20T19:20:30+01:00' # datetime | Ignore all tasks created later than this date (ISO 8601) (optional)
 
     try:
+        # Find tasks for contract [manufactuerer]
         api_response = api_instance.get_tasks_manufacturer_v2(contract_id, task_type_filter, task_state, limit, include_failures, task_ids_filter=task_ids_filter, min_creation_date=min_creation_date, max_creation_date=max_creation_date)
         pprint(api_response)
     except ApiException as e:
@@ -1382,7 +1410,7 @@ Name | Type | Description  | Notes
 # **get_tasks_vendor_v2**
 > list[TaskWithContractResourceApiResponse] get_tasks_vendor_v2(contract_id, task_ids_filter=task_ids_filter, task_type_filter=task_type_filter, limit=limit, include_failures=include_failures, task_state=task_state, min_creation_date=min_creation_date, max_creation_date=max_creation_date)
 
-Find all tasks
+Find tasks for contract [vendor]
 
 The search can be narrowed down by providing the IDs of the tasks, separated by comma
 
@@ -1431,7 +1459,7 @@ min_creation_date = '2013-10-20T19:20:30+01:00' # datetime | Oldest returned cre
 max_creation_date = '2013-10-20T19:20:30+01:00' # datetime | Newest returned creation date in UTC (optional)
 
     try:
-        # Find all tasks
+        # Find tasks for contract [vendor]
         api_response = api_instance.get_tasks_vendor_v2(contract_id, task_ids_filter=task_ids_filter, task_type_filter=task_type_filter, limit=limit, include_failures=include_failures, task_state=task_state, min_creation_date=min_creation_date, max_creation_date=max_creation_date)
         pprint(api_response)
     except ApiException as e:
@@ -1481,7 +1509,7 @@ min_creation_date = '2013-10-20T19:20:30+01:00' # datetime | Oldest returned cre
 max_creation_date = '2013-10-20T19:20:30+01:00' # datetime | Newest returned creation date in UTC (optional)
 
     try:
-        # Find all tasks
+        # Find tasks for contract [vendor]
         api_response = api_instance.get_tasks_vendor_v2(contract_id, task_ids_filter=task_ids_filter, task_type_filter=task_type_filter, limit=limit, include_failures=include_failures, task_state=task_state, min_creation_date=min_creation_date, max_creation_date=max_creation_date)
         pprint(api_response)
     except ApiException as e:
@@ -1524,7 +1552,9 @@ Name | Type | Description  | Notes
 # **update_task_vendor_v2**
 > object update_task_vendor_v2(contract_id, task_id, body=body)
 
+Update a task
 
+Update the task with the specified id for the given contract.
 
 ### Example
 
@@ -1566,6 +1596,7 @@ task_id = 'task_id_example' # str |
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update a task
         api_response = api_instance.update_task_vendor_v2(contract_id, task_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -1610,6 +1641,7 @@ task_id = 'task_id_example' # str |
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update a task
         api_response = api_instance.update_task_vendor_v2(contract_id, task_id, body=body)
         pprint(api_response)
     except ApiException as e:

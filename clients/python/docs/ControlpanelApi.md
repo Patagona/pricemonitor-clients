@@ -4,29 +4,31 @@ All URIs are relative to *https://api.patagona.de*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**add_company**](ControlpanelApi.md#add_company) | **POST** /controlpanel/api/companies | 
-[**add_company_user**](ControlpanelApi.md#add_company_user) | **PUT** /controlpanel/companies/{id}/users/{email} | 
+[**add_company**](ControlpanelApi.md#add_company) | **POST** /controlpanel/api/companies | Add company
+[**add_company_user**](ControlpanelApi.md#add_company_user) | **PUT** /controlpanel/companies/{id}/users/{email} | Add user to company
 [**add_user**](ControlpanelApi.md#add_user) | **POST** /controlpanel/users | Add a new user
-[**create_auth_token**](ControlpanelApi.md#create_auth_token) | **POST** /controlpanel/users/{email}/authtokens | 
-[**delete_auth_token**](ControlpanelApi.md#delete_auth_token) | **DELETE** /controlpanel/users/{email}/authtokens/{token} | 
+[**create_auth_token**](ControlpanelApi.md#create_auth_token) | **POST** /controlpanel/users/{email}/authtokens | Create authentication token
+[**delete_auth_token**](ControlpanelApi.md#delete_auth_token) | **DELETE** /controlpanel/users/{email}/authtokens/{token} | Delete authentication token
 [**get_all_companies**](ControlpanelApi.md#get_all_companies) | **GET** /controlpanel/api/companies | Get a list of all companies
 [**get_all_contracts**](ControlpanelApi.md#get_all_contracts) | **GET** /controlpanel/api/contracts | Get a list of all contracts
-[**get_all_domains_control_panel_v3**](ControlpanelApi.md#get_all_domains_control_panel_v3) | **POST** /controlpanel/api/v3/domains | Add a new domain
+[**get_all_domains_control_panel_v3**](ControlpanelApi.md#get_all_domains_control_panel_v3) | **POST** /controlpanel/api/v3/domains | Add domain
 [**get_all_portals**](ControlpanelApi.md#get_all_portals) | **GET** /controlpanel/api/portals | Get a list of all portals
-[**get_all_tasks**](ControlpanelApi.md#get_all_tasks) | **GET** /controlpanel/api/tasks | 
+[**get_all_tasks**](ControlpanelApi.md#get_all_tasks) | **GET** /controlpanel/api/tasks | Get all tasks
 [**get_all_users**](ControlpanelApi.md#get_all_users) | **GET** /controlpanel/api/users | Get a list of all users
-[**get_tasks_stats**](ControlpanelApi.md#get_tasks_stats) | **GET** /controlpanel/api/tasks/stats | 
-[**get_user**](ControlpanelApi.md#get_user) | **GET** /controlpanel/api/users/{email} | 
-[**list_vendors**](ControlpanelApi.md#list_vendors) | **GET** /controlpanel/vendors | 
-[**update_auth_token**](ControlpanelApi.md#update_auth_token) | **PUT** /controlpanel/users/{email}/authtokens/{token} | 
-[**vendor_data**](ControlpanelApi.md#vendor_data) | **GET** /controlpanel/vendorexport/{vendor} | 
-[**version**](ControlpanelApi.md#version) | **GET** /version | Get the current application version
+[**get_tasks_stats**](ControlpanelApi.md#get_tasks_stats) | **GET** /controlpanel/api/tasks/stats | Get all task stats
+[**get_user**](ControlpanelApi.md#get_user) | **GET** /controlpanel/api/users/{email} | Get user
+[**list_vendors**](ControlpanelApi.md#list_vendors) | **GET** /controlpanel/vendors | Get list of vendors
+[**update_auth_token**](ControlpanelApi.md#update_auth_token) | **PUT** /controlpanel/users/{email}/authtokens/{token} | Update authentication token
+[**vendor_data**](ControlpanelApi.md#vendor_data) | **GET** /controlpanel/vendorexport/{vendor} | Get vendor export data
+[**version**](ControlpanelApi.md#version) | **GET** /version | Get application version
 
 
 # **add_company**
 > object add_company()
 
+Add company
 
+Add a company.
 
 ### Example
 
@@ -65,6 +67,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     api_instance = pricemonitor_api_client.ControlpanelApi(api_client)
     
     try:
+        # Add company
         api_response = api_instance.add_company()
         pprint(api_response)
     except ApiException as e:
@@ -106,6 +109,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     api_instance = pricemonitor_api_client.ControlpanelApi(api_client)
     
     try:
+        # Add company
         api_response = api_instance.add_company()
         pprint(api_response)
     except ApiException as e:
@@ -138,7 +142,7 @@ This endpoint does not need any parameter.
 # **add_company_user**
 > object add_company_user(id, email, body=body)
 
-
+Add user to company
 
 ### Example
 
@@ -180,6 +184,7 @@ email = 'email_example' # str |
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Add user to company
         api_response = api_instance.add_company_user(id, email, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -224,6 +229,7 @@ email = 'email_example' # str |
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Add user to company
         api_response = api_instance.add_company_user(id, email, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -379,7 +385,7 @@ void (empty response body)
 # **create_auth_token**
 > object create_auth_token(email, body=body)
 
-
+Create authentication token
 
 ### Example
 
@@ -420,6 +426,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Create authentication token
         api_response = api_instance.create_auth_token(email, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -463,6 +470,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Create authentication token
         api_response = api_instance.create_auth_token(email, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -499,7 +507,7 @@ Name | Type | Description  | Notes
 # **delete_auth_token**
 > object delete_auth_token(email, token)
 
-
+Delete authentication token
 
 ### Example
 
@@ -540,6 +548,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 token = 'token_example' # str | 
 
     try:
+        # Delete authentication token
         api_response = api_instance.delete_auth_token(email, token)
         pprint(api_response)
     except ApiException as e:
@@ -583,6 +592,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 token = 'token_example' # str | 
 
     try:
+        # Delete authentication token
         api_response = api_instance.delete_auth_token(email, token)
         pprint(api_response)
     except ApiException as e:
@@ -853,7 +863,9 @@ void (empty response body)
 # **get_all_domains_control_panel_v3**
 > PostAdminAddDomainV3ApiResponse get_all_domains_control_panel_v3(com_patagona_pricemonitor_share_api_post_admin_add_domain_body_v3=com_patagona_pricemonitor_share_api_post_admin_add_domain_body_v3)
 
-Add a new domain
+Add domain
+
+Add a new domain.
 
 ### Example
 
@@ -893,7 +905,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     com_patagona_pricemonitor_share_api_post_admin_add_domain_body_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostAdminAddDomainBodyV3() # ComPatagonaPricemonitorShareApiPostAdminAddDomainBodyV3 | The domain to be added and its offer sources (optional)
 
     try:
-        # Add a new domain
+        # Add domain
         api_response = api_instance.get_all_domains_control_panel_v3(com_patagona_pricemonitor_share_api_post_admin_add_domain_body_v3=com_patagona_pricemonitor_share_api_post_admin_add_domain_body_v3)
         pprint(api_response)
     except ApiException as e:
@@ -936,7 +948,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     com_patagona_pricemonitor_share_api_post_admin_add_domain_body_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostAdminAddDomainBodyV3() # ComPatagonaPricemonitorShareApiPostAdminAddDomainBodyV3 | The domain to be added and its offer sources (optional)
 
     try:
-        # Add a new domain
+        # Add domain
         api_response = api_instance.get_all_domains_control_panel_v3(com_patagona_pricemonitor_share_api_post_admin_add_domain_body_v3=com_patagona_pricemonitor_share_api_post_admin_add_domain_body_v3)
         pprint(api_response)
     except ApiException as e:
@@ -1085,7 +1097,7 @@ void (empty response body)
 # **get_all_tasks**
 > object get_all_tasks(contract_id, task_id, task_type, task_state, limit, min_creation_date=min_creation_date, max_creation_date=max_creation_date)
 
-
+Get all tasks
 
 ### Example
 
@@ -1131,6 +1143,7 @@ min_creation_date = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 max_creation_date = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 
     try:
+        # Get all tasks
         api_response = api_instance.get_all_tasks(contract_id, task_id, task_type, task_state, limit, min_creation_date=min_creation_date, max_creation_date=max_creation_date)
         pprint(api_response)
     except ApiException as e:
@@ -1179,6 +1192,7 @@ min_creation_date = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 max_creation_date = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 
     try:
+        # Get all tasks
         api_response = api_instance.get_all_tasks(contract_id, task_id, task_type, task_state, limit, min_creation_date=min_creation_date, max_creation_date=max_creation_date)
         pprint(api_response)
     except ApiException as e:
@@ -1332,7 +1346,7 @@ void (empty response body)
 # **get_tasks_stats**
 > object get_tasks_stats(since_seconds)
 
-
+Get all task stats
 
 ### Example
 
@@ -1372,6 +1386,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     since_seconds = 56 # int | 
 
     try:
+        # Get all task stats
         api_response = api_instance.get_tasks_stats(since_seconds)
         pprint(api_response)
     except ApiException as e:
@@ -1414,6 +1429,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     since_seconds = 56 # int | 
 
     try:
+        # Get all task stats
         api_response = api_instance.get_tasks_stats(since_seconds)
         pprint(api_response)
     except ApiException as e:
@@ -1449,7 +1465,9 @@ Name | Type | Description  | Notes
 # **get_user**
 > object get_user(email)
 
+Get user
 
+Get the user with the specified email address.
 
 ### Example
 
@@ -1489,6 +1507,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     email = 'email_example' # str | 
 
     try:
+        # Get user
         api_response = api_instance.get_user(email)
         pprint(api_response)
     except ApiException as e:
@@ -1531,6 +1550,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     email = 'email_example' # str | 
 
     try:
+        # Get user
         api_response = api_instance.get_user(email)
         pprint(api_response)
     except ApiException as e:
@@ -1566,7 +1586,7 @@ Name | Type | Description  | Notes
 # **list_vendors**
 > object list_vendors(name_filter)
 
-
+Get list of vendors
 
 ### Example
 
@@ -1606,6 +1626,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     name_filter = 'name_filter_example' # str | 
 
     try:
+        # Get list of vendors
         api_response = api_instance.list_vendors(name_filter)
         pprint(api_response)
     except ApiException as e:
@@ -1648,6 +1669,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     name_filter = 'name_filter_example' # str | 
 
     try:
+        # Get list of vendors
         api_response = api_instance.list_vendors(name_filter)
         pprint(api_response)
     except ApiException as e:
@@ -1683,7 +1705,7 @@ Name | Type | Description  | Notes
 # **update_auth_token**
 > object update_auth_token(email, token, body=body)
 
-
+Update authentication token
 
 ### Example
 
@@ -1725,6 +1747,7 @@ token = 'token_example' # str |
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update authentication token
         api_response = api_instance.update_auth_token(email, token, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -1769,6 +1792,7 @@ token = 'token_example' # str |
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update authentication token
         api_response = api_instance.update_auth_token(email, token, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -1806,7 +1830,7 @@ Name | Type | Description  | Notes
 # **vendor_data**
 > object vendor_data(vendor, min_price, max_price)
 
-
+Get vendor export data
 
 ### Example
 
@@ -1848,6 +1872,7 @@ min_price = 3.4 # float |
 max_price = 3.4 # float | 
 
     try:
+        # Get vendor export data
         api_response = api_instance.vendor_data(vendor, min_price, max_price)
         pprint(api_response)
     except ApiException as e:
@@ -1892,6 +1917,7 @@ min_price = 3.4 # float |
 max_price = 3.4 # float | 
 
     try:
+        # Get vendor export data
         api_response = api_instance.vendor_data(vendor, min_price, max_price)
         pprint(api_response)
     except ApiException as e:
@@ -1929,6 +1955,8 @@ Name | Type | Description  | Notes
 # **version**
 > VersionApiResponse version()
 
+Get application version
+
 Get the current application version
 
 ### Example
@@ -1952,7 +1980,7 @@ with pricemonitor_api_client.ApiClient() as api_client:
     api_instance = pricemonitor_api_client.ControlpanelApi(api_client)
     
     try:
-        # Get the current application version
+        # Get application version
         api_response = api_instance.version()
         pprint(api_response)
     except ApiException as e:

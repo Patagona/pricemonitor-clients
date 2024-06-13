@@ -4,45 +4,45 @@ All URIs are relative to *https://api.patagona.de*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_cheapest_vendors_manufacturer_v2**](OffersApi.md#get_cheapest_vendors_manufacturer_v2) | **POST** /api/2/m/contracts/{contractId}/result/vendors/cheapest | 
+[**get_cheapest_vendors_manufacturer_v2**](OffersApi.md#get_cheapest_vendors_manufacturer_v2) | **POST** /api/2/m/contracts/{contractId}/result/vendors/cheapest | Query cheapest offers
 [**get_complex_offer_filters_vendor_v2**](OffersApi.md#get_complex_offer_filters_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/offerfilters/{listType}/complex | Get all complex filters for the given contract.
-[**get_offer_filters_vendor_v2**](OffersApi.md#get_offer_filters_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/offerfilters/{listType}/vendors | Get all the vendor filters for the given contract.
+[**get_offer_filters_vendor_v2**](OffersApi.md#get_offer_filters_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/offerfilters/{listType}/vendors | Get all vendor filters for contract
 [**get_offer_statistics_manufacturer_v3**](OffersApi.md#get_offer_statistics_manufacturer_v3) | **GET** /api/v3/manufacturer/contracts/{contractId}/offers/stats | Get offer statistics per product of a contract
 [**get_offers**](OffersApi.md#get_offers) | **GET** /api/2/v/contracts/{contractId}/result/offers | Get all offers for all products
 [**get_offers_manufacturer_v3**](OffersApi.md#get_offers_manufacturer_v3) | **GET** /api/v3/manufacturer/contracts/{contractId}/offers | Get offers for timerange
 [**get_offers_shops_manufacturer_v3**](OffersApi.md#get_offers_shops_manufacturer_v3) | **GET** /api/v3/manufacturer/contracts/{contractId}/offers/shops | Get shops with offers for time range
 [**get_offers_shops_vendor_v3**](OffersApi.md#get_offers_shops_vendor_v3) | **GET** /api/v3/vendor/contracts/{contractId}/offers/shops | Get shops with offers for time range per domain
 [**get_offers_vendor_v3**](OffersApi.md#get_offers_vendor_v3) | **GET** /api/v3/vendor/contracts/{contractId}/offers | Get offers for timerange
-[**get_price_cutters_manufacturer_v2**](OffersApi.md#get_price_cutters_manufacturer_v2) | **POST** /api/2/m/contracts/{contractId}/result/pricecutters | 
-[**get_price_cutters_vendor_v2**](OffersApi.md#get_price_cutters_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/result/pricecutters | 
-[**get_product_filters_by_id_vendor_v2**](OffersApi.md#get_product_filters_by_id_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/offerfilters/:listType/products/query | 
+[**get_price_cutters_manufacturer_v2**](OffersApi.md#get_price_cutters_manufacturer_v2) | **POST** /api/2/m/contracts/{contractId}/result/pricecutters | Query price cutters [manufacturer]
+[**get_price_cutters_vendor_v2**](OffersApi.md#get_price_cutters_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/result/pricecutters | Query price cutters [vendor]
+[**get_product_filters_by_id_vendor_v2**](OffersApi.md#get_product_filters_by_id_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/offerfilters/:listType/products/query | Get filtered offers
 [**get_product_filters_by_range_vendor_v2**](OffersApi.md#get_product_filters_by_range_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/offerfilters/{listType}/products | Get all the filters product-wise for the given contract.
-[**get_product_metrics_by_contract**](OffersApi.md#get_product_metrics_by_contract) | **GET** /api/1/{contractId}/products/articlescountbyportal | 
-[**get_product_price_violations_manufacturer_v2**](OffersApi.md#get_product_price_violations_manufacturer_v2) | **GET** /api/2/m/contracts/{contractId}/result/priceviolations | 
-[**get_product_price_violations_vendor_v2**](OffersApi.md#get_product_price_violations_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/result/priceviolations | 
-[**get_vendors_by_domain_manufacturer_v2**](OffersApi.md#get_vendors_by_domain_manufacturer_v2) | **POST** /api/2/m/contracts/{contractId}/result/vendors/list | 
-[**position_distribution**](OffersApi.md#position_distribution) | **POST** /api/1/{contractId}/vendors/{vendor}/positions | 
+[**get_product_metrics_by_contract**](OffersApi.md#get_product_metrics_by_contract) | **GET** /api/1/{contractId}/products/articlescountbyportal | Get product metrics for contract
+[**get_product_price_violations_manufacturer_v2**](OffersApi.md#get_product_price_violations_manufacturer_v2) | **GET** /api/2/m/contracts/{contractId}/result/priceviolations | Get product price violations [manufacturer]
+[**get_product_price_violations_vendor_v2**](OffersApi.md#get_product_price_violations_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/result/priceviolations | Get product price violations [vendor]
+[**get_vendors_by_domain_manufacturer_v2**](OffersApi.md#get_vendors_by_domain_manufacturer_v2) | **POST** /api/2/m/contracts/{contractId}/result/vendors/list | Get vendors by domain
+[**position_distribution**](OffersApi.md#position_distribution) | **POST** /api/1/{contractId}/vendors/{vendor}/positions | Update position distribution
 [**post_offers_in_a_bulk_vendor_v2**](OffersApi.md#post_offers_in_a_bulk_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/offers | Add offers in bulk
-[**prices_by_day_by_product_id_manufacturer_v2**](OffersApi.md#prices_by_day_by_product_id_manufacturer_v2) | **POST** /api/2/m/contracts/{contractId}/result/pricesbyday/productid/{productId} | 
+[**prices_by_day_by_product_id_manufacturer_v2**](OffersApi.md#prices_by_day_by_product_id_manufacturer_v2) | **POST** /api/2/m/contracts/{contractId}/result/pricesbyday/productid/{productId} | Query prices by day by product
 [**put_complex_offer_filters_vendor_v2**](OffersApi.md#put_complex_offer_filters_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/offerfilters/{listType}/complex | Add the complex filters for the given contract.
-[**put_offer_filters_vendor_v2**](OffersApi.md#put_offer_filters_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/offerfilters/{listType}/vendors | Store the vendor filters for the given contract.
-[**query_offers_manufacturer_v3**](OffersApi.md#query_offers_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/offers/query | 
+[**put_offer_filters_vendor_v2**](OffersApi.md#put_offer_filters_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/offerfilters/{listType}/vendors | Store vendor filters for contract
+[**query_offers_manufacturer_v3**](OffersApi.md#query_offers_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/offers/query | Query offers [manufacturer]
 [**query_offers_stats_manufacturer_v31**](OffersApi.md#query_offers_stats_manufacturer_v31) | **POST** /api/v3.1/manufacturer/contracts/{contractId}/offers/stats/query | Query offer statistics per product
 [**query_offers_stats_vendor_v31**](OffersApi.md#query_offers_stats_vendor_v31) | **POST** /api/v3.1/vendor/contracts/{contractId}/offers/stats/query | Query offer statistics per product
-[**query_offers_vendor_v3**](OffersApi.md#query_offers_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/offers/query | Query offers
-[**raw_offers**](OffersApi.md#raw_offers) | **GET** /api/1/{contractId}/products/offers | 
-[**segment_offers_manufacturer_v2**](OffersApi.md#segment_offers_manufacturer_v2) | **POST** /api/2/m/contracts/{contractId}/result/offersegmentation | 
-[**segment_offers_vendor_v2**](OffersApi.md#segment_offers_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/result/offersegmentation | 
-[**stats_manufacturer_v2**](OffersApi.md#stats_manufacturer_v2) | **GET** /api/2/m/contracts/{contractId}/result/contract/stats | 
-[**timestamps_manufacturer_v2**](OffersApi.md#timestamps_manufacturer_v2) | **GET** /api/2/m/contracts/{contractId}/result/timestamps | 
-[**validate_offers_manufacturer_v2**](OffersApi.md#validate_offers_manufacturer_v2) | **POST** /api/2/m/contracts/{contractId}/result/validation | 
-[**validate_offers_vendor_v2**](OffersApi.md#validate_offers_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/result/validation | 
+[**query_offers_vendor_v3**](OffersApi.md#query_offers_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/offers/query | Query offers [vendor]
+[**raw_offers**](OffersApi.md#raw_offers) | **GET** /api/1/{contractId}/products/offers | Get offers for contract
+[**segment_offers_manufacturer_v2**](OffersApi.md#segment_offers_manufacturer_v2) | **POST** /api/2/m/contracts/{contractId}/result/offersegmentation | Update segment offers [manufacturer]
+[**segment_offers_vendor_v2**](OffersApi.md#segment_offers_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/result/offersegmentation | Update segment offers [vendor]
+[**stats_manufacturer_v2**](OffersApi.md#stats_manufacturer_v2) | **GET** /api/2/m/contracts/{contractId}/result/contract/stats | Get contract statistics [manufacturer]
+[**timestamps_manufacturer_v2**](OffersApi.md#timestamps_manufacturer_v2) | **GET** /api/2/m/contracts/{contractId}/result/timestamps | Get timestamps
+[**validate_offers_manufacturer_v2**](OffersApi.md#validate_offers_manufacturer_v2) | **POST** /api/2/m/contracts/{contractId}/result/validation | Validate offers [manufacturer]
+[**validate_offers_vendor_v2**](OffersApi.md#validate_offers_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/result/validation | Validate offers [vendor]
 
 
 # **get_cheapest_vendors_manufacturer_v2**
 > object get_cheapest_vendors_manufacturer_v2(contract_id, session, include_delivery_costs, com_patagona_pricemonitor_share_api_tag_filtered_vendors_request=com_patagona_pricemonitor_share_api_tag_filtered_vendors_request)
 
-
+Query cheapest offers
 
 ### Example
 
@@ -85,6 +85,7 @@ include_delivery_costs = True # bool |
 com_patagona_pricemonitor_share_api_tag_filtered_vendors_request = pricemonitor_api_client.ComPatagonaPricemonitorShareApiTagFilteredVendorsRequest() # ComPatagonaPricemonitorShareApiTagFilteredVendorsRequest | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Query cheapest offers
         api_response = api_instance.get_cheapest_vendors_manufacturer_v2(contract_id, session, include_delivery_costs, com_patagona_pricemonitor_share_api_tag_filtered_vendors_request=com_patagona_pricemonitor_share_api_tag_filtered_vendors_request)
         pprint(api_response)
     except ApiException as e:
@@ -130,6 +131,7 @@ include_delivery_costs = True # bool |
 com_patagona_pricemonitor_share_api_tag_filtered_vendors_request = pricemonitor_api_client.ComPatagonaPricemonitorShareApiTagFilteredVendorsRequest() # ComPatagonaPricemonitorShareApiTagFilteredVendorsRequest | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Query cheapest offers
         api_response = api_instance.get_cheapest_vendors_manufacturer_v2(contract_id, session, include_delivery_costs, com_patagona_pricemonitor_share_api_tag_filtered_vendors_request=com_patagona_pricemonitor_share_api_tag_filtered_vendors_request)
         pprint(api_response)
     except ApiException as e:
@@ -290,6 +292,8 @@ Name | Type | Description  | Notes
 # **get_offer_filters_vendor_v2**
 > object get_offer_filters_vendor_v2(contract_id, list_type)
 
+Get all vendor filters for contract
+
 Get all the vendor filters for the given contract.
 
 ### Example
@@ -331,7 +335,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 list_type = 'list_type_example' # str | 
 
     try:
-        # Get all the vendor filters for the given contract.
+        # Get all vendor filters for contract
         api_response = api_instance.get_offer_filters_vendor_v2(contract_id, list_type)
         pprint(api_response)
     except ApiException as e:
@@ -375,7 +379,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 list_type = 'list_type_example' # str | 
 
     try:
-        # Get all the vendor filters for the given contract.
+        # Get all vendor filters for contract
         api_response = api_instance.get_offer_filters_vendor_v2(contract_id, list_type)
         pprint(api_response)
     except ApiException as e:
@@ -1204,7 +1208,7 @@ Name | Type | Description  | Notes
 # **get_price_cutters_manufacturer_v2**
 > object get_price_cutters_manufacturer_v2(contract_id, session, limit, include_delivery_costs, body=body)
 
-
+Query price cutters [manufacturer]
 
 ### Example
 
@@ -1248,6 +1252,7 @@ include_delivery_costs = True # bool |
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Query price cutters [manufacturer]
         api_response = api_instance.get_price_cutters_manufacturer_v2(contract_id, session, limit, include_delivery_costs, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -1294,6 +1299,7 @@ include_delivery_costs = True # bool |
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Query price cutters [manufacturer]
         api_response = api_instance.get_price_cutters_manufacturer_v2(contract_id, session, limit, include_delivery_costs, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -1333,7 +1339,7 @@ Name | Type | Description  | Notes
 # **get_price_cutters_vendor_v2**
 > object get_price_cutters_vendor_v2(contract_id, session, limit, include_delivery_costs, body=body)
 
-
+Query price cutters [vendor]
 
 ### Example
 
@@ -1377,6 +1383,7 @@ include_delivery_costs = True # bool |
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Query price cutters [vendor]
         api_response = api_instance.get_price_cutters_vendor_v2(contract_id, session, limit, include_delivery_costs, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -1423,6 +1430,7 @@ include_delivery_costs = True # bool |
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Query price cutters [vendor]
         api_response = api_instance.get_price_cutters_vendor_v2(contract_id, session, limit, include_delivery_costs, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -1462,7 +1470,7 @@ Name | Type | Description  | Notes
 # **get_product_filters_by_id_vendor_v2**
 > object get_product_filters_by_id_vendor_v2(contract_id, body=body)
 
-
+Get filtered offers
 
 ### Example
 
@@ -1503,6 +1511,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Get filtered offers
         api_response = api_instance.get_product_filters_by_id_vendor_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -1546,6 +1555,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Get filtered offers
         api_response = api_instance.get_product_filters_by_id_vendor_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -1710,7 +1720,7 @@ Name | Type | Description  | Notes
 # **get_product_metrics_by_contract**
 > object get_product_metrics_by_contract(contract_id, start, end)
 
-
+Get product metrics for contract
 
 ### Example
 
@@ -1752,6 +1762,7 @@ start = '2013-10-20T19:20:30+01:00' # datetime |
 end = '2013-10-20T19:20:30+01:00' # datetime | 
 
     try:
+        # Get product metrics for contract
         api_response = api_instance.get_product_metrics_by_contract(contract_id, start, end)
         pprint(api_response)
     except ApiException as e:
@@ -1796,6 +1807,7 @@ start = '2013-10-20T19:20:30+01:00' # datetime |
 end = '2013-10-20T19:20:30+01:00' # datetime | 
 
     try:
+        # Get product metrics for contract
         api_response = api_instance.get_product_metrics_by_contract(contract_id, start, end)
         pprint(api_response)
     except ApiException as e:
@@ -1833,7 +1845,7 @@ Name | Type | Description  | Notes
 # **get_product_price_violations_manufacturer_v2**
 > object get_product_price_violations_manufacturer_v2(contract_id, start, end, include_delivery_costs, reference_price_delta)
 
-
+Get product price violations [manufacturer]
 
 ### Example
 
@@ -1877,6 +1889,7 @@ include_delivery_costs = True # bool |
 reference_price_delta = 3.4 # float | 
 
     try:
+        # Get product price violations [manufacturer]
         api_response = api_instance.get_product_price_violations_manufacturer_v2(contract_id, start, end, include_delivery_costs, reference_price_delta)
         pprint(api_response)
     except ApiException as e:
@@ -1923,6 +1936,7 @@ include_delivery_costs = True # bool |
 reference_price_delta = 3.4 # float | 
 
     try:
+        # Get product price violations [manufacturer]
         api_response = api_instance.get_product_price_violations_manufacturer_v2(contract_id, start, end, include_delivery_costs, reference_price_delta)
         pprint(api_response)
     except ApiException as e:
@@ -1962,7 +1976,7 @@ Name | Type | Description  | Notes
 # **get_product_price_violations_vendor_v2**
 > object get_product_price_violations_vendor_v2(contract_id, start, end, include_delivery_costs, reference_price_delta)
 
-
+Get product price violations [vendor]
 
 ### Example
 
@@ -2006,6 +2020,7 @@ include_delivery_costs = True # bool |
 reference_price_delta = 3.4 # float | 
 
     try:
+        # Get product price violations [vendor]
         api_response = api_instance.get_product_price_violations_vendor_v2(contract_id, start, end, include_delivery_costs, reference_price_delta)
         pprint(api_response)
     except ApiException as e:
@@ -2052,6 +2067,7 @@ include_delivery_costs = True # bool |
 reference_price_delta = 3.4 # float | 
 
     try:
+        # Get product price violations [vendor]
         api_response = api_instance.get_product_price_violations_vendor_v2(contract_id, start, end, include_delivery_costs, reference_price_delta)
         pprint(api_response)
     except ApiException as e:
@@ -2091,7 +2107,7 @@ Name | Type | Description  | Notes
 # **get_vendors_by_domain_manufacturer_v2**
 > ComPatagonaPricemonitorShareApiPostVendorsByDomainResponse get_vendors_by_domain_manufacturer_v2(contract_id, domain, start, include_delivery_costs, session, com_patagona_pricemonitor_share_api_tag_filtered_vendors_request=com_patagona_pricemonitor_share_api_tag_filtered_vendors_request)
 
-
+Get vendors by domain
 
 ### Example
 
@@ -2136,6 +2152,7 @@ session = '2013-10-20T19:20:30+01:00' # datetime |
 com_patagona_pricemonitor_share_api_tag_filtered_vendors_request = pricemonitor_api_client.ComPatagonaPricemonitorShareApiTagFilteredVendorsRequest() # ComPatagonaPricemonitorShareApiTagFilteredVendorsRequest | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Get vendors by domain
         api_response = api_instance.get_vendors_by_domain_manufacturer_v2(contract_id, domain, start, include_delivery_costs, session, com_patagona_pricemonitor_share_api_tag_filtered_vendors_request=com_patagona_pricemonitor_share_api_tag_filtered_vendors_request)
         pprint(api_response)
     except ApiException as e:
@@ -2183,6 +2200,7 @@ session = '2013-10-20T19:20:30+01:00' # datetime |
 com_patagona_pricemonitor_share_api_tag_filtered_vendors_request = pricemonitor_api_client.ComPatagonaPricemonitorShareApiTagFilteredVendorsRequest() # ComPatagonaPricemonitorShareApiTagFilteredVendorsRequest | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Get vendors by domain
         api_response = api_instance.get_vendors_by_domain_manufacturer_v2(contract_id, domain, start, include_delivery_costs, session, com_patagona_pricemonitor_share_api_tag_filtered_vendors_request=com_patagona_pricemonitor_share_api_tag_filtered_vendors_request)
         pprint(api_response)
     except ApiException as e:
@@ -2223,7 +2241,7 @@ Name | Type | Description  | Notes
 # **position_distribution**
 > object position_distribution(contract_id, vendor, day, body=body)
 
-
+Update position distribution
 
 ### Example
 
@@ -2266,6 +2284,7 @@ day = '2013-10-20T19:20:30+01:00' # datetime |
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update position distribution
         api_response = api_instance.position_distribution(contract_id, vendor, day, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -2311,6 +2330,7 @@ day = '2013-10-20T19:20:30+01:00' # datetime |
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update position distribution
         api_response = api_instance.position_distribution(contract_id, vendor, day, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -2474,7 +2494,7 @@ Name | Type | Description  | Notes
 # **prices_by_day_by_product_id_manufacturer_v2**
 > list[ComPatagonaPricemonitorShareApiPricesByDayByProductIdResponseV2] prices_by_day_by_product_id_manufacturer_v2(contract_id, product_id, com_patagona_pricemonitor_share_api_prices_by_day_by_product_id_request_v2=com_patagona_pricemonitor_share_api_prices_by_day_by_product_id_request_v2)
 
-
+Query prices by day by product
 
 ### Example
 
@@ -2516,6 +2536,7 @@ product_id = 'product_id_example' # str | The product ID to filter for
 com_patagona_pricemonitor_share_api_prices_by_day_by_product_id_request_v2 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPricesByDayByProductIdRequestV2() # ComPatagonaPricemonitorShareApiPricesByDayByProductIdRequestV2 | Query all known prices for a given day & product ID. Can be filtered by using the selectors. (optional)
 
     try:
+        # Query prices by day by product
         api_response = api_instance.prices_by_day_by_product_id_manufacturer_v2(contract_id, product_id, com_patagona_pricemonitor_share_api_prices_by_day_by_product_id_request_v2=com_patagona_pricemonitor_share_api_prices_by_day_by_product_id_request_v2)
         pprint(api_response)
     except ApiException as e:
@@ -2560,6 +2581,7 @@ product_id = 'product_id_example' # str | The product ID to filter for
 com_patagona_pricemonitor_share_api_prices_by_day_by_product_id_request_v2 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPricesByDayByProductIdRequestV2() # ComPatagonaPricemonitorShareApiPricesByDayByProductIdRequestV2 | Query all known prices for a given day & product ID. Can be filtered by using the selectors. (optional)
 
     try:
+        # Query prices by day by product
         api_response = api_instance.prices_by_day_by_product_id_manufacturer_v2(contract_id, product_id, com_patagona_pricemonitor_share_api_prices_by_day_by_product_id_request_v2=com_patagona_pricemonitor_share_api_prices_by_day_by_product_id_request_v2)
         pprint(api_response)
     except ApiException as e:
@@ -2722,6 +2744,8 @@ Name | Type | Description  | Notes
 # **put_offer_filters_vendor_v2**
 > object put_offer_filters_vendor_v2(contract_id, list_type, body=body)
 
+Store vendor filters for contract
+
 Store the vendor filters for the given contract.
 
 ### Example
@@ -2764,7 +2788,7 @@ list_type = 'list_type_example' # str |
 body = None # object | List of the filters that needs to be considered to ignore the individual offers. (optional)
 
     try:
-        # Store the vendor filters for the given contract.
+        # Store vendor filters for contract
         api_response = api_instance.put_offer_filters_vendor_v2(contract_id, list_type, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -2809,7 +2833,7 @@ list_type = 'list_type_example' # str |
 body = None # object | List of the filters that needs to be considered to ignore the individual offers. (optional)
 
     try:
-        # Store the vendor filters for the given contract.
+        # Store vendor filters for contract
         api_response = api_instance.put_offer_filters_vendor_v2(contract_id, list_type, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -2847,7 +2871,7 @@ Name | Type | Description  | Notes
 # **query_offers_manufacturer_v3**
 > object query_offers_manufacturer_v3(contract_id, body=body)
 
-
+Query offers [manufacturer]
 
 ### Example
 
@@ -2888,6 +2912,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Query offers [manufacturer]
         api_response = api_instance.query_offers_manufacturer_v3(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -2931,6 +2956,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Query offers [manufacturer]
         api_response = api_instance.query_offers_manufacturer_v3(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -2969,7 +2995,7 @@ Name | Type | Description  | Notes
 
 Query offer statistics per product
 
-This endpoint can be used to query offer statistics (e.g. offer count, average price) grouped by product. Only the most recent market data is considered per product and domain.
+This endpoint can be used to query offer statistics (e.g. offer count, average price) grouped by product. Only the most recent market data is considered per product and domain. 
 
 ### Example
 
@@ -3007,7 +3033,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.OffersApi(api_client)
     contract_id = 'qbcxvb' # str | ID of the contract
-com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31 = {"pagination":{"start":0,"limit":10},"range":{"start":"2023-10-17T08:00:00Z","end":"2023-10-19T08:00:00Z"},"filter":{"oneOf":{"field":"customerProductId","values":["1","2","3","4","5","6","7","8","9","10"]}}} # ComPatagonaPricemonitorShareApiPostOfferStatisticsRequestV31 | The request body may include an optional products query. If omitted, all products are queried. Currently, product queries can be performed on two attributes:   - \"customerProductId\"   - \"productId\" (Patagona's internal product id; must be a numerical integer)  Pagination is supported with a maximum limit of 10,000. For optimized performance:   - Use a limit of 10,000 products per page when querying all products of a contract.   - Prefer using \"productId\" for queries when a product query is utilized.  Pagination operates based on the provided products query. This is particularly useful when querying a set of customerProductId's. For chunked requests over a set of ids, it's straightforward to specify up to 10,000 customerProductId's in the query with pagination set at start: 0, limit: 10,000.  The allowed query pattern is structured as follows:  { <br> &nbsp;&nbsp;\"pagination\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": ${start}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"limit\": ${limit} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"range\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": ${start}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"end\": ${end} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"filter\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"oneOf\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"field\": \"customerProductId\", <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"values\": [${customerProductIds as a list of strings}] <br> &nbsp;&nbsp;&nbsp;&nbsp;} <br> &nbsp;&nbsp;} <br> } <br> <br>  (optional)
+com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31 = {"pagination":{"start":0,"limit":10},"range":{"start":"2023-10-17T08:00:00Z","end":"2023-10-19T08:00:00Z"},"filter":{"oneOf":{"field":"customerProductId","values":["1","2","3","4","5","6","7","8","9","10"]}}} # ComPatagonaPricemonitorShareApiPostOfferStatisticsRequestV31 | The request body may include an optional products query. If omitted, all products are queried. Currently, product queries can be performed on two attributes:   - \"customerProductId\"   - \"productId\" (Patagona's internal product id; must be a numerical integer)  Pagination is supported with a maximum limit of 10,000. For optimized performance:   - Use a limit of 10,000 products per page when querying all products of a contract.   - Prefer using \"productId\" for queries when a product query is utilized.  Pagination operates based on the provided products query. This is particularly useful when querying a set of customerProductId's. For chunked requests over a set of ids, it's straightforward to specify up to 10,000 customerProductId's in the query with pagination set at start: 0, limit: 10,000. The allowed query pattern is structured as follows: ``` json {   \"pagination\": {     \"start\": ${start},     \"limit\": ${limit}   },   \"range\": {     \"start\": ${start},     \"end\": ${end}   },   \"filter\": {     \"oneOf\": {       \"field\": \"customerProductId\",       \"values\": [${customerProductIds as a list of strings}]     }   } } ``` (optional)
 
     try:
         # Query offer statistics per product
@@ -3051,7 +3077,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.OffersApi(api_client)
     contract_id = 'qbcxvb' # str | ID of the contract
-com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31 = {"pagination":{"start":0,"limit":10},"range":{"start":"2023-10-17T08:00:00Z","end":"2023-10-19T08:00:00Z"},"filter":{"oneOf":{"field":"customerProductId","values":["1","2","3","4","5","6","7","8","9","10"]}}} # ComPatagonaPricemonitorShareApiPostOfferStatisticsRequestV31 | The request body may include an optional products query. If omitted, all products are queried. Currently, product queries can be performed on two attributes:   - \"customerProductId\"   - \"productId\" (Patagona's internal product id; must be a numerical integer)  Pagination is supported with a maximum limit of 10,000. For optimized performance:   - Use a limit of 10,000 products per page when querying all products of a contract.   - Prefer using \"productId\" for queries when a product query is utilized.  Pagination operates based on the provided products query. This is particularly useful when querying a set of customerProductId's. For chunked requests over a set of ids, it's straightforward to specify up to 10,000 customerProductId's in the query with pagination set at start: 0, limit: 10,000.  The allowed query pattern is structured as follows:  { <br> &nbsp;&nbsp;\"pagination\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": ${start}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"limit\": ${limit} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"range\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": ${start}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"end\": ${end} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"filter\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"oneOf\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"field\": \"customerProductId\", <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"values\": [${customerProductIds as a list of strings}] <br> &nbsp;&nbsp;&nbsp;&nbsp;} <br> &nbsp;&nbsp;} <br> } <br> <br>  (optional)
+com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31 = {"pagination":{"start":0,"limit":10},"range":{"start":"2023-10-17T08:00:00Z","end":"2023-10-19T08:00:00Z"},"filter":{"oneOf":{"field":"customerProductId","values":["1","2","3","4","5","6","7","8","9","10"]}}} # ComPatagonaPricemonitorShareApiPostOfferStatisticsRequestV31 | The request body may include an optional products query. If omitted, all products are queried. Currently, product queries can be performed on two attributes:   - \"customerProductId\"   - \"productId\" (Patagona's internal product id; must be a numerical integer)  Pagination is supported with a maximum limit of 10,000. For optimized performance:   - Use a limit of 10,000 products per page when querying all products of a contract.   - Prefer using \"productId\" for queries when a product query is utilized.  Pagination operates based on the provided products query. This is particularly useful when querying a set of customerProductId's. For chunked requests over a set of ids, it's straightforward to specify up to 10,000 customerProductId's in the query with pagination set at start: 0, limit: 10,000. The allowed query pattern is structured as follows: ``` json {   \"pagination\": {     \"start\": ${start},     \"limit\": ${limit}   },   \"range\": {     \"start\": ${start},     \"end\": ${end}   },   \"filter\": {     \"oneOf\": {       \"field\": \"customerProductId\",       \"values\": [${customerProductIds as a list of strings}]     }   } } ``` (optional)
 
     try:
         # Query offer statistics per product
@@ -3066,7 +3092,7 @@ com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31 = {"pagina
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **contract_id** | **str**| ID of the contract | 
- **com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31** | [**ComPatagonaPricemonitorShareApiPostOfferStatisticsRequestV31**](ComPatagonaPricemonitorShareApiPostOfferStatisticsRequestV31.md)| The request body may include an optional products query. If omitted, all products are queried. Currently, product queries can be performed on two attributes:   - \&quot;customerProductId\&quot;   - \&quot;productId\&quot; (Patagona&#39;s internal product id; must be a numerical integer)  Pagination is supported with a maximum limit of 10,000. For optimized performance:   - Use a limit of 10,000 products per page when querying all products of a contract.   - Prefer using \&quot;productId\&quot; for queries when a product query is utilized.  Pagination operates based on the provided products query. This is particularly useful when querying a set of customerProductId&#39;s. For chunked requests over a set of ids, it&#39;s straightforward to specify up to 10,000 customerProductId&#39;s in the query with pagination set at start: 0, limit: 10,000.  The allowed query pattern is structured as follows:  { &lt;br&gt; &amp;nbsp;&amp;nbsp;\&quot;pagination\&quot;: { &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;start\&quot;: ${start}, &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;limit\&quot;: ${limit} &lt;br&gt; &amp;nbsp;&amp;nbsp;}, &lt;br&gt; &amp;nbsp;&amp;nbsp;\&quot;range\&quot;: { &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;start\&quot;: ${start}, &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;end\&quot;: ${end} &lt;br&gt; &amp;nbsp;&amp;nbsp;}, &lt;br&gt; &amp;nbsp;&amp;nbsp;\&quot;filter\&quot;: { &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;oneOf\&quot;: { &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;field\&quot;: \&quot;customerProductId\&quot;, &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;values\&quot;: [${customerProductIds as a list of strings}] &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;} &lt;br&gt; &amp;nbsp;&amp;nbsp;} &lt;br&gt; } &lt;br&gt; &lt;br&gt;  | [optional] 
+ **com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31** | [**ComPatagonaPricemonitorShareApiPostOfferStatisticsRequestV31**](ComPatagonaPricemonitorShareApiPostOfferStatisticsRequestV31.md)| The request body may include an optional products query. If omitted, all products are queried. Currently, product queries can be performed on two attributes:   - \&quot;customerProductId\&quot;   - \&quot;productId\&quot; (Patagona&#39;s internal product id; must be a numerical integer)  Pagination is supported with a maximum limit of 10,000. For optimized performance:   - Use a limit of 10,000 products per page when querying all products of a contract.   - Prefer using \&quot;productId\&quot; for queries when a product query is utilized.  Pagination operates based on the provided products query. This is particularly useful when querying a set of customerProductId&#39;s. For chunked requests over a set of ids, it&#39;s straightforward to specify up to 10,000 customerProductId&#39;s in the query with pagination set at start: 0, limit: 10,000. The allowed query pattern is structured as follows: &#x60;&#x60;&#x60; json {   \&quot;pagination\&quot;: {     \&quot;start\&quot;: ${start},     \&quot;limit\&quot;: ${limit}   },   \&quot;range\&quot;: {     \&quot;start\&quot;: ${start},     \&quot;end\&quot;: ${end}   },   \&quot;filter\&quot;: {     \&quot;oneOf\&quot;: {       \&quot;field\&quot;: \&quot;customerProductId\&quot;,       \&quot;values\&quot;: [${customerProductIds as a list of strings}]     }   } } &#x60;&#x60;&#x60; | [optional] 
 
 ### Return type
 
@@ -3132,7 +3158,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.OffersApi(api_client)
     contract_id = 'qbcxvb' # str | ID of the contract
-com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31 = {"pagination":{"start":0,"limit":10},"range":{"start":"2023-10-17T08:00:00Z","end":"2023-10-19T08:00:00Z"},"filter":{"oneOf":{"field":"customerProductId","values":["1","2","3","4","5","6","7","8","9","10"]}}} # ComPatagonaPricemonitorShareApiPostOfferStatisticsRequestV31 | The request body may include an optional products query. If omitted, all products are queried. Currently, product queries can be performed on two attributes:   - \"customerProductId\"   - \"productId\" (Patagona's internal product id; must be a numerical integer)  Pagination is supported with a maximum limit of 10,000. For optimized performance:   - Use a limit of 10,000 products per page when querying all products of a contract.   - Prefer using \"productId\" for queries when a product query is utilized.  Pagination operates based on the provided products query. This is particularly useful when querying a set of customerProductId's. For chunked requests over a set of ids, it's straightforward to specify up to 10,000 customerProductId's in the query with pagination set at start: 0, limit: 10,000.  The allowed query pattern is structured as follows:  { <br> &nbsp;&nbsp;\"pagination\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": ${start}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"limit\": ${limit} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"range\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": ${start}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"end\": ${end} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"filter\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"oneOf\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"field\": \"customerProductId\", <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"values\": [${customerProductIds as a list of strings}] <br> &nbsp;&nbsp;&nbsp;&nbsp;} <br> &nbsp;&nbsp;} <br> } <br> <br>  (optional)
+com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31 = {"pagination":{"start":0,"limit":10},"range":{"start":"2023-10-17T08:00:00Z","end":"2023-10-19T08:00:00Z"},"filter":{"oneOf":{"field":"customerProductId","values":["1","2","3","4","5","6","7","8","9","10"]}}} # ComPatagonaPricemonitorShareApiPostOfferStatisticsRequestV31 | The request body may include an optional products query. If omitted, all products are queried. Currently, product queries can be performed on two attributes:   - \"customerProductId\"   - \"productId\" (Patagona's internal product id; must be a numerical integer)  Pagination is supported with a maximum limit of 10,000. For optimized performance:   - Use a limit of 10,000 products per page when querying all products of a contract.   - Prefer using \"productId\" for queries when a product query is utilized.  Pagination operates based on the provided products query. This is particularly useful when querying a set of customerProductId's. For chunked requests over a set of ids, it's straightforward to specify up to 10,000 customerProductId's in the query with pagination set at start: 0, limit: 10,000. The allowed query pattern is structured as follows: ``` json {   \"pagination\": {     \"start\": ${start},     \"limit\": ${limit}   },   \"range\": {     \"start\": ${start},     \"end\": ${end}   },   \"filter\": {     \"oneOf\": {       \"field\": \"customerProductId\",       \"values\": [${customerProductIds as a list of strings}]     }   } } ``` (optional)
 
     try:
         # Query offer statistics per product
@@ -3176,7 +3202,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.OffersApi(api_client)
     contract_id = 'qbcxvb' # str | ID of the contract
-com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31 = {"pagination":{"start":0,"limit":10},"range":{"start":"2023-10-17T08:00:00Z","end":"2023-10-19T08:00:00Z"},"filter":{"oneOf":{"field":"customerProductId","values":["1","2","3","4","5","6","7","8","9","10"]}}} # ComPatagonaPricemonitorShareApiPostOfferStatisticsRequestV31 | The request body may include an optional products query. If omitted, all products are queried. Currently, product queries can be performed on two attributes:   - \"customerProductId\"   - \"productId\" (Patagona's internal product id; must be a numerical integer)  Pagination is supported with a maximum limit of 10,000. For optimized performance:   - Use a limit of 10,000 products per page when querying all products of a contract.   - Prefer using \"productId\" for queries when a product query is utilized.  Pagination operates based on the provided products query. This is particularly useful when querying a set of customerProductId's. For chunked requests over a set of ids, it's straightforward to specify up to 10,000 customerProductId's in the query with pagination set at start: 0, limit: 10,000.  The allowed query pattern is structured as follows:  { <br> &nbsp;&nbsp;\"pagination\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": ${start}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"limit\": ${limit} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"range\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": ${start}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"end\": ${end} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"filter\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"oneOf\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"field\": \"customerProductId\", <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"values\": [${customerProductIds as a list of strings}] <br> &nbsp;&nbsp;&nbsp;&nbsp;} <br> &nbsp;&nbsp;} <br> } <br> <br>  (optional)
+com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31 = {"pagination":{"start":0,"limit":10},"range":{"start":"2023-10-17T08:00:00Z","end":"2023-10-19T08:00:00Z"},"filter":{"oneOf":{"field":"customerProductId","values":["1","2","3","4","5","6","7","8","9","10"]}}} # ComPatagonaPricemonitorShareApiPostOfferStatisticsRequestV31 | The request body may include an optional products query. If omitted, all products are queried. Currently, product queries can be performed on two attributes:   - \"customerProductId\"   - \"productId\" (Patagona's internal product id; must be a numerical integer)  Pagination is supported with a maximum limit of 10,000. For optimized performance:   - Use a limit of 10,000 products per page when querying all products of a contract.   - Prefer using \"productId\" for queries when a product query is utilized.  Pagination operates based on the provided products query. This is particularly useful when querying a set of customerProductId's. For chunked requests over a set of ids, it's straightforward to specify up to 10,000 customerProductId's in the query with pagination set at start: 0, limit: 10,000. The allowed query pattern is structured as follows: ``` json {   \"pagination\": {     \"start\": ${start},     \"limit\": ${limit}   },   \"range\": {     \"start\": ${start},     \"end\": ${end}   },   \"filter\": {     \"oneOf\": {       \"field\": \"customerProductId\",       \"values\": [${customerProductIds as a list of strings}]     }   } } ``` (optional)
 
     try:
         # Query offer statistics per product
@@ -3191,7 +3217,7 @@ com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31 = {"pagina
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **contract_id** | **str**| ID of the contract | 
- **com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31** | [**ComPatagonaPricemonitorShareApiPostOfferStatisticsRequestV31**](ComPatagonaPricemonitorShareApiPostOfferStatisticsRequestV31.md)| The request body may include an optional products query. If omitted, all products are queried. Currently, product queries can be performed on two attributes:   - \&quot;customerProductId\&quot;   - \&quot;productId\&quot; (Patagona&#39;s internal product id; must be a numerical integer)  Pagination is supported with a maximum limit of 10,000. For optimized performance:   - Use a limit of 10,000 products per page when querying all products of a contract.   - Prefer using \&quot;productId\&quot; for queries when a product query is utilized.  Pagination operates based on the provided products query. This is particularly useful when querying a set of customerProductId&#39;s. For chunked requests over a set of ids, it&#39;s straightforward to specify up to 10,000 customerProductId&#39;s in the query with pagination set at start: 0, limit: 10,000.  The allowed query pattern is structured as follows:  { &lt;br&gt; &amp;nbsp;&amp;nbsp;\&quot;pagination\&quot;: { &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;start\&quot;: ${start}, &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;limit\&quot;: ${limit} &lt;br&gt; &amp;nbsp;&amp;nbsp;}, &lt;br&gt; &amp;nbsp;&amp;nbsp;\&quot;range\&quot;: { &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;start\&quot;: ${start}, &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;end\&quot;: ${end} &lt;br&gt; &amp;nbsp;&amp;nbsp;}, &lt;br&gt; &amp;nbsp;&amp;nbsp;\&quot;filter\&quot;: { &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;oneOf\&quot;: { &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;field\&quot;: \&quot;customerProductId\&quot;, &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;values\&quot;: [${customerProductIds as a list of strings}] &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;} &lt;br&gt; &amp;nbsp;&amp;nbsp;} &lt;br&gt; } &lt;br&gt; &lt;br&gt;  | [optional] 
+ **com_patagona_pricemonitor_share_api_post_offer_statistics_request_v31** | [**ComPatagonaPricemonitorShareApiPostOfferStatisticsRequestV31**](ComPatagonaPricemonitorShareApiPostOfferStatisticsRequestV31.md)| The request body may include an optional products query. If omitted, all products are queried. Currently, product queries can be performed on two attributes:   - \&quot;customerProductId\&quot;   - \&quot;productId\&quot; (Patagona&#39;s internal product id; must be a numerical integer)  Pagination is supported with a maximum limit of 10,000. For optimized performance:   - Use a limit of 10,000 products per page when querying all products of a contract.   - Prefer using \&quot;productId\&quot; for queries when a product query is utilized.  Pagination operates based on the provided products query. This is particularly useful when querying a set of customerProductId&#39;s. For chunked requests over a set of ids, it&#39;s straightforward to specify up to 10,000 customerProductId&#39;s in the query with pagination set at start: 0, limit: 10,000. The allowed query pattern is structured as follows: &#x60;&#x60;&#x60; json {   \&quot;pagination\&quot;: {     \&quot;start\&quot;: ${start},     \&quot;limit\&quot;: ${limit}   },   \&quot;range\&quot;: {     \&quot;start\&quot;: ${start},     \&quot;end\&quot;: ${end}   },   \&quot;filter\&quot;: {     \&quot;oneOf\&quot;: {       \&quot;field\&quot;: \&quot;customerProductId\&quot;,       \&quot;values\&quot;: [${customerProductIds as a list of strings}]     }   } } &#x60;&#x60;&#x60; | [optional] 
 
 ### Return type
 
@@ -3217,7 +3243,7 @@ Name | Type | Description  | Notes
 # **query_offers_vendor_v3**
 > QueryOffersApiResponse query_offers_vendor_v3(contract_id, product_offers_api_query)
 
-Query offers
+Query offers [vendor]
 
 Supports complex queries for offers.
 
@@ -3260,7 +3286,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 product_offers_api_query = pricemonitor_api_client.ProductOffersApiQuery() # ProductOffersApiQuery | The request body specifies which offers will be searched for.<br> Warning: It's highly recommended to not use this endpoint since it is error-prone due to complex query structure! Supported are queries with three different types of filters:<br> 1. Filtering for offers of a certain product<br> This can be done by a ComparisonFilter with   * the `left` side being a `StringValueProvider` with the `attributeName` value \"productId\"   * the `right` side being a `StringConstantValueProvider` with the `value` being the actual pricemonitor product ID to filter offers for   * the `comparison` being a `StringEquality`  2. Filtering for valid offers of a certain product<br> This can be done by an AndFilter with   * a) A product filter (see first supported filter)   * b) A NotFilter which contains a ComparisonFilter     * the `left` side being a `NumberValueProvider` with the `attributeName` value \"ignoredBy\"     * the `right` side being a `NumberConstantValueProvider` with the `value` being the numeric contract id to filter offers for     * the `comparison` being a `NumberEquality`  3. Filtering for offers of a certain vendor<br> This can be done by a ComparisonFilter with   * the `left` side being a `StringValueProvider` with the `attributeName` value \"reseller_name\"   * the `right` side being a `StringConstantValueProvider` with the `value` being the actual vendor name to filter offers for   * the `comparison` being a `StringEquality`  Note: This endpoint will only return the newest offers for each product for a given time range.
 
     try:
-        # Query offers
+        # Query offers [vendor]
         api_response = api_instance.query_offers_vendor_v3(contract_id, product_offers_api_query)
         pprint(api_response)
     except ApiException as e:
@@ -3304,7 +3330,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 product_offers_api_query = pricemonitor_api_client.ProductOffersApiQuery() # ProductOffersApiQuery | The request body specifies which offers will be searched for.<br> Warning: It's highly recommended to not use this endpoint since it is error-prone due to complex query structure! Supported are queries with three different types of filters:<br> 1. Filtering for offers of a certain product<br> This can be done by a ComparisonFilter with   * the `left` side being a `StringValueProvider` with the `attributeName` value \"productId\"   * the `right` side being a `StringConstantValueProvider` with the `value` being the actual pricemonitor product ID to filter offers for   * the `comparison` being a `StringEquality`  2. Filtering for valid offers of a certain product<br> This can be done by an AndFilter with   * a) A product filter (see first supported filter)   * b) A NotFilter which contains a ComparisonFilter     * the `left` side being a `NumberValueProvider` with the `attributeName` value \"ignoredBy\"     * the `right` side being a `NumberConstantValueProvider` with the `value` being the numeric contract id to filter offers for     * the `comparison` being a `NumberEquality`  3. Filtering for offers of a certain vendor<br> This can be done by a ComparisonFilter with   * the `left` side being a `StringValueProvider` with the `attributeName` value \"reseller_name\"   * the `right` side being a `StringConstantValueProvider` with the `value` being the actual vendor name to filter offers for   * the `comparison` being a `StringEquality`  Note: This endpoint will only return the newest offers for each product for a given time range.
 
     try:
-        # Query offers
+        # Query offers [vendor]
         api_response = api_instance.query_offers_vendor_v3(contract_id, product_offers_api_query)
         pprint(api_response)
     except ApiException as e:
@@ -3342,7 +3368,7 @@ Name | Type | Description  | Notes
 # **raw_offers**
 > object raw_offers(contract_id, start, limit, since=since, until=until)
 
-
+Get offers for contract
 
 ### Example
 
@@ -3386,6 +3412,7 @@ since = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 until = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 
     try:
+        # Get offers for contract
         api_response = api_instance.raw_offers(contract_id, start, limit, since=since, until=until)
         pprint(api_response)
     except ApiException as e:
@@ -3432,6 +3459,7 @@ since = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 until = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 
     try:
+        # Get offers for contract
         api_response = api_instance.raw_offers(contract_id, start, limit, since=since, until=until)
         pprint(api_response)
     except ApiException as e:
@@ -3471,7 +3499,7 @@ Name | Type | Description  | Notes
 # **segment_offers_manufacturer_v2**
 > object segment_offers_manufacturer_v2(contract_id, body=body)
 
-
+Update segment offers [manufacturer]
 
 ### Example
 
@@ -3512,6 +3540,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update segment offers [manufacturer]
         api_response = api_instance.segment_offers_manufacturer_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -3555,6 +3584,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update segment offers [manufacturer]
         api_response = api_instance.segment_offers_manufacturer_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -3591,7 +3621,7 @@ Name | Type | Description  | Notes
 # **segment_offers_vendor_v2**
 > object segment_offers_vendor_v2(contract_id, body=body)
 
-
+Update segment offers [vendor]
 
 ### Example
 
@@ -3632,6 +3662,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update segment offers [vendor]
         api_response = api_instance.segment_offers_vendor_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -3675,6 +3706,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Update segment offers [vendor]
         api_response = api_instance.segment_offers_vendor_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -3711,7 +3743,7 @@ Name | Type | Description  | Notes
 # **stats_manufacturer_v2**
 > ComPatagonaPricemonitorShareApiContractStats stats_manufacturer_v2(contract_id, session)
 
-
+Get contract statistics [manufacturer]
 
 ### Example
 
@@ -3752,6 +3784,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 session = '2013-10-20T19:20:30+01:00' # datetime | A ISO 8601 timestamp which marks the end of a 48h time range in which the data is collected
 
     try:
+        # Get contract statistics [manufacturer]
         api_response = api_instance.stats_manufacturer_v2(contract_id, session)
         pprint(api_response)
     except ApiException as e:
@@ -3795,6 +3828,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 session = '2013-10-20T19:20:30+01:00' # datetime | A ISO 8601 timestamp which marks the end of a 48h time range in which the data is collected
 
     try:
+        # Get contract statistics [manufacturer]
         api_response = api_instance.stats_manufacturer_v2(contract_id, session)
         pprint(api_response)
     except ApiException as e:
@@ -3831,7 +3865,7 @@ Name | Type | Description  | Notes
 # **timestamps_manufacturer_v2**
 > object timestamps_manufacturer_v2(contract_id, limit)
 
-
+Get timestamps
 
 ### Example
 
@@ -3872,6 +3906,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 limit = 56 # int | 
 
     try:
+        # Get timestamps
         api_response = api_instance.timestamps_manufacturer_v2(contract_id, limit)
         pprint(api_response)
     except ApiException as e:
@@ -3915,6 +3950,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 limit = 56 # int | 
 
     try:
+        # Get timestamps
         api_response = api_instance.timestamps_manufacturer_v2(contract_id, limit)
         pprint(api_response)
     except ApiException as e:
@@ -3951,7 +3987,7 @@ Name | Type | Description  | Notes
 # **validate_offers_manufacturer_v2**
 > object validate_offers_manufacturer_v2(contract_id, body=body)
 
-
+Validate offers [manufacturer]
 
 ### Example
 
@@ -3992,6 +4028,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Validate offers [manufacturer]
         api_response = api_instance.validate_offers_manufacturer_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -4035,6 +4072,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Validate offers [manufacturer]
         api_response = api_instance.validate_offers_manufacturer_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -4071,7 +4109,7 @@ Name | Type | Description  | Notes
 # **validate_offers_vendor_v2**
 > object validate_offers_vendor_v2(contract_id, body=body)
 
-
+Validate offers [vendor]
 
 ### Example
 
@@ -4112,6 +4150,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Validate offers [vendor]
         api_response = api_instance.validate_offers_vendor_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
@@ -4155,6 +4194,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
+        # Validate offers [vendor]
         api_response = api_instance.validate_offers_vendor_v2(contract_id, body=body)
         pprint(api_response)
     except ApiException as e:
