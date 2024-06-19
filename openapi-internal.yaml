@@ -10,7 +10,7 @@ info:
   description: >
     The Omnia 2.0 API is RESTful and provides access to the backend of Omnia 2.0
     and Pricemonitor. It is used to manage products, offers, contracts and more.
-  version: 0.0.6867
+  version: 0.0.6868
   x-logo:
     url: >-
       https://www.omniaretail.com/hubfs/Omnia%20Logo%20SVG/Omnia_Retail_Full_Colour_Logo_On_White_RGB.svg
@@ -12486,11 +12486,22 @@ components:
         the start and end should not exceed 30 days (timerange limit).
       properties:
         pagination:
-          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.Pagination'
           description: >-
             Specifies the pagination details such as the start index and the
             number of records to fetch (limit). At maximum it's allowed to query
             10,000 records.
+          properties:
+            start:
+              type: integer
+              description: ''
+            limit:
+              type: integer
+              description: ''
+          additionalProperties: false
+          type: object
+          required:
+            - start
+            - limit
         range:
           $ref: >-
             #/components/schemas/com.patagona.pricemonitor.share.api.ZonedTimeRange
@@ -13771,10 +13782,8 @@ components:
       description: ''
       properties:
         data:
-          items:
-            $ref: >-
-              #/components/schemas/com.patagona.pricemonitor.share.api.LookerUserAttributesV3
-          type: array
+          $ref: >-
+            #/components/schemas/com.patagona.pricemonitor.share.api.LookerUserAttributesV3
     com.patagona.pricemonitor.share.api.PostEmbedSSOUrlRequestV3:
       description: Request body to retrieve signed embed sso url using looker api.
       properties:

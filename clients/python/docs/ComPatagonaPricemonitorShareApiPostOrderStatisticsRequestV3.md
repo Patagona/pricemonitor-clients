@@ -4,7 +4,7 @@ Represents a paginated query with an optional product filter and a specified tim
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**pagination** | [**ComPatagonaPricemonitorShareApiPagination**](ComPatagonaPricemonitorShareApiPagination.md) |  | 
+**pagination** | [**ComPatagonaPricemonitorShareApiPostOrderStatisticsRequestV3Pagination**](ComPatagonaPricemonitorShareApiPostOrderStatisticsRequestV3Pagination.md) |  | 
 **range** | [**ComPatagonaPricemonitorShareApiZonedTimeRange**](ComPatagonaPricemonitorShareApiZonedTimeRange.md) |  | 
 **filter** | [**ComPatagonaPricemonitorShareApiOneOfProductsQuery**](ComPatagonaPricemonitorShareApiOneOfProductsQuery.md) |  | [optional] 
 
