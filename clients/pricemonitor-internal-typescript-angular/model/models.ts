@@ -76,7 +76,7 @@ export * from './pricemonitorPostNewPasswordRequest';
 export * from './pricemonitorPostOfferStatisticsRequestV31';
 export * from './pricemonitorPostOfferStatisticsResponseV31';
 export * from './pricemonitorPostOrderStatisticsRequestV3';
-export * from './pricemonitorPostOrderStatisticsRequestV3Pagination';
+export * from './pricemonitorPostOrderStatisticsRequestV3Range';
 export * from './pricemonitorPostOrderStatisticsResponseV3';
 export * from './pricemonitorPostProductOfferRequest';
 export * from './pricemonitorPostScenarioStrategyResponse';
