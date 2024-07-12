@@ -10,7 +10,7 @@ info:
   description: >
     The Omnia 2.0 API is RESTful and provides access to the backend of Omnia 2.0
     and Pricemonitor. It is used to manage products, offers, contracts and more.
-  version: 0.0.6897
+  version: 0.0.6898
   x-logo:
     url: >-
       https://www.omniaretail.com/hubfs/Omnia%20Logo%20SVG/Omnia_Retail_Full_Colour_Logo_On_White_RGB.svg
@@ -8933,6 +8933,29 @@ paths:
       security:
         - BasicAuth: []
         - BearerAuth: []
+  /api/v3/companies/{companyId}/users/contractaccess:
+    x-audience: Internal
+    parameters:
+      - $ref: '#/components/parameters/companyIdParam'
+    get:
+      operationId: getUserAccessToContractsOfCompanyV3
+      summary: Get contract access of users
+      description: |
+        Get which user can access which contract of the company.
+      tags:
+        - companies
+        - internal
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/GetUserAccessToContractsOfCompanyV3ApiResponse
+          description: All users and their accessible contracts
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/v3/companies/{companyId}/amazon/marketplace:
     x-audience: Internal
     parameters:
@@ -13821,6 +13844,43 @@ components:
         data:
           $ref: >-
             #/components/schemas/com.patagona.pricemonitor.share.api.EmbedSSOUrlResponseV3
+    com.patagona.pricemonitor.share.api.UserContractAccess:
+      properties:
+        email:
+          type: string
+        contractIds:
+          type: array
+          items:
+            type: string
+        hasUnrestrictedAccess:
+          type: boolean
+      additionalProperties: false
+      type: object
+      required:
+        - email
+        - contractIds
+        - hasUnrestrictedAccess
+    com.patagona.pricemonitor.share.api.UserAccessToContractsOfCompany:
+      properties:
+        users:
+          type: array
+          items:
+            $ref: >-
+              #/components/schemas/com.patagona.pricemonitor.share.api.UserContractAccess
+      additionalProperties: false
+      type: object
+      required:
+        - users
+    GetUserAccessToContractsOfCompanyV3ApiResponse:
+      required:
+        - data
+      type: object
+      additionalProperties: false
+      description: ''
+      properties:
+        data:
+          $ref: >-
+            #/components/schemas/com.patagona.pricemonitor.share.api.UserAccessToContractsOfCompany
     com.patagona.pricemonitor.share.api.PostActivateMarketplaceRequestV3:
       description: Payload for activating marketplace of a seller in our system.
       properties:

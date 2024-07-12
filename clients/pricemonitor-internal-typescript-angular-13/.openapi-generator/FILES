@@ -146,8 +146,10 @@ model/pricemonitorShopV3.ts
 model/pricemonitorStrategyMetadataResponseV3.ts
 model/pricemonitorTag.ts
 model/pricemonitorTagFilteredVendorsRequest.ts
+model/pricemonitorUserAccessToContractsOfCompany.ts
 model/pricemonitorUserCompany.ts
 model/pricemonitorUserContract.ts
+model/pricemonitorUserContractAccess.ts
 model/pricemonitorUserInfo.ts
 model/pricemonitorVendorShopMappingV3.ts
 model/pricemonitorZonedTimeRange.ts
@@ -195,6 +197,7 @@ model/getProductMonitoringStatusStatsVendorV3ApiResponse.ts
 model/getProductMonitoringStatusVendorV3ApiResponse.ts
 model/getProductPropertiesV3ApiResponse.ts
 model/getShopsByDomainResponseV3ApiResponse.ts
+model/getUserAccessToContractsOfCompanyV3ApiResponse.ts
 model/getVendorShopMappingsApiResponse.ts
 model/job.ts
 model/jobApiResponse.ts
