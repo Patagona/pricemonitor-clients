@@ -10,7 +10,7 @@ info:
   description: >
     The Omnia 2.0 API is RESTful and provides access to the backend of Omnia 2.0
     and Pricemonitor. It is used to manage products, offers, contracts and more.
-  version: 0.0.6910
+  version: 0.0.6911
   x-logo:
     url: >-
       https://www.omniaretail.com/hubfs/Omnia%20Logo%20SVG/Omnia_Retail_Full_Colour_Logo_On_White_RGB.svg
@@ -8953,6 +8953,34 @@ paths:
                 $ref: >-
                   #/components/schemas/GetUserAccessToContractsOfCompanyV3ApiResponse
           description: All users and their accessible contracts
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
+    put:
+      operationId: putUserAccessToContractsOfCompanyV3
+      summary: Set contract access of users
+      description: >
+        Users can either access all contracts of a company or only dedicated
+        contracts.
+
+        With this api endpoint one can control the access rights of a user.
+      tags:
+        - companies
+        - internal
+      responses:
+        '200':
+          description: Empty response signalling that the changes have been applied.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyApiResponse'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: >-
+                #/components/schemas/com.patagona.pricemonitor.share.api.UserAccessToContractsOfCompany
+        description: All users and their accessible contracts
       security:
         - BasicAuth: []
         - BearerAuth: []
