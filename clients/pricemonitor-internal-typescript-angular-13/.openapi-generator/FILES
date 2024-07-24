@@ -109,7 +109,6 @@ model/pricemonitorPostNewPasswordRequest.ts
 model/pricemonitorPostOfferStatisticsRequestV31.ts
 model/pricemonitorPostOfferStatisticsResponseV31.ts
 model/pricemonitorPostOrderStatisticsRequestV3.ts
-model/pricemonitorPostOrderStatisticsRequestV3Range.ts
 model/pricemonitorPostOrderStatisticsResponseV3.ts
 model/pricemonitorPostProductOfferRequest.ts
 model/pricemonitorPostScenarioStrategyResponse.ts
