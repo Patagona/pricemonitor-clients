@@ -10,7 +10,7 @@ info:
   description: >
     The Omnia 2.0 API is RESTful and provides access to the backend of Omnia 2.0
     and Pricemonitor. It is used to manage products, offers, contracts and more.
-  version: 0.0.6929
+  version: 0.0.6931
   x-logo:
     url: >-
       https://www.omniaretail.com/hubfs/Omnia%20Logo%20SVG/Omnia_Retail_Full_Colour_Logo_On_White_RGB.svg
@@ -11798,33 +11798,6 @@ components:
       type: object
       required:
         - taskType
-    com.patagona.pricemonitor.share.api.UserContract:
-      description: >-
-        This case class is used for serializing contract-information for the
-        account-endpoints
-      properties:
-        name:
-          type: string
-          description: The contract's name
-        id:
-          type: number
-          description: The contract's id
-        type:
-          type: string
-        sid:
-          type: string
-          description: The contract's string-id
-        active:
-          type: boolean
-          description: The contract status
-      additionalProperties: false
-      type: object
-      required:
-        - active
-        - sid
-        - id
-        - name
-        - type
     com.patagona.pricemonitor.share.api.UserCompany:
       description: >-
         This case class is used for serializing company-information for the
@@ -11839,8 +11812,29 @@ components:
         contracts:
           type: array
           items:
-            $ref: >-
-              #/components/schemas/com.patagona.pricemonitor.share.api.UserContract
+            type: object
+            additionalProperties: false
+            properties:
+              name:
+                type: string
+                description: The contract's name
+              id:
+                type: number
+                description: The contract's id
+              type:
+                type: string
+              sid:
+                type: string
+                description: The contract's string-id
+              active:
+                type: boolean
+                description: The contract status
+            required:
+              - active
+              - sid
+              - id
+              - name
+              - type
           description: The company's contracts
       additionalProperties: false
       type: object

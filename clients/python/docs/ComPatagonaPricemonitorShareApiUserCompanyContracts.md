@@ -1,6 +1,5 @@
-# ComPatagonaPricemonitorShareApiUserContract
+# ComPatagonaPricemonitorShareApiUserCompanyContracts
 
-This case class is used for serializing contract-information for the account-endpoints
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

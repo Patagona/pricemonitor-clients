@@ -114,7 +114,7 @@ export * from './pricemonitorTag';
 export * from './pricemonitorTagFilteredVendorsRequest';
 export * from './pricemonitorUserAccessToContractsOfCompany';
 export * from './pricemonitorUserCompany';
-export * from './pricemonitorUserContract';
+export * from './pricemonitorUserCompanyContracts';
 export * from './pricemonitorUserContractAccess';
 export * from './pricemonitorUserInfo';
 export * from './pricemonitorVendorShopMappingV3';
