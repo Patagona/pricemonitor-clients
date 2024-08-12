@@ -10,7 +10,7 @@ info:
   description: >
     The Omnia 2.0 API is RESTful and provides access to the backend of Omnia 2.0
     and Pricemonitor. It is used to manage products, offers, contracts and more.
-  version: 0.0.6934
+  version: 0.0.6935
   x-logo:
     url: >-
       https://www.omniaretail.com/hubfs/Omnia%20Logo%20SVG/Omnia_Retail_Full_Colour_Logo_On_White_RGB.svg
@@ -11471,23 +11471,26 @@ components:
         data:
           $ref: '#/components/schemas/ApiContract'
     com.patagona.pricemonitor.share.api.CustomerOrderItemV2:
-      description: A ordered item
+      description: An ordered item
       properties:
         itemId:
           type: string
           description: >-
-            Id of the item in the customer's system. It is expected to be the
+            ID of the item in the customer's system. It is expected to be the
             customerProductId. It should be guaranteed that the itemId can be
             always assigned to only one product or variant.
         unitPrice:
           type: number
-          description: Unit price of an item
+          description: Gross unit price of a single item, including applicable taxes.
         quantity:
           type: integer
-          description: How often the item was purchased
+          description: How often the item was purchased.
         taxPercentage:
           type: number
-          description: Tax percentage applied on unit price, e.g. 20 for 20% tax
+          description: >-
+            Tax percentage applied on the unit price, e.g. 20 for 20% tax. This
+            percentage is used to determine the tax component of the unitPrice,
+            but the unitPrice itself already includes this tax.
       additionalProperties: false
       type: object
       required:
@@ -12433,36 +12436,38 @@ components:
       properties:
         shippingCosts:
           type: number
-          description: Shipping costs of the order
+          description: Shipping costs of the order. This amount is included in totalPrice.
         orderId:
           type: string
-          description: >-
-            Unique id of an order. It must mean unique in the contract, not in
-            the pricemonitor.
+          description: Unique ID of an order. This ID must be unique within the contract.
         items:
           type: array
           items:
             $ref: >-
               #/components/schemas/com.patagona.pricemonitor.share.api.CustomerOrderItemV2
-          description: List of bought items
+          description: List of purchased items.
         totalPrice:
           type: number
-          description: Total price of the order
+          description: >-
+            Total price of the order, including all items, applicable taxes, and
+            shipping costs.
         origin:
           type: string
-          description: Origin of an order, e.g. the online shop where the order is placed
+          description: Origin of an order, e.g., the online shop where the order is placed.
         creationDate:
           type: string
           format: date-time
-          description: Date when the order is created
+          description: Timestamp in ISO 8601 format indicating when the order is placed.
         currency:
           type: string
-          description: 'Currency used in the order. ISO 4217 Currency Codes: e.g. EUR'
+          description: >-
+            Currency used in the order, represented by ISO 4217 Currency Codes
+            (e.g., EUR).
         referrer:
           type: string
           description: >-
-            Referrer of an order. Third party (e.g. marketplace) which referred
-            the customer to the online shop
+            Optional referrer of an order. Third party (e.g. marketplace) which
+            referred the customer to the online shop.
       additionalProperties: false
       type: object
       required:
