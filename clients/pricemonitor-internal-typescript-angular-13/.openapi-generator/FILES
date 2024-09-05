@@ -147,7 +147,7 @@ model/pricemonitorTag.ts
 model/pricemonitorTagFilteredVendorsRequest.ts
 model/pricemonitorUserAccessToContractsOfCompany.ts
 model/pricemonitorUserCompany.ts
-model/pricemonitorUserCompanyContractsInner.ts
+model/pricemonitorUserContract.ts
 model/pricemonitorUserContractAccess.ts
 model/pricemonitorUserInfo.ts
 model/pricemonitorVendorShopMappingV3.ts
