@@ -10,7 +10,7 @@ info:
   description: >
     The Omnia 2.0 API is RESTful and provides access to the backend of Omnia 2.0
     and Pricemonitor. It is used to manage products, offers, contracts and more.
-  version: 0.0.6970
+  version: 0.0.6971
   x-logo:
     url: >-
       https://www.omniaretail.com/hubfs/Omnia%20Logo%20SVG/Omnia_Retail_Full_Colour_Logo_On_White_RGB.svg
@@ -1824,6 +1824,46 @@ paths:
         - internal
       summary: Add domain
       description: Add a new domain.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
+  /controlpanel/api/v3/domains/{domain}:
+    x-audience: Internal
+    parameters:
+      - $ref: '#/components/parameters/domainParam'
+    put:
+      operationId: putAdminDomainControlPanelV3
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PutAdminDomainResponseV3ApiResponse'
+          description: A domain was updated or added.
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: >-
+            Domain could not be updated or added. - Offer sources must be valid
+            - Domain must be a valid internet domain and non-empty - Domain name
+            must be unique and non-empty - Please refer to the request schema
+            for what constitutes valid offer sources and a valid domain
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: >-
+                #/components/schemas/com.patagona.pricemonitor.share.api.PutAdminDomainRequestV3
+        description: The domain to be updated or added and its offer sources
+      tags:
+        - internal
+        - controlpanel
+      description: >-
+        Update an existing domain or add a new domain in case domain does not
+        exist.
+      summary: Update or add domain
       security:
         - BasicAuth: []
         - BearerAuth: []
@@ -9910,6 +9950,14 @@ paths:
         - basicAuth: []
 components:
   parameters:
+    domainParam:
+      description: Fully qualified domain name
+      in: path
+      name: domain
+      required: true
+      schema:
+        type: string
+      example: google.com
     companyIdParam:
       description: ID of a company
       in: path
@@ -11403,6 +11451,51 @@ components:
         data:
           $ref: >-
             #/components/schemas/com.patagona.pricemonitor.share.api.PostAdminAddDomainV3
+    com.patagona.pricemonitor.share.api.PutAdminDomainRequestV3:
+      description: >-
+        Request body that contains information about updating an existing domain
+        with new offerSources or adding a new domain
+      properties:
+        name:
+          type: string
+          description: >-
+            display name for the domain in the UI. (Must be unique and
+            non-empty)
+        offerSources:
+          type: array
+          items:
+            type: string
+          uniqueItems: true
+          description: >-
+            sources of offers on this domain. Allowed sources:
+            "DEFAULT_MONITORING", "CUSTOM_MONITORING", "OMNIA_CUSTOM_SPIDERING",
+            "PUSH_API", "OTHER" @example name = "google", offerSources =
+            Set("DEFAULT_MONITORING")
+      additionalProperties: false
+      type: object
+      required:
+        - name
+        - offerSources
+    com.patagona.pricemonitor.share.api.PutAdminDomainResponseV3:
+      description: Response body containing id for the updated/added domain
+      properties:
+        domainId:
+          type: number
+          description: domain id
+      additionalProperties: false
+      type: object
+      required:
+        - domainId
+    PutAdminDomainResponseV3ApiResponse:
+      required:
+        - data
+      type: object
+      additionalProperties: false
+      description: ''
+      properties:
+        data:
+          $ref: >-
+            #/components/schemas/com.patagona.pricemonitor.share.api.PutAdminDomainResponseV3
     com.patagona.pricemonitor.share.api.ApplicationVersion:
       description: Current api version.
       properties:

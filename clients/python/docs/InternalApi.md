@@ -141,6 +141,7 @@ Method | HTTP request | Description
 [**post_vendor_shop_mapping_manufacturer_v3**](InternalApi.md#post_vendor_shop_mapping_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/vendors | Add new vendor to contract and associate shops
 [**prices_by_day_by_product_id_manufacturer_v2**](InternalApi.md#prices_by_day_by_product_id_manufacturer_v2) | **POST** /api/2/m/contracts/{contractId}/result/pricesbyday/productid/{productId} | Query prices by day by product
 [**publish_preprocessing_task_vendor_v3**](InternalApi.md#publish_preprocessing_task_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/tasks/preprocessing | Publish preprocessing task [vendor]
+[**put_admin_domain_control_panel_v3**](InternalApi.md#put_admin_domain_control_panel_v3) | **PUT** /controlpanel/api/v3/domains/{domain} | Update or add domain
 [**put_callbacks**](InternalApi.md#put_callbacks) | **PUT** /api/2/m/contracts/{contractId}/settings/callbacks | Update callbacks [manufacturer]
 [**put_callbacks_vendor_v2**](InternalApi.md#put_callbacks_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/settings/callbacks | Update callbacks [vendor]
 [**put_complex_offer_filters_vendor_v2**](InternalApi.md#put_complex_offer_filters_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/offerfilters/{listType}/complex | Add the complex filters for the given contract.
@@ -16775,6 +16776,131 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Preprocessing task created successfully |  -  |
 **400** | - Invalid retrospective value. - No retrospective value is specified.  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_admin_domain_control_panel_v3**
+> PutAdminDomainResponseV3ApiResponse put_admin_domain_control_panel_v3(domain, com_patagona_pricemonitor_share_api_put_admin_domain_request_v3=com_patagona_pricemonitor_share_api_put_admin_domain_request_v3)
+
+Update or add domain
+
+Update an existing domain or add a new domain in case domain does not exist.
+
+### Example
+
+* Basic Authentication (BasicAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.InternalApi(api_client)
+    domain = 'google.com' # str | Fully qualified domain name
+com_patagona_pricemonitor_share_api_put_admin_domain_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPutAdminDomainRequestV3() # ComPatagonaPricemonitorShareApiPutAdminDomainRequestV3 | The domain to be updated or added and its offer sources (optional)
+
+    try:
+        # Update or add domain
+        api_response = api_instance.put_admin_domain_control_panel_v3(domain, com_patagona_pricemonitor_share_api_put_admin_domain_request_v3=com_patagona_pricemonitor_share_api_put_admin_domain_request_v3)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling InternalApi->put_admin_domain_control_panel_v3: %s\n" % e)
+```
+
+* Bearer (JWT) Authentication (BearerAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.InternalApi(api_client)
+    domain = 'google.com' # str | Fully qualified domain name
+com_patagona_pricemonitor_share_api_put_admin_domain_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPutAdminDomainRequestV3() # ComPatagonaPricemonitorShareApiPutAdminDomainRequestV3 | The domain to be updated or added and its offer sources (optional)
+
+    try:
+        # Update or add domain
+        api_response = api_instance.put_admin_domain_control_panel_v3(domain, com_patagona_pricemonitor_share_api_put_admin_domain_request_v3=com_patagona_pricemonitor_share_api_put_admin_domain_request_v3)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling InternalApi->put_admin_domain_control_panel_v3: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **domain** | **str**| Fully qualified domain name | 
+ **com_patagona_pricemonitor_share_api_put_admin_domain_request_v3** | [**ComPatagonaPricemonitorShareApiPutAdminDomainRequestV3**](ComPatagonaPricemonitorShareApiPutAdminDomainRequestV3.md)| The domain to be updated or added and its offer sources | [optional] 
+
+### Return type
+
+[**PutAdminDomainResponseV3ApiResponse**](PutAdminDomainResponseV3ApiResponse.md)
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | A domain was updated or added. |  -  |
+**400** | Domain could not be updated or added. - Offer sources must be valid - Domain must be a valid internet domain and non-empty - Domain name must be unique and non-empty - Please refer to the request schema for what constitutes valid offer sources and a valid domain |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

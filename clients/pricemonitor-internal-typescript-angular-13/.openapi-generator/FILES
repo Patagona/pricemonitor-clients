@@ -129,6 +129,8 @@ model/pricemonitorProductMonitoringStatusStats.ts
 model/pricemonitorProductOfferStatisticsV31.ts
 model/pricemonitorProductPriceDumpingStats.ts
 model/pricemonitorPutAdminContractSettingsBody.ts
+model/pricemonitorPutAdminDomainRequestV3.ts
+model/pricemonitorPutAdminDomainResponseV3.ts
 model/pricemonitorPutCustomerOrdersRequestV3.ts
 model/pricemonitorPutItemsResponseV3.ts
 model/pricemonitorPutProductPropertiesRequestV3.ts
@@ -248,6 +250,7 @@ model/productOffersApiQuery.ts
 model/productsFilter.ts
 model/productsFilterLeft.ts
 model/productsFilterRight.ts
+model/putAdminDomainResponseV3ApiResponse.ts
 model/putCustomerContractSettingsApiResponse.ts
 model/putItemsV3ApiResponse.ts
 model/putMonitoringSchedulesApiResponse.ts
