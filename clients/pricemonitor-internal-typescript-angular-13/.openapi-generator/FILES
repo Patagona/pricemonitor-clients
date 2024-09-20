@@ -42,8 +42,6 @@ model/apiErrorResponse.ts
 model/apiOffer.ts
 model/apiProduct.ts
 model/bulkedPostProductsApiResponse.ts
-model/callbacks.ts
-model/callbacksPricemonitorCompletedInner.ts
 model/pricemonitorActivateMarketplaceResponseV3.ts
 model/pricemonitorAdminCompanyV2.ts
 model/pricemonitorAdminContractV2.ts

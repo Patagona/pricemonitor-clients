@@ -7,7 +7,7 @@ Method | HTTP request | Description
 [**create_alert_settings**](SettingsApi.md#create_alert_settings) | **POST** /api/1/{contractId}/settings/alerts | Create alert settings
 [**delete_alert_settings**](SettingsApi.md#delete_alert_settings) | **DELETE** /api/1/{contractId}/settings/alerts/{alertId} | Delete alert settings
 [**delete_callback_settings_manufacturer_v2**](SettingsApi.md#delete_callback_settings_manufacturer_v2) | **DELETE** /api/2/m/contracts/{contractId}/settings/callbacks | Delete callbacks [manufacturer]
-[**delete_callback_settings_vendor_v2**](SettingsApi.md#delete_callback_settings_vendor_v2) | **DELETE** /api/2/v/contracts/{contractId}/settings/callbacks | Delete callbacks [vendor]
+[**delete_callback_settings_vendor_v2**](SettingsApi.md#delete_callback_settings_vendor_v2) | **DELETE** /api/2/v/contracts/{contractId}/settings/callbacks | Delete callbacks
 [**delete_dynamic_monitoring_settings**](SettingsApi.md#delete_dynamic_monitoring_settings) | **DELETE** /api/1/{contractId}/settings/dynamicmonitoring | Delete dynamic monitoring settings
 [**delete_import_settings_vendor_v2**](SettingsApi.md#delete_import_settings_vendor_v2) | **DELETE** /api/2/v/contracts/{contractId}/settings/import | Delete import settings
 [**get_active_ebay_token_vendor_v2**](SettingsApi.md#get_active_ebay_token_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/settings/ebay/token | Get active Ebay token
@@ -15,7 +15,7 @@ Method | HTTP request | Description
 [**get_all_ebay_authorizations_vendor_v2**](SettingsApi.md#get_all_ebay_authorizations_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/settings/ebay/authorizations | Get Ebay authorizations
 [**get_all_ebay_tokens_vendor_v2**](SettingsApi.md#get_all_ebay_tokens_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/settings/ebay/tokens | Get all Ebay tokens
 [**get_callbacks**](SettingsApi.md#get_callbacks) | **GET** /api/2/m/contracts/{contractId}/settings/callbacks | Get callbacks [manufacturer]
-[**get_callbacks_vendor_v2**](SettingsApi.md#get_callbacks_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/settings/callbacks | Get callbacks [vendor]
+[**get_callbacks_vendor_v2**](SettingsApi.md#get_callbacks_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/settings/callbacks | Get callbacks
 [**get_currency_vendor_v2**](SettingsApi.md#get_currency_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/settings/currency | Get currency settings [vendor]
 [**get_customer_contract_settings_manufaturer_v3**](SettingsApi.md#get_customer_contract_settings_manufaturer_v3) | **GET** /api/v3/manufacturer/contracts/{contractId}/settings/customer | Get contract settings [manufacturer]
 [**get_customer_contract_settings_vendor_v3**](SettingsApi.md#get_customer_contract_settings_vendor_v3) | **GET** /api/v3/vendor/contracts/{contractId}/settings/customer | Get customer contract settings [vendor]
@@ -33,7 +33,7 @@ Method | HTTP request | Description
 [**get_vendor_settings_v2_vendor_v2**](SettingsApi.md#get_vendor_settings_v2_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/settings/repricing | Get repricing settings
 [**post_ebay_authorization_vendor_v2**](SettingsApi.md#post_ebay_authorization_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/settings/ebay/authorizations | Update Ebay authorization
 [**put_callbacks**](SettingsApi.md#put_callbacks) | **PUT** /api/2/m/contracts/{contractId}/settings/callbacks | Update callbacks [manufacturer]
-[**put_callbacks_vendor_v2**](SettingsApi.md#put_callbacks_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/settings/callbacks | Update callbacks [vendor]
+[**put_callbacks_vendor_v2**](SettingsApi.md#put_callbacks_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/settings/callbacks | Update callbacks
 [**put_currency_vendor_v2**](SettingsApi.md#put_currency_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/settings/currency | Update currency settings [vendor]
 [**put_customer_contract_settings_manufacturer_v3**](SettingsApi.md#put_customer_contract_settings_manufacturer_v3) | **PUT** /api/v3/manufacturer/contracts/{contractId}/settings/customer | Update contract settings [manufacturer]
 [**put_customer_contract_settings_vendor_v3**](SettingsApi.md#put_customer_contract_settings_vendor_v3) | **PUT** /api/v3/vendor/contracts/{contractId}/settings/customer | Update customer contract settings [vendor]
@@ -420,7 +420,7 @@ Name | Type | Description  | Notes
 # **delete_callback_settings_vendor_v2**
 > object delete_callback_settings_vendor_v2(contract_id)
 
-Delete callbacks [vendor]
+Delete callbacks
 
 ### Example
 
@@ -460,7 +460,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
-        # Delete callbacks [vendor]
+        # Delete callbacks
         api_response = api_instance.delete_callback_settings_vendor_v2(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -503,7 +503,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
-        # Delete callbacks [vendor]
+        # Delete callbacks
         api_response = api_instance.delete_callback_settings_vendor_v2(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -1263,7 +1263,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_callbacks**
-> Callbacks get_callbacks(contract_id)
+> ComPatagonaPricemonitorShareApiCallbacks get_callbacks(contract_id)
 
 Get callbacks [manufacturer]
 
@@ -1363,7 +1363,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Callbacks**](Callbacks.md)
+[**ComPatagonaPricemonitorShareApiCallbacks**](ComPatagonaPricemonitorShareApiCallbacks.md)
 
 ### Authorization
 
@@ -1383,9 +1383,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_callbacks_vendor_v2**
-> object get_callbacks_vendor_v2(contract_id)
+> ComPatagonaPricemonitorShareApiCallbacks get_callbacks_vendor_v2(contract_id)
 
-Get callbacks [vendor]
+Get callbacks
+
+Retrieve all callbacks for the given contract.
 
 ### Example
 
@@ -1425,7 +1427,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
-        # Get callbacks [vendor]
+        # Get callbacks
         api_response = api_instance.get_callbacks_vendor_v2(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -1468,7 +1470,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
-        # Get callbacks [vendor]
+        # Get callbacks
         api_response = api_instance.get_callbacks_vendor_v2(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -1483,7 +1485,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**ComPatagonaPricemonitorShareApiCallbacks**](ComPatagonaPricemonitorShareApiCallbacks.md)
 
 ### Authorization
 
@@ -1497,7 +1499,8 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | This is a generated entry and needs to be described. |  -  |
+**200** | Returns a list of all configured callbacks for certain events. These callbacks are executed once the respective event has been successfully completed.  |  -  |
+**404** | Contract settings for this contract don&#39;t exist yet. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -3420,7 +3423,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_callbacks**
-> put_callbacks(contract_id, callbacks)
+> put_callbacks(contract_id, com_patagona_pricemonitor_share_api_callbacks)
 
 Update callbacks [manufacturer]
 
@@ -3460,11 +3463,11 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
     contract_id = 'qbcxvb' # str | ID of the contract
-callbacks = pricemonitor_api_client.Callbacks() # Callbacks | Callbacks
+com_patagona_pricemonitor_share_api_callbacks = pricemonitor_api_client.ComPatagonaPricemonitorShareApiCallbacks() # ComPatagonaPricemonitorShareApiCallbacks | Callbacks
 
     try:
         # Update callbacks [manufacturer]
-        api_instance.put_callbacks(contract_id, callbacks)
+        api_instance.put_callbacks(contract_id, com_patagona_pricemonitor_share_api_callbacks)
     except ApiException as e:
         print("Exception when calling SettingsApi->put_callbacks: %s\n" % e)
 ```
@@ -3503,11 +3506,11 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
     contract_id = 'qbcxvb' # str | ID of the contract
-callbacks = pricemonitor_api_client.Callbacks() # Callbacks | Callbacks
+com_patagona_pricemonitor_share_api_callbacks = pricemonitor_api_client.ComPatagonaPricemonitorShareApiCallbacks() # ComPatagonaPricemonitorShareApiCallbacks | Callbacks
 
     try:
         # Update callbacks [manufacturer]
-        api_instance.put_callbacks(contract_id, callbacks)
+        api_instance.put_callbacks(contract_id, com_patagona_pricemonitor_share_api_callbacks)
     except ApiException as e:
         print("Exception when calling SettingsApi->put_callbacks: %s\n" % e)
 ```
@@ -3517,7 +3520,7 @@ callbacks = pricemonitor_api_client.Callbacks() # Callbacks | Callbacks
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **contract_id** | **str**| ID of the contract | 
- **callbacks** | [**Callbacks**](Callbacks.md)| Callbacks | 
+ **com_patagona_pricemonitor_share_api_callbacks** | [**ComPatagonaPricemonitorShareApiCallbacks**](ComPatagonaPricemonitorShareApiCallbacks.md)| Callbacks | 
 
 ### Return type
 
@@ -3541,9 +3544,11 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_callbacks_vendor_v2**
-> object put_callbacks_vendor_v2(contract_id, body=body)
+> ComPatagonaPricemonitorShareApiCallbacks put_callbacks_vendor_v2(contract_id, com_patagona_pricemonitor_share_api_callbacks=com_patagona_pricemonitor_share_api_callbacks)
 
-Update callbacks [vendor]
+Update callbacks
+
+Create or update callbacks for the given contract. This is used to upsert (insert or update) all callbacks at once. Keep in mind that callbacks can be used by multiple parties (Omnia internal, Omnia Plugins, Users). It's strongly recommended to provide your callbacks with a unique name to easily identify them later. To update a single callback, you must also provide all other callbacks to ensure no callbacks from other parties are lost. To delete all callbacks, you can provide an empty list. 
 
 ### Example
 
@@ -3581,11 +3586,11 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
     contract_id = 'qbcxvb' # str | ID of the contract
-body = None # object | This is a generated entry and needs to be described. (optional)
+com_patagona_pricemonitor_share_api_callbacks = pricemonitor_api_client.ComPatagonaPricemonitorShareApiCallbacks() # ComPatagonaPricemonitorShareApiCallbacks | The request body should contain a list of callbacks to be stored. (optional)
 
     try:
-        # Update callbacks [vendor]
-        api_response = api_instance.put_callbacks_vendor_v2(contract_id, body=body)
+        # Update callbacks
+        api_response = api_instance.put_callbacks_vendor_v2(contract_id, com_patagona_pricemonitor_share_api_callbacks=com_patagona_pricemonitor_share_api_callbacks)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling SettingsApi->put_callbacks_vendor_v2: %s\n" % e)
@@ -3625,11 +3630,11 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
     contract_id = 'qbcxvb' # str | ID of the contract
-body = None # object | This is a generated entry and needs to be described. (optional)
+com_patagona_pricemonitor_share_api_callbacks = pricemonitor_api_client.ComPatagonaPricemonitorShareApiCallbacks() # ComPatagonaPricemonitorShareApiCallbacks | The request body should contain a list of callbacks to be stored. (optional)
 
     try:
-        # Update callbacks [vendor]
-        api_response = api_instance.put_callbacks_vendor_v2(contract_id, body=body)
+        # Update callbacks
+        api_response = api_instance.put_callbacks_vendor_v2(contract_id, com_patagona_pricemonitor_share_api_callbacks=com_patagona_pricemonitor_share_api_callbacks)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling SettingsApi->put_callbacks_vendor_v2: %s\n" % e)
@@ -3640,11 +3645,11 @@ body = None # object | This is a generated entry and needs to be described. (opt
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **contract_id** | **str**| ID of the contract | 
- **body** | **object**| This is a generated entry and needs to be described. | [optional] 
+ **com_patagona_pricemonitor_share_api_callbacks** | [**ComPatagonaPricemonitorShareApiCallbacks**](ComPatagonaPricemonitorShareApiCallbacks.md)| The request body should contain a list of callbacks to be stored. | [optional] 
 
 ### Return type
 
-**object**
+[**ComPatagonaPricemonitorShareApiCallbacks**](ComPatagonaPricemonitorShareApiCallbacks.md)
 
 ### Authorization
 
@@ -3658,7 +3663,8 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | This is a generated entry and needs to be described. |  -  |
+**200** | Returns the callbacks that have been successfully stored. |  -  |
+**404** | Contract settings for this contract don&#39;t exist yet |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

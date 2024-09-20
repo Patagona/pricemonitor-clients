@@ -4,7 +4,7 @@ All URIs are relative to *https://api.patagona.de*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**delete_products**](ProductsApi.md#delete_products) | **DELETE** /api/v3/vendor/contracts/{contractId}/products | Delete products [vendor]
+[**delete_products**](ProductsApi.md#delete_products) | **DELETE** /api/v3/vendor/contracts/{contractId}/products | Delete products
 [**delete_products_manufacturer_v3**](ProductsApi.md#delete_products_manufacturer_v3) | **DELETE** /api/v3/manufacturer/contracts/{contractId}/products | Delete products [manufacturer]
 [**get_amazon_buybox_product_stats_v3**](ProductsApi.md#get_amazon_buybox_product_stats_v3) | **GET** /api/v3/vendor/contracts/{contractId}/products/amazon/buybox/stats | Get Amazon Buy Box statistics for time range
 [**get_extended_tags**](ProductsApi.md#get_extended_tags) | **GET** /api/v3/vendor/contracts/{contractId}/products/{productId}/extendedtags | Return the extended tags for the given product
@@ -50,9 +50,9 @@ Method | HTTP request | Description
 # **delete_products**
 > DeleteProductsApiResponse delete_products(contract_id, updated_max=updated_max, tag_key=tag_key, tag_value=tag_value)
 
-Delete products [vendor]
+Delete products
 
-Delete all products or delete products by a last updated timestamp.
+Delete all products or delete products by a last updated timestamp and/or a tag.  **Note:** Avoid any product import requests concurrently with DELETE requests to prevent potential issues. 
 
 ### Example
 
@@ -95,7 +95,7 @@ tag_key = 'tag_key_example' # str | Tag key to consider for deleting products. T
 tag_value = 'tag_value_example' # str | Tag value to consider for deleting products. This parameter works in combination with tagKey. (optional)
 
     try:
-        # Delete products [vendor]
+        # Delete products
         api_response = api_instance.delete_products(contract_id, updated_max=updated_max, tag_key=tag_key, tag_value=tag_value)
         pprint(api_response)
     except ApiException as e:
@@ -141,7 +141,7 @@ tag_key = 'tag_key_example' # str | Tag key to consider for deleting products. T
 tag_value = 'tag_value_example' # str | Tag value to consider for deleting products. This parameter works in combination with tagKey. (optional)
 
     try:
-        # Delete products [vendor]
+        # Delete products
         api_response = api_instance.delete_products(contract_id, updated_max=updated_max, tag_key=tag_key, tag_value=tag_value)
         pprint(api_response)
     except ApiException as e:

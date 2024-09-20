@@ -10,7 +10,7 @@ info:
   description: >
     The Omnia 2.0 API is RESTful and provides access to the backend of Omnia 2.0
     and Pricemonitor. It is used to manage products, offers, contracts and more.
-  version: 0.0.6979
+  version: 0.0.6980
   x-logo:
     url: >-
       https://www.omniaretail.com/hubfs/Omnia%20Logo%20SVG/Omnia_Retail_Full_Colour_Logo_On_White_RGB.svg
@@ -482,9 +482,46 @@ tags:
     description: Manage your orders.
   - name: settings
     x-displayName: Settings Management
-    description: >-
-      Operations to manage the settings of contracts. Very few are available to
-      customers directly.
+    description: >
+      Operations to manage the settings of contracts.
+
+      Only a limited number of these operations are available to customers
+      directly.
+
+
+      # Callbacks
+
+
+      You can register HTTP(S) callbacks in Omnia 2.0, which function as
+      webhooks.
+
+      Callbacks are triggered at the contract level when specific events occur
+      within the system.
+
+
+      Please note that multiple parties can register callbacks, so when
+      modifying callbacks,
+
+      you must ensure that you do not overwrite or delete callbacks registered
+      by other parties.
+
+      We strongly recommend including a unique name for each callback to help
+      you identify them later.
+
+
+      Callbacks are executed asynchronously as [tasks](#tag/tasks) within our
+      system.
+
+      To monitor the execution of these callbacks,
+
+      you can track the corresponding tasks with the task type
+      backend.tasks.pricemonitor.callback.
+
+
+      For added security, you can register a token with your callback and/or
+      whitelist our IP range
+
+      to ensure secure communication.
   - name: tasks
     x-displayName: Tasks Management
     description: >-
@@ -495,7 +532,7 @@ tags:
       # What tasks are
 
 
-      Task are are asynchronously handled jobs in our system, like price
+      Tasks are asynchronously handled jobs in our system, like price
       calculation or monitoring jobs.
 
 
@@ -2036,7 +2073,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Callbacks'
+                $ref: >-
+                  #/components/schemas/com.patagona.pricemonitor.share.api.Callbacks
           description: '-'
         '404':
           description: Settings for this contract don't exist yet
@@ -2061,7 +2099,8 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Callbacks'
+              $ref: >-
+                #/components/schemas/com.patagona.pricemonitor.share.api.Callbacks
         description: Callbacks
         required: true
       security:
@@ -4233,8 +4272,14 @@ paths:
       tags:
         - products
       operationId: deleteProducts
-      summary: Delete products [vendor]
-      description: Delete all products or delete products by a last updated timestamp.
+      summary: Delete products
+      description: >
+        Delete all products or delete products by a last updated timestamp
+        and/or a tag.
+
+
+        **Note:** Avoid any product import requests concurrently with DELETE
+        requests to prevent potential issues.
       security:
         - BasicAuth: []
         - BearerAuth: []
@@ -6667,50 +6712,73 @@ paths:
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
   /api/2/v/contracts/{contractId}/settings/callbacks:
-    x-audience: Internal
     get:
       operationId: getCallbacksVendorV2
-      summary: Get callbacks [vendor]
+      summary: Get callbacks
+      description: Retrieve all callbacks for the given contract.
       tags:
-        - internal
-        - undocumented
         - settings
       responses:
         '200':
           content:
             application/json:
               schema:
-                type: object
-          description: This is a generated entry and needs to be described.
+                $ref: >-
+                  #/components/schemas/com.patagona.pricemonitor.share.api.Callbacks
+          description: >
+            Returns a list of all configured callbacks for certain events.
+
+            These callbacks are executed once the respective event has been
+            successfully completed.
+        '404':
+          description: Contract settings for this contract don't exist yet.
       security:
         - BasicAuth: []
         - BearerAuth: []
     put:
       operationId: putCallbacksVendorV2
-      summary: Update callbacks [vendor]
+      summary: Update callbacks
+      description: >
+        Create or update callbacks for the given contract.
+
+        This is used to upsert (insert or update) all callbacks at once.
+
+        Keep in mind that callbacks can be used by multiple parties (Omnia
+        internal, Omnia Plugins, Users).
+
+        It's strongly recommended to provide your callbacks with a unique name
+        to easily identify them later.
+
+        To update a single callback, you must also provide all other callbacks
+        to ensure no callbacks from other parties are lost.
+
+        To delete all callbacks, you can provide an empty list.
       tags:
-        - internal
-        - undocumented
         - settings
       responses:
         '200':
           content:
             application/json:
               schema:
-                type: object
-          description: This is a generated entry and needs to be described.
+                $ref: >-
+                  #/components/schemas/com.patagona.pricemonitor.share.api.Callbacks
+          description: Returns the callbacks that have been successfully stored.
+        '404':
+          description: Contract settings for this contract don't exist yet
       requestBody:
         content:
           application/json:
             schema:
-              type: object
-        description: This is a generated entry and needs to be described.
+              $ref: >-
+                #/components/schemas/com.patagona.pricemonitor.share.api.Callbacks
+        description: The request body should contain a list of callbacks to be stored.
       security:
         - BasicAuth: []
         - BearerAuth: []
     delete:
       operationId: deleteCallbackSettingsVendorV2
-      summary: Delete callbacks [vendor]
+      summary: Delete callbacks
+      x-audience: Internal
       tags:
         - internal
         - undocumented
@@ -10366,25 +10434,6 @@ components:
         - minPriceBoundary
         - maxPriceBoundary
       type: object
-    Callbacks:
-      properties:
-        pricemonitorCompleted:
-          items:
-            properties:
-              bodyTemplate:
-                type: string
-              headers:
-                additionalProperties:
-                  type: string
-              method:
-                type: string
-              name:
-                type: string
-              url:
-                type: string
-            type: object
-          type: array
-      type: object
     CreateCompanyResponse:
       properties:
         id:
@@ -11568,6 +11617,60 @@ components:
       properties:
         data:
           $ref: '#/components/schemas/ApiContract'
+    com.patagona.pricemonitor.share.api.Callback:
+      description: >-
+        Defines an HTTP(S) callback that can be registered to respond to system
+        events.
+      properties:
+        method:
+          type: string
+          description: >-
+            The HTTP method to use when making the request. Supported methods
+            are GET and POST. If not provided, the default method is GET.
+        name:
+          type: string
+          description: An optional name for the callback, used for identification purposes.
+        bodyTemplate:
+          type: string
+          description: >-
+            An optional Mustache template to define the body of the request.<br>
+            The following placeholders are available in the template:<br> -
+            startTime: The time when the monitoring task started (in ISO 8601
+            format).<br> - contractId: The unique identifier of the
+            contract.<br> Example default template:
+            {"startTime":"{{startTime}}"}.
+        url:
+          type: string
+          description: The URL to which the callback request will be sent.
+        headers:
+          type: object
+          additionalProperties:
+            type: string
+          description: A map of HTTP headers to be included in the request.
+      additionalProperties: false
+      type: object
+      required:
+        - url
+        - headers
+    com.patagona.pricemonitor.share.api.Callbacks:
+      description: >-
+        A collection of callbacks that are triggered by specific events. These
+        callbacks are executed once the corresponding event is completed
+        successfully.
+      properties:
+        pricemonitorCompleted:
+          type: array
+          items:
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.Callback'
+          description: >-
+            A list of callbacks that are triggered when the "Pricemonitor
+            Completed" event occurs, which means:<br> 1. A monitoring task
+            (fetching offers) has successfully finished, and/or<br> 2. The price
+            recommendation calculation task has been completed.
+      additionalProperties: false
+      type: object
+      required:
+        - pricemonitorCompleted
     com.patagona.pricemonitor.share.api.CustomerOrderItemV2:
       description: An ordered item
       properties:
@@ -13626,35 +13729,6 @@ components:
         - analysisRange
         - threshold
         - adjustedInterval
-    com.patagona.pricemonitor.share.api.Callback:
-      properties:
-        method:
-          type: string
-        name:
-          type: string
-        bodyTemplate:
-          type: string
-        url:
-          type: string
-        headers:
-          type: object
-          additionalProperties:
-            type: string
-      additionalProperties: false
-      type: object
-      required:
-        - url
-        - headers
-    com.patagona.pricemonitor.share.api.Callbacks:
-      properties:
-        pricemonitorCompleted:
-          type: array
-          items:
-            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.Callback'
-      additionalProperties: false
-      type: object
-      required:
-        - pricemonitorCompleted
     com.patagona.pricemonitor.share.api.CustomerContractSettings:
       description: >-
         CustomerContractSettings contains all settings adjustable by the

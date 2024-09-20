@@ -20,7 +20,7 @@ Method | HTTP request | Description
 [**delete_alert_settings**](InternalApi.md#delete_alert_settings) | **DELETE** /api/1/{contractId}/settings/alerts/{alertId} | Delete alert settings
 [**delete_auth_token**](InternalApi.md#delete_auth_token) | **DELETE** /controlpanel/users/{email}/authtokens/{token} | Delete authentication token
 [**delete_callback_settings_manufacturer_v2**](InternalApi.md#delete_callback_settings_manufacturer_v2) | **DELETE** /api/2/m/contracts/{contractId}/settings/callbacks | Delete callbacks [manufacturer]
-[**delete_callback_settings_vendor_v2**](InternalApi.md#delete_callback_settings_vendor_v2) | **DELETE** /api/2/v/contracts/{contractId}/settings/callbacks | Delete callbacks [vendor]
+[**delete_callback_settings_vendor_v2**](InternalApi.md#delete_callback_settings_vendor_v2) | **DELETE** /api/2/v/contracts/{contractId}/settings/callbacks | Delete callbacks
 [**delete_contract_vendor_v2**](InternalApi.md#delete_contract_vendor_v2) | **DELETE** /api/2/v/contracts/{contractId} | Delete contract [vendor]
 [**delete_dynamic_monitoring_settings**](InternalApi.md#delete_dynamic_monitoring_settings) | **DELETE** /api/1/{contractId}/settings/dynamicmonitoring | Delete dynamic monitoring settings
 [**delete_feed_vendor_v2**](InternalApi.md#delete_feed_vendor_v2) | **DELETE** /api/2/v/contracts/{contractId}/feeds/{feedId} | Deleted feed
@@ -46,7 +46,6 @@ Method | HTTP request | Description
 [**get_all_users**](InternalApi.md#get_all_users) | **GET** /controlpanel/api/users | Get a list of all users
 [**get_authorization_status_vendor_v3**](InternalApi.md#get_authorization_status_vendor_v3) | **GET** /api/v3/companies/{companyId}/amazon/authorization/status | Get authorization status for Amazon seller account
 [**get_callbacks**](InternalApi.md#get_callbacks) | **GET** /api/2/m/contracts/{contractId}/settings/callbacks | Get callbacks [manufacturer]
-[**get_callbacks_vendor_v2**](InternalApi.md#get_callbacks_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/settings/callbacks | Get callbacks [vendor]
 [**get_cheapest_vendors_manufacturer_v2**](InternalApi.md#get_cheapest_vendors_manufacturer_v2) | **POST** /api/2/m/contracts/{contractId}/result/vendors/cheapest | Query cheapest offers
 [**get_company**](InternalApi.md#get_company) | **GET** /controlpanel/api/companies/{companyId} | Get company
 [**get_complex_offer_filters_vendor_v2**](InternalApi.md#get_complex_offer_filters_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/offerfilters/{listType}/complex | Get all complex filters for the given contract.
@@ -143,7 +142,6 @@ Method | HTTP request | Description
 [**publish_preprocessing_task_vendor_v3**](InternalApi.md#publish_preprocessing_task_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/tasks/preprocessing | Publish preprocessing task [vendor]
 [**put_admin_domain_control_panel_v3**](InternalApi.md#put_admin_domain_control_panel_v3) | **PUT** /controlpanel/api/v3/domains/{domain} | Update or add domain
 [**put_callbacks**](InternalApi.md#put_callbacks) | **PUT** /api/2/m/contracts/{contractId}/settings/callbacks | Update callbacks [manufacturer]
-[**put_callbacks_vendor_v2**](InternalApi.md#put_callbacks_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/settings/callbacks | Update callbacks [vendor]
 [**put_complex_offer_filters_vendor_v2**](InternalApi.md#put_complex_offer_filters_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/offerfilters/{listType}/complex | Add the complex filters for the given contract.
 [**put_csv_products**](InternalApi.md#put_csv_products) | **PUT** /api/2/v/contracts/{contractId}/products/csv | Set products via CSV file (V2)
 [**put_csv_products_manufacturer_v3**](InternalApi.md#put_csv_products_manufacturer_v3) | **PUT** /api/v3/manufacturer/contracts/{contractId}/products | Set products via CSV file (V3)
@@ -2093,7 +2091,7 @@ Name | Type | Description  | Notes
 # **delete_callback_settings_vendor_v2**
 > object delete_callback_settings_vendor_v2(contract_id)
 
-Delete callbacks [vendor]
+Delete callbacks
 
 ### Example
 
@@ -2133,7 +2131,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
-        # Delete callbacks [vendor]
+        # Delete callbacks
         api_response = api_instance.delete_callback_settings_vendor_v2(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -2176,7 +2174,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     contract_id = 'qbcxvb' # str | ID of the contract
 
     try:
-        # Delete callbacks [vendor]
+        # Delete callbacks
         api_response = api_instance.delete_callback_settings_vendor_v2(contract_id)
         pprint(api_response)
     except ApiException as e:
@@ -5133,7 +5131,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_callbacks**
-> Callbacks get_callbacks(contract_id)
+> ComPatagonaPricemonitorShareApiCallbacks get_callbacks(contract_id)
 
 Get callbacks [manufacturer]
 
@@ -5233,7 +5231,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Callbacks**](Callbacks.md)
+[**ComPatagonaPricemonitorShareApiCallbacks**](ComPatagonaPricemonitorShareApiCallbacks.md)
 
 ### Authorization
 
@@ -5249,125 +5247,6 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | - |  -  |
 **404** | Settings for this contract don&#39;t exist yet |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **get_callbacks_vendor_v2**
-> object get_callbacks_vendor_v2(contract_id)
-
-Get callbacks [vendor]
-
-### Example
-
-* Basic Authentication (BasicAuth):
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: BasicAuth
-configuration = pricemonitor_api_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = pricemonitor_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.InternalApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-
-    try:
-        # Get callbacks [vendor]
-        api_response = api_instance.get_callbacks_vendor_v2(contract_id)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling InternalApi->get_callbacks_vendor_v2: %s\n" % e)
-```
-
-* Bearer (JWT) Authentication (BearerAuth):
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: BasicAuth
-configuration = pricemonitor_api_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = pricemonitor_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.InternalApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-
-    try:
-        # Get callbacks [vendor]
-        api_response = api_instance.get_callbacks_vendor_v2(contract_id)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling InternalApi->get_callbacks_vendor_v2: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
-
-### Return type
-
-**object**
-
-### Authorization
-
-[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | This is a generated entry and needs to be described. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -16905,7 +16784,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_callbacks**
-> put_callbacks(contract_id, callbacks)
+> put_callbacks(contract_id, com_patagona_pricemonitor_share_api_callbacks)
 
 Update callbacks [manufacturer]
 
@@ -16945,11 +16824,11 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.InternalApi(api_client)
     contract_id = 'qbcxvb' # str | ID of the contract
-callbacks = pricemonitor_api_client.Callbacks() # Callbacks | Callbacks
+com_patagona_pricemonitor_share_api_callbacks = pricemonitor_api_client.ComPatagonaPricemonitorShareApiCallbacks() # ComPatagonaPricemonitorShareApiCallbacks | Callbacks
 
     try:
         # Update callbacks [manufacturer]
-        api_instance.put_callbacks(contract_id, callbacks)
+        api_instance.put_callbacks(contract_id, com_patagona_pricemonitor_share_api_callbacks)
     except ApiException as e:
         print("Exception when calling InternalApi->put_callbacks: %s\n" % e)
 ```
@@ -16988,11 +16867,11 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.InternalApi(api_client)
     contract_id = 'qbcxvb' # str | ID of the contract
-callbacks = pricemonitor_api_client.Callbacks() # Callbacks | Callbacks
+com_patagona_pricemonitor_share_api_callbacks = pricemonitor_api_client.ComPatagonaPricemonitorShareApiCallbacks() # ComPatagonaPricemonitorShareApiCallbacks | Callbacks
 
     try:
         # Update callbacks [manufacturer]
-        api_instance.put_callbacks(contract_id, callbacks)
+        api_instance.put_callbacks(contract_id, com_patagona_pricemonitor_share_api_callbacks)
     except ApiException as e:
         print("Exception when calling InternalApi->put_callbacks: %s\n" % e)
 ```
@@ -17002,7 +16881,7 @@ callbacks = pricemonitor_api_client.Callbacks() # Callbacks | Callbacks
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **contract_id** | **str**| ID of the contract | 
- **callbacks** | [**Callbacks**](Callbacks.md)| Callbacks | 
+ **com_patagona_pricemonitor_share_api_callbacks** | [**ComPatagonaPricemonitorShareApiCallbacks**](ComPatagonaPricemonitorShareApiCallbacks.md)| Callbacks | 
 
 ### Return type
 
@@ -17022,128 +16901,6 @@ void (empty response body)
 |-------------|-------------|------------------|
 **200** | - |  -  |
 **404** | Settings for this contract don&#39;t exist yet |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **put_callbacks_vendor_v2**
-> object put_callbacks_vendor_v2(contract_id, body=body)
-
-Update callbacks [vendor]
-
-### Example
-
-* Basic Authentication (BasicAuth):
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: BasicAuth
-configuration = pricemonitor_api_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = pricemonitor_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.InternalApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-body = None # object | This is a generated entry and needs to be described. (optional)
-
-    try:
-        # Update callbacks [vendor]
-        api_response = api_instance.put_callbacks_vendor_v2(contract_id, body=body)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling InternalApi->put_callbacks_vendor_v2: %s\n" % e)
-```
-
-* Bearer (JWT) Authentication (BearerAuth):
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: BasicAuth
-configuration = pricemonitor_api_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = pricemonitor_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.InternalApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-body = None # object | This is a generated entry and needs to be described. (optional)
-
-    try:
-        # Update callbacks [vendor]
-        api_response = api_instance.put_callbacks_vendor_v2(contract_id, body=body)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling InternalApi->put_callbacks_vendor_v2: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
- **body** | **object**| This is a generated entry and needs to be described. | [optional] 
-
-### Return type
-
-**object**
-
-### Authorization
-
-[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | This is a generated entry and needs to be described. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

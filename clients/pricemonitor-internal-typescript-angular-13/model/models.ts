@@ -9,8 +9,6 @@ export * from './apiErrorResponse';
 export * from './apiOffer';
 export * from './apiProduct';
 export * from './bulkedPostProductsApiResponse';
-export * from './callbacks';
-export * from './callbacksPricemonitorCompletedInner';
 export * from './pricemonitorActivateMarketplaceResponseV3';
 export * from './pricemonitorAdminCompanyV2';
 export * from './pricemonitorAdminContractV2';
