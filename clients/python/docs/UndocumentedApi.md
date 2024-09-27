@@ -18,7 +18,9 @@ Method | HTTP request | Description
 [**delete_callback_settings_vendor_v2**](UndocumentedApi.md#delete_callback_settings_vendor_v2) | **DELETE** /api/2/v/contracts/{contractId}/settings/callbacks | Delete callbacks
 [**delete_contract_vendor_v2**](UndocumentedApi.md#delete_contract_vendor_v2) | **DELETE** /api/2/v/contracts/{contractId} | Delete contract [vendor]
 [**delete_dynamic_monitoring_settings**](UndocumentedApi.md#delete_dynamic_monitoring_settings) | **DELETE** /api/1/{contractId}/settings/dynamicmonitoring | Delete dynamic monitoring settings
+[**delete_export_request_vendor_v3**](UndocumentedApi.md#delete_export_request_vendor_v3) | **DELETE** /api/v3/vendor/contracts/{contractId}/export/{path} | Delete export operations
 [**delete_feed_vendor_v2**](UndocumentedApi.md#delete_feed_vendor_v2) | **DELETE** /api/2/v/contracts/{contractId}/feeds/{feedId} | Deleted feed
+[**delete_import_request_vendor_v3**](UndocumentedApi.md#delete_import_request_vendor_v3) | **DELETE** /api/v3/vendor/contracts/{contractId}/import/{path} | Delete import operations
 [**delete_import_settings_vendor_v2**](UndocumentedApi.md#delete_import_settings_vendor_v2) | **DELETE** /api/2/v/contracts/{contractId}/settings/import | Delete import settings
 [**delete_products_manufacturer_v3**](UndocumentedApi.md#delete_products_manufacturer_v3) | **DELETE** /api/v3/manufacturer/contracts/{contractId}/products | Delete products [manufacturer]
 [**delete_repricing_strategy_vendor_v2**](UndocumentedApi.md#delete_repricing_strategy_vendor_v2) | **DELETE** /api/2/v/contracts/{contractId}/settings/repricingstrategy | Delete repricing strategy
@@ -39,9 +41,11 @@ Method | HTTP request | Description
 [**get_customer_contract_settings_vendor_v3**](UndocumentedApi.md#get_customer_contract_settings_vendor_v3) | **GET** /api/v3/vendor/contracts/{contractId}/settings/customer | Get customer contract settings [vendor]
 [**get_dynamic_monitoring_settings**](UndocumentedApi.md#get_dynamic_monitoring_settings) | **GET** /api/1/{contractId}/settings/dynamicmonitoring | Get dynamic monitoring settings
 [**get_ebay_authorizations_vendor_v2**](UndocumentedApi.md#get_ebay_authorizations_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/settings/ebay/authorizations/{authIds} | Get Ebay authorization
+[**get_export_request_vendor_v3**](UndocumentedApi.md#get_export_request_vendor_v3) | **GET** /api/v3/vendor/contracts/{contractId}/export/{path} | Export operations for reading.
 [**get_extended_tags_manufacturer_v3**](UndocumentedApi.md#get_extended_tags_manufacturer_v3) | **GET** /api/v3/manufacturer/contracts/{contractId}/products/{productId}/extendedtags | Get extended tags [manufacturer]
 [**get_feed_export_delta_vendor_v2**](UndocumentedApi.md#get_feed_export_delta_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/feeds/{feedId}/export/delta | Get delta export feed
 [**get_feed_export_vendor_v2**](UndocumentedApi.md#get_feed_export_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/feeds/{feedId}/export | Get export feed
+[**get_import_request_vendor_v3**](UndocumentedApi.md#get_import_request_vendor_v3) | **GET** /api/v3/vendor/contracts/{contractId}/import/{path} | Import operations for reading.
 [**get_import_settings_vendor_v2**](UndocumentedApi.md#get_import_settings_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/settings/import | Get import settings
 [**get_manufacturer_manufacturer_v2**](UndocumentedApi.md#get_manufacturer_manufacturer_v2) | **GET** /api/2/m/contracts/{contractId} | Get contract [manufacturer]
 [**get_mappings_vendor_v2**](UndocumentedApi.md#get_mappings_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/productidentifiermapping | Get product mappings
@@ -83,19 +87,25 @@ Method | HTTP request | Description
 [**monitoring_pipeline_post_request_vendor_v3**](UndocumentedApi.md#monitoring_pipeline_post_request_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/monitoringpipeline/{path} | Update monitoring pipeline [vendor]
 [**monitoring_pipeline_upsert_search_attempts_manufacturer_v3**](UndocumentedApi.md#monitoring_pipeline_upsert_search_attempts_manufacturer_v3) | **POST** /api/v3/manufacturer/contracts/{contractId}/monitoringpipeline/v1/searchattempts | Update monitoring pipeline search attempts [manufacturer]
 [**monitoring_pipeline_upsert_search_attempts_vendor_v3**](UndocumentedApi.md#monitoring_pipeline_upsert_search_attempts_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/monitoringpipeline/v1/searchattempts | Update monitoring pipeline search attempts [vendor]
+[**patch_export_request_vendor_v3**](UndocumentedApi.md#patch_export_request_vendor_v3) | **PATCH** /api/v3/vendor/contracts/{contractId}/export/{path} | Patch export operations
+[**patch_import_request_vendor_v3**](UndocumentedApi.md#patch_import_request_vendor_v3) | **PATCH** /api/v3/vendor/contracts/{contractId}/import/{path} | Patch import operations
 [**patch_product_manufacturer_v3**](UndocumentedApi.md#patch_product_manufacturer_v3) | **PATCH** /api/v3/manufacturer/contracts/{contractId}/products/{productId} | Update product [manufacturer]
 [**patch_product_vendor_v3**](UndocumentedApi.md#patch_product_vendor_v3) | **PATCH** /api/v3/vendor/contracts/{contractId}/products/{productId} | Update product [vendor]
 [**position_distribution**](UndocumentedApi.md#position_distribution) | **POST** /api/1/{contractId}/vendors/{vendor}/positions | Update position distribution
 [**post_ebay_authorization_vendor_v2**](UndocumentedApi.md#post_ebay_authorization_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/settings/ebay/authorizations | Update Ebay authorization
+[**post_export_request_vendor_v3**](UndocumentedApi.md#post_export_request_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/export/{path} | Write export operations
 [**post_feed_vendor_v2**](UndocumentedApi.md#post_feed_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/feeds | Create feed
+[**post_import_request_vendor_v3**](UndocumentedApi.md#post_import_request_vendor_v3) | **POST** /api/v3/vendor/contracts/{contractId}/import/{path} | Write import operations
 [**post_mappings_vendor_v2**](UndocumentedApi.md#post_mappings_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/productidentifiermapping | Update product identifier mapping
 [**put_currency_vendor_v2**](UndocumentedApi.md#put_currency_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/settings/currency | Update currency settings [vendor]
 [**put_customer_contract_settings_manufacturer_v3**](UndocumentedApi.md#put_customer_contract_settings_manufacturer_v3) | **PUT** /api/v3/manufacturer/contracts/{contractId}/settings/customer | Update contract settings [manufacturer]
 [**put_customer_contract_settings_vendor_v3**](UndocumentedApi.md#put_customer_contract_settings_vendor_v3) | **PUT** /api/v3/vendor/contracts/{contractId}/settings/customer | Update customer contract settings [vendor]
 [**put_dynamic_monitoring_settings**](UndocumentedApi.md#put_dynamic_monitoring_settings) | **PUT** /api/1/{contractId}/settings/dynamicmonitoring | Update dynamic monitoring settings
+[**put_export_request_vendor_v3**](UndocumentedApi.md#put_export_request_vendor_v3) | **PUT** /api/v3/vendor/contracts/{contractId}/export/{path} | Update export operations
 [**put_feed_vendor_v2**](UndocumentedApi.md#put_feed_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/feeds/{feedId} | Update feed
 [**put_image_tag_manufacturer_v2**](UndocumentedApi.md#put_image_tag_manufacturer_v2) | **PUT** /api/2/m/contracts/{contractId}/settings/imagetag | Update image tag [manufacturer]
 [**put_image_tag_vendor_v2**](UndocumentedApi.md#put_image_tag_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/settings/imagetag | Update image tag [vendor]
+[**put_import_request_vendor_v3**](UndocumentedApi.md#put_import_request_vendor_v3) | **PUT** /api/v3/vendor/contracts/{contractId}/import/{path} | Update import operations
 [**put_import_settings_vendor_v2**](UndocumentedApi.md#put_import_settings_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/settings/import | Update import settings
 [**put_monitoring_settings_manufacturer_v3**](UndocumentedApi.md#put_monitoring_settings_manufacturer_v3) | **PUT** /api/v3/manufacturer/contracts/{contractId}/settings/monitoring | Update monitoring settings [manufacturer]
 [**put_monitoring_settings_vendor_v2**](UndocumentedApi.md#put_monitoring_settings_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/settings/monitoring | Update monitoring settings [vendor]
@@ -1757,6 +1767,130 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **delete_export_request_vendor_v3**
+> object delete_export_request_vendor_v3(contract_id, path)
+
+Delete export operations
+
+The DELETE request is proxied to the internal export API.
+
+### Example
+
+* Basic Authentication (BasicAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.UndocumentedApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+path = 'path_example' # str | The export path to be called
+
+    try:
+        # Delete export operations
+        api_response = api_instance.delete_export_request_vendor_v3(contract_id, path)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling UndocumentedApi->delete_export_request_vendor_v3: %s\n" % e)
+```
+
+* Bearer (JWT) Authentication (BearerAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.UndocumentedApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+path = 'path_example' # str | The export path to be called
+
+    try:
+        # Delete export operations
+        api_response = api_instance.delete_export_request_vendor_v3(contract_id, path)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling UndocumentedApi->delete_export_request_vendor_v3: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **contract_id** | **str**| ID of the contract | 
+ **path** | **str**| The export path to be called | 
+
+### Return type
+
+**object**
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful response returned by the Export API. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **delete_feed_vendor_v2**
 > object delete_feed_vendor_v2(contract_id, feed_id)
 
@@ -1876,6 +2010,130 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | This is a generated entry and needs to be described. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **delete_import_request_vendor_v3**
+> object delete_import_request_vendor_v3(contract_id, path)
+
+Delete import operations
+
+The DELETE request is proxied to the internal import API.
+
+### Example
+
+* Basic Authentication (BasicAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.UndocumentedApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+path = 'path_example' # str | The import path to be called
+
+    try:
+        # Delete import operations
+        api_response = api_instance.delete_import_request_vendor_v3(contract_id, path)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling UndocumentedApi->delete_import_request_vendor_v3: %s\n" % e)
+```
+
+* Bearer (JWT) Authentication (BearerAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.UndocumentedApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+path = 'path_example' # str | The import path to be called
+
+    try:
+        # Delete import operations
+        api_response = api_instance.delete_import_request_vendor_v3(contract_id, path)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling UndocumentedApi->delete_import_request_vendor_v3: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **contract_id** | **str**| ID of the contract | 
+ **path** | **str**| The import path to be called | 
+
+### Return type
+
+**object**
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful response returned by the Import API. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -4291,6 +4549,130 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_export_request_vendor_v3**
+> object get_export_request_vendor_v3(contract_id, path)
+
+Export operations for reading.
+
+The GET request is proxied to the internal Export API.
+
+### Example
+
+* Basic Authentication (BasicAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.UndocumentedApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+path = 'path_example' # str | The export path to be called
+
+    try:
+        # Export operations for reading.
+        api_response = api_instance.get_export_request_vendor_v3(contract_id, path)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling UndocumentedApi->get_export_request_vendor_v3: %s\n" % e)
+```
+
+* Bearer (JWT) Authentication (BearerAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.UndocumentedApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+path = 'path_example' # str | The export path to be called
+
+    try:
+        # Export operations for reading.
+        api_response = api_instance.get_export_request_vendor_v3(contract_id, path)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling UndocumentedApi->get_export_request_vendor_v3: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **contract_id** | **str**| ID of the contract | 
+ **path** | **str**| The export path to be called | 
+
+### Return type
+
+**object**
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful response returned by the Export API. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_extended_tags_manufacturer_v3**
 > object get_extended_tags_manufacturer_v3(contract_id, product_id)
 
@@ -4660,6 +5042,130 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | This is a generated entry and needs to be described. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_import_request_vendor_v3**
+> object get_import_request_vendor_v3(contract_id, path)
+
+Import operations for reading.
+
+The GET request is proxied to the internal Import API.
+
+### Example
+
+* Basic Authentication (BasicAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.UndocumentedApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+path = 'path_example' # str | The import path to be called
+
+    try:
+        # Import operations for reading.
+        api_response = api_instance.get_import_request_vendor_v3(contract_id, path)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling UndocumentedApi->get_import_request_vendor_v3: %s\n" % e)
+```
+
+* Bearer (JWT) Authentication (BearerAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.UndocumentedApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+path = 'path_example' # str | The import path to be called
+
+    try:
+        # Import operations for reading.
+        api_response = api_instance.get_import_request_vendor_v3(contract_id, path)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling UndocumentedApi->get_import_request_vendor_v3: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **contract_id** | **str**| ID of the contract | 
+ **path** | **str**| The import path to be called | 
+
+### Return type
+
+**object**
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful response returned by the Import API. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -9563,6 +10069,254 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **patch_export_request_vendor_v3**
+> object patch_export_request_vendor_v3(contract_id, path)
+
+Patch export operations
+
+The PATCH request is proxied to the internal export API.
+
+### Example
+
+* Basic Authentication (BasicAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.UndocumentedApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+path = 'path_example' # str | The export path to be called
+
+    try:
+        # Patch export operations
+        api_response = api_instance.patch_export_request_vendor_v3(contract_id, path)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling UndocumentedApi->patch_export_request_vendor_v3: %s\n" % e)
+```
+
+* Bearer (JWT) Authentication (BearerAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.UndocumentedApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+path = 'path_example' # str | The export path to be called
+
+    try:
+        # Patch export operations
+        api_response = api_instance.patch_export_request_vendor_v3(contract_id, path)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling UndocumentedApi->patch_export_request_vendor_v3: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **contract_id** | **str**| ID of the contract | 
+ **path** | **str**| The export path to be called | 
+
+### Return type
+
+**object**
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful response returned by the Export API. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **patch_import_request_vendor_v3**
+> object patch_import_request_vendor_v3(contract_id, path)
+
+Patch import operations
+
+The PATCH request is proxied to the internal import API.
+
+### Example
+
+* Basic Authentication (BasicAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.UndocumentedApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+path = 'path_example' # str | The import path to be called
+
+    try:
+        # Patch import operations
+        api_response = api_instance.patch_import_request_vendor_v3(contract_id, path)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling UndocumentedApi->patch_import_request_vendor_v3: %s\n" % e)
+```
+
+* Bearer (JWT) Authentication (BearerAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.UndocumentedApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+path = 'path_example' # str | The import path to be called
+
+    try:
+        # Patch import operations
+        api_response = api_instance.patch_import_request_vendor_v3(contract_id, path)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling UndocumentedApi->patch_import_request_vendor_v3: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **contract_id** | **str**| ID of the contract | 
+ **path** | **str**| The import path to be called | 
+
+### Return type
+
+**object**
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful response returned by the Import API. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **patch_product_manufacturer_v3**
 > object patch_product_manufacturer_v3(contract_id, product_id, body=body)
 
@@ -10063,6 +10817,130 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **post_export_request_vendor_v3**
+> object post_export_request_vendor_v3(contract_id, path)
+
+Write export operations
+
+The POST request is proxied to the internal Export API.
+
+### Example
+
+* Basic Authentication (BasicAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.UndocumentedApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+path = 'path_example' # str | The export path to be called
+
+    try:
+        # Write export operations
+        api_response = api_instance.post_export_request_vendor_v3(contract_id, path)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling UndocumentedApi->post_export_request_vendor_v3: %s\n" % e)
+```
+
+* Bearer (JWT) Authentication (BearerAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.UndocumentedApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+path = 'path_example' # str | The export path to be called
+
+    try:
+        # Write export operations
+        api_response = api_instance.post_export_request_vendor_v3(contract_id, path)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling UndocumentedApi->post_export_request_vendor_v3: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **contract_id** | **str**| ID of the contract | 
+ **path** | **str**| The export path to be called | 
+
+### Return type
+
+**object**
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful response returned by the Export API. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **post_feed_vendor_v2**
 > object post_feed_vendor_v2(contract_id, body=body)
 
@@ -10182,6 +11060,130 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | This is a generated entry and needs to be described. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **post_import_request_vendor_v3**
+> object post_import_request_vendor_v3(contract_id, path)
+
+Write import operations
+
+The POST request is proxied to the internal Import API.
+
+### Example
+
+* Basic Authentication (BasicAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.UndocumentedApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+path = 'path_example' # str | The import path to be called
+
+    try:
+        # Write import operations
+        api_response = api_instance.post_import_request_vendor_v3(contract_id, path)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling UndocumentedApi->post_import_request_vendor_v3: %s\n" % e)
+```
+
+* Bearer (JWT) Authentication (BearerAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.UndocumentedApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+path = 'path_example' # str | The import path to be called
+
+    try:
+        # Write import operations
+        api_response = api_instance.post_import_request_vendor_v3(contract_id, path)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling UndocumentedApi->post_import_request_vendor_v3: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **contract_id** | **str**| ID of the contract | 
+ **path** | **str**| The import path to be called | 
+
+### Return type
+
+**object**
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful response returned by the Import API. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -10795,6 +11797,130 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **put_export_request_vendor_v3**
+> object put_export_request_vendor_v3(contract_id, path)
+
+Update export operations
+
+The PUT request is proxied to the internal Export API.
+
+### Example
+
+* Basic Authentication (BasicAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.UndocumentedApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+path = 'path_example' # str | The export path to be called
+
+    try:
+        # Update export operations
+        api_response = api_instance.put_export_request_vendor_v3(contract_id, path)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling UndocumentedApi->put_export_request_vendor_v3: %s\n" % e)
+```
+
+* Bearer (JWT) Authentication (BearerAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.UndocumentedApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+path = 'path_example' # str | The export path to be called
+
+    try:
+        # Update export operations
+        api_response = api_instance.put_export_request_vendor_v3(contract_id, path)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling UndocumentedApi->put_export_request_vendor_v3: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **contract_id** | **str**| ID of the contract | 
+ **path** | **str**| The export path to be called | 
+
+### Return type
+
+**object**
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful response returned by the Export API. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **put_feed_vendor_v2**
 > object put_feed_vendor_v2(contract_id, feed_id, body=body)
 
@@ -11161,6 +12287,130 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | This is a generated entry and needs to be described. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_import_request_vendor_v3**
+> object put_import_request_vendor_v3(contract_id, path)
+
+Update import operations
+
+The PUT request is proxied to the internal Import API.
+
+### Example
+
+* Basic Authentication (BasicAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.UndocumentedApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+path = 'path_example' # str | The import path to be called
+
+    try:
+        # Update import operations
+        api_response = api_instance.put_import_request_vendor_v3(contract_id, path)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling UndocumentedApi->put_import_request_vendor_v3: %s\n" % e)
+```
+
+* Bearer (JWT) Authentication (BearerAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.UndocumentedApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+path = 'path_example' # str | The import path to be called
+
+    try:
+        # Update import operations
+        api_response = api_instance.put_import_request_vendor_v3(contract_id, path)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling UndocumentedApi->put_import_request_vendor_v3: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **contract_id** | **str**| ID of the contract | 
+ **path** | **str**| The import path to be called | 
+
+### Return type
+
+**object**
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful response returned by the Import API. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
