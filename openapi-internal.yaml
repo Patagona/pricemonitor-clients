@@ -10,7 +10,7 @@ info:
   description: >
     The Omnia 2.0 API is RESTful and provides access to the backend of Omnia 2.0
     and Pricemonitor. It is used to manage products, offers, contracts and more.
-  version: 0.0.7000
+  version: 0.0.7001
   x-logo:
     url: >-
       https://www.omniaretail.com/hubfs/Omnia%20Logo%20SVG/Omnia_Retail_Full_Colour_Logo_On_White_RGB.svg
@@ -2616,6 +2616,13 @@ paths:
             default: 100
             format: int32
             type: integer
+        - description: Whether to return tags of products or not.
+          in: query
+          name: includeTags
+          required: false
+          schema:
+            default: true
+            type: boolean
       responses:
         '200':
           content:
@@ -8035,6 +8042,9 @@ paths:
           provide up to 10000 customerProductId's in the query and keep the
           pagination at start: 0, limit: 10000. <br>
 
+          It also contains a boolean optional parameter 'includeTags' which is
+          used to include the tags of the products in the response. <br>
+
           The only allowed pattern is currently: <br>
 
           { <br>
@@ -8058,7 +8068,9 @@ paths:
 
           &nbsp;&nbsp;&nbsp;&nbsp;} <br>
 
-          &nbsp;&nbsp;} <br>
+          &nbsp;&nbsp;}, <br>
+
+          &nbsp;&nbsp;"includeTags": ${includeTags} <br>
 
           } <br>
 
@@ -8087,7 +8099,9 @@ paths:
 
           &nbsp;&nbsp;&nbsp;&nbsp;} <br>
 
-          &nbsp;&nbsp;} <br>
+          &nbsp;&nbsp;}, <br>
+
+          &nbsp;&nbsp;"includeTags": true <br>
 
           } <br>
       security:
@@ -13843,6 +13857,9 @@ components:
           description: ''
         filter:
           $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.Query'
+          description: ''
+        includeTags:
+          type: boolean
           description: ''
       additionalProperties: false
       type: object

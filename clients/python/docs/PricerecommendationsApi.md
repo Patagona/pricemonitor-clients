@@ -135,7 +135,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_price_recommendation**
-> GetPriceRecommendationApiResponse get_price_recommendation(contract_id, start_time, end_time, start, limit=limit)
+> GetPriceRecommendationApiResponse get_price_recommendation(contract_id, start_time, end_time, start, limit=limit, include_tags=include_tags)
 
 Get all price recommendations
 
@@ -181,10 +181,11 @@ start_time = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time
 end_time = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC
 start = 56 # int | Start price-recommendation index for pagination
 limit = 100 # int | Number of price-recommendations for pagination (optional) (default to 100)
+include_tags = True # bool | Whether to return tags of products or not. (optional) (default to True)
 
     try:
         # Get all price recommendations
-        api_response = api_instance.get_price_recommendation(contract_id, start_time, end_time, start, limit=limit)
+        api_response = api_instance.get_price_recommendation(contract_id, start_time, end_time, start, limit=limit, include_tags=include_tags)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling PricerecommendationsApi->get_price_recommendation: %s\n" % e)
@@ -228,10 +229,11 @@ start_time = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time
 end_time = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC
 start = 56 # int | Start price-recommendation index for pagination
 limit = 100 # int | Number of price-recommendations for pagination (optional) (default to 100)
+include_tags = True # bool | Whether to return tags of products or not. (optional) (default to True)
 
     try:
         # Get all price recommendations
-        api_response = api_instance.get_price_recommendation(contract_id, start_time, end_time, start, limit=limit)
+        api_response = api_instance.get_price_recommendation(contract_id, start_time, end_time, start, limit=limit, include_tags=include_tags)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling PricerecommendationsApi->get_price_recommendation: %s\n" % e)
@@ -246,6 +248,7 @@ Name | Type | Description  | Notes
  **end_time** | **datetime**| Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC | 
  **start** | **int**| Start price-recommendation index for pagination | 
  **limit** | **int**| Number of price-recommendations for pagination | [optional] [default to 100]
+ **include_tags** | **bool**| Whether to return tags of products or not. | [optional] [default to True]
 
 ### Return type
 
