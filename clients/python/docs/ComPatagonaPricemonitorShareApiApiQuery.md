@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **pagination** | [**ComPatagonaPricemonitorShareApiPagination**](ComPatagonaPricemonitorShareApiPagination.md) |  | 
 **filter** | [**ComPatagonaPricemonitorShareApiQuery**](ComPatagonaPricemonitorShareApiQuery.md) |  | [optional] 
-**include_tags** | **bool** |  | [optional] 
+**include_tags** | **bool** | Whether to include tags in the response or not | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
