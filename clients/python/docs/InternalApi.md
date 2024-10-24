@@ -18198,7 +18198,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     api_instance = pricemonitor_api_client.InternalApi(api_client)
     contract_id = 'qbcxvb' # str | ID of the contract
 content_type = 'text/csv' # str | 
-patagona_product_identifying_attributes = 'id-column' # str | Comma separated list of csv columns that identify a product uniquely
+patagona_product_identifying_attributes = 'id-column' # str | A single CSV column that identify a product uniquely. Avoid using tags as an identifier, as this feature will soon be deprecated. By doing so, you may loose historical market data during product import.
 patagona_product_name = 'name-column' # str | Csv column that contains the product name
 patagona_product_reference_price = 'reference-price-column' # str | Csv column that contains the reference price
 patagona_decimal_separator = '.' # str | Decimal separator used for parsing numbers \\ The values for patagona-decimal-separator, patagona-csv-column-separator and patagona-csv-quotation-character must be different from one another. \\ Available values: \",\", \".\"
@@ -18251,7 +18251,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     api_instance = pricemonitor_api_client.InternalApi(api_client)
     contract_id = 'qbcxvb' # str | ID of the contract
 content_type = 'text/csv' # str | 
-patagona_product_identifying_attributes = 'id-column' # str | Comma separated list of csv columns that identify a product uniquely
+patagona_product_identifying_attributes = 'id-column' # str | A single CSV column that identify a product uniquely. Avoid using tags as an identifier, as this feature will soon be deprecated. By doing so, you may loose historical market data during product import.
 patagona_product_name = 'name-column' # str | Csv column that contains the product name
 patagona_product_reference_price = 'reference-price-column' # str | Csv column that contains the reference price
 patagona_decimal_separator = '.' # str | Decimal separator used for parsing numbers \\ The values for patagona-decimal-separator, patagona-csv-column-separator and patagona-csv-quotation-character must be different from one another. \\ Available values: \",\", \".\"
@@ -18275,7 +18275,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **contract_id** | **str**| ID of the contract | 
  **content_type** | **str**|  | 
- **patagona_product_identifying_attributes** | **str**| Comma separated list of csv columns that identify a product uniquely | 
+ **patagona_product_identifying_attributes** | **str**| A single CSV column that identify a product uniquely. Avoid using tags as an identifier, as this feature will soon be deprecated. By doing so, you may loose historical market data during product import. | 
  **patagona_product_name** | **str**| Csv column that contains the product name | 
  **patagona_product_reference_price** | **str**| Csv column that contains the reference price | 
  **patagona_decimal_separator** | **str**| Decimal separator used for parsing numbers \\ The values for patagona-decimal-separator, patagona-csv-column-separator and patagona-csv-quotation-character must be different from one another. \\ Available values: \&quot;,\&quot;, \&quot;.\&quot; | 
