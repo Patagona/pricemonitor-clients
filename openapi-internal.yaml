@@ -10,7 +10,7 @@ info:
   description: >
     The Omnia 2.0 API is RESTful and provides access to the backend of Omnia 2.0
     and Pricemonitor. It is used to manage products, offers, contracts and more.
-  version: 0.0.7016
+  version: 0.0.7017
   x-logo:
     url: >-
       https://www.omniaretail.com/hubfs/Omnia%20Logo%20SVG/Omnia_Retail_Full_Colour_Logo_On_White_RGB.svg
@@ -10514,97 +10514,6 @@ components:
       properties:
         data:
           type: object
-    ApiOffer:
-      properties:
-        attributes:
-          items:
-            $ref: '#/components/schemas/OfferAttribute'
-          type: array
-        availability:
-          type: boolean
-        creationDate:
-          format: date-time
-          type: string
-        contractId:
-          type: string
-        currency:
-          type: string
-        deliveryCosts:
-          format: double
-          type: number
-        domain:
-          type: string
-        gtin:
-          format: int64
-          type: integer
-        ignored:
-          type: boolean
-        maxDeliveryTime:
-          type: integer
-        minDeliveryTime:
-          type: integer
-        positionByUnitPrice:
-          type: integer
-        positionByTotalPrice:
-          type: integer
-        price:
-          format: double
-          type: number
-        productId:
-          type: string
-        productName:
-          type: string
-        retrievalDate:
-          format: date-time
-          type: string
-        url:
-          type: string
-        vendorDomainId:
-          type: string
-        vendorName:
-          type: string
-      required:
-        - productId
-        - domain
-        - price
-        - deliveryCosts
-        - productName
-        - vendorName
-        - creationDate
-        - currency
-        - contractId
-        - url
-        - ignored
-    ApiProduct:
-      properties:
-        tags:
-          items:
-            $ref: '#/components/schemas/Tag'
-          type: array
-        customerProductId:
-          type: string
-        gtin:
-          format: int64
-          type: integer
-        id:
-          type: string
-        maxPriceBoundary:
-          format: double
-          type: number
-        minPriceBoundary:
-          format: double
-          type: number
-        name:
-          type: string
-        referencePrice:
-          format: double
-          type: number
-      required:
-        - id
-        - name
-        - referencePrice
-        - tags
-      type: object
     PostProduct:
       properties:
         tags:
@@ -10863,15 +10772,6 @@ components:
             type: object
           type: array
       type: object
-    OfferAttribute:
-      properties:
-        name:
-          type: string
-        value:
-          type: string
-      required:
-        - name
-        - value
     Pagination:
       properties:
         limit:
@@ -11098,15 +10998,6 @@ components:
         referencePrice:
           format: double
           type: number
-      type: object
-    ProductAndOffers:
-      properties:
-        offers:
-          items:
-            $ref: '#/components/schemas/ApiOffer'
-          type: array
-        product:
-          $ref: '#/components/schemas/ApiProduct'
       type: object
     ProductOffersApiQuery:
       properties:
@@ -12313,6 +12204,196 @@ components:
         - id
         - lastActiveDate
         - name
+    com.patagona.pricemonitor.share.api.Tag:
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+      additionalProperties: false
+      type: object
+      required:
+        - key
+        - value
+    com.patagona.pricemonitor.share.api.ApiProduct:
+      description: Represents a product in Omnia 2.0.
+      properties:
+        name:
+          type: string
+          description: The name of the product.
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.Tag'
+          description: >-
+            Additional imported information as key-value pairs about this
+            product.
+        minPriceBoundary:
+          type: number
+          description: >-
+            The minimum price that Omnia 2.0 can recommend for the product.
+            Omnia 2.0 won't recommend any price below this boundary.
+        gtin:
+          type: number
+          description: GTIN / EAN of the product. This field is optional.
+        customerProductId:
+          type: string
+          description: >-
+            Your ID of the product. This field allows to link products in Omnia
+            2.0 to products in your system.
+        id:
+          type: string
+          description: The internal product ID in Omnia 2.0.
+        maxPriceBoundary:
+          type: number
+          description: >-
+            The maximum price that Omnia 2.0 can recommend for the product.
+            Omnia 2.0 won't recommend any price above this boundary.
+        referencePrice:
+          type: number
+          description: >-
+            The current selling price of the product. This price will be used as
+            benchmark or variable for certain components in Omnia 2.0.
+      additionalProperties: false
+      type: object
+      required:
+        - tags
+        - id
+        - name
+        - referencePrice
+    com.patagona.pricemonitor.share.api.OfferAttribute:
+      description: Created by Andreas Frankenberger on 28.01.16.
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+      additionalProperties: false
+      type: object
+      required:
+        - name
+        - value
+    com.patagona.pricemonitor.share.api.ApiOffer:
+      description: Represents an offer for a product on a certain domain.
+      properties:
+        positionByTotalPrice:
+          type: integer
+          description: The position of the offer on the domain when sorted by total price.
+        deliveryCosts:
+          type: number
+          description: >-
+            The additional charges for delivering the product to the customer's
+            location (shipping costs).
+        maxDeliveryTime:
+          type: integer
+          description: >-
+            Optional maximum time, in hours, it takes for the product to be
+            delivered to the customer.
+        url:
+          type: string
+          description: >-
+            The direct link to the product page on the domain where this offer
+            can be found.
+        vendorDomainId:
+          type: string
+          description: >-
+            An identifier of the vendor on the domain. Identifiers are available
+            for certain domains only.
+        domain:
+          type: string
+          description: The website from which the offer originates.
+        price:
+          type: number
+          description: The unit price of the offer.
+        minDeliveryTime:
+          type: integer
+          description: >-
+            Optional minimum time, in hours, it takes for the product to be
+            delivered to the customer.
+        gtin:
+          type: number
+          description: An optional field for the GTIN / EAN of the product.
+        positionByUnitPrice:
+          type: integer
+          description: The position of the offer on the domain when sorted by unit price.
+        availability:
+          type: boolean
+          description: >-
+            An optional flag indicating whether the product is currently in
+            stock and available for purchase.
+        attributes:
+          type: array
+          items:
+            $ref: >-
+              #/components/schemas/com.patagona.pricemonitor.share.api.OfferAttribute
+          description: A list of additional offer details.
+        vendorName:
+          type: string
+          description: >-
+            The display name of the shop which sells the product. In some cases
+            (e.g. marketplaces) with some additional information about the
+            seller: e.g. Amazon NL - Sold By Amazon NL
+        retrievalDate:
+          type: string
+          format: date-time
+          description: >-
+            Optional timestamp based on ISO 8601 format, indicating when this
+            offer was fetched from the domain.
+        creationDate:
+          type: string
+          format: date-time
+          description: >-
+            An optional timestamp in ISO 8601 format indicating when this offer
+            was stored in Omnia 2.0. This is not the timestamp when the offer
+            was fetched from the domain; for that, use retrievalDate.
+        productName:
+          type: string
+          description: The name of the product as listed on the domain.
+        currency:
+          type: string
+          description: >-
+            The currency in which the price and delivery costs are expressed.
+            Provided values are ISO 4217 currency codes like "EUR".
+        productId:
+          type: string
+          description: The internal product ID in Omnia 2.0.
+        ignored:
+          type: boolean
+          description: >-
+            A flag indicating whether the offer has been blacklisted or not by
+            the Omnia 2.0 filters.
+      additionalProperties: false
+      type: object
+      required:
+        - productName
+        - ignored
+        - url
+        - attributes
+        - positionByUnitPrice
+        - vendorName
+        - productId
+        - price
+        - deliveryCosts
+        - creationDate
+        - currency
+        - positionByTotalPrice
+        - domain
+    com.patagona.pricemonitor.share.api.ProductAndOffers:
+      description: Represents a product and its corresponding offers.
+      properties:
+        product:
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ApiProduct'
+          description: The product information.
+        offers:
+          type: array
+          items:
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ApiOffer'
+          description: The list of offers for the corresponding product.
+      additionalProperties: false
+      type: object
+      required:
+        - product
+        - offers
     GetOffersApiResponse:
       required:
         - data
@@ -12322,7 +12403,8 @@ components:
       properties:
         data:
           items:
-            $ref: '#/components/schemas/ProductAndOffers'
+            $ref: >-
+              #/components/schemas/com.patagona.pricemonitor.share.api.ProductAndOffers
           type: array
     com.patagona.pricemonitor.share.api.GetShopsByDomainResponseV3:
       description: Describes a domain and its corresponding shops
@@ -12375,79 +12457,6 @@ components:
         - endDate
         - limit
         - startDate
-    com.patagona.pricemonitor.share.api.OfferAttribute:
-      description: Created by Andreas Frankenberger on 28.01.16.
-      properties:
-        name:
-          type: string
-        value:
-          type: string
-      additionalProperties: false
-      type: object
-      required:
-        - name
-        - value
-    com.patagona.pricemonitor.share.api.ApiOffer:
-      properties:
-        positionByTotalPrice:
-          type: integer
-        deliveryCosts:
-          type: number
-        maxDeliveryTime:
-          type: integer
-        url:
-          type: string
-        vendorDomainId:
-          type: string
-        domain:
-          type: string
-        price:
-          type: number
-        minDeliveryTime:
-          type: integer
-        gtin:
-          type: number
-        positionByUnitPrice:
-          type: integer
-        availability:
-          type: boolean
-        attributes:
-          type: array
-          items:
-            $ref: >-
-              #/components/schemas/com.patagona.pricemonitor.share.api.OfferAttribute
-        vendorName:
-          type: string
-        retrievalDate:
-          type: string
-          format: date-time
-        creationDate:
-          type: string
-          format: date-time
-        productName:
-          type: string
-        currency:
-          type: string
-        productId:
-          type: string
-        ignored:
-          type: boolean
-      additionalProperties: false
-      type: object
-      required:
-        - productName
-        - ignored
-        - url
-        - attributes
-        - positionByUnitPrice
-        - vendorName
-        - productId
-        - price
-        - deliveryCosts
-        - creationDate
-        - currency
-        - positionByTotalPrice
-        - domain
     QueryOffersOfShopV3ApiResponse:
       required:
         - data
@@ -12736,7 +12745,7 @@ components:
       properties:
         data:
           items:
-            $ref: '#/components/schemas/ApiOffer'
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ApiOffer'
           type: array
     com.patagona.pricemonitor.share.api.ShopV3:
       description: A shop, in terms of online shop, sells his products on a certain domain.
@@ -13702,61 +13711,6 @@ components:
         data:
           $ref: >-
             #/components/schemas/com.patagona.pricemonitor.share.api.GetContractResponseV3
-    com.patagona.pricemonitor.share.api.Tag:
-      properties:
-        key:
-          type: string
-        value:
-          type: string
-      additionalProperties: false
-      type: object
-      required:
-        - key
-        - value
-    com.patagona.pricemonitor.share.api.ApiProduct:
-      description: A product in the pricemonitor.
-      properties:
-        name:
-          type: string
-          description: Name of the product.
-        tags:
-          type: array
-          items:
-            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.Tag'
-          description: Additional information on this product.
-        minPriceBoundary:
-          type: number
-          description: >-
-            Maximum price which pricemonitor can recommend for the product. It
-            won't recommend any price above this boundary.
-        gtin:
-          type: number
-          description: GTIN of the product. Can be optionally.
-        customerProductId:
-          type: string
-          description: >-
-            The customer's id of the product. This field allows to link products
-            in pricemonitor to products in the customer's system.
-        id:
-          type: string
-          description: Id of the product in the pricemonitor.
-        maxPriceBoundary:
-          type: number
-          description: >-
-            Minimum price which pricemonitor can recommend for the product. It
-            won't recommend any price below this boundary.
-        referencePrice:
-          type: number
-          description: >-
-            Some price that will be used as benchmark for certain components in
-            pricemonitor.
-      additionalProperties: false
-      type: object
-      required:
-        - tags
-        - id
-        - name
-        - referencePrice
     QueryProductsByFilterManufacturerV3ApiResponse:
       required:
         - data

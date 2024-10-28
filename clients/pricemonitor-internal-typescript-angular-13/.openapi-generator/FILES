@@ -39,8 +39,6 @@ model/andOfferFilterAnd.ts
 model/apiContract.ts
 model/apiError.ts
 model/apiErrorResponse.ts
-model/apiOffer.ts
-model/apiProduct.ts
 model/bulkedPostProductsApiResponse.ts
 model/pricemonitorActivateMarketplaceResponseV3.ts
 model/pricemonitorAdminCompanyV2.ts
@@ -118,6 +116,7 @@ model/pricemonitorPriceStatisticsV31.ts
 model/pricemonitorPricesByDayByProductIdRequestV2.ts
 model/pricemonitorPricesByDayByProductIdResponsePricePointV2.ts
 model/pricemonitorPricesByDayByProductIdResponseV2.ts
+model/pricemonitorProductAndOffers.ts
 model/pricemonitorProductIdQuery.ts
 model/pricemonitorProductMonitoringStatus.ts
 model/pricemonitorProductMonitoringStatusOnDomain.ts
@@ -210,7 +209,6 @@ model/models.ts
 model/monitoringJob.ts
 model/monitoringJobAllOf.ts
 model/newUser.ts
-model/offerAttribute.ts
 model/offerFilterApiResponse.ts
 model/offerStatistics.ts
 model/offersQuerySortOrderV30.ts
@@ -241,7 +239,6 @@ model/priceRecommendationApiQueryV2.ts
 model/priceRecommendationQuerySortOrderV2.ts
 model/pricewatchJob.ts
 model/product.ts
-model/productAndOffers.ts
 model/productImportJob.ts
 model/productOfferStatistics.ts
 model/productOffersApiQuery.ts
