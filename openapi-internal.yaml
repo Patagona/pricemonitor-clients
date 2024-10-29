@@ -10,7 +10,7 @@ info:
   description: >
     The Omnia 2.0 API is RESTful and provides access to the backend of Omnia 2.0
     and Pricemonitor. It is used to manage products, offers, contracts and more.
-  version: 0.0.7017
+  version: 0.0.7018
   x-logo:
     url: >-
       https://www.omniaretail.com/hubfs/Omnia%20Logo%20SVG/Omnia_Retail_Full_Colour_Logo_On_White_RGB.svg
@@ -9024,6 +9024,101 @@ paths:
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
       - description: The import path to be called
+        in: path
+        name: path
+        required: true
+        schema:
+          type: string
+  /api/v3/vendor/contracts/{contractId}/import-export/{path}:
+    x-audience: Internal
+    get:
+      operationId: getImportExportRequestVendorV3
+      summary: Import-export operations for reading.
+      description: The GET request is proxied to the internal import-export API.
+      tags:
+        - undocumented
+        - internal
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Successful response returned by the import-export API.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
+    post:
+      operationId: postImportExportRequestVendorV3
+      summary: Write import-export operations
+      description: The POST request is proxied to the internal import-export API.
+      tags:
+        - undocumented
+        - internal
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Successful response returned by the import-export API.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
+    put:
+      operationId: putImportExportRequestVendorV3
+      summary: Update import-export operations
+      description: The PUT request is proxied to the internal import-export API.
+      tags:
+        - undocumented
+        - internal
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Successful response returned by the import-export API.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
+    delete:
+      operationId: deleteImportExportRequestVendorV3
+      summary: Delete import-export operations
+      description: The DELETE request is proxied to the internal import-export API.
+      tags:
+        - undocumented
+        - internal
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Successful response returned by the import-export API.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
+    patch:
+      operationId: patchImportExportRequestVendorV3
+      summary: Patch import-export operations
+      description: The PATCH request is proxied to the internal import-export API.
+      tags:
+        - undocumented
+        - internal
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Successful response returned by the import-export API.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
+    parameters:
+      - $ref: '#/components/parameters/contractIdParam'
+      - description: The import-export path to be called
         in: path
         name: path
         required: true
