@@ -1,0 +1,72 @@
+name: Client generation triggered by Patagona API
+
+on:
+  repository_dispatch:
+    types: [trigger-action]
+  push:
+    branches:
+      # since it's work in progress so want to trigger it for a specific branch.
+      - gh_migration
+
+concurrency:
+  group: ci-cd-client-generation-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    env:
+      # @TODO automate it.
+      # API_VERSION: "${{ github.event.client_payload.some_param }}"
+      API_VERSION: "0.1.130"
+
+    steps:
+    - name: Authenticate as GitHub App
+      id: auth_as_app
+      uses: tibdex/github-app-token@v2
+      with:
+        app_id: ${{ secrets.API_DOC_CI_CD_APP_ID }}
+        private_key: ${{ secrets.API_DOC_CI_CD_APP_PRIVATE_KEY }}
+        DEBUG: "octokit:*"
+
+    - name: Checkout repository
+      uses: actions/checkout@v3
+    
+    - name: Prepare
+      run: ./get-openapi.sh
+      env:
+        GITHUB_TOKEN: ${{ steps.auth_as_app.outputs.token }}
+    
+    - name: Generate
+      run: ./generate-clients.sh
+    
+    - name: Test
+      run: sbt ${JVM_FLAGS} ${SBT_FLAGS} test
+      working-directory: clients-test/pricemonitor-internal-scala-sttp-test
+      env:
+        JVM_FLAGS: "-J-XX:+CMSClassUnloadingEnabled -J-XX:MaxPermSize=256m -J-Xmx1g -J-Xss16M"
+        SBT_FLAGS: "-Dsbt.jse.engineType=Node -Dsbt.log.noformat=true"
+    
+    # @TODO - Testing phase. I will remove comment later.
+    # - name: Push to master
+    #   if: github.ref == 'refs/heads/master'
+    #   run: |
+    #     git add .
+    #     git commit -m "Generate pricemonitor-api clients for version ${API_VERSION}"
+    #     git tag ${API_VERSION} -m 'pricemonitor-api ${API_VERSION}'
+    #     git push origin master
+    #     git push origin ${API_VERSION}
+    
+    # - name: Publish
+    #   if: github.ref == 'refs/heads/master'
+    #   run: ./release.sh
+    #   env:
+    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Cleanup
+      if: always()
+      run: |
+        echo "Cleaning up resources"
+        rm -rf ./* || true
+        rm -rf ./.??* || true
+    

@@ -9,3 +9,5 @@ url=https://api.github.com/repos/Patagona/patagona-api-docs/contents/assets-join
 echo "Downloading file $url"
 
 curl -s -H "Authorization: token $GITHUB_TOKEN" -H "Accept: application/vnd.github.v3.raw" $url > openapi-internal.yaml
+
+tail -f openapi-internal.yaml
