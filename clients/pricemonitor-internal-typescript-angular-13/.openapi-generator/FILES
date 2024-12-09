@@ -73,6 +73,7 @@ model/pricemonitorDomainPriceDumpingStats.ts
 model/pricemonitorDynamicMonitoringSettings.ts
 model/pricemonitorEmbedSSOUrlResponseV3.ts
 model/pricemonitorExtendedTag.ts
+model/pricemonitorFormulaVariable.ts
 model/pricemonitorGetAllDomainsV3.ts
 model/pricemonitorGetAllDomainsV3DomainsInner.ts
 model/pricemonitorGetAuthorizationStatusResponseV3.ts
@@ -87,8 +88,10 @@ model/pricemonitorMonitoringScheduleV3.ts
 model/pricemonitorOfferAttribute.ts
 model/pricemonitorOfferSelector.ts
 model/pricemonitorOfferStatsPerDomain.ts
+model/pricemonitorOffsetTimeRange.ts
 model/pricemonitorOmniaProductProperty.ts
 model/pricemonitorOneOfProductsQuery.ts
+model/pricemonitorOwnShopMapping.ts
 model/pricemonitorPagination.ts
 model/pricemonitorPaginationResponse.ts
 model/pricemonitorPostAccountRequestV3.ts
@@ -110,8 +113,19 @@ model/pricemonitorPostProductOfferRequest.ts
 model/pricemonitorPostScenarioStrategyResponse.ts
 model/pricemonitorPostVendorShopMappingRequestV3.ts
 model/pricemonitorPostVendorsByDomainResponse.ts
+model/pricemonitorPriceBoundaryDetails.ts
+model/pricemonitorPriceBoundaryDetailsFixedPriceBoundary.ts
+model/pricemonitorPriceBoundaryDetailsFormulaPriceBoundary.ts
+model/pricemonitorPriceCalculationResult.ts
+model/pricemonitorPriceCalculationResultCompetitivePricingRecommendationResult.ts
+model/pricemonitorPriceCalculationResultFormulaRecommendationResult.ts
+model/pricemonitorPriceCalculationResultNoPriceCalculated.ts
+model/pricemonitorPriceCalculationResultPriceCalculationFailure.ts
 model/pricemonitorPriceDumpingStatsRequest.ts
 model/pricemonitorPriceDumpingStatsResponse.ts
+model/pricemonitorPriceGapUnit.ts
+model/pricemonitorPriceSimulationBulkRequestV3.ts
+model/pricemonitorPriceSimulationBulkResponseV3.ts
 model/pricemonitorPriceStatisticsV31.ts
 model/pricemonitorPricesByDayByProductIdRequestV2.ts
 model/pricemonitorPricesByDayByProductIdResponsePricePointV2.ts
@@ -125,6 +139,8 @@ model/pricemonitorProductMonitoringStatusOutcomeStats.ts
 model/pricemonitorProductMonitoringStatusStats.ts
 model/pricemonitorProductOfferStatisticsV31.ts
 model/pricemonitorProductPriceDumpingStats.ts
+model/pricemonitorProductPriceSimulationOutcome.ts
+model/pricemonitorProductPriceSimulationRequest.ts
 model/pricemonitorPutAdminContractSettingsBody.ts
 model/pricemonitorPutAdminDomainRequestV3.ts
 model/pricemonitorPutAdminDomainResponseV3.ts
@@ -139,6 +155,7 @@ model/pricemonitorQueryOffersOfShopRequestV3.ts
 model/pricemonitorQueryOneOf.ts
 model/pricemonitorQueryRegex.ts
 model/pricemonitorResellerSummaryByDomain.ts
+model/pricemonitorRoundingPriceRecommendationResult.ts
 model/pricemonitorScenarioStrategyMetadataResponse.ts
 model/pricemonitorShopV3.ts
 model/pricemonitorStrategyMetadataResponseV3.ts
@@ -273,6 +290,7 @@ model/schedulerSchedulerApiErrorResponse.ts
 model/shopIntegrationStartShopSyncJob.ts
 model/shopIntegrationUpdateProductsJob.ts
 model/shopRank.ts
+model/simulatePriceCalculationBulkV3ApiResponse.ts
 model/stringArrayResponse.ts
 model/tag.ts
 model/tagInput.ts

@@ -13,6 +13,7 @@ Method | HTTP request | Description
 [**get_time_stamps**](PricerecommendationsApi.md#get_time_stamps) | **GET** /api/1/{contractId}/products/analysis/timestamps | Get time stamps
 [**put_repricing_strategy_vendor_v2**](PricerecommendationsApi.md#put_repricing_strategy_vendor_v2) | **PUT** /api/2/v/contracts/{contractId}/settings/repricingstrategy | Update repricing strategy
 [**query_price_recommendations_vendor_v2**](PricerecommendationsApi.md#query_price_recommendations_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/result/pricerecommendations/query | Query price recommendations
+[**simulate_price_recommendations_v3**](PricerecommendationsApi.md#simulate_price_recommendations_v3) | **POST** /api/v3/vendor/contracts/{contractId}/pricerecommendations/simulate | Simulate price recommendations
 
 
 # **delete_repricing_strategy_vendor_v2**
@@ -1141,6 +1142,131 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A paginated list of price recommendations is returned for the specified timerange. &lt;br&gt; Only the newest price recommendations are returned in case of multiple price recommendations per product.  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **simulate_price_recommendations_v3**
+> SimulatePriceCalculationBulkV3ApiResponse simulate_price_recommendations_v3(contract_id, com_patagona_pricemonitor_share_api_price_simulation_bulk_request_v3)
+
+Simulate price recommendations
+
+This endpoint simulates price recommendations for a specified set of products. It is useful for:  - Explaining why certain price recommendations have been calculated. - Testing and evaluating pricing strategies before applying them.  The simulation process can be customized by including parameters such as a custom pricing strategy, custom time range, specific offers and more. 
+
+### Example
+
+* Basic Authentication (BasicAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.PricerecommendationsApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+com_patagona_pricemonitor_share_api_price_simulation_bulk_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPriceSimulationBulkRequestV3() # ComPatagonaPricemonitorShareApiPriceSimulationBulkRequestV3 | The request body contains all the necessary data to simulate price recommendations for multiple products. Custom parameters, such as pricing strategies and time ranges, can be provided in order to simulate different scenarios. 
+
+    try:
+        # Simulate price recommendations
+        api_response = api_instance.simulate_price_recommendations_v3(contract_id, com_patagona_pricemonitor_share_api_price_simulation_bulk_request_v3)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling PricerecommendationsApi->simulate_price_recommendations_v3: %s\n" % e)
+```
+
+* Bearer (JWT) Authentication (BearerAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.PricerecommendationsApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+com_patagona_pricemonitor_share_api_price_simulation_bulk_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPriceSimulationBulkRequestV3() # ComPatagonaPricemonitorShareApiPriceSimulationBulkRequestV3 | The request body contains all the necessary data to simulate price recommendations for multiple products. Custom parameters, such as pricing strategies and time ranges, can be provided in order to simulate different scenarios. 
+
+    try:
+        # Simulate price recommendations
+        api_response = api_instance.simulate_price_recommendations_v3(contract_id, com_patagona_pricemonitor_share_api_price_simulation_bulk_request_v3)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling PricerecommendationsApi->simulate_price_recommendations_v3: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **contract_id** | **str**| ID of the contract | 
+ **com_patagona_pricemonitor_share_api_price_simulation_bulk_request_v3** | [**ComPatagonaPricemonitorShareApiPriceSimulationBulkRequestV3**](ComPatagonaPricemonitorShareApiPriceSimulationBulkRequestV3.md)| The request body contains all the necessary data to simulate price recommendations for multiple products. Custom parameters, such as pricing strategies and time ranges, can be provided in order to simulate different scenarios.  | 
+
+### Return type
+
+[**SimulatePriceCalculationBulkV3ApiResponse**](SimulatePriceCalculationBulkV3ApiResponse.md)
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | A successful response containing a bulk result with simulated price recommendations for multiple products.  |  -  |
+**400** | The request could not be processed due to validation errors in the provided body. Common issues include:  - Malformed JSON. - Unimported products specified in the request.  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

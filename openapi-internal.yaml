@@ -10,7 +10,7 @@ info:
   description: >
     The Omnia 2.0 API is RESTful and provides access to the backend of Omnia 2.0
     and Pricemonitor. It is used to manage products, offers, contracts and more.
-  version: 0.0.7031
+  version: 0.0.7032
   x-logo:
     url: >-
       https://www.omniaretail.com/hubfs/Omnia%20Logo%20SVG/Omnia_Retail_Full_Colour_Logo_On_White_RGB.svg
@@ -4008,6 +4008,67 @@ paths:
           <br>
       description: This endpoint can be used to delete customer orders by an order query
       summary: Delete orders by query
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
+  /api/v3/vendor/contracts/{contractId}/pricerecommendations/simulate:
+    post:
+      x-audience: Internal
+      operationId: simulatePriceRecommendationsV3
+      summary: Simulate price recommendations
+      tags:
+        - pricerecommendations
+      parameters:
+        - $ref: '#/components/parameters/contractIdParam'
+      description: >
+        This endpoint simulates price recommendations for a specified set of
+        products. It is useful for:
+
+
+        - Explaining why certain price recommendations have been calculated.
+
+        - Testing and evaluating pricing strategies before applying them.
+
+
+        The simulation process can be customized by including parameters such as
+        a custom pricing strategy, custom time range, specific offers and more.
+      requestBody:
+        required: true
+        description: >
+          The request body contains all the necessary data to simulate price
+          recommendations for multiple products.
+
+          Custom parameters, such as pricing strategies and time ranges, can be
+          provided in order to simulate different scenarios.
+        content:
+          application/json:
+            schema:
+              $ref: >-
+                #/components/schemas/com.patagona.pricemonitor.share.api.PriceSimulationBulkRequestV3
+      responses:
+        '200':
+          description: >
+            A successful response containing a bulk result with simulated price
+            recommendations for multiple products.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SimulatePriceCalculationBulkV3ApiResponse'
+        '400':
+          description: >
+            The request could not be processed due to validation errors in the
+            provided body.
+
+            Common issues include:
+
+
+            - Malformed JSON.
+
+            - Unimported products specified in the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
       security:
         - BasicAuth: []
         - BearerAuth: []
@@ -13161,6 +13222,449 @@ components:
       type: object
       required:
         - orders
+    com.patagona.pricemonitor.share.api.ProductPriceSimulationRequest:
+      description: >-
+        Represents a request to simulate the price calculation for a single
+        product.
+      properties:
+        productId:
+          type: string
+          description: The internal product ID in Omnia 2.0.
+        offers:
+          type: array
+          items:
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ApiOffer'
+          description: >-
+            Optional list of offers to simulate the price calculation with. If
+            not provided, the offers of the specified time range are considered
+            (default: most recent offers per domain per last 24 hours).
+      additionalProperties: false
+      type: object
+      required:
+        - productId
+    com.patagona.pricemonitor.share.api.OffsetTimeRange:
+      description: >-
+        Represents a time range. It's required that the end timestamp is after
+        or equals the start timestamp.
+      properties:
+        start:
+          type: string
+          format: date-time
+          description: >-
+            The starting point of the time range, represented as a timestamp in
+            ISO 8601 format (e.g., "2024-11-19T13:45:30Z") in UTC.
+        end:
+          type: string
+          format: date-time
+          description: >-
+            The ending point of the time range, represented as a timestamp in
+            ISO 8601 format (e.g., "2024-11-19T14:45:30Z") in UTC.
+      additionalProperties: false
+      type: object
+      required:
+        - start
+        - end
+    com.patagona.pricemonitor.share.api.OwnShopMapping:
+      description: Represents a mapping between a domain and an own shop name.
+      properties:
+        domain:
+          type: string
+          description: Domain name
+        ownShopName:
+          type: string
+          description: Own shop name on given domain.
+      additionalProperties: false
+      type: object
+      required:
+        - domain
+        - ownShopName
+    com.patagona.pricemonitor.share.api.PriceSimulationBulkRequestV3:
+      description: >-
+        Represents a bulk request to simulate the price calculation for multiple
+        products. The optional parameters can be used for testing/simulating
+        scenarios. If they are not provided, then the current pricing settings
+        will be used.
+      properties:
+        strategyBuilder:
+          type: object
+        simulationRequests:
+          type: array
+          items:
+            $ref: >-
+              #/components/schemas/com.patagona.pricemonitor.share.api.ProductPriceSimulationRequest
+          description: List of product price simulation requests.
+        calculationTimestamp:
+          type: string
+          format: date-time
+          description: >-
+            If provided, then the price calculation will be simulated with the
+            specified timestamp. This can be useful for simulating time-based
+            strategies. If not provided, the current timestamp will be used.
+        dataTimeRange:
+          $ref: >-
+            #/components/schemas/com.patagona.pricemonitor.share.api.OffsetTimeRange
+          description: >-
+            If provided, the simulation will be based on data of the specified
+            time range. If not provided, the simulation will be based on the
+            most recent data of the last 24h.
+        ownShops:
+          type: array
+          items:
+            $ref: >-
+              #/components/schemas/com.patagona.pricemonitor.share.api.OwnShopMapping
+          description: >-
+            Useful for detecting own offers of our customers. This ensures the
+            separation between own and competitor offers. If not provided, the
+            own offers will be detected based on the currently configured own
+            shop mappings.
+      additionalProperties: false
+      type: object
+      required:
+        - simulationRequests
+    com.patagona.pricemonitor.share.api.FormulaVariable:
+      description: Represents a variable in a formula.
+      properties:
+        name:
+          type: string
+          description: Name of the variable
+        value:
+          type: number
+          description: Numeric value of the variable.
+      additionalProperties: false
+      type: object
+      required:
+        - name
+        - value
+    com.patagona.pricemonitor.share.api.PriceBoundaryDetails:
+      description: >-
+        Represents the details of a single price boundary. Exactly one of the
+        details will be defined.
+      properties:
+        formulaPriceBoundary:
+          description: The price boundary which has been calculated by a formula.
+          properties:
+            price:
+              type: number
+              description: The price boundary.
+            formula:
+              type: string
+              description: The formula which has been used to calculate the price boundary.
+            variables:
+              type: array
+              items:
+                $ref: >-
+                  #/components/schemas/com.patagona.pricemonitor.share.api.FormulaVariable
+              description: The relevant variables used in the formula.
+          additionalProperties: false
+          type: object
+          required:
+            - price
+            - formula
+            - variables
+        fixedPriceBoundary:
+          description: The price boundary which has been set during product import.
+          properties:
+            price:
+              type: number
+              description: The price boundary.
+          additionalProperties: false
+          type: object
+          required:
+            - price
+      additionalProperties: false
+      type: object
+      required: []
+    com.patagona.pricemonitor.share.api.PriceGapUnit:
+      type: string
+      enum:
+        - AbsolutePriceGap
+        - RelativePriceGap
+    com.patagona.pricemonitor.share.api.PriceCalculationResult:
+      description: >-
+        The detailed result of the price calculation. Exactly one of the results
+        will be defined.
+      properties:
+        competitivePricingRecommendationResult:
+          description: A price recommendation has been calculated by competitive pricing.
+          properties:
+            adjustToNextPricier:
+              type: boolean
+              description: >-
+                When a target position can't be reached due to the price
+                boundary, the target position gets realigned to the next
+                reachable one (within the price boundary) by this setting.
+            targetPosition:
+              type: integer
+              description: The target position which has been considered.
+            includeDeliveryCosts:
+              type: boolean
+              description: >-
+                Determines if the delivery costs should be included in the price
+                calculation.
+            ownOffers:
+              type: array
+              items:
+                $ref: >-
+                  #/components/schemas/com.patagona.pricemonitor.share.api.ApiOffer
+              description: >-
+                The own offers which have been considered for the price
+                calculation.
+            competitorOffers:
+              type: array
+              items:
+                $ref: >-
+                  #/components/schemas/com.patagona.pricemonitor.share.api.ApiOffer
+              description: >-
+                The offers of the competitors which have been considered for the
+                price calculation.
+            priceGap:
+              type: number
+              description: >-
+                The price gap which has been considered.<br> - A positive value
+                means to underbid the target position.<br> - A zero value means
+                to match the target position.<br> - A negative value means to
+                overbid the target position.
+            minPriceBoundary:
+              $ref: >-
+                #/components/schemas/com.patagona.pricemonitor.share.api.PriceBoundaryDetails
+              description: The minimum price boundary which has been considered.
+            ownDeliveryCosts:
+              type: number
+              description: >-
+                The own delivery costs which have been considered. Only relevant
+                if 'includeDeliveryCosts' is set to true.
+            unitPriceRecommendation:
+              type: number
+              description: The calculated price recommendation.
+            maxPriceBoundary:
+              $ref: >-
+                #/components/schemas/com.patagona.pricemonitor.share.api.PriceBoundaryDetails
+              description: The maximum price boundary which has been considered.
+            priceGapUnit:
+              $ref: >-
+                #/components/schemas/com.patagona.pricemonitor.share.api.PriceGapUnit
+              description: The unit of the price gap. Either absolute or relative.
+            nodeId:
+              type: integer
+              description: The ID of the node which calculated the price.
+          additionalProperties: false
+          type: object
+          required:
+            - priceGap
+            - nodeId
+            - unitPriceRecommendation
+            - adjustToNextPricier
+            - competitorOffers
+            - targetPosition
+            - ownOffers
+            - maxPriceBoundary
+            - priceGapUnit
+            - includeDeliveryCosts
+            - minPriceBoundary
+        noPriceCalculated:
+          description: >-
+            The strategy tree has been normally evaluated but no node calculated
+            a price.
+          properties:
+            reason:
+              type: string
+              description: The reason why no price recommendation was calculated.
+          additionalProperties: false
+          type: object
+          required:
+            - reason
+        formulaRecommendationResult:
+          description: A price recommendation has been calculated by a formula.
+          properties:
+            ownOffers:
+              type: array
+              items:
+                $ref: >-
+                  #/components/schemas/com.patagona.pricemonitor.share.api.ApiOffer
+              description: >-
+                The own offers which have been considered for the price
+                calculation.
+            competitorOffers:
+              type: array
+              items:
+                $ref: >-
+                  #/components/schemas/com.patagona.pricemonitor.share.api.ApiOffer
+              description: >-
+                The offers of the competitors which have been considered for the
+                price calculation.
+            minPriceBoundary:
+              $ref: >-
+                #/components/schemas/com.patagona.pricemonitor.share.api.PriceBoundaryDetails
+              description: The minimum price boundary which has been considered.
+            variables:
+              type: array
+              items:
+                $ref: >-
+                  #/components/schemas/com.patagona.pricemonitor.share.api.FormulaVariable
+              description: The relevant variables used in the formula.
+            unitPriceRecommendation:
+              type: number
+              description: The calculated price recommendation.
+            formula:
+              type: string
+              description: The unevaluated formula.
+            maxPriceBoundary:
+              $ref: >-
+                #/components/schemas/com.patagona.pricemonitor.share.api.PriceBoundaryDetails
+              description: The maximum price boundary which has been considered.
+            nodeId:
+              type: integer
+              description: The ID of the node which calculated the price.
+          additionalProperties: false
+          type: object
+          required:
+            - nodeId
+            - unitPriceRecommendation
+            - competitorOffers
+            - ownOffers
+            - maxPriceBoundary
+            - variables
+            - minPriceBoundary
+            - formula
+        roundingPriceRecommendationResult:
+          $ref: >-
+            #/components/schemas/com.patagona.pricemonitor.share.api.RoundingPriceRecommendationResult
+          description: A price recommendation has been calculated by the rounding strategy.
+        priceCalculationFailure:
+          description: An exception occurred during the price calculation.
+          properties:
+            reason:
+              type: string
+              description: The reason why the price calculation failed.
+            nodeId:
+              type: integer
+              description: The ID of the node where the price calculation failed.
+          additionalProperties: false
+          type: object
+          required:
+            - reason
+            - nodeId
+      additionalProperties: false
+      type: object
+      required: []
+    com.patagona.pricemonitor.share.api.RoundingPriceRecommendationResult:
+      properties:
+        ownOffers:
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ApiOffer'
+        competitorOffers:
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ApiOffer'
+        minPriceBoundary:
+          $ref: >-
+            #/components/schemas/com.patagona.pricemonitor.share.api.PriceBoundaryDetails
+        originalPriceRecommendation:
+          $ref: >-
+            #/components/schemas/com.patagona.pricemonitor.share.api.PriceCalculationResult
+        unitPriceRecommendation:
+          type: number
+          description: The calculated price recommendation.
+        maxPriceBoundary:
+          $ref: >-
+            #/components/schemas/com.patagona.pricemonitor.share.api.PriceBoundaryDetails
+        nodeId:
+          type: number
+          description: The ID of the node which calculated the price.
+      additionalProperties: false
+      type: object
+      required:
+        - nodeId
+        - originalPriceRecommendation
+        - unitPriceRecommendation
+        - maxPriceBoundary
+        - minPriceBoundary
+    com.patagona.pricemonitor.share.api.ProductPriceSimulationOutcome:
+      description: The result of a single price simulation for a product.
+      properties:
+        originalOffers:
+          type: array
+          items:
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ApiOffer'
+          description: >-
+            All offers which were initially considered for the price
+            calculation.
+        result:
+          $ref: >-
+            #/components/schemas/com.patagona.pricemonitor.share.api.PriceCalculationResult
+          description: >-
+            The result of the price calculation. Exactly one of these results
+            will be defined:<br> 1. A price has been calculated<br> 2. No price
+            has been calculated<br> 3. The price calculation failed (e.g. by
+            formula or competitive pricing).
+        productId:
+          type: string
+          description: The internal product ID in Omnia 2.0.
+        decisivePath:
+          type: array
+          items:
+            type: integer
+          description: >-
+            The decisive path in the strategy tree:<br> From root node down to
+            the node which calculated the price (shortest path). Can be empty
+            when no price has been calculated or the price calculation fails.
+        fullPath:
+          type: array
+          items:
+            type: integer
+          description: All traversed (processed) nodes in the strategy tree.
+      additionalProperties: false
+      type: object
+      required:
+        - decisivePath
+        - productId
+        - fullPath
+        - result
+        - originalOffers
+    com.patagona.pricemonitor.share.api.PriceSimulationBulkResponseV3:
+      description: >-
+        Represents a bulk response with simulated price recommendations for
+        multiple products.
+      properties:
+        strategyBuilder:
+          type: object
+        calculationTimestamp:
+          type: string
+          format: date-time
+          description: The timestamp for which the price calculation has been simulated.
+        simulationResults:
+          type: array
+          items:
+            $ref: >-
+              #/components/schemas/com.patagona.pricemonitor.share.api.ProductPriceSimulationOutcome
+          description: >-
+            The simulation results. All results are in order with respect to the
+            input list of product simulation requests.
+        dataTimeRange:
+          $ref: >-
+            #/components/schemas/com.patagona.pricemonitor.share.api.OffsetTimeRange
+          description: The considered data time range for simulating the price calculation.
+        ownShops:
+          type: array
+          items:
+            $ref: >-
+              #/components/schemas/com.patagona.pricemonitor.share.api.OwnShopMapping
+          description: The considered own shops.
+      additionalProperties: false
+      type: object
+      required:
+        - strategyBuilder
+        - ownShops
+        - dataTimeRange
+        - calculationTimestamp
+        - simulationResults
+    SimulatePriceCalculationBulkV3ApiResponse:
+      required:
+        - data
+      type: object
+      additionalProperties: false
+      description: ''
+      properties:
+        data:
+          $ref: >-
+            #/components/schemas/com.patagona.pricemonitor.share.api.PriceSimulationBulkResponseV3
     GetExtendedTagsApiResponse:
       required:
         - data
