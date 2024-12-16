@@ -1,6 +1,6 @@
 # ComPatagonaPricemonitorShareApiPriceCalculationResult
 
-The detailed result of the price calculation. Exactly one of the results will be defined.
+The detailed result of the price calculation. Exactly one of the results will be defined. This class exists only in this shape to be able to generate the correct JSON schema. Ideally, we get rid of it in future and solely rely on a sealed trait for the price recommendation results. Or we differentiate between internal and external representation.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
