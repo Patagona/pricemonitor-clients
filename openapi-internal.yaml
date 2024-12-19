@@ -10,7 +10,7 @@ info:
   description: >
     The Omnia 2.0 API is RESTful and provides access to the backend of Omnia 2.0
     and Pricemonitor. It is used to manage products, offers, contracts and more.
-  version: 0.0.7037
+  version: 0.0.7038
   x-logo:
     url: >-
       https://www.omniaretail.com/hubfs/Omnia%20Logo%20SVG/Omnia_Retail_Full_Colour_Logo_On_White_RGB.svg
@@ -10180,6 +10180,32 @@ paths:
             - The password length is less than 6 characters long
             - The endpoint was requested too often
             - The given email address already exists
+  /api/v3/account/password/generate:
+    x-audience: Internal
+    post:
+      operationId: generateAccountPasswordV3
+      summary: Generate password for user account
+      description: >
+        Generates a new complex password for the authenticated user account.
+
+        The primary use case is for an Omnia 2.0 user to call this operation
+        through the Omnia 2.0 UI with a JWT token
+
+        to obtain a password for their account that can be used for basic
+        authentication to directly call other API endpoints.
+      tags:
+        - account
+        - internal
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneratePasswordResponseV3ApiResponse'
+          description: The new password information.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/v3/vendor/contracts/{contractId}/products/amazon/buybox/stats:
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
@@ -15187,6 +15213,26 @@ components:
         data:
           $ref: >-
             #/components/schemas/com.patagona.pricemonitor.share.api.PostAccountResponseV3
+    com.patagona.pricemonitor.share.api.GeneratePasswordResponseV3:
+      description: A response body that contains the newly generated password.
+      properties:
+        password:
+          type: string
+          description: The newly generated password.
+      additionalProperties: false
+      type: object
+      required:
+        - password
+    GeneratePasswordResponseV3ApiResponse:
+      required:
+        - data
+      type: object
+      additionalProperties: false
+      description: ''
+      properties:
+        data:
+          $ref: >-
+            #/components/schemas/com.patagona.pricemonitor.share.api.GeneratePasswordResponseV3
     com.patagona.pricemonitor.share.api.AmazonBuyboxProductStatsV3:
       description: Shows if product belongs to Amazon Buybox
       properties:

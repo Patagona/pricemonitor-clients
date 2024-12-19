@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**check_user_confirmation**](AccountApi.md#check_user_confirmation) | **HEAD** /api/account/confirm/{token} | Check if a specific confirmation token exists
 [**confirm_user**](AccountApi.md#confirm_user) | **POST** /api/account/confirm/{token} | Confirm an unconfirmed user
 [**delete_user_role**](AccountApi.md#delete_user_role) | **DELETE** /api/2/users/{userId}/role/{roleName} | Delete user role
+[**generate_account_password_v3**](AccountApi.md#generate_account_password_v3) | **POST** /api/v3/account/password/generate | Generate password for user account
 [**login_by_auth_token**](AccountApi.md#login_by_auth_token) | **GET** /api/login/token/{token} | Log in with authentication token
 [**logout**](AccountApi.md#logout) | **POST** /logout | Log out
 [**post_account_v3**](AccountApi.md#post_account_v3) | **POST** /api/v3/account | Create user account
@@ -552,6 +553,122 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | This is a generated entry and needs to be described. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **generate_account_password_v3**
+> GeneratePasswordResponseV3ApiResponse generate_account_password_v3()
+
+Generate password for user account
+
+Generates a new complex password for the authenticated user account. The primary use case is for an Omnia 2.0 user to call this operation through the Omnia 2.0 UI with a JWT token to obtain a password for their account that can be used for basic authentication to directly call other API endpoints. 
+
+### Example
+
+* Basic Authentication (BasicAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.AccountApi(api_client)
+    
+    try:
+        # Generate password for user account
+        api_response = api_instance.generate_account_password_v3()
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling AccountApi->generate_account_password_v3: %s\n" % e)
+```
+
+* Bearer (JWT) Authentication (BearerAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.AccountApi(api_client)
+    
+    try:
+        # Generate password for user account
+        api_response = api_instance.generate_account_password_v3()
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling AccountApi->generate_account_password_v3: %s\n" % e)
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**GeneratePasswordResponseV3ApiResponse**](GeneratePasswordResponseV3ApiResponse.md)
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The new password information. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

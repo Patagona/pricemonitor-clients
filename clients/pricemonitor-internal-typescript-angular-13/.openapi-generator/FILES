@@ -74,6 +74,7 @@ model/pricemonitorDynamicMonitoringSettings.ts
 model/pricemonitorEmbedSSOUrlResponseV3.ts
 model/pricemonitorExtendedTag.ts
 model/pricemonitorFormulaVariable.ts
+model/pricemonitorGeneratePasswordResponseV3.ts
 model/pricemonitorGetAllDomainsV3.ts
 model/pricemonitorGetAllDomainsV3DomainsInner.ts
 model/pricemonitorGetAuthorizationStatusResponseV3.ts
@@ -187,6 +188,7 @@ model/execution.ts
 model/extendedTag.ts
 model/feed.ts
 model/feedFieldsInner.ts
+model/generatePasswordResponseV3ApiResponse.ts
 model/genericTask.ts
 model/genericTaskWithUrl.ts
 model/genericTaskWithUrlAllOf.ts
