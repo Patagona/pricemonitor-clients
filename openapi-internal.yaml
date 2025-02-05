@@ -10,7 +10,7 @@ info:
   description: >
     The Omnia 2.0 API is RESTful and provides access to the backend of Omnia 2.0
     and Pricemonitor. It is used to manage products, offers, contracts and more.
-  version: 0.0.7046
+  version: 0.0.7047
   x-logo:
     url: >-
       https://www.omniaretail.com/hubfs/Omnia%20Logo%20SVG/Omnia_Retail_Full_Colour_Logo_On_White_RGB.svg
@@ -25,11 +25,11 @@ tags:
   - name: overview
     x-displayName: Overview
     x-traitTag: true
-    description: >+
+    description: >
       Overview, explanation and pointers to the API documentation.
 
 
-      ## Introduction
+      # Introduction
 
 
       The Omnia 2.0 API (also known as the Pricemonitor API) gives access to the
@@ -42,11 +42,12 @@ tags:
       API directly with their own systems.
 
 
-      ## Common use cases for Omnia 2.0
+      # Common use cases for Omnia 2.0
 
 
-      These are common API operations for customers to integrate Omnia with
+      These are the common API operations for customers to integrate Omnia with
       their own systems:
+
 
       - Retrieve market data
 
@@ -57,7 +58,7 @@ tags:
       - Provide offers for custom sources
 
 
-      ### Retrieve market data via API
+      ## Retrieve market data via API
 
 
       Use [this operation](#operation/getOffersVendorV3) to retrieve the newest
@@ -66,7 +67,7 @@ tags:
       most 1,000 products.
 
 
-      ### Retrieve price recommendations via API
+      ## Retrieve price recommendations via API
 
 
       Use [this operation](#operation/getPriceRecommendation) to retrieve the
@@ -74,7 +75,7 @@ tags:
       supports returning paged results.
 
 
-      ### Query products via API
+      ## Query products via API
 
 
       Use [this operation](#operation/queryProductsVendorV3) to retrieve
@@ -82,7 +83,7 @@ tags:
       retrieve with a page size of 10,000 products.
 
 
-      ### Manage your product assortment
+      ## Manage your product assortment
 
 
       Use [this operation](#operation/postProductsImportVendorV3) to upload your
@@ -98,14 +99,14 @@ tags:
       operation](#operation/putProductsImportVendorV3).
 
 
-      ### Provide offers for custom sources
+      ## Provide offers for custom sources
 
 
       Use [this operation](#operation/postOffersInABulkVendorV2) to provide
       external offers for your products to our system.
 
 
-      ## Pagination
+      # Pagination
 
 
       API endpoints can potentially return a lot of items. Returning all data as
@@ -116,15 +117,15 @@ tags:
       latest version of API operations is described here.
 
 
-      ### Pagination basics
+      ## Pagination basics
 
 
       Operations that support pagination:
 
+
       - Return a subset of all matching items based on parameters in the
       request. Such a subset is called a page.
-        - The `limit` parameter defines the maximum number of items returned per page.
-        - The `start` parameter defines which page is returned.
+
       - Return the requested page as an array within a `data` object within the
       response.
 
@@ -151,7 +152,7 @@ tags:
 
       This parameter defines from which item in the total result set this
       request wants data to be returned. It basically defines what page should
-      be returned. The index of the first item is 0. If the value of `start` is
+      be returned. The index of the first item is 0\. If the value of `start` is
       beyond the number of matching items, an empty `data` array is returned in
       the response.
 
@@ -160,24 +161,24 @@ tags:
       is the responsibility of the API.
 
 
-      ### Example of paginated requests
+      ## Example of paginated requests
 
 
       To request items with a page size of 1000, these are the pagination
       parameter values to be used for subsequent requests
 
 
-      | request # | start | limit |
+      request # | start | limit
 
-      | --------- | ----- | ----- |
+      --------- | ----- | -----
 
-      | 1st       | 0     | 1000  |
+      1st       | 0     | 1000
 
-      | 2nd       | 1000  | 1000  |
+      2nd       | 1000  | 1000
 
-      | 3rd       | 2000  | 1000  |
+      3rd       | 2000  | 1000
 
-      | ...                       |
+      ...       | ...   | ...
 
 
       So the values for each subsequent request can be calculated by `start =
@@ -188,8 +189,7 @@ tags:
       A response looks like this:
 
 
-
-      ``` json
+      ```json
 
       {
          "data": [
@@ -210,26 +210,96 @@ tags:
 
       > Note: In rare cases there is no next page even though the response has
       no less than a page size of items. E.g. when there are 2000 total items
-      and using a page size of 1000. Here the client will make a request with
+      and using a page size of 1000\. Here the client will make a request with
       `start=1000` and `limit=1000`. The response for this 2nd page request will
       have 1000 items. Then the client can't know in advance if there are
       further pages and it has to make an additional request. This third page
       request will return an empty array.
 
 
-      ## Authentication
+      # Authentication
 
 
-      There are two authentication methods supported:
-
-      - For API integration with other systems basic authentication is used.
-
-      - The Omnia 2.0 application uses JWT bearer tokens.
+      The API supports two authentication methods with distinct use cases:
+      _basic authentication_ and _JWT bearer token authentication_. For more
+      details see below.
 
 
-      <SecurityDefinitions />
+      In short: for API integration with other systems or to explore the API,
+      use _basic authentication_.
 
 
+      ## Basic authentication
+
+
+      ```
+
+      Security Scheme Type: HTTP
+
+      HTTP Authorization Scheme basic
+
+      ```
+
+
+      Used for:
+
+
+      - API integration with other systems, like customer systems or plugins in
+      webshops.
+
+      - Exploring the API interactively via the API tester in the documentation.
+
+
+      ### Username
+
+
+      The username is the email address of a user account in _Omnia 2.0_ or
+      _Pricemonitor_.
+
+
+      ### Password
+
+
+      The API password is:
+
+
+      - Generated for _Omnia 2.0_ users via the _API access_ feature. Available
+      in the user drop down menu top right in the Omnia 2.0 application.
+
+      - For _Pricemonitor_ users the same password they use to sign in to
+      Pricemonitor.
+
+
+      > Note: For Omnia 2.0 users the API password is a different password than
+      what is used for interactive logon to the web application. Also
+      Single-Sign On users can generate an API password via the API access
+      feature in Omnia 2.0.
+
+
+      ## JWT bearer token authentication
+
+
+      ```
+
+      Security Scheme Type: HTTP
+
+      HTTP Authorization Scheme bearer
+
+      Bearer format: "JWT"
+
+      ```
+
+
+      Used for:
+
+
+      - The Omnia 2.0 web application to communicate with the API.
+
+
+      > Note: This method is not usable for API integrations by customers as the
+      tokens can only be obtained through interactive logon to the Omnia 2.0 web
+      application by a person. These tokens expire quickly (they are valid for a
+      maximum of 24 hours).
   - name: products
     x-displayName: Products Management
     description: >-
