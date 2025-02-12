@@ -5,7 +5,7 @@ A product in the pricemonitor.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** | Name of the product. | 
-**tags** | [**list[ComPatagonaPricemonitorShareApiExtendedTag]**](ComPatagonaPricemonitorShareApiExtendedTag.md) | Additional information on this product. | 
+**tags** | [**list[ComPatagonaPricemonitorShareApiApiProductV3Tags]**](ComPatagonaPricemonitorShareApiApiProductV3Tags.md) | Additional information on this product. | 
 **min_price_boundary** | **float** | Maximum price which pricemonitor can recommend for the product. It won&#39;t recommend any price above this boundary. | [optional] 
 **gtin** | **float** | GTIN of the product. Can be optionally. | [optional] 
 **customer_product_id** | **str** | The customer&#39;s id of the product. This field allows to link products in pricemonitor to products in the customer&#39;s system. | [optional] 

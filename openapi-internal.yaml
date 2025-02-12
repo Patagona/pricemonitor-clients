@@ -10,7 +10,7 @@ info:
   description: >
     The Omnia 2.0 API is RESTful and provides access to the backend of Omnia 2.0
     and Pricemonitor. It is used to manage products, offers, contracts and more.
-  version: 0.0.7050
+  version: 0.0.7051
   x-logo:
     url: >-
       https://www.omniaretail.com/hubfs/Omnia%20Logo%20SVG/Omnia_Retail_Full_Colour_Logo_On_White_RGB.svg
@@ -12850,26 +12850,6 @@ components:
         - min
         - avg
         - max
-    com.patagona.pricemonitor.share.api.DomainOfferStatisticsV31:
-      description: >-
-        Represents statistics about offers from competitors for a specific
-        domain. The competitor offers are determined under-the-hood by excluding
-        offers of the registered own shops.
-      properties:
-        domain:
-          type: string
-          description: >-
-            This field specifies the domain where the competitor offers are
-            sourced from. It's a string representing the domain name, such as
-            "google.de".
-        competitorOfferCount:
-          type: integer
-          description: The number of competitor offers available in the specified domain.
-      additionalProperties: false
-      type: object
-      required:
-        - domain
-        - competitorOfferCount
     com.patagona.pricemonitor.share.api.ProductOfferStatisticsV31:
       description: >-
         Contains details on both unit price and total price statistics of
@@ -12886,8 +12866,23 @@ components:
         domainStats:
           type: array
           items:
-            $ref: >-
-              #/components/schemas/com.patagona.pricemonitor.share.api.DomainOfferStatisticsV31
+            type: object
+            additionalProperties: false
+            properties:
+              domain:
+                type: string
+                description: >-
+                  This field specifies the domain where the competitor offers
+                  are sourced from. It's a string representing the domain name,
+                  such as "google.de".
+              competitorOfferCount:
+                type: integer
+                description: >-
+                  The number of competitor offers available in the specified
+                  domain.
+            required:
+              - domain
+              - competitorOfferCount
           description: >-
             A list of offer statistics per domain. Domains without competitor
             offers are not included in the list.
@@ -14546,8 +14541,33 @@ components:
         tags:
           type: array
           items:
-            $ref: >-
-              #/components/schemas/com.patagona.pricemonitor.share.api.ExtendedTag
+            type: object
+            additionalProperties: false
+            properties:
+              doubleValue:
+                type: number
+                description: >-
+                  The double value depends on the decimal separator which has
+                  been provided during product import.
+              integerValue:
+                type: integer
+                description: >-
+                  The integer value of the tag. It's only defined when the
+                  `stringValue` consists solely of digits.
+              label:
+                type: string
+                description: The name of the tag. It can't be empty.
+              stringValue:
+                type: string
+                description: The text value of the tag.
+              booleanValue:
+                type: boolean
+                description: >-
+                  The boolean value of the tag. It's only set to true when the
+                  `stringValue` is "1" or "true".
+            required:
+              - stringValue
+              - label
           description: Additional information on this product.
         minPriceBoundary:
           type: number

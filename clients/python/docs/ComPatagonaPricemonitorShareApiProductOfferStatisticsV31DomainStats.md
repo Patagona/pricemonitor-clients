@@ -1,6 +1,5 @@
-# ComPatagonaPricemonitorShareApiDomainOfferStatisticsV31
+# ComPatagonaPricemonitorShareApiProductOfferStatisticsV31DomainStats
 
-Represents statistics about offers from competitors for a specific domain. The competitor offers are determined under-the-hood by excluding offers of the registered own shops.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
