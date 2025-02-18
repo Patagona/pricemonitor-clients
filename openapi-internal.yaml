@@ -10,7 +10,7 @@ info:
   description: >
     The Omnia 2.0 API is RESTful and provides access to the backend of Omnia 2.0
     and Pricemonitor. It is used to manage products, offers, contracts and more.
-  version: 0.0.7056
+  version: 0.0.7057
   x-logo:
     url: >-
       https://www.omniaretail.com/hubfs/Omnia%20Logo%20SVG/Omnia_Retail_Full_Colour_Logo_On_White_RGB.svg
@@ -12369,6 +12369,21 @@ components:
       type: object
       required:
         - taskType
+    com.patagona.pricemonitor.share.api.ContractFeatures:
+      properties:
+        disabled:
+          type: array
+          items:
+            type: string
+        enabled:
+          type: array
+          items:
+            type: string
+      additionalProperties: false
+      type: object
+      required:
+        - disabled
+        - enabled
     com.patagona.pricemonitor.share.api.UserContract:
       description: >-
         This case class is used for serializing contract-information for the
@@ -12377,6 +12392,10 @@ components:
         name:
           type: string
           description: The contract's name
+        features:
+          $ref: >-
+            #/components/schemas/com.patagona.pricemonitor.share.api.ContractFeatures
+          description: The contract features
         id:
           type: number
           description: The contract's id
@@ -12393,6 +12412,7 @@ components:
       required:
         - active
         - sid
+        - features
         - id
         - name
         - type
@@ -13912,21 +13932,6 @@ components:
         - id
         - name
         - contracts
-    com.patagona.pricemonitor.share.api.ContractFeatures:
-      properties:
-        disabled:
-          type: array
-          items:
-            type: string
-        enabled:
-          type: array
-          items:
-            type: string
-      additionalProperties: false
-      type: object
-      required:
-        - disabled
-        - enabled
     com.patagona.pricemonitor.share.api.GetContractSettingsResponseV1:
       properties:
         name:
