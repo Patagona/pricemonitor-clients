@@ -1150,7 +1150,7 @@ Name | Type | Description  | Notes
 
 Simulate price recommendations
 
-This endpoint simulates price recommendations for a specified set of products. It is useful for:  - Explaining why certain price recommendations have been calculated. - Testing and evaluating pricing strategies before applying them.  The simulation process can be customized by including parameters such as a custom pricing strategy, custom time range, specific offers and more. 
+This endpoint simulates price recommendations for a specified set of products. It is useful for:  - Explaining why certain price recommendations have been calculated. - Testing and evaluating pricing strategies before applying them.  The simulation process can be customized by including parameters such as a custom pricing strategy, custom time range, specific offers and more.  A maximum of 10 price recommendation simulations may be included in one request. 
 
 ### Example
 
@@ -1266,7 +1266,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A successful response containing a bulk result with simulated price recommendations for multiple products.  |  -  |
-**400** | The request could not be processed due to validation errors in the provided body. Common issues include:  - Malformed JSON. - Unimported products specified in the request.  |  -  |
+**400** | The request could not be processed due to validation errors in the provided body. Common issues include:  - Malformed JSON. - Unimported products specified in the request. - Too many simulation requests in the body. - Contract not compatible with simulation feature.  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

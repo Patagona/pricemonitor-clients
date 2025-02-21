@@ -5,7 +5,7 @@ Represents a bulk request to simulate the price calculation for multiple product
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **strategy_builder** | [**object**](.md) |  | [optional] 
-**simulation_requests** | [**list[ComPatagonaPricemonitorShareApiProductPriceSimulationRequest]**](ComPatagonaPricemonitorShareApiProductPriceSimulationRequest.md) | List of product price simulation requests. | 
+**simulation_requests** | [**list[ComPatagonaPricemonitorShareApiProductPriceSimulationRequest]**](ComPatagonaPricemonitorShareApiProductPriceSimulationRequest.md) | List of product price simulation requests. The list may have a maximum 10 requests. | 
 **calculation_timestamp** | **datetime** | If provided, then the price calculation will be simulated with the specified timestamp. This can be useful for simulating time-based strategies. If not provided, the current timestamp will be used. | [optional] 
 **data_time_range** | [**ComPatagonaPricemonitorShareApiOffsetTimeRange**](ComPatagonaPricemonitorShareApiOffsetTimeRange.md) |  | [optional] 
 **own_shops** | [**list[ComPatagonaPricemonitorShareApiOwnShopMapping]**](ComPatagonaPricemonitorShareApiOwnShopMapping.md) | Useful for detecting own offers of our customers. This ensures the separation between own and competitor offers. If not provided, the own offers will be detected based on the currently configured own shop mappings. | [optional] 

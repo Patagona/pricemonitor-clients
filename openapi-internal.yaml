@@ -10,7 +10,7 @@ info:
   description: >
     The Omnia 2.0 API is RESTful and provides access to the backend of Omnia 2.0
     and Pricemonitor. It is used to manage products, offers, contracts and more.
-  version: 0.0.7060
+  version: 0.0.7061
   x-logo:
     url: >-
       https://www.omniaretail.com/hubfs/Omnia%20Logo%20SVG/Omnia_Retail_Full_Colour_Logo_On_White_RGB.svg
@@ -4102,6 +4102,10 @@ paths:
 
         The simulation process can be customized by including parameters such as
         a custom pricing strategy, custom time range, specific offers and more.
+
+
+        A maximum of 10 price recommendation simulations may be included in one
+        request.
       requestBody:
         required: true
         description: >
@@ -4135,6 +4139,10 @@ paths:
             - Malformed JSON.
 
             - Unimported products specified in the request.
+
+            - Too many simulation requests in the body.
+
+            - Contract not compatible with simulation feature.
           content:
             application/json:
               schema:
@@ -13403,7 +13411,9 @@ components:
           items:
             $ref: >-
               #/components/schemas/com.patagona.pricemonitor.share.api.ProductPriceSimulationRequest
-          description: List of product price simulation requests.
+          description: >-
+            List of product price simulation requests. The list may have a
+            maximum 10 requests.
         calculationTimestamp:
           type: string
           format: date-time
