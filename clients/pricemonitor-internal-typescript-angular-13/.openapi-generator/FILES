@@ -51,7 +51,6 @@ model/pricemonitorApiPriceRecommendation.ts
 model/pricemonitorApiProduct.ts
 model/pricemonitorApiProductProperty.ts
 model/pricemonitorApiProductV3.ts
-model/pricemonitorApiProductV3TagsInner.ts
 model/pricemonitorApiQuery.ts
 model/pricemonitorApplicationVersion.ts
 model/pricemonitorCallback.ts
@@ -67,8 +66,9 @@ model/pricemonitorCustomerOrderProductMappingV2.ts
 model/pricemonitorCustomerOrderV2.ts
 model/pricemonitorCustomerOrderV3.ts
 model/pricemonitorDeleteByNumericIdApiResponse.ts
-model/pricemonitorDeleteOrderQueryV3.ts
 model/pricemonitorDeleteOrdersByQueryRequestV3.ts
+model/pricemonitorDeleteOrdersByQueryRequestV3OrdersInner.ts
+model/pricemonitorDomainOfferStatisticsV31.ts
 model/pricemonitorDomainPriceDumpingStats.ts
 model/pricemonitorDynamicMonitoringSettings.ts
 model/pricemonitorEmbedSSOUrlResponseV3.ts
@@ -139,9 +139,9 @@ model/pricemonitorProductMonitoringStatusOnDomainOutcome.ts
 model/pricemonitorProductMonitoringStatusOutcomeStats.ts
 model/pricemonitorProductMonitoringStatusStats.ts
 model/pricemonitorProductOfferStatisticsV31.ts
-model/pricemonitorProductOfferStatisticsV31DomainStatsInner.ts
 model/pricemonitorProductPriceDumpingStats.ts
 model/pricemonitorProductPriceSimulationOutcome.ts
+model/pricemonitorProductPriceSimulationOutcomeOriginalOffersInner.ts
 model/pricemonitorProductPriceSimulationRequest.ts
 model/pricemonitorPutAdminContractSettingsBody.ts
 model/pricemonitorPutAdminDomainRequestV3.ts
