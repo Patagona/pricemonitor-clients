@@ -84,6 +84,8 @@ model/pricemonitorGetContractSettingsResponseV1.ts
 model/pricemonitorGetOfferStatisticsV3.ts
 model/pricemonitorGetPricingStrategyHistoryResponse.ts
 model/pricemonitorGetShopsByDomainResponseV3.ts
+model/pricemonitorInviteUserToCompanyRequestV3.ts
+model/pricemonitorInviteUserToCompanyResponseV3.ts
 model/pricemonitorLookerUserAttributesV3.ts
 model/pricemonitorMonitoringScheduleV3.ts
 model/pricemonitorOfferAttribute.ts
@@ -217,6 +219,7 @@ model/getProductPropertiesV3ApiResponse.ts
 model/getShopsByDomainResponseV3ApiResponse.ts
 model/getUserAccessToContractsOfCompanyV3ApiResponse.ts
 model/getVendorShopMappingsApiResponse.ts
+model/inviteUserToCompanyResponseV3ApiResponse.ts
 model/job.ts
 model/jobApiResponse.ts
 model/jobApiResponseData.ts

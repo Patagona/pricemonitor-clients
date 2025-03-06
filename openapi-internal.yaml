@@ -10,7 +10,7 @@ info:
   description: >
     The Omnia 2.0 API is RESTful and provides access to the backend of Omnia 2.0
     and Pricemonitor. It is used to manage products, offers, contracts and more.
-  version: 0.0.7066
+  version: 0.0.7068
   x-logo:
     url: >-
       https://www.omniaretail.com/hubfs/Omnia%20Logo%20SVG/Omnia_Retail_Full_Colour_Logo_On_White_RGB.svg
@@ -9498,6 +9498,53 @@ paths:
       security:
         - BasicAuth: []
         - BearerAuth: []
+  /api/v3/companies/{companyId}/users:
+    x-audience: Internal
+    parameters:
+      - $ref: '#/components/parameters/companyIdParam'
+    post:
+      operationId: postInviteUserToCompanyV3
+      summary: Invite a user to a company
+      description: |
+        Company admin user can invite a user to a company.
+      tags:
+        - companies
+        - internal
+      responses:
+        '200':
+          description: >-
+            User is already associated with the given company and hence no
+            invitation is sent.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InviteUserToCompanyResponseV3ApiResponse'
+        '201':
+          description: >-
+            Invitation sent and the user is assigned to the company
+            successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InviteUserToCompanyResponseV3ApiResponse'
+        '400':
+          description: |
+            - Invalid email address is provided
+            - Empty name is provided
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: >-
+                #/components/schemas/com.patagona.pricemonitor.share.api.InviteUserToCompanyRequestV3
+        description: User information including email & display name.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/v3/companies/{companyId}/users/contractaccess:
     x-audience: Internal
     parameters:
@@ -15039,6 +15086,50 @@ components:
         data:
           $ref: >-
             #/components/schemas/com.patagona.pricemonitor.share.api.EmbedSSOUrlResponseV3
+    com.patagona.pricemonitor.share.api.InviteUserToCompanyRequestV3:
+      description: User invitation to a company.
+      properties:
+        email:
+          type: string
+          description: Email address of a user.
+        name:
+          type: string
+          description: Display name of a user.
+      additionalProperties: false
+      type: object
+      required:
+        - email
+        - name
+    com.patagona.pricemonitor.share.api.InviteUserToCompanyResponseV3:
+      description: Successfully invited user.
+      properties:
+        email:
+          type: string
+          description: Email address of a user.
+        name:
+          type: string
+          description: Display name of a user.
+        roles:
+          type: array
+          items:
+            type: string
+          description: Roles associated with a user.
+      additionalProperties: false
+      type: object
+      required:
+        - email
+        - name
+        - roles
+    InviteUserToCompanyResponseV3ApiResponse:
+      required:
+        - data
+      type: object
+      additionalProperties: false
+      description: ''
+      properties:
+        data:
+          $ref: >-
+            #/components/schemas/com.patagona.pricemonitor.share.api.InviteUserToCompanyResponseV3
     com.patagona.pricemonitor.share.api.UserContractAccess:
       properties:
         email:
