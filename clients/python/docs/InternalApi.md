@@ -17526,6 +17526,7 @@ Name | Type | Description  | Notes
 **200** | User is already associated with the given company and hence no invitation is sent. |  -  |
 **201** | Invitation sent and the user is assigned to the company successfully. |  -  |
 **400** | - Invalid email address is provided - Empty name is provided  |  -  |
+**500** | Communication with Auth0 service failed. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
