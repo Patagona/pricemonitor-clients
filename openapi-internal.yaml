@@ -10,7 +10,7 @@ info:
   description: >
     The Omnia 2.0 API is RESTful and provides access to the backend of Omnia 2.0
     and Pricemonitor. It is used to manage products, offers, contracts and more.
-  version: 0.0.7078
+  version: 0.0.7079
   x-logo:
     url: >-
       https://www.omniaretail.com/hubfs/Omnia%20Logo%20SVG/Omnia_Retail_Full_Colour_Logo_On_White_RGB.svg
@@ -15008,12 +15008,6 @@ components:
     com.patagona.pricemonitor.share.api.GetCompanyUsersUser:
       description: User Information of company users.
       properties:
-        id:
-          type: number
-          description: The id of the user.
-        email:
-          type: string
-          description: The email of the user.
         name:
           type: string
           description: The name of the user.
@@ -15024,13 +15018,24 @@ components:
             The last active datetime of the user. In case the user has no
             activity yet, the last active datetime will be returned as
             '1970-01-01T00:00:01.000Z'.
+        email:
+          type: string
+          description: The email of the user.
+        id:
+          type: number
+          description: The id of the user.
+        creationDate:
+          type: string
+          format: date-time
+          description: The time when user is assigned to a company.
       additionalProperties: false
       type: object
       required:
-        - id
         - email
-        - name
+        - id
         - lastActiveDate
+        - name
+        - creationDate
     com.patagona.pricemonitor.share.api.LookerUserAttributesV3:
       description: >-
         Response body containing looker user attributes First introduced to
