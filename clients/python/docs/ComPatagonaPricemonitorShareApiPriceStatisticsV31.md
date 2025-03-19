@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **min** | **float** | The minimum offer price. | 
 **avg** | **float** | The average offer price. | 
 **max** | **float** | The maximum offer price. | 
+**cheapest_shops** | **list[str]** | The shop names that offer for minimum price. | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
