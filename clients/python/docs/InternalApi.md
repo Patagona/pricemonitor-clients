@@ -4427,7 +4427,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_all_companies**
-> ComPatagonaPricemonitorShareApiAdminCompanyV2 get_all_companies(start=start, limit=limit)
+> list[ComPatagonaPricemonitorShareApiAdminCompanyV2] get_all_companies(start=start, limit=limit)
 
 Get a list of all companies
 
@@ -4530,7 +4530,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ComPatagonaPricemonitorShareApiAdminCompanyV2**](ComPatagonaPricemonitorShareApiAdminCompanyV2.md)
+[**list[ComPatagonaPricemonitorShareApiAdminCompanyV2]**](ComPatagonaPricemonitorShareApiAdminCompanyV2.md)
 
 ### Authorization
 
