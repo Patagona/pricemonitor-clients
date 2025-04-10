@@ -130,7 +130,7 @@ This endpoint does not need any parameter.
 
 Retrieve Looker embed SSO url [manufacturer]
 
-Retrieve an embed SSO url for Looker for a manufacturer contract.
+Returns a signed Looker SSO URL for embedding a dashboard for a contract. The target dashboard must be whitelisted.
 
 ### Example
 
@@ -245,7 +245,8 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Signed embed SSO url for Looker. |  -  |
+**200** | Signed Looker SSO embed URL. |  -  |
+**400** | - Invalid Looker URL - Dashboard ID is not allowed - Looker API returns client error  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -254,7 +255,7 @@ Name | Type | Description  | Notes
 
 Retrieve Looker embed SSO url [vendor]
 
-Retrieve an embed SSO url for Looker for a vendor contract.
+Returns a signed Looker SSO URL for embedding a dashboard for a contract. The target dashboard must be whitelisted.
 
 ### Example
 
@@ -369,7 +370,8 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Signed embed SSO url for Looker. |  -  |
+**200** | Signed Looker SSO embed URL. |  -  |
+**400** | - Invalid Looker URL - Dashboard ID is not allowed - Looker API returns client error  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

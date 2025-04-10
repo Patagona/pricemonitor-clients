@@ -10,7 +10,7 @@ info:
   description: >
     The Omnia 2.0 API is RESTful and provides access to the backend of Omnia 2.0
     and Pricemonitor. It is used to manage products, offers, contracts and more.
-  version: 0.0.7106
+  version: 0.0.7107
   x-logo:
     url: >-
       https://www.omniaretail.com/hubfs/Omnia%20Logo%20SVG/Omnia_Retail_Full_Colour_Logo_On_White_RGB.svg
@@ -9453,7 +9453,9 @@ paths:
     post:
       operationId: postEmbedSSOUrlVendor
       summary: Retrieve Looker embed SSO url [vendor]
-      description: Retrieve an embed SSO url for Looker for a vendor contract.
+      description: >-
+        Returns a signed Looker SSO URL for embedding a dashboard for a
+        contract. The target dashboard must be whitelisted.
       tags:
         - internal
         - looker
@@ -9463,7 +9465,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EmbedSSOUrlResponseV3ApiResponse'
-          description: Signed embed SSO url for Looker.
+          description: Signed Looker SSO embed URL.
+        '400':
+          description: |
+            - Invalid Looker URL
+            - Dashboard ID is not allowed
+            - Looker API returns client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
       requestBody:
         content:
           application/json:
@@ -9481,7 +9492,9 @@ paths:
     post:
       operationId: postEmbedSSOUrlManufacturer
       summary: Retrieve Looker embed SSO url [manufacturer]
-      description: Retrieve an embed SSO url for Looker for a manufacturer contract.
+      description: >-
+        Returns a signed Looker SSO URL for embedding a dashboard for a
+        contract. The target dashboard must be whitelisted.
       tags:
         - internal
         - looker
@@ -9491,7 +9504,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EmbedSSOUrlResponseV3ApiResponse'
-          description: Signed embed SSO url for Looker.
+          description: Signed Looker SSO embed URL.
+        '400':
+          description: |
+            - Invalid Looker URL
+            - Dashboard ID is not allowed
+            - Looker API returns client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
       requestBody:
         content:
           application/json:
@@ -15090,13 +15112,14 @@ components:
           $ref: >-
             #/components/schemas/com.patagona.pricemonitor.share.api.LookerUserAttributesV3
     com.patagona.pricemonitor.share.api.PostEmbedSSOUrlRequestV3:
-      description: Request body to retrieve signed embed sso url using looker api.
+      description: Request body for retrieving a signed Looker SSO embed URL.
       properties:
         url:
           type: string
           description: >-
-            The complete URL of the Looker UI page to display in the embed
-            context.
+            The full URL of the Looker dashboard to embed. Must start with
+            https://looker.omniaretail.com/dashboards/ Only registered Omnia 2.0
+            dashboard IDs are allowed.
       additionalProperties: false
       type: object
       required:
