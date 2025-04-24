@@ -4,7 +4,7 @@ Request to delete a list of customer orders by providing an order query Notes: <
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**orders** | [**list[ComPatagonaPricemonitorShareApiDeleteOrdersByQueryRequestV3Orders]**](ComPatagonaPricemonitorShareApiDeleteOrdersByQueryRequestV3Orders.md) | List of order queries, each query should include an order id and its corresponding creation date | 
+**orders** | [**list[ComPatagonaPricemonitorShareApiDeleteOrderQueryV3]**](ComPatagonaPricemonitorShareApiDeleteOrderQueryV3.md) | List of order queries, each query should include an order id and its corresponding creation date | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -10,7 +10,7 @@ info:
   description: >
     The Omnia 2.0 API is RESTful and provides access to the backend of Omnia 2.0
     and Pricemonitor. It is used to manage products, offers, contracts and more.
-  version: 0.0.7110
+  version: 0.0.7111
   x-logo:
     url: >-
       https://www.omniaretail.com/hubfs/Omnia%20Logo%20SVG/Omnia_Retail_Full_Colour_Logo_On_White_RGB.svg
@@ -13410,6 +13410,23 @@ components:
             $ref: >-
               #/components/schemas/com.patagona.pricemonitor.share.api.PostOrderStatisticsResponseV3
           type: array
+    com.patagona.pricemonitor.share.api.DeleteOrderQueryV3:
+      description: Query to specify the order to be deleted
+      properties:
+        orderId:
+          type: string
+          description: Unique identifier of the order
+        creationDate:
+          type: string
+          format: date-time
+          description: >-
+            Creation date of the corresponding order. It is a Timestamp in UTC
+            time zone
+      additionalProperties: false
+      type: object
+      required:
+        - orderId
+        - creationDate
     com.patagona.pricemonitor.share.api.DeleteOrdersByQueryRequestV3:
       description: >-
         Request to delete a list of customer orders by providing an order query
@@ -13419,21 +13436,8 @@ components:
         orders:
           type: array
           items:
-            type: object
-            additionalProperties: false
-            properties:
-              orderId:
-                type: string
-                description: Unique identifier of the order
-              creationDate:
-                type: string
-                format: date-time
-                description: >-
-                  Creation date of the corresponding order. It is a Timestamp in
-                  UTC time zone
-            required:
-              - orderId
-              - creationDate
+            $ref: >-
+              #/components/schemas/com.patagona.pricemonitor.share.api.DeleteOrderQueryV3
           description: >-
             List of order queries, each query should include an order id and its
             corresponding creation date
@@ -13806,115 +13810,7 @@ components:
         originalOffers:
           type: array
           items:
-            type: object
-            additionalProperties: false
-            properties:
-              positionByTotalPrice:
-                type: integer
-                description: >-
-                  The position of the offer on the domain when sorted by total
-                  price.
-              deliveryCosts:
-                type: number
-                description: >-
-                  The additional charges for delivering the product to the
-                  customer's location (shipping costs).
-              maxDeliveryTime:
-                type: integer
-                description: >-
-                  Optional maximum time, in hours, it takes for the product to
-                  be delivered to the customer.
-              url:
-                type: string
-                description: >-
-                  The direct link to the product page on the domain where this
-                  offer can be found.
-              vendorDomainId:
-                type: string
-                description: >-
-                  An identifier of the vendor on the domain. Identifiers are
-                  available for certain domains only.
-              domain:
-                type: string
-                description: The website from which the offer originates.
-              price:
-                type: number
-                description: The unit price of the offer.
-              minDeliveryTime:
-                type: integer
-                description: >-
-                  Optional minimum time, in hours, it takes for the product to
-                  be delivered to the customer.
-              gtin:
-                type: number
-                description: An optional field for the GTIN / EAN of the product.
-              positionByUnitPrice:
-                type: integer
-                description: >-
-                  The position of the offer on the domain when sorted by unit
-                  price.
-              availability:
-                type: boolean
-                description: >-
-                  An optional flag indicating whether the product is currently
-                  in stock and available for purchase.
-              attributes:
-                type: array
-                items:
-                  $ref: >-
-                    #/components/schemas/com.patagona.pricemonitor.share.api.OfferAttribute
-                description: A list of additional offer details.
-              vendorName:
-                type: string
-                description: >-
-                  The display name of the shop which sells the product. In some
-                  cases (e.g. marketplaces) with some additional information
-                  about the seller: e.g. Amazon NL - Sold By Amazon NL
-              retrievalDate:
-                type: string
-                format: date-time
-                description: >-
-                  Optional timestamp based on ISO 8601 format, indicating when
-                  this offer was fetched from the domain.
-              creationDate:
-                type: string
-                format: date-time
-                description: >-
-                  An optional timestamp in ISO 8601 format indicating when this
-                  offer was stored in Omnia 2.0. This is not the timestamp when
-                  the offer was fetched from the domain; for that, use
-                  retrievalDate.
-              productName:
-                type: string
-                description: The name of the product as listed on the domain.
-              currency:
-                type: string
-                description: >-
-                  The currency in which the price and delivery costs are
-                  expressed. Provided values are ISO 4217 currency codes like
-                  "EUR".
-              productId:
-                type: string
-                description: The internal product ID in Omnia 2.0.
-              ignored:
-                type: boolean
-                description: >-
-                  A flag indicating whether the offer has been blacklisted or
-                  not by the Omnia 2.0 filters.
-            required:
-              - productName
-              - ignored
-              - url
-              - attributes
-              - positionByUnitPrice
-              - vendorName
-              - productId
-              - price
-              - deliveryCosts
-              - creationDate
-              - currency
-              - positionByTotalPrice
-              - domain
+            $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.ApiOffer'
           description: >-
             All offers which were initially considered for the price
             calculation.
