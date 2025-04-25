@@ -6,8 +6,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **expiration_date** | **datetime** | The date and time the contract expires | [optional] 
 **description** | **str** | The contract&#39;s name | 
-**id** | **str** | The id of the contract | 
+**id** | **str** | The string id of the contract | 
 **creation_date** | **datetime** | The date and time the contract was created | 
+**numeric_id** | **float** | The numerical id of the contract | 
 **type** | [**ComPatagonaPricemonitorShareApiContractType**](ComPatagonaPricemonitorShareApiContractType.md) |  | 
 **active** | **bool** | The contract-status | 
 
