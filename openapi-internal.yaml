@@ -10,7 +10,7 @@ info:
   description: >
     The Omnia 2.0 API is RESTful and provides access to the backend of Omnia 2.0
     and Pricemonitor. It is used to manage products, offers, contracts and more.
-  version: 0.0.7117
+  version: 0.0.7118
   x-logo:
     url: >-
       https://www.omniaretail.com/hubfs/Omnia%20Logo%20SVG/Omnia_Retail_Full_Colour_Logo_On_White_RGB.svg
@@ -14809,35 +14809,6 @@ components:
       required:
         - successful
         - outcome
-    com.patagona.pricemonitor.share.api.ProductMonitoringStatusOnDomain:
-      description: Describes the monitoring status of a product on a certain domain.
-      properties:
-        domain:
-          type: string
-          description: The domain which gets monitored.
-        startedAt:
-          type: string
-          format: date-time
-          description: >-
-            The last time pricemonitor tried to monitor the product on the given
-            domain. If this doesn't exist it mean's that pricemonitor haven't
-            tried to monitor this product on the domain yet. One reason could be
-            that the product is very new or the domain has just recently been
-            added to the contract.
-        completedAt:
-          type: string
-          format: date-time
-          description: >-
-            The last time pricemonitor completed monitoring the product on the
-            given domain.
-        outcome:
-          $ref: >-
-            #/components/schemas/com.patagona.pricemonitor.share.api.ProductMonitoringStatusOnDomainOutcome
-          description: Describes the result of a monitoring attempt.
-      additionalProperties: false
-      type: object
-      required:
-        - domain
     com.patagona.pricemonitor.share.api.ProductMonitoringStatus:
       description: >-
         Describes the monitoring status of a product for all domains of the
@@ -14849,8 +14820,33 @@ components:
         statusOnDomain:
           type: array
           items:
-            $ref: >-
-              #/components/schemas/com.patagona.pricemonitor.share.api.ProductMonitoringStatusOnDomain
+            type: object
+            additionalProperties: false
+            properties:
+              domain:
+                type: string
+                description: The domain which gets monitored.
+              startedAt:
+                type: string
+                format: date-time
+                description: >-
+                  The last time pricemonitor tried to monitor the product on the
+                  given domain. If this doesn't exist it mean's that
+                  pricemonitor haven't tried to monitor this product on the
+                  domain yet. One reason could be that the product is very new
+                  or the domain has just recently been added to the contract.
+              completedAt:
+                type: string
+                format: date-time
+                description: >-
+                  The last time pricemonitor completed monitoring the product on
+                  the given domain.
+              outcome:
+                $ref: >-
+                  #/components/schemas/com.patagona.pricemonitor.share.api.ProductMonitoringStatusOnDomainOutcome
+                description: Describes the result of a monitoring attempt.
+            required:
+              - domain
           description: >-
             The monitoring status on each domain. It will contain an entry for
             each domain which is active for that contract.

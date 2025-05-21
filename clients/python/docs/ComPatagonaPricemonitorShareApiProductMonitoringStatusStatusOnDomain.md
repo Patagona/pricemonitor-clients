@@ -1,6 +1,5 @@
-# ComPatagonaPricemonitorShareApiProductMonitoringStatusOnDomain
+# ComPatagonaPricemonitorShareApiProductMonitoringStatusStatusOnDomain
 
-Describes the monitoring status of a product on a certain domain.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
