@@ -116,6 +116,7 @@ model/pricemonitorPostProductOfferRequest.ts
 model/pricemonitorPostScenarioStrategyResponse.ts
 model/pricemonitorPostVendorShopMappingRequestV3.ts
 model/pricemonitorPostVendorsByDomainResponse.ts
+model/pricemonitorPriceApprovalDecisionV3.ts
 model/pricemonitorPriceBoundaryDetails.ts
 model/pricemonitorPriceBoundaryDetailsFixedPriceBoundary.ts
 model/pricemonitorPriceBoundaryDetailsFormulaPriceBoundary.ts
@@ -127,6 +128,8 @@ model/pricemonitorPriceCalculationResultPriceCalculationFailure.ts
 model/pricemonitorPriceDumpingStatsRequest.ts
 model/pricemonitorPriceDumpingStatsResponse.ts
 model/pricemonitorPriceGapUnit.ts
+model/pricemonitorPriceRecommendationsApprovalQueryRequestV3.ts
+model/pricemonitorPriceRecommendationsApprovalQueryResponseV3.ts
 model/pricemonitorPriceSimulationBulkRequestV3.ts
 model/pricemonitorPriceSimulationBulkResponseV3.ts
 model/pricemonitorPriceStatisticsV31.ts
@@ -279,6 +282,7 @@ model/queryOffersApiResponse.ts
 model/queryOffersOfShopV3ApiResponse.ts
 model/queryOrderStatisticsV3ApiResponse.ts
 model/queryPriceDumpingStatsApiResponse.ts
+model/queryPriceRecommendationsApprovalsV3ApiResponse.ts
 model/queryPriceRecommendationsV2ApiResponse.ts
 model/queryProductsByFilterManufacturerV3ApiResponse.ts
 model/queryProductsByFilterVendorV3ApiResponse.ts

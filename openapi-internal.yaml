@@ -10,7 +10,7 @@ info:
   description: >
     The Omnia 2.0 API is RESTful and provides access to the backend of Omnia 2.0
     and Pricemonitor. It is used to manage products, offers, contracts and more.
-  version: 0.0.7131
+  version: 0.0.7132
   x-logo:
     url: >-
       https://www.omniaretail.com/hubfs/Omnia%20Logo%20SVG/Omnia_Retail_Full_Colour_Logo_On_White_RGB.svg
@@ -4145,6 +4145,78 @@ paths:
             - Too many simulation requests in the body.
 
             - Contract not compatible with simulation feature.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
+  /api/v3/vendor/contracts/{contractId}/pricerecommendations/approvals/query:
+    post:
+      x-audience: Internal
+      operationId: queryPriceRecommendationsApprovalsV3
+      summary: Query price recommendation approvals
+      tags:
+        - pricerecommendations
+      parameters:
+        - $ref: '#/components/parameters/contractIdParam'
+      description: >
+        This endpoint queries price recommendation approvals for a specified set
+        of filters.
+
+
+        Use cases include:
+
+        - Retrieving pending price recommendation approvals.
+
+        - Auditing historic pricing decisions.
+
+
+        Note:
+
+        *Approval* refers to the price approval flow concept in our business
+        processes,
+
+        covering all states of price recommendations within this flow (e.g.,
+        pending, approved, rejected).
+
+        The term does not mean all price recommendations are approved.
+      requestBody:
+        required: true
+        description: >
+          The request body contains all necessary filters to query the desired
+          price recommendation approvals.
+        content:
+          application/json:
+            schema:
+              $ref: >-
+                #/components/schemas/com.patagona.pricemonitor.share.api.PriceRecommendationsApprovalQueryRequestV3
+      responses:
+        '200':
+          description: >
+            A successful response containing a list of price approval meta
+            information and associated price recommendations.
+          content:
+            application/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/QueryPriceRecommendationsApprovalsV3ApiResponse
+        '400':
+          description: >
+            The request could not be processed due to validation errors in the
+            provided body.
+
+            Common issues include:
+
+
+            - Malformed JSON.
+
+            - Invalid time range provided.
+
+            - Invalid pagination parameters.
+
+            - Invalid approval status values provided.
           content:
             application/json:
               schema:
@@ -13893,6 +13965,153 @@ components:
         data:
           $ref: >-
             #/components/schemas/com.patagona.pricemonitor.share.api.PriceSimulationBulkResponseV3
+    com.patagona.pricemonitor.share.api.PriceRecommendationsApprovalQueryRequestV3:
+      description: >-
+        Represents a paginated query for price recommendation approvals. <br> If
+        no filter is provided, the response will contain all available data,
+        paginated according to the `pagination` parameter. <br> <br> Notes: <br>
+        - At maximum it's allowed to query 1,000 records (pagination limit). -
+        If `status` is not provided, all statuses are included in the
+        results.<br> - If `latestOnly` is true, only the most recent approval
+        per product is returned. If false, all matching records are returned.
+      properties:
+        productFilter:
+          $ref: >-
+            #/components/schemas/com.patagona.pricemonitor.share.api.OneOfProductsQuery
+          description: >-
+            An optional parameter to further filter the data based on product
+            criteria. <br> If not provided, all approvals for all products are
+            included in the results.
+        latestOnly:
+          type: boolean
+          description: >-
+            Boolean indicating whether to return only the most recent approval
+            per product. <br> If true, only the most recent record per product
+            within the time range is returned. <br> If false, all records within
+            the time range are returned.
+        range:
+          $ref: >-
+            #/components/schemas/com.patagona.pricemonitor.share.api.OffsetTimeRange
+          description: >-
+            Defines the time range for which price recommendation approvals are
+            queried.
+        status:
+          type: array
+          items:
+            type: string
+          uniqueItems: true
+          description: >-
+            Optional set of statuses to filter the approvals by their current
+            status. <br> If omitted, all statuses are included.
+        pagination:
+          $ref: '#/components/schemas/com.patagona.pricemonitor.share.api.Pagination'
+          description: >-
+            Specifies the pagination details such as the start index and the
+            number of records to fetch (limit). At maximum it's allowed to query
+            1,000 records.
+      additionalProperties: false
+      type: object
+      required:
+        - pagination
+        - range
+        - latestOnly
+    com.patagona.pricemonitor.share.api.PriceApprovalDecisionV3:
+      description: >-
+        Represents a single decision made by a user regarding a price
+        recommendation approval.
+      properties:
+        userEmail:
+          type: string
+          description: The email address of the user who made the decision.
+        decision:
+          type: string
+          description: >-
+            The decision made by the user. <br> Allowed values: "approved",
+            "rejected", or "overwritten".
+        comment:
+          type: string
+          description: An optional comment provided by the user.
+        createdAt:
+          type: string
+          format: date-time
+          description: The timestamp when the decision was made.
+        userId:
+          type: integer
+          description: The unique identifier of the user who made the decision.
+        superseded:
+          type: boolean
+          description: Indicates if this decision was superseded by a later decision.
+        overwritePrice:
+          type: number
+          description: >-
+            The manual price set by the user when the recommendation was
+            overwritten, if applicable.
+      additionalProperties: false
+      type: object
+      required:
+        - superseded
+        - createdAt
+        - decision
+        - userId
+        - userEmail
+    com.patagona.pricemonitor.share.api.PriceRecommendationsApprovalQueryResponseV3:
+      description: >-
+        Represents the approval details for a price recommendation for a
+        specific product and timestamp.
+      properties:
+        decisions:
+          type: array
+          items:
+            $ref: >-
+              #/components/schemas/com.patagona.pricemonitor.share.api.PriceApprovalDecisionV3
+          description: The sequence of decisions made regarding this approval.
+        updatedAt:
+          type: string
+          format: date-time
+          description: >-
+            The timestamp when the approval was last updated, in ISO 8601
+            format,.
+        requiredApprovals:
+          type: integer
+          description: >-
+            The number of approvals required for a pricing decision (must be ≥
+            1).
+        priceRecommendation:
+          $ref: >-
+            #/components/schemas/com.patagona.pricemonitor.share.api.ApiPriceRecommendation
+          description: The associated price recommendation.
+        status:
+          type: string
+          description: >-
+            The current approval status. <br> Allowed values: "pending",
+            "approved", "rejected", "outdated", or "overwritten".
+        createdAt:
+          type: string
+          format: date-time
+          description: The timestamp when the approval was created, in ISO 8601 format,.
+        productId:
+          type: string
+          description: The internal unique product identifier of Omnia 2.0.
+      additionalProperties: false
+      type: object
+      required:
+        - requiredApprovals
+        - status
+        - priceRecommendation
+        - createdAt
+        - productId
+        - updatedAt
+        - decisions
+    QueryPriceRecommendationsApprovalsV3ApiResponse:
+      required:
+        - data
+      type: object
+      additionalProperties: false
+      description: ''
+      properties:
+        data:
+          $ref: >-
+            #/components/schemas/com.patagona.pricemonitor.share.api.PriceRecommendationsApprovalQueryResponseV3
     GetExtendedTagsApiResponse:
       required:
         - data
