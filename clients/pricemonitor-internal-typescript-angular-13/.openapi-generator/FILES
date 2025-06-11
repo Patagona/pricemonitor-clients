@@ -39,6 +39,8 @@ model/andOfferFilterAnd.ts
 model/apiContract.ts
 model/apiError.ts
 model/apiErrorResponse.ts
+model/booleanBulkApiResponse.ts
+model/booleanBulkApiResponseDataInner.ts
 model/bulkedPostProductsApiResponse.ts
 model/pricemonitorActivateMarketplaceResponseV3.ts
 model/pricemonitorAdminCompanyV2.ts
@@ -112,6 +114,7 @@ model/pricemonitorPostOfferStatisticsRequestV31.ts
 model/pricemonitorPostOfferStatisticsResponseV31.ts
 model/pricemonitorPostOrderStatisticsRequestV3.ts
 model/pricemonitorPostOrderStatisticsResponseV3.ts
+model/pricemonitorPostPriceRecommendationApprovalRequestV3.ts
 model/pricemonitorPostProductOfferRequest.ts
 model/pricemonitorPostScenarioStrategyResponse.ts
 model/pricemonitorPostVendorShopMappingRequestV3.ts
@@ -246,8 +249,6 @@ model/postAdminAddDomainV3ApiResponse.ts
 model/postAuthorizeSellerResponseV3ApiResponse.ts
 model/postOfferStatisticsApiResponse.ts
 model/postOfferStatisticsRequest.ts
-model/postOffersResponse.ts
-model/postOffersResponseDataInner.ts
 model/postOrdersBulkApiResponse.ts
 model/postOrdersBulkApiResponseDataInner.ts
 model/postOrdersBulkApiResponseDataInnerData.ts

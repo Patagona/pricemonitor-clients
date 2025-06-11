@@ -1,4 +1,4 @@
-# PostOffersResponseData
+# BooleanBulkApiResponseData
 
 ## Properties
 Name | Type | Description | Notes

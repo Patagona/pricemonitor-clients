@@ -4,6 +4,7 @@ All URIs are relative to *https://api.patagona.de*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**decide_price_recommendations_approvals_v3**](PricerecommendationsApi.md#decide_price_recommendations_approvals_v3) | **POST** /api/v3/vendor/contracts/{contractId}/pricerecommendations/approvals/decide | Set price recommendation approvals
 [**delete_repricing_strategy_vendor_v2**](PricerecommendationsApi.md#delete_repricing_strategy_vendor_v2) | **DELETE** /api/2/v/contracts/{contractId}/settings/repricingstrategy | Delete repricing strategy
 [**get_price_recommendation**](PricerecommendationsApi.md#get_price_recommendation) | **GET** /api/2/v/contracts/{contractId}/result/pricerecommendations | Get all price recommendations
 [**get_price_recommendation_stats_vendor_v2**](PricerecommendationsApi.md#get_price_recommendation_stats_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/result/pricerecommendationstats | Get price reommendation stats
@@ -16,6 +17,131 @@ Method | HTTP request | Description
 [**query_price_recommendations_vendor_v2**](PricerecommendationsApi.md#query_price_recommendations_vendor_v2) | **POST** /api/2/v/contracts/{contractId}/result/pricerecommendations/query | Query price recommendations
 [**simulate_price_recommendations_v3**](PricerecommendationsApi.md#simulate_price_recommendations_v3) | **POST** /api/v3/vendor/contracts/{contractId}/pricerecommendations/simulate | Simulate price recommendations
 
+
+# **decide_price_recommendations_approvals_v3**
+> BooleanBulkApiResponse decide_price_recommendations_approvals_v3(contract_id, com_patagona_pricemonitor_share_api_post_price_recommendation_approval_request_v3)
+
+Set price recommendation approvals
+
+Processes bulk decisions for price recommendation approvals. Only pending price recommendations can be decided.  ## Notes - *Approval* refers to the price approval flow concept in our business processes, covering all states of price recommendations within this flow (i.e., pending, approved, rejected). The term does not mean all price recommendations are approved. - We preserve a linear history: Once a price recommendation approval is **finalized** (i.e., no longer pending), it can no longer be changed. - If any user rejects, the entire price recommendation is rejected. - If a user has already submitted an active (not superseded) decision for a recommendation, they cannot submit another. - The endpoint is not idempotent, as submitting a decision changes the approval state. 
+
+### Example
+
+* Basic Authentication (BasicAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.PricerecommendationsApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+com_patagona_pricemonitor_share_api_post_price_recommendation_approval_request_v3 = [pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostPriceRecommendationApprovalRequestV3()] # list[ComPatagonaPricemonitorShareApiPostPriceRecommendationApprovalRequestV3] | The request body contains a list of price decisions to process. 
+
+    try:
+        # Set price recommendation approvals
+        api_response = api_instance.decide_price_recommendations_approvals_v3(contract_id, com_patagona_pricemonitor_share_api_post_price_recommendation_approval_request_v3)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling PricerecommendationsApi->decide_price_recommendations_approvals_v3: %s\n" % e)
+```
+
+* Bearer (JWT) Authentication (BearerAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.PricerecommendationsApi(api_client)
+    contract_id = 'qbcxvb' # str | ID of the contract
+com_patagona_pricemonitor_share_api_post_price_recommendation_approval_request_v3 = [pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostPriceRecommendationApprovalRequestV3()] # list[ComPatagonaPricemonitorShareApiPostPriceRecommendationApprovalRequestV3] | The request body contains a list of price decisions to process. 
+
+    try:
+        # Set price recommendation approvals
+        api_response = api_instance.decide_price_recommendations_approvals_v3(contract_id, com_patagona_pricemonitor_share_api_post_price_recommendation_approval_request_v3)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling PricerecommendationsApi->decide_price_recommendations_approvals_v3: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **contract_id** | **str**| ID of the contract | 
+ **com_patagona_pricemonitor_share_api_post_price_recommendation_approval_request_v3** | [**list[ComPatagonaPricemonitorShareApiPostPriceRecommendationApprovalRequestV3]**](ComPatagonaPricemonitorShareApiPostPriceRecommendationApprovalRequestV3.md)| The request body contains a list of price decisions to process.  | 
+
+### Return type
+
+[**BooleanBulkApiResponse**](BooleanBulkApiResponse.md)
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | A successful response indicating that at least one price recommendation approval decision has been applied.  Notes: - The response array preserves the order of the input request array. - An individual price decision might not be processed if:   - Multiple decisions for the same product are included in a single request: **none** of those decisions     will be processed, as it is ambiguous which decision should apply.   - The corresponding price recommendation approval is already processed (i.e., not in the &#39;pending&#39; status).   - The user has already submitted an active decision (not superseded) for that approval.  |  -  |
+**400** | The request could not be processed due to validation errors in the provided body, or none of the pricing decisions could be applied.  Common issues include: - Malformed JSON. - The decision &#39;overwritten&#39; is provided for a product, but the overwrite price is missing. - A decision other than &#39;overwritten&#39; is provided for a product, but the overwrite price is provided. - An overwrite price lower than 0.01 is provided. - An unsupported decision is provided (only &#39;approved&#39;, &#39;rejected&#39;, and &#39;overwritten&#39; are supported). - All price recommendation approvals in the request have been already processed   (e.g., previously approved, rejected, overwritten, or outdated). - The user has already submitted decisions for all provided price recommendation approvals. - A referred price recommendation approval does not exist.  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_repricing_strategy_vendor_v2**
 > object delete_repricing_strategy_vendor_v2(contract_id)

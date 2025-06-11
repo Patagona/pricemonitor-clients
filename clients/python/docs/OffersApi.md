@@ -2367,7 +2367,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_offers_in_a_bulk_vendor_v2**
-> PostOffersResponse post_offers_in_a_bulk_vendor_v2(contract_id, com_patagona_pricemonitor_share_api_post_product_offer_request)
+> BooleanBulkApiResponse post_offers_in_a_bulk_vendor_v2(contract_id, com_patagona_pricemonitor_share_api_post_product_offer_request)
 
 Add offers in bulk
 
@@ -2472,7 +2472,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PostOffersResponse**](PostOffersResponse.md)
+[**BooleanBulkApiResponse**](BooleanBulkApiResponse.md)
 
 ### Authorization
 

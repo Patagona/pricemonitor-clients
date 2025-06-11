@@ -10,7 +10,7 @@ info:
   description: >
     The Omnia 2.0 API is RESTful and provides access to the backend of Omnia 2.0
     and Pricemonitor. It is used to manage products, offers, contracts and more.
-  version: 0.0.7138
+  version: 0.0.7140
   x-logo:
     url: >-
       https://www.omniaretail.com/hubfs/Omnia%20Logo%20SVG/Omnia_Retail_Full_Colour_Logo_On_White_RGB.svg
@@ -4152,6 +4152,112 @@ paths:
       security:
         - BasicAuth: []
         - BearerAuth: []
+  /api/v3/vendor/contracts/{contractId}/pricerecommendations/approvals/decide:
+    post:
+      x-audience: Internal
+      operationId: decidePriceRecommendationsApprovalsV3
+      summary: Set price recommendation approvals
+      tags:
+        - pricerecommendations
+      parameters:
+        - $ref: '#/components/parameters/contractIdParam'
+      description: >
+        Processes bulk decisions for price recommendation approvals. Only
+        pending price recommendations can be decided.
+
+
+        ## Notes
+
+        - *Approval* refers to the price approval flow concept in our business
+        processes,
+
+        covering all states of price recommendations within this flow (i.e.,
+        pending, approved, rejected).
+
+        The term does not mean all price recommendations are approved.
+
+        - We preserve a linear history: Once a price recommendation approval is
+        **finalized** (i.e., no longer pending),
+
+        it can no longer be changed.
+
+        - If any user rejects, the entire price recommendation is rejected.
+
+        - If a user has already submitted an active (not superseded) decision
+        for a recommendation,
+
+        they cannot submit another.
+
+        - The endpoint is not idempotent, as submitting a decision changes the
+        approval state.
+      requestBody:
+        required: true
+        description: |
+          The request body contains a list of price decisions to process.
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: >-
+                  #/components/schemas/com.patagona.pricemonitor.share.api.PostPriceRecommendationApprovalRequestV3
+      responses:
+        '200':
+          description: >
+            A successful response indicating that at least one price
+            recommendation approval decision has been applied.
+
+
+            Notes:
+
+            - The response array preserves the order of the input request array.
+
+            - An individual price decision might not be processed if:
+              - Multiple decisions for the same product are included in a single request: **none** of those decisions
+                will be processed, as it is ambiguous which decision should apply.
+              - The corresponding price recommendation approval is already processed (i.e., not in the 'pending' status).
+              - The user has already submitted an active decision (not superseded) for that approval.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BooleanBulkApiResponse'
+        '400':
+          description: >
+            The request could not be processed due to validation errors in the
+            provided body,
+
+            or none of the pricing decisions could be applied.
+
+
+            Common issues include:
+
+            - Malformed JSON.
+
+            - The decision 'overwritten' is provided for a product, but the
+            overwrite price is missing.
+
+            - A decision other than 'overwritten' is provided for a product, but
+            the overwrite price is provided.
+
+            - An overwrite price lower than 0.01 is provided.
+
+            - An unsupported decision is provided (only 'approved', 'rejected',
+            and 'overwritten' are supported).
+
+            - All price recommendation approvals in the request have been
+            already processed
+              (e.g., previously approved, rejected, overwritten, or outdated).
+            - The user has already submitted decisions for all provided price
+            recommendation approvals.
+
+            - A referred price recommendation approval does not exist.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/v3/vendor/contracts/{contractId}/pricerecommendations/approvals/query:
     post:
       x-audience: Internal
@@ -6483,7 +6589,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PostOffersResponse'
+                $ref: '#/components/schemas/BooleanBulkApiResponse'
         '400':
           description: >
             The server could not understand the request due to invalid syntax.
@@ -11483,11 +11589,12 @@ components:
         - schemaVersion
         - strategy
       type: object
-    PostOffersResponse:
+    BooleanBulkApiResponse:
       description: >
-        Response body which contains Array of results in the same order as
-        provided in the request body. Each item is an object that **either**
-        includes **data** with value true, or **errors** with list of ApiError.
+        Response for bulk operations, containing one result per item in the
+        request body (order preserved). Each result object contains either:
+          - `data: true` if the operation succeeded,
+          - or `errors`: a list of `ApiError` objects if it failed.
       properties:
         data:
           type: array
@@ -13965,6 +14072,41 @@ components:
         data:
           $ref: >-
             #/components/schemas/com.patagona.pricemonitor.share.api.PriceSimulationBulkResponseV3
+    com.patagona.pricemonitor.share.api.PostPriceRecommendationApprovalRequestV3:
+      description: >-
+        Represents a request to make a decision on a price recommendation
+        approval for a specific product. This request is used to submit an
+        approval decision (approve, reject, or overwrite) for a given product
+        and price recommendation approval instance, identified by its product id
+        and creation timestamp.
+      properties:
+        decision:
+          type: string
+          description: >-
+            The decision made on the approval.<br> Allowed values: "approved",
+            "rejected", or "overwritten".
+        approvalCreatedAt:
+          type: string
+          format: date-time
+          description: The timestamp when the approval was created, in ISO 8601 format.
+        comment:
+          type: string
+          description: An optional comment regarding the decision.
+        productId:
+          type: string
+          description: The internal unique product identifier of Omnia 2.0.
+        overwritePrice:
+          type: number
+          description: >-
+            The manual price set by the user when the decision is "overwritten",
+            if applicable.<br> Must be provided and be ≥ 0.01 when decision is
+            "overwritten".<br> Must **not** be set for other decision values.
+      additionalProperties: false
+      type: object
+      required:
+        - decision
+        - productId
+        - approvalCreatedAt
     com.patagona.pricemonitor.share.api.PriceRecommendationsApprovalQueryRequestV3:
       description: >-
         Represents a paginated query for price recommendation approvals. <br> If
