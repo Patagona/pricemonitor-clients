@@ -1,4 +1,4 @@
-version := "0.0.7151"
+version := "0.0.7152"
 name := "pricemonitor-client-internal-sttp"
 organization := "patagona"
 
