@@ -89,7 +89,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 updated_max = '2013-10-20T19:20:30+01:00' # datetime | Last updated timestamp of products, formatted as ISO Date (i.e. 2019-11-20T13:46:13Z) in UTC.<br> Products can be deleted which haven't been updated since the specified timestamp.<br> If the query parameter is missing all products are deleted. (optional)
 tag_key = 'tag_key_example' # str | Tag key to consider for deleting products. This parameter works in combination with tagValue. (optional)
 tag_value = 'tag_value_example' # str | Tag value to consider for deleting products. This parameter works in combination with tagKey. (optional)
@@ -135,7 +135,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 updated_max = '2013-10-20T19:20:30+01:00' # datetime | Last updated timestamp of products, formatted as ISO Date (i.e. 2019-11-20T13:46:13Z) in UTC.<br> Products can be deleted which haven't been updated since the specified timestamp.<br> If the query parameter is missing all products are deleted. (optional)
 tag_key = 'tag_key_example' # str | Tag key to consider for deleting products. This parameter works in combination with tagValue. (optional)
 tag_value = 'tag_value_example' # str | Tag value to consider for deleting products. This parameter works in combination with tagKey. (optional)
@@ -152,7 +152,7 @@ tag_value = 'tag_value_example' # str | Tag value to consider for deleting produ
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **updated_max** | **datetime**| Last updated timestamp of products, formatted as ISO Date (i.e. 2019-11-20T13:46:13Z) in UTC.&lt;br&gt; Products can be deleted which haven&#39;t been updated since the specified timestamp.&lt;br&gt; If the query parameter is missing all products are deleted. | [optional] 
  **tag_key** | **str**| Tag key to consider for deleting products. This parameter works in combination with tagValue. | [optional] 
  **tag_value** | **str**| Tag value to consider for deleting products. This parameter works in combination with tagKey. | [optional] 
@@ -218,7 +218,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 updated_max = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 
     try:
@@ -262,7 +262,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 updated_max = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 
     try:
@@ -277,7 +277,7 @@ updated_max = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **updated_max** | **datetime**|  | [optional] 
 
 ### Return type
@@ -342,9 +342,9 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
-end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
+start_date = '2024-01-15T00:00:00Z' # datetime | **Start of time range** for data retrieval.  Format: ISO 8601 date-time in UTC (e.g., `2024-01-15T10:30:00Z`)  **Default behavior:** - If omitted and `endDate` is provided: `startDate` = `endDate` - 48 hours - If both omitted: range is `NOW - 48 hours` to `NOW`  (optional)
+end_date = '2024-01-16T23:59:59Z' # datetime | **End of time range** for data retrieval.  Format: ISO 8601 date-time in UTC (e.g., `2024-01-16T10:30:00Z`)  **Default behavior:** - If omitted and `startDate` is provided: `endDate` = `startDate` + 48 hours - If both omitted: range is `NOW - 48 hours` to `NOW`  (optional)
 start = 0 # int | Where to start fetching the Amazon Buy Box statistics. Must be positive. Default value is 0. (optional)
 limit = 50000 # int | Maximum number of results. Must be positive and not bigger than 50,000. Default value is 50,000. (optional)
 
@@ -389,9 +389,9 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
-end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
+start_date = '2024-01-15T00:00:00Z' # datetime | **Start of time range** for data retrieval.  Format: ISO 8601 date-time in UTC (e.g., `2024-01-15T10:30:00Z`)  **Default behavior:** - If omitted and `endDate` is provided: `startDate` = `endDate` - 48 hours - If both omitted: range is `NOW - 48 hours` to `NOW`  (optional)
+end_date = '2024-01-16T23:59:59Z' # datetime | **End of time range** for data retrieval.  Format: ISO 8601 date-time in UTC (e.g., `2024-01-16T10:30:00Z`)  **Default behavior:** - If omitted and `startDate` is provided: `endDate` = `startDate` + 48 hours - If both omitted: range is `NOW - 48 hours` to `NOW`  (optional)
 start = 0 # int | Where to start fetching the Amazon Buy Box statistics. Must be positive. Default value is 0. (optional)
 limit = 50000 # int | Maximum number of results. Must be positive and not bigger than 50,000. Default value is 50,000. (optional)
 
@@ -407,9 +407,9 @@ limit = 50000 # int | Maximum number of results. Must be positive and not bigger
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
- **start_date** | **datetime**| Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is &#39;NOW - 48 hours to NOW&#39;. | [optional] 
- **end_date** | **datetime**| Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is &#39;NOW - 48 hours to NOW&#39;. | [optional] 
+ **contract_id** | **str**| Unique identifier of the contract | 
+ **start_date** | **datetime**| **Start of time range** for data retrieval.  Format: ISO 8601 date-time in UTC (e.g., &#x60;2024-01-15T10:30:00Z&#x60;)  **Default behavior:** - If omitted and &#x60;endDate&#x60; is provided: &#x60;startDate&#x60; &#x3D; &#x60;endDate&#x60; - 48 hours - If both omitted: range is &#x60;NOW - 48 hours&#x60; to &#x60;NOW&#x60;  | [optional] 
+ **end_date** | **datetime**| **End of time range** for data retrieval.  Format: ISO 8601 date-time in UTC (e.g., &#x60;2024-01-16T10:30:00Z&#x60;)  **Default behavior:** - If omitted and &#x60;startDate&#x60; is provided: &#x60;endDate&#x60; &#x3D; &#x60;startDate&#x60; + 48 hours - If both omitted: range is &#x60;NOW - 48 hours&#x60; to &#x60;NOW&#x60;  | [optional] 
  **start** | **int**| Where to start fetching the Amazon Buy Box statistics. Must be positive. Default value is 0. | [optional] 
  **limit** | **int**| Maximum number of results. Must be positive and not bigger than 50,000. Default value is 50,000. | [optional] 
 
@@ -474,7 +474,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 product_id = '1' # str | ID of the product
 
     try:
@@ -518,7 +518,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 product_id = '1' # str | ID of the product
 
     try:
@@ -533,7 +533,7 @@ product_id = '1' # str | ID of the product
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **product_id** | **str**| ID of the product | 
 
 ### Return type
@@ -597,7 +597,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 product_id = 'product_id_example' # str | 
 
     try:
@@ -641,7 +641,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 product_id = 'product_id_example' # str | 
 
     try:
@@ -656,7 +656,7 @@ product_id = 'product_id_example' # str |
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **product_id** | **str**|  | 
 
 ### Return type
@@ -719,7 +719,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 input_type = 'input_type_example' # str | 
 identifiers = ['identifiers_example'] # list[str] | 
 
@@ -764,7 +764,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 input_type = 'input_type_example' # str | 
 identifiers = ['identifiers_example'] # list[str] | 
 
@@ -780,7 +780,7 @@ identifiers = ['identifiers_example'] # list[str] |
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **input_type** | **str**|  | 
  **identifiers** | [**list[str]**](str.md)|  | 
 
@@ -844,7 +844,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 list_type = 'list_type_example' # str | 
 product_id = 'product_id_example' # str | 
 
@@ -889,7 +889,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 list_type = 'list_type_example' # str | 
 product_id = 'product_id_example' # str | 
 
@@ -905,7 +905,7 @@ product_id = 'product_id_example' # str |
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **list_type** | **str**|  | 
  **product_id** | **str**|  | 
 
@@ -969,7 +969,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get product monitoring status stats [vendor]
@@ -1012,7 +1012,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get product monitoring status stats [vendor]
@@ -1026,7 +1026,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
 
 ### Return type
 
@@ -1088,7 +1088,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 product_ids = [56] # list[int] | The product ids for which the monitoring state should be returned
 
     try:
@@ -1132,7 +1132,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 product_ids = [56] # list[int] | The product ids for which the monitoring state should be returned
 
     try:
@@ -1147,7 +1147,7 @@ product_ids = [56] # list[int] | The product ids for which the monitoring state 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **product_ids** | [**list[int]**](int.md)| The product ids for which the monitoring state should be returned | 
 
 ### Return type
@@ -1212,10 +1212,10 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-product_id = '862342' # str | ID of the product in pricemonitor
-start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
-end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
+product_id = '862342' # str | Internal product identifier in the pricemonitor system
+start_date = '2024-01-15T00:00:00Z' # datetime | **Start of time range** for data retrieval.  Format: ISO 8601 date-time in UTC (e.g., `2024-01-15T10:30:00Z`)  **Default behavior:** - If omitted and `endDate` is provided: `startDate` = `endDate` - 48 hours - If both omitted: range is `NOW - 48 hours` to `NOW`  (optional)
+end_date = '2024-01-16T23:59:59Z' # datetime | **End of time range** for data retrieval.  Format: ISO 8601 date-time in UTC (e.g., `2024-01-16T10:30:00Z`)  **Default behavior:** - If omitted and `startDate` is provided: `endDate` = `startDate` + 48 hours - If both omitted: range is `NOW - 48 hours` to `NOW`  (optional)
 
     try:
         # Get price recommendations for one product
@@ -1258,10 +1258,10 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-product_id = '862342' # str | ID of the product in pricemonitor
-start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
-end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
+product_id = '862342' # str | Internal product identifier in the pricemonitor system
+start_date = '2024-01-15T00:00:00Z' # datetime | **Start of time range** for data retrieval.  Format: ISO 8601 date-time in UTC (e.g., `2024-01-15T10:30:00Z`)  **Default behavior:** - If omitted and `endDate` is provided: `startDate` = `endDate` - 48 hours - If both omitted: range is `NOW - 48 hours` to `NOW`  (optional)
+end_date = '2024-01-16T23:59:59Z' # datetime | **End of time range** for data retrieval.  Format: ISO 8601 date-time in UTC (e.g., `2024-01-16T10:30:00Z`)  **Default behavior:** - If omitted and `startDate` is provided: `endDate` = `startDate` + 48 hours - If both omitted: range is `NOW - 48 hours` to `NOW`  (optional)
 
     try:
         # Get price recommendations for one product
@@ -1275,10 +1275,10 @@ end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time ran
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
- **product_id** | **str**| ID of the product in pricemonitor | 
- **start_date** | **datetime**| Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is &#39;NOW - 48 hours to NOW&#39;. | [optional] 
- **end_date** | **datetime**| Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is &#39;NOW - 48 hours to NOW&#39;. | [optional] 
+ **contract_id** | **str**| Unique identifier of the contract | 
+ **product_id** | **str**| Internal product identifier in the pricemonitor system | 
+ **start_date** | **datetime**| **Start of time range** for data retrieval.  Format: ISO 8601 date-time in UTC (e.g., &#x60;2024-01-15T10:30:00Z&#x60;)  **Default behavior:** - If omitted and &#x60;endDate&#x60; is provided: &#x60;startDate&#x60; &#x3D; &#x60;endDate&#x60; - 48 hours - If both omitted: range is &#x60;NOW - 48 hours&#x60; to &#x60;NOW&#x60;  | [optional] 
+ **end_date** | **datetime**| **End of time range** for data retrieval.  Format: ISO 8601 date-time in UTC (e.g., &#x60;2024-01-16T10:30:00Z&#x60;)  **Default behavior:** - If omitted and &#x60;startDate&#x60; is provided: &#x60;endDate&#x60; &#x3D; &#x60;startDate&#x60; + 48 hours - If both omitted: range is &#x60;NOW - 48 hours&#x60; to &#x60;NOW&#x60;  | [optional] 
 
 ### Return type
 
@@ -1343,7 +1343,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 product_id = 12345678 # int | ID of the product (Omnia's internal product id)
 
     try:
@@ -1387,7 +1387,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 product_id = 12345678 # int | ID of the product (Omnia's internal product id)
 
     try:
@@ -1402,7 +1402,7 @@ product_id = 12345678 # int | ID of the product (Omnia's internal product id)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **product_id** | **int**| ID of the product (Omnia&#39;s internal product id) | 
 
 ### Return type
@@ -1468,7 +1468,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get all product properties keys
@@ -1511,7 +1511,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get all product properties keys
@@ -1525,7 +1525,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
 
 ### Return type
 
@@ -1552,7 +1552,7 @@ Name | Type | Description  | Notes
 
 Get all products for a contract
 
-Gets all products for a contract. Does not support pagination.
+**⚠️ DEPRECATED:** This endpoint is deprecated and should no longer be used.  Retrieves all products for a contract without pagination support. This endpoint has performance limitations and lacks proper pagination. Use the newer product query endpoints instead.  **Note:** The `attributes` parameter is required but poorly documented in this legacy version. 
 
 ### Example
 
@@ -1589,8 +1589,8 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-attributes = 'attributes_example' # str | Query string to filter products
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
+attributes = 'gtin,name,referencePrice,tags' # str | **REQUIRED:** Comma-separated list of product attributes to include in the response.  Available attributes: `gtin`, `identifier`, `name`, `referencePrice`, `minPriceBoundary`, `maxPriceBoundary`, `tags`, `strategy` 
 
     try:
         # Get all products for a contract
@@ -1633,8 +1633,8 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-attributes = 'attributes_example' # str | Query string to filter products
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
+attributes = 'gtin,name,referencePrice,tags' # str | **REQUIRED:** Comma-separated list of product attributes to include in the response.  Available attributes: `gtin`, `identifier`, `name`, `referencePrice`, `minPriceBoundary`, `maxPriceBoundary`, `tags`, `strategy` 
 
     try:
         # Get all products for a contract
@@ -1648,8 +1648,8 @@ attributes = 'attributes_example' # str | Query string to filter products
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
- **attributes** | **str**| Query string to filter products | 
+ **contract_id** | **str**| Unique identifier of the contract | 
+ **attributes** | **str**| **REQUIRED:** Comma-separated list of product attributes to include in the response.  Available attributes: &#x60;gtin&#x60;, &#x60;identifier&#x60;, &#x60;name&#x60;, &#x60;referencePrice&#x60;, &#x60;minPriceBoundary&#x60;, &#x60;maxPriceBoundary&#x60;, &#x60;tags&#x60;, &#x60;strategy&#x60;  | 
 
 ### Return type
 
@@ -1711,7 +1711,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 key = 'key_example' # str | 
 
     try:
@@ -1755,7 +1755,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 key = 'key_example' # str | 
 
     try:
@@ -1770,7 +1770,7 @@ key = 'key_example' # str |
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **key** | **str**|  | 
 
 ### Return type
@@ -1833,7 +1833,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 key = 'key_example' # str | 
 
     try:
@@ -1877,7 +1877,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 key = 'key_example' # str | 
 
     try:
@@ -1892,7 +1892,7 @@ key = 'key_example' # str |
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **key** | **str**|  | 
 
 ### Return type
@@ -1955,7 +1955,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get product tags [manufacturer]
@@ -1998,7 +1998,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get product tags [manufacturer]
@@ -2012,7 +2012,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
 
 ### Return type
 
@@ -2074,7 +2074,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get product tags [vendor]
@@ -2117,7 +2117,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get product tags [vendor]
@@ -2131,7 +2131,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
 
 ### Return type
 
@@ -2193,7 +2193,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
@@ -2237,7 +2237,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
@@ -2252,7 +2252,7 @@ body = None # object | This is a generated entry and needs to be described. (opt
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **body** | **object**| This is a generated entry and needs to be described. | [optional] 
 
 ### Return type
@@ -2315,7 +2315,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
@@ -2359,7 +2359,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
@@ -2374,7 +2374,7 @@ body = None # object | This is a generated entry and needs to be described. (opt
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **body** | **object**| This is a generated entry and needs to be described. | [optional] 
 
 ### Return type
@@ -2437,7 +2437,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 product_id = 'product_id_example' # str | 
 body = None # object | This is a generated entry and needs to be described. (optional)
 
@@ -2482,7 +2482,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 product_id = 'product_id_example' # str | 
 body = None # object | This is a generated entry and needs to be described. (optional)
 
@@ -2498,7 +2498,7 @@ body = None # object | This is a generated entry and needs to be described. (opt
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **product_id** | **str**|  | 
  **body** | **object**| This is a generated entry and needs to be described. | [optional] 
 
@@ -2562,7 +2562,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 product_id = 'product_id_example' # str | 
 body = None # object | This is a generated entry and needs to be described. (optional)
 
@@ -2607,7 +2607,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 product_id = 'product_id_example' # str | 
 body = None # object | This is a generated entry and needs to be described. (optional)
 
@@ -2623,7 +2623,7 @@ body = None # object | This is a generated entry and needs to be described. (opt
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **product_id** | **str**|  | 
  **body** | **object**| This is a generated entry and needs to be described. | [optional] 
 
@@ -2687,7 +2687,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
@@ -2731,7 +2731,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
@@ -2746,7 +2746,7 @@ body = None # object | This is a generated entry and needs to be described. (opt
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **body** | **object**| This is a generated entry and needs to be described. | [optional] 
 
 ### Return type
@@ -2811,7 +2811,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 post_offer_statistics_request = pricemonitor_api_client.PostOfferStatisticsRequest() # PostOfferStatisticsRequest | 
 
     try:
@@ -2855,7 +2855,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 post_offer_statistics_request = pricemonitor_api_client.PostOfferStatisticsRequest() # PostOfferStatisticsRequest | 
 
     try:
@@ -2870,7 +2870,7 @@ post_offer_statistics_request = pricemonitor_api_client.PostOfferStatisticsReque
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **post_offer_statistics_request** | [**PostOfferStatisticsRequest**](PostOfferStatisticsRequest.md)|  | 
 
 ### Return type
@@ -2936,7 +2936,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 content_type = 'application/json' # str | 
 patagona_tags_decimal_separator = '.' # str | The decimal separator is used for parsing numbers in tags. English and German number formats are supported: dot and comma.
 post_products_request = pricemonitor_api_client.PostProductsRequest() # PostProductsRequest | The body contains the products which should be added
@@ -2982,7 +2982,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 content_type = 'application/json' # str | 
 patagona_tags_decimal_separator = '.' # str | The decimal separator is used for parsing numbers in tags. English and German number formats are supported: dot and comma.
 post_products_request = pricemonitor_api_client.PostProductsRequest() # PostProductsRequest | The body contains the products which should be added
@@ -2999,7 +2999,7 @@ post_products_request = pricemonitor_api_client.PostProductsRequest() # PostProd
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **content_type** | **str**|  | 
  **patagona_tags_decimal_separator** | **str**| The decimal separator is used for parsing numbers in tags. English and German number formats are supported: dot and comma. | 
  **post_products_request** | [**PostProductsRequest**](PostProductsRequest.md)| The body contains the products which should be added | 
@@ -3067,7 +3067,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 body = 'body_example' # str | CSV file containing the products
 
     try:
@@ -3110,7 +3110,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 body = 'body_example' # str | CSV file containing the products
 
     try:
@@ -3124,7 +3124,7 @@ body = 'body_example' # str | CSV file containing the products
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **body** | **str**| CSV file containing the products | 
 
 ### Return type
@@ -3190,7 +3190,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 content_type = 'text/csv' # str | 
 patagona_product_identifying_attributes = 'id-column' # str | A single CSV column that identify a product uniquely. Avoid using tags as an identifier, as this feature will soon be deprecated. By doing so, you may loose historical market data during product import.
 patagona_product_name = 'name-column' # str | Csv column that contains the product name
@@ -3243,7 +3243,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 content_type = 'text/csv' # str | 
 patagona_product_identifying_attributes = 'id-column' # str | A single CSV column that identify a product uniquely. Avoid using tags as an identifier, as this feature will soon be deprecated. By doing so, you may loose historical market data during product import.
 patagona_product_name = 'name-column' # str | Csv column that contains the product name
@@ -3267,7 +3267,7 @@ patagona_product_customer_id = 'id-column' # str | Csv column that contains an i
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **content_type** | **str**|  | 
  **patagona_product_identifying_attributes** | **str**| A single CSV column that identify a product uniquely. Avoid using tags as an identifier, as this feature will soon be deprecated. By doing so, you may loose historical market data during product import. | 
  **patagona_product_name** | **str**| Csv column that contains the product name | 
@@ -3339,7 +3339,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 list_type = 'list_type_example' # str | 
 product_id = 'product_id_example' # str | 
 and_offer_filter = [pricemonitor_api_client.AndOfferFilter()] # list[AndOfferFilter] | List of the filter that needs to be considered to ignore the individual offers. (optional)
@@ -3385,7 +3385,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 list_type = 'list_type_example' # str | 
 product_id = 'product_id_example' # str | 
 and_offer_filter = [pricemonitor_api_client.AndOfferFilter()] # list[AndOfferFilter] | List of the filter that needs to be considered to ignore the individual offers. (optional)
@@ -3402,7 +3402,7 @@ and_offer_filter = [pricemonitor_api_client.AndOfferFilter()] # list[AndOfferFil
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **list_type** | **str**|  | 
  **product_id** | **str**|  | 
  **and_offer_filter** | [**list[AndOfferFilter]**](AndOfferFilter.md)| List of the filter that needs to be considered to ignore the individual offers. | [optional] 
@@ -3469,7 +3469,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 product_id = 12345678 # int | ID of the product (Omnia's internal product id)
 com_patagona_pricemonitor_share_api_put_product_properties_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPutProductPropertiesRequestV3() # ComPatagonaPricemonitorShareApiPutProductPropertiesRequestV3 | 
 
@@ -3514,7 +3514,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 product_id = 12345678 # int | ID of the product (Omnia's internal product id)
 com_patagona_pricemonitor_share_api_put_product_properties_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPutProductPropertiesRequestV3() # ComPatagonaPricemonitorShareApiPutProductPropertiesRequestV3 | 
 
@@ -3530,7 +3530,7 @@ com_patagona_pricemonitor_share_api_put_product_properties_request_v3 = pricemon
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **product_id** | **int**| ID of the product (Omnia&#39;s internal product id) | 
  **com_patagona_pricemonitor_share_api_put_product_properties_request_v3** | [**ComPatagonaPricemonitorShareApiPutProductPropertiesRequestV3**](ComPatagonaPricemonitorShareApiPutProductPropertiesRequestV3.md)|  | 
 
@@ -3596,7 +3596,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
@@ -3640,7 +3640,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
@@ -3655,7 +3655,7 @@ body = None # object | This is a generated entry and needs to be described. (opt
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **body** | **object**| This is a generated entry and needs to be described. | [optional] 
 
 ### Return type
@@ -3720,7 +3720,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 content_type = 'text/csv' # str | 
 patagona_product_identifying_attributes = 'id-column' # str | A single CSV column that identify a product uniquely. Avoid using tags as an identifier, as this feature will soon be deprecated By doing so, you may loose historical market data during product import.
 patagona_product_name = 'name-column' # str | Csv column that contains the product name
@@ -3775,7 +3775,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 content_type = 'text/csv' # str | 
 patagona_product_identifying_attributes = 'id-column' # str | A single CSV column that identify a product uniquely. Avoid using tags as an identifier, as this feature will soon be deprecated By doing so, you may loose historical market data during product import.
 patagona_product_name = 'name-column' # str | Csv column that contains the product name
@@ -3801,7 +3801,7 @@ patagona_product_customer_id = 'id-column' # str | Csv column that contains an i
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **content_type** | **str**|  | 
  **patagona_product_identifying_attributes** | **str**| A single CSV column that identify a product uniquely. Avoid using tags as an identifier, as this feature will soon be deprecated By doing so, you may loose historical market data during product import. | 
  **patagona_product_name** | **str**| Csv column that contains the product name | 
@@ -3875,7 +3875,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
@@ -3919,7 +3919,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
@@ -3934,7 +3934,7 @@ body = None # object | This is a generated entry and needs to be described. (opt
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **body** | **object**| This is a generated entry and needs to be described. | [optional] 
 
 ### Return type
@@ -3999,7 +3999,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 com_patagona_pricemonitor_share_api_price_dumping_stats_request = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPriceDumpingStatsRequest() # ComPatagonaPricemonitorShareApiPriceDumpingStatsRequest | 
 
     try:
@@ -4043,7 +4043,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 com_patagona_pricemonitor_share_api_price_dumping_stats_request = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPriceDumpingStatsRequest() # ComPatagonaPricemonitorShareApiPriceDumpingStatsRequest | 
 
     try:
@@ -4058,7 +4058,7 @@ com_patagona_pricemonitor_share_api_price_dumping_stats_request = pricemonitor_a
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **com_patagona_pricemonitor_share_api_price_dumping_stats_request** | [**ComPatagonaPricemonitorShareApiPriceDumpingStatsRequest**](ComPatagonaPricemonitorShareApiPriceDumpingStatsRequest.md)|  | 
 
 ### Return type
@@ -4123,7 +4123,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 com_patagona_pricemonitor_share_api_price_dumping_stats_request = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPriceDumpingStatsRequest() # ComPatagonaPricemonitorShareApiPriceDumpingStatsRequest | 
 
     try:
@@ -4167,7 +4167,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 com_patagona_pricemonitor_share_api_price_dumping_stats_request = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPriceDumpingStatsRequest() # ComPatagonaPricemonitorShareApiPriceDumpingStatsRequest | 
 
     try:
@@ -4182,7 +4182,7 @@ com_patagona_pricemonitor_share_api_price_dumping_stats_request = pricemonitor_a
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **com_patagona_pricemonitor_share_api_price_dumping_stats_request** | [**ComPatagonaPricemonitorShareApiPriceDumpingStatsRequest**](ComPatagonaPricemonitorShareApiPriceDumpingStatsRequest.md)|  | 
 
 ### Return type
@@ -4247,7 +4247,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 com_patagona_pricemonitor_share_api_query_offers_of_shop_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiQueryOffersOfShopRequestV3() # ComPatagonaPricemonitorShareApiQueryOffersOfShopRequestV3 | 
 
     try:
@@ -4291,7 +4291,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 com_patagona_pricemonitor_share_api_query_offers_of_shop_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiQueryOffersOfShopRequestV3() # ComPatagonaPricemonitorShareApiQueryOffersOfShopRequestV3 | 
 
     try:
@@ -4306,7 +4306,7 @@ com_patagona_pricemonitor_share_api_query_offers_of_shop_request_v3 = pricemonit
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **com_patagona_pricemonitor_share_api_query_offers_of_shop_request_v3** | [**ComPatagonaPricemonitorShareApiQueryOffersOfShopRequestV3**](ComPatagonaPricemonitorShareApiQueryOffersOfShopRequestV3.md)|  | 
 
 ### Return type
@@ -4371,7 +4371,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 com_patagona_pricemonitor_share_api_query_offers_of_shop_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiQueryOffersOfShopRequestV3() # ComPatagonaPricemonitorShareApiQueryOffersOfShopRequestV3 | 
 
     try:
@@ -4415,7 +4415,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 com_patagona_pricemonitor_share_api_query_offers_of_shop_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiQueryOffersOfShopRequestV3() # ComPatagonaPricemonitorShareApiQueryOffersOfShopRequestV3 | 
 
     try:
@@ -4430,7 +4430,7 @@ com_patagona_pricemonitor_share_api_query_offers_of_shop_request_v3 = pricemonit
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **com_patagona_pricemonitor_share_api_query_offers_of_shop_request_v3** | [**ComPatagonaPricemonitorShareApiQueryOffersOfShopRequestV3**](ComPatagonaPricemonitorShareApiQueryOffersOfShopRequestV3.md)|  | 
 
 ### Return type
@@ -4495,7 +4495,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 post_offer_statistics_request = pricemonitor_api_client.PostOfferStatisticsRequest() # PostOfferStatisticsRequest | 
 
     try:
@@ -4539,7 +4539,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 post_offer_statistics_request = pricemonitor_api_client.PostOfferStatisticsRequest() # PostOfferStatisticsRequest | 
 
     try:
@@ -4554,7 +4554,7 @@ post_offer_statistics_request = pricemonitor_api_client.PostOfferStatisticsReque
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **post_offer_statistics_request** | [**PostOfferStatisticsRequest**](PostOfferStatisticsRequest.md)|  | 
 
 ### Return type
@@ -4620,7 +4620,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 query_products_request_v3 = pricemonitor_api_client.QueryProductsRequestV3() # QueryProductsRequestV3 | The body contains the products query. (optional)
 
     try:
@@ -4664,7 +4664,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 query_products_request_v3 = pricemonitor_api_client.QueryProductsRequestV3() # QueryProductsRequestV3 | The body contains the products query. (optional)
 
     try:
@@ -4679,7 +4679,7 @@ query_products_request_v3 = pricemonitor_api_client.QueryProductsRequestV3() # Q
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **query_products_request_v3** | [**QueryProductsRequestV3**](QueryProductsRequestV3.md)| The body contains the products query. | [optional] 
 
 ### Return type
@@ -4744,7 +4744,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 query_products_request_v3 = pricemonitor_api_client.QueryProductsRequestV3() # QueryProductsRequestV3 | The body contains the products query. (optional)
 
     try:
@@ -4788,7 +4788,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 query_products_request_v3 = pricemonitor_api_client.QueryProductsRequestV3() # QueryProductsRequestV3 | The body contains the products query. (optional)
 
     try:
@@ -4803,7 +4803,7 @@ query_products_request_v3 = pricemonitor_api_client.QueryProductsRequestV3() # Q
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **query_products_request_v3** | [**QueryProductsRequestV3**](QueryProductsRequestV3.md)| The body contains the products query. | [optional] 
 
 ### Return type
@@ -4866,7 +4866,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 com_patagona_pricemonitor_share_api_api_query = pricemonitor_api_client.ComPatagonaPricemonitorShareApiApiQuery() # ComPatagonaPricemonitorShareApiApiQuery | The body contains the products query. <br> Currently, it supports only product queries for two attributes:<br> <ul>   <li> by \"customerProductId\"</li>   <li> by \"productId\" (Patagona's internal product id). Allowed values for 'productId' are numerical integer values</li> </ul> The maximum allowed limit in the pagination is 10000. <br> For better performance, when paginating over all products of a contract, we recommend to use a limit of 10000 products per page. Pagination works with respective to the given products query. <br> This is most relevant when querying for a set of customerProductId's. <br> When the requests are chunked over a set of ids, it is easiest to provide up to 10000 customerProductId's in the query and keep the pagination at start: 0, limit: 10000. <br> The only allowed pattern is currently: <br> { <br> &nbsp;&nbsp;\"pagination\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": ${start}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"limit\": ${limit} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"filter\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"oneOf\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"field\": \"customerProductId\", <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"values\": [${customerProductIds as a list of strings}] <br> &nbsp;&nbsp;&nbsp;&nbsp;} <br> &nbsp;&nbsp;} <br> } <br> <br> example: <br> { <br> &nbsp;&nbsp;\"pagination\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": 0, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"limit\": 10 <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"filter\": { <br> &nbsp;&nbsp;\"oneOf\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"field\": \"customerProductId\", <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"values\": [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\"] <br> &nbsp;&nbsp;&nbsp;&nbsp;} <br> &nbsp;&nbsp;} <br> } <br>  (optional)
 
     try:
@@ -4910,7 +4910,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 com_patagona_pricemonitor_share_api_api_query = pricemonitor_api_client.ComPatagonaPricemonitorShareApiApiQuery() # ComPatagonaPricemonitorShareApiApiQuery | The body contains the products query. <br> Currently, it supports only product queries for two attributes:<br> <ul>   <li> by \"customerProductId\"</li>   <li> by \"productId\" (Patagona's internal product id). Allowed values for 'productId' are numerical integer values</li> </ul> The maximum allowed limit in the pagination is 10000. <br> For better performance, when paginating over all products of a contract, we recommend to use a limit of 10000 products per page. Pagination works with respective to the given products query. <br> This is most relevant when querying for a set of customerProductId's. <br> When the requests are chunked over a set of ids, it is easiest to provide up to 10000 customerProductId's in the query and keep the pagination at start: 0, limit: 10000. <br> The only allowed pattern is currently: <br> { <br> &nbsp;&nbsp;\"pagination\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": ${start}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"limit\": ${limit} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"filter\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"oneOf\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"field\": \"customerProductId\", <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"values\": [${customerProductIds as a list of strings}] <br> &nbsp;&nbsp;&nbsp;&nbsp;} <br> &nbsp;&nbsp;} <br> } <br> <br> example: <br> { <br> &nbsp;&nbsp;\"pagination\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": 0, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"limit\": 10 <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"filter\": { <br> &nbsp;&nbsp;\"oneOf\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"field\": \"customerProductId\", <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"values\": [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\"] <br> &nbsp;&nbsp;&nbsp;&nbsp;} <br> &nbsp;&nbsp;} <br> } <br>  (optional)
 
     try:
@@ -4925,7 +4925,7 @@ com_patagona_pricemonitor_share_api_api_query = pricemonitor_api_client.ComPatag
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **com_patagona_pricemonitor_share_api_api_query** | [**ComPatagonaPricemonitorShareApiApiQuery**](ComPatagonaPricemonitorShareApiApiQuery.md)| The body contains the products query. &lt;br&gt; Currently, it supports only product queries for two attributes:&lt;br&gt; &lt;ul&gt;   &lt;li&gt; by \&quot;customerProductId\&quot;&lt;/li&gt;   &lt;li&gt; by \&quot;productId\&quot; (Patagona&#39;s internal product id). Allowed values for &#39;productId&#39; are numerical integer values&lt;/li&gt; &lt;/ul&gt; The maximum allowed limit in the pagination is 10000. &lt;br&gt; For better performance, when paginating over all products of a contract, we recommend to use a limit of 10000 products per page. Pagination works with respective to the given products query. &lt;br&gt; This is most relevant when querying for a set of customerProductId&#39;s. &lt;br&gt; When the requests are chunked over a set of ids, it is easiest to provide up to 10000 customerProductId&#39;s in the query and keep the pagination at start: 0, limit: 10000. &lt;br&gt; The only allowed pattern is currently: &lt;br&gt; { &lt;br&gt; &amp;nbsp;&amp;nbsp;\&quot;pagination\&quot;: { &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;start\&quot;: ${start}, &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;limit\&quot;: ${limit} &lt;br&gt; &amp;nbsp;&amp;nbsp;}, &lt;br&gt; &amp;nbsp;&amp;nbsp;\&quot;filter\&quot;: { &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;oneOf\&quot;: { &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;field\&quot;: \&quot;customerProductId\&quot;, &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;values\&quot;: [${customerProductIds as a list of strings}] &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;} &lt;br&gt; &amp;nbsp;&amp;nbsp;} &lt;br&gt; } &lt;br&gt; &lt;br&gt; example: &lt;br&gt; { &lt;br&gt; &amp;nbsp;&amp;nbsp;\&quot;pagination\&quot;: { &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;start\&quot;: 0, &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;limit\&quot;: 10 &lt;br&gt; &amp;nbsp;&amp;nbsp;}, &lt;br&gt; &amp;nbsp;&amp;nbsp;\&quot;filter\&quot;: { &lt;br&gt; &amp;nbsp;&amp;nbsp;\&quot;oneOf\&quot;: { &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;field\&quot;: \&quot;customerProductId\&quot;, &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;values\&quot;: [\&quot;1\&quot;, \&quot;2\&quot;, \&quot;3\&quot;, \&quot;4\&quot;, \&quot;5\&quot;, \&quot;6\&quot;, \&quot;7\&quot;, \&quot;8\&quot;, \&quot;9\&quot;, \&quot;10\&quot;] &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;} &lt;br&gt; &amp;nbsp;&amp;nbsp;} &lt;br&gt; } &lt;br&gt;  | [optional] 
 
 ### Return type
@@ -4990,7 +4990,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 com_patagona_pricemonitor_share_api_api_query = pricemonitor_api_client.ComPatagonaPricemonitorShareApiApiQuery() # ComPatagonaPricemonitorShareApiApiQuery | The body contains the products query. <br> Currently, it supports only product queries for two attributes:<br> <ul>   <li> by \"customerProductId\"</li>   <li> by \"productId\" (Patagona's internal product id). Allowed values for 'productId' are numerical integer values</li> </ul> The maximum allowed limit in the pagination is 10000. <br> For better performance, when paginating over all products of a contract, we recommend to use a limit of 10000 products per page. Pagination works with respective to the given products query. <br> This is most relevant when querying for a set of customerProductId's. <br> When the requests are chunked over a set of ids, it is easiest to provide up to 10000 customerProductId's in the query and keep the pagination at start: 0, limit: 10000. <br> It also contains a boolean optional parameter 'includeTags' which is used to include the tags of the products in the response. <br> The only allowed pattern is currently: <br> { <br> &nbsp;&nbsp;\"pagination\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": ${start}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"limit\": ${limit} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"filter\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"oneOf\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"field\": \"customerProductId\", <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"values\": [${customerProductIds as a list of strings}] <br> &nbsp;&nbsp;&nbsp;&nbsp;} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"includeTags\": ${includeTags} <br> } <br> <br> example: <br> { <br> &nbsp;&nbsp;\"pagination\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": 0, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"limit\": 10 <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"filter\": { <br> &nbsp;&nbsp;\"oneOf\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"field\": \"customerProductId\", <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"values\": [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\"] <br> &nbsp;&nbsp;&nbsp;&nbsp;} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"includeTags\": true <br> } <br>  (optional)
 
     try:
@@ -5034,7 +5034,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 com_patagona_pricemonitor_share_api_api_query = pricemonitor_api_client.ComPatagonaPricemonitorShareApiApiQuery() # ComPatagonaPricemonitorShareApiApiQuery | The body contains the products query. <br> Currently, it supports only product queries for two attributes:<br> <ul>   <li> by \"customerProductId\"</li>   <li> by \"productId\" (Patagona's internal product id). Allowed values for 'productId' are numerical integer values</li> </ul> The maximum allowed limit in the pagination is 10000. <br> For better performance, when paginating over all products of a contract, we recommend to use a limit of 10000 products per page. Pagination works with respective to the given products query. <br> This is most relevant when querying for a set of customerProductId's. <br> When the requests are chunked over a set of ids, it is easiest to provide up to 10000 customerProductId's in the query and keep the pagination at start: 0, limit: 10000. <br> It also contains a boolean optional parameter 'includeTags' which is used to include the tags of the products in the response. <br> The only allowed pattern is currently: <br> { <br> &nbsp;&nbsp;\"pagination\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": ${start}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"limit\": ${limit} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"filter\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"oneOf\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"field\": \"customerProductId\", <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"values\": [${customerProductIds as a list of strings}] <br> &nbsp;&nbsp;&nbsp;&nbsp;} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"includeTags\": ${includeTags} <br> } <br> <br> example: <br> { <br> &nbsp;&nbsp;\"pagination\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": 0, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"limit\": 10 <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"filter\": { <br> &nbsp;&nbsp;\"oneOf\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"field\": \"customerProductId\", <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"values\": [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\"] <br> &nbsp;&nbsp;&nbsp;&nbsp;} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"includeTags\": true <br> } <br>  (optional)
 
     try:
@@ -5049,7 +5049,7 @@ com_patagona_pricemonitor_share_api_api_query = pricemonitor_api_client.ComPatag
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **com_patagona_pricemonitor_share_api_api_query** | [**ComPatagonaPricemonitorShareApiApiQuery**](ComPatagonaPricemonitorShareApiApiQuery.md)| The body contains the products query. &lt;br&gt; Currently, it supports only product queries for two attributes:&lt;br&gt; &lt;ul&gt;   &lt;li&gt; by \&quot;customerProductId\&quot;&lt;/li&gt;   &lt;li&gt; by \&quot;productId\&quot; (Patagona&#39;s internal product id). Allowed values for &#39;productId&#39; are numerical integer values&lt;/li&gt; &lt;/ul&gt; The maximum allowed limit in the pagination is 10000. &lt;br&gt; For better performance, when paginating over all products of a contract, we recommend to use a limit of 10000 products per page. Pagination works with respective to the given products query. &lt;br&gt; This is most relevant when querying for a set of customerProductId&#39;s. &lt;br&gt; When the requests are chunked over a set of ids, it is easiest to provide up to 10000 customerProductId&#39;s in the query and keep the pagination at start: 0, limit: 10000. &lt;br&gt; It also contains a boolean optional parameter &#39;includeTags&#39; which is used to include the tags of the products in the response. &lt;br&gt; The only allowed pattern is currently: &lt;br&gt; { &lt;br&gt; &amp;nbsp;&amp;nbsp;\&quot;pagination\&quot;: { &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;start\&quot;: ${start}, &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;limit\&quot;: ${limit} &lt;br&gt; &amp;nbsp;&amp;nbsp;}, &lt;br&gt; &amp;nbsp;&amp;nbsp;\&quot;filter\&quot;: { &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;oneOf\&quot;: { &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;field\&quot;: \&quot;customerProductId\&quot;, &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;values\&quot;: [${customerProductIds as a list of strings}] &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;} &lt;br&gt; &amp;nbsp;&amp;nbsp;}, &lt;br&gt; &amp;nbsp;&amp;nbsp;\&quot;includeTags\&quot;: ${includeTags} &lt;br&gt; } &lt;br&gt; &lt;br&gt; example: &lt;br&gt; { &lt;br&gt; &amp;nbsp;&amp;nbsp;\&quot;pagination\&quot;: { &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;start\&quot;: 0, &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;limit\&quot;: 10 &lt;br&gt; &amp;nbsp;&amp;nbsp;}, &lt;br&gt; &amp;nbsp;&amp;nbsp;\&quot;filter\&quot;: { &lt;br&gt; &amp;nbsp;&amp;nbsp;\&quot;oneOf\&quot;: { &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;field\&quot;: \&quot;customerProductId\&quot;, &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;values\&quot;: [\&quot;1\&quot;, \&quot;2\&quot;, \&quot;3\&quot;, \&quot;4\&quot;, \&quot;5\&quot;, \&quot;6\&quot;, \&quot;7\&quot;, \&quot;8\&quot;, \&quot;9\&quot;, \&quot;10\&quot;] &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;} &lt;br&gt; &amp;nbsp;&amp;nbsp;}, &lt;br&gt; &amp;nbsp;&amp;nbsp;\&quot;includeTags\&quot;: true &lt;br&gt; } &lt;br&gt;  | [optional] 
 
 ### Return type
@@ -5112,7 +5112,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 path = 'path_example' # str | 
 body = None # object | This is a generated entry and needs to be described. (optional)
 
@@ -5157,7 +5157,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ProductsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 path = 'path_example' # str | 
 body = None # object | This is a generated entry and needs to be described. (optional)
 
@@ -5173,7 +5173,7 @@ body = None # object | This is a generated entry and needs to be described. (opt
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **path** | **str**|  | 
  **body** | **object**| This is a generated entry and needs to be described. | [optional] 
 

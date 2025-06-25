@@ -5,7 +5,7 @@ All URIs are relative to *https://api.patagona.de*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**get_all_domains_v2**](DomainsApi.md#get_all_domains_v2) | **GET** /api/2/domains | Gets a list of all available domains (V2)
-[**get_all_domains_v3**](DomainsApi.md#get_all_domains_v3) | **GET** /api/v3/domains | Get a list of all available domains (V3)
+[**get_all_domains_v3**](DomainsApi.md#get_all_domains_v3) | **GET** /api/v3/domains | Get all available domains
 
 
 # **get_all_domains_v2**
@@ -127,9 +127,9 @@ This endpoint does not need any parameter.
 # **get_all_domains_v3**
 > GetAllDomainsV3ApiResponse get_all_domains_v3()
 
-Get a list of all available domains (V3)
+Get all available domains
 
-This endpoint provides all domains which are supported by our system. Along with other attributes we are providing the corresponding possible offer sources. Only domains which include the offer source DEFAULT_MONITORING are supported out-of-the-box by our monitoring pipeline.
+Retrieves all domains supported by the system for market data collection.  Each domain includes: - Available offer sources for market data collection - Configuration parameters  **Note:** Only domains with the `DEFAULT_MONITORING` offer source are supported out-of-the-box by the monitoring pipeline. 
 
 ### Example
 
@@ -168,7 +168,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     api_instance = pricemonitor_api_client.DomainsApi(api_client)
     
     try:
-        # Get a list of all available domains (V3)
+        # Get all available domains
         api_response = api_instance.get_all_domains_v3()
         pprint(api_response)
     except ApiException as e:
@@ -210,7 +210,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     api_instance = pricemonitor_api_client.DomainsApi(api_client)
     
     try:
-        # Get a list of all available domains (V3)
+        # Get all available domains
         api_response = api_instance.get_all_domains_v3()
         pprint(api_response)
     except ApiException as e:
@@ -236,7 +236,7 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A list of domains |  -  |
+**200** | List of all supported domains with their configurations |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

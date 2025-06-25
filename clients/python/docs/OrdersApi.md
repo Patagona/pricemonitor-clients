@@ -55,7 +55,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.OrdersApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Delete all orders
@@ -98,7 +98,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.OrdersApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Delete all orders
@@ -112,7 +112,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
 
 ### Return type
 
@@ -176,7 +176,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.OrdersApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 com_patagona_pricemonitor_share_api_delete_orders_by_query_request_v3 = {"orders":[{"orderId":"123","creationDate":"2023-11-01T08:00:00Z"}]} # ComPatagonaPricemonitorShareApiDeleteOrdersByQueryRequestV3 | The request body should contain a list of order queries. Each query should contain an order id and creation date.  The allowed query pattern is structured as follows:  { <br> &nbsp;&nbsp;\"orders\": [ <br> &nbsp;&nbsp;&nbsp;{ <br> &nbsp;&nbsp;&nbsp;&nbsp;\"orderId\": ${orderId}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"creationDate\": ${creationDate} <br> &nbsp;&nbsp;} <br> &nbsp;&nbsp;&nbsp;] <br> } <br> <br> 
 
     try:
@@ -220,7 +220,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.OrdersApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 com_patagona_pricemonitor_share_api_delete_orders_by_query_request_v3 = {"orders":[{"orderId":"123","creationDate":"2023-11-01T08:00:00Z"}]} # ComPatagonaPricemonitorShareApiDeleteOrdersByQueryRequestV3 | The request body should contain a list of order queries. Each query should contain an order id and creation date.  The allowed query pattern is structured as follows:  { <br> &nbsp;&nbsp;\"orders\": [ <br> &nbsp;&nbsp;&nbsp;{ <br> &nbsp;&nbsp;&nbsp;&nbsp;\"orderId\": ${orderId}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"creationDate\": ${creationDate} <br> &nbsp;&nbsp;} <br> &nbsp;&nbsp;&nbsp;] <br> } <br> <br> 
 
     try:
@@ -235,7 +235,7 @@ com_patagona_pricemonitor_share_api_delete_orders_by_query_request_v3 = {"orders
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **com_patagona_pricemonitor_share_api_delete_orders_by_query_request_v3** | [**ComPatagonaPricemonitorShareApiDeleteOrdersByQueryRequestV3**](ComPatagonaPricemonitorShareApiDeleteOrdersByQueryRequestV3.md)| The request body should contain a list of order queries. Each query should contain an order id and creation date.  The allowed query pattern is structured as follows:  { &lt;br&gt; &amp;nbsp;&amp;nbsp;\&quot;orders\&quot;: [ &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;{ &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;orderId\&quot;: ${orderId}, &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;creationDate\&quot;: ${creationDate} &lt;br&gt; &amp;nbsp;&amp;nbsp;} &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;] &lt;br&gt; } &lt;br&gt; &lt;br&gt;  | 
 
 ### Return type
@@ -301,7 +301,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.OrdersApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get orders count by portal
@@ -344,7 +344,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.OrdersApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get orders count by portal
@@ -358,7 +358,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
 
 ### Return type
 
@@ -422,7 +422,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.OrdersApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 start = 56 # int | 
 limit = 56 # int | 
 start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range for fetching orders. Formatted as ISO 8601 format with timezone with reference to UTC (e.g. for [Europe/Berlin] in winter time: 2023-11-01T14:50:45.495+01:00. In summer time: 2023-11-01T14:50:45.495+02:00). If this value is omitted then no lower time limit is considered.  (optional)
@@ -469,7 +469,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.OrdersApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 start = 56 # int | 
 limit = 56 # int | 
 start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range for fetching orders. Formatted as ISO 8601 format with timezone with reference to UTC (e.g. for [Europe/Berlin] in winter time: 2023-11-01T14:50:45.495+01:00. In summer time: 2023-11-01T14:50:45.495+02:00). If this value is omitted then no lower time limit is considered.  (optional)
@@ -487,7 +487,7 @@ end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time ran
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **start** | **int**|  | 
  **limit** | **int**|  | 
  **start_date** | **datetime**| Timestamp of start of time range for fetching orders. Formatted as ISO 8601 format with timezone with reference to UTC (e.g. for [Europe/Berlin] in winter time: 2023-11-01T14:50:45.495+01:00. In summer time: 2023-11-01T14:50:45.495+02:00). If this value is omitted then no lower time limit is considered.  | [optional] 
@@ -517,6 +517,8 @@ Name | Type | Description  | Notes
 > PostOrdersBulkApiResponse post_orders(contract_id, com_patagona_pricemonitor_share_api_post_customer_orders_request_v2)
 
 Add orders in bulk
+
+Imports multiple orders for a specific contract in a single operation.  This endpoint supports bulk order processing to efficiently manage large volumes of order data. All orders in the request are processed atomically. 
 
 ### Example
 
@@ -553,8 +555,8 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.OrdersApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-com_patagona_pricemonitor_share_api_post_customer_orders_request_v2 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostCustomerOrdersRequestV2() # ComPatagonaPricemonitorShareApiPostCustomerOrdersRequestV2 | Orders to be added
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
+com_patagona_pricemonitor_share_api_post_customer_orders_request_v2 = {"version":"2","orders":[{"orderId":"ORDER-2024-001","origin":"webshop","referrer":"google","productMappings":[{"source":"itemId","target":"customerProductId"}],"items":[{"itemId":"ITEM-001","unitPrice":29.99,"quantity":2,"taxPercentage":19}],"creationDate":"2024-01-15T10:30:00Z","totalPrice":65.98,"shippingCosts":5.99,"currency":"EUR"}]} # ComPatagonaPricemonitorShareApiPostCustomerOrdersRequestV2 | Orders to be imported, including order metadata and item details
 
     try:
         # Add orders in bulk
@@ -597,8 +599,8 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.OrdersApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-com_patagona_pricemonitor_share_api_post_customer_orders_request_v2 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostCustomerOrdersRequestV2() # ComPatagonaPricemonitorShareApiPostCustomerOrdersRequestV2 | Orders to be added
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
+com_patagona_pricemonitor_share_api_post_customer_orders_request_v2 = {"version":"2","orders":[{"orderId":"ORDER-2024-001","origin":"webshop","referrer":"google","productMappings":[{"source":"itemId","target":"customerProductId"}],"items":[{"itemId":"ITEM-001","unitPrice":29.99,"quantity":2,"taxPercentage":19}],"creationDate":"2024-01-15T10:30:00Z","totalPrice":65.98,"shippingCosts":5.99,"currency":"EUR"}]} # ComPatagonaPricemonitorShareApiPostCustomerOrdersRequestV2 | Orders to be imported, including order metadata and item details
 
     try:
         # Add orders in bulk
@@ -612,8 +614,8 @@ com_patagona_pricemonitor_share_api_post_customer_orders_request_v2 = pricemonit
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
- **com_patagona_pricemonitor_share_api_post_customer_orders_request_v2** | [**ComPatagonaPricemonitorShareApiPostCustomerOrdersRequestV2**](ComPatagonaPricemonitorShareApiPostCustomerOrdersRequestV2.md)| Orders to be added | 
+ **contract_id** | **str**| Unique identifier of the contract | 
+ **com_patagona_pricemonitor_share_api_post_customer_orders_request_v2** | [**ComPatagonaPricemonitorShareApiPostCustomerOrdersRequestV2**](ComPatagonaPricemonitorShareApiPostCustomerOrdersRequestV2.md)| Orders to be imported, including order metadata and item details | 
 
 ### Return type
 
@@ -631,8 +633,8 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Successfully added orders |  -  |
-**400** | Unable to add orders |  -  |
+**200** | Orders processed successfully (may include partial failures) |  -  |
+**400** | Request validation failed. Common issues include: - Invalid order data format - Missing required fields - Invalid contract ID  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -678,7 +680,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.OrdersApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 com_patagona_pricemonitor_share_api_put_customer_orders_request_v3 = {"orders":[{"shippingCosts":5.9,"orderId":"2023-11_customer-a_001","items":[{"unitPrice":6.02,"itemId":"itemId","quantity":1,"taxPercentage":19}],"totalPrice":11.92,"origin":"Amazon.de","creationDate":"2023-11-23T11:20:21.034+01:00","currency":"EUR"}],"version":"3"} # ComPatagonaPricemonitorShareApiPutCustomerOrdersRequestV3 |  (optional)
 
     try:
@@ -722,7 +724,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.OrdersApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 com_patagona_pricemonitor_share_api_put_customer_orders_request_v3 = {"orders":[{"shippingCosts":5.9,"orderId":"2023-11_customer-a_001","items":[{"unitPrice":6.02,"itemId":"itemId","quantity":1,"taxPercentage":19}],"totalPrice":11.92,"origin":"Amazon.de","creationDate":"2023-11-23T11:20:21.034+01:00","currency":"EUR"}],"version":"3"} # ComPatagonaPricemonitorShareApiPutCustomerOrdersRequestV3 |  (optional)
 
     try:
@@ -737,7 +739,7 @@ com_patagona_pricemonitor_share_api_put_customer_orders_request_v3 = {"orders":[
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **com_patagona_pricemonitor_share_api_put_customer_orders_request_v3** | [**ComPatagonaPricemonitorShareApiPutCustomerOrdersRequestV3**](ComPatagonaPricemonitorShareApiPutCustomerOrdersRequestV3.md)|  | [optional] 
 
 ### Return type
@@ -803,7 +805,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.OrdersApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 com_patagona_pricemonitor_share_api_post_order_statistics_request_v3 = {"pagination":{"start":0,"limit":10},"range":{"start":"2023-11-01T08:00:00Z","end":"2023-11-15T08:00:00Z"},"filter":{"oneOf":{"field":"customerProductId","values":["1","2","3","4","5","6","7","8","9","10"]}}} # ComPatagonaPricemonitorShareApiPostOrderStatisticsRequestV3 | The request body may include an optional products query. If omitted, all products are queried. Currently, product queries can be performed on two attributes:   - \"customerProductId\"   - \"productId\" (Patagona's internal product id; must be a numerical integer)  Pagination is supported with a maximum limit of 10,000. For optimized performance:   - Use a limit of 10,000 products per page when querying all products of a contract.   - Prefer using \"customerProductId\" for queries when a product query is utilized.  Pagination operates based on the provided products query. For chunked requests over a set of ids, it's straightforward to specify up to 10,000 customerProductId's in the query with pagination set at start: 0, limit: 10,000.  The allowed query pattern is structured as follows:  { <br> &nbsp;&nbsp;\"pagination\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": ${start}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"limit\": ${limit} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"range\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": ${start}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"end\": ${end} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"filter\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"oneOf\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"field\": \"customerProductId\", <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"values\": [${customerProductIds as a list of strings}] <br> &nbsp;&nbsp;&nbsp;&nbsp;} <br> &nbsp;&nbsp;} <br> } <br> <br> 
 
     try:
@@ -847,7 +849,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.OrdersApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 com_patagona_pricemonitor_share_api_post_order_statistics_request_v3 = {"pagination":{"start":0,"limit":10},"range":{"start":"2023-11-01T08:00:00Z","end":"2023-11-15T08:00:00Z"},"filter":{"oneOf":{"field":"customerProductId","values":["1","2","3","4","5","6","7","8","9","10"]}}} # ComPatagonaPricemonitorShareApiPostOrderStatisticsRequestV3 | The request body may include an optional products query. If omitted, all products are queried. Currently, product queries can be performed on two attributes:   - \"customerProductId\"   - \"productId\" (Patagona's internal product id; must be a numerical integer)  Pagination is supported with a maximum limit of 10,000. For optimized performance:   - Use a limit of 10,000 products per page when querying all products of a contract.   - Prefer using \"customerProductId\" for queries when a product query is utilized.  Pagination operates based on the provided products query. For chunked requests over a set of ids, it's straightforward to specify up to 10,000 customerProductId's in the query with pagination set at start: 0, limit: 10,000.  The allowed query pattern is structured as follows:  { <br> &nbsp;&nbsp;\"pagination\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": ${start}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"limit\": ${limit} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"range\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"start\": ${start}, <br> &nbsp;&nbsp;&nbsp;&nbsp;\"end\": ${end} <br> &nbsp;&nbsp;}, <br> &nbsp;&nbsp;\"filter\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;\"oneOf\": { <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"field\": \"customerProductId\", <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"values\": [${customerProductIds as a list of strings}] <br> &nbsp;&nbsp;&nbsp;&nbsp;} <br> &nbsp;&nbsp;} <br> } <br> <br> 
 
     try:
@@ -862,7 +864,7 @@ com_patagona_pricemonitor_share_api_post_order_statistics_request_v3 = {"paginat
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **com_patagona_pricemonitor_share_api_post_order_statistics_request_v3** | [**ComPatagonaPricemonitorShareApiPostOrderStatisticsRequestV3**](ComPatagonaPricemonitorShareApiPostOrderStatisticsRequestV3.md)| The request body may include an optional products query. If omitted, all products are queried. Currently, product queries can be performed on two attributes:   - \&quot;customerProductId\&quot;   - \&quot;productId\&quot; (Patagona&#39;s internal product id; must be a numerical integer)  Pagination is supported with a maximum limit of 10,000. For optimized performance:   - Use a limit of 10,000 products per page when querying all products of a contract.   - Prefer using \&quot;customerProductId\&quot; for queries when a product query is utilized.  Pagination operates based on the provided products query. For chunked requests over a set of ids, it&#39;s straightforward to specify up to 10,000 customerProductId&#39;s in the query with pagination set at start: 0, limit: 10,000.  The allowed query pattern is structured as follows:  { &lt;br&gt; &amp;nbsp;&amp;nbsp;\&quot;pagination\&quot;: { &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;start\&quot;: ${start}, &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;limit\&quot;: ${limit} &lt;br&gt; &amp;nbsp;&amp;nbsp;}, &lt;br&gt; &amp;nbsp;&amp;nbsp;\&quot;range\&quot;: { &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;start\&quot;: ${start}, &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;end\&quot;: ${end} &lt;br&gt; &amp;nbsp;&amp;nbsp;}, &lt;br&gt; &amp;nbsp;&amp;nbsp;\&quot;filter\&quot;: { &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;oneOf\&quot;: { &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;field\&quot;: \&quot;customerProductId\&quot;, &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\&quot;values\&quot;: [${customerProductIds as a list of strings}] &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;} &lt;br&gt; &amp;nbsp;&amp;nbsp;} &lt;br&gt; } &lt;br&gt; &lt;br&gt;  | 
 
 ### Return type

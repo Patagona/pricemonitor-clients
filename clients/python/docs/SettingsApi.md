@@ -94,7 +94,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
@@ -138,7 +138,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
@@ -153,7 +153,7 @@ body = None # object | This is a generated entry and needs to be described. (opt
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **body** | **object**| This is a generated entry and needs to be described. | [optional] 
 
 ### Return type
@@ -216,7 +216,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 alert_id = 'alert_id_example' # str | 
 
     try:
@@ -260,7 +260,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 alert_id = 'alert_id_example' # str | 
 
     try:
@@ -275,7 +275,7 @@ alert_id = 'alert_id_example' # str |
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **alert_id** | **str**|  | 
 
 ### Return type
@@ -338,7 +338,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Delete callbacks [manufacturer]
@@ -381,7 +381,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Delete callbacks [manufacturer]
@@ -395,7 +395,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
 
 ### Return type
 
@@ -457,7 +457,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Delete callbacks
@@ -500,7 +500,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Delete callbacks
@@ -514,7 +514,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
 
 ### Return type
 
@@ -576,7 +576,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Delete dynamic monitoring settings
@@ -619,7 +619,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Delete dynamic monitoring settings
@@ -633,7 +633,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
 
 ### Return type
 
@@ -695,7 +695,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Delete import settings
@@ -738,7 +738,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Delete import settings
@@ -752,7 +752,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
 
 ### Return type
 
@@ -814,7 +814,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get active Ebay token
@@ -857,7 +857,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get active Ebay token
@@ -871,7 +871,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
 
 ### Return type
 
@@ -933,7 +933,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get alert settings
@@ -976,7 +976,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get alert settings
@@ -990,7 +990,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
 
 ### Return type
 
@@ -1052,7 +1052,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 start = 56 # int | 
 limit = 56 # int | 
 
@@ -1097,7 +1097,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 start = 56 # int | 
 limit = 56 # int | 
 
@@ -1113,7 +1113,7 @@ limit = 56 # int |
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **start** | **int**|  | 
  **limit** | **int**|  | 
 
@@ -1177,7 +1177,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 start = 56 # int | 
 limit = 56 # int | 
 
@@ -1222,7 +1222,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 start = 56 # int | 
 limit = 56 # int | 
 
@@ -1238,7 +1238,7 @@ limit = 56 # int |
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **start** | **int**|  | 
  **limit** | **int**|  | 
 
@@ -1302,7 +1302,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get callbacks [manufacturer]
@@ -1345,7 +1345,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get callbacks [manufacturer]
@@ -1359,7 +1359,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
 
 ### Return type
 
@@ -1424,7 +1424,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get callbacks
@@ -1467,7 +1467,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get callbacks
@@ -1481,7 +1481,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
 
 ### Return type
 
@@ -1544,7 +1544,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get currency settings [vendor]
@@ -1587,7 +1587,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get currency settings [vendor]
@@ -1601,7 +1601,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
 
 ### Return type
 
@@ -1663,7 +1663,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get contract settings [manufacturer]
@@ -1706,7 +1706,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get contract settings [manufacturer]
@@ -1720,7 +1720,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
 
 ### Return type
 
@@ -1782,7 +1782,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get customer contract settings [vendor]
@@ -1825,7 +1825,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get customer contract settings [vendor]
@@ -1839,7 +1839,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
 
 ### Return type
 
@@ -1901,7 +1901,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get domains for contract
@@ -1944,7 +1944,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get domains for contract
@@ -1958,7 +1958,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
 
 ### Return type
 
@@ -2020,7 +2020,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get dynamic monitoring settings
@@ -2063,7 +2063,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get dynamic monitoring settings
@@ -2077,7 +2077,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
 
 ### Return type
 
@@ -2139,7 +2139,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 auth_ids = 'auth_ids_example' # str | 
 
     try:
@@ -2183,7 +2183,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 auth_ids = 'auth_ids_example' # str | 
 
     try:
@@ -2198,7 +2198,7 @@ auth_ids = 'auth_ids_example' # str |
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **auth_ids** | **str**|  | 
 
 ### Return type
@@ -2261,7 +2261,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get import settings
@@ -2304,7 +2304,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get import settings
@@ -2318,7 +2318,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
 
 ### Return type
 
@@ -2382,7 +2382,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get monitoring settings for contract
@@ -2425,7 +2425,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get monitoring settings for contract
@@ -2439,7 +2439,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
 
 ### Return type
 
@@ -2501,7 +2501,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get monitoring settings [manufacturer]
@@ -2544,7 +2544,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get monitoring settings [manufacturer]
@@ -2558,7 +2558,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
 
 ### Return type
 
@@ -2620,7 +2620,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get monitoring settings [vendor]
@@ -2663,7 +2663,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get monitoring settings [vendor]
@@ -2677,7 +2677,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
 
 ### Return type
 
@@ -2739,7 +2739,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get monitoring settings [vendor]
@@ -2782,7 +2782,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get monitoring settings [vendor]
@@ -2796,7 +2796,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
 
 ### Return type
 
@@ -2858,7 +2858,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 contract_type = 'contract_type_example' # str | 
 
     try:
@@ -2902,7 +2902,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 contract_type = 'contract_type_example' # str | 
 
     try:
@@ -2917,7 +2917,7 @@ contract_type = 'contract_type_example' # str |
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **contract_type** | **str**|  | 
 
 ### Return type
@@ -2980,7 +2980,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 contract_type = 'contract_type_example' # str | 
 
     try:
@@ -3024,7 +3024,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 contract_type = 'contract_type_example' # str | 
 
     try:
@@ -3039,7 +3039,7 @@ contract_type = 'contract_type_example' # str |
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **contract_type** | **str**|  | 
 
 ### Return type
@@ -3102,7 +3102,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get settings for contract
@@ -3145,7 +3145,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get settings for contract
@@ -3159,7 +3159,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
 
 ### Return type
 
@@ -3221,7 +3221,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get repricing settings
@@ -3264,7 +3264,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get repricing settings
@@ -3278,7 +3278,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
 
 ### Return type
 
@@ -3340,7 +3340,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
@@ -3384,7 +3384,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
@@ -3399,7 +3399,7 @@ body = None # object | This is a generated entry and needs to be described. (opt
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **body** | **object**| This is a generated entry and needs to be described. | [optional] 
 
 ### Return type
@@ -3462,7 +3462,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 com_patagona_pricemonitor_share_api_callbacks = pricemonitor_api_client.ComPatagonaPricemonitorShareApiCallbacks() # ComPatagonaPricemonitorShareApiCallbacks | Callbacks
 
     try:
@@ -3505,7 +3505,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 com_patagona_pricemonitor_share_api_callbacks = pricemonitor_api_client.ComPatagonaPricemonitorShareApiCallbacks() # ComPatagonaPricemonitorShareApiCallbacks | Callbacks
 
     try:
@@ -3519,7 +3519,7 @@ com_patagona_pricemonitor_share_api_callbacks = pricemonitor_api_client.ComPatag
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **com_patagona_pricemonitor_share_api_callbacks** | [**ComPatagonaPricemonitorShareApiCallbacks**](ComPatagonaPricemonitorShareApiCallbacks.md)| Callbacks | 
 
 ### Return type
@@ -3585,7 +3585,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 com_patagona_pricemonitor_share_api_callbacks = pricemonitor_api_client.ComPatagonaPricemonitorShareApiCallbacks() # ComPatagonaPricemonitorShareApiCallbacks | The request body should contain a list of callbacks to be stored. (optional)
 
     try:
@@ -3629,7 +3629,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 com_patagona_pricemonitor_share_api_callbacks = pricemonitor_api_client.ComPatagonaPricemonitorShareApiCallbacks() # ComPatagonaPricemonitorShareApiCallbacks | The request body should contain a list of callbacks to be stored. (optional)
 
     try:
@@ -3644,7 +3644,7 @@ com_patagona_pricemonitor_share_api_callbacks = pricemonitor_api_client.ComPatag
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **com_patagona_pricemonitor_share_api_callbacks** | [**ComPatagonaPricemonitorShareApiCallbacks**](ComPatagonaPricemonitorShareApiCallbacks.md)| The request body should contain a list of callbacks to be stored. | [optional] 
 
 ### Return type
@@ -3708,7 +3708,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
@@ -3752,7 +3752,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
@@ -3767,7 +3767,7 @@ body = None # object | This is a generated entry and needs to be described. (opt
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **body** | **object**| This is a generated entry and needs to be described. | [optional] 
 
 ### Return type
@@ -3830,7 +3830,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 com_patagona_pricemonitor_share_api_customer_contract_settings = pricemonitor_api_client.ComPatagonaPricemonitorShareApiCustomerContractSettings() # ComPatagonaPricemonitorShareApiCustomerContractSettings | This is a generated entry and needs to be described. (optional)
 
     try:
@@ -3874,7 +3874,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 com_patagona_pricemonitor_share_api_customer_contract_settings = pricemonitor_api_client.ComPatagonaPricemonitorShareApiCustomerContractSettings() # ComPatagonaPricemonitorShareApiCustomerContractSettings | This is a generated entry and needs to be described. (optional)
 
     try:
@@ -3889,7 +3889,7 @@ com_patagona_pricemonitor_share_api_customer_contract_settings = pricemonitor_ap
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **com_patagona_pricemonitor_share_api_customer_contract_settings** | [**ComPatagonaPricemonitorShareApiCustomerContractSettings**](ComPatagonaPricemonitorShareApiCustomerContractSettings.md)| This is a generated entry and needs to be described. | [optional] 
 
 ### Return type
@@ -3952,7 +3952,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 com_patagona_pricemonitor_share_api_customer_contract_settings = pricemonitor_api_client.ComPatagonaPricemonitorShareApiCustomerContractSettings() # ComPatagonaPricemonitorShareApiCustomerContractSettings | This is a generated entry and needs to be described. (optional)
 
     try:
@@ -3996,7 +3996,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 com_patagona_pricemonitor_share_api_customer_contract_settings = pricemonitor_api_client.ComPatagonaPricemonitorShareApiCustomerContractSettings() # ComPatagonaPricemonitorShareApiCustomerContractSettings | This is a generated entry and needs to be described. (optional)
 
     try:
@@ -4011,7 +4011,7 @@ com_patagona_pricemonitor_share_api_customer_contract_settings = pricemonitor_ap
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **com_patagona_pricemonitor_share_api_customer_contract_settings** | [**ComPatagonaPricemonitorShareApiCustomerContractSettings**](ComPatagonaPricemonitorShareApiCustomerContractSettings.md)| This is a generated entry and needs to be described. | [optional] 
 
 ### Return type
@@ -4074,7 +4074,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 request_body = ['request_body_example'] # list[str] | Settings
 
     try:
@@ -4117,7 +4117,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 request_body = ['request_body_example'] # list[str] | Settings
 
     try:
@@ -4131,7 +4131,7 @@ request_body = ['request_body_example'] # list[str] | Settings
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **request_body** | [**list[str]**](str.md)| Settings | 
 
 ### Return type
@@ -4195,7 +4195,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
@@ -4239,7 +4239,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
@@ -4254,7 +4254,7 @@ body = None # object | This is a generated entry and needs to be described. (opt
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **body** | **object**| This is a generated entry and needs to be described. | [optional] 
 
 ### Return type
@@ -4317,7 +4317,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
@@ -4361,7 +4361,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
@@ -4376,7 +4376,7 @@ body = None # object | This is a generated entry and needs to be described. (opt
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **body** | **object**| This is a generated entry and needs to be described. | [optional] 
 
 ### Return type
@@ -4439,7 +4439,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
@@ -4483,7 +4483,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
@@ -4498,7 +4498,7 @@ body = None # object | This is a generated entry and needs to be described. (opt
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **body** | **object**| This is a generated entry and needs to be described. | [optional] 
 
 ### Return type
@@ -4561,7 +4561,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
@@ -4605,7 +4605,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
@@ -4620,7 +4620,7 @@ body = None # object | This is a generated entry and needs to be described. (opt
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **body** | **object**| This is a generated entry and needs to be described. | [optional] 
 
 ### Return type
@@ -4685,7 +4685,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 body = None # object | The monitoring settings object to be written to the database (optional)
 
     try:
@@ -4729,7 +4729,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 body = None # object | The monitoring settings object to be written to the database (optional)
 
     try:
@@ -4744,7 +4744,7 @@ body = None # object | The monitoring settings object to be written to the datab
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **body** | **object**| The monitoring settings object to be written to the database | [optional] 
 
 ### Return type
@@ -4807,7 +4807,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
@@ -4851,7 +4851,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
@@ -4866,7 +4866,7 @@ body = None # object | This is a generated entry and needs to be described. (opt
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **body** | **object**| This is a generated entry and needs to be described. | [optional] 
 
 ### Return type
@@ -4929,7 +4929,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
@@ -4973,7 +4973,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
@@ -4988,7 +4988,7 @@ body = None # object | This is a generated entry and needs to be described. (opt
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **body** | **object**| This is a generated entry and needs to be described. | [optional] 
 
 ### Return type
@@ -5051,7 +5051,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
@@ -5095,7 +5095,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
@@ -5110,7 +5110,7 @@ body = None # object | This is a generated entry and needs to be described. (opt
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **body** | **object**| This is a generated entry and needs to be described. | [optional] 
 
 ### Return type
@@ -5173,7 +5173,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 contract_type = 'contract_type_example' # str | 
 body = None # object | This is a generated entry and needs to be described. (optional)
 
@@ -5218,7 +5218,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 contract_type = 'contract_type_example' # str | 
 body = None # object | This is a generated entry and needs to be described. (optional)
 
@@ -5234,7 +5234,7 @@ body = None # object | This is a generated entry and needs to be described. (opt
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **contract_type** | **str**|  | 
  **body** | **object**| This is a generated entry and needs to be described. | [optional] 
 
@@ -5298,7 +5298,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 contract_type = 'contract_type_example' # str | 
 body = None # object | This is a generated entry and needs to be described. (optional)
 
@@ -5343,7 +5343,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 contract_type = 'contract_type_example' # str | 
 body = None # object | This is a generated entry and needs to be described. (optional)
 
@@ -5359,7 +5359,7 @@ body = None # object | This is a generated entry and needs to be described. (opt
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **contract_type** | **str**|  | 
  **body** | **object**| This is a generated entry and needs to be described. | [optional] 
 
@@ -5423,7 +5423,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 com_patagona_pricemonitor_share_api_put_admin_contract_settings_body = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPutAdminContractSettingsBody() # ComPatagonaPricemonitorShareApiPutAdminContractSettingsBody | This is a generated entry and needs to be described. (optional)
 
     try:
@@ -5467,7 +5467,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 com_patagona_pricemonitor_share_api_put_admin_contract_settings_body = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPutAdminContractSettingsBody() # ComPatagonaPricemonitorShareApiPutAdminContractSettingsBody | This is a generated entry and needs to be described. (optional)
 
     try:
@@ -5482,7 +5482,7 @@ com_patagona_pricemonitor_share_api_put_admin_contract_settings_body = pricemoni
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **com_patagona_pricemonitor_share_api_put_admin_contract_settings_body** | [**ComPatagonaPricemonitorShareApiPutAdminContractSettingsBody**](ComPatagonaPricemonitorShareApiPutAdminContractSettingsBody.md)| This is a generated entry and needs to be described. | [optional] 
 
 ### Return type
@@ -5545,7 +5545,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
@@ -5589,7 +5589,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
@@ -5604,7 +5604,7 @@ body = None # object | This is a generated entry and needs to be described. (opt
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **body** | **object**| This is a generated entry and needs to be described. | [optional] 
 
 ### Return type
@@ -5667,7 +5667,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
@@ -5711,7 +5711,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
@@ -5726,7 +5726,7 @@ body = None # object | This is a generated entry and needs to be described. (opt
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **body** | **object**| This is a generated entry and needs to be described. | [optional] 
 
 ### Return type
@@ -5789,7 +5789,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 alert_id = 'alert_id_example' # str | 
 body = None # object | This is a generated entry and needs to be described. (optional)
 
@@ -5834,7 +5834,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.SettingsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 alert_id = 'alert_id_example' # str | 
 body = None # object | This is a generated entry and needs to be described. (optional)
 
@@ -5850,7 +5850,7 @@ body = None # object | This is a generated entry and needs to be described. (opt
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **alert_id** | **str**|  | 
  **body** | **object**| This is a generated entry and needs to be described. | [optional] 
 

@@ -169,11 +169,11 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.DeprecatedApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 start = 56 # int | Start product index for pagination
 limit = 56 # int | Number of products for pagination
-start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
-end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
+start_date = '2024-01-15T00:00:00Z' # datetime | **Start of time range** for data retrieval.  Format: ISO 8601 date-time in UTC (e.g., `2024-01-15T10:30:00Z`)  **Default behavior:** - If omitted and `endDate` is provided: `startDate` = `endDate` - 48 hours - If both omitted: range is `NOW - 48 hours` to `NOW`  (optional)
+end_date = '2024-01-16T23:59:59Z' # datetime | **End of time range** for data retrieval.  Format: ISO 8601 date-time in UTC (e.g., `2024-01-16T10:30:00Z`)  **Default behavior:** - If omitted and `startDate` is provided: `endDate` = `startDate` + 48 hours - If both omitted: range is `NOW - 48 hours` to `NOW`  (optional)
 
     try:
         # Get all offers for all products
@@ -216,11 +216,11 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.DeprecatedApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 start = 56 # int | Start product index for pagination
 limit = 56 # int | Number of products for pagination
-start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
-end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
+start_date = '2024-01-15T00:00:00Z' # datetime | **Start of time range** for data retrieval.  Format: ISO 8601 date-time in UTC (e.g., `2024-01-15T10:30:00Z`)  **Default behavior:** - If omitted and `endDate` is provided: `startDate` = `endDate` - 48 hours - If both omitted: range is `NOW - 48 hours` to `NOW`  (optional)
+end_date = '2024-01-16T23:59:59Z' # datetime | **End of time range** for data retrieval.  Format: ISO 8601 date-time in UTC (e.g., `2024-01-16T10:30:00Z`)  **Default behavior:** - If omitted and `startDate` is provided: `endDate` = `startDate` + 48 hours - If both omitted: range is `NOW - 48 hours` to `NOW`  (optional)
 
     try:
         # Get all offers for all products
@@ -234,11 +234,11 @@ end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time ran
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **start** | **int**| Start product index for pagination | 
  **limit** | **int**| Number of products for pagination | 
- **start_date** | **datetime**| Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is &#39;NOW - 48 hours to NOW&#39;. | [optional] 
- **end_date** | **datetime**| Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is &#39;NOW - 48 hours to NOW&#39;. | [optional] 
+ **start_date** | **datetime**| **Start of time range** for data retrieval.  Format: ISO 8601 date-time in UTC (e.g., &#x60;2024-01-15T10:30:00Z&#x60;)  **Default behavior:** - If omitted and &#x60;endDate&#x60; is provided: &#x60;startDate&#x60; &#x3D; &#x60;endDate&#x60; - 48 hours - If both omitted: range is &#x60;NOW - 48 hours&#x60; to &#x60;NOW&#x60;  | [optional] 
+ **end_date** | **datetime**| **End of time range** for data retrieval.  Format: ISO 8601 date-time in UTC (e.g., &#x60;2024-01-16T10:30:00Z&#x60;)  **Default behavior:** - If omitted and &#x60;startDate&#x60; is provided: &#x60;endDate&#x60; &#x3D; &#x60;startDate&#x60; + 48 hours - If both omitted: range is &#x60;NOW - 48 hours&#x60; to &#x60;NOW&#x60;  | [optional] 
 
 ### Return type
 
@@ -300,7 +300,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.DeprecatedApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 start = 0 # int | Where to start fetching the recommendations (optional) (default to 0)
 limit = 10000 # int | Maximal number of results (optional) (default to 10000)
 since = '2019-01-01T00:00:00.000Z' # datetime | Timestamp of the oldest results (optional)
@@ -346,7 +346,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.DeprecatedApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 start = 0 # int | Where to start fetching the recommendations (optional) (default to 0)
 limit = 10000 # int | Maximal number of results (optional) (default to 10000)
 since = '2019-01-01T00:00:00.000Z' # datetime | Timestamp of the oldest results (optional)
@@ -363,7 +363,7 @@ since = '2019-01-01T00:00:00.000Z' # datetime | Timestamp of the oldest results 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **start** | **int**| Where to start fetching the recommendations | [optional] [default to 0]
  **limit** | **int**| Maximal number of results | [optional] [default to 10000]
  **since** | **datetime**| Timestamp of the oldest results | [optional] 
@@ -393,7 +393,7 @@ Name | Type | Description  | Notes
 
 Get metadata of all strategy versions for contract
 
-Get a list of metadata of all strategy versions for a contract.
+**⚠️ DEPRECATED:** This endpoint is deprecated and should no longer be used.  Retrieves a list of metadata for all pricing strategy versions associated with a specific contract. Use `/api/v3/vendor/contracts/{contractId}/settings/pricingstrategies/history` instead. 
 
 ### Example
 
@@ -430,7 +430,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.DeprecatedApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get metadata of all strategy versions for contract
@@ -473,7 +473,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.DeprecatedApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get metadata of all strategy versions for contract
@@ -487,7 +487,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
 
 ### Return type
 
@@ -667,7 +667,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.DeprecatedApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 body = 'body_example' # str | CSV file containing the products
 
     try:
@@ -710,7 +710,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.DeprecatedApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 body = 'body_example' # str | CSV file containing the products
 
     try:
@@ -724,7 +724,7 @@ body = 'body_example' # str | CSV file containing the products
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **body** | **str**| CSV file containing the products | 
 
 ### Return type
@@ -788,7 +788,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.DeprecatedApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
@@ -832,7 +832,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.DeprecatedApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
@@ -847,7 +847,7 @@ body = None # object | This is a generated entry and needs to be described. (opt
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **body** | **object**| This is a generated entry and needs to be described. | [optional] 
 
 ### Return type

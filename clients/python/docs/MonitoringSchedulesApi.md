@@ -58,8 +58,8 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.MonitoringSchedulesApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-schedule_id = 56 # int | ID of a monitoring schedule
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
+schedule_id = 123 # int | Unique identifier of a monitoring schedule
 
     try:
         # Delete monitoring schedule for contract [manufacturer]
@@ -102,8 +102,8 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.MonitoringSchedulesApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-schedule_id = 56 # int | ID of a monitoring schedule
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
+schedule_id = 123 # int | Unique identifier of a monitoring schedule
 
     try:
         # Delete monitoring schedule for contract [manufacturer]
@@ -117,8 +117,8 @@ schedule_id = 56 # int | ID of a monitoring schedule
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
- **schedule_id** | **int**| ID of a monitoring schedule | 
+ **contract_id** | **str**| Unique identifier of the contract | 
+ **schedule_id** | **int**| Unique identifier of a monitoring schedule | 
 
 ### Return type
 
@@ -183,8 +183,8 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.MonitoringSchedulesApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-schedule_id = 56 # int | ID of a monitoring schedule
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
+schedule_id = 123 # int | Unique identifier of a monitoring schedule
 
     try:
         # Delete monitoring schedule for contract [vendor]
@@ -227,8 +227,8 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.MonitoringSchedulesApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-schedule_id = 56 # int | ID of a monitoring schedule
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
+schedule_id = 123 # int | Unique identifier of a monitoring schedule
 
     try:
         # Delete monitoring schedule for contract [vendor]
@@ -242,8 +242,8 @@ schedule_id = 56 # int | ID of a monitoring schedule
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
- **schedule_id** | **int**| ID of a monitoring schedule | 
+ **contract_id** | **str**| Unique identifier of the contract | 
+ **schedule_id** | **int**| Unique identifier of a monitoring schedule | 
 
 ### Return type
 
@@ -309,9 +309,9 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.MonitoringSchedulesApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-schedule_id = 56 # int | ID of a monitoring schedule
-trigger_follow_up_task = True # bool |  (optional)
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
+schedule_id = 123 # int | Unique identifier of a monitoring schedule
+trigger_follow_up_task = True # bool | Flag to trigger follow-up tasks once the current task is completed (optional) (default to True)
 
     try:
         # Trigger monitoring pipeline for schedule [manufacturer]
@@ -354,9 +354,9 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.MonitoringSchedulesApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-schedule_id = 56 # int | ID of a monitoring schedule
-trigger_follow_up_task = True # bool |  (optional)
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
+schedule_id = 123 # int | Unique identifier of a monitoring schedule
+trigger_follow_up_task = True # bool | Flag to trigger follow-up tasks once the current task is completed (optional) (default to True)
 
     try:
         # Trigger monitoring pipeline for schedule [manufacturer]
@@ -370,9 +370,9 @@ trigger_follow_up_task = True # bool |  (optional)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
- **schedule_id** | **int**| ID of a monitoring schedule | 
- **trigger_follow_up_task** | **bool**|  | [optional] 
+ **contract_id** | **str**| Unique identifier of the contract | 
+ **schedule_id** | **int**| Unique identifier of a monitoring schedule | 
+ **trigger_follow_up_task** | **bool**| Flag to trigger follow-up tasks once the current task is completed | [optional] [default to True]
 
 ### Return type
 
@@ -437,9 +437,9 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.MonitoringSchedulesApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-schedule_id = 56 # int | ID of a monitoring schedule
-trigger_follow_up_task = True # bool |  (optional)
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
+schedule_id = 123 # int | Unique identifier of a monitoring schedule
+trigger_follow_up_task = True # bool | Flag to trigger follow-up tasks once the current task is completed (optional) (default to True)
 
     try:
         # Trigger monitoring pipeline for schedule [vendor]
@@ -482,9 +482,9 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.MonitoringSchedulesApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-schedule_id = 56 # int | ID of a monitoring schedule
-trigger_follow_up_task = True # bool |  (optional)
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
+schedule_id = 123 # int | Unique identifier of a monitoring schedule
+trigger_follow_up_task = True # bool | Flag to trigger follow-up tasks once the current task is completed (optional) (default to True)
 
     try:
         # Trigger monitoring pipeline for schedule [vendor]
@@ -498,9 +498,9 @@ trigger_follow_up_task = True # bool |  (optional)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
- **schedule_id** | **int**| ID of a monitoring schedule | 
- **trigger_follow_up_task** | **bool**|  | [optional] 
+ **contract_id** | **str**| Unique identifier of the contract | 
+ **schedule_id** | **int**| Unique identifier of a monitoring schedule | 
+ **trigger_follow_up_task** | **bool**| Flag to trigger follow-up tasks once the current task is completed | [optional] [default to True]
 
 ### Return type
 
@@ -565,7 +565,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.MonitoringSchedulesApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get all monitoring schedules for contract [manufacturer]
@@ -608,7 +608,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.MonitoringSchedulesApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get all monitoring schedules for contract [manufacturer]
@@ -622,7 +622,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
 
 ### Return type
 
@@ -686,7 +686,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.MonitoringSchedulesApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get all monitoring schedules for contract [vendor]
@@ -729,7 +729,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.MonitoringSchedulesApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get all monitoring schedules for contract [vendor]
@@ -743,7 +743,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
 
 ### Return type
 
@@ -807,7 +807,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.MonitoringSchedulesApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3() # ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3 | Request body for creating monitoring schedule. (optional)
 
     try:
@@ -851,7 +851,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.MonitoringSchedulesApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3() # ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3 | Request body for creating monitoring schedule. (optional)
 
     try:
@@ -866,7 +866,7 @@ com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3 = pricem
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3** | [**ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3**](ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3.md)| Request body for creating monitoring schedule. | [optional] 
 
 ### Return type
@@ -931,7 +931,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.MonitoringSchedulesApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3() # ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3 | Request body for creating monitoring schedule. (optional)
 
     try:
@@ -975,7 +975,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.MonitoringSchedulesApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3() # ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3 | Request body for creating monitoring schedule. (optional)
 
     try:
@@ -990,7 +990,7 @@ com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3 = pricem
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3** | [**ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3**](ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3.md)| Request body for creating monitoring schedule. | [optional] 
 
 ### Return type
@@ -1056,8 +1056,8 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.MonitoringSchedulesApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-schedule_id = 56 # int | ID of a monitoring schedule
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
+schedule_id = 123 # int | Unique identifier of a monitoring schedule
 com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3() # ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3 | Request body for updating monitoring schedule. (optional)
 
     try:
@@ -1101,8 +1101,8 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.MonitoringSchedulesApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-schedule_id = 56 # int | ID of a monitoring schedule
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
+schedule_id = 123 # int | Unique identifier of a monitoring schedule
 com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3() # ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3 | Request body for updating monitoring schedule. (optional)
 
     try:
@@ -1117,8 +1117,8 @@ com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3 = pricem
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
- **schedule_id** | **int**| ID of a monitoring schedule | 
+ **contract_id** | **str**| Unique identifier of the contract | 
+ **schedule_id** | **int**| Unique identifier of a monitoring schedule | 
  **com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3** | [**ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3**](ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3.md)| Request body for updating monitoring schedule. | [optional] 
 
 ### Return type
@@ -1184,8 +1184,8 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.MonitoringSchedulesApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-schedule_id = 56 # int | ID of a monitoring schedule
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
+schedule_id = 123 # int | Unique identifier of a monitoring schedule
 com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3() # ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3 | Request body for updating monitoring schedule. (optional)
 
     try:
@@ -1229,8 +1229,8 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.MonitoringSchedulesApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-schedule_id = 56 # int | ID of a monitoring schedule
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
+schedule_id = 123 # int | Unique identifier of a monitoring schedule
 com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3() # ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3 | Request body for updating monitoring schedule. (optional)
 
     try:
@@ -1245,8 +1245,8 @@ com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3 = pricem
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
- **schedule_id** | **int**| ID of a monitoring schedule | 
+ **contract_id** | **str**| Unique identifier of the contract | 
+ **schedule_id** | **int**| Unique identifier of a monitoring schedule | 
  **com_patagona_pricemonitor_share_api_post_monitoring_schedule_request_v3** | [**ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3**](ComPatagonaPricemonitorShareApiPostMonitoringScheduleRequestV3.md)| Request body for updating monitoring schedule. | [optional] 
 
 ### Return type

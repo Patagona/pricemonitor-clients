@@ -6,11 +6,19 @@ info:
   title: Omnia 2.0 API
   summary: >-
     This is the API powering Omnia 2.0 and Pricemonitor, containing operations
-    which can also be used directly by customers from their own systems.
+    that can also be used directly by customers from their own systems.
   description: >
     The Omnia 2.0 API is RESTful and provides access to the backend of Omnia 2.0
-    and Pricemonitor. It is used to manage products, offers, contracts and more.
-  version: 0.0.7158
+    and Pricemonitor. It is used to manage products, offers, contracts, and
+    more.
+
+
+    This API supports both public endpoints for customer integration and
+    internal endpoints for platform management.
+
+    All endpoints are authenticated using either Basic Authentication or JWT
+    Bearer tokens.
+  version: 0.0.7159
   x-logo:
     url: >-
       https://www.omniaretail.com/hubfs/Omnia%20Logo%20SVG/Omnia_Retail_Full_Colour_Logo_On_White_RGB.svg
@@ -541,17 +549,21 @@ tags:
   - name: logs
     x-displayName: Logs Management
     description: >-
-      Operations to store log messages in our system.
+      Operations to store log messages in the system.
 
 
-      You could integrate this API in your own system and publish the
-      integration logs to our system so that Omnia Retail could analyze them.
+      You can integrate this API into your own system and publish integration
+      logs to the system so that Omnia Retail can analyze them.
   - name: companies
     x-displayName: Company Management
-    description: Company management related endpoints.
+    description: >-
+      Operations for managing company entities, including creation, retrieval,
+      and contract management.
   - name: orders
     x-displayName: Orders Management
-    description: Manage your orders.
+    description: >-
+      Operations for managing orders, including bulk order imports and order
+      tracking.
   - name: settings
     x-displayName: Settings Management
     description: >
@@ -1659,11 +1671,11 @@ tags:
       </details>
   - name: strategy
     x-displayName: Strategies Management
-    description: Operations to view and manage the pricing strategies.
+    description: Operations to view and manage pricing strategies.
   - name: scenariostrategy
     x-displayName: Scenario Strategies Management
     x-audience: Internal
-    description: Operations to manage the scenario strategies.
+    description: Operations to manage scenario strategies for pricing simulations.
   - name: domains
     x-displayName: Domains
     description: >-
@@ -1677,50 +1689,54 @@ tags:
   - name: controlpanel
     x-displayName: Control Panel
     x-audience: Internal
-    description: Operations used by the control panel.
+    description: Administrative operations used by the control panel interface.
   - name: pluginregistration
     x-displayName: Plugin Registration
-    description: Operations to view registered plugins.
+    description: Operations to view and manage registered plugins for system integration.
   - name: looker
     x-displayName: Looker
     x-audience: Internal
-    description: Operations to manage Looker dashboards.
+    description: Operations to manage Looker dashboards and analytics integration.
   - name: amazon-integration
     x-displayName: Amazon Integration
     x-audience: Internal
-    description: Operations to manage the Amazon integration.
+    description: Operations to manage Amazon integration and marketplace connectivity.
   - name: monitoring-schedules
     x-displayName: Monitoring Schedules
     x-audience: Internal
-    description: Operations to manage the monitoring schedules.
+    description: Operations to manage monitoring schedules for automated price monitoring.
   - name: preprocessing
     x-displayName: Pre-processing
     x-audience: Internal
-    description: Operations to manage the pre-processing.
+    description: Operations to manage data pre-processing pipelines and tasks.
   - name: vendor-shop-mapping
     x-displayName: Vendor Shop Mapping
     x-audience: Internal
-    description: Operations to manage the vendor shop mappings.
+    description: Operations to manage vendor shop mappings and associations.
   - name: deprecated
     x-displayName: Deprecated
     x-audience: Internal
     description: >-
-      All operations that are deprecated and should not be used anymore. Also
-      not internally.
+      **⚠️ DEPRECATED:** All operations that are deprecated and should no longer
+      be used, including internal usage.
   - name: internal
     x-displayName: Internal Only
     x-audience: Internal
-    description: |-
-      All operations not intended for direct consumption by customers.
+    description: >-
+      **🔒 INTERNAL:** All operations not intended for direct consumption by
+      customers.
 
-      > Note: not directly used by customers, but by the platform itself.
+
+      > Note: Used exclusively by the platform itself and internal systems.
   - name: undocumented
     x-displayName: Undocumented
     x-audience: Internal
-    description: |-
-      All operations that are not yet documented.
+    description: >-
+      **📝 UNDOCUMENTED:** All operations that are not yet fully documented.
 
-      > Note: all operations intended for public usage should be documented.
+
+      > Note: All operations intended for public usage should be properly
+      documented.
   - name: SchedulerOverview
     description: >-
       The Scheduler API operations allow for creating, updating, deleting and
@@ -1759,7 +1775,17 @@ paths:
                 $ref: '#/components/schemas/GetPricingStrategyHistoryApiResponse'
           description: List of metadata of all strategy versions
       summary: Get metadata of all strategy versions for contract
-      description: Get a list of metadata of all strategy versions for a contract.
+      description: >
+        **⚠️ DEPRECATED:** This endpoint is deprecated and should no longer be
+        used.
+
+
+        Retrieves a list of metadata for all pricing strategy versions
+        associated with a specific contract.
+
+        Use
+        `/api/v3/vendor/contracts/{contractId}/settings/pricingstrategies/history`
+        instead.
       operationId: getStrategyHistory
       tags:
         - deprecated
@@ -1779,7 +1805,15 @@ paths:
                 $ref: '#/components/schemas/GetPricingStrategyHistoryApiResponse'
           description: List of metadata of all strategy versions
       summary: Get all strategy versions metadata for contract
-      description: Get a list of metadata of all strategy versions for a contract.
+      description: >
+        Retrieves a list of metadata for all pricing strategy versions
+        associated with a specific contract.
+
+
+        This endpoint provides version history information including creation
+        dates, modification timestamps,
+
+        and strategy metadata for tracking changes over time.
       operationId: getPricingStrategyHistory
       tags:
         - strategy
@@ -1801,7 +1835,16 @@ paths:
                     #/components/schemas/ScenarioStrategyMetadataResponseApiResponse
           description: List of all scenario strategy metadata
       summary: Get all scenario strategies
-      description: Get a list of all scenario strategy metadata for a contract.
+      description: >
+        **🔒 INTERNAL:** Retrieves a list of all scenario strategy metadata for
+        a specific contract.
+
+
+        Scenario strategies are used for pricing simulations and "what-if"
+        analysis. Each strategy
+
+        contains metadata including creation date, version information, and
+        configuration details.
       operationId: getAllScenariosMetadata
       tags:
         - scenariostrategy
@@ -1818,23 +1861,40 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PostScenarioStrategyResponseApiResponse'
-          description: A new scenario strategy was added
+          description: Scenario strategy created successfully
         '400':
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiErrorResponse'
-          description: >-
-            Strategy must be valid and consistent with the schema version.
-            Required fields need to be filled.
+          description: >
+            Request validation failed. Common reasons include:
+
+            - Strategy configuration is invalid or inconsistent with the schema
+            version
+
+            - Required fields are missing or empty
+
+            - Invalid JSON structure
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/PostScenarioStrategyRequest'
-        description: The scenario strategy to be stored. Including the necessary metadata.
+        description: >-
+          The scenario strategy to be created, including the necessary metadata
+          and configuration.
       operationId: addPricingStrategyScenario
       summary: Add scenario strategy
+      description: >
+        **🔒 INTERNAL:** Creates a new scenario strategy for pricing
+        simulations.
+
+
+        Scenario strategies allow for "what-if" pricing analysis and testing
+        different
+
+        pricing approaches before applying them to live products.
       tags:
         - scenariostrategy
         - internal
@@ -1858,16 +1918,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ScenarioStrategyResponse'
-          description: A scenario strategy
+          description: Scenario strategy details retrieved successfully
         '404':
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiErrorResponse'
-          description: Scenario strategy with the provided Id was not found.
+          description: Scenario strategy with the provided ID was not found.
       operationId: getScenarioById
       summary: Get scenario strategy
-      description: Get a scenario strategy with the provided scenario id.
+      description: |
+        **🔒 INTERNAL:** Retrieves a specific scenario strategy by its ID.
+
+        Returns the complete scenario strategy configuration including metadata,
+        creation details, and the strategy definition.
       tags:
         - scenariostrategy
         - internal
@@ -1877,20 +1941,39 @@ paths:
   /api/v3/domains:
     get:
       operationId: getAllDomainsV3
-      summary: Get a list of all available domains (V3)
+      summary: Get all available domains
       responses:
         '200':
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetAllDomainsV3ApiResponse'
-          description: A list of domains
-      description: >-
-        This endpoint provides all domains which are supported by our system.
-        Along with other attributes we are providing the corresponding possible
-        offer sources. Only domains which include the offer source
-        DEFAULT_MONITORING are supported out-of-the-box by our monitoring
-        pipeline.
+              example:
+                data:
+                  - domain: amazon.de
+                    offerSources:
+                      - DEFAULT_MONITORING
+                      - PUSH_API
+                  - domain: ebay.de
+                    offerSources:
+                      - DEFAULT_MONITORING
+          description: List of all supported domains with their configurations
+      description: >
+        Retrieves all domains supported by the system for market data
+        collection.
+
+
+        Each domain includes:
+
+        - Available offer sources for market data collection
+
+        - Configuration parameters
+
+
+        **Note:** Only domains with the `DEFAULT_MONITORING` offer source are
+        supported
+
+        out-of-the-box by the monitoring pipeline.
       tags:
         - domains
       security:
@@ -1899,40 +1982,46 @@ paths:
   /controlpanel/api/v3/domains:
     x-audience: Internal
     post:
-      operationId: getAllDomainsControlPanelV3
+      operationId: postAdminAddDomainV3
+      summary: Add domain
+      description: >
+        **🔒 INTERNAL:** Adds a new domain to the system for price monitoring.
+
+
+        This administrative operation creates a new domain configuration with
+        the specified
+
+        offer sources and monitoring capabilities.
       responses:
         '200':
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PostAdminAddDomainV3ApiResponse'
-          description: A new domain was added
+          description: Domain added successfully
         '400':
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiErrorResponse'
-          description: >
+          description: |
+            Request validation failed. Common issues include:
             - Offer sources must be valid and non-empty
-
             - Domain must be a valid internet domain and non-empty
-
-            - Domain name must be unique and non-empty
-
-            - Please refer to the request schema for what constitutes valid
-            offer sources and a valid domain
+            - Domain name must be unique
+            - Invalid configuration parameters
       requestBody:
         content:
           application/json:
             schema:
               $ref: >-
                 #/components/schemas/com.patagona.pricemonitor.share.api.PostAdminAddDomainBodyV3
-        description: The domain to be added and its offer sources
+        description: >-
+          The domain configuration to be added, including offer sources and
+          monitoring settings
       tags:
         - controlpanel
         - internal
-      summary: Add domain
-      description: Add a new domain.
       security:
         - BasicAuth: []
         - BearerAuth: []
@@ -1941,38 +2030,47 @@ paths:
     parameters:
       - $ref: '#/components/parameters/domainParam'
     put:
-      operationId: putAdminDomainControlPanelV3
+      summary: Update or add domain
+      description: >
+        **🔒 INTERNAL:** Updates an existing domain configuration or creates a
+        new domain if it doesn't exist.
+
+
+        This operation supports both creation and modification of domain
+        configurations,
+
+        allowing administrative management of supported monitoring domains.
       responses:
         '201':
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PutAdminDomainResponseV3ApiResponse'
-          description: A domain was updated or added.
+          description: Domain was updated or created successfully
         '400':
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiErrorResponse'
-          description: >-
-            Domain could not be updated or added. - Offer sources must be valid
-            - Domain must be a valid internet domain and non-empty - Domain name
-            must be unique and non-empty - Please refer to the request schema
-            for what constitutes valid offer sources and a valid domain
+          description: |
+            Request validation failed. Common issues include:
+            - Offer sources must be valid
+            - Domain must be a valid internet domain and non-empty
+            - Domain name must be unique
+            - Invalid configuration parameters
       requestBody:
         content:
           application/json:
             schema:
               $ref: >-
                 #/components/schemas/com.patagona.pricemonitor.share.api.PutAdminDomainRequestV3
-        description: The domain to be updated or added and its offer sources
+        description: >-
+          The domain configuration to be updated or created, including offer
+          sources and monitoring settings
+      operationId: putAdminDomainControlPanelV3
       tags:
         - internal
         - controlpanel
-      description: >-
-        Update an existing domain or add a new domain in case domain does not
-        exist.
-      summary: Update or add domain
       security:
         - BasicAuth: []
         - BearerAuth: []
@@ -2447,14 +2545,19 @@ paths:
             text/csv:
               schema:
                 $ref: '#/components/schemas/Feed'
-          description: No response was specified
+          description: Feed data export retrieved successfully
         '404':
-          description: Not found
-      tags:
-        - feeds
-      description: Lets you download a file, containing all the data of the feed.
+          description: Feed not found or access denied
+      description: |
+        Downloads a file containing all the data from the specified feed.
+
+        Feeds are price recommendation centric and can be enriched with offer
+        or product information. The export format (JSON or CSV) is determined
+        by the request's Accept header.
       operationId: getFeedExport
       summary: Export feed data
+      tags:
+        - feeds
       security:
         - BasicAuth: []
         - BearerAuth: []
@@ -2462,31 +2565,68 @@ paths:
     post:
       parameters:
         - $ref: '#/components/parameters/contractIdParam'
+      summary: Add orders in bulk
+      description: >
+        Imports multiple orders for a specific contract in a single operation.
+
+
+        This endpoint supports bulk order processing to efficiently manage large
+
+        volumes of order data. All orders in the request are processed
+        atomically.
       responses:
         '200':
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PostOrdersBulkApiResponse'
-          description: Successfully added orders
+              example:
+                data:
+                  successful: 150
+                  failed: 2
+                  errors:
+                    - orderId: '12345'
+                      error: Invalid product ID
+          description: Orders processed successfully (may include partial failures)
         '400':
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PostOrdersBulkApiResponse'
-          description: Unable to add orders
-      tags:
-        - orders
-      operationId: postOrders
+          description: |
+            Request validation failed. Common issues include:
+            - Invalid order data format
+            - Missing required fields
+            - Invalid contract ID
       requestBody:
         content:
           application/json:
             schema:
               $ref: >-
                 #/components/schemas/com.patagona.pricemonitor.share.api.PostCustomerOrdersRequestV2
-        description: Orders to be added
+            example:
+              version: '2'
+              orders:
+                - orderId: ORDER-2024-001
+                  origin: webshop
+                  referrer: google
+                  productMappings:
+                    - source: itemId
+                      target: customerProductId
+                  items:
+                    - itemId: ITEM-001
+                      unitPrice: 29.99
+                      quantity: 2
+                      taxPercentage: 19
+                  creationDate: '2024-01-15T10:30:00Z'
+                  totalPrice: 65.98
+                  shippingCosts: 5.99
+                  currency: EUR
+        description: Orders to be imported, including order metadata and item details
         required: true
-      summary: Add orders in bulk
+      operationId: postOrders
+      tags:
+        - orders
       security:
         - BasicAuth: []
         - BearerAuth: []
@@ -2494,12 +2634,35 @@ paths:
     get:
       operationId: getProducts
       summary: Get all products for a contract
-      description: Gets all products for a contract. Does not support pagination.
+      description: >
+        **⚠️ DEPRECATED:** This endpoint is deprecated and should no longer be
+        used.
+
+
+        Retrieves all products for a contract without pagination support. This
+        endpoint
+
+        has performance limitations and lacks proper pagination. Use the newer
+        product
+
+        query endpoints instead.
+
+
+        **Note:** The `attributes` parameter is required but poorly documented
+        in this legacy version.
       deprecated: true
       parameters:
         - $ref: '#/components/parameters/contractIdParam'
         - in: query
-          description: Query string to filter products
+          description: >
+            **REQUIRED:** Comma-separated list of product attributes to include
+            in the response.
+
+
+            Available attributes: `gtin`, `identifier`, `name`,
+            `referencePrice`,
+
+            `minPriceBoundary`, `maxPriceBoundary`, `tags`, `strategy`
           name: attributes
           required: true
           schema:
@@ -2513,6 +2676,7 @@ paths:
               - maxPriceBoundary
               - tags
               - strategy
+          example: gtin,name,referencePrice,tags
       responses:
         '200':
           content:
@@ -2648,39 +2812,65 @@ paths:
   /api/2/v/contracts/{contractId}/result/pricerecommendations:
     get:
       operationId: getPriceRecommendation
-      summary: Get all price recommendations
-      description: >-
-        Gets all price recommendations for a contract for the specified
-        timerange. Only the newest price recommendations are returned in case of
-        multiple price recommendations per product
+      summary: Get price recommendations for time range
+      description: >
+        Retrieves all price recommendations for a contract within the specified
+        time range.
+
+
+        This endpoint returns algorithmic pricing recommendations based on
+        market analysis,
+
+        competitor pricing, and configured pricing strategies. Only the most
+        recent
+
+        recommendations are returned when multiple recommendations exist for the
+        same product.
+
+
+        **Key Features:**
+
+        - Paginated results for efficient data retrieval
+
+        - Optional product tag inclusion
+
+        - Configurable time range filtering
+
+        - Real-time market-based recommendations
       parameters:
         - $ref: '#/components/parameters/contractIdParam'
-        - description: >-
-            Timestamp of start of time range, formatted as ISO Date (i.e.
-            2018-04-06T13:46:13Z) in UTC
+        - description: |
+            **Start of time range** for price recommendation retrieval.
+
+            Format: ISO 8601 date-time in UTC (e.g., `2024-01-15T10:30:00Z`)
           in: query
           name: startTime
           required: true
           schema:
             format: date-time
             type: string
-        - description: >-
-            Timestamp of end of time range, formatted as ISO Date (i.e.
-            2018-04-06T13:46:13Z) in UTC
+          example: '2024-01-15T00:00:00Z'
+        - description: |
+            **End of time range** for price recommendation retrieval.
+
+            Format: ISO 8601 date-time in UTC (e.g., `2024-01-16T10:30:00Z`)
           in: query
           name: endTime
           required: true
           schema:
             format: date-time
             type: string
-        - description: Start price-recommendation index for pagination
+          example: '2024-01-16T23:59:59Z'
+        - description: Starting index for pagination (0-based)
           in: query
           name: start
           required: true
           schema:
             format: int32
             type: integer
-        - description: Number of price-recommendations for pagination
+            minimum: 0
+          example: 0
+        - description: Maximum number of price recommendations to return per page
           in: query
           name: limit
           required: false
@@ -2688,23 +2878,66 @@ paths:
             default: 100
             format: int32
             type: integer
-        - description: Whether to return tags of products or not.
+            minimum: 1
+            maximum: 1000
+          example: 100
+        - description: Whether to include product tags in the response
           in: query
           name: includeTags
           required: false
           schema:
             default: true
             type: boolean
+          example: true
       responses:
         '200':
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetPriceRecommendationApiResponse'
-          description: >-
-            A paginated list of price recommendations is returned for the
-            specified timerange. Only the newest price recommendations are
-            returned in case of multiple price recommendations per product.
+              example:
+                data:
+                  recommendations:
+                    - productId: PROD-001
+                      gtin: 1234567890123
+                      customerProductId: CUST-PROD-001
+                      currency: EUR
+                      price: 27.99
+                      deliveryCosts: 4.99
+                      timestamp: '2024-01-15T14:30:00Z'
+                      tags: []
+                      originalTags: []
+                      relevantDomain: amazon.de
+                      oldPrice: 29.99
+                      oldDeliveryCosts: 4.99
+                      relativePriceChangePercentage: 93.33
+                      oldPosition: 5
+                      newPosition: 3
+                      originalMinPriceBoundary: 20
+                      originalMaxPriceBoundary: 50
+                      decisiveStrategyTreeLeafNodeId: 123
+                      decisiveStrategyBranchName: CompetitorPricing
+                  pagination:
+                    nextUrl: >-
+                      https://api.patagona.de/api/2/v/contracts/CONTRACT-123/result/pricerecommendations?startTime=2024-01-15T00:00:00Z&endTime=2024-01-16T23:59:59Z&start=100&limit=100&includeTags=true
+                    totalSize: 1250
+                    start: 0
+                    limit: 100
+          description: >
+            Paginated list of price recommendations for the specified time
+            range.
+
+
+            Each recommendation includes the product information, recommended
+            price,
+
+            delivery costs, position data, and strategy information that
+            determined
+
+            the recommendation. Only the newest recommendations are returned
+            when
+
+            multiple exist for the same product.
       tags:
         - pricerecommendations
       security:
@@ -3034,12 +3267,32 @@ paths:
   /api/v3/manufacturer/contracts/{contractId}/offers:
     x-audience: Internal
     get:
-      summary: Get offers for timerange
-      description: Returns the newest offers for a given time range.
+      summary: Get offers for time range
+      description: >
+        **🔒 INTERNAL:** Retrieves the most recent offers for all products
+        within a specified time range.
+
+
+        This endpoint provides manufacturer contracts with access to offer data
+        across all
+
+        monitored domains and vendors. The data includes pricing, availability,
+        and vendor
+
+        information for competitive analysis.
+
+
+        **Performance Notes:**
+
+        - Results are paginated based on products for optimal performance
+
+        - Maximum limit of 1,000 products per request
+
+        - Time range should be kept reasonable for best performance
       operationId: getOffersManufacturerV3
       parameters:
         - $ref: '#/components/parameters/contractIdParam'
-        - description: Where to start fetching the products
+        - description: Starting index for pagination (0-based)
           in: query
           name: start
           required: false
@@ -3047,7 +3300,9 @@ paths:
             default: 0
             format: int32
             type: integer
-        - description: Maximum number of results
+            minimum: 0
+          example: 0
+        - description: Maximum number of offers to return (max 10,000)
           in: query
           name: limit
           required: false
@@ -3056,13 +3311,16 @@ paths:
             default: 1000
             format: int32
             type: integer
-        - description: Whether to return tags of products or not.
+            minimum: 1
+            maximum: 1000
+        - description: Whether to include product tags in the response
           in: query
           name: includeTags
           required: false
           schema:
             default: true
             type: boolean
+          example: true
         - $ref: '#/components/parameters/startDate'
         - $ref: '#/components/parameters/endDate'
       responses:
@@ -10757,69 +11015,93 @@ paths:
 components:
   parameters:
     domainParam:
-      description: Fully qualified domain name
+      description: Fully qualified domain name for the target marketplace or shop
       in: path
       name: domain
       required: true
       schema:
         type: string
+        pattern: ^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$
       example: google.com
     companyIdParam:
-      description: ID of a company
+      description: Unique identifier of a company in the system
       in: path
       name: companyId
       required: true
       schema:
         format: int64
         type: integer
+        minimum: 1
       example: 1
     scheduleIdParam:
-      description: ID of a monitoring schedule
+      description: Unique identifier of a monitoring schedule
       in: path
       name: scheduleId
       required: true
       schema:
         type: integer
+        minimum: 1
+      example: 123
     productIdParam:
-      description: ID of the product in pricemonitor
+      description: Internal product identifier in the pricemonitor system
       in: path
       name: productId
       required: true
       schema:
         type: string
-      example: 862342
+        minLength: 1
+      example: '862342'
     contractIdParam:
-      description: ID of the contract
+      description: Unique identifier of the contract
       in: path
       name: contractId
       required: true
       schema:
         type: string
+        minLength: 1
       example: qbcxvb
     startDate:
-      description: >-
-        Timestamp of start of time range, formatted as ISO Date (i.e.
-        2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is
-        given, {startDate} is set to {endDate} - 48 hours. If both values are
-        omitted, the range is 'NOW - 48 hours to NOW'.
+      description: >
+        **Start of time range** for data retrieval.
+
+
+        Format: ISO 8601 date-time in UTC (e.g., `2024-01-15T10:30:00Z`)
+
+
+        **Default behavior:**
+
+        - If omitted and `endDate` is provided: `startDate` = `endDate` - 48
+        hours
+
+        - If both omitted: range is `NOW - 48 hours` to `NOW`
       in: query
       name: startDate
       required: false
       schema:
         format: date-time
         type: string
+      example: '2024-01-15T00:00:00Z'
     endDate:
-      description: >-
-        Timestamp of end of time range, formatted as ISO Date (i.e.
-        2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate}
-        is given, {endDate} is set to {startDate} + 48 hours. If both values are
-        omitted, the range is 'NOW - 48 hours to NOW'.
+      description: >
+        **End of time range** for data retrieval.
+
+
+        Format: ISO 8601 date-time in UTC (e.g., `2024-01-16T10:30:00Z`)
+
+
+        **Default behavior:**
+
+        - If omitted and `startDate` is provided: `endDate` = `startDate` + 48
+        hours
+
+        - If both omitted: range is `NOW - 48 hours` to `NOW`
       in: query
       name: endDate
       required: false
       schema:
         format: date-time
         type: string
+      example: '2024-01-16T23:59:59Z'
     getOrdersStartDate:
       description: >
         Timestamp of start of time range for fetching orders.
@@ -10890,13 +11172,13 @@ components:
         format: int64
       example: 1
     triggerFollowUpTask:
+      description: Flag to trigger follow-up tasks once the current task is completed
       in: query
       name: triggerFollowUpTask
       schema:
         type: boolean
-        description: >-
-          A flag to trigger follow up tasks once current is completed. By
-          default it is set to true.
+        default: true
+      example: true
     ContractId:
       name: contractId
       description: Each job must have a `contractId`
@@ -10915,17 +11197,28 @@ components:
         type: string
   schemas:
     LogMessages:
+      description: Container for multiple log messages with version information
       properties:
         version:
           type: string
-          description: The version parameter should always be 1.
+          description: >-
+            API version for log message format. Must always be "1" for current
+            implementation.
           enum:
             - '1'
+          example: '1'
         messages:
+          type: array
+          description: Array of log messages to be processed
           items:
             $ref: '#/components/schemas/LogMessage'
-          type: array
+          minItems: 1
+          maxItems: 1000
+      required:
+        - version
+        - messages
     LogMessage:
+      description: Individual log message with severity level and contextual information
       required:
         - message
         - severity
@@ -10934,46 +11227,58 @@ components:
       properties:
         message:
           type: string
-          description: The information that needs to be published
-          example: Some useful message
+          description: The actual log message content to be published
+          example: Product sync completed successfully
+          minLength: 1
+          maxLength: 5000
         severity:
           type: string
-          example: info
-          description: >-
-            Determines how severe is the information. The ENUM values are listed
-            in the descreasing order of their priority.<br> 1. trace - gives
-            more detailed information than any other level in the hierarchy<br>
-            2. debug - helps developer to debug application and is generally
-            useful for providing support to the application developers<br> 3.
-            info  - gives the progress and chosen state information and is
-            generally useful for end user<br> 4. warn  - use of deprecated APIs,
-            poor use of API, ‘almost’ errors, other runtime situations that are
-            undesirable or unexpected, but not necessarily “wrong”.<br> 5. error
-            - gives information about a serious error which needs to be
-            addressed and may result in unstable state<br> 6. fatal - such
-            errors result in premature termination and you don’t often get this
-            error<br>
+          description: >
+            Log message severity level, ordered by priority (highest to lowest):
+
+
+            - **fatal**: Critical errors causing system termination
+
+            - **error**: Serious errors requiring immediate attention
+
+            - **warn**: Deprecated APIs, poor API usage, or unexpected
+            situations
+
+            - **info**: General progress and state information for end users
+
+            - **debug**: Detailed information for application developers and
+            support
+
+            - **trace**: Most detailed information for deep debugging
           enum:
-            - trace
-            - debug
-            - info
-            - warn
-            - error
             - fatal
+            - error
+            - warn
+            - info
+            - debug
+            - trace
+          example: info
         component:
           type: string
-          example: shopware or magento
-          description: The name of the integrated system.
+          description: >-
+            Name of the integrated system or application component generating
+            the log
+          example: shopware
+          minLength: 1
+          maxLength: 100
         source:
           type: string
-          example: some.domain.name
           description: >-
-            Anything within the component that can be considered as an entity to
-            further categorize the log message.
+            Specific entity or source within the component for additional
+            categorization
+          example: shop.example.com
+          minLength: 1
+          maxLength: 255
         contractId:
           type: string
-          description: The ID of the contract
+          description: The contract identifier associated with this log message
           example: qbcxvb
+          minLength: 1
     GenericFilter:
       description: >-
         This is a placeholder for filter expressions. They are using advanced
@@ -11014,70 +11319,144 @@ components:
           type: string
       type: object
     ApiError:
+      description: Individual error information with code and human-readable message
+      type: object
+      required:
+        - code
+        - message
       properties:
         code:
           type: string
+          description: >
+            Machine-readable error code for programmatic error handling.
+
+            Typically follows a structured format like 'request.invalid' or
+            'resource.invalid'.
+          minLength: 1
+          example: request.invalid
         message:
           type: string
-      type: object
+          description: Human-readable error message providing details about the issue
+          minLength: 1
+          example: The provided email address is not in a valid format
     ApiErrorResponse:
+      description: Standard error response containing one or more error details
+      type: object
+      required:
+        - errors
       properties:
         errors:
+          type: array
+          description: List of errors that occurred during request processing
           items:
             $ref: '#/components/schemas/ApiError'
-          type: array
-      type: object
+          minItems: 1
+          example:
+            - code: request.invalid
+              message: The provided request data is invalid
+            - code: resource.invalid
+              message: The requested resource could not be found
     EmptyApiResponse:
+      description: Response for operations that don't return specific data
+      type: object
       properties:
         data:
           type: object
+          description: Empty data object indicating successful operation
+          example: {}
     PostProduct:
-      properties:
-        tags:
-          items:
-            $ref: '#/components/schemas/TagInput'
-          type: array
-        customerProductId:
-          type: string
-        gtin:
-          description: Must not be negative
-          format: int64
-          type: integer
-          example: 12345678910123
-        minPriceBoundary:
-          description: >-
-            Must not be less than 0.01. Must not be larger than
-            maxPriceBoundary. Will be rounded to the second decimal digit (half
-            up)
-          format: double
-          type: number
-          example: 12.34
-        maxPriceBoundary:
-          description: >-
-            Must not be less than minPriceBoundary. Must not be larger than
-            9,999,999,999,999.99. Will be rounded to the second decimal digit
-            (half up)
-          format: double
-          type: number
-          example: 56.78
-        name:
-          description: Must not have more than 999 characters
-          type: string
-        referencePrice:
-          description: >-
-            Must not be less than 0.01. Must not be larger than
-            9,999,999,999,999.99. Will be rounded to the second decimal digit
-            (half up)
-          format: double
-          type: number
-          example: 19.99
+      description: Product data structure for creating or updating products in the system
+      type: object
       required:
         - name
         - referencePrice
         - tags
         - minPriceBoundary
         - maxPriceBoundary
-      type: object
+      properties:
+        name:
+          type: string
+          description: Product name or title as displayed to customers
+          minLength: 1
+          maxLength: 999
+          example: Samsung Galaxy S24 Ultra 256GB
+        customerProductId:
+          type: string
+          description: >
+            Customer-specific product identifier. This can be your internal SKU
+            or product ID.
+
+            Used for mapping products between your system and the pricemonitor.
+          minLength: 1
+          maxLength: 255
+          example: SKU-GALAXY-S24-256
+        gtin:
+          type: integer
+          format: int64
+          description: >
+            Global Trade Item Number (GTIN) - typically EAN-13, UPC-A, or
+            GTIN-14.
+
+            Must be a valid positive number representing the product's global
+            identifier.
+          minimum: 1
+          maximum: 99999999999999
+          example: 8806094937329
+        referencePrice:
+          type: number
+          format: double
+          description: >
+            Reference price for the product.
+
+
+            **For Omnia 2.0:** This represents the selling price - the actual
+            price at which you sell the product.
+
+            **For Pricemonitor:** One of the use cases is to treat this as MSRP
+            (Manufacturer's Suggested Retail Price).
+
+
+            Used as a baseline for pricing strategies and recommendations.
+
+            Will be rounded to two decimal places using half-up rounding.
+          minimum: 0.01
+          maximum: 9999999999999.99
+          example: 1199.99
+        minPriceBoundary:
+          type: number
+          format: double
+          description: |
+            Minimum allowed price boundary for automated pricing.
+            Must be less than or equal to maxPriceBoundary.
+            Will be rounded to two decimal places using half-up rounding.
+          minimum: 0.01
+          example: 999.99
+        maxPriceBoundary:
+          type: number
+          format: double
+          description: |
+            Maximum allowed price boundary for automated pricing.
+            Must be greater than or equal to minPriceBoundary.
+            Will be rounded to two decimal places using half-up rounding.
+          minimum: 0.01
+          maximum: 9999999999999.99
+          example: 1399.99
+        tags:
+          type: array
+          description: |
+            Product tags for categorization and strategy application.
+            Used by pricing strategies to group and target specific products.
+          items:
+            $ref: '#/components/schemas/TagInput'
+          minItems: 0
+          maxItems: 100
+          example:
+            - key: brand
+              value: Samsung
+            - key: category
+              value: smartphones
+            - key: storage
+              value: 256GB
     CreateCompanyResponse:
       properties:
         id:
@@ -11704,26 +12083,40 @@ components:
         - position
         - price
     TagInput:
-      properties:
-        key:
-          description: >-
-            Must not be an empty string. Must not have more than 100 characters.
-            All tags of one product need to have a unique key
-          type: string
-        value:
-          description: Must not have more than 10000 characters
-          type: string
+      description: Key-value pair for product categorization and strategy targeting
       type: object
       required:
         - key
         - value
-    Tag:
       properties:
         key:
           type: string
+          description: |
+            Tag identifier/name. Must be unique within a single product.
+            Used to categorize products for pricing strategies and reporting.
+          minLength: 1
+          maxLength: 100
+          pattern: ^[a-zA-Z0-9_-]+$
+          example: brand
         value:
           type: string
+          description: |
+            Tag value associated with the key.
+            Contains the actual categorization data for the product.
+          maxLength: 10000
+          example: Samsung
+    Tag:
+      description: Read-only representation of a product tag
       type: object
+      properties:
+        key:
+          type: string
+          description: Tag identifier
+          example: category
+        value:
+          type: string
+          description: Tag value
+          example: smartphones
     Task:
       properties:
         id:
@@ -16203,12 +16596,35 @@ components:
         - node_name
   securitySchemes:
     BasicAuth:
-      scheme: basic
       type: http
+      scheme: basic
+      description: >
+        HTTP Basic Authentication using username and password.
+
+
+        **Usage:** Include the `Authorization` header with value `Basic
+        <base64(username:password)>`
+
+
+        **Example:** `Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=`
     BearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
+      description: >
+        JWT Bearer Token Authentication for session-based access.
+
+
+        **Usage:** Include the `Authorization` header with value `Bearer
+        <jwt-token>`
+
+
+        **Example:** `Authorization: Bearer
+        eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...`
+
+
+        **Note:** JWT tokens are typically obtained through the authentication
+        endpoints.
     bearerAuth:
       type: http
       scheme: bearer

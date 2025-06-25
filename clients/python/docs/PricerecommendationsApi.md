@@ -6,7 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**decide_price_recommendations_approvals_v3**](PricerecommendationsApi.md#decide_price_recommendations_approvals_v3) | **POST** /api/v3/vendor/contracts/{contractId}/pricerecommendations/approvals/decide | Set price recommendation approvals
 [**delete_repricing_strategy_vendor_v2**](PricerecommendationsApi.md#delete_repricing_strategy_vendor_v2) | **DELETE** /api/2/v/contracts/{contractId}/settings/repricingstrategy | Delete repricing strategy
-[**get_price_recommendation**](PricerecommendationsApi.md#get_price_recommendation) | **GET** /api/2/v/contracts/{contractId}/result/pricerecommendations | Get all price recommendations
+[**get_price_recommendation**](PricerecommendationsApi.md#get_price_recommendation) | **GET** /api/2/v/contracts/{contractId}/result/pricerecommendations | Get price recommendations for time range
 [**get_price_recommendation_stats_vendor_v2**](PricerecommendationsApi.md#get_price_recommendation_stats_vendor_v2) | **GET** /api/2/v/contracts/{contractId}/result/pricerecommendationstats | Get price reommendation stats
 [**get_price_recommendations**](PricerecommendationsApi.md#get_price_recommendations) | **GET** /api/1/{contractId}/products/analysis/pricerecommendations | Get price recommendations
 [**get_product_price_recommendation_history**](PricerecommendationsApi.md#get_product_price_recommendation_history) | **GET** /api/v3/vendor/contracts/{contractId}/products/{productId}/pricerecommendationhistory | Get price recommendations for one product
@@ -60,7 +60,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.PricerecommendationsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 com_patagona_pricemonitor_share_api_post_price_recommendation_approval_request_v3 = [pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostPriceRecommendationApprovalRequestV3()] # list[ComPatagonaPricemonitorShareApiPostPriceRecommendationApprovalRequestV3] | The request body contains a list of price decisions to process. 
 
     try:
@@ -104,7 +104,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.PricerecommendationsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 com_patagona_pricemonitor_share_api_post_price_recommendation_approval_request_v3 = [pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostPriceRecommendationApprovalRequestV3()] # list[ComPatagonaPricemonitorShareApiPostPriceRecommendationApprovalRequestV3] | The request body contains a list of price decisions to process. 
 
     try:
@@ -119,7 +119,7 @@ com_patagona_pricemonitor_share_api_post_price_recommendation_approval_request_v
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **com_patagona_pricemonitor_share_api_post_price_recommendation_approval_request_v3** | [**list[ComPatagonaPricemonitorShareApiPostPriceRecommendationApprovalRequestV3]**](ComPatagonaPricemonitorShareApiPostPriceRecommendationApprovalRequestV3.md)| The request body contains a list of price decisions to process.  | 
 
 ### Return type
@@ -183,7 +183,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.PricerecommendationsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Delete repricing strategy
@@ -226,7 +226,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.PricerecommendationsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Delete repricing strategy
@@ -240,7 +240,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
 
 ### Return type
 
@@ -265,9 +265,9 @@ Name | Type | Description  | Notes
 # **get_price_recommendation**
 > GetPriceRecommendationApiResponse get_price_recommendation(contract_id, start_time, end_time, start, limit=limit, include_tags=include_tags)
 
-Get all price recommendations
+Get price recommendations for time range
 
-Gets all price recommendations for a contract for the specified timerange. Only the newest price recommendations are returned in case of multiple price recommendations per product
+Retrieves all price recommendations for a contract within the specified time range.  This endpoint returns algorithmic pricing recommendations based on market analysis, competitor pricing, and configured pricing strategies. Only the most recent recommendations are returned when multiple recommendations exist for the same product.  **Key Features:** - Paginated results for efficient data retrieval - Optional product tag inclusion - Configurable time range filtering - Real-time market-based recommendations 
 
 ### Example
 
@@ -304,15 +304,15 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.PricerecommendationsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-start_time = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC
-end_time = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC
-start = 56 # int | Start price-recommendation index for pagination
-limit = 100 # int | Number of price-recommendations for pagination (optional) (default to 100)
-include_tags = True # bool | Whether to return tags of products or not. (optional) (default to True)
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
+start_time = '2024-01-15T00:00:00Z' # datetime | **Start of time range** for price recommendation retrieval.  Format: ISO 8601 date-time in UTC (e.g., `2024-01-15T10:30:00Z`) 
+end_time = '2024-01-16T23:59:59Z' # datetime | **End of time range** for price recommendation retrieval.  Format: ISO 8601 date-time in UTC (e.g., `2024-01-16T10:30:00Z`) 
+start = 0 # int | Starting index for pagination (0-based)
+limit = 100 # int | Maximum number of price recommendations to return per page (optional) (default to 100)
+include_tags = True # bool | Whether to include product tags in the response (optional) (default to True)
 
     try:
-        # Get all price recommendations
+        # Get price recommendations for time range
         api_response = api_instance.get_price_recommendation(contract_id, start_time, end_time, start, limit=limit, include_tags=include_tags)
         pprint(api_response)
     except ApiException as e:
@@ -352,15 +352,15 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.PricerecommendationsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-start_time = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC
-end_time = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC
-start = 56 # int | Start price-recommendation index for pagination
-limit = 100 # int | Number of price-recommendations for pagination (optional) (default to 100)
-include_tags = True # bool | Whether to return tags of products or not. (optional) (default to True)
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
+start_time = '2024-01-15T00:00:00Z' # datetime | **Start of time range** for price recommendation retrieval.  Format: ISO 8601 date-time in UTC (e.g., `2024-01-15T10:30:00Z`) 
+end_time = '2024-01-16T23:59:59Z' # datetime | **End of time range** for price recommendation retrieval.  Format: ISO 8601 date-time in UTC (e.g., `2024-01-16T10:30:00Z`) 
+start = 0 # int | Starting index for pagination (0-based)
+limit = 100 # int | Maximum number of price recommendations to return per page (optional) (default to 100)
+include_tags = True # bool | Whether to include product tags in the response (optional) (default to True)
 
     try:
-        # Get all price recommendations
+        # Get price recommendations for time range
         api_response = api_instance.get_price_recommendation(contract_id, start_time, end_time, start, limit=limit, include_tags=include_tags)
         pprint(api_response)
     except ApiException as e:
@@ -371,12 +371,12 @@ include_tags = True # bool | Whether to return tags of products or not. (optiona
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
- **start_time** | **datetime**| Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC | 
- **end_time** | **datetime**| Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC | 
- **start** | **int**| Start price-recommendation index for pagination | 
- **limit** | **int**| Number of price-recommendations for pagination | [optional] [default to 100]
- **include_tags** | **bool**| Whether to return tags of products or not. | [optional] [default to True]
+ **contract_id** | **str**| Unique identifier of the contract | 
+ **start_time** | **datetime**| **Start of time range** for price recommendation retrieval.  Format: ISO 8601 date-time in UTC (e.g., &#x60;2024-01-15T10:30:00Z&#x60;)  | 
+ **end_time** | **datetime**| **End of time range** for price recommendation retrieval.  Format: ISO 8601 date-time in UTC (e.g., &#x60;2024-01-16T10:30:00Z&#x60;)  | 
+ **start** | **int**| Starting index for pagination (0-based) | 
+ **limit** | **int**| Maximum number of price recommendations to return per page | [optional] [default to 100]
+ **include_tags** | **bool**| Whether to include product tags in the response | [optional] [default to True]
 
 ### Return type
 
@@ -394,7 +394,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A paginated list of price recommendations is returned for the specified timerange. Only the newest price recommendations are returned in case of multiple price recommendations per product. |  -  |
+**200** | Paginated list of price recommendations for the specified time range.  Each recommendation includes the product information, recommended price, delivery costs, position data, and strategy information that determined the recommendation. Only the newest recommendations are returned when multiple exist for the same product.  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -438,7 +438,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.PricerecommendationsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 start_time = '2013-10-20T19:20:30+01:00' # datetime | 
 end_time = '2013-10-20T19:20:30+01:00' # datetime | 
 max_positions = 56 # int | 
@@ -484,7 +484,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.PricerecommendationsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 start_time = '2013-10-20T19:20:30+01:00' # datetime | 
 end_time = '2013-10-20T19:20:30+01:00' # datetime | 
 max_positions = 56 # int | 
@@ -501,7 +501,7 @@ max_positions = 56 # int |
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **start_time** | **datetime**|  | 
  **end_time** | **datetime**|  | 
  **max_positions** | **int**|  | 
@@ -566,7 +566,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.PricerecommendationsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 start = 0 # int | Where to start fetching the recommendations (optional) (default to 0)
 limit = 10000 # int | Maximal number of results (optional) (default to 10000)
 since = '2019-01-01T00:00:00.000Z' # datetime | Timestamp of the oldest results (optional)
@@ -612,7 +612,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.PricerecommendationsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 start = 0 # int | Where to start fetching the recommendations (optional) (default to 0)
 limit = 10000 # int | Maximal number of results (optional) (default to 10000)
 since = '2019-01-01T00:00:00.000Z' # datetime | Timestamp of the oldest results (optional)
@@ -629,7 +629,7 @@ since = '2019-01-01T00:00:00.000Z' # datetime | Timestamp of the oldest results 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **start** | **int**| Where to start fetching the recommendations | [optional] [default to 0]
  **limit** | **int**| Maximal number of results | [optional] [default to 10000]
  **since** | **datetime**| Timestamp of the oldest results | [optional] 
@@ -696,10 +696,10 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.PricerecommendationsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-product_id = '862342' # str | ID of the product in pricemonitor
-start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
-end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
+product_id = '862342' # str | Internal product identifier in the pricemonitor system
+start_date = '2024-01-15T00:00:00Z' # datetime | **Start of time range** for data retrieval.  Format: ISO 8601 date-time in UTC (e.g., `2024-01-15T10:30:00Z`)  **Default behavior:** - If omitted and `endDate` is provided: `startDate` = `endDate` - 48 hours - If both omitted: range is `NOW - 48 hours` to `NOW`  (optional)
+end_date = '2024-01-16T23:59:59Z' # datetime | **End of time range** for data retrieval.  Format: ISO 8601 date-time in UTC (e.g., `2024-01-16T10:30:00Z`)  **Default behavior:** - If omitted and `startDate` is provided: `endDate` = `startDate` + 48 hours - If both omitted: range is `NOW - 48 hours` to `NOW`  (optional)
 
     try:
         # Get price recommendations for one product
@@ -742,10 +742,10 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.PricerecommendationsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-product_id = '862342' # str | ID of the product in pricemonitor
-start_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
-end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is 'NOW - 48 hours to NOW'. (optional)
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
+product_id = '862342' # str | Internal product identifier in the pricemonitor system
+start_date = '2024-01-15T00:00:00Z' # datetime | **Start of time range** for data retrieval.  Format: ISO 8601 date-time in UTC (e.g., `2024-01-15T10:30:00Z`)  **Default behavior:** - If omitted and `endDate` is provided: `startDate` = `endDate` - 48 hours - If both omitted: range is `NOW - 48 hours` to `NOW`  (optional)
+end_date = '2024-01-16T23:59:59Z' # datetime | **End of time range** for data retrieval.  Format: ISO 8601 date-time in UTC (e.g., `2024-01-16T10:30:00Z`)  **Default behavior:** - If omitted and `startDate` is provided: `endDate` = `startDate` + 48 hours - If both omitted: range is `NOW - 48 hours` to `NOW`  (optional)
 
     try:
         # Get price recommendations for one product
@@ -759,10 +759,10 @@ end_date = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of end of time ran
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
- **product_id** | **str**| ID of the product in pricemonitor | 
- **start_date** | **datetime**| Timestamp of start of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {endDate} is given, {startDate} is set to {endDate} - 48 hours. If both values are omitted, the range is &#39;NOW - 48 hours to NOW&#39;. | [optional] 
- **end_date** | **datetime**| Timestamp of end of time range, formatted as ISO Date (i.e. 2018-04-06T13:46:13Z) in UTC. If this value is omitted and {startDate} is given, {endDate} is set to {startDate} + 48 hours. If both values are omitted, the range is &#39;NOW - 48 hours to NOW&#39;. | [optional] 
+ **contract_id** | **str**| Unique identifier of the contract | 
+ **product_id** | **str**| Internal product identifier in the pricemonitor system | 
+ **start_date** | **datetime**| **Start of time range** for data retrieval.  Format: ISO 8601 date-time in UTC (e.g., &#x60;2024-01-15T10:30:00Z&#x60;)  **Default behavior:** - If omitted and &#x60;endDate&#x60; is provided: &#x60;startDate&#x60; &#x3D; &#x60;endDate&#x60; - 48 hours - If both omitted: range is &#x60;NOW - 48 hours&#x60; to &#x60;NOW&#x60;  | [optional] 
+ **end_date** | **datetime**| **End of time range** for data retrieval.  Format: ISO 8601 date-time in UTC (e.g., &#x60;2024-01-16T10:30:00Z&#x60;)  **Default behavior:** - If omitted and &#x60;startDate&#x60; is provided: &#x60;endDate&#x60; &#x3D; &#x60;startDate&#x60; + 48 hours - If both omitted: range is &#x60;NOW - 48 hours&#x60; to &#x60;NOW&#x60;  | [optional] 
 
 ### Return type
 
@@ -825,7 +825,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.PricerecommendationsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 document_version = 5 # int |  (optional)
 
     try:
@@ -869,7 +869,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.PricerecommendationsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 document_version = 5 # int |  (optional)
 
     try:
@@ -884,7 +884,7 @@ document_version = 5 # int |  (optional)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **document_version** | **int**|  | [optional] 
 
 ### Return type
@@ -1066,7 +1066,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.PricerecommendationsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
@@ -1110,7 +1110,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.PricerecommendationsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 body = None # object | This is a generated entry and needs to be described. (optional)
 
     try:
@@ -1125,7 +1125,7 @@ body = None # object | This is a generated entry and needs to be described. (opt
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **body** | **object**| This is a generated entry and needs to be described. | [optional] 
 
 ### Return type
@@ -1190,7 +1190,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.PricerecommendationsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 com_patagona_pricemonitor_share_api_price_recommendations_approval_query_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPriceRecommendationsApprovalQueryRequestV3() # ComPatagonaPricemonitorShareApiPriceRecommendationsApprovalQueryRequestV3 | The request body contains all necessary filters to query the desired price recommendation approvals. 
 
     try:
@@ -1234,7 +1234,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.PricerecommendationsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 com_patagona_pricemonitor_share_api_price_recommendations_approval_query_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPriceRecommendationsApprovalQueryRequestV3() # ComPatagonaPricemonitorShareApiPriceRecommendationsApprovalQueryRequestV3 | The request body contains all necessary filters to query the desired price recommendation approvals. 
 
     try:
@@ -1249,7 +1249,7 @@ com_patagona_pricemonitor_share_api_price_recommendations_approval_query_request
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **com_patagona_pricemonitor_share_api_price_recommendations_approval_query_request_v3** | [**ComPatagonaPricemonitorShareApiPriceRecommendationsApprovalQueryRequestV3**](ComPatagonaPricemonitorShareApiPriceRecommendationsApprovalQueryRequestV3.md)| The request body contains all necessary filters to query the desired price recommendation approvals.  | 
 
 ### Return type
@@ -1315,7 +1315,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.PricerecommendationsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 price_recommendation_api_query_v2 = pricemonitor_api_client.PriceRecommendationApiQueryV2() # PriceRecommendationApiQueryV2 | The request body specifies which price recommendations will be searched for. (optional)
 
     try:
@@ -1359,7 +1359,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.PricerecommendationsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 price_recommendation_api_query_v2 = pricemonitor_api_client.PriceRecommendationApiQueryV2() # PriceRecommendationApiQueryV2 | The request body specifies which price recommendations will be searched for. (optional)
 
     try:
@@ -1374,7 +1374,7 @@ price_recommendation_api_query_v2 = pricemonitor_api_client.PriceRecommendationA
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **price_recommendation_api_query_v2** | [**PriceRecommendationApiQueryV2**](PriceRecommendationApiQueryV2.md)| The request body specifies which price recommendations will be searched for. | [optional] 
 
 ### Return type
@@ -1439,7 +1439,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.PricerecommendationsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 com_patagona_pricemonitor_share_api_price_simulation_bulk_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPriceSimulationBulkRequestV3() # ComPatagonaPricemonitorShareApiPriceSimulationBulkRequestV3 | The request body contains all the necessary data to simulate price recommendations for multiple products. Custom parameters, such as pricing strategies and time ranges, can be provided in order to simulate different scenarios. 
 
     try:
@@ -1483,7 +1483,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.PricerecommendationsApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 com_patagona_pricemonitor_share_api_price_simulation_bulk_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPriceSimulationBulkRequestV3() # ComPatagonaPricemonitorShareApiPriceSimulationBulkRequestV3 | The request body contains all the necessary data to simulate price recommendations for multiple products. Custom parameters, such as pricing strategies and time ranges, can be provided in order to simulate different scenarios. 
 
     try:
@@ -1498,7 +1498,7 @@ com_patagona_pricemonitor_share_api_price_simulation_bulk_request_v3 = pricemoni
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **com_patagona_pricemonitor_share_api_price_simulation_bulk_request_v3** | [**ComPatagonaPricemonitorShareApiPriceSimulationBulkRequestV3**](ComPatagonaPricemonitorShareApiPriceSimulationBulkRequestV3.md)| The request body contains all the necessary data to simulate price recommendations for multiple products. Custom parameters, such as pricing strategies and time ranges, can be provided in order to simulate different scenarios.  | 
 
 ### Return type

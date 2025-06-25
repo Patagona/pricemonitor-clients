@@ -50,8 +50,8 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.PreprocessingApi(api_client)
     retrospective_in_minutes = 56 # int | The timespan, in minutes, for considering offers in preprocessing. Allowed value is between 1 and 10080
-contract_id = 'qbcxvb' # str | ID of the contract
-trigger_follow_up_task = True # bool |  (optional)
+contract_id = 'qbcxvb' # str | Unique identifier of the contract
+trigger_follow_up_task = True # bool | Flag to trigger follow-up tasks once the current task is completed (optional) (default to True)
 
     try:
         # Publish preprocessing task [vendor]
@@ -95,8 +95,8 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.PreprocessingApi(api_client)
     retrospective_in_minutes = 56 # int | The timespan, in minutes, for considering offers in preprocessing. Allowed value is between 1 and 10080
-contract_id = 'qbcxvb' # str | ID of the contract
-trigger_follow_up_task = True # bool |  (optional)
+contract_id = 'qbcxvb' # str | Unique identifier of the contract
+trigger_follow_up_task = True # bool | Flag to trigger follow-up tasks once the current task is completed (optional) (default to True)
 
     try:
         # Publish preprocessing task [vendor]
@@ -111,8 +111,8 @@ trigger_follow_up_task = True # bool |  (optional)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **retrospective_in_minutes** | **int**| The timespan, in minutes, for considering offers in preprocessing. Allowed value is between 1 and 10080 | 
- **contract_id** | **str**| ID of the contract | 
- **trigger_follow_up_task** | **bool**|  | [optional] 
+ **contract_id** | **str**| Unique identifier of the contract | 
+ **trigger_follow_up_task** | **bool**| Flag to trigger follow-up tasks once the current task is completed | [optional] [default to True]
 
 ### Return type
 

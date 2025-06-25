@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 Get all strategy versions metadata for contract
 
-Get a list of metadata of all strategy versions for a contract.
+Retrieves a list of metadata for all pricing strategy versions associated with a specific contract.  This endpoint provides version history information including creation dates, modification timestamps, and strategy metadata for tracking changes over time. 
 
 ### Example
 
@@ -50,7 +50,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.StrategyApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get all strategy versions metadata for contract
@@ -93,7 +93,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.StrategyApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get all strategy versions metadata for contract
@@ -107,7 +107,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
 
 ### Return type
 
@@ -134,7 +134,7 @@ Name | Type | Description  | Notes
 
 Get metadata of all strategy versions for contract
 
-Get a list of metadata of all strategy versions for a contract.
+**⚠️ DEPRECATED:** This endpoint is deprecated and should no longer be used.  Retrieves a list of metadata for all pricing strategy versions associated with a specific contract. Use `/api/v3/vendor/contracts/{contractId}/settings/pricingstrategies/history` instead. 
 
 ### Example
 
@@ -171,7 +171,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.StrategyApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get metadata of all strategy versions for contract
@@ -214,7 +214,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.StrategyApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get metadata of all strategy versions for contract
@@ -228,7 +228,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
 
 ### Return type
 

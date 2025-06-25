@@ -14,6 +14,8 @@ Method | HTTP request | Description
 
 Add scenario strategy
 
+**🔒 INTERNAL:** Creates a new scenario strategy for pricing simulations.  Scenario strategies allow for \"what-if\" pricing analysis and testing different pricing approaches before applying them to live products. 
+
 ### Example
 
 * Basic Authentication (BasicAuth):
@@ -49,8 +51,8 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ScenariostrategyApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-post_scenario_strategy_request = pricemonitor_api_client.PostScenarioStrategyRequest() # PostScenarioStrategyRequest | The scenario strategy to be stored. Including the necessary metadata. (optional)
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
+post_scenario_strategy_request = pricemonitor_api_client.PostScenarioStrategyRequest() # PostScenarioStrategyRequest | The scenario strategy to be created, including the necessary metadata and configuration. (optional)
 
     try:
         # Add scenario strategy
@@ -93,8 +95,8 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ScenariostrategyApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
-post_scenario_strategy_request = pricemonitor_api_client.PostScenarioStrategyRequest() # PostScenarioStrategyRequest | The scenario strategy to be stored. Including the necessary metadata. (optional)
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
+post_scenario_strategy_request = pricemonitor_api_client.PostScenarioStrategyRequest() # PostScenarioStrategyRequest | The scenario strategy to be created, including the necessary metadata and configuration. (optional)
 
     try:
         # Add scenario strategy
@@ -108,8 +110,8 @@ post_scenario_strategy_request = pricemonitor_api_client.PostScenarioStrategyReq
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
- **post_scenario_strategy_request** | [**PostScenarioStrategyRequest**](PostScenarioStrategyRequest.md)| The scenario strategy to be stored. Including the necessary metadata. | [optional] 
+ **contract_id** | **str**| Unique identifier of the contract | 
+ **post_scenario_strategy_request** | [**PostScenarioStrategyRequest**](PostScenarioStrategyRequest.md)| The scenario strategy to be created, including the necessary metadata and configuration. | [optional] 
 
 ### Return type
 
@@ -127,8 +129,8 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A new scenario strategy was added |  -  |
-**400** | Strategy must be valid and consistent with the schema version. Required fields need to be filled. |  -  |
+**200** | Scenario strategy created successfully |  -  |
+**400** | Request validation failed. Common reasons include: - Strategy configuration is invalid or inconsistent with the schema version - Required fields are missing or empty - Invalid JSON structure  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -137,7 +139,7 @@ Name | Type | Description  | Notes
 
 Get all scenario strategies
 
-Get a list of all scenario strategy metadata for a contract.
+**🔒 INTERNAL:** Retrieves a list of all scenario strategy metadata for a specific contract.  Scenario strategies are used for pricing simulations and \"what-if\" analysis. Each strategy contains metadata including creation date, version information, and configuration details. 
 
 ### Example
 
@@ -174,7 +176,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ScenariostrategyApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get all scenario strategies
@@ -217,7 +219,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ScenariostrategyApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get all scenario strategies
@@ -231,7 +233,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
 
 ### Return type
 
@@ -258,7 +260,7 @@ Name | Type | Description  | Notes
 
 Get scenario strategy
 
-Get a scenario strategy with the provided scenario id.
+**🔒 INTERNAL:** Retrieves a specific scenario strategy by its ID.  Returns the complete scenario strategy configuration including metadata, creation details, and the strategy definition. 
 
 ### Example
 
@@ -295,7 +297,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ScenariostrategyApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 scenario_id = 56 # int | ID of the required scenario strategy
 
     try:
@@ -339,7 +341,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ScenariostrategyApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 scenario_id = 56 # int | ID of the required scenario strategy
 
     try:
@@ -354,7 +356,7 @@ scenario_id = 56 # int | ID of the required scenario strategy
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
  **scenario_id** | **int**| ID of the required scenario strategy | 
 
 ### Return type
@@ -373,8 +375,8 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A scenario strategy |  -  |
-**404** | Scenario strategy with the provided Id was not found. |  -  |
+**200** | Scenario strategy details retrieved successfully |  -  |
+**404** | Scenario strategy with the provided ID was not found. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

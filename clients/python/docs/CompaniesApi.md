@@ -63,7 +63,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.CompaniesApi(api_client)
-    company_id = 1 # int | ID of a company
+    company_id = 1 # int | Unique identifier of a company in the system
 com_patagona_pricemonitor_share_api_create_contract_request = pricemonitor_api_client.ComPatagonaPricemonitorShareApiCreateContractRequest() # ComPatagonaPricemonitorShareApiCreateContractRequest | Contract to be added
 
     try:
@@ -107,7 +107,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.CompaniesApi(api_client)
-    company_id = 1 # int | ID of a company
+    company_id = 1 # int | Unique identifier of a company in the system
 com_patagona_pricemonitor_share_api_create_contract_request = pricemonitor_api_client.ComPatagonaPricemonitorShareApiCreateContractRequest() # ComPatagonaPricemonitorShareApiCreateContractRequest | Contract to be added
 
     try:
@@ -122,7 +122,7 @@ com_patagona_pricemonitor_share_api_create_contract_request = pricemonitor_api_c
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| ID of a company | 
+ **company_id** | **int**| Unique identifier of a company in the system | 
  **com_patagona_pricemonitor_share_api_create_contract_request** | [**ComPatagonaPricemonitorShareApiCreateContractRequest**](ComPatagonaPricemonitorShareApiCreateContractRequest.md)| Contract to be added | 
 
 ### Return type
@@ -310,7 +310,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.CompaniesApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Delete contract [vendor]
@@ -353,7 +353,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.CompaniesApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Delete contract [vendor]
@@ -367,7 +367,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
 
 ### Return type
 
@@ -429,7 +429,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.CompaniesApi(api_client)
-    company_id = 1 # int | ID of a company
+    company_id = 1 # int | Unique identifier of a company in the system
 
     try:
         # Get company
@@ -472,7 +472,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.CompaniesApi(api_client)
-    company_id = 1 # int | ID of a company
+    company_id = 1 # int | Unique identifier of a company in the system
 
     try:
         # Get company
@@ -486,7 +486,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| ID of a company | 
+ **company_id** | **int**| Unique identifier of a company in the system | 
 
 ### Return type
 
@@ -550,7 +550,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.CompaniesApi(api_client)
-    company_id = 1 # int | ID of a company
+    company_id = 1 # int | Unique identifier of a company in the system
 
     try:
         # Get all contracts for company
@@ -593,7 +593,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.CompaniesApi(api_client)
-    company_id = 1 # int | ID of a company
+    company_id = 1 # int | Unique identifier of a company in the system
 
     try:
         # Get all contracts for company
@@ -607,7 +607,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| ID of a company | 
+ **company_id** | **int**| Unique identifier of a company in the system | 
 
 ### Return type
 
@@ -791,7 +791,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.CompaniesApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get contract [manufacturer]
@@ -834,7 +834,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.CompaniesApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get contract [manufacturer]
@@ -848,7 +848,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
 
 ### Return type
 
@@ -910,7 +910,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.CompaniesApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get contract [manufacturer]
@@ -953,7 +953,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.CompaniesApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get contract [manufacturer]
@@ -967,7 +967,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
 
 ### Return type
 
@@ -1031,7 +1031,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.CompaniesApi(api_client)
-    company_id = 1 # int | ID of a company
+    company_id = 1 # int | Unique identifier of a company in the system
 
     try:
         # Get contract access of users
@@ -1074,7 +1074,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.CompaniesApi(api_client)
-    company_id = 1 # int | ID of a company
+    company_id = 1 # int | Unique identifier of a company in the system
 
     try:
         # Get contract access of users
@@ -1088,7 +1088,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| ID of a company | 
+ **company_id** | **int**| Unique identifier of a company in the system | 
 
 ### Return type
 
@@ -1152,7 +1152,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.CompaniesApi(api_client)
-    company_id = 1 # int | ID of a company
+    company_id = 1 # int | Unique identifier of a company in the system
 
     try:
         # Get all users of a company
@@ -1195,7 +1195,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.CompaniesApi(api_client)
-    company_id = 1 # int | ID of a company
+    company_id = 1 # int | Unique identifier of a company in the system
 
     try:
         # Get all users of a company
@@ -1209,7 +1209,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| ID of a company | 
+ **company_id** | **int**| Unique identifier of a company in the system | 
 
 ### Return type
 
@@ -1271,7 +1271,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.CompaniesApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get contract [vendor]
@@ -1314,7 +1314,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.CompaniesApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get contract [vendor]
@@ -1328,7 +1328,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
 
 ### Return type
 
@@ -1390,7 +1390,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.CompaniesApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get contract [vendor]
@@ -1433,7 +1433,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.CompaniesApi(api_client)
-    contract_id = 'qbcxvb' # str | ID of the contract
+    contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get contract [vendor]
@@ -1447,7 +1447,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contract_id** | **str**| ID of the contract | 
+ **contract_id** | **str**| Unique identifier of the contract | 
 
 ### Return type
 
@@ -1511,7 +1511,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.CompaniesApi(api_client)
-    company_id = 1 # int | ID of a company
+    company_id = 1 # int | Unique identifier of a company in the system
 com_patagona_pricemonitor_share_api_invite_user_to_company_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiInviteUserToCompanyRequestV3() # ComPatagonaPricemonitorShareApiInviteUserToCompanyRequestV3 | User information including email & display name. (optional)
 
     try:
@@ -1555,7 +1555,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.CompaniesApi(api_client)
-    company_id = 1 # int | ID of a company
+    company_id = 1 # int | Unique identifier of a company in the system
 com_patagona_pricemonitor_share_api_invite_user_to_company_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiInviteUserToCompanyRequestV3() # ComPatagonaPricemonitorShareApiInviteUserToCompanyRequestV3 | User information including email & display name. (optional)
 
     try:
@@ -1570,7 +1570,7 @@ com_patagona_pricemonitor_share_api_invite_user_to_company_request_v3 = pricemon
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| ID of a company | 
+ **company_id** | **int**| Unique identifier of a company in the system | 
  **com_patagona_pricemonitor_share_api_invite_user_to_company_request_v3** | [**ComPatagonaPricemonitorShareApiInviteUserToCompanyRequestV3**](ComPatagonaPricemonitorShareApiInviteUserToCompanyRequestV3.md)| User information including email &amp; display name. | [optional] 
 
 ### Return type
@@ -1638,7 +1638,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.CompaniesApi(api_client)
-    company_id = 1 # int | ID of a company
+    company_id = 1 # int | Unique identifier of a company in the system
 com_patagona_pricemonitor_share_api_user_access_to_contracts_of_company = pricemonitor_api_client.ComPatagonaPricemonitorShareApiUserAccessToContractsOfCompany() # ComPatagonaPricemonitorShareApiUserAccessToContractsOfCompany | All users and their accessible contracts (optional)
 
     try:
@@ -1682,7 +1682,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.CompaniesApi(api_client)
-    company_id = 1 # int | ID of a company
+    company_id = 1 # int | Unique identifier of a company in the system
 com_patagona_pricemonitor_share_api_user_access_to_contracts_of_company = pricemonitor_api_client.ComPatagonaPricemonitorShareApiUserAccessToContractsOfCompany() # ComPatagonaPricemonitorShareApiUserAccessToContractsOfCompany | All users and their accessible contracts (optional)
 
     try:
@@ -1697,7 +1697,7 @@ com_patagona_pricemonitor_share_api_user_access_to_contracts_of_company = pricem
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| ID of a company | 
+ **company_id** | **int**| Unique identifier of a company in the system | 
  **com_patagona_pricemonitor_share_api_user_access_to_contracts_of_company** | [**ComPatagonaPricemonitorShareApiUserAccessToContractsOfCompany**](ComPatagonaPricemonitorShareApiUserAccessToContractsOfCompany.md)| All users and their accessible contracts | [optional] 
 
 ### Return type
@@ -1760,7 +1760,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.CompaniesApi(api_client)
-    company_id = 1 # int | ID of a company
+    company_id = 1 # int | Unique identifier of a company in the system
 user_id = 56 # int | 
 
     try:
@@ -1804,7 +1804,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.CompaniesApi(api_client)
-    company_id = 1 # int | ID of a company
+    company_id = 1 # int | Unique identifier of a company in the system
 user_id = 56 # int | 
 
     try:
@@ -1819,7 +1819,7 @@ user_id = 56 # int |
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| ID of a company | 
+ **company_id** | **int**| Unique identifier of a company in the system | 
  **user_id** | **int**|  | 
 
 ### Return type

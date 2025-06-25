@@ -11,13 +11,13 @@ Method | HTTP request | Description
 [**delete_auth_token**](ControlpanelApi.md#delete_auth_token) | **DELETE** /controlpanel/users/{email}/authtokens/{token} | Delete authentication token
 [**get_all_companies**](ControlpanelApi.md#get_all_companies) | **GET** /controlpanel/api/companies | Get a list of all companies
 [**get_all_contracts**](ControlpanelApi.md#get_all_contracts) | **GET** /controlpanel/api/contracts | Get a list of all contracts
-[**get_all_domains_control_panel_v3**](ControlpanelApi.md#get_all_domains_control_panel_v3) | **POST** /controlpanel/api/v3/domains | Add domain
 [**get_all_portals**](ControlpanelApi.md#get_all_portals) | **GET** /controlpanel/api/portals | Get a list of all portals
 [**get_all_tasks**](ControlpanelApi.md#get_all_tasks) | **GET** /controlpanel/api/tasks | Get all tasks
 [**get_all_users**](ControlpanelApi.md#get_all_users) | **GET** /controlpanel/api/users | Get a list of all users
 [**get_tasks_stats**](ControlpanelApi.md#get_tasks_stats) | **GET** /controlpanel/api/tasks/stats | Get all task stats
 [**get_user**](ControlpanelApi.md#get_user) | **GET** /controlpanel/api/users/{email} | Get user
 [**list_vendors**](ControlpanelApi.md#list_vendors) | **GET** /controlpanel/vendors | Get list of vendors
+[**post_admin_add_domain_v3**](ControlpanelApi.md#post_admin_add_domain_v3) | **POST** /controlpanel/api/v3/domains | Add domain
 [**put_admin_domain_control_panel_v3**](ControlpanelApi.md#put_admin_domain_control_panel_v3) | **PUT** /controlpanel/api/v3/domains/{domain} | Update or add domain
 [**update_auth_token**](ControlpanelApi.md#update_auth_token) | **PUT** /controlpanel/users/{email}/authtokens/{token} | Update authentication token
 [**vendor_data**](ControlpanelApi.md#vendor_data) | **GET** /controlpanel/vendorexport/{vendor} | Get vendor export data
@@ -861,128 +861,6 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_all_domains_control_panel_v3**
-> PostAdminAddDomainV3ApiResponse get_all_domains_control_panel_v3(com_patagona_pricemonitor_share_api_post_admin_add_domain_body_v3=com_patagona_pricemonitor_share_api_post_admin_add_domain_body_v3)
-
-Add domain
-
-Add a new domain.
-
-### Example
-
-* Basic Authentication (BasicAuth):
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: BasicAuth
-configuration = pricemonitor_api_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = pricemonitor_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.ControlpanelApi(api_client)
-    com_patagona_pricemonitor_share_api_post_admin_add_domain_body_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostAdminAddDomainBodyV3() # ComPatagonaPricemonitorShareApiPostAdminAddDomainBodyV3 | The domain to be added and its offer sources (optional)
-
-    try:
-        # Add domain
-        api_response = api_instance.get_all_domains_control_panel_v3(com_patagona_pricemonitor_share_api_post_admin_add_domain_body_v3=com_patagona_pricemonitor_share_api_post_admin_add_domain_body_v3)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling ControlpanelApi->get_all_domains_control_panel_v3: %s\n" % e)
-```
-
-* Bearer (JWT) Authentication (BearerAuth):
-```python
-from __future__ import print_function
-import time
-import pricemonitor_api_client
-from pricemonitor_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.patagona.de
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pricemonitor_api_client.Configuration(
-    host = "https://api.patagona.de"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: BasicAuth
-configuration = pricemonitor_api_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = pricemonitor_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with pricemonitor_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pricemonitor_api_client.ControlpanelApi(api_client)
-    com_patagona_pricemonitor_share_api_post_admin_add_domain_body_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostAdminAddDomainBodyV3() # ComPatagonaPricemonitorShareApiPostAdminAddDomainBodyV3 | The domain to be added and its offer sources (optional)
-
-    try:
-        # Add domain
-        api_response = api_instance.get_all_domains_control_panel_v3(com_patagona_pricemonitor_share_api_post_admin_add_domain_body_v3=com_patagona_pricemonitor_share_api_post_admin_add_domain_body_v3)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling ControlpanelApi->get_all_domains_control_panel_v3: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **com_patagona_pricemonitor_share_api_post_admin_add_domain_body_v3** | [**ComPatagonaPricemonitorShareApiPostAdminAddDomainBodyV3**](ComPatagonaPricemonitorShareApiPostAdminAddDomainBodyV3.md)| The domain to be added and its offer sources | [optional] 
-
-### Return type
-
-[**PostAdminAddDomainV3ApiResponse**](PostAdminAddDomainV3ApiResponse.md)
-
-### Authorization
-
-[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | A new domain was added |  -  |
-**400** | - Offer sources must be valid and non-empty - Domain must be a valid internet domain and non-empty - Domain name must be unique and non-empty - Please refer to the request schema for what constitutes valid offer sources and a valid domain  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **get_all_portals**
 > get_all_portals()
 
@@ -1703,12 +1581,12 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **put_admin_domain_control_panel_v3**
-> PutAdminDomainResponseV3ApiResponse put_admin_domain_control_panel_v3(domain, com_patagona_pricemonitor_share_api_put_admin_domain_request_v3=com_patagona_pricemonitor_share_api_put_admin_domain_request_v3)
+# **post_admin_add_domain_v3**
+> PostAdminAddDomainV3ApiResponse post_admin_add_domain_v3(com_patagona_pricemonitor_share_api_post_admin_add_domain_body_v3=com_patagona_pricemonitor_share_api_post_admin_add_domain_body_v3)
 
-Update or add domain
+Add domain
 
-Update an existing domain or add a new domain in case domain does not exist.
+**🔒 INTERNAL:** Adds a new domain to the system for price monitoring.  This administrative operation creates a new domain configuration with the specified offer sources and monitoring capabilities. 
 
 ### Example
 
@@ -1745,8 +1623,130 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ControlpanelApi(api_client)
-    domain = 'google.com' # str | Fully qualified domain name
-com_patagona_pricemonitor_share_api_put_admin_domain_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPutAdminDomainRequestV3() # ComPatagonaPricemonitorShareApiPutAdminDomainRequestV3 | The domain to be updated or added and its offer sources (optional)
+    com_patagona_pricemonitor_share_api_post_admin_add_domain_body_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostAdminAddDomainBodyV3() # ComPatagonaPricemonitorShareApiPostAdminAddDomainBodyV3 | The domain configuration to be added, including offer sources and monitoring settings (optional)
+
+    try:
+        # Add domain
+        api_response = api_instance.post_admin_add_domain_v3(com_patagona_pricemonitor_share_api_post_admin_add_domain_body_v3=com_patagona_pricemonitor_share_api_post_admin_add_domain_body_v3)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling ControlpanelApi->post_admin_add_domain_v3: %s\n" % e)
+```
+
+* Bearer (JWT) Authentication (BearerAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.ControlpanelApi(api_client)
+    com_patagona_pricemonitor_share_api_post_admin_add_domain_body_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostAdminAddDomainBodyV3() # ComPatagonaPricemonitorShareApiPostAdminAddDomainBodyV3 | The domain configuration to be added, including offer sources and monitoring settings (optional)
+
+    try:
+        # Add domain
+        api_response = api_instance.post_admin_add_domain_v3(com_patagona_pricemonitor_share_api_post_admin_add_domain_body_v3=com_patagona_pricemonitor_share_api_post_admin_add_domain_body_v3)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling ControlpanelApi->post_admin_add_domain_v3: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **com_patagona_pricemonitor_share_api_post_admin_add_domain_body_v3** | [**ComPatagonaPricemonitorShareApiPostAdminAddDomainBodyV3**](ComPatagonaPricemonitorShareApiPostAdminAddDomainBodyV3.md)| The domain configuration to be added, including offer sources and monitoring settings | [optional] 
+
+### Return type
+
+[**PostAdminAddDomainV3ApiResponse**](PostAdminAddDomainV3ApiResponse.md)
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Domain added successfully |  -  |
+**400** | Request validation failed. Common issues include: - Offer sources must be valid and non-empty - Domain must be a valid internet domain and non-empty - Domain name must be unique - Invalid configuration parameters  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_admin_domain_control_panel_v3**
+> PutAdminDomainResponseV3ApiResponse put_admin_domain_control_panel_v3(domain, com_patagona_pricemonitor_share_api_put_admin_domain_request_v3=com_patagona_pricemonitor_share_api_put_admin_domain_request_v3)
+
+Update or add domain
+
+**🔒 INTERNAL:** Updates an existing domain configuration or creates a new domain if it doesn't exist.  This operation supports both creation and modification of domain configurations, allowing administrative management of supported monitoring domains. 
+
+### Example
+
+* Basic Authentication (BasicAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.ControlpanelApi(api_client)
+    domain = 'google.com' # str | Fully qualified domain name for the target marketplace or shop
+com_patagona_pricemonitor_share_api_put_admin_domain_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPutAdminDomainRequestV3() # ComPatagonaPricemonitorShareApiPutAdminDomainRequestV3 | The domain configuration to be updated or created, including offer sources and monitoring settings (optional)
 
     try:
         # Update or add domain
@@ -1789,8 +1789,8 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.ControlpanelApi(api_client)
-    domain = 'google.com' # str | Fully qualified domain name
-com_patagona_pricemonitor_share_api_put_admin_domain_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPutAdminDomainRequestV3() # ComPatagonaPricemonitorShareApiPutAdminDomainRequestV3 | The domain to be updated or added and its offer sources (optional)
+    domain = 'google.com' # str | Fully qualified domain name for the target marketplace or shop
+com_patagona_pricemonitor_share_api_put_admin_domain_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPutAdminDomainRequestV3() # ComPatagonaPricemonitorShareApiPutAdminDomainRequestV3 | The domain configuration to be updated or created, including offer sources and monitoring settings (optional)
 
     try:
         # Update or add domain
@@ -1804,8 +1804,8 @@ com_patagona_pricemonitor_share_api_put_admin_domain_request_v3 = pricemonitor_a
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **domain** | **str**| Fully qualified domain name | 
- **com_patagona_pricemonitor_share_api_put_admin_domain_request_v3** | [**ComPatagonaPricemonitorShareApiPutAdminDomainRequestV3**](ComPatagonaPricemonitorShareApiPutAdminDomainRequestV3.md)| The domain to be updated or added and its offer sources | [optional] 
+ **domain** | **str**| Fully qualified domain name for the target marketplace or shop | 
+ **com_patagona_pricemonitor_share_api_put_admin_domain_request_v3** | [**ComPatagonaPricemonitorShareApiPutAdminDomainRequestV3**](ComPatagonaPricemonitorShareApiPutAdminDomainRequestV3.md)| The domain configuration to be updated or created, including offer sources and monitoring settings | [optional] 
 
 ### Return type
 
@@ -1823,8 +1823,8 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | A domain was updated or added. |  -  |
-**400** | Domain could not be updated or added. - Offer sources must be valid - Domain must be a valid internet domain and non-empty - Domain name must be unique and non-empty - Please refer to the request schema for what constitutes valid offer sources and a valid domain |  -  |
+**201** | Domain was updated or created successfully |  -  |
+**400** | Request validation failed. Common issues include: - Offer sources must be valid - Domain must be a valid internet domain and non-empty - Domain name must be unique - Invalid configuration parameters  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

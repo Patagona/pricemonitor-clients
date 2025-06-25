@@ -52,7 +52,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.AmazonIntegrationApi(api_client)
-    company_id = 1 # int | ID of a company
+    company_id = 1 # int | Unique identifier of a company in the system
 
     try:
         # Get authorization status for Amazon seller account
@@ -95,7 +95,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.AmazonIntegrationApi(api_client)
-    company_id = 1 # int | ID of a company
+    company_id = 1 # int | Unique identifier of a company in the system
 
     try:
         # Get authorization status for Amazon seller account
@@ -109,7 +109,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| ID of a company | 
+ **company_id** | **int**| Unique identifier of a company in the system | 
 
 ### Return type
 
@@ -174,8 +174,8 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.AmazonIntegrationApi(api_client)
     marketplace_country_code = 'DE' # str | Marketplace country code. You can view complete list here. https://developer-docs.amazon.com/sp-api/docs/marketplace-ids. Currently, only Europe as a region is supported.
-company_id = 1 # int | ID of a company
-contract_id = 'qbcxvb' # str | ID of the contract
+company_id = 1 # int | Unique identifier of a company in the system
+contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get marketplace activation status
@@ -219,8 +219,8 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.AmazonIntegrationApi(api_client)
     marketplace_country_code = 'DE' # str | Marketplace country code. You can view complete list here. https://developer-docs.amazon.com/sp-api/docs/marketplace-ids. Currently, only Europe as a region is supported.
-company_id = 1 # int | ID of a company
-contract_id = 'qbcxvb' # str | ID of the contract
+company_id = 1 # int | Unique identifier of a company in the system
+contract_id = 'qbcxvb' # str | Unique identifier of the contract
 
     try:
         # Get marketplace activation status
@@ -235,8 +235,8 @@ contract_id = 'qbcxvb' # str | ID of the contract
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **marketplace_country_code** | **str**| Marketplace country code. You can view complete list here. https://developer-docs.amazon.com/sp-api/docs/marketplace-ids. Currently, only Europe as a region is supported. | 
- **company_id** | **int**| ID of a company | 
- **contract_id** | **str**| ID of the contract | 
+ **company_id** | **int**| Unique identifier of a company in the system | 
+ **contract_id** | **str**| Unique identifier of the contract | 
 
 ### Return type
 
@@ -301,7 +301,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.AmazonIntegrationApi(api_client)
-    company_id = 1 # int | ID of a company
+    company_id = 1 # int | Unique identifier of a company in the system
 com_patagona_pricemonitor_share_api_post_activate_marketplace_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostActivateMarketplaceRequestV3() # ComPatagonaPricemonitorShareApiPostActivateMarketplaceRequestV3 | Marketplace of a customer to be activated. (optional)
 
     try:
@@ -345,7 +345,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.AmazonIntegrationApi(api_client)
-    company_id = 1 # int | ID of a company
+    company_id = 1 # int | Unique identifier of a company in the system
 com_patagona_pricemonitor_share_api_post_activate_marketplace_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostActivateMarketplaceRequestV3() # ComPatagonaPricemonitorShareApiPostActivateMarketplaceRequestV3 | Marketplace of a customer to be activated. (optional)
 
     try:
@@ -360,7 +360,7 @@ com_patagona_pricemonitor_share_api_post_activate_marketplace_request_v3 = price
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| ID of a company | 
+ **company_id** | **int**| Unique identifier of a company in the system | 
  **com_patagona_pricemonitor_share_api_post_activate_marketplace_request_v3** | [**ComPatagonaPricemonitorShareApiPostActivateMarketplaceRequestV3**](ComPatagonaPricemonitorShareApiPostActivateMarketplaceRequestV3.md)| Marketplace of a customer to be activated. | [optional] 
 
 ### Return type
@@ -426,7 +426,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.AmazonIntegrationApi(api_client)
-    company_id = 1 # int | ID of a company
+    company_id = 1 # int | Unique identifier of a company in the system
 com_patagona_pricemonitor_share_api_post_authorize_seller_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostAuthorizeSellerRequestV3() # ComPatagonaPricemonitorShareApiPostAuthorizeSellerRequestV3 | Customer's Amazon seller central account to be authorized. (optional)
 
     try:
@@ -470,7 +470,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.AmazonIntegrationApi(api_client)
-    company_id = 1 # int | ID of a company
+    company_id = 1 # int | Unique identifier of a company in the system
 com_patagona_pricemonitor_share_api_post_authorize_seller_request_v3 = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostAuthorizeSellerRequestV3() # ComPatagonaPricemonitorShareApiPostAuthorizeSellerRequestV3 | Customer's Amazon seller central account to be authorized. (optional)
 
     try:
@@ -485,7 +485,7 @@ com_patagona_pricemonitor_share_api_post_authorize_seller_request_v3 = pricemoni
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| ID of a company | 
+ **company_id** | **int**| Unique identifier of a company in the system | 
  **com_patagona_pricemonitor_share_api_post_authorize_seller_request_v3** | [**ComPatagonaPricemonitorShareApiPostAuthorizeSellerRequestV3**](ComPatagonaPricemonitorShareApiPostAuthorizeSellerRequestV3.md)| Customer&#39;s Amazon seller central account to be authorized. | [optional] 
 
 ### Return type
