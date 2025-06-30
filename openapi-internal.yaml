@@ -18,7 +18,7 @@ info:
 
     All endpoints are authenticated using either Basic Authentication or JWT
     Bearer tokens.
-  version: 0.0.7168
+  version: 0.0.7169
   x-logo:
     url: >-
       https://www.omniaretail.com/hubfs/Omnia%20Logo%20SVG/Omnia_Retail_Full_Colour_Logo_On_White_RGB.svg
@@ -4507,8 +4507,6 @@ paths:
               (e.g., previously approved, rejected, overwritten, or outdated).
             - The user has already submitted decisions for all provided price
             recommendation approvals.
-
-            - A referred price recommendation approval does not exist.
           content:
             application/json:
               schema:
