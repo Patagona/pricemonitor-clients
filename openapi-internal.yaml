@@ -18,7 +18,7 @@ info:
 
     All endpoints are authenticated using either Basic Authentication or JWT
     Bearer tokens.
-  version: 0.0.7185
+  version: 0.0.7186
   x-logo:
     url: >-
       https://www.omniaretail.com/hubfs/Omnia%20Logo%20SVG/Omnia_Retail_Full_Colour_Logo_On_White_RGB.svg
@@ -255,7 +255,7 @@ tags:
       runs within the provided timerange are ignored.
   - name: offers
     x-displayName: Offers
-    description: "Operations to get and manage offers.\n\n# Provide offers for custom sources\n\nUse [this operation](#operation/postOffersInABulkVendorV2) to provide external offers for your products to our system. This operation to add offers in bulk can be used instead of the monitoring by our system of [domains](#tag/domains) for external offers.\n\nThis operation needs the internal product ids in our system. See [how to determine internal product ids](#tag/products).\n\n## Example\n\nHere is an example of a JSON body to provide one offer for one product via API.\n\n<details>\n<summary>Click to expand</summary>\n\n``` json\n[{\n\t\"productId\": \"67784570\",\n\t\"creationDate\": \"2024-06-11T00:15:07.099Z\",\n\t\"domain\": \"google.de\",\n\t\"offers\": [{\n\t\t\"vendorName\": \"amazon.de\",\n\t\t\"vendorDomainId\": 1,\n\t\t\"url\": \"https://www.amazon.de/-/en/dp/013142467X/\",\n\t\t\"price\": 58.84,\n\t\t\"deliveryCosts\": 9.95,\n\t\t\"currency\": \"EUR\",\n\t\t\"id\": \"636354d0-c865-4c56-84b3-bd9172e826aa\",\n\t\t\"productName\": \"Test item\",\n\t\t\"attributes\": [{\n\t\t\t\"key\": \"size\",\n\t\t\t\"value\": \"L\"\n\t\t}],\n\t\t\"maxDeliveryHours\": 48,\n\t\t\"minDeliveryHours\": 12,\n\t\t\"retrievalDate\": \"2024-06-11T10:50:45.659Z\",\n\t\t\"availability\": true\n\t}]\n}]\n```\n</details>\n\n\n# Retrieve offers\n\nUse [this operation](#operation/getOffersVendorV3) to get all offers for a contract. It's a paginated endpoint, so you have to scroll through all offers.\n\nIt's important that you define a timerange (by providing `startDate` and `endDate` parameters) in order to guarantee a stable pagination.\n\nThis endpoint returns the most recent offers per product and domain: This means that offers from older monitoring runs within the provided timerange are ignored.\n\n## Continuously retrieving offers\n\nFor continuously getting market data we recommend the following usage pattern:\n\nGet the offers for the last 15 minutes with a time offset of 15 minutes.\n\n| Runtime Timestamp | startDate | endDate |\n| ----------------- | --------- | ------- |\n| 12:00 | 11:30 | 11:45 |\n| 12:15 | 11:45 | 12:00 |\n| 12:30 | 12:00 | 12:15 |\n| …                     |\n\n> Note: The time offset is important since offers are not immediately visible via the API. Sometimes there is a slight delay in offer storing.\n\n\n\n\n\n"
+    description: "Operations to get and manage offers.\n\n# Provide offers for custom sources\n\nUse [this operation](#operation/postOffersInABulkVendorV2) to provide external offers for your products to our system.\nIt serves as an alternative to our automatic [domain-wise](#tag/domains) market data monitoring.\n\nTo use this operation, you need Omnia's internal product IDs.\nSee [how to determine internal product IDs](#tag/products).\n\n## Example\n\nHere is an example of a JSON body to provide one offer for one product via API.\n\n<details>\n<summary>Click to expand</summary>\n\n``` json\n[{\n\t\"productId\": \"67784570\",\n\t\"creationDate\": \"2024-06-11T00:15:07.099Z\",\n\t\"domain\": \"google.de\",\n\t\"offers\": [{\n\t\t\"vendorName\": \"amazon.de\",\n\t\t\"vendorDomainId\": 1,\n\t\t\"url\": \"https://www.amazon.de/-/en/dp/013142467X/\",\n\t\t\"price\": 58.84,\n\t\t\"deliveryCosts\": 9.95,\n\t\t\"currency\": \"EUR\",\n\t\t\"id\": \"636354d0-c865-4c56-84b3-bd9172e826aa\",\n\t\t\"productName\": \"Test item\",\n\t\t\"attributes\": [{\n\t\t\t\"key\": \"size\",\n\t\t\t\"value\": \"L\"\n\t\t}],\n\t\t\"maxDeliveryHours\": 48,\n\t\t\"minDeliveryHours\": 12,\n\t\t\"retrievalDate\": \"2024-06-11T10:50:45.659Z\",\n\t\t\"availability\": true\n\t}]\n}]\n```\n\n</details>\n\n## How It Works\n\nThis endpoint allows you to submit market data (\"offers\") for your products in bulk.\nOffers are submitted as *snapshots*.\n\nA **snapshot** is defined as:\n\n- a product\n- a domain (where the offers come from)\n- a timestamp\n- and a complete list of corresponding offers at that moment\n\nSnapshots form a **linear history** per product and domain.\nThat means:\n\n- You can only submit **newer** snapshots than the ones already stored.\n- Each snapshot must contain **all** relevant offers for that product + domain at that timestamp.\n- This endpoint is **append-only** - no edits or deletions of past offers are allowed.\n\nInternally, only the most recent snapshot is considered per product + domain, e.g., for price calculation or analytics.\n\nSnapshots are processed immediately after being accepted.\n\n## When to Send Offers\n\n- A regular daily import is a solid default.\n- Ideally submit offers before a price calculation tasks runs to ensure that recommended prices are based on up-to-date\n  data.\n- Real-time ingestion is supported.\n\n## Best Practices\n\n- Send up to **1,000 snapshots per request**.\n- Check if all snapshots are processed successfully by [analyzing the response](#response-interpretation).\n- Avoid single-snapshot requests if possible - batch requests are typically more efficient and faster.\n- Deduplicate and validate on the client side if possible.\n- Only include complete snapshots (i.e. all relevant offers for the product and domain at that time).\n- Avoid sending duplicate snapshots (e.g. previously stored ones), as they will be rejected.\n\n## Response Interpretation\n\nAnalyzing the response helps you quickly spot and fix invalid snapshots.\nSince each snapshot is validated separately, some may be accepted while others are rejected.\nResponses follow the same order as your input, so you can match and debug them easily.\n\nThe response is an array with one result per snapshot, matching the order of your input.\n\nEach item is either:\n\n- `true`: Snapshot accepted and stored.\n- An `ApiErrorResponse` object with details about the failure.\n\nThis allows you to match (`zip`) each response to your original input array.\n\nCommon reasons for rejection:\n\n- Product not part of the contract\n- Snapshot is older than what’s already stored\n- Conflicting snapshots submitted in same request\n- Invalid domain format\n- Duplicate offer IDs\n- Negative price or delivery costs\n\n## What Is a Domain?\n\n<details>\n<summary>Click to expand</summary>\n\nA **domain** is the origin of the offers. It refers to a website name - not a full URL.\nFor example, in `https://example.com/page`, the domain is `example.com`.\n\nExpected format:\n\n- Only use lowercase letters (`a–z`), digits (`0–9`), periods (`.`), and hyphens (`-`)\n- Each label (part between periods) must:\n    - Be 1-63 characters long\n    - Start and end with an alphanumeric character\n    - Not contain consecutive periods\n    - Not start or end with a hyphen\n- Total domain length must not exceed 255 characters\n\n**Examples**:\nValid: `example.com`, `shop.example.co.uk`\nInvalid: `-example.com`, `example..com`, `example_.com`, `example-.com`\n\n</details>\n\n# Retrieve offers\n\nUse [this operation](#operation/getOffersVendorV3) to get all offers for a contract. It's a paginated endpoint, so you have to scroll through all offers.\n\nIt's important that you define a timerange (by providing `startDate` and `endDate` parameters) in order to guarantee a stable pagination.\n\nThis endpoint returns the most recent offers per product and domain: This means that offers from older monitoring runs within the provided timerange are ignored.\n\n## Continuously retrieving offers\n\nFor continuously getting market data we recommend the following usage pattern:\n\nGet the offers for the last 15 minutes with a time offset of 15 minutes.\n\n| Runtime Timestamp | startDate | endDate |\n| ----------------- | --------- | ------- |\n| 12:00 | 11:30 | 11:45 |\n| 12:15 | 11:45 | 12:00 |\n| 12:30 | 12:00 | 12:15 |\n| …                     |\n\n> Note: The time offset is important since offers are not immediately visible via the API. Sometimes there is a slight delay in offer storing.\n\n\n\n\n\n"
   - name: feeds
     x-displayName: Feeds Management
     description: Manage your data-feeds.
@@ -6561,13 +6561,21 @@ paths:
       responses:
         '200':
           description: >
-            The server understood and processed the request. Offers were
-            processed, but not necessarily stored successfully. The 'data' field
-            in the response body contains a detailed report of the operation
-            outcome for each individual POST offers requests. Each item in the
-            'data' array is **either** a 'data' object with value true
-            (indicating successful storage), or an ApiErrorResponse (indicating
-            a storage failure).
+            The request was successfully processed.
+
+            Each individual POST offers request was validated and handled
+            separately.
+
+            The 'data' field in the response contains one entry per request
+            item, in the same order as submitted.
+
+
+            Each entry is either:
+
+            - `true`: The offer snapshot was accepted and stored.
+
+            - `ApiErrorResponse`: The snapshot was rejected, including details
+            about the reason.
           content:
             application/json:
               schema:
@@ -6581,35 +6589,34 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiErrorResponse'
       description: >
-        This endpoint can be used to provide external offers to Pricemonitor.
+        This endpoint can be used to provide external offers to Omnia 2.0.
+
         It's a bulk endpoint which accepts an array of individual POST offers
-        requests each based on a "snapshot" - a unique combination of product,
-        domain, and timestamp for a list of offers.
+        requests each based on a "snapshot" - a
 
-        Please note the following consistency checks performed before offers are
-        stored:
+        unique combination of product, domain, and timestamp for a list of
+        offers.
 
-        1. Offers can only be stored if the corresponding products exist in the
-        contract.
 
-        2. Offers can only be stored if they are more recent than existing
-        offers. This means that only newer snapshots are eligible for storage.
+        Validation rules before storage:
 
-        3. Offers can only be stored if the currency is consistent. In other
-        words, a single domain must use only one currency.
 
-        4. Duplicated individual POST offers requests are stored only once.
+        1. The product must exist in the contract.
 
-        5. If different offers are provided for the same snapshots, then all
-        conflicting snapshots will be rejected.
+        2. Only snapshots newer than those already stored will be accepted.
 
-        6. An individual POST offers request may be rejected if the offer ID is
-        not unique.
+        3. Each domain must use a consistent currency.
 
-        7. Offers can only be stored if the domain is not empty.
+        4. Duplicate snapshots in the same request are stored once.
 
-        8. Offers that have non-negative prices and non-negative or zero
-        delivery costs can be stored.
+        5. Conflicting snapshots for the same product + domain + timestamp are
+        all rejected.
+
+        6. Offer IDs must be unique across all offers.
+
+        7. The domain field must not be empty.
+
+        8. Offer prices must be ≥ 0.01, delivery costs must be ≥ 0.
       requestBody:
         content:
           application/json:
@@ -6618,7 +6625,14 @@ paths:
               items:
                 $ref: >-
                   #/components/schemas/com.patagona.pricemonitor.share.api.PostProductOfferRequest
-        description: List of individual POST offers requests which should be added in bulk.
+        description: >
+          A list of individual POST offers requests (snapshots) to be stored.
+
+
+          Submit up to 1,000 snapshots per request for optimal performance.
+
+          Snapshots are validated and processed in the order provided. The
+          response follows the same order.
         required: true
       parameters:
         - $ref: '#/components/parameters/contractIdParam'
@@ -14892,21 +14906,23 @@ components:
     com.patagona.pricemonitor.share.api.PostProductOfferRequest:
       description: >-
         Represents a single request to post offers for a snapshot. A snapshot is
-        a unique combination of productId, creationDate, and domain.
+        a unique combination of productId, creationDate, and domain. It must
+        contain the complete set of offers for that product and domain at the
+        given time.
       properties:
         productId:
           type: string
-          description: Patagona's internal product id.
+          description: Omnia's internal product id.
         creationDate:
           type: string
           format: date-time
           description: >-
-            ISO 8601 timestamp when the offers have been gathered. This
-            timestamp needs to be more recent compared to already existing
-            offers. Otherwise, the offers will be rejected.
+            ISO 8601 timestamp when the offers have been gathered. Must be more
+            recent than existing snapshots for the same product and domain,
+            otherwise the request will be rejected.
         domain:
           type: string
-          description: Origin of the offers.
+          description: Domain from which the offers originate (e.g., "example.com").
         offers:
           type: array
           items:

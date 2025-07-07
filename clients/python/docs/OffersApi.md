@@ -2371,7 +2371,7 @@ Name | Type | Description  | Notes
 
 Add offers in bulk
 
-This endpoint can be used to provide external offers to Pricemonitor. It's a bulk endpoint which accepts an array of individual POST offers requests each based on a \"snapshot\" - a unique combination of product, domain, and timestamp for a list of offers. Please note the following consistency checks performed before offers are stored: 1. Offers can only be stored if the corresponding products exist in the contract. 2. Offers can only be stored if they are more recent than existing offers. This means that only newer snapshots are eligible for storage. 3. Offers can only be stored if the currency is consistent. In other words, a single domain must use only one currency. 4. Duplicated individual POST offers requests are stored only once. 5. If different offers are provided for the same snapshots, then all conflicting snapshots will be rejected. 6. An individual POST offers request may be rejected if the offer ID is not unique. 7. Offers can only be stored if the domain is not empty. 8. Offers that have non-negative prices and non-negative or zero delivery costs can be stored. 
+This endpoint can be used to provide external offers to Omnia 2.0. It's a bulk endpoint which accepts an array of individual POST offers requests each based on a \"snapshot\" - a unique combination of product, domain, and timestamp for a list of offers.  Validation rules before storage:  1. The product must exist in the contract. 2. Only snapshots newer than those already stored will be accepted. 3. Each domain must use a consistent currency. 4. Duplicate snapshots in the same request are stored once. 5. Conflicting snapshots for the same product + domain + timestamp are all rejected. 6. Offer IDs must be unique across all offers. 7. The domain field must not be empty. 8. Offer prices must be ≥ 0.01, delivery costs must be ≥ 0. 
 
 ### Example
 
@@ -2409,7 +2409,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.OffersApi(api_client)
     contract_id = 'qbcxvb' # str | Unique identifier of the contract
-com_patagona_pricemonitor_share_api_post_product_offer_request = [pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostProductOfferRequest()] # list[ComPatagonaPricemonitorShareApiPostProductOfferRequest] | List of individual POST offers requests which should be added in bulk.
+com_patagona_pricemonitor_share_api_post_product_offer_request = [pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostProductOfferRequest()] # list[ComPatagonaPricemonitorShareApiPostProductOfferRequest] | A list of individual POST offers requests (snapshots) to be stored.  Submit up to 1,000 snapshots per request for optimal performance. Snapshots are validated and processed in the order provided. The response follows the same order. 
 
     try:
         # Add offers in bulk
@@ -2453,7 +2453,7 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.OffersApi(api_client)
     contract_id = 'qbcxvb' # str | Unique identifier of the contract
-com_patagona_pricemonitor_share_api_post_product_offer_request = [pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostProductOfferRequest()] # list[ComPatagonaPricemonitorShareApiPostProductOfferRequest] | List of individual POST offers requests which should be added in bulk.
+com_patagona_pricemonitor_share_api_post_product_offer_request = [pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostProductOfferRequest()] # list[ComPatagonaPricemonitorShareApiPostProductOfferRequest] | A list of individual POST offers requests (snapshots) to be stored.  Submit up to 1,000 snapshots per request for optimal performance. Snapshots are validated and processed in the order provided. The response follows the same order. 
 
     try:
         # Add offers in bulk
@@ -2468,7 +2468,7 @@ com_patagona_pricemonitor_share_api_post_product_offer_request = [pricemonitor_a
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **contract_id** | **str**| Unique identifier of the contract | 
- **com_patagona_pricemonitor_share_api_post_product_offer_request** | [**list[ComPatagonaPricemonitorShareApiPostProductOfferRequest]**](ComPatagonaPricemonitorShareApiPostProductOfferRequest.md)| List of individual POST offers requests which should be added in bulk. | 
+ **com_patagona_pricemonitor_share_api_post_product_offer_request** | [**list[ComPatagonaPricemonitorShareApiPostProductOfferRequest]**](ComPatagonaPricemonitorShareApiPostProductOfferRequest.md)| A list of individual POST offers requests (snapshots) to be stored.  Submit up to 1,000 snapshots per request for optimal performance. Snapshots are validated and processed in the order provided. The response follows the same order.  | 
 
 ### Return type
 
@@ -2486,7 +2486,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The server understood and processed the request. Offers were processed, but not necessarily stored successfully. The &#39;data&#39; field in the response body contains a detailed report of the operation outcome for each individual POST offers requests. Each item in the &#39;data&#39; array is **either** a &#39;data&#39; object with value true (indicating successful storage), or an ApiErrorResponse (indicating a storage failure).  |  -  |
+**200** | The request was successfully processed. Each individual POST offers request was validated and handled separately. The &#39;data&#39; field in the response contains one entry per request item, in the same order as submitted.  Each entry is either: - &#x60;true&#x60;: The offer snapshot was accepted and stored. - &#x60;ApiErrorResponse&#x60;: The snapshot was rejected, including details about the reason.  |  -  |
 **400** | The server could not understand the request due to invalid syntax. For example, a required field might be missing in the request body.  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
