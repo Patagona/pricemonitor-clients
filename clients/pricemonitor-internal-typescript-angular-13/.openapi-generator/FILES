@@ -113,6 +113,7 @@ model/pricemonitorPostNewPasswordRequest.ts
 model/pricemonitorPostOfferStatisticsRequestV31.ts
 model/pricemonitorPostOfferStatisticsResponseV31.ts
 model/pricemonitorPostOrderStatisticsRequestV3.ts
+model/pricemonitorPostOrderStatisticsRequestV3Range.ts
 model/pricemonitorPostOrderStatisticsResponseV3.ts
 model/pricemonitorPostPriceRecommendationApprovalRequestV3.ts
 model/pricemonitorPostProductOfferRequest.ts
@@ -174,6 +175,7 @@ model/pricemonitorUserAccessToContractsOfCompany.ts
 model/pricemonitorUserCompany.ts
 model/pricemonitorUserContract.ts
 model/pricemonitorUserContractAccess.ts
+model/pricemonitorUserContractFeatures.ts
 model/pricemonitorUserInfo.ts
 model/pricemonitorVendorShopMappingV3.ts
 model/pricemonitorZonedTimeRange.ts
