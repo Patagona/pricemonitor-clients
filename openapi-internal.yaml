@@ -18,7 +18,7 @@ info:
 
     All endpoints are authenticated using either Basic Authentication or JWT
     Bearer tokens.
-  version: 0.0.7206
+  version: 0.0.7207
   x-logo:
     url: >-
       https://www.omniaretail.com/hubfs/Omnia%20Logo%20SVG/Omnia_Retail_Full_Colour_Logo_On_White_RGB.svg
@@ -1416,6 +1416,12 @@ tags:
     x-displayName: Control Panel
     x-audience: Internal
     description: Administrative operations used by the control panel interface.
+  - name: feature-flags
+    x-displayName: Feature Flags
+    x-audience: Internal
+    description: >-
+      Administrative operations to manage feature flags for controlling
+      application features.
   - name: pluginregistration
     x-displayName: Plugin Registration
     description: Operations to view and manage registered plugins for system integration.
@@ -1817,6 +1823,200 @@ paths:
       summary: Get application version
       description: Get the current application version
       security: []
+  /controlpanel/api/feature-flags:
+    x-audience: Internal
+    get:
+      operationId: getAllFeatureFlags
+      summary: Get all feature flags
+      description: >
+        **🔒 INTERNAL:** Retrieves a list of all feature flags configured in the
+        system.
+
+
+        Feature flags are used to control the availability of application
+        features
+
+        and can be managed through the control panel interface.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAllFeatureFlagsApiResponse'
+          description: List of all feature flags
+      tags:
+        - feature-flags
+        - controlpanel
+        - internal
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
+    post:
+      operationId: createFeatureFlag
+      summary: Create feature flag
+      description: >
+        **🔒 INTERNAL:** Creates a new feature flag in the system.
+
+
+        Feature flags must have a unique key that follows the pattern
+        `[a-zA-Z0-9_-]+`
+
+        and cannot exceed 128 characters in length.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: >-
+                #/components/schemas/com.patagona.pricemonitor.share.api.PostFeatureFlagRequest
+        description: The feature flag to be created
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateFeatureFlagApiResponse'
+          description: Feature flag created successfully
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: >
+            Request validation failed. Common reasons include:
+
+            - Invalid flag key format (must be alphanumeric, underscore, or
+            dash)
+
+            - Flag key already exists
+
+            - Flag name is empty or too long
+
+            - Description exceeds maximum length
+      tags:
+        - feature-flags
+        - controlpanel
+        - internal
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
+  /controlpanel/api/feature-flags/{key}:
+    x-audience: Internal
+    parameters:
+      - description: Feature flag key identifier
+        in: path
+        name: key
+        required: true
+        schema:
+          type: string
+          pattern: ^[a-zA-Z0-9_-]+$
+          maxLength: 128
+        example: new-dashboard-ui
+    get:
+      operationId: getFeatureFlagByKey
+      summary: Get feature flag by key
+      description: |
+        **🔒 INTERNAL:** Retrieves a specific feature flag by its key.
+
+        Returns the feature flag configuration including metadata such as
+        creation and update timestamps.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetFeatureFlagByKeyApiResponse'
+          description: Feature flag details retrieved successfully
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: Feature flag with the specified key was not found
+      tags:
+        - feature-flags
+        - controlpanel
+        - internal
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
+    put:
+      operationId: updateFeatureFlag
+      summary: Update feature flag
+      description: >
+        **🔒 INTERNAL:** Updates an existing feature flag's name and
+        description.
+
+
+        The feature flag key cannot be changed after creation. Only the
+
+        display name and description can be updated.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: >-
+                #/components/schemas/com.patagona.pricemonitor.share.api.PutFeatureFlagRequest
+        description: The feature flag updates to be applied
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateFeatureFlagApiResponse'
+          description: Feature flag updated successfully
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: |
+            Request validation failed. Common reasons include:
+            - Flag name is empty or too long
+            - Description exceeds maximum length
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: Feature flag with the specified key was not found
+      tags:
+        - feature-flags
+        - controlpanel
+        - internal
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
+    delete:
+      operationId: deleteFeatureFlag
+      summary: Delete feature flag
+      description: |
+        **🔒 INTERNAL:** Deletes a feature flag from the system (soft delete).
+
+        The feature flag is marked as deleted but preserved in the database
+        for audit purposes. Once deleted, the flag key becomes unavailable
+        for new flags.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyApiResponse'
+          description: Feature flag deleted successfully
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: Feature flag with the specified key was not found
+      tags:
+        - feature-flags
+        - controlpanel
+        - internal
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
   /api/1/{contractId}/products/analysis/pricerecommendations:
     x-audience: Internal
     get:
@@ -12334,6 +12534,103 @@ components:
         data:
           $ref: >-
             #/components/schemas/com.patagona.pricemonitor.share.api.ApplicationVersion
+    com.patagona.pricemonitor.share.api.GetFeatureFlagResponse:
+      description: Response body for feature flag operations
+      properties:
+        flagName:
+          type: string
+        updatedAt:
+          type: string
+          format: date-time
+        description:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        flagKey:
+          type: string
+      additionalProperties: false
+      type: object
+      required:
+        - flagName
+        - flagKey
+    com.patagona.pricemonitor.share.api.GetFeatureFlagsResponse:
+      description: Response body for feature flags list operations
+      properties:
+        flags:
+          type: array
+          items:
+            $ref: >-
+              #/components/schemas/com.patagona.pricemonitor.share.api.GetFeatureFlagResponse
+      additionalProperties: false
+      type: object
+      required:
+        - flags
+    GetAllFeatureFlagsApiResponse:
+      required:
+        - data
+      type: object
+      additionalProperties: false
+      description: ''
+      properties:
+        data:
+          $ref: >-
+            #/components/schemas/com.patagona.pricemonitor.share.api.GetFeatureFlagsResponse
+    com.patagona.pricemonitor.share.api.PostFeatureFlagRequest:
+      description: Request body for creating a new feature flag
+      properties:
+        flagKey:
+          type: string
+        flagName:
+          type: string
+        description:
+          type: string
+      additionalProperties: false
+      type: object
+      required:
+        - flagKey
+        - flagName
+    CreateFeatureFlagApiResponse:
+      required:
+        - data
+      type: object
+      additionalProperties: false
+      description: ''
+      properties:
+        data:
+          $ref: >-
+            #/components/schemas/com.patagona.pricemonitor.share.api.GetFeatureFlagResponse
+    GetFeatureFlagByKeyApiResponse:
+      required:
+        - data
+      type: object
+      additionalProperties: false
+      description: ''
+      properties:
+        data:
+          $ref: >-
+            #/components/schemas/com.patagona.pricemonitor.share.api.GetFeatureFlagResponse
+    com.patagona.pricemonitor.share.api.PutFeatureFlagRequest:
+      description: Request body for updating an existing feature flag
+      properties:
+        flagName:
+          type: string
+        description:
+          type: string
+      additionalProperties: false
+      type: object
+      required:
+        - flagName
+    UpdateFeatureFlagApiResponse:
+      required:
+        - data
+      type: object
+      additionalProperties: false
+      description: ''
+      properties:
+        data:
+          $ref: >-
+            #/components/schemas/com.patagona.pricemonitor.share.api.GetFeatureFlagResponse
     CreateCompanyApiResponse:
       required:
         - data
@@ -16484,6 +16781,7 @@ x-tagGroups:
       - scenariostrategy
       - domains
       - controlpanel
+      - feature-flags
       - pluginregistration
       - looker
       - amazon-integration

@@ -10,6 +10,7 @@ from pricemonitor_api_client.api.companies_api import CompaniesApi
 from pricemonitor_api_client.api.controlpanel_api import ControlpanelApi
 from pricemonitor_api_client.api.deprecated_api import DeprecatedApi
 from pricemonitor_api_client.api.domains_api import DomainsApi
+from pricemonitor_api_client.api.feature_flags_api import FeatureFlagsApi
 from pricemonitor_api_client.api.feeds_api import FeedsApi
 from pricemonitor_api_client.api.internal_api import InternalApi
 from pricemonitor_api_client.api.logs_api import LogsApi

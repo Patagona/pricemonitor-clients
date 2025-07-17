@@ -8,18 +8,23 @@ Method | HTTP request | Description
 [**add_company_user**](ControlpanelApi.md#add_company_user) | **PUT** /controlpanel/companies/{id}/users/{email} | Add user to company
 [**add_user**](ControlpanelApi.md#add_user) | **POST** /controlpanel/users | Add a new user
 [**create_auth_token**](ControlpanelApi.md#create_auth_token) | **POST** /controlpanel/users/{email}/authtokens | Create authentication token
+[**create_feature_flag**](ControlpanelApi.md#create_feature_flag) | **POST** /controlpanel/api/feature-flags | Create feature flag
 [**delete_auth_token**](ControlpanelApi.md#delete_auth_token) | **DELETE** /controlpanel/users/{email}/authtokens/{token} | Delete authentication token
+[**delete_feature_flag**](ControlpanelApi.md#delete_feature_flag) | **DELETE** /controlpanel/api/feature-flags/{key} | Delete feature flag
 [**get_all_companies**](ControlpanelApi.md#get_all_companies) | **GET** /controlpanel/api/companies | Get a list of all companies
 [**get_all_contracts**](ControlpanelApi.md#get_all_contracts) | **GET** /controlpanel/api/contracts | Get a list of all contracts
+[**get_all_feature_flags**](ControlpanelApi.md#get_all_feature_flags) | **GET** /controlpanel/api/feature-flags | Get all feature flags
 [**get_all_portals**](ControlpanelApi.md#get_all_portals) | **GET** /controlpanel/api/portals | Get a list of all portals
 [**get_all_tasks**](ControlpanelApi.md#get_all_tasks) | **GET** /controlpanel/api/tasks | Get all tasks
 [**get_all_users**](ControlpanelApi.md#get_all_users) | **GET** /controlpanel/api/users | Get a list of all users
+[**get_feature_flag_by_key**](ControlpanelApi.md#get_feature_flag_by_key) | **GET** /controlpanel/api/feature-flags/{key} | Get feature flag by key
 [**get_tasks_stats**](ControlpanelApi.md#get_tasks_stats) | **GET** /controlpanel/api/tasks/stats | Get all task stats
 [**get_user**](ControlpanelApi.md#get_user) | **GET** /controlpanel/api/users/{email} | Get user
 [**list_vendors**](ControlpanelApi.md#list_vendors) | **GET** /controlpanel/vendors | Get list of vendors
 [**post_admin_add_domain_v3**](ControlpanelApi.md#post_admin_add_domain_v3) | **POST** /controlpanel/api/v3/domains | Add domain
 [**put_admin_domain_control_panel_v3**](ControlpanelApi.md#put_admin_domain_control_panel_v3) | **PUT** /controlpanel/api/v3/domains/{domain} | Update or add domain
 [**update_auth_token**](ControlpanelApi.md#update_auth_token) | **PUT** /controlpanel/users/{email}/authtokens/{token} | Update authentication token
+[**update_feature_flag**](ControlpanelApi.md#update_feature_flag) | **PUT** /controlpanel/api/feature-flags/{key} | Update feature flag
 [**vendor_data**](ControlpanelApi.md#vendor_data) | **GET** /controlpanel/vendorexport/{vendor} | Get vendor export data
 [**version**](ControlpanelApi.md#version) | **GET** /version | Get application version
 
@@ -505,6 +510,128 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **create_feature_flag**
+> CreateFeatureFlagApiResponse create_feature_flag(com_patagona_pricemonitor_share_api_post_feature_flag_request)
+
+Create feature flag
+
+**🔒 INTERNAL:** Creates a new feature flag in the system.  Feature flags must have a unique key that follows the pattern `[a-zA-Z0-9_-]+` and cannot exceed 128 characters in length. 
+
+### Example
+
+* Basic Authentication (BasicAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.ControlpanelApi(api_client)
+    com_patagona_pricemonitor_share_api_post_feature_flag_request = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostFeatureFlagRequest() # ComPatagonaPricemonitorShareApiPostFeatureFlagRequest | The feature flag to be created
+
+    try:
+        # Create feature flag
+        api_response = api_instance.create_feature_flag(com_patagona_pricemonitor_share_api_post_feature_flag_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling ControlpanelApi->create_feature_flag: %s\n" % e)
+```
+
+* Bearer (JWT) Authentication (BearerAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.ControlpanelApi(api_client)
+    com_patagona_pricemonitor_share_api_post_feature_flag_request = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPostFeatureFlagRequest() # ComPatagonaPricemonitorShareApiPostFeatureFlagRequest | The feature flag to be created
+
+    try:
+        # Create feature flag
+        api_response = api_instance.create_feature_flag(com_patagona_pricemonitor_share_api_post_feature_flag_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling ControlpanelApi->create_feature_flag: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **com_patagona_pricemonitor_share_api_post_feature_flag_request** | [**ComPatagonaPricemonitorShareApiPostFeatureFlagRequest**](ComPatagonaPricemonitorShareApiPostFeatureFlagRequest.md)| The feature flag to be created | 
+
+### Return type
+
+[**CreateFeatureFlagApiResponse**](CreateFeatureFlagApiResponse.md)
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Feature flag created successfully |  -  |
+**400** | Request validation failed. Common reasons include: - Invalid flag key format (must be alphanumeric, underscore, or dash) - Flag key already exists - Flag name is empty or too long - Description exceeds maximum length  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **delete_auth_token**
 > object delete_auth_token(email, token)
 
@@ -624,6 +751,128 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | This is a generated entry and needs to be described. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **delete_feature_flag**
+> EmptyApiResponse delete_feature_flag(key)
+
+Delete feature flag
+
+**🔒 INTERNAL:** Deletes a feature flag from the system (soft delete).  The feature flag is marked as deleted but preserved in the database for audit purposes. Once deleted, the flag key becomes unavailable for new flags. 
+
+### Example
+
+* Basic Authentication (BasicAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.ControlpanelApi(api_client)
+    key = 'new-dashboard-ui' # str | Feature flag key identifier
+
+    try:
+        # Delete feature flag
+        api_response = api_instance.delete_feature_flag(key)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling ControlpanelApi->delete_feature_flag: %s\n" % e)
+```
+
+* Bearer (JWT) Authentication (BearerAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.ControlpanelApi(api_client)
+    key = 'new-dashboard-ui' # str | Feature flag key identifier
+
+    try:
+        # Delete feature flag
+        api_response = api_instance.delete_feature_flag(key)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling ControlpanelApi->delete_feature_flag: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **key** | **str**| Feature flag key identifier | 
+
+### Return type
+
+[**EmptyApiResponse**](EmptyApiResponse.md)
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Feature flag deleted successfully |  -  |
+**404** | Feature flag with the specified key was not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -858,6 +1107,122 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A list of contracts was loaded |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_all_feature_flags**
+> GetAllFeatureFlagsApiResponse get_all_feature_flags()
+
+Get all feature flags
+
+**🔒 INTERNAL:** Retrieves a list of all feature flags configured in the system.  Feature flags are used to control the availability of application features and can be managed through the control panel interface. 
+
+### Example
+
+* Basic Authentication (BasicAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.ControlpanelApi(api_client)
+    
+    try:
+        # Get all feature flags
+        api_response = api_instance.get_all_feature_flags()
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling ControlpanelApi->get_all_feature_flags: %s\n" % e)
+```
+
+* Bearer (JWT) Authentication (BearerAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.ControlpanelApi(api_client)
+    
+    try:
+        # Get all feature flags
+        api_response = api_instance.get_all_feature_flags()
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling ControlpanelApi->get_all_feature_flags: %s\n" % e)
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**GetAllFeatureFlagsApiResponse**](GetAllFeatureFlagsApiResponse.md)
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | List of all feature flags |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1219,6 +1584,128 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A list of users was loaded |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_feature_flag_by_key**
+> GetFeatureFlagByKeyApiResponse get_feature_flag_by_key(key)
+
+Get feature flag by key
+
+**🔒 INTERNAL:** Retrieves a specific feature flag by its key.  Returns the feature flag configuration including metadata such as creation and update timestamps. 
+
+### Example
+
+* Basic Authentication (BasicAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.ControlpanelApi(api_client)
+    key = 'new-dashboard-ui' # str | Feature flag key identifier
+
+    try:
+        # Get feature flag by key
+        api_response = api_instance.get_feature_flag_by_key(key)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling ControlpanelApi->get_feature_flag_by_key: %s\n" % e)
+```
+
+* Bearer (JWT) Authentication (BearerAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.ControlpanelApi(api_client)
+    key = 'new-dashboard-ui' # str | Feature flag key identifier
+
+    try:
+        # Get feature flag by key
+        api_response = api_instance.get_feature_flag_by_key(key)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling ControlpanelApi->get_feature_flag_by_key: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **key** | **str**| Feature flag key identifier | 
+
+### Return type
+
+[**GetFeatureFlagByKeyApiResponse**](GetFeatureFlagByKeyApiResponse.md)
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Feature flag details retrieved successfully |  -  |
+**404** | Feature flag with the specified key was not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1950,6 +2437,132 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | This is a generated entry and needs to be described. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_feature_flag**
+> UpdateFeatureFlagApiResponse update_feature_flag(key, com_patagona_pricemonitor_share_api_put_feature_flag_request)
+
+Update feature flag
+
+**🔒 INTERNAL:** Updates an existing feature flag's name and description.  The feature flag key cannot be changed after creation. Only the display name and description can be updated. 
+
+### Example
+
+* Basic Authentication (BasicAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.ControlpanelApi(api_client)
+    key = 'new-dashboard-ui' # str | Feature flag key identifier
+com_patagona_pricemonitor_share_api_put_feature_flag_request = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPutFeatureFlagRequest() # ComPatagonaPricemonitorShareApiPutFeatureFlagRequest | The feature flag updates to be applied
+
+    try:
+        # Update feature flag
+        api_response = api_instance.update_feature_flag(key, com_patagona_pricemonitor_share_api_put_feature_flag_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling ControlpanelApi->update_feature_flag: %s\n" % e)
+```
+
+* Bearer (JWT) Authentication (BearerAuth):
+```python
+from __future__ import print_function
+import time
+import pricemonitor_api_client
+from pricemonitor_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.patagona.de
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pricemonitor_api_client.Configuration(
+    host = "https://api.patagona.de"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: BasicAuth
+configuration = pricemonitor_api_client.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = pricemonitor_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with pricemonitor_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pricemonitor_api_client.ControlpanelApi(api_client)
+    key = 'new-dashboard-ui' # str | Feature flag key identifier
+com_patagona_pricemonitor_share_api_put_feature_flag_request = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPutFeatureFlagRequest() # ComPatagonaPricemonitorShareApiPutFeatureFlagRequest | The feature flag updates to be applied
+
+    try:
+        # Update feature flag
+        api_response = api_instance.update_feature_flag(key, com_patagona_pricemonitor_share_api_put_feature_flag_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling ControlpanelApi->update_feature_flag: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **key** | **str**| Feature flag key identifier | 
+ **com_patagona_pricemonitor_share_api_put_feature_flag_request** | [**ComPatagonaPricemonitorShareApiPutFeatureFlagRequest**](ComPatagonaPricemonitorShareApiPutFeatureFlagRequest.md)| The feature flag updates to be applied | 
+
+### Return type
+
+[**UpdateFeatureFlagApiResponse**](UpdateFeatureFlagApiResponse.md)
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Feature flag updated successfully |  -  |
+**400** | Request validation failed. Common reasons include: - Flag name is empty or too long - Description exceeds maximum length  |  -  |
+**404** | Feature flag with the specified key was not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
