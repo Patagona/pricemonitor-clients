@@ -18,7 +18,7 @@ info:
 
     All endpoints are authenticated using either Basic Authentication or JWT
     Bearer tokens.
-  version: 0.0.7207
+  version: 0.0.7210
   x-logo:
     url: >-
       https://www.omniaretail.com/hubfs/Omnia%20Logo%20SVG/Omnia_Retail_Full_Colour_Logo_On_White_RGB.svg
@@ -12537,22 +12537,19 @@ components:
     com.patagona.pricemonitor.share.api.GetFeatureFlagResponse:
       description: Response body for feature flag operations
       properties:
-        flagName:
+        flagKey:
           type: string
-        updatedAt:
-          type: string
-          format: date-time
         description:
           type: string
         createdAt:
           type: string
           format: date-time
-        flagKey:
+        updatedAt:
           type: string
+          format: date-time
       additionalProperties: false
       type: object
       required:
-        - flagName
         - flagKey
     com.patagona.pricemonitor.share.api.GetFeatureFlagsResponse:
       description: Response body for feature flags list operations
@@ -12581,15 +12578,12 @@ components:
       properties:
         flagKey:
           type: string
-        flagName:
-          type: string
         description:
           type: string
       additionalProperties: false
       type: object
       required:
         - flagKey
-        - flagName
     CreateFeatureFlagApiResponse:
       required:
         - data
@@ -12613,14 +12607,11 @@ components:
     com.patagona.pricemonitor.share.api.PutFeatureFlagRequest:
       description: Request body for updating an existing feature flag
       properties:
-        flagName:
-          type: string
         description:
           type: string
       additionalProperties: false
       type: object
-      required:
-        - flagName
+      required: []
     UpdateFeatureFlagApiResponse:
       required:
         - data
