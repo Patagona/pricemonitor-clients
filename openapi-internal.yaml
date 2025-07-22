@@ -18,7 +18,7 @@ info:
 
     All endpoints are authenticated using either Basic Authentication or JWT
     Bearer tokens.
-  version: 0.0.7210
+  version: 0.0.7212
   x-logo:
     url: >-
       https://www.omniaretail.com/hubfs/Omnia%20Logo%20SVG/Omnia_Retail_Full_Colour_Logo_On_White_RGB.svg
@@ -1859,7 +1859,7 @@ paths:
 
 
         Feature flags must have a unique key that follows the pattern
-        `[a-zA-Z0-9_-]+`
+        `[a-zA-Z0-9._-]+`
 
         and cannot exceed 128 characters in length.
       requestBody:
@@ -1885,7 +1885,7 @@ paths:
           description: >
             Request validation failed. Common reasons include:
 
-            - Invalid flag key format (must be alphanumeric, underscore, or
+            - Invalid flag key format (must be alphanumeric, dot, underscore, or
             dash)
 
             - Flag key already exists
@@ -1909,9 +1909,9 @@ paths:
         required: true
         schema:
           type: string
-          pattern: ^[a-zA-Z0-9_-]+$
+          pattern: ^[a-zA-Z0-9._-]+$
           maxLength: 128
-        example: new-dashboard-ui
+        example: api.v2.enabled
     get:
       operationId: getFeatureFlagByKey
       summary: Get feature flag by key
@@ -4374,6 +4374,12 @@ paths:
 
         - The endpoint is not idempotent, as submitting a decision changes the
         approval state.
+
+        - If a price overwrite happens, we recalculate the new position of the
+        offer with the new price in mind. We use the offers that were also used
+        during the original price calculation, the current offer filters, the
+        current vendor mappings, and the current product information for the
+        position calculation.
       requestBody:
         required: true
         description: |

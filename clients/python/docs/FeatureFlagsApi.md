@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 Create feature flag
 
-**🔒 INTERNAL:** Creates a new feature flag in the system.  Feature flags must have a unique key that follows the pattern `[a-zA-Z0-9_-]+` and cannot exceed 128 characters in length. 
+**🔒 INTERNAL:** Creates a new feature flag in the system.  Feature flags must have a unique key that follows the pattern `[a-zA-Z0-9._-]+` and cannot exceed 128 characters in length. 
 
 ### Example
 
@@ -129,7 +129,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Feature flag created successfully |  -  |
-**400** | Request validation failed. Common reasons include: - Invalid flag key format (must be alphanumeric, underscore, or dash) - Flag key already exists - Flag name is empty or too long - Description exceeds maximum length  |  -  |
+**400** | Request validation failed. Common reasons include: - Invalid flag key format (must be alphanumeric, dot, underscore, or dash) - Flag key already exists - Flag name is empty or too long - Description exceeds maximum length  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -175,7 +175,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.FeatureFlagsApi(api_client)
-    key = 'new-dashboard-ui' # str | Feature flag key identifier
+    key = 'api.v2.enabled' # str | Feature flag key identifier
 
     try:
         # Delete feature flag
@@ -218,7 +218,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.FeatureFlagsApi(api_client)
-    key = 'new-dashboard-ui' # str | Feature flag key identifier
+    key = 'api.v2.enabled' # str | Feature flag key identifier
 
     try:
         # Delete feature flag
@@ -413,7 +413,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.FeatureFlagsApi(api_client)
-    key = 'new-dashboard-ui' # str | Feature flag key identifier
+    key = 'api.v2.enabled' # str | Feature flag key identifier
 
     try:
         # Get feature flag by key
@@ -456,7 +456,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.FeatureFlagsApi(api_client)
-    key = 'new-dashboard-ui' # str | Feature flag key identifier
+    key = 'api.v2.enabled' # str | Feature flag key identifier
 
     try:
         # Get feature flag by key
@@ -535,7 +535,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.FeatureFlagsApi(api_client)
-    key = 'new-dashboard-ui' # str | Feature flag key identifier
+    key = 'api.v2.enabled' # str | Feature flag key identifier
 com_patagona_pricemonitor_share_api_put_feature_flag_request = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPutFeatureFlagRequest() # ComPatagonaPricemonitorShareApiPutFeatureFlagRequest | The feature flag updates to be applied
 
     try:
@@ -579,7 +579,7 @@ configuration = pricemonitor_api_client.Configuration(
 with pricemonitor_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pricemonitor_api_client.FeatureFlagsApi(api_client)
-    key = 'new-dashboard-ui' # str | Feature flag key identifier
+    key = 'api.v2.enabled' # str | Feature flag key identifier
 com_patagona_pricemonitor_share_api_put_feature_flag_request = pricemonitor_api_client.ComPatagonaPricemonitorShareApiPutFeatureFlagRequest() # ComPatagonaPricemonitorShareApiPutFeatureFlagRequest | The feature flag updates to be applied
 
     try:
