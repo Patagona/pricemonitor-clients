@@ -1,6 +1,6 @@
 # ComPatagonaPricemonitorShareApiPriceCalculationResultCompetitivePricingRecommendationResult
 
-A price recommendation has been calculated by competitive pricing.
+Competitive pricing has calculated a price recommendation.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

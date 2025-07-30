@@ -1,6 +1,6 @@
 # ComPatagonaPricemonitorShareApiPriceCalculationResultFormulaRecommendationResult
 
-A price recommendation has been calculated by a formula.
+A formula has calculated a price recommendation.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **unit_price_recommendation** | **float** | The calculated price recommendation. | 
 **formula** | **str** | The unevaluated formula. | 
 **max_price_boundary** | [**ComPatagonaPricemonitorShareApiPriceBoundaryDetails**](ComPatagonaPricemonitorShareApiPriceBoundaryDetails.md) |  | 
+**unrestricted_unit_price** | **float** | The original unit price recommendation before applying any price boundary restrictions. | 
 **node_id** | **int** | The ID of the node which calculated the price. | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
