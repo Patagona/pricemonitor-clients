@@ -18,7 +18,7 @@ info:
 
     All endpoints are authenticated using either Basic Authentication or JWT
     Bearer tokens.
-  version: 0.0.7224
+  version: 0.0.7225
   x-logo:
     url: >-
       https://www.omniaretail.com/hubfs/Omnia%20Logo%20SVG/Omnia_Retail_Full_Colour_Logo_On_White_RGB.svg
@@ -12758,26 +12758,6 @@ components:
         - itemId
         - unitPrice
         - quantity
-    com.patagona.pricemonitor.share.api.CustomerOrderProductMappingV2:
-      description: >-
-        We originally planned to support complex mappings, but for sake of
-        maintainability we restrict the mappings to itemId-> (customerProductId
-        or productId)
-      properties:
-        source:
-          type: string
-          description: Identifier field within item. Only valid value is 'itemId'
-        target:
-          type: string
-          description: >-
-            Must be 'customerProductId' or 'productId' since plugins are still
-            publishing both values. The semantics are actually the same. In both
-            cases they address the customerProductId.
-      additionalProperties: false
-      type: object
-      required:
-        - source
-        - target
     com.patagona.pricemonitor.share.api.CustomerOrderV2:
       description: An order placed in a shop.
       properties:
@@ -12801,8 +12781,21 @@ components:
         productMappings:
           type: array
           items:
-            $ref: >-
-              #/components/schemas/com.patagona.pricemonitor.share.api.CustomerOrderProductMappingV2
+            type: object
+            additionalProperties: false
+            properties:
+              source:
+                type: string
+                description: Identifier field within item. Only valid value is 'itemId'
+              target:
+                type: string
+                description: >-
+                  Must be 'customerProductId' or 'productId' since plugins are
+                  still publishing both values. The semantics are actually the
+                  same. In both cases they address the customerProductId.
+            required:
+              - source
+              - target
           description: >-
             A relation from the products in your system to the pricemonitor.
             Currently it must contain exactly one element.
@@ -13076,6 +13069,21 @@ components:
       type: object
       required:
         - taskType
+    com.patagona.pricemonitor.share.api.ContractFeatures:
+      properties:
+        disabled:
+          type: array
+          items:
+            type: string
+        enabled:
+          type: array
+          items:
+            type: string
+      additionalProperties: false
+      type: object
+      required:
+        - disabled
+        - enabled
     com.patagona.pricemonitor.share.api.UserContract:
       description: >-
         This case class is used for serializing contract-information for the
@@ -13085,21 +13093,9 @@ components:
           type: string
           description: The contract's name
         features:
+          $ref: >-
+            #/components/schemas/com.patagona.pricemonitor.share.api.ContractFeatures
           description: The contract features
-          properties:
-            disabled:
-              type: array
-              items:
-                type: string
-            enabled:
-              type: array
-              items:
-                type: string
-          additionalProperties: false
-          type: object
-          required:
-            - disabled
-            - enabled
         id:
           type: number
           description: The contract's id
@@ -13462,28 +13458,6 @@ components:
       required:
         - start
         - limit
-    com.patagona.pricemonitor.share.api.ZonedTimeRange:
-      description: >-
-        Represents a time range. It's required that the end timestamp is after
-        or equals the start timestamp.
-      properties:
-        start:
-          type: string
-          format: date-time
-          description: >-
-            The starting point of the time range, represented as a timestamp in
-            ISO 8601 format (e.g., "2023-10-19T13:45:30Z") in UTC.
-        end:
-          type: string
-          format: date-time
-          description: >-
-            The ending point of the time range, represented as a timestamp in
-            ISO 8601 format (e.g., "2023-10-19T14:45:30Z") in UTC.
-      additionalProperties: false
-      type: object
-      required:
-        - start
-        - end
     com.patagona.pricemonitor.share.api.ProductIdQuery:
       description: >-
         This product query evaluates to 'true' if the value of the 'field' is
@@ -13537,12 +13511,28 @@ components:
             number of records to fetch (limit). At maximum it's allowed to query
             10,000 records.
         range:
-          $ref: >-
-            #/components/schemas/com.patagona.pricemonitor.share.api.ZonedTimeRange
           description: >-
             Defines the time range for which offer statistics are queried. Note:
             The maximum time span between the start and end should not exceed 48
             hours.
+          properties:
+            start:
+              type: string
+              format: date-time
+              description: >-
+                The starting point of the time range, represented as a timestamp
+                in ISO 8601 format (e.g., "2023-10-19T13:45:30Z") in UTC.
+            end:
+              type: string
+              format: date-time
+              description: >-
+                The ending point of the time range, represented as a timestamp
+                in ISO 8601 format (e.g., "2023-10-19T14:45:30Z") in UTC.
+          additionalProperties: false
+          type: object
+          required:
+            - start
+            - end
         filter:
           $ref: >-
             #/components/schemas/com.patagona.pricemonitor.share.api.OneOfProductsQuery
@@ -13948,6 +13938,28 @@ components:
       properties:
         data:
           $ref: '#/components/schemas/DeletedItemsResponse'
+    com.patagona.pricemonitor.share.api.ZonedTimeRange:
+      description: >-
+        Represents a time range. It's required that the end timestamp is after
+        or equals the start timestamp.
+      properties:
+        start:
+          type: string
+          format: date-time
+          description: >-
+            The starting point of the time range, represented as a timestamp in
+            ISO 8601 format (e.g., "2023-10-19T13:45:30Z") in UTC.
+        end:
+          type: string
+          format: date-time
+          description: >-
+            The ending point of the time range, represented as a timestamp in
+            ISO 8601 format (e.g., "2023-10-19T14:45:30Z") in UTC.
+      additionalProperties: false
+      type: object
+      required:
+        - start
+        - end
     com.patagona.pricemonitor.share.api.PostOrderStatisticsRequestV3:
       description: >-
         Represents a paginated query with an optional product filter and a
@@ -13964,28 +13976,12 @@ components:
             number of records to fetch (limit). At maximum it's allowed to query
             10,000 records.
         range:
+          $ref: >-
+            #/components/schemas/com.patagona.pricemonitor.share.api.ZonedTimeRange
           description: >-
             Defines the time range for which order statistics are queried. Note:
             The maximum time span between the start and end should not exceed 30
             days.
-          properties:
-            start:
-              type: string
-              format: date-time
-              description: >-
-                The starting point of the time range, represented as a timestamp
-                in ISO 8601 format (e.g., "2023-10-19T13:45:30Z") in UTC.
-            end:
-              type: string
-              format: date-time
-              description: >-
-                The ending point of the time range, represented as a timestamp
-                in ISO 8601 format (e.g., "2023-10-19T14:45:30Z") in UTC.
-          additionalProperties: false
-          type: object
-          required:
-            - start
-            - end
         filter:
           $ref: >-
             #/components/schemas/com.patagona.pricemonitor.share.api.OneOfProductsQuery
@@ -14409,9 +14405,21 @@ components:
         priceSteps:
           type: array
           items:
-            type: number
+            type: string
+          description: >-
+            List of values to round against. They are in unit's of cent (100th
+            of the base currency). They are defined as strings and may contain
+            leading zeroes to indicate allowed increments. For example:<br>
+                               - ["5"] allows prices of 0.05€, 0.15€, 0.25€, 0.35€, ... (increments of 10 cents)<br>
+                               - ["05"] allows prices of 0.05€, 1.05€, 2.05€, 3.05€ ... (increments of 100 cents)<br>
+                               - ["00", "50"] allows prices of 0.50€, 1.00€, 1.50€, 2.00€
         stepSelection:
           type: string
+          description: >-
+            Defines how to select the price step to round to. Allowed values
+            are:
+
+            `nextLower`, `nextHigher` and `closest`
         minPriceBoundary:
           $ref: >-
             #/components/schemas/com.patagona.pricemonitor.share.api.PriceBoundaryDetails
@@ -14426,6 +14434,12 @@ components:
             #/components/schemas/com.patagona.pricemonitor.share.api.PriceBoundaryDetails
         adjustToNextReachablePriceStep:
           type: boolean
+          description: >-
+            Implements the behavior that happens when the original price
+            calculation is in the min-/max price
+             boundary and the rounding would cause it to violate the price boundary. If set to true, the price
+             step will be adjusted to the next reachable price step. Defaults to false, in which case the
+             original price recommendation will be used as the fallback.
         nodeId:
           type: number
           description: The ID of the node which calculated the price.
@@ -14869,21 +14883,6 @@ components:
         - id
         - name
         - contracts
-    com.patagona.pricemonitor.share.api.ContractFeatures:
-      properties:
-        disabled:
-          type: array
-          items:
-            type: string
-        enabled:
-          type: array
-          items:
-            type: string
-      additionalProperties: false
-      type: object
-      required:
-        - disabled
-        - enabled
     com.patagona.pricemonitor.share.api.GetContractSettingsResponseV1:
       properties:
         name:

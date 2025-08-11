@@ -1,6 +1,6 @@
-# ComPatagonaPricemonitorShareApiPostOrderStatisticsRequestV3Range
+# ComPatagonaPricemonitorShareApiPostOfferStatisticsRequestV31Range
 
-Defines the time range for which order statistics are queried. Note: The maximum time span between the start and end should not exceed 30 days.
+Defines the time range for which offer statistics are queried. Note: The maximum time span between the start and end should not exceed 48 hours.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

@@ -5,7 +5,7 @@ This case class is used for serializing contract-information for the account-end
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** | The contract&#39;s name | 
-**features** | [**ComPatagonaPricemonitorShareApiUserContractFeatures**](ComPatagonaPricemonitorShareApiUserContractFeatures.md) |  | 
+**features** | [**ComPatagonaPricemonitorShareApiContractFeatures**](ComPatagonaPricemonitorShareApiContractFeatures.md) |  | 
 **id** | **float** | The contract&#39;s id | 
 **type** | **str** |  | 
 **sid** | **str** | The contract&#39;s string-id | 
