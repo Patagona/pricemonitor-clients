@@ -18,7 +18,7 @@ info:
 
     All endpoints are authenticated using either Basic Authentication or JWT
     Bearer tokens.
-  version: 0.0.7228
+  version: 0.0.7234
   x-logo:
     url: >-
       https://www.omniaretail.com/hubfs/Omnia%20Logo%20SVG/Omnia_Retail_Full_Colour_Logo_On_White_RGB.svg
@@ -1680,15 +1680,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetAllDomainsV3ApiResponse'
-              example:
-                data:
-                  - domain: amazon.de
-                    offerSources:
-                      - DEFAULT_MONITORING
-                      - PUSH_API
-                  - domain: ebay.de
-                    offerSources:
-                      - DEFAULT_MONITORING
           description: List of all supported domains with their configurations
       description: >
         Retrieves all domains supported by the system for market data
@@ -2506,13 +2497,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PostOrdersBulkApiResponse'
-              example:
-                data:
-                  successful: 150
-                  failed: 2
-                  errors:
-                    - orderId: '12345'
-                      error: Invalid product ID
           description: Orders processed successfully (may include partial failures)
         '400':
           content:
@@ -2821,34 +2805,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetPriceRecommendationApiResponse'
-              example:
-                data:
-                  recommendations:
-                    - productId: PROD-001
-                      gtin: 1234567890123
-                      customerProductId: CUST-PROD-001
-                      currency: EUR
-                      price: 27.99
-                      deliveryCosts: 4.99
-                      timestamp: '2024-01-15T14:30:00Z'
-                      tags: []
-                      originalTags: []
-                      relevantDomain: amazon.de
-                      oldPrice: 29.99
-                      oldDeliveryCosts: 4.99
-                      relativePriceChangePercentage: 93.33
-                      oldPosition: 5
-                      newPosition: 3
-                      originalMinPriceBoundary: 20
-                      originalMaxPriceBoundary: 50
-                      decisiveStrategyTreeLeafNodeId: 123
-                      decisiveStrategyBranchName: CompetitorPricing
-                  pagination:
-                    nextUrl: >-
-                      https://api.patagona.de/api/2/v/contracts/CONTRACT-123/result/pricerecommendations?startTime=2024-01-15T00:00:00Z&endTime=2024-01-16T23:59:59Z&start=100&limit=100&includeTags=true
-                    totalSize: 1250
-                    start: 0
-                    limit: 100
           description: >
             Paginated list of price recommendations for the specified time
             range.
@@ -9833,7 +9789,7 @@ paths:
     parameters:
       - $ref: '#/components/parameters/contractIdParam'
     post:
-      operationId: postEmbedSSOUrlVendor
+      operationId: postEmbedSSOUrlVendorForContracts
       summary: Retrieve Looker embed SSO url [vendor]
       description: >-
         Returns a signed Looker SSO URL for embedding a dashboard for a
@@ -9877,6 +9833,84 @@ paths:
       description: >-
         Returns a signed Looker SSO URL for embedding a dashboard for a
         contract. The target dashboard must be whitelisted.
+      tags:
+        - internal
+        - looker
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmbedSSOUrlResponseV3ApiResponse'
+          description: Signed Looker SSO embed URL.
+        '400':
+          description: |
+            - Invalid Looker URL
+            - Dashboard ID is not allowed
+            - Looker API returns client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: >-
+                #/components/schemas/com.patagona.pricemonitor.share.api.PostEmbedSSOUrlRequestV3
+        description: Payload for retrieving a signed embed SSO url using Looker API.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
+  /api/v3/vendor/companies/{companyId}/looker/sso/embed/url:
+    x-audience: Internal
+    parameters:
+      - $ref: '#/components/parameters/companyIdParam'
+    post:
+      operationId: postEmbedSSOUrlVendorForCompanies
+      summary: Retrieve Looker embed SSO url for company dashboards [vendor]
+      description: >-
+        Returns a signed Looker SSO URL for embedding a dashboard for a company.
+        The target dashboard must be whitelisted.
+      tags:
+        - internal
+        - looker
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmbedSSOUrlResponseV3ApiResponse'
+          description: Signed Looker SSO embed URL.
+        '400':
+          description: |
+            - Invalid Looker URL
+            - Dashboard ID is not allowed
+            - Looker API returns client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: >-
+                #/components/schemas/com.patagona.pricemonitor.share.api.PostEmbedSSOUrlRequestV3
+        description: Payload for retrieving a signed embed SSO url using Looker API.
+      security:
+        - BasicAuth: []
+        - BearerAuth: []
+  /api/v3/manufacturer/companies/{companyId}/looker/sso/embed/url:
+    x-audience: Internal
+    parameters:
+      - $ref: '#/components/parameters/companyIdParam'
+    post:
+      operationId: postEmbedSSOUrlManufacturerForCompanies
+      summary: Retrieve Looker embed SSO url for company dashboards [manufacturer]
+      description: >-
+        Returns a signed Looker SSO URL for embedding a dashboard for a company.
+        The target dashboard must be whitelisted.
       tags:
         - internal
         - looker
