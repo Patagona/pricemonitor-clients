@@ -18,7 +18,7 @@ info:
 
     All endpoints are authenticated using either Basic Authentication or JWT
     Bearer tokens.
-  version: 0.0.7236
+  version: 0.0.7237
   x-logo:
     url: >-
       https://www.omniaretail.com/hubfs/Omnia%20Logo%20SVG/Omnia_Retail_Full_Colour_Logo_On_White_RGB.svg
@@ -1680,6 +1680,15 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetAllDomainsV3ApiResponse'
+              example:
+                data:
+                  domains:
+                    - domain: amazon.de
+                      domainId: 1
+                      offerSources:
+                        - DEFAULT_MONITORING
+                        - PUSH_API
+                      name: Amazon Deutschland
           description: List of all supported domains with their configurations
       description: >
         Retrieves all domains supported by the system for market data
@@ -2497,6 +2506,27 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PostOrdersBulkApiResponse'
+              example:
+                data:
+                  - data:
+                      orders:
+                        - orderId: '12345'
+                          shippingCosts: 4.99
+                          origin: amazon.de
+                          creationDate: '2024-06-10T12:34:56Z'
+                          items:
+                            - itemId: item-1
+                              unitPrice: 19.99
+                              quantity: 2
+                              taxPercentage: 19
+                          productMappings:
+                            - source: itemId
+                              target: customerProductId
+                          totalPrice: 44.97
+                          currency: EUR
+                          referrer: google
+                      version: v2
+                    errors: []
           description: Orders processed successfully (may include partial failures)
         '400':
           content:
@@ -2805,6 +2835,33 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetPriceRecommendationApiResponse'
+              example:
+                data:
+                  - productId: PROD-001
+                    gtin: 1234567890123
+                    customerProductId: CUST-PROD-001
+                    currency: EUR
+                    price: 27.99
+                    deliveryCosts: 4.99
+                    timestamp: '2024-01-15T14:30:00Z'
+                    tags: []
+                    originalTags: []
+                    relevantDomain: amazon.de
+                    oldPrice: 29.99
+                    oldDeliveryCosts: 4.99
+                    relativePriceChangePercentage: 93.33
+                    oldPosition: 5
+                    newPosition: 3
+                    originalMinPriceBoundary: 20
+                    originalMaxPriceBoundary: 50
+                    decisiveStrategyTreeLeafNodeId: 123
+                    decisiveStrategyBranchName: CompetitorPricing
+                meta:
+                  nextUrl: >-
+                    https://api.patagona.de/api/2/v/contracts/CONTRACT-123/result/pricerecommendations?startTime=2024-01-15T00:00:00Z&endTime=2024-01-16T23:59:59Z&start=100&limit=100&includeTags=true
+                  totalSize: 1250
+                  start: 0
+                  limit: 100
           description: >
             Paginated list of price recommendations for the specified time
             range.
