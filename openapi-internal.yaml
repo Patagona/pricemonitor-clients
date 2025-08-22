@@ -18,7 +18,7 @@ info:
 
     All endpoints are authenticated using either Basic Authentication or JWT
     Bearer tokens.
-  version: 0.0.7249
+  version: 0.0.7250
   x-logo:
     url: >-
       https://www.omniaretail.com/hubfs/Omnia%20Logo%20SVG/Omnia_Retail_Full_Colour_Logo_On_White_RGB.svg
@@ -14582,6 +14582,12 @@ components:
             The decisive path in the strategy tree:<br> From root node down to
             the node which calculated the price (shortest path). Can be empty
             when no price has been calculated or the price calculation fails.
+        originalTags:
+          type: array
+          items:
+            $ref: >-
+              #/components/schemas/com.patagona.pricemonitor.share.api.ExtendedTag
+          description: All product tags that are considered for the price calculation.
         fullPath:
           type: array
           items:
@@ -14593,6 +14599,7 @@ components:
         - decisivePath
         - productId
         - fullPath
+        - originalTags
         - result
         - originalOffers
     com.patagona.pricemonitor.share.api.PriceSimulationBulkResponseV3:
