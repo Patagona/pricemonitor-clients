@@ -65,8 +65,8 @@ model/pricemonitorCreateContractRequest.ts
 model/pricemonitorCreateTaskBodyV2.ts
 model/pricemonitorCustomerContractSettings.ts
 model/pricemonitorCustomerOrderItemV2.ts
+model/pricemonitorCustomerOrderProductMappingV2.ts
 model/pricemonitorCustomerOrderV2.ts
-model/pricemonitorCustomerOrderV2ProductMappingsInner.ts
 model/pricemonitorCustomerOrderV3.ts
 model/pricemonitorDeleteByNumericIdApiResponse.ts
 model/pricemonitorDeleteOrderQueryV3.ts
@@ -115,7 +115,6 @@ model/pricemonitorPostFeatureFlagRequest.ts
 model/pricemonitorPostMonitoringScheduleRequestV3.ts
 model/pricemonitorPostNewPasswordRequest.ts
 model/pricemonitorPostOfferStatisticsRequestV31.ts
-model/pricemonitorPostOfferStatisticsRequestV31Range.ts
 model/pricemonitorPostOfferStatisticsResponseV31.ts
 model/pricemonitorPostOrderStatisticsRequestV3.ts
 model/pricemonitorPostOrderStatisticsResponseV3.ts

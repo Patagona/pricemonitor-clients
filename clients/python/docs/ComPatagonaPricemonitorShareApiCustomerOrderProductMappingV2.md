@@ -1,5 +1,6 @@
-# ComPatagonaPricemonitorShareApiCustomerOrderV2ProductMappings
+# ComPatagonaPricemonitorShareApiCustomerOrderProductMappingV2
 
+We originally planned to support complex mappings, but for sake of maintainability we restrict the mappings to itemId-> (customerProductId or productId)
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

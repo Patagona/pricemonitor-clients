@@ -18,7 +18,7 @@ info:
 
     All endpoints are authenticated using either Basic Authentication or JWT
     Bearer tokens.
-  version: 0.0.7254
+  version: 0.0.7256
   x-logo:
     url: >-
       https://www.omniaretail.com/hubfs/Omnia%20Logo%20SVG/Omnia_Retail_Full_Colour_Logo_On_White_RGB.svg
@@ -12849,6 +12849,26 @@ components:
         - itemId
         - unitPrice
         - quantity
+    com.patagona.pricemonitor.share.api.CustomerOrderProductMappingV2:
+      description: >-
+        We originally planned to support complex mappings, but for sake of
+        maintainability we restrict the mappings to itemId-> (customerProductId
+        or productId)
+      properties:
+        source:
+          type: string
+          description: Identifier field within item. Only valid value is 'itemId'
+        target:
+          type: string
+          description: >-
+            Must be 'customerProductId' or 'productId' since plugins are still
+            publishing both values. The semantics are actually the same. In both
+            cases they address the customerProductId.
+      additionalProperties: false
+      type: object
+      required:
+        - source
+        - target
     com.patagona.pricemonitor.share.api.CustomerOrderV2:
       description: An order placed in a shop.
       properties:
@@ -12872,21 +12892,8 @@ components:
         productMappings:
           type: array
           items:
-            type: object
-            additionalProperties: false
-            properties:
-              source:
-                type: string
-                description: Identifier field within item. Only valid value is 'itemId'
-              target:
-                type: string
-                description: >-
-                  Must be 'customerProductId' or 'productId' since plugins are
-                  still publishing both values. The semantics are actually the
-                  same. In both cases they address the customerProductId.
-            required:
-              - source
-              - target
+            $ref: >-
+              #/components/schemas/com.patagona.pricemonitor.share.api.CustomerOrderProductMappingV2
           description: >-
             A relation from the products in your system to the pricemonitor.
             Currently it must contain exactly one element.
@@ -13549,6 +13556,28 @@ components:
       required:
         - start
         - limit
+    com.patagona.pricemonitor.share.api.ZonedTimeRange:
+      description: >-
+        Represents a time range. It's required that the end timestamp is after
+        or equals the start timestamp.
+      properties:
+        start:
+          type: string
+          format: date-time
+          description: >-
+            The starting point of the time range, represented as a timestamp in
+            ISO 8601 format (e.g., "2023-10-19T13:45:30Z") in UTC.
+        end:
+          type: string
+          format: date-time
+          description: >-
+            The ending point of the time range, represented as a timestamp in
+            ISO 8601 format (e.g., "2023-10-19T14:45:30Z") in UTC.
+      additionalProperties: false
+      type: object
+      required:
+        - start
+        - end
     com.patagona.pricemonitor.share.api.ProductIdQuery:
       description: >-
         This product query evaluates to 'true' if the value of the 'field' is
@@ -13602,28 +13631,12 @@ components:
             number of records to fetch (limit). At maximum it's allowed to query
             10,000 records.
         range:
+          $ref: >-
+            #/components/schemas/com.patagona.pricemonitor.share.api.ZonedTimeRange
           description: >-
             Defines the time range for which offer statistics are queried. Note:
             The maximum time span between the start and end should not exceed 48
             hours.
-          properties:
-            start:
-              type: string
-              format: date-time
-              description: >-
-                The starting point of the time range, represented as a timestamp
-                in ISO 8601 format (e.g., "2023-10-19T13:45:30Z") in UTC.
-            end:
-              type: string
-              format: date-time
-              description: >-
-                The ending point of the time range, represented as a timestamp
-                in ISO 8601 format (e.g., "2023-10-19T14:45:30Z") in UTC.
-          additionalProperties: false
-          type: object
-          required:
-            - start
-            - end
         filter:
           $ref: >-
             #/components/schemas/com.patagona.pricemonitor.share.api.OneOfProductsQuery
@@ -14029,28 +14042,6 @@ components:
       properties:
         data:
           $ref: '#/components/schemas/DeletedItemsResponse'
-    com.patagona.pricemonitor.share.api.ZonedTimeRange:
-      description: >-
-        Represents a time range. It's required that the end timestamp is after
-        or equals the start timestamp.
-      properties:
-        start:
-          type: string
-          format: date-time
-          description: >-
-            The starting point of the time range, represented as a timestamp in
-            ISO 8601 format (e.g., "2023-10-19T13:45:30Z") in UTC.
-        end:
-          type: string
-          format: date-time
-          description: >-
-            The ending point of the time range, represented as a timestamp in
-            ISO 8601 format (e.g., "2023-10-19T14:45:30Z") in UTC.
-      additionalProperties: false
-      type: object
-      required:
-        - start
-        - end
     com.patagona.pricemonitor.share.api.PostOrderStatisticsRequestV3:
       description: >-
         Represents a paginated query with an optional product filter and a
