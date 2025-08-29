@@ -138,6 +138,7 @@ export * from './pricemonitorResellerSummaryByDomain';
 export * from './pricemonitorRoundingPriceRecommendationResult';
 export * from './pricemonitorScenarioStrategyMetadataResponse';
 export * from './pricemonitorShopV3';
+export * from './pricemonitorSqlApiPriceRecommendation';
 export * from './pricemonitorStrategyMetadataResponseV3';
 export * from './pricemonitorTag';
 export * from './pricemonitorTagFilteredVendorsRequest';

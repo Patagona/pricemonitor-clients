@@ -172,6 +172,7 @@ model/pricemonitorResellerSummaryByDomain.ts
 model/pricemonitorRoundingPriceRecommendationResult.ts
 model/pricemonitorScenarioStrategyMetadataResponse.ts
 model/pricemonitorShopV3.ts
+model/pricemonitorSqlApiPriceRecommendation.ts
 model/pricemonitorStrategyMetadataResponseV3.ts
 model/pricemonitorTag.ts
 model/pricemonitorTagFilteredVendorsRequest.ts

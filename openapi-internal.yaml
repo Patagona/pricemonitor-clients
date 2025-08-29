@@ -18,7 +18,7 @@ info:
 
     All endpoints are authenticated using either Basic Authentication or JWT
     Bearer tokens.
-  version: 0.0.7258
+  version: 0.0.7262
   x-logo:
     url: >-
       https://www.omniaretail.com/hubfs/Omnia%20Logo%20SVG/Omnia_Retail_Full_Colour_Logo_On_White_RGB.svg
@@ -14766,6 +14766,108 @@ components:
         - decision
         - userId
         - userEmail
+    com.patagona.pricemonitor.share.api.SqlApiPriceRecommendation:
+      description: Represents a price recommendation of the pricemonitor.
+      properties:
+        oldPrice:
+          type: number
+          description: >-
+            The price of the cheapest offer of the own shop(s) on the relevant
+            domain
+        deliveryCosts:
+          type: number
+          description: The delivery costs which were considered for the recommended price
+        timestamp:
+          type: string
+          format: date-time
+          description: The timestamp when the price recommendation has been calculated
+        offerCreationTimeRange:
+          $ref: >-
+            #/components/schemas/com.patagona.pricemonitor.share.api.OffsetTimeRange
+          description: >-
+            The time range of all valid offers that were considered for the
+            calculation of the price recommendation.
+        oldDeliveryCosts:
+          type: number
+          description: The delivery costs corresponding to `oldPrice`
+        tags:
+          type: array
+          items:
+            $ref: >-
+              #/components/schemas/com.patagona.pricemonitor.share.api.ExtendedTag
+          description: Additional information on this product
+        price:
+          type: number
+          description: The recommended price of the relevant domain
+        oldPosition:
+          type: integer
+          description: The old position on the relevant domain
+        gtin:
+          type: number
+          description: GTIN of the product
+        relativePriceChangePercentage:
+          type: number
+          description: >-
+            Absolute percentage how the recommended price changed compared to
+            the `oldPrice` e.g. 200 stands for 200% which means the recommended
+            price has doubled
+        newPosition:
+          type: integer
+          description: The new position on the relevant domain
+        decisiveStrategyBranchName:
+          type: string
+          description: >-
+            The strategy branch name that calculated the price. This is only
+            filled if the Strategy branch that calculated the price was given a
+            name in the strategy tree. It will have the name that was active at
+            the time the price was calculated (see timestamp)
+        customerProductId:
+          type: string
+          description: The customer's id of the product
+        originalMaxPriceBoundary:
+          type: number
+          description: Max price boundary during the time when the price was calculated
+        relevantDomain:
+          type: string
+          description: >-
+            The decisive domain of the price recommendation. It's been
+            determined by the cheapest price recommendation.
+        originalMinPriceBoundary:
+          type: number
+          description: Min price boundary during the time when the price was calculated
+        currency:
+          type: string
+          description: The currency of the price recommendation.
+        productId:
+          type: string
+          description: The internal product id of the pricemonitor
+        originalTags:
+          type: array
+          items:
+            $ref: >-
+              #/components/schemas/com.patagona.pricemonitor.share.api.ExtendedTag
+          description: >-
+            List of tags which were set during the time when the price has been
+            calculated. ATTENTION: These are historic tags which are maybe
+            outdated or incomplete.
+        decisiveStrategyTreeLeafNodeId:
+          type: integer
+          description: >-
+            The leaf node of the strategy branch that calculated the price. This
+            id references the node in the strategy branch that was active at the
+            time the price was calculated (see timestamp)
+      additionalProperties: false
+      type: object
+      required:
+        - tags
+        - productId
+        - price
+        - timestamp
+        - originalMinPriceBoundary
+        - originalTags
+        - originalMaxPriceBoundary
+        - decisiveStrategyTreeLeafNodeId
+        - currency
     com.patagona.pricemonitor.share.api.PriceRecommendationsApprovalQueryResponseV3:
       description: >-
         Represents the approval details for a price recommendation for a
@@ -14790,7 +14892,7 @@ components:
             1).
         priceRecommendation:
           $ref: >-
-            #/components/schemas/com.patagona.pricemonitor.share.api.ApiPriceRecommendation
+            #/components/schemas/com.patagona.pricemonitor.share.api.SqlApiPriceRecommendation
           description: The associated price recommendation.
         status:
           type: string
