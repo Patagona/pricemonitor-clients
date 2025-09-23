@@ -18,7 +18,7 @@ info:
 
     All endpoints are authenticated using either Basic Authentication or JWT
     Bearer tokens.
-  version: 0.0.7282
+  version: 0.0.7283
   x-logo:
     url: >-
       https://www.omniaretail.com/hubfs/Omnia%20Logo%20SVG/Omnia_Retail_Full_Colour_Logo_On_White_RGB.svg
@@ -3053,14 +3053,40 @@ paths:
       x-audience: Internal
       operationId: updateTaskVendorV2
       summary: Update a task
-      description: Update the task with the specified id for the given contract.
+      description: >
+        Replaces the stored task document with the payload provided in the
+        request body.
+
+
+        The payload must contain the full task representation — including
+        `contractId` and `taskId` —
+
+        and these identifiers must match the values supplied in the path
+        parameters. Only existing
+
+        tasks can be updated; the operation fails if the task cannot be found.
       responses:
         '200':
           content:
             application/json:
               schema:
-                type: object
-          description: This is a generated entry and needs to be described.
+                $ref: '#/components/schemas/UpdateTaskRequestV2'
+          description: >-
+            Task was updated successfully and the persisted task document is
+            returned.
+        '400':
+          description: >-
+            The task payload is invalid or contains identifiers that do not
+            match the path parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+            text/plain:
+              schema:
+                type: string
+        '404':
+          description: No task with the supplied `contractId` and `taskId` exists.
       tags:
         - internal
         - undocumented
@@ -3069,8 +3095,9 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-        description: This is a generated entry and needs to be described.
+              $ref: '#/components/schemas/UpdateTaskRequestV2'
+        description: Complete task document that should replace the existing stored task.
+        required: true
       security:
         - BasicAuth: []
         - BearerAuth: []
@@ -6215,7 +6242,17 @@ paths:
     put:
       operationId: updateTaskManufacturerV2
       summary: Update task [manufacturer]
-      description: Update an existing task.
+      description: >
+        Replaces the stored task document for the manufacturer contract.
+
+
+        Provide the complete task payload, including `contractId` and `taskId`.
+        Both identifiers must
+
+        match the values supplied in the request path, otherwise the update is
+        rejected. The task must
+
+        already exist.
       tags:
         - internal
       responses:
@@ -6223,14 +6260,30 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericTask'
-          description: The task was successfully updated and the given data is returned
+                $ref: '#/components/schemas/UpdateTaskRequestV2'
+          description: >-
+            The task was successfully updated and the stored task document is
+            returned.
+        '400':
+          description: >-
+            The task payload is invalid or the payload identifiers do not match
+            the path parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+            text/plain:
+              schema:
+                type: string
+        '404':
+          description: No task with the supplied `contractId` and `taskId` exists.
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/UpdateTaskRequestV2'
-        description: The new task object to be written to the database
+        description: Complete task document that should replace the existing stored task.
+        required: true
       security:
         - BasicAuth: []
         - BearerAuth: []
@@ -12103,21 +12156,21 @@ components:
       type: object
     GenericTask:
       description: >-
-        A basic task type. Additional fields can be contained depending on
-        specific task type.
+        A basic task type that represents the stored task document. Additional
+        fields can be contained depending on specific task type.
       properties:
         creationDate:
           type: string
           format: date-time
-          description: The creation date of this task
+          description: ISO 8601 timestamp (UTC) when the task was created.
         startDate:
           type: string
           format: date-time
-          description: The timestamp of when processing of this task was started
+          description: ISO 8601 timestamp (UTC) when processing of this task started.
         finishDate:
           type: string
           format: date-time
-          description: The timestamp of when processing of this task finished
+          description: ISO 8601 timestamp (UTC) when processing of this task finished.
         state:
           type: string
           enum:
@@ -12132,7 +12185,8 @@ components:
             type: object
           description: >-
             Schemaless. If any errors occured during processing, these will be
-            contained here.
+            contained here. Only store a preview (up to 1,000 entries) to
+            prevent overloading the database.
         taskId:
           type: string
           description: The unique ID of this task
@@ -12151,7 +12205,8 @@ components:
           type: object
           description: >-
             Schemaless. Contains the processing result for this task. Type is
-            dependent on task type.
+            dependent on task type. Avoid persisting excessively large results;
+            prefer concise summaries.
         failureCode:
           type: string
           description: >-
@@ -12176,13 +12231,18 @@ components:
           required:
             - url
     UpdateTaskRequestV2:
+      description: >-
+        Full task document used by the update endpoints. Include the identifiers
+        matching the request path.
       allOf:
         - $ref: '#/components/schemas/GenericTask'
         - type: object
           properties:
             contractId:
               type: string
-              description: The contract SID to update the task for
+              description: >-
+                The contract SID to update the task for; must match the
+                `contractId` path parameter.
           required:
             - contractId
     NewUser:

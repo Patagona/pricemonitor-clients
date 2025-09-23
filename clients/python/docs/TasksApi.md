@@ -1043,11 +1043,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_task_vendor_v2**
-> object update_task_vendor_v2(contract_id, task_id, body=body)
+> UpdateTaskRequestV2 update_task_vendor_v2(contract_id, task_id, update_task_request_v2)
 
 Update a task
 
-Update the task with the specified id for the given contract.
+Replaces the stored task document with the payload provided in the request body.  The payload must contain the full task representation — including `contractId` and `taskId` — and these identifiers must match the values supplied in the path parameters. Only existing tasks can be updated; the operation fails if the task cannot be found. 
 
 ### Example
 
@@ -1086,11 +1086,11 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     api_instance = pricemonitor_api_client.TasksApi(api_client)
     contract_id = 'qbcxvb' # str | Unique identifier of the contract
 task_id = 'task_id_example' # str | 
-body = None # object | This is a generated entry and needs to be described. (optional)
+update_task_request_v2 = pricemonitor_api_client.UpdateTaskRequestV2() # UpdateTaskRequestV2 | Complete task document that should replace the existing stored task.
 
     try:
         # Update a task
-        api_response = api_instance.update_task_vendor_v2(contract_id, task_id, body=body)
+        api_response = api_instance.update_task_vendor_v2(contract_id, task_id, update_task_request_v2)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling TasksApi->update_task_vendor_v2: %s\n" % e)
@@ -1131,11 +1131,11 @@ with pricemonitor_api_client.ApiClient(configuration) as api_client:
     api_instance = pricemonitor_api_client.TasksApi(api_client)
     contract_id = 'qbcxvb' # str | Unique identifier of the contract
 task_id = 'task_id_example' # str | 
-body = None # object | This is a generated entry and needs to be described. (optional)
+update_task_request_v2 = pricemonitor_api_client.UpdateTaskRequestV2() # UpdateTaskRequestV2 | Complete task document that should replace the existing stored task.
 
     try:
         # Update a task
-        api_response = api_instance.update_task_vendor_v2(contract_id, task_id, body=body)
+        api_response = api_instance.update_task_vendor_v2(contract_id, task_id, update_task_request_v2)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling TasksApi->update_task_vendor_v2: %s\n" % e)
@@ -1147,11 +1147,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **contract_id** | **str**| Unique identifier of the contract | 
  **task_id** | **str**|  | 
- **body** | **object**| This is a generated entry and needs to be described. | [optional] 
+ **update_task_request_v2** | [**UpdateTaskRequestV2**](UpdateTaskRequestV2.md)| Complete task document that should replace the existing stored task. | 
 
 ### Return type
 
-**object**
+[**UpdateTaskRequestV2**](UpdateTaskRequestV2.md)
 
 ### Authorization
 
@@ -1160,12 +1160,14 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
+ - **Accept**: application/json, text/plain, 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | This is a generated entry and needs to be described. |  -  |
+**200** | Task was updated successfully and the persisted task document is returned. |  -  |
+**400** | The task payload is invalid or contains identifiers that do not match the path parameters. |  -  |
+**404** | No task with the supplied &#x60;contractId&#x60; and &#x60;taskId&#x60; exists. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
