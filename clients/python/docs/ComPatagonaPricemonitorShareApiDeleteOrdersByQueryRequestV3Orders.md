@@ -1,6 +1,5 @@
-# ComPatagonaPricemonitorShareApiDeleteOrderQueryV3
+# ComPatagonaPricemonitorShareApiDeleteOrdersByQueryRequestV3Orders
 
-Query to specify the order to be deleted
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

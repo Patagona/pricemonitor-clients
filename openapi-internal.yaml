@@ -18,7 +18,7 @@ info:
 
     All endpoints are authenticated using either Basic Authentication or JWT
     Bearer tokens.
-  version: 0.0.7283
+  version: 0.0.7284
   x-logo:
     url: >-
       https://www.omniaretail.com/hubfs/Omnia%20Logo%20SVG/Omnia_Retail_Full_Colour_Logo_On_White_RGB.svg
@@ -14043,23 +14043,6 @@ components:
             $ref: >-
               #/components/schemas/com.patagona.pricemonitor.share.api.PostOrderStatisticsResponseV3
           type: array
-    com.patagona.pricemonitor.share.api.DeleteOrderQueryV3:
-      description: Query to specify the order to be deleted
-      properties:
-        orderId:
-          type: string
-          description: Unique identifier of the order
-        creationDate:
-          type: string
-          format: date-time
-          description: >-
-            Creation date of the corresponding order. It is a Timestamp in UTC
-            time zone
-      additionalProperties: false
-      type: object
-      required:
-        - orderId
-        - creationDate
     com.patagona.pricemonitor.share.api.DeleteOrdersByQueryRequestV3:
       description: >-
         Request to delete a list of customer orders by providing an order query
@@ -14069,8 +14052,21 @@ components:
         orders:
           type: array
           items:
-            $ref: >-
-              #/components/schemas/com.patagona.pricemonitor.share.api.DeleteOrderQueryV3
+            type: object
+            additionalProperties: false
+            properties:
+              orderId:
+                type: string
+                description: Unique identifier of the order
+              creationDate:
+                type: string
+                format: date-time
+                description: >-
+                  Creation date of the corresponding order. It is a Timestamp in
+                  UTC time zone
+            required:
+              - orderId
+              - creationDate
           description: >-
             List of order queries, each query should include an order id and its
             corresponding creation date
